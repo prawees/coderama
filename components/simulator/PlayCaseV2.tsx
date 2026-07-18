@@ -7,6 +7,7 @@ import { Activity, Stethoscope, FlaskConical, Pill, Heart, Bone, FileText, Alert
 import type { CaseData, VitalSign, PlayerEvent, OutcomeNodeData, Investigation, ManagementNode } from "./types";
 import { VITAL_DEFS, DISEASES_DB } from "./database";
 import { Modal } from "./ui";
+import { MainMenu } from "./MainMenu";
 import { calculateXp, saveXpLocally, XpBreakdown, RankTier } from "@/lib/gamification";
 import { GameCanvas } from "./GameCanvas";
 import { VitalsPanel } from "./VitalsPanel";
@@ -399,26 +400,7 @@ export default function PlayCase({ caseId }: { caseId: string }) {
 
     // Start screen
     if (!gameStarted) {
-        return (
-            <div className="bg-canvas font-sans flex items-center justify-center" style={{ height: "calc(100vh - 48px)" }}>
-                <div className="max-w-md text-center">
-                    <Heart size={48} className="text-iris-600 mx-auto mb-4" />
-                    <h1 className="text-2xl font-semibold text-ink-900 mb-1">{caseData.title || "Untitled case"}</h1>
-                    <p className="text-sm text-ink-500 mb-1">
-                        {caseData.age || "—"} y/o {caseData.sex} · {caseData.chiefComplaint || "No chief complaint"}
-                    </p>
-                    <p className="text-xs text-ink-400 mb-6 leading-relaxed">
-                        {caseData.background ? caseData.background.slice(0, 200) + (caseData.background.length > 200 ? "…" : "") : ""}
-                    </p>
-                    <button
-                        onClick={startGame}
-                        className="rounded-lg bg-iris-600 px-6 py-3 text-sm font-semibold text-white hover:bg-iris-700 transition-colors cursor-pointer"
-                    >
-                        Start Simulation
-                    </button>
-                </div>
-            </div>
-        );
+        return <MainMenu caseData={caseData} onStart={startGame} />;
     }
 
     const gameTimeUp = gameOver || (minutes === 0 && seconds === 0);
@@ -434,6 +416,7 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                     minutes={gameTimeUp ? 0 : minutes}
                     seconds={gameTimeUp ? 0 : seconds}
                     gameOver={gameTimeUp}
+                    patientAppearance={caseData.patientAppearance}
                 />
             </div>
 
@@ -507,8 +490,8 @@ export default function PlayCase({ caseId }: { caseId: string }) {
             </div>
             {/* Active panel overlay (Telltale style) */}
             {activeTab && (
-                <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-                    <div className="relative w-full max-w-2xl max-h-[80vh] overflow-y-auto bg-ink-950/90 backdrop-blur-md rounded-2xl shadow-2xl border border-ink-800 p-6 text-white">
+                <div className="absolute inset-x-0 bottom-32 z-30 flex items-end justify-center pointer-events-none p-4">
+                    <div className="relative w-full max-w-2xl max-h-[60vh] overflow-y-auto bg-ink-950/80 backdrop-blur-md rounded-2xl shadow-2xl border border-ink-800 p-6 text-white pointer-events-auto">
                         <button 
                             onClick={() => setActiveTab(null)}
                             className="absolute top-4 right-4 text-ink-400 hover:text-white"

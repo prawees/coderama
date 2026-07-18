@@ -12,6 +12,7 @@ export function GameCanvas({
     minutes,
     seconds,
     gameOver,
+    patientAppearance,
 }: {
     vitals: Record<string, VitalSign>;
     vitalsVisible: boolean;
@@ -19,6 +20,11 @@ export function GameCanvas({
     minutes: number;
     seconds: number;
     gameOver: boolean;
+    patientAppearance?: {
+        skinTone?: string;
+        bmiFactor?: number;
+        ageGroup?: string;
+    };
 }) {
     const vitalsRef = useRef(vitals);
     const visibleRef = useRef(vitalsVisible);
@@ -51,6 +57,7 @@ export function GameCanvas({
                     minutesRef={minutesRef}
                     secondsRef={secondsRef}
                     gameOverRef={gameOverRef}
+                    patientAppearance={patientAppearance}
                 />
             </Canvas>
         </div>

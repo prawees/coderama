@@ -18,6 +18,11 @@ interface PatientSceneProps {
   minutesRef: React.MutableRefObject<number>;
   secondsRef: React.MutableRefObject<number>;
   gameOverRef: React.MutableRefObject<boolean>;
+  patientAppearance?: {
+      skinTone?: string;
+      bmiFactor?: number;
+      ageGroup?: string;
+  };
 }
 
 export function PatientScene({
@@ -27,6 +32,7 @@ export function PatientScene({
   minutesRef,
   secondsRef,
   gameOverRef,
+  patientAppearance,
 }: PatientSceneProps) {
   const pulseRef = useRef(0);
 
@@ -75,7 +81,7 @@ export function PatientScene({
       {/* Scene elements */}
       <Room />
       <Bed />
-      <Patient pulseRef={pulseRef} />
+      <Patient pulseRef={pulseRef} appearance={patientAppearance} />
       <IVStand />
       <Monitor
         vitalsRef={vitalsRef}
