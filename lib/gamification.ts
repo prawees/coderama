@@ -83,3 +83,60 @@ export function getLocalXp(): number {
   if (typeof window === "undefined") return 0;
   return parseInt(localStorage.getItem("toxico_xp") || "0", 10);
 }
+
+// ---- AVATAR & PROFILE SYSTEM ----
+
+export interface AvatarCustomization {
+  scrubColor: string; // hex
+  stethoscopeColor: string; // hex
+  maskType: "none" | "surgical" | "n95";
+  glasses: "none" | "square" | "round";
+}
+
+export interface UserProfile {
+  xp: number;
+  avatar: AvatarCustomization;
+}
+
+export const COSMETICS = {
+  scrubs: [
+    { id: "teal", color: "#14b8a6", name: "Student Teal", requiredRank: "Medical Student" as RankTier },
+    { id: "blue", color: "#3b82f6", name: "Resident Blue", requiredRank: "Resident" as RankTier },
+    { id: "black", color: "#0f172a", name: "Attending Black", requiredRank: "Attending" as RankTier },
+  ],
+  stethoscopes: [
+    { id: "black", color: "#333333", name: "Standard Black", requiredRank: "Medical Student" as RankTier },
+    { id: "red", color: "#ef4444", name: "Cardiology Red", requiredRank: "Intern" as RankTier },
+    { id: "gold", color: "#eab308", name: "Chief Gold", requiredRank: "Chief of Staff" as RankTier },
+  ]
+};
+
+export const DEFAULT_AVATAR: AvatarCustomization = {
+  scrubColor: "#14b8a6",
+  stethoscopeColor: "#333333",
+  maskType: "none",
+  glasses: "none",
+};
+
+export function getLocalProfile(): UserProfile {
+  if (typeof window === "undefined") return { xp: 0, avatar: DEFAULT_AVATAR };
+  
+  const xp = getLocalXp();
+  const storedAvatar = localStorage.getItem("toxico_avatar");
+  
+  let avatar = DEFAULT_AVATAR;
+  if (storedAvatar) {
+    try {
+      avatar = JSON.parse(storedAvatar);
+    } catch (e) {
+      console.error("Failed to parse avatar");
+    }
+  }
+  
+  return { xp, avatar };
+}
+
+export function saveAvatarLocally(avatar: AvatarCustomization) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem("toxico_avatar", JSON.stringify(avatar));
+}

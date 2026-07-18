@@ -1,4 +1,4 @@
-import { Heart, Play } from "lucide-react";
+import { Heart, Play, User as UserIcon } from "lucide-react";
 import type { CaseData } from "./types";
 
 interface MainMenuProps {
@@ -45,15 +45,25 @@ export function MainMenu({ caseData, onStart }: MainMenuProps) {
             : "No background information available. Prepare for immediate intervention."}
         </p>
 
-        <button
-          onClick={onStart}
-          className="group relative flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-iris-100 hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(79,70,229,0.5)] cursor-pointer"
-        >
-          <Play size={20} className="fill-black" />
-          <span>BEGIN SIMULATION</span>
-          
-          <div className="absolute inset-0 rounded-full border border-white/50 scale-110 opacity-0 group-hover:opacity-100 group-hover:animate-ping" />
-        </button>
+        <div className="flex flex-col md:flex-row gap-4 items-center justify-center w-full max-w-lg">
+          <button
+            onClick={onStart}
+            className="group relative flex items-center justify-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-iris-100 hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(79,70,229,0.5)] cursor-pointer w-full md:w-auto"
+          >
+            <Play size={20} className="fill-black" />
+            <span>BEGIN SIMULATION</span>
+            
+            <div className="absolute inset-0 rounded-full border border-white/50 scale-110 opacity-0 group-hover:opacity-100 group-hover:animate-ping" />
+          </button>
+
+          <a
+            href="/profile"
+            className="flex items-center justify-center gap-2 bg-ink-900 border border-ink-700 text-white px-6 py-4 rounded-full font-bold hover:bg-ink-800 hover:border-iris-500 transition-all duration-300 cursor-pointer w-full md:w-auto"
+          >
+            <UserIcon size={20} />
+            <span>ID Card</span>
+          </a>
+        </div>
       </div>
     </div>
   );

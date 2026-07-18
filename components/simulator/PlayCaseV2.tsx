@@ -632,10 +632,16 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                                     Try Again
                                 </button>
                                 <button
+                                    onClick={() => window.location.href = "/profile"}
+                                    className="flex-1 rounded-lg bg-indigo-100 border border-indigo-200 px-4 py-2.5 text-sm font-semibold text-indigo-700 hover:bg-indigo-200 transition-colors cursor-pointer"
+                                >
+                                    View ID Card
+                                </button>
+                                <button
                                     onClick={() => window.location.href = "/"}
                                     className="flex-1 rounded-lg bg-iris-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-iris-700 transition-colors cursor-pointer"
                                 >
-                                    Back to Home
+                                    Home
                                 </button>
                             </div>
                         </div>
