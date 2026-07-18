@@ -110,6 +110,11 @@ export interface CaseData {
   chiefComplaint: string;
   diagnoses: string[];
   background: string;
+  patientAppearance?: {
+    skinTone?: string; // hex color
+    bmiFactor?: number; // 0.5 (skinny) to 1.5 (obese)
+    ageGroup?: "child" | "adult" | "elderly";
+  };
   vitals: Record<string, VitalSign>;
   exam: ExamFinding[];
   investigations: Investigation[];
