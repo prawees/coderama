@@ -46,7 +46,7 @@ export default function PlayCase({ caseId }: { caseId: string }) {
     const [error, setError] = useState<string | null>(null);
 
     // Game state
-    const [activeTab, setActiveTab] = useState<ActionTab>("vitals");
+    const [activeTab, setActiveTab] = useState<ActionTab | null>(null); // null means closed
     const [vitalsRequested, setVitalsRequested] = useState(false);
     const [examinedSystems, setExaminedSystems] = useState<Set<string>>(new Set());
     const [requestedTests, setRequestedTests] = useState<Set<string>>(new Set());
@@ -505,49 +505,61 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                     })}
                 </div>
             </div>
-            {/* Active panel content */}
-            <div className="min-w-lg absolute bottom-6 left-6 z-10 flex flex-col gap-2 max-w-[420px] max-h-[55vh] overflow-y-auto bg-white/90 backdrop-blur-md rounded-xl shadow-lg border border-ink-900/8 p-4">
-                {activeTab === "vitals" && (
-                    <VitalsPanel
-                        vitals={resolvedVitals}
-                        requested={vitalsRequested}
-                        onRequest={requestVitals}
-                    />
-                )}
-                {activeTab === "history" && (
-                    <HistoryPanel data={caseData} />
-                )}
-                {activeTab === "exam" && (
-                    <ExamPanel
-                        findings={caseData.exam}
-                        onRequest={requestExam}
-                        requestedSystems={examinedSystems}
-                    />
-                )}
-                {activeTab === "investigations" && (
-                    <InvestigationsPanel
-                        caseInvestigations={caseData.investigations}
-                        requestedTests={requestedTests}
-                        onRequestBundle={requestBundle}
-                    />
-                )}
-                {activeTab === "imaging" && (
-                    <ImagingPanel
-                        caseInvestigations={caseData.investigations}
-                        requestedTests={requestedTests}
-                        onRequestBundle={requestBundle}
-                        onViewResult={setImagingResult}
-                    />
-                )}
-                {activeTab === "management" && (
-                    <ManagementPanel
-                        caseData={caseData}
-                        selectedInterventions={selectedInterventions}
-                        unlockedDispositions={unlockedDispositions}
-                        onSelectIntervention={applyIntervention}
-                    />
-                )}
-            </div>
+            {/* Active panel overlay (Telltale style) */}
+            {activeTab && (
+                <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+                    <div className="relative w-full max-w-2xl max-h-[80vh] overflow-y-auto bg-ink-950/90 backdrop-blur-md rounded-2xl shadow-2xl border border-ink-800 p-6 text-white">
+                        <button 
+                            onClick={() => setActiveTab(null)}
+                            className="absolute top-4 right-4 text-ink-400 hover:text-white"
+                        >
+                            ✕
+                        </button>
+                        <h2 className="text-xl font-bold mb-4">{TABS.find(t => t.key === activeTab)?.label}</h2>
+                        
+                        {activeTab === "vitals" && (
+                            <VitalsPanel
+                                vitals={resolvedVitals}
+                                requested={vitalsRequested}
+                                onRequest={requestVitals}
+                            />
+                        )}
+                        {activeTab === "history" && (
+                            <HistoryPanel data={caseData} />
+                        )}
+                        {activeTab === "exam" && (
+                            <ExamPanel
+                                findings={caseData.exam}
+                                onRequest={requestExam}
+                                requestedSystems={examinedSystems}
+                            />
+                        )}
+                        {activeTab === "investigations" && (
+                            <InvestigationsPanel
+                                caseInvestigations={caseData.investigations}
+                                requestedTests={requestedTests}
+                                onRequestBundle={requestBundle}
+                            />
+                        )}
+                        {activeTab === "imaging" && (
+                            <ImagingPanel
+                                caseInvestigations={caseData.investigations}
+                                requestedTests={requestedTests}
+                                onRequestBundle={requestBundle}
+                                onViewResult={setImagingResult}
+                            />
+                        )}
+                        {activeTab === "management" && (
+                            <ManagementPanel
+                                caseData={caseData}
+                                selectedInterventions={selectedInterventions}
+                                unlockedDispositions={unlockedDispositions}
+                                onSelectIntervention={applyIntervention}
+                            />
+                        )}
+                    </div>
+                </div>
+            )}
             {/* Game over modal */}
             {(() => {
                 if (!gameOverReason) return null;
@@ -724,31 +736,31 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                 );
             })()}
 
-            {/* Floating action panel — bottom-right */}
-            <div className="absolute bottom-6 right-6 z-10 flex flex-col gap-2 max-w-[420px]">
-                {/* Tab buttons */}
-                <div className="flex flex-col gap-3 bg-white/90 backdrop-blur-md rounded-xl p-3 shadow-lg border border-ink-900/8">
+            {/* Cinematic bottom action bar */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 w-[90%] max-w-3xl">
+                <div className="flex justify-center gap-2 md:gap-4 overflow-x-auto pb-2">
                     {TABS.map((t) => {
                         const Icon = t.icon;
                         const isActive = activeTab === t.key;
                         return (
                             <button
                                 key={t.key}
-                                onClick={() => setActiveTab(t.key)}
+                                onClick={() => setActiveTab(isActive ? null : t.key)}
                                 disabled={gameTimeUp && t.key !== "management"}
-                                className={`flex items-center gap-1.5 px-3 py-2 text-md font-semibold rounded-lg transition-colors cursor-pointer ${isActive
-                                    ? "bg-iris-100 text-iris-700"
-                                    : "text-ink-500 hover:bg-iris-50 hover:text-iris-600"
-                                    } ${gameTimeUp && t.key !== "management" ? "opacity-40 cursor-default" : ""}`}
+                                className={`group relative flex flex-col items-center justify-center gap-2 p-3 md:p-4 rounded-xl backdrop-blur-md border transition-all duration-300 cursor-pointer min-w-[70px] md:min-w-[90px]
+                                    ${isActive
+                                        ? "bg-iris-600/90 border-iris-400 text-white shadow-[0_0_15px_rgba(79,70,229,0.5)] scale-110 -translate-y-2"
+                                        : "bg-black/60 border-white/10 text-white/70 hover:bg-black/80 hover:text-white hover:border-white/30 hover:-translate-y-1"
+                                    } ${gameTimeUp && t.key !== "management" ? "opacity-30 cursor-not-allowed" : ""}`}
                             >
-                                <Icon size={15} />
-                                <span>{t.label}</span>
+                                <Icon size={24} className={isActive ? "animate-pulse" : ""} />
+                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-wider text-center leading-tight">
+                                    {t.label}
+                                </span>
                             </button>
                         );
                     })}
                 </div>
-
-
             </div>
         </div>
     );
