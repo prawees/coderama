@@ -420,37 +420,62 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                 />
             </div>
 
-            {/* Elapsed timer + health bar — always visible */}
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
-                <span className="inline-flex items-center gap-1.5 text-sm font-mono font-semibold text-white bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
-                    <Clock size={14} />
-                    {String(Math.floor(elapsed / 60)).padStart(2, "0")}:{String(elapsed % 60).padStart(2, "0")}
-                </span>
-                <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-lg">
-                    <div className="w-20 h-2 rounded-full bg-white/20 overflow-hidden">
-                        <div
-                            className="h-full rounded-full transition-all duration-1000"
-                            style={{
-                                width: `${health}%`,
-                                background: health > 50
-                                    ? "#22c55e"
-                                    : health > 25
-                                        ? "#eab308"
-                                        : "#ef4444",
-                            }}
-                        />
+            {/* 2026 HUD: Elapsed timer + health bar */}
+            <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-4">
+                <div className="relative group">
+                    {/* Sci-fi angled background wrapper */}
+                    <div className="absolute inset-0 bg-ink-950/80 backdrop-blur-md border border-iris-500/50 -skew-x-12 shadow-[0_0_15px_rgba(79,70,229,0.3)]"></div>
+                    <div className="relative px-6 py-2 flex items-center gap-2">
+                        <Clock size={16} className="text-iris-400 animate-pulse" />
+                        <span className="text-lg font-mono font-bold text-white tracking-widest drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+                            {String(Math.floor(elapsed / 60)).padStart(2, "0")}:{String(elapsed % 60).padStart(2, "0")}
+                        </span>
                     </div>
-                    <span className="text-xs font-semibold text-white">{Math.round(health)}%</span>
                 </div>
+
+                <div className="relative group">
+                    <div className="absolute inset-0 bg-ink-950/80 backdrop-blur-md border border-ink-800 -skew-x-12"></div>
+                    <div className="relative px-6 py-2 flex items-center gap-3">
+                        <div className="w-32 h-2.5 bg-ink-900 rounded-sm overflow-hidden border border-ink-800 shadow-inner">
+                            <div
+                                className="h-full transition-all duration-1000 relative"
+                                style={{
+                                    width: `${health}%`,
+                                    background: health > 50
+                                        ? "linear-gradient(90deg, #059669, #34d399)"
+                                        : health > 25
+                                            ? "linear-gradient(90deg, #d97706, #fbbf24)"
+                                            : "linear-gradient(90deg, #b91c1c, #f87171)",
+                                }}
+                            >
+                                {/* Health glow effect */}
+                                <div className="absolute top-0 right-0 bottom-0 w-8 bg-white/30 blur-sm" />
+                            </div>
+                        </div>
+                        <span className="text-sm font-bold font-mono text-white w-10 text-right drop-shadow-md">
+                            {Math.round(health)}%
+                        </span>
+                    </div>
+                </div>
+
                 {gameTimeUp && (
-                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-rose-600 bg-rose-100/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
-                        Time is up!
-                    </span>
+                    <div className="relative animate-bounce">
+                        <div className="absolute inset-0 bg-rose-900/90 backdrop-blur-md border border-rose-500 -skew-x-12 shadow-[0_0_20px_rgba(225,29,72,0.8)]"></div>
+                        <div className="relative px-6 py-2 text-sm font-bold text-white tracking-widest uppercase">
+                            Time is up!
+                        </div>
+                    </div>
                 )}
             </div>
-            {/* Event log */}
-            <div className="absolute top-6 left-6 z-10 flex flex-col gap-2 w-[320px] max-h-[40vh] overflow-y-auto bg-white/90 backdrop-blur-md rounded-xl shadow-lg border border-ink-900/8 p-3">
-                <p className="text-[11px] font-semibold text-ink-400 uppercase tracking-wide mb-1">Event Log</p>
+
+            {/* 2026 HUD: Event log (Terminal style) */}
+            <div className="absolute top-6 left-6 z-10 flex flex-col gap-2 w-[340px] max-h-[50vh] overflow-hidden">
+                <div className="bg-ink-950/70 backdrop-blur-xl border-l-4 border-iris-500 rounded-r-xl shadow-2xl p-4 relative before:absolute before:inset-0 before:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] before:bg-[size:100%_4px] before:pointer-events-none">
+                    <p className="text-[10px] font-mono font-bold text-iris-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-iris-500 rounded-full animate-ping"></span>
+                        Action Feed
+                    </p>
+                    <div className="flex flex-col gap-2 overflow-y-auto max-h-[40vh] pr-2 custom-scrollbar">
                 {playerEvents.length === 0 && (
                     <p className="text-xs text-ink-300 italic">No events yet</p>
                 )}
@@ -477,28 +502,34 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                             critical: "bg-red-100",
                             unchanged: "bg-ink-100",
                         };
-                        const outcomeBgClass = ev.kind === "outcome" ? outcomeBg[ev.outcomeType] ?? "bg-ink-100" : "";
+                        const outcomeBgClass = ev.kind === "outcome" ? outcomeBg[ev.outcomeType] ?? "bg-ink-800/50" : "bg-ink-900/40 border border-ink-800/50 hover:border-iris-500/30 transition-colors";
                         return (
-                            <div key={i} className={`flex items-center gap-2 text-xs rounded px-1.5 py-1 ${outcomeBgClass}`}>
-                                <span className="text-ink-300 font-mono w-10 shrink-0">{time}</span>
-                                <span className="shrink-0">{icon}</span>
-                                <span className="truncate">{label}</span>
+                            <div key={i} className={`flex items-center gap-2.5 text-xs rounded-md px-2 py-1.5 ${outcomeBgClass}`}>
+                                <span className="text-iris-300/70 font-mono text-[10px] w-9 shrink-0">{time}</span>
+                                <span className="shrink-0 text-white/70">{icon}</span>
+                                <span className="truncate text-white font-medium">{label}</span>
                             </div>
                         );
                     })}
                 </div>
+                </div>
             </div>
             {/* Active panel overlay (Telltale style) */}
             {activeTab && (
-                <div className="absolute inset-x-0 bottom-32 z-30 flex items-end justify-center pointer-events-none p-4">
-                    <div className="relative w-full max-w-2xl max-h-[60vh] overflow-y-auto bg-ink-950/80 backdrop-blur-md rounded-2xl shadow-2xl border border-ink-800 p-6 text-white pointer-events-auto">
+                <div className="absolute inset-x-0 bottom-36 z-30 flex items-end justify-center pointer-events-none p-4">
+                    <div className="relative w-full max-w-3xl max-h-[60vh] overflow-y-auto bg-ink-950/90 backdrop-blur-xl rounded-t-3xl rounded-b-lg shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-x border-iris-500/30 p-8 text-white pointer-events-auto">
+                        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-iris-500 to-transparent opacity-50" />
                         <button 
                             onClick={() => setActiveTab(null)}
-                            className="absolute top-4 right-4 text-ink-400 hover:text-white"
+                            className="absolute top-6 right-6 text-ink-400 hover:text-white bg-ink-900 p-2 rounded-full hover:bg-iris-600 hover:shadow-[0_0_15px_rgba(79,70,229,0.8)] transition-all"
                         >
                             ✕
                         </button>
-                        <h2 className="text-xl font-bold mb-4">{TABS.find(t => t.key === activeTab)?.label}</h2>
+                        <h2 className="text-2xl font-bold mb-6 tracking-wide uppercase border-b border-ink-800 pb-4">
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-ink-400">
+                                {TABS.find(t => t.key === activeTab)?.label}
+                            </span>
+                        </h2>
                         
                         {activeTab === "vitals" && (
                             <VitalsPanel
@@ -725,28 +756,34 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                 );
             })()}
 
-            {/* Cinematic bottom action bar */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 w-[90%] max-w-3xl">
-                <div className="flex justify-center gap-2 md:gap-4 overflow-x-auto pb-2">
+            {/* 2026 HUD: Cinematic bottom action bar */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-[95%] max-w-4xl">
+                <div className="flex justify-center gap-3 overflow-x-auto pb-4 pt-4 px-4">
                     {TABS.map((t) => {
                         const Icon = t.icon;
                         const isActive = activeTab === t.key;
                         return (
-                            <button
-                                key={t.key}
-                                onClick={() => setActiveTab(isActive ? null : t.key)}
-                                disabled={gameTimeUp && t.key !== "management"}
-                                className={`group relative flex flex-col items-center justify-center gap-2 p-3 md:p-4 rounded-xl backdrop-blur-md border transition-all duration-300 cursor-pointer min-w-[70px] md:min-w-[90px]
-                                    ${isActive
-                                        ? "bg-iris-600/90 border-iris-400 text-white shadow-[0_0_15px_rgba(79,70,229,0.5)] scale-110 -translate-y-2"
-                                        : "bg-black/60 border-white/10 text-white/70 hover:bg-black/80 hover:text-white hover:border-white/30 hover:-translate-y-1"
-                                    } ${gameTimeUp && t.key !== "management" ? "opacity-30 cursor-not-allowed" : ""}`}
-                            >
-                                <Icon size={24} className={isActive ? "animate-pulse" : ""} />
-                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-wider text-center leading-tight">
-                                    {t.label}
-                                </span>
-                            </button>
+                            <div key={t.key} className="relative group">
+                                {/* Angled Background */}
+                                <div className={`absolute inset-0 -skew-x-12 transition-all duration-300 ${
+                                    isActive 
+                                        ? "bg-iris-600/90 border border-iris-300 shadow-[0_0_20px_rgba(79,70,229,0.8)]" 
+                                        : "bg-ink-950/80 border border-white/10 group-hover:bg-ink-900 group-hover:border-iris-500/50 group-hover:shadow-[0_0_15px_rgba(79,70,229,0.4)]"
+                                }`}></div>
+                                
+                                <button
+                                    onClick={() => setActiveTab(isActive ? null : t.key)}
+                                    disabled={gameTimeUp && t.key !== "management"}
+                                    className={`relative flex flex-col items-center justify-center gap-2 p-3 min-w-[80px] md:min-w-[100px] transition-all duration-300 cursor-pointer
+                                        ${isActive ? "text-white scale-110 -translate-y-2" : "text-white/60 group-hover:text-white"}
+                                        ${gameTimeUp && t.key !== "management" ? "opacity-30 cursor-not-allowed" : ""}`}
+                                >
+                                    <Icon size={24} className={isActive ? "drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" : ""} />
+                                    <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-center leading-tight">
+                                        {t.label}
+                                    </span>
+                                </button>
+                            </div>
                         );
                     })}
                 </div>

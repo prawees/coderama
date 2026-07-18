@@ -48,11 +48,26 @@ export function UserProfile() {
       <div className="max-w-4xl mx-auto relative z-10">
         
         <header className="flex items-center justify-between mb-12">
-          <Link href="/" className="flex items-center gap-2 text-ink-400 hover:text-white transition-colors">
+          <button 
+            onClick={() => window.history.back()} 
+            className="flex items-center gap-2 text-ink-400 hover:text-iris-400 transition-colors cursor-pointer"
+          >
             <ArrowLeft size={20} />
-            <span className="font-semibold tracking-wide text-sm uppercase">Back to Hub</span>
-          </Link>
-          <h1 className="text-2xl font-bold tracking-tight text-white drop-shadow-md">Toxico ID</h1>
+            <span className="font-semibold tracking-wide text-sm uppercase">Back to Game</span>
+          </button>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => {
+                const newXp = profile.xp + 5000;
+                localStorage.setItem("toxico_xp", newXp.toString());
+                setProfile({ ...profile, xp: newXp });
+              }}
+              className="px-3 py-1 bg-red-900/40 text-red-400 text-xs font-mono uppercase tracking-widest border border-red-900 rounded-sm hover:bg-red-800/60 cursor-pointer"
+            >
+              [DEV] +5000 XP
+            </button>
+            <h1 className="text-2xl font-bold tracking-tight text-white drop-shadow-md border-r-4 border-iris-500 pr-4">Toxico ID</h1>
+          </div>
         </header>
 
         <div className="grid md:grid-cols-[1fr_2fr] gap-8">
