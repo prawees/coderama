@@ -476,11 +476,10 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                         Action Feed
                     </p>
                     <div className="flex flex-col gap-2 overflow-y-auto max-h-[40vh] pr-2 custom-scrollbar">
-                {playerEvents.length === 0 && (
-                    <p className="text-xs text-ink-300 italic">No events yet</p>
-                )}
-                <div className="flex flex-col gap-1.5">
-                    {playerEvents.map((ev, i) => {
+                        {playerEvents.length === 0 && (
+                            <p className="text-xs text-ink-300 italic">No events yet</p>
+                        )}
+                        {playerEvents.map((ev, i) => {
                         const time = `${String(Math.floor(ev.timestamp / 60)).padStart(2, "0")}:${String(ev.timestamp % 60).padStart(2, "0")}`;
                         const icon = ev.kind === "game_start" ? <Play size={12} /> :
                             ev.kind === "vitals_requested" ? <Activity size={12} /> :
