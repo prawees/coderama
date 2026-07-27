@@ -9,6 +9,9 @@ import { VITAL_DEFS, DISEASES_DB } from "./database";
 import { Modal } from "./ui";
 import { MainMenu } from "./MainMenu";
 import { calculateXp, saveXpLocally, XpBreakdown, RankTier } from "@/lib/gamification";
+import { useGameStore } from "@/lib/store";
+import { gameEvents } from "@/lib/events";
+import { Rnd } from "react-rnd";
 import { GameCanvas } from "./GameCanvas";
 import { VitalsPanel } from "./VitalsPanel";
 import { ExamPanel } from "./ExamPanel";
@@ -57,51 +60,57 @@ export default function PlayCase({ caseId }: { caseId: string }) {
     const [requiredDoseMap, setRequiredDoseMap] = useState<Record<string, string> | null>(null);
     const [imagingResult, setImagingResult] = useState<Investigation | null>(null);
     const [outcomeModal, setOutcomeModal] = useState<OutcomeNodeData | null>(null);
-    const [gameOverReason, setGameOverReason] = useState<{ event: "won" | "patientDied" | "timeOut", description: string } | null>(null);
-    const [minutes, setMinutes] = useState(GAME_DURATION_MINUTES);
-    const [seconds, setSeconds] = useState(0);
-    const [gameOver, setGameOver] = useState(false);
-    const [gameStarted, setGameStarted] = useState(false);
-    const [elapsed, setElapsed] = useState(0);
-    const [playerEvents, setPlayerEvents] = useState<PlayerEvent[]>([]);
-    const [health, setHealth] = useState(100);
+
+    const { gameStarted, gameOver, gameOverReason, elapsed, minutes, seconds, health, playerEvents, startGame: storeStartGame, endGame, tickTimer, addPlayerEvent, resetGame } = useGameStore();
+
+    // Helper setters for legacy code
+    const setHealth = useCallback((val: number | ((h: number) => number)) => {
+        useGameStore.setState(s => ({ health: typeof val === 'function' ? val(s.health) : val }));
+    }, []);
+    const setGameOver = useCallback((val: boolean) => useGameStore.setState({ gameOver: val }), []);
+    const setGameOverReason = useCallback((val: any) => useGameStore.setState({ gameOverReason: val }), []);
+    const setElapsed = useCallback((val: number | ((e: number) => number)) => {
+        useGameStore.setState(s => ({ elapsed: typeof val === 'function' ? val(s.elapsed) : val }));
+    }, []);
+    const setMinutes = useCallback((val: number) => useGameStore.setState({ minutes: val }), []);
+    const setSeconds = useCallback((val: number) => useGameStore.setState({ seconds: val }), []);
+    const setGameStarted = useCallback((val: boolean) => useGameStore.setState({ gameStarted: val }), []);
+    
+    
+    
+    
+    
+    
+    
+    
     const [diagnosisInput, setDiagnosisInput] = useState("");
     const [activeIdx, setActiveIdx] = useState(-1);
     const [diagnosisResult, setDiagnosisResult] = useState<"correct" | "wrong" | null>(null);
     const [xpResult, setXpResult] = useState<{ breakdown: XpBreakdown, newRank: RankTier } | null>(null);
     const [currentNode, setCurrentNode] = useState<ManagementNode | null>(null);
     const [unlockedDispositions, setUnlockedDispositions] = useState<string[]>([]);
-    const elapsedRef = useRef(elapsed);
-    elapsedRef.current = elapsed;
+    
+    
 
     const recordEvent = useCallback((event: PlayerEvent) => {
-        setPlayerEvents((prev) => [...prev, event]);
-    }, []);
+        addPlayerEvent(event);
+    }, [addPlayerEvent]);
 
     // Timer
     useEffect(() => {
         if (!gameStarted || gameOver) return;
         const interval = setInterval(() => {
-            setElapsed((e) => e + 1);
-            setHealth((h) => Math.max(0, h - 100 / TOTAL_GAME_SECONDS));
-            setSeconds((s) => {
-                if (s === 0) {
-                    setMinutes((m) => {
-                        if (m === 0) {
-                            setGameOver(true);
-                            setGameOverReason({ event: "timeOut", description: "Time has expired." });
-                            recordEvent({ kind: "game_over", timestamp: elapsedRef.current, reason: "time_expired" });
-                            return 0;
-                        }
-                        return m - 1;
-                    });
-                    return 59;
-                }
-                return s - 1;
-            });
+            tickTimer(TOTAL_GAME_SECONDS);
         }, 1000);
         return () => clearInterval(interval);
-    }, [gameStarted, gameOver, recordEvent]);
+    }, [gameStarted, gameOver, tickTimer]);
+
+    // Check for timeout from store state
+    useEffect(() => {
+        if (gameOver && gameOverReason?.event === "timeOut" && !playerEvents.some(e => e.kind === "game_over")) {
+            recordEvent({ kind: "game_over", timestamp: elapsed, reason: "time_expired" });
+        }
+    }, [gameOver, gameOverReason, elapsed, recordEvent, playerEvents]);
 
     // Health reaches 0 → game over
     useEffect(() => {
@@ -424,7 +433,7 @@ export default function PlayCase({ caseId }: { caseId: string }) {
             <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-4">
                 <div className="relative group">
                     {/* Sci-fi angled background wrapper */}
-                    <div className="absolute inset-0 bg-ink-950/80 backdrop-blur-md border border-iris-500/50 -skew-x-12 shadow-[0_0_15px_rgba(79,70,229,0.3)]"></div>
+                    <div className="absolute inset-0 bg-black/90 backdrop-blur-md border border-iris-500 -skew-x-12 shadow-[0_0_25px_rgba(79,70,229,0.5)]"></div>
                     <div className="relative px-6 py-2 flex items-center gap-2">
                         <Clock size={16} className="text-iris-400 animate-pulse" />
                         <span className="text-lg font-mono font-bold text-white tracking-widest drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
@@ -434,7 +443,7 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                 </div>
 
                 <div className="relative group">
-                    <div className="absolute inset-0 bg-ink-950/80 backdrop-blur-md border border-ink-800 -skew-x-12"></div>
+                    <div className="absolute inset-0 bg-black/90 backdrop-blur-md border border-ink-700 -skew-x-12 shadow-lg"></div>
                     <div className="relative px-6 py-2 flex items-center gap-3">
                         <div className="w-32 h-2.5 bg-ink-900 rounded-sm overflow-hidden border border-ink-800 shadow-inner">
                             <div
@@ -501,10 +510,10 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                             critical: "bg-red-100",
                             unchanged: "bg-ink-100",
                         };
-                        const outcomeBgClass = ev.kind === "outcome" ? outcomeBg[ev.outcomeType] ?? "bg-ink-800/50" : "bg-ink-900/40 border border-ink-800/50 hover:border-iris-500/30 transition-colors";
+                        const outcomeBgClass = ev.kind === "outcome" ? outcomeBg[ev.outcomeType] ?? "bg-ink-800/50" : "bg-black/60 border border-ink-700 hover:border-iris-400 backdrop-blur-md transition-colors";
                         return (
                             <div key={i} className={`flex items-center gap-2.5 text-xs rounded-md px-2 py-1.5 ${outcomeBgClass}`}>
-                                <span className="text-iris-300/70 font-mono text-[10px] w-9 shrink-0">{time}</span>
+                                <span className="text-iris-300 font-bold font-mono text-[11px] w-9 shrink-0 drop-shadow-md">{time}</span>
                                 <span className="shrink-0 text-white/70">{icon}</span>
                                 <span className="truncate text-white font-medium">{label}</span>
                             </div>
@@ -515,9 +524,25 @@ export default function PlayCase({ caseId }: { caseId: string }) {
             </div>
             {/* Active panel overlay (Telltale style) */}
             {activeTab && (
-                <div className="absolute inset-x-0 bottom-36 z-30 flex items-end justify-center pointer-events-none p-4">
-                    <div className="relative w-full max-w-3xl max-h-[60vh] overflow-y-auto bg-ink-950/90 backdrop-blur-xl rounded-t-3xl rounded-b-lg shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-x border-iris-500/30 p-8 text-white pointer-events-auto">
-                        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-iris-500 to-transparent opacity-50" />
+                <div className="absolute inset-0 z-30 pointer-events-none">
+                <Rnd
+                    default={{
+                        x: window.innerWidth / 2 - 384,
+                        y: window.innerHeight / 2 - 200,
+                        width: 768,
+                        height: 'auto',
+                    }}
+                    bounds="parent"
+                    enableResizing={false}
+                    dragHandleClassName="drag-handle"
+                    className="pointer-events-auto absolute"
+                >
+                    <div className="relative w-full max-h-[70vh] overflow-hidden flex flex-col bg-ink-950/95 backdrop-blur-xl rounded-xl shadow-[0_10px_50px_rgba(0,0,0,0.8)] border border-iris-500/40 text-white pointer-events-auto">
+                        <div className="drag-handle w-full h-8 cursor-grab active:cursor-grabbing bg-ink-900/50 border-b border-ink-800 flex items-center justify-center">
+                            <div className="w-12 h-1.5 bg-ink-700 rounded-full" />
+                        </div>
+                        <div className="p-8 overflow-y-auto custom-scrollbar flex-1 relative">
+                            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-iris-500 to-transparent opacity-50" />
                         <button 
                             onClick={() => setActiveTab(null)}
                             className="absolute top-6 right-6 text-ink-400 hover:text-white bg-ink-900 p-2 rounded-full hover:bg-iris-600 hover:shadow-[0_0_15px_rgba(79,70,229,0.8)] transition-all"
@@ -570,7 +595,9 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                                 onSelectIntervention={applyIntervention}
                             />
                         )}
+                        </div>
                     </div>
+                </Rnd>
                 </div>
             )}
             {/* Game over modal */}
