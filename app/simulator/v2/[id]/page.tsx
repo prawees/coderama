@@ -9,3 +9,7 @@ export default function SimulatorPlayPageV2({ params }: { params: { id: string }
         </div>
     );
 }
+
+export function generateStaticParams() {
+  return [{ id: "ekZU9TLV0HfmfMV2MVKe" }];
+}

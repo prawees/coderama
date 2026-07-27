@@ -1,0 +1,43 @@
+{
+  "title": "72yo M Toxicology",
+  "age": "72",
+  "sex": "M",
+  "chiefComplaint": "Altered Mental Status",
+  "diagnoses": ["Digoxin Toxicity", "Beta Blocker Overdose"],
+  "background": "Patient was found unresponsive at home with an empty pill bottle nearby. He has a history of atrial fibrillation and hypertension.",
+  "patientAppearance": {
+    "skinTone": "#d4a373",
+    "bmiFactor": 0.8,
+    "ageGroup": "elderly"
+  },
+  "vitals": {
+    "hr": { "value": 35, "abnormal": true },
+    "sbp": { "value": 80, "abnormal": true },
+    "dbp": { "value": 40, "abnormal": true },
+    "rr": { "value": 14, "abnormal": false },
+    "temp": { "value": 36.5, "abnormal": false },
+    "spo2": { "value": 94, "abnormal": false },
+    "gcs": { "value": 8, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Lethargic, pale, unresponsive to voice", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Profound bradycardia, weak pulses", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, slow regular respirations", "abnormal": false },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 8 (E2V2M4), pupils reactive but sluggish", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Sinus bradycardia, severe 1st degree AV block, scooped ST segments.", "imageUrl": "", "abnormal": true },
+    { "id": "chem1", "kind": "lab", "category": "Elytes", "name": "Potassium", "value": "6.2", "unit": "mmol/L", "normalRange": "3.5-5.0", "abnormal": true, "report": "Hyperkalemia" }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 0 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 200, "y": 0 }, "data": { "label": "Give Atropine", "actions": ["Atropine IV"], "doseMap": { "Atropine IV": "1 mg" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 400, "y": 0 }, "data": { "label": "Outcome", "outcomeType": "improved", "narrative": "Heart rate slightly improved.", "vitalChanges": { "hr": 45, "sbp": 90 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "out1" }
+    ]
+  }
+}

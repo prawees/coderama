@@ -1,9 +1,12 @@
 "use client"
 
 import { useRef } from "react";
-import { useFrame, useLoader } from "@react-three/fiber";
+import { useFrame, useLoader, extend } from "@react-three/fiber";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 import * as THREE from "three";
+import { CelShaderMaterial } from "./CelShaderMaterial";
+
+extend({ CelShaderMaterial });
 
 export function Patient({ 
   pulseRef, 
@@ -37,7 +40,8 @@ export function Patient({
         ]}
         castShadow
       >
-        <meshStandardMaterial color={appearance?.skinTone || "#f5cba7"} roughness={0.6} flatShading />
+        {/* @ts-ignore */}
+        <celShaderMaterial color={new THREE.Color(appearance?.skinTone || "#f5cba7")} rimIntensity={0.1} />
       </mesh>
       <mesh
         geometry={blanket}
@@ -50,7 +54,8 @@ export function Patient({
         ]}
         castShadow
       >
-        <meshStandardMaterial color="#25b6ff" roughness={0.6} flatShading />
+        {/* @ts-ignore */}
+        <celShaderMaterial color={new THREE.Color("#25b6ff")} rimIntensity={0.0} />
       </mesh>
 
       {/* Blanket over lower body */}

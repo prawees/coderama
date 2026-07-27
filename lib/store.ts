@@ -1,5 +1,21 @@
 import { create } from 'zustand';
+import { persist, StateStorage, createJSONStorage } from 'zustand/middleware';
+import { Preferences } from '@capacitor/preferences';
 import { PlayerEvent } from '@/components/simulator/types';
+
+// Custom Capacitor Storage Engine for Zustand Persist
+const capacitorStorage: StateStorage = {
+  getItem: async (name: string): Promise<string | null> => {
+    const { value } = await Preferences.get({ key: name });
+    return value || null;
+  },
+  setItem: async (name: string, value: string): Promise<void> => {
+    await Preferences.set({ key: name, value });
+  },
+  removeItem: async (name: string): Promise<void> => {
+    await Preferences.remove({ key: name });
+  },
+};
 
 export type GameOverReason = { event: "won" | "patientDied" | "timeOut", description: string };
 
@@ -75,3 +91,40 @@ export const useGameStore = create<GameState>((set) => ({
     playerEvents: [],
   })
 }));
+
+// --- PROFILE STORE (Persisted natively via Capacitor) ---
+interface AvatarCustomization {
+  scrubColor: string;
+  stethoscopeColor: string;
+  maskType: "none" | "surgical" | "n95";
+  glasses: "none" | "square" | "round";
+}
+
+interface ProfileState {
+  xp: number;
+  avatar: AvatarCustomization;
+  addXp: (amount: number) => void;
+  updateAvatar: (updates: Partial<AvatarCustomization>) => void;
+}
+
+export const useProfileStore = create<ProfileState>()(
+  persist(
+    (set) => ({
+      xp: 0,
+      avatar: {
+        scrubColor: "#14b8a6",
+        stethoscopeColor: "#333333",
+        maskType: "none",
+        glasses: "none",
+      },
+      addXp: (amount) => set((state) => ({ xp: state.xp + amount })),
+      updateAvatar: (updates) => set((state) => ({ 
+        avatar: { ...state.avatar, ...updates } 
+      })),
+    }),
+    {
+      name: 'code-rama-profile',
+      storage: createJSONStorage(() => capacitorStorage),
+    }
+  )
+);

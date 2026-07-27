@@ -8,3 +8,6 @@ export default function ClassPage({ params }: { params: { id: string } }) {
         </div>
     );
 }
+export function generateStaticParams() {
+  return [{ id: "ekZU9TLV0HfmfMV2MVKe" }];
+}

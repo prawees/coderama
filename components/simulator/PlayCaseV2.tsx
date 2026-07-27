@@ -11,7 +11,7 @@ import { MainMenu } from "./MainMenu";
 import { calculateXp, saveXpLocally, XpBreakdown, RankTier } from "@/lib/gamification";
 import { useGameStore } from "@/lib/store";
 import { gameEvents } from "@/lib/events";
-import { Rnd } from "react-rnd";
+import { shareAutopsyCard } from "@/lib/share";
 import { GameCanvas } from "./GameCanvas";
 import { VitalsPanel } from "./VitalsPanel";
 import { ExamPanel } from "./ExamPanel";
@@ -407,7 +407,19 @@ export default function PlayCase({ caseId }: { caseId: string }) {
         );
     }
 
-    // Start screen
+    // Start
+    const { 
+        gameStarted, 
+        gameOver, 
+        gameOverReason, 
+        elapsed, 
+        minutes, 
+        seconds, 
+        health, 
+        playerEvents,
+        startGame
+    } = useGameStore();
+
     if (!gameStarted) {
         return <MainMenu caseData={caseData} onStart={startGame} />;
     }
@@ -415,7 +427,7 @@ export default function PlayCase({ caseId }: { caseId: string }) {
     const gameTimeUp = gameOver || (minutes === 0 && seconds === 0);
 
     return (
-        <div className="fixed inset-x-0 top-12 bottom-0 bg-canvas font-sans">
+        <div id="code-rama-game-wrapper" className="fixed inset-x-0 top-12 bottom-0 bg-canvas font-sans">
             {/* Full-screen 3D scene */}
             <div className="absolute inset-0">
                 <GameCanvas
@@ -522,27 +534,11 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                 </div>
                 </div>
             </div>
-            {/* Active panel overlay (Telltale style) */}
+            {/* Active panel overlay (Mobile-first Side Drawer) */}
             {activeTab && (
-                <div className="absolute inset-0 z-30 pointer-events-none">
-                <Rnd
-                    default={{
-                        x: window.innerWidth / 2 - 384,
-                        y: window.innerHeight / 2 - 200,
-                        width: 768,
-                        height: 'auto',
-                    }}
-                    bounds="parent"
-                    enableResizing={false}
-                    dragHandleClassName="drag-handle"
-                    className="pointer-events-auto absolute"
-                >
-                    <div className="relative w-full max-h-[70vh] overflow-hidden flex flex-col bg-ink-950/95 backdrop-blur-xl rounded-xl shadow-[0_10px_50px_rgba(0,0,0,0.8)] border border-iris-500/40 text-white pointer-events-auto">
-                        <div className="drag-handle w-full h-8 cursor-grab active:cursor-grabbing bg-ink-900/50 border-b border-ink-800 flex items-center justify-center">
-                            <div className="w-12 h-1.5 bg-ink-700 rounded-full" />
-                        </div>
-                        <div className="p-8 overflow-y-auto custom-scrollbar flex-1 relative">
-                            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-iris-500 to-transparent opacity-50" />
+                <div className="absolute inset-y-0 right-0 w-full sm:w-[450px] md:w-[500px] z-30 pointer-events-auto flex flex-col bg-ink-950/95 backdrop-blur-xl shadow-[-10px_0_50px_rgba(0,0,0,0.8)] border-l border-iris-500/40 text-white animate-in slide-in-from-right duration-300">
+                    <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar flex-1 relative">
+                        <div className="absolute top-0 left-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-iris-500 to-transparent opacity-50" />
                         <button 
                             onClick={() => setActiveTab(null)}
                             className="absolute top-6 right-6 text-ink-400 hover:text-white bg-ink-900 p-2 rounded-full hover:bg-iris-600 hover:shadow-[0_0_15px_rgba(79,70,229,0.8)] transition-all"
@@ -595,9 +591,7 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                                 onSelectIntervention={applyIntervention}
                             />
                         )}
-                        </div>
                     </div>
-                </Rnd>
                 </div>
             )}
             {/* Game over modal */}
@@ -678,6 +672,14 @@ export default function PlayCase({ caseId }: { caseId: string }) {
                                         className="w-full rounded-lg bg-iris-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-iris-700 transition-colors cursor-pointer"
                                     >
                                         Submit
+                                    </button>
+                                )}
+                                {diagnosisResult && (
+                                    <button
+                                        onClick={() => shareAutopsyCard('code-rama-game-wrapper', 'Code Rama: Autopsy Report', 'I just played a Code Rama simulation!')}
+                                        className="w-full mt-2 rounded-lg bg-pink-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-pink-700 transition-colors cursor-pointer flex items-center justify-center gap-2"
+                                    >
+                                        Share Autopsy
                                     </button>
                                 )}
                             </div>
