@@ -36,6 +36,9 @@ export function Engine2D({ mapData, onInteract, onDoor, activeCaseIds }: Engine2
   const [dir, setDir] = useState<Direction>('down');
   const [isMoving, setIsMoving] = useState(false);
   const [frame, setFrame] = useState(0);
+  
+  // Track NPC positions for interaction
+  const [nursePos, setNursePos] = useState<Vector2>({ x: 8, y: 5 });
 
   const moveInterval = useRef<NodeJS.Timeout | null>(null);
   const animInterval = useRef<NodeJS.Timeout | null>(null);
@@ -116,6 +119,14 @@ export function Engine2D({ mapData, onInteract, onDoor, activeCaseIds }: Engine2
     if (interactable) {
       Haptics.impact({ style: ImpactStyle.Medium });
       onInteract(interactable.id, interactable.type);
+      return;
+    }
+
+    // Check NPC
+    if (targetX === nursePos.x && targetY === nursePos.y) {
+      Haptics.impact({ style: ImpactStyle.Medium });
+      onInteract('nurse_npc', 'npc');
+      return;
     }
   };
 
@@ -185,7 +196,7 @@ export function Engine2D({ mapData, onInteract, onDoor, activeCaseIds }: Engine2
         ))}
 
         {/* NPC Sprites */}
-        <NurseNPC mapData={mapData} scale={SCALE} tileSize={TILE_SIZE} />
+        <NurseNPC mapData={mapData} scale={SCALE} tileSize={TILE_SIZE} onPositionChange={setNursePos} />
         
         {/* Player Sprite */}
         <div 

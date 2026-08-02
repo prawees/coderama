@@ -112,6 +112,12 @@ interface ERState {
     cashEarned: number;
   };
 
+  // RPG State
+  friendships: Record<string, number>;
+  activeQuests: string[];
+  completedQuests: string[];
+  tutorialCompleted: boolean;
+
   // Actions
   setShiftMode: (mode: ShiftMode) => void;
   addCase: (newCase: ActiveCase) => void;
@@ -131,6 +137,10 @@ interface ERState {
   setAppearance: (appearance: Partial<PlayerAppearance>) => void;
   setPendingPromotion: (status: boolean) => void;
   resetShiftStats: () => void;
+  updateFriendship: (npcId: string, delta: number) => void;
+  startQuest: (questId: string) => void;
+  completeQuest: (questId: string) => void;
+  completeTutorial: () => void;
 }
 
 export const useERStore = create<ERState>()(
@@ -146,6 +156,11 @@ export const useERStore = create<ERState>()(
       maxEnergy: 100,
       clockMinutes: 0,
       isPendingPromotion: false,
+
+      friendships: {},
+      activeQuests: [],
+      completedQuests: [],
+      tutorialCompleted: false,
 
       // Player Identity
       playerName: 'Player',
@@ -309,7 +324,20 @@ export const useERStore = create<ERState>()(
       }),
       setAppearance: (appearance) => set((state) => ({ appearance: { ...state.appearance, ...appearance } })),
       setPendingPromotion: (status) => set({ isPendingPromotion: status }),
-      resetShiftStats: () => set({ shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 } })
+      resetShiftStats: () => set((state) => ({
+        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 }
+      })),
+      updateFriendship: (npcId, delta) => set((state) => ({
+        friendships: { ...state.friendships, [npcId]: (state.friendships[npcId] || 0) + delta }
+      })),
+      startQuest: (questId) => set((state) => ({
+        activeQuests: state.activeQuests.includes(questId) ? state.activeQuests : [...state.activeQuests, questId]
+      })),
+      completeQuest: (questId) => set((state) => ({
+        activeQuests: state.activeQuests.filter(q => q !== questId),
+        completedQuests: state.completedQuests.includes(questId) ? state.completedQuests : [...state.completedQuests, questId]
+      })),
+      completeTutorial: () => set({ tutorialCompleted: true }),
     }),
     {
       name: 'code-rama-er-store',

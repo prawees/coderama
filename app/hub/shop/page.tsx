@@ -98,7 +98,7 @@ export default function ShopPage() {
                       {getIcon(item.type)}
                     </div>
                     <h3 className="text-sm text-white font-bold mb-1 leading-tight">{item.name}</h3>
-                    <p className="text-[10px] text-gray-400 mb-2">{item.statBonus.replace('_', ' ')}</p>
+                    <p className="text-xs text-gray-400 mb-2">{item.statBonus.replace('_', ' ')}</p>
                     
                     {!isOwned && (
                       <p className={`text-sm font-bold mt-auto mb-3 ${canAfford ? 'text-pixel-success' : 'text-pixel-alert'}`}>

@@ -6,9 +6,10 @@ interface NurseNPCProps {
   mapData: MapData;
   scale: number;
   tileSize: number;
+  onPositionChange?: (pos: {x: number, y: number}) => void;
 }
 
-export function NurseNPC({ mapData, scale, tileSize }: NurseNPCProps) {
+export function NurseNPC({ mapData, scale, tileSize, onPositionChange }: NurseNPCProps) {
   // Start at a random empty tile
   const [pos, setPos] = useState({ x: 8, y: 5 });
   const [dir, setDir] = useState<'up' | 'down' | 'left' | 'right'>('down');
@@ -43,7 +44,10 @@ export function NurseNPC({ mapData, scale, tileSize }: NurseNPCProps) {
       if (nextDir === 'right') nextX += 1;
 
       if (canMoveTo(nextX, nextY)) {
-        setPos({ x: nextX, y: nextY });
+        const newPos = { x: nextX, y: nextY };
+        setPos(newPos);
+        if (onPositionChange) onPositionChange(newPos);
+        
         // Animation
         let animStep = 0;
         const animTimer = setInterval(() => {
@@ -55,7 +59,7 @@ export function NurseNPC({ mapData, scale, tileSize }: NurseNPCProps) {
     }, 2000);
 
     return () => clearInterval(moveTimer);
-  }, [pos, mapData]);
+  }, [pos, mapData, onPositionChange]);
 
   const getSpriteOffset = () => {
     let row = 0;

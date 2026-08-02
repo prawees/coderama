@@ -10,6 +10,7 @@ import { PixelButton } from "@/components/ui/PixelButton";
 import { Engine2D, MapData } from "@/components/game/Engine2D";
 import { MAPS } from "@/lib/maps";
 import { Pager } from "@/components/ui/Pager";
+import { DialogueBox } from "@/components/game/DialogueBox";
 import { useState, useRef } from "react";
 import { audio } from "@/lib/audio";
 
@@ -18,7 +19,8 @@ export default function HubPage() {
   const { 
     shiftMode, setShiftMode, xp, lifetimeXp, currency, energy, maxEnergy, 
     clockMinutes, incrementClock, setClock, addCase, activeCases, resolveMissedCases,
-    playerName, playerGender, language, isPendingPromotion, setPendingPromotion, deductEnergy, resetShiftStats
+    playerName, playerGender, language, isPendingPromotion, setPendingPromotion, deductEnergy, resetShiftStats,
+    tutorialCompleted, completeTutorial, updateFriendship, friendships
   } = useERStore();
   
   const { getRankFromXp, RANK_THRESHOLDS } = require('@/lib/erStore');
@@ -36,6 +38,7 @@ export default function HubPage() {
   
   const [pagerMessage, setPagerMessage] = useState<string | null>(null);
   const [currentMap, setCurrentMap] = useState<string>('ER_MAIN');
+  const [dialogueQueue, setDialogueQueue] = useState<{speaker?: string, text: string, portrait?: string}[]>([]);
   
   const addLog = (msg: string) => {
     setLogs(prev => [...prev.slice(-19), `${new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })} - ${msg}`]);
@@ -48,6 +51,28 @@ export default function HubPage() {
   useEffect(() => {
     resolveMissedCases();
   }, [resolveMissedCases]);
+
+  useEffect(() => {
+    if (!tutorialCompleted) {
+      setDialogueQueue([
+        { speaker: "Prof. Somchai", text: `Welcome to Code Rama ER, ${localizedRank}.` },
+        { speaker: "Prof. Somchai", text: "We get extremely busy here. When you hear the pager beep, it means a new patient has arrived in one of the beds." },
+        { speaker: "Prof. Somchai", text: "Walk up to the bed and press 'A' to begin treatment." },
+        { speaker: "Prof. Somchai", text: "If you don't treat them in time, they will pass out. Don't let that happen." },
+        { speaker: "Prof. Somchai", text: "Good luck on your first shift!" }
+      ]);
+    }
+  }, [tutorialCompleted, localizedRank]);
+
+  const handleDialogueComplete = () => {
+    setDialogueQueue(prev => {
+      const next = prev.slice(1);
+      if (next.length === 0 && !tutorialCompleted) {
+        completeTutorial();
+      }
+      return next;
+    });
+  };
 
   // Shift Timer & Spawner Loop
   useEffect(() => {
@@ -190,6 +215,14 @@ export default function HubPage() {
       } else {
         addLog(`Bed is empty.`);
       }
+    } else if (type === 'npc') {
+      audio.playClick();
+      updateFriendship('nurse_ann', 1);
+      
+      const currentHearts = (friendships['nurse_ann'] || 0) + 1;
+      setDialogueQueue([
+        { speaker: "Nurse Ann", portrait: "/assets/nurse.jpg", text: `Oh, hi ${localizedRank}. It's so busy today! (Hearts: ${currentHearts})` }
+      ]);
     }
   };
 
@@ -227,8 +260,17 @@ export default function HubPage() {
           <div className="text-center text-gray-600 animate-pulse">
             <span className="text-4xl block mb-2">🏥</span>
             <p>Code Rama Hospital</p>
-            <p className="text-xs mt-1 text-gray-700">Waiting for shift to begin...</p>
+            <p className="text-base mt-1 text-gray-700">Waiting for shift to begin...</p>
           </div>
+        )}
+        
+        {dialogueQueue.length > 0 && (
+          <DialogueBox 
+            speakerName={dialogueQueue[0].speaker}
+            text={dialogueQueue[0].text}
+            portraitUrl={dialogueQueue[0].portrait}
+            onComplete={handleDialogueComplete}
+          />
         )}
       </div>
 
@@ -236,9 +278,9 @@ export default function HubPage() {
       <div className="h-[40%] bg-[#0d1117] flex flex-col z-10 relative">
         <div className="flex justify-between items-center bg-[#161b22] px-4 py-2 border-b-2 border-[#30363d]">
           <div className="flex flex-col gap-1 w-1/3">
-            <p className="text-xs text-pixel-gold">{translate('current_rank', language)}: <span className="text-white text-sm">{localizedRank}</span></p>
+            <p className="text-sm text-pixel-gold">{translate('current_rank', language)}: <span className="text-white text-sm">{localizedRank}</span></p>
             {isPendingPromotion ? (
-              <p className="text-xs text-pixel-alert animate-pulse font-bold">PROMOTION READY!</p>
+              <p className="text-sm text-pixel-alert animate-pulse font-bold">PROMOTION READY!</p>
             ) : (
               <div className="w-full h-2 bg-black border border-gray-600 rounded">
                  <div className="h-full bg-blue-500 transition-all duration-300" style={{ width: `${progressPercent}%` }}></div>
@@ -249,7 +291,7 @@ export default function HubPage() {
           <div className="flex flex-col items-end w-1/3">
             <span className="text-xl text-white font-bold">{formatTime(clockMinutes)}</span>
             <div className="flex items-center gap-1 w-24">
-              <span className="text-[10px] text-gray-400">EN</span>
+              <span className="text-xs text-gray-400">EN</span>
               <div className="w-full h-2 bg-gray-800 rounded-full border border-gray-600 overflow-hidden">
                 <div 
                   className={`h-full transition-all duration-500 ${energy > 50 ? 'bg-pixel-success' : energy > 20 ? 'bg-pixel-warning' : 'bg-pixel-alert'}`}
@@ -272,15 +314,15 @@ export default function HubPage() {
             </div>
             
             {shiftMode === 'on-shift' || shiftMode === 'boss-battle' ? (
-              <PixelButton onClick={endShift} variant="alert" className="py-4 text-sm shadow-lg">
+              <PixelButton onClick={() => { setShiftMode('off-duty'); router.push('/summary'); }} variant="alert" className="py-4 text-base shadow-lg">
                 {shiftMode === 'boss-battle' ? 'SURRENDER' : translate('end_shift', language)}
               </PixelButton>
             ) : isPendingPromotion ? (
-              <PixelButton onClick={startBossBattle} variant="alert" className="py-4 text-sm shadow-[0_0_15px_rgba(255,0,0,0.5)] animate-pulse">
+              <PixelButton onClick={() => { audio.playShiftStart(); setClock(0); resetShiftStats(); setShiftMode('boss-battle'); addLog(`PROMOTION EXAM STARTED! Good luck, ${localizedRank}.`); }} variant="alert" className="py-4 text-base shadow-[0_0_15px_rgba(255,0,0,0.5)] animate-pulse">
                 TAKE EXAM
               </PixelButton>
             ) : (
-              <PixelButton onClick={startShift} variant="primary" className="py-4 text-sm shadow-lg">
+              <PixelButton onClick={startShift} variant="primary" className="py-4 text-base shadow-lg">
                 {translate('start_shift', language)}
               </PixelButton>
             )}
@@ -288,14 +330,14 @@ export default function HubPage() {
             <PixelButton 
               onClick={toggleOnCall} 
               variant="secondary" 
-              className="py-2 text-xs"
+              className="py-2 text-base"
               disabled={shiftMode !== 'off-duty' && shiftMode !== 'on-call'}
             >
               {shiftMode === 'on-call' ? translate('pager_off', language) : translate('pager_on', language)}
             </PixelButton>
           </div>
 
-          <div className="w-1/2 bg-black border-2 border-[#30363d] rounded p-2 overflow-y-auto font-mono text-[10px] leading-tight flex flex-col">
+          <div className="w-1/2 bg-black border-2 border-[#30363d] rounded p-2 overflow-y-auto font-mono text-xs leading-tight flex flex-col">
             {logs.map((log, i) => (
               <div key={i} className="mb-1">
                 <span className="text-gray-500">{`>`} </span>
