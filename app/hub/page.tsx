@@ -19,7 +19,7 @@ export default function HubPage() {
   const { 
     shiftMode, setShiftMode, xp, lifetimeXp, currency, energy, maxEnergy, 
     clockMinutes, incrementClock, setClock, addCase, activeCases, resolveMissedCases,
-    playerName, playerGender, language, isPendingPromotion, setPendingPromotion, deductEnergy
+    playerName, playerGender, language, isPendingPromotion, setPendingPromotion, deductEnergy, resetShiftStats
   } = useERStore();
   
   const { getRankFromXp, RANK_THRESHOLDS } = require('@/lib/erStore');
@@ -162,6 +162,7 @@ export default function HubPage() {
   const startShift = () => {
     audio.playShiftStart();
     setClock(0);
+    resetShiftStats();
     setShiftMode('on-shift');
     addLog(`${localizedRank} clocked in.`);
   };
@@ -169,6 +170,7 @@ export default function HubPage() {
   const startBossBattle = () => {
     audio.playShiftStart();
     setClock(0);
+    resetShiftStats();
     setShiftMode('boss-battle');
     addLog(`PROMOTION EXAM STARTED! Good luck, ${localizedRank}.`);
   };
