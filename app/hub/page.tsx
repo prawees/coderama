@@ -19,12 +19,18 @@ export default function HubPage() {
   const { 
     shiftMode, setShiftMode, xp, lifetimeXp, currency, energy, maxEnergy, 
     clockMinutes, incrementClock, setClock, addCase, activeCases, resolveMissedCases,
-    playerName, playerGender, language
+    playerName, playerGender, language, isPendingPromotion, setPendingPromotion, deductEnergy
   } = useERStore();
   
-  const { getRankFromXp } = require('@/lib/erStore');
+  const { getRankFromXp, RANK_THRESHOLDS } = require('@/lib/erStore');
   const currentRankId = getRankFromXp(lifetimeXp || xp);
   const localizedRank = getLocalizedRankTitle(currentRankId, playerName, playerGender, language);
+  
+  // Calculate next rank threshold
+  const thresholds = Object.values(RANK_THRESHOLDS) as number[];
+  const nextThreshold = thresholds.find(t => t > (lifetimeXp || 0)) || (lifetimeXp || 0);
+  const prevThreshold = [...thresholds].reverse().find(t => t <= (lifetimeXp || 0)) || 0;
+  const progressPercent = Math.min(100, Math.max(0, ((lifetimeXp || 0) - prevThreshold) / (nextThreshold - prevThreshold) * 100));
   
   const [logs, setLogs] = useState<string[]>(['System: ER Dashboard initialized.']);
   const logEndRef = useRef<HTMLDivElement>(null);
@@ -45,47 +51,77 @@ export default function HubPage() {
 
   // Shift Timer & Spawner Loop
   useEffect(() => {
-    if (shiftMode !== 'on-shift') return;
+    if (shiftMode === 'off-duty' || shiftMode === 'on-call') return;
 
     const timer = setInterval(() => {
-      incrementClock(1); // 1 in-game minute per real-time second
+      incrementClock(1); 
+      // Boss battle drains energy passively faster
+      if (shiftMode === 'boss-battle' && Math.random() > 0.5) {
+        deductEnergy(1);
+      }
     }, 1000);
 
     const spawner = setInterval(() => {
-      // Randomly spawn cases if beds are free
-      if (activeCases.length < 3 && Math.random() > 0.5) {
-        audio.playPager();
-        addLog("Triage: New patient arrived at ER!");
-        
-        const possibleCases = ["case_01", "case_02_fluids", "case_03_cardiac", "case_04_svt", "case_05_asthma", "case_06_trauma"];
-        const selectedCase = possibleCases[Math.floor(Math.random() * possibleCases.length)];
-        
-        // Pager logic
-        if (selectedCase === "case_01") {
-           setPagerMessage("*BEEP BEEP*\n28yo M - Toxicology");
-        } else if (selectedCase === "case_02_fluids") {
-           setPagerMessage("*BEEP BEEP*\n45yo F - Hypovolemic Shock");
-        } else if (selectedCase === "case_03_cardiac") {
-           setPagerMessage("*BEEP BEEP*\n55yo M - Cardiac Arrest");
-        } else if (selectedCase === "case_04_svt") {
-           setPagerMessage("*BEEP BEEP*\n35yo F - Palpitations");
-        } else if (selectedCase === "case_05_asthma") {
-           setPagerMessage("*BEEP BEEP*\n6yo M - Severe Wheezing");
-        } else if (selectedCase === "case_06_trauma") {
-           setPagerMessage("*BEEP BEEP*\n22yo M - Motorcycle Crash");
-        }
+      if (shiftMode === 'boss-battle') {
+         // BOSS BATTLE SCRIPT
+         // Spawn 2 specific complex cases back to back if beds are free
+         if (activeCases.length === 0 && clockMinutes < 300) {
+            audio.playPager();
+            addLog("BOSS BATTLE: INCOMING MASS CASUALTY!");
+            
+            // Spawn Trauma and Asthma simultaneously
+            addCase({
+              id: `boss_asthma_${Date.now()}`,
+              caseDataId: "case_05_asthma",
+              skinTone: "#e0ac69", shirtColor: "#f87171",
+              receivedAt: Date.now(), expiresAt: Date.now() + 6 * 60 * 1000
+            });
+            setTimeout(() => {
+              audio.playPager();
+              addCase({
+                id: `boss_trauma_${Date.now()}`,
+                caseDataId: "case_06_trauma",
+                skinTone: "#c68642", shirtColor: "#1f6feb",
+                receivedAt: Date.now(), expiresAt: Date.now() + 4 * 60 * 1000
+              });
+            }, 2000);
+         }
+      } else {
+         // NORMAL SHIFT SCRIPT
+         if (activeCases.length < 3 && Math.random() > 0.5) {
+            audio.playPager();
+            addLog("Triage: New patient arrived at ER!");
+            
+            const possibleCases = ["case_01", "case_02_fluids", "case_03_cardiac", "case_04_svt", "case_05_asthma", "case_06_trauma"];
+            const selectedCase = possibleCases[Math.floor(Math.random() * possibleCases.length)];
+            
+            // Pager logic
+            if (selectedCase === "case_01") {
+               setPagerMessage("*BEEP BEEP*\n28yo M - Toxicology");
+            } else if (selectedCase === "case_02_fluids") {
+               setPagerMessage("*BEEP BEEP*\n45yo F - Hypovolemic Shock");
+            } else if (selectedCase === "case_03_cardiac") {
+               setPagerMessage("*BEEP BEEP*\n55yo M - Cardiac Arrest");
+            } else if (selectedCase === "case_04_svt") {
+               setPagerMessage("*BEEP BEEP*\n35yo F - Palpitations");
+            } else if (selectedCase === "case_05_asthma") {
+               setPagerMessage("*BEEP BEEP*\n6yo M - Severe Wheezing");
+            } else if (selectedCase === "case_06_trauma") {
+               setPagerMessage("*BEEP BEEP*\n22yo M - Motorcycle Crash");
+            }
 
-        const skinTones = ["#ffc0cb", "#8d5524", "#c68642", "#e0ac69", "#f1c27d", "#ffdbac"];
-        const shirtColors = ["#1f6feb", "#f87171", "#a3e635", "#facc15", "#c084fc"];
+            const skinTones = ["#ffc0cb", "#8d5524", "#c68642", "#e0ac69", "#f1c27d", "#ffdbac"];
+            const shirtColors = ["#1f6feb", "#f87171", "#a3e635", "#facc15", "#c084fc"];
 
-        addCase({
-          id: `case_${Date.now()}`,
-          caseDataId: selectedCase,
-          skinTone: skinTones[Math.floor(Math.random() * skinTones.length)],
-          shirtColor: shirtColors[Math.floor(Math.random() * shirtColors.length)],
-          receivedAt: Date.now(),
-          expiresAt: Date.now() + 5 * 60 * 1000, 
-        });
+            addCase({
+              id: `case_${Date.now()}`,
+              caseDataId: selectedCase,
+              skinTone: skinTones[Math.floor(Math.random() * skinTones.length)],
+              shirtColor: shirtColors[Math.floor(Math.random() * shirtColors.length)],
+              receivedAt: Date.now(),
+              expiresAt: Date.now() + 5 * 60 * 1000, 
+            });
+         }
       }
     }, 8000);
 
@@ -93,18 +129,25 @@ export default function HubPage() {
       clearInterval(timer);
       clearInterval(spawner);
     };
-  }, [shiftMode, activeCases.length, incrementClock, addCase]);
+  }, [shiftMode, activeCases.length, incrementClock, addCase, clockMinutes]);
 
   // Handle End of Shift or Pass Out
   useEffect(() => {
-    if (shiftMode === 'on-shift') {
+    if (shiftMode === 'on-shift' || shiftMode === 'boss-battle') {
       if (clockMinutes >= 540 || energy <= 0) { // 540 mins = 9 hours (8 AM to 5 PM)
         audio.playShiftEnd();
+        
+        // If boss battle passed!
+        if (shiftMode === 'boss-battle' && energy > 0) {
+           setPendingPromotion(false);
+           addLog("BOSS DEFEATED! PROMOTION UNLOCKED!");
+        }
+
         setShiftMode('off-duty');
         router.push('/summary'); // Will build this next
       }
     }
-  }, [clockMinutes, energy, shiftMode, setShiftMode, router]);
+  }, [clockMinutes, energy, shiftMode, setShiftMode, router, setPendingPromotion]);
 
   const toggleOnCall = async () => {
     if (shiftMode === 'on-call') {
@@ -121,6 +164,13 @@ export default function HubPage() {
     setClock(0);
     setShiftMode('on-shift');
     addLog(`${localizedRank} clocked in.`);
+  };
+
+  const startBossBattle = () => {
+    audio.playShiftStart();
+    setClock(0);
+    setShiftMode('boss-battle');
+    addLog(`PROMOTION EXAM STARTED! Good luck, ${localizedRank}.`);
   };
 
   const endShift = () => {
@@ -161,11 +211,15 @@ export default function HubPage() {
       <div className="h-[40%] bg-[#0d1117] flex flex-col z-10 relative">
         {/* Top Bar of Dashboard (Stats) */}
         <div className="flex justify-between items-center bg-[#161b22] px-4 py-2 border-b-2 border-[#30363d]">
-          <div className="flex items-center gap-4">
-            <div>
-              <p className="text-xs text-pixel-gold">{translate('current_rank', language)}</p>
-              <p className="text-base text-white">{localizedRank}</p>
-            </div>
+          <div className="flex flex-col gap-1 w-1/3">
+            <p className="text-xs text-pixel-gold">{translate('current_rank', language)}: <span className="text-white text-sm">{localizedRank}</span></p>
+            {isPendingPromotion ? (
+              <p className="text-xs text-pixel-alert animate-pulse font-bold">PROMOTION READY!</p>
+            ) : (
+              <div className="w-full h-2 bg-black border border-gray-600 rounded">
+                 <div className="h-full bg-blue-500 transition-all duration-300" style={{ width: `${progressPercent}%` }}></div>
+              </div>
+            )}
           </div>
           
           <div className="flex flex-col items-end w-1/3">
@@ -202,10 +256,18 @@ export default function HubPage() {
                <span className="text-pixel-success">${currency}</span>
             </div>
             
-            {shiftMode === 'on-shift' ? (
-              <PixelButton onClick={endShift} variant="alert" className="py-4 text-sm shadow-lg">{translate('end_shift', language)}</PixelButton>
+            {shiftMode === 'on-shift' || shiftMode === 'boss-battle' ? (
+              <PixelButton onClick={endShift} variant="alert" className="py-4 text-sm shadow-lg">
+                {shiftMode === 'boss-battle' ? 'SURRENDER' : translate('end_shift', language)}
+              </PixelButton>
+            ) : isPendingPromotion ? (
+              <PixelButton onClick={startBossBattle} variant="alert" className="py-4 text-sm shadow-[0_0_15px_rgba(255,0,0,0.5)] animate-pulse">
+                TAKE EXAM
+              </PixelButton>
             ) : (
-              <PixelButton onClick={startShift} variant="primary" className="py-4 text-sm shadow-lg">{translate('start_shift', language)}</PixelButton>
+              <PixelButton onClick={startShift} variant="primary" className="py-4 text-sm shadow-lg">
+                {translate('start_shift', language)}
+              </PixelButton>
             )}
             
             <PixelButton 

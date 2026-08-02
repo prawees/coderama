@@ -16,7 +16,7 @@ const capacitorStorage: StateStorage = {
   },
 };
 
-export type ShiftMode = 'off-duty' | 'on-call' | 'on-shift';
+export type ShiftMode = 'off-duty' | 'on-call' | 'on-shift' | 'boss-battle';
 
 export type Rank = 'MS5' | 'MS6' | 'Intern' | 'R1' | 'R2' | 'R3' | 'Asst. Prof' | 'Assoc. Prof' | 'Prof';
 
@@ -90,6 +90,7 @@ interface ERState {
   energy: number;
   maxEnergy: number;
   clockMinutes: number;
+  isPendingPromotion: boolean;
   
   // Player Identity
   playerName: string;
@@ -128,6 +129,7 @@ interface ERState {
   setClock: (minutes: number) => void;
   incrementClock: (minutes: number) => void;
   setAppearance: (appearance: Partial<PlayerAppearance>) => void;
+  setPendingPromotion: (status: boolean) => void;
   resetShiftStats: () => void;
 }
 
@@ -143,6 +145,7 @@ export const useERStore = create<ERState>()(
       energy: 100,
       maxEnergy: 100,
       clockMinutes: 0,
+      isPendingPromotion: false,
 
       // Player Identity
       playerName: 'Player',
@@ -198,15 +201,38 @@ export const useERStore = create<ERState>()(
         }
       },
       addXp: (amount) => set((state) => {
-        let multiplier = 1.0;
+        let boost = 1.0;
         if (state.equipped.stethoscope && GEAR_DATABASE[state.equipped.stethoscope]?.statBonus === 'XP_BOOST') {
-          multiplier = GEAR_DATABASE[state.equipped.stethoscope].bonusValue;
+           boost = GEAR_DATABASE[state.equipped.stethoscope].bonusValue;
         }
-        const earned = Math.floor(amount * multiplier);
-        return { 
-          xp: state.xp + earned,
-          lifetimeXp: (state.lifetimeXp || 0) + earned,
-          shiftStats: { ...state.shiftStats, xpEarned: state.shiftStats.xpEarned + earned }
+        
+        const currentRank = getRankFromXp(state.lifetimeXp);
+        const nextThresholds = Object.values(RANK_THRESHOLDS).filter(t => t > state.lifetimeXp);
+        const nextThreshold = nextThresholds.length > 0 ? Math.min(...nextThresholds) : Infinity;
+        
+        const newLifetimeXp = state.lifetimeXp + (amount * boost);
+        
+        // If they crossed a threshold and aren't already pending
+        if (newLifetimeXp >= nextThreshold && !state.isPendingPromotion && currentRank !== 'Prof') {
+          return {
+            xp: state.xp + (amount * boost),
+            lifetimeXp: nextThreshold, // Cap it exactly at the threshold until they pass the boss
+            isPendingPromotion: true,
+            shiftStats: {
+              ...state.shiftStats,
+              xpEarned: state.shiftStats.xpEarned + (amount * boost)
+            }
+          };
+        }
+        
+        // Normal gain
+        return {
+          xp: state.xp + (amount * boost),
+          lifetimeXp: state.isPendingPromotion ? state.lifetimeXp : newLifetimeXp,
+          shiftStats: {
+            ...state.shiftStats,
+            xpEarned: state.shiftStats.xpEarned + (amount * boost)
+          }
         };
       }),
       spendXp: (amount) => {
@@ -282,6 +308,7 @@ export const useERStore = create<ERState>()(
         return { clockMinutes: state.clockMinutes + (minutes * multiplier) };
       }),
       setAppearance: (appearance) => set((state) => ({ appearance: { ...state.appearance, ...appearance } })),
+      setPendingPromotion: (status) => set({ isPendingPromotion: status }),
       resetShiftStats: () => set({ shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 } })
     }),
     {
