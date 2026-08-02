@@ -1,0 +1,84 @@
+{
+  "title": "ชาย 22 ปี - รถจักรยานยนต์ล้ม (ATLS)",
+  "age": "22",
+  "sex": "M",
+  "chiefComplaint": "กู้ภัยนำส่งหลังอุบัติเหตุรถจักรยานยนต์ความเร็วสูง",
+  "diagnoses": ["Traumatic Brain Injury", "Open Femur Fracture", "Hemorrhagic Shock"],
+  "background": "ผู้ป่วยขี่รถจักรยานยนต์ชนเสาไฟฟ้าด้วยความเร็วสูง ไม่ได้สวมหมวกกันน็อก กู้ภัยแจ้งว่ามีกลิ่นสุราคละคลุ้ง ขาขวามีแผลเปิดและกระดูกผิดรูปชัดเจน",
+  "patientAppearance": {
+    "skinTone": "#c68642",
+    "bmiFactor": 1.1,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": { "value": 135, "abnormal": true },
+    "sbp": { "value": 85, "abnormal": true },
+    "dbp": { "value": 40, "abnormal": true },
+    "rr": { "value": 28, "abnormal": true },
+    "temp": { "value": 36.0, "abnormal": false },
+    "spo2": { "value": 91, "abnormal": true },
+    "gcs": { "value": 8, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "ซึม ร้องครางเมื่อเจ็บปวด ขาขวาบวมผิดรูปและมีแผลฉีกขาด", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "ชีพจรเต้นเร็วและเบา, capillary refill ช้า", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "หายใจเร็ว ฟังปอดเสียงเท่ากันสองข้าง", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 8 (E2 V2 M4), ม่านตาตอบสนองต่อแสงช้า", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "fast1", "kind": "imaging", "category": "Imaging", "name": "eFAST Ultrasound", "report": "ไม่พบน้ำในช่องเยื่อหุ้มหัวใจ (No pericardial effusion) ไม่พบเลือดในช่องท้อง (Negative intraperitoneal fluid) มี lung sliding ทั้งสองข้าง", "imageUrl": "", "abnormal": false }
+  ],
+  "managementGraph": {
+    "nodes": {
+      "start": {
+        "vitals": { "bp": "85/40", "hr": 135, "o2": "91%" },
+        "narrative": "ผู้ป่วย Major trauma มาถึง ER อยู่ในภาวะ Shock (HR 135, BP 85/40) และระดับความรู้สึกตัวลดลง (GCS 8) ตามหลัก ATLS สิ่งใดคือความสำคัญอันดับแรก (FIRST priority)?",
+        "options": [
+          { "id": "opt1", "text": "A: Airway - ใส่ท่อช่วยหายใจทันที (GCS <= 8)", "targetNode": "correct_airway", "requiredRank": "R2" },
+          { "id": "opt2", "text": "รีบส่งไปทำ CT Brain ด่วน", "targetNode": "wrong_ct", "requiredRank": "Intern" },
+          { "id": "opt3", "text": "ดามขาขวาที่หัก (Splint femur)", "targetNode": "wrong_splint", "requiredRank": "Intern" },
+          { "id": "opt4", "text": "C: Circulation - เริ่มจองเลือดทำ Massive Transfusion Protocol (MTP)", "targetNode": "wrong_mtp_first", "requiredRank": "R1" }
+        ]
+      },
+      "correct_airway": {
+        "vitals": { "bp": "88/45", "hr": 130, "o2": "100%" },
+        "narrative": "ใส่ท่อช่วยหายใจสำเร็จ (พร้อมทำ C-spine protection) SpO2 ขึ้นเป็น 100% แต่ผู้ป่วยยังมีภาวะ Hypovolemic shock ขั้นตอนต่อไปใน Primary Survey คืออะไร?",
+        "options": [
+          { "id": "opt1", "text": "B/C: ใส่ Pelvic binder, ดามขา (Traction Splint) & ขอเลือด MTP", "targetNode": "correct_circulation", "requiredRank": "R1" },
+          { "id": "opt2", "text": "Load NSS 2 ลิตร อย่างรวดเร็ว", "targetNode": "wrong_fluids", "requiredRank": "Intern" }
+        ]
+      },
+      "wrong_ct": {
+        "vitals": { "bp": "70/30", "hr": 150, "o2": "85%" },
+        "narrative": "ห้ามส่งผู้ป่วยที่ Unstable และยังไม่ได้ secure airway ไปห้อง CT เด็ดขาด! ผู้ป่วยสำลัก (Aspirate) ในอุโมงค์ CT และเสียชีวิตจากภาวะ Hypoxia",
+        "options": null
+      },
+      "wrong_splint": {
+        "vitals": { "bp": "75/35", "hr": 140, "o2": "88%" },
+        "narrative": "แม้ขากระดูกหักจะน่ากลัว แต่หลัก ATLS กำหนดให้ A (Airway) ต้องมาก่อน C (Circulation) ทางเดินหายใจผู้ป่วยตีบตันขณะที่คุณมัวแต่สนใจดามขา",
+        "options": [
+          { "id": "opt1", "text": "กลับไปแก้ไข Airway: ใส่ท่อช่วยหายใจ", "targetNode": "correct_airway", "requiredRank": "R2" }
+        ]
+      },
+      "wrong_mtp_first": {
+        "vitals": { "bp": "95/50", "hr": 120, "o2": "86%" },
+        "narrative": "การให้เลือดเป็นสิ่งสำคัญ แต่ผู้ป่วยที่ GCS 8 ไม่สามารถป้องกันทางเดินหายใจตัวเองได้ (Cannot protect airway) ผู้ป่วยเริ่มสำลักเศษอาหาร!",
+        "options": [
+          { "id": "opt1", "text": "กลับไปแก้ไข Airway: ใส่ท่อช่วยหายใจ", "targetNode": "correct_airway", "requiredRank": "R2" }
+        ]
+      },
+      "wrong_fluids": {
+        "vitals": { "bp": "85/40", "hr": 135, "o2": "100%" },
+        "narrative": "แนวทาง ATLS ปัจจุบัน ไม่แนะนำให้ load น้ำเกลือ (Crystalloids) ปริมาณมากๆ อีกต่อไป (ทำให้เลือดจาง, แข็งตัวช้า, และตัวเย็น) ผู้ป่วยต้องการเลือด (Blood products) สำหรับ Hemorrhagic shock",
+        "options": [
+          { "id": "opt1", "text": "เปลี่ยนเป็นเริ่ม Massive Transfusion Protocol (MTP)", "targetNode": "correct_circulation", "requiredRank": "R1" }
+        ]
+      },
+      "correct_circulation": {
+        "vitals": { "bp": "110/65", "hr": 95, "o2": "100%" },
+        "narrative": "ยอดเยี่ยม! การดามขาลดปริมาณเลือดที่ออก และการให้เลือด MTP ทำให้ความดันโลหิตกลับมาคงที่ ตอนนี้ผู้ป่วย Stable พอที่จะไปทำ CT Pan-Scan และปรึกษาหมอกระดูกได้แล้ว",
+        "options": null
+      }
+    }
+  }
+}

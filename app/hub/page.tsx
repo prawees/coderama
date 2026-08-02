@@ -57,14 +57,22 @@ export default function HubPage() {
         audio.playPager();
         addLog("Triage: New patient arrived at ER!");
         
-        const possibleCases = ["case_01", "case_02_fluids", "case_03_cardiac"];
+        const possibleCases = ["case_01", "case_02_fluids", "case_03_cardiac", "case_04_svt", "case_05_asthma", "case_06_trauma"];
         const selectedCase = possibleCases[Math.floor(Math.random() * possibleCases.length)];
         
         // Pager logic
         if (selectedCase === "case_01") {
            setPagerMessage("*BEEP BEEP*\n28yo M - Toxicology");
-        } else {
+        } else if (selectedCase === "case_02_fluids") {
            setPagerMessage("*BEEP BEEP*\n45yo F - Hypovolemic Shock");
+        } else if (selectedCase === "case_03_cardiac") {
+           setPagerMessage("*BEEP BEEP*\n55yo M - Cardiac Arrest");
+        } else if (selectedCase === "case_04_svt") {
+           setPagerMessage("*BEEP BEEP*\n35yo F - Palpitations");
+        } else if (selectedCase === "case_05_asthma") {
+           setPagerMessage("*BEEP BEEP*\n6yo M - Severe Wheezing");
+        } else if (selectedCase === "case_06_trauma") {
+           setPagerMessage("*BEEP BEEP*\n22yo M - Motorcycle Crash");
         }
 
         const skinTones = ["#ffc0cb", "#8d5524", "#c68642", "#e0ac69", "#f1c27d", "#ffdbac"];

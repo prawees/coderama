@@ -1,0 +1,84 @@
+{
+  "title": "22yo M - Unhelmeted Motorcycle Crash (ATLS)",
+  "age": "22",
+  "sex": "M",
+  "chiefComplaint": "Brought in by EMS after high-speed motorcycle crash",
+  "diagnoses": ["Traumatic Brain Injury", "Open Femur Fracture", "Hemorrhagic Shock"],
+  "background": "Patient crashed his motorcycle into a pole at high speed. He was not wearing a helmet. EMS reports he smells strongly of alcohol. His right thigh is grossly deformed.",
+  "patientAppearance": {
+    "skinTone": "#c68642",
+    "bmiFactor": 1.1,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": { "value": 135, "abnormal": true },
+    "sbp": { "value": 85, "abnormal": true },
+    "dbp": { "value": 40, "abnormal": true },
+    "rr": { "value": 28, "abnormal": true },
+    "temp": { "value": 36.0, "abnormal": false },
+    "spo2": { "value": 91, "abnormal": true },
+    "gcs": { "value": 8, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Lethargic, groaning to pain. Right thigh swollen and deformed with a laceration.", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardic, weak pulses, delayed capillary refill.", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Tachypneic, breath sounds equal bilaterally.", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 8 (E2 V2 M4), pupils sluggish.", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "fast1", "kind": "imaging", "category": "Imaging", "name": "eFAST Ultrasound", "report": "Negative for pericardial effusion. Negative for intraperitoneal free fluid. Bilateral lung sliding present.", "imageUrl": "", "abnormal": false }
+  ],
+  "managementGraph": {
+    "nodes": {
+      "start": {
+        "vitals": { "bp": "85/40", "hr": 135, "o2": "91%" },
+        "narrative": "A major trauma patient arrives. He is in shock (HR 135, BP 85/40) and has an altered level of consciousness (GCS 8). According to ATLS, what is your FIRST priority?",
+        "options": [
+          { "id": "opt1", "text": "A: Airway - Intubate immediately (GCS <= 8)", "targetNode": "correct_airway", "requiredRank": "R2" },
+          { "id": "opt2", "text": "Send to CT Brain immediately", "targetNode": "wrong_ct", "requiredRank": "Intern" },
+          { "id": "opt3", "text": "Splint the deformed right femur", "targetNode": "wrong_splint", "requiredRank": "Intern" },
+          { "id": "opt4", "text": "C: Circulation - Start Massive Transfusion Protocol", "targetNode": "wrong_mtp_first", "requiredRank": "R1" }
+        ]
+      },
+      "correct_airway": {
+        "vitals": { "bp": "88/45", "hr": 130, "o2": "100%" },
+        "narrative": "Airway secured with an endotracheal tube (C-spine protected). SpO2 improves to 100%. However, the patient remains in hypovolemic shock. What is the next step in the Primary Survey?",
+        "options": [
+          { "id": "opt1", "text": "B/C: Pelvic binder, Femur Splint, & Massive Transfusion Protocol (MTP)", "targetNode": "correct_circulation", "requiredRank": "R1" },
+          { "id": "opt2", "text": "Push 2 Liters of Normal Saline rapidly", "targetNode": "wrong_fluids", "requiredRank": "Intern" }
+        ]
+      },
+      "wrong_ct": {
+        "vitals": { "bp": "70/30", "hr": 150, "o2": "85%" },
+        "narrative": "Never send an unstable, unprotected airway patient to the CT scanner! The patient aspirates in the scanner and dies from hypoxia.",
+        "options": null
+      },
+      "wrong_splint": {
+        "vitals": { "bp": "75/35", "hr": 140, "o2": "88%" },
+        "narrative": "While the femur is broken, ATLS dictates A (Airway) and B (Breathing) come before C (Circulation/Bleeding control). The patient's airway compromises while you are distracted by the leg.",
+        "options": [
+          { "id": "opt1", "text": "Go back to Airway: Intubate", "targetNode": "correct_airway", "requiredRank": "R2" }
+        ]
+      },
+      "wrong_mtp_first": {
+        "vitals": { "bp": "95/50", "hr": 120, "o2": "86%" },
+        "narrative": "Blood is running, but the patient's GCS of 8 means they cannot protect their airway. They begin to aspirate their own vomit.",
+        "options": [
+          { "id": "opt1", "text": "Go back to Airway: Intubate", "targetNode": "correct_airway", "requiredRank": "R2" }
+        ]
+      },
+      "wrong_fluids": {
+        "vitals": { "bp": "85/40", "hr": 135, "o2": "100%" },
+        "narrative": "Current ATLS guidelines advise against large volumes of clear crystalloids (dilutes clotting factors, causes hypothermia). The patient needs blood products (1:1:1 ratio) for hemorrhagic shock.",
+        "options": [
+          { "id": "opt1", "text": "Start Massive Transfusion Protocol (MTP)", "targetNode": "correct_circulation", "requiredRank": "R1" }
+        ]
+      },
+      "correct_circulation": {
+        "vitals": { "bp": "110/65", "hr": 95, "o2": "100%" },
+        "narrative": "Excellent! Traction splint applied to the femur reducing blood loss, and MTP initiated. Blood pressure stabilizes. The patient is now stable enough for a CT Pan-Scan and Orthopedic consult.",
+        "options": null
+      }
+    }
+  }
+}

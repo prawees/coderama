@@ -1,0 +1,80 @@
+{
+  "title": "6yo M - Severe Asthma Exacerbation",
+  "age": "6",
+  "sex": "M",
+  "chiefComplaint": "Severe difficulty breathing and wheezing",
+  "diagnoses": ["Severe Asthma Exacerbation", "Impending Respiratory Failure"],
+  "background": "Parents bring their 6-year-old son to the ER during high PM 2.5 season. He has a known history of asthma. He has been using his Salbutamol inhaler at home with no relief.",
+  "patientAppearance": {
+    "skinTone": "#e0ac69",
+    "bmiFactor": 1.0,
+    "ageGroup": "child"
+  },
+  "vitals": {
+    "hr": { "value": 140, "abnormal": true },
+    "sbp": { "value": 110, "abnormal": false },
+    "dbp": { "value": 70, "abnormal": false },
+    "rr": { "value": 40, "abnormal": true },
+    "temp": { "value": 37.0, "abnormal": false },
+    "spo2": { "value": 88, "abnormal": true },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Restless, sitting up, using accessory muscles (suprasternal retractions), speaking in single words.", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardic, strong pulses", "abnormal": false },
+    { "id": "rs1", "system": "Respiratory", "finding": "Decreased breath sounds bilaterally, prolonged expiratory phase, loud inspiratory and expiratory wheezing.", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "Alert but extremely anxious.", "abnormal": false }
+  ],
+  "investigations": [
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Chest X-Ray", "report": "Hyperinflation, flattened diaphragm. No consolidation or pneumothorax.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": {
+      "start": {
+        "vitals": { "bp": "110/70", "hr": 140, "o2": "88%" },
+        "narrative": "A child presents with a severe asthma exacerbation (SpO2 88%, retractions, speaking in single words). Immediate action is required.",
+        "options": [
+          { "id": "opt1", "text": "Oxygen via mask + Nebulized Salbutamol/Ipratropium", "targetNode": "correct_o2_neb", "requiredRank": "MS5" },
+          { "id": "opt2", "text": "Intubate immediately", "targetNode": "wrong_intubate", "requiredRank": "R2" },
+          { "id": "opt3", "text": "Give IV Midazolam for anxiety", "targetNode": "wrong_sedate", "requiredRank": "Intern" },
+          { "id": "opt4", "text": "Prescribe oral Amoxicillin and discharge", "targetNode": "wrong_discharge", "requiredRank": "MS5" }
+        ]
+      },
+      "correct_o2_neb": {
+        "vitals": { "bp": "115/75", "hr": 130, "o2": "94%" },
+        "narrative": "SpO2 improves to 94% with Oxygen. Nebulized bronchodilators help open the airways, but the wheezing and retractions persist. What is the next critical step?",
+        "options": [
+          { "id": "opt1", "text": "Give Systemic Corticosteroids (IV Dexamethasone/Hydrocortisone)", "targetNode": "correct_steroids", "requiredRank": "Intern" },
+          { "id": "opt2", "text": "Give IV Magnesium Sulfate", "targetNode": "magnesium_early", "requiredRank": "R1" }
+        ]
+      },
+      "wrong_intubate": {
+        "vitals": { "bp": "90/50", "hr": 160, "o2": "80%" },
+        "narrative": "Intubating a severe asthmatic is high risk (bronchospasm, barotrauma) and should be an absolute last resort. You should have maximized medical therapy first. The child rapidly desaturates.",
+        "options": null
+      },
+      "wrong_sedate": {
+        "vitals": { "bp": "100/60", "hr": 120, "o2": "75%" },
+        "narrative": "Sedating an asthmatic patient suppresses their respiratory drive. The child stops breathing adequately and goes into respiratory arrest!",
+        "options": null
+      },
+      "wrong_discharge": {
+        "vitals": { "bp": "110/70", "hr": 140, "o2": "88%" },
+        "narrative": "This is a severe, life-threatening exacerbation! Discharging this child without acute treatment and observation is medical negligence.",
+        "options": null
+      },
+      "correct_steroids": {
+        "vitals": { "bp": "110/70", "hr": 115, "o2": "98%" },
+        "narrative": "Excellent. Systemic corticosteroids reduce the underlying airway inflammation. After 1 hour, the retractions resolve, wheezing decreases, and the child can speak in full sentences. Admit to pediatric ward.",
+        "options": null
+      },
+      "magnesium_early": {
+        "vitals": { "bp": "100/60", "hr": 130, "o2": "94%" },
+        "narrative": "IV Magnesium Sulfate is a great adjunct for severe asthma, but steroids are the cornerstone of treating the inflammation and preventing relapse. You must give steroids.",
+        "options": [
+          { "id": "opt1", "text": "Give Systemic Corticosteroids", "targetNode": "correct_steroids", "requiredRank": "Intern" }
+        ]
+      }
+    }
+  }
+}

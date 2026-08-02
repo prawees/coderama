@@ -1,0 +1,80 @@
+{
+  "title": "เด็กชาย 6 ปี - หอบหืดกำเริบรุนแรง",
+  "age": "6",
+  "sex": "M",
+  "chiefComplaint": "หายใจหอบเหนื่อยรุนแรง มีเสียงหวีด (wheezing)",
+  "diagnoses": ["Severe Asthma Exacerbation", "Impending Respiratory Failure"],
+  "background": "พ่อแม่พาเด็กชายวัย 6 ปี มาที่ ER ในช่วงฤดูฝุ่น PM 2.5 สูง ผู้ป่วยมีโรคประจำตัวเป็นหอบหืด (Asthma) พ่นยา Salbutamol ที่บ้านแล้วแต่อาการไม่ดีขึ้น",
+  "patientAppearance": {
+    "skinTone": "#e0ac69",
+    "bmiFactor": 1.0,
+    "ageGroup": "child"
+  },
+  "vitals": {
+    "hr": { "value": 140, "abnormal": true },
+    "sbp": { "value": 110, "abnormal": false },
+    "dbp": { "value": 70, "abnormal": false },
+    "rr": { "value": 40, "abnormal": true },
+    "temp": { "value": 37.0, "abnormal": false },
+    "spo2": { "value": 88, "abnormal": true },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "ดูหอบเหนื่อย กระสับกระส่าย นั่งพิง ต้องใช้กล้ามเนื้อช่วยหายใจ (suprasternal retractions) พูดได้เป็นคำๆ ไม่เป็นประโยค", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "หัวใจเต้นเร็ว (Tachycardia), ชีพจรเต้นแรง", "abnormal": false },
+    { "id": "rs1", "system": "Respiratory", "finding": "เสียงหายใจเข้าออกลดลง (Decreased breath sounds), หายใจออกยาว (prolonged expiratory phase), มีเสียงหวีดดังทั้งหายใจเข้าและออก", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "รู้สึกตัวดี แต่มีความวิตกกังวลสูง", "abnormal": false }
+  ],
+  "investigations": [
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Chest X-Ray", "report": "Hyperinflation, flattened diaphragm. ไม่มีปอดอักเสบ (consolidation) หรือลมรั่ว (pneumothorax)", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": {
+      "start": {
+        "vitals": { "bp": "110/70", "hr": 140, "o2": "88%" },
+        "narrative": "เด็กมาด้วยอาการหอบหืดกำเริบรุนแรง (SpO2 88%, มี retractions, พูดได้เป็นคำๆ) ต้องให้การรักษาอย่างเร่งด่วนตามแนวทาง PALS",
+        "options": [
+          { "id": "opt1", "text": "ให้ออกซิเจน Mask + พ่นยา Salbutamol/Ipratropium (NB)", "targetNode": "correct_o2_neb", "requiredRank": "MS5" },
+          { "id": "opt2", "text": "ใส่ท่อช่วยหายใจ (Intubate) ทันที", "targetNode": "wrong_intubate", "requiredRank": "R2" },
+          { "id": "opt3", "text": "ฉีดยา Midazolam IV ลดอาการกระสับกระส่าย", "targetNode": "wrong_sedate", "requiredRank": "Intern" },
+          { "id": "opt4", "text": "สั่งยา Amoxicillin กินแล้วให้กลับบ้าน", "targetNode": "wrong_discharge", "requiredRank": "MS5" }
+        ]
+      },
+      "correct_o2_neb": {
+        "vitals": { "bp": "115/75", "hr": 130, "o2": "94%" },
+        "narrative": "SpO2 ดีขึ้นเป็น 94% หลังให้ออกซิเจน ยาพ่นขยายหลอดลมช่วยได้บ้าง แต่เด็กยังมีเสียงหวีดและ retractions อยู่ ขั้นตอนสำคัญต่อไปคืออะไร?",
+        "options": [
+          { "id": "opt1", "text": "ฉีดยาสเตียรอยด์ (IV Dexamethasone/Hydrocortisone)", "targetNode": "correct_steroids", "requiredRank": "Intern" },
+          { "id": "opt2", "text": "ฉีดยา Magnesium Sulfate IV", "targetNode": "magnesium_early", "requiredRank": "R1" }
+        ]
+      },
+      "wrong_intubate": {
+        "vitals": { "bp": "90/50", "hr": 160, "o2": "80%" },
+        "narrative": "การใส่ท่อช่วยหายใจในเด็กที่หอบหืดรุนแรงมีความเสี่ยงสูงมาก (bronchospasm, barotrauma) ควรเป็นทางเลือกสุดท้ายหลังจากให้ยาเต็มที่แล้ว เด็กเกิดภาวะขาดออกซิเจนรุนแรงขณะใส่ท่อ",
+        "options": null
+      },
+      "wrong_sedate": {
+        "vitals": { "bp": "100/60", "hr": 120, "o2": "75%" },
+        "narrative": "การให้ยานอนหลับในผู้ป่วยหอบหืดจะไปกดการหายใจ (suppress respiratory drive) เด็กหยุดหายใจและเข้าสู่ภาวะ Respiratory arrest!",
+        "options": null
+      },
+      "wrong_discharge": {
+        "vitals": { "bp": "110/70", "hr": 140, "o2": "88%" },
+        "narrative": "นี่คือภาวะหอบหืดกำเริบรุนแรงอันตรายถึงชีวิต! การให้เด็กกลับบ้านโดยไม่รักษาและสังเกตอาการถือเป็นความประมาทเลินเล่อทางการแพทย์ (Medical negligence)",
+        "options": null
+      },
+      "correct_steroids": {
+        "vitals": { "bp": "110/70", "hr": 115, "o2": "98%" },
+        "narrative": "ยอดเยี่ยม! ยาสเตียรอยด์ชนิดฉีดช่วยลดการอักเสบของหลอดลมที่เป็นสาเหตุหลัก หลังจาก 1 ชั่วโมง เด็กหายใจหอบน้อยลง เสียงหวีดลดลง และพูดเป็นประโยคได้ เตรียม Admit เข้าวอร์ดเด็ก",
+        "options": null
+      },
+      "magnesium_early": {
+        "vitals": { "bp": "100/60", "hr": 130, "o2": "94%" },
+        "narrative": "IV Magnesium Sulfate เป็นยาเสริมที่ดีสำหรับ severe asthma แต่ยาสเตียรอยด์คือหัวใจหลักในการลดการอักเสบและป้องกันการกำเริบซ้ำ คุณต้องให้สเตียรอยด์",
+        "options": [
+          { "id": "opt1", "text": "ฉีดยาสเตียรอยด์ (Systemic Corticosteroids)", "targetNode": "correct_steroids", "requiredRank": "Intern" }
+        ]
+      }
+    }
+  }
+}

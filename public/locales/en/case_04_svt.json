@@ -1,0 +1,69 @@
+{
+  "title": "35yo F - Palpitations (Unstable SVT)",
+  "age": "35",
+  "sex": "F",
+  "chiefComplaint": "Severe palpitations and dizziness",
+  "diagnoses": ["Supraventricular Tachycardia (SVT)", "Hemodynamic Instability"],
+  "background": "Patient presents to the ER complaining of a sudden onset of a 'racing heart'. She now feels extremely dizzy and looks pale.",
+  "patientAppearance": {
+    "skinTone": "#ffdbac",
+    "bmiFactor": 1.0,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": { "value": 185, "abnormal": true },
+    "sbp": { "value": 80, "abnormal": true },
+    "dbp": { "value": 50, "abnormal": true },
+    "rr": { "value": 22, "abnormal": true },
+    "temp": { "value": 36.8, "abnormal": false },
+    "spo2": { "value": 96, "abnormal": false },
+    "gcs": { "value": 14, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Pale, diaphoretic, anxious", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardic, weak thready pulse, no murmurs", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear to auscultation bilaterally", "abnormal": false },
+    { "id": "cns1", "system": "Neurological", "finding": "Dizzy, slightly confused (GCS 14)", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Narrow complex tachycardia at 185 bpm. No visible P waves. Regular rhythm.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": {
+      "start": {
+        "vitals": { "bp": "80/50", "hr": 185, "o2": "96%" },
+        "narrative": "ECG confirms SVT. The patient is hypotensive (80/50) and symptomatic (dizzy, diaphoretic). This indicates an UNSTABLE tachycardia according to ACLS guidelines.",
+        "options": [
+          { "id": "opt1", "text": "Synchronized Cardioversion (50-100J)", "targetNode": "correct_cardioversion", "requiredRank": "R1" },
+          { "id": "opt2", "text": "Push Adenosine 6mg IV rapid push", "targetNode": "wrong_adenosine", "requiredRank": "Intern" },
+          { "id": "opt3", "text": "Unsynchronized Defibrillation (200J)", "targetNode": "wrong_defib", "requiredRank": "Intern" },
+          { "id": "opt4", "text": "Vagal Maneuvers", "targetNode": "wrong_vagal", "requiredRank": "MS6" }
+        ]
+      },
+      "correct_cardioversion": {
+        "vitals": { "bp": "110/70", "hr": 85, "o2": "98%" },
+        "narrative": "Excellent! Synchronized cardioversion immediately converted the rhythm to Normal Sinus Rhythm. Blood pressure improved and the patient is no longer dizzy.",
+        "options": null
+      },
+      "wrong_adenosine": {
+        "vitals": { "bp": "70/40", "hr": 185, "o2": "95%" },
+        "narrative": "Adenosine is for STABLE narrow-complex tachycardia. Delaying electrical therapy in an unstable patient causes further deterioration. The patient loses consciousness.",
+        "options": [
+          { "id": "opt1", "text": "Proceed to Synchronized Cardioversion", "targetNode": "correct_cardioversion", "requiredRank": "R1" }
+        ]
+      },
+      "wrong_defib": {
+        "vitals": { "bp": "0/0", "hr": 0, "o2": "0%" },
+        "narrative": "FATAL ERROR! You delivered an unsynchronized shock (Defibrillation) during the relative refractory period (R-on-T phenomenon), sending the patient into Ventricular Fibrillation! Cardiac Arrest!",
+        "options": null
+      },
+      "wrong_vagal": {
+        "vitals": { "bp": "75/45", "hr": 185, "o2": "95%" },
+        "narrative": "Vagal maneuvers take time and are ineffective for a hemodynamically UNSTABLE patient. The patient continues to deteriorate.",
+        "options": [
+          { "id": "opt1", "text": "Proceed to Synchronized Cardioversion", "targetNode": "correct_cardioversion", "requiredRank": "R1" }
+        ]
+      }
+    }
+  }
+}

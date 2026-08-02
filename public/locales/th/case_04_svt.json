@@ -1,0 +1,69 @@
+{
+  "title": "หญิง 35 ปี - ใจสั่น (Unstable SVT)",
+  "age": "35",
+  "sex": "F",
+  "chiefComplaint": "ใจสั่นรุนแรง หน้ามืด วิงเวียนศีรษะ",
+  "diagnoses": ["Supraventricular Tachycardia (SVT)", "Hemodynamic Instability"],
+  "background": "ผู้ป่วยหญิงมาที่ ER ด้วยอาการใจสั่นกะทันหัน ตอนนี้มีอาการหน้ามืด จะเป็นลม และตัวซีดเหงื่อแตก",
+  "patientAppearance": {
+    "skinTone": "#ffdbac",
+    "bmiFactor": 1.0,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": { "value": 185, "abnormal": true },
+    "sbp": { "value": 80, "abnormal": true },
+    "dbp": { "value": 50, "abnormal": true },
+    "rr": { "value": 22, "abnormal": true },
+    "temp": { "value": 36.8, "abnormal": false },
+    "spo2": { "value": 96, "abnormal": false },
+    "gcs": { "value": 14, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "ดูอ่อนเพลีย ตัวซีด เหงื่อแตก (diaphoretic) กระสับกระส่าย", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "ชีพจรเต้นเร็วมาก เบา (weak thready pulse)", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "ปอดฟังปกติ ไม่มีเสียงผิดปกติ", "abnormal": false },
+    { "id": "cns1", "system": "Neurological", "finding": "เวียนศีรษะ สับสนเล็กน้อย (GCS 14)", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Narrow complex tachycardia rate 185 bpm. มองไม่เห็น P waves. จังหวะสม่ำเสมอ เข้าได้กับ SVT", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": {
+      "start": {
+        "vitals": { "bp": "80/50", "hr": 185, "o2": "96%" },
+        "narrative": "ECG ยืนยัน SVT ผู้ป่วยมีภาวะความดันตก (80/50) และมีอาการ (หน้ามืด เหงื่อแตก) ซึ่งจัดเป็น UNSTABLE tachycardia ตามแนวทาง ACLS",
+        "options": [
+          { "id": "opt1", "text": "ทำ Synchronized Cardioversion (50-100J)", "targetNode": "correct_cardioversion", "requiredRank": "R1" },
+          { "id": "opt2", "text": "ฉีด Adenosine 6mg IV rapid push", "targetNode": "wrong_adenosine", "requiredRank": "Intern" },
+          { "id": "opt3", "text": "ทำ Unsynchronized Defibrillation (200J)", "targetNode": "wrong_defib", "requiredRank": "Intern" },
+          { "id": "opt4", "text": "ทำ Vagal Maneuvers", "targetNode": "wrong_vagal", "requiredRank": "MS6" }
+        ]
+      },
+      "correct_cardioversion": {
+        "vitals": { "bp": "110/70", "hr": 85, "o2": "98%" },
+        "narrative": "ยอดเยี่ยม! การทำ Synchronized cardioversion สามารถเปลี่ยนจังหวะการเต้นของหัวใจกลับมาเป็น Normal Sinus Rhythm ได้ทันที ความดันโลหิตดีขึ้น และผู้ป่วยไม่มีอาการหน้ามืดแล้ว",
+        "options": null
+      },
+      "wrong_adenosine": {
+        "vitals": { "bp": "70/40", "hr": 185, "o2": "95%" },
+        "narrative": "Adenosine ใช้สำหรับ STABLE narrow-complex tachycardia การมัวเสียเวลากับยาในผู้ป่วยที่ Unstable ทำให้ผู้ป่วยแย่ลง ผู้ป่วย GCS drop และหมดสติ",
+        "options": [
+          { "id": "opt1", "text": "รีบทำ Synchronized Cardioversion ทันที", "targetNode": "correct_cardioversion", "requiredRank": "R1" }
+        ]
+      },
+      "wrong_defib": {
+        "vitals": { "bp": "0/0", "hr": 0, "o2": "0%" },
+        "narrative": "ข้อผิดพลาดร้ายแรง! คุณกดช็อกแบบ Unsynchronized (Defibrillation) ซึ่งอาจตกลงในช่วง Relative refractory period (R-on-T phenomenon) ทำให้ผู้ป่วยเกิด Ventricular Fibrillation (V-Fib) และ Cardiac Arrest!",
+        "options": null
+      },
+      "wrong_vagal": {
+        "vitals": { "bp": "75/45", "hr": 185, "o2": "95%" },
+        "narrative": "Vagal maneuvers ใช้เวลานานและไม่ได้ผลในผู้ป่วยที่มีภาวะ Hemodynamically UNSTABLE ความดันผู้ป่วยตกลงไปอีก",
+        "options": [
+          { "id": "opt1", "text": "รีบทำ Synchronized Cardioversion ทันที", "targetNode": "correct_cardioversion", "requiredRank": "R1" }
+        ]
+      }
+    }
+  }
+}
