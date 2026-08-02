@@ -4,7 +4,7 @@ import { Capacitor } from "@capacitor/core";
 import { audio } from "@/lib/audio";
 
 interface PixelButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'alert' | 'success' | 'gold';
+  variant?: 'primary' | 'alert' | 'success' | 'gold' | 'secondary';
 }
 
 export function PixelButton({ children, variant = 'primary', className = "", ...props }: PixelButtonProps) {
@@ -15,6 +15,7 @@ export function PixelButton({ children, variant = 'primary', className = "", ...
     alert: "bg-pixel-alert text-white hover:brightness-110",
     success: "bg-pixel-success text-pixel-bg hover:brightness-110",
     gold: "bg-pixel-gold text-pixel-bg hover:brightness-110",
+    secondary: "bg-gray-600 text-white hover:brightness-110",
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {

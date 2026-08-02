@@ -5,13 +5,12 @@ import { useRouter } from "next/navigation";
 import { useERStore } from "@/lib/erStore";
 import { getLocalizedRankTitle, translate } from "@/lib/localization";
 import { scheduleOnCallCases, cancelOnCallCases } from "@/lib/notifications";
-import { PixelPanel } from "@/components/ui/PixelPanel";
+import { PageTransition } from "@/components/ui/PageTransition";
 import { PixelButton } from "@/components/ui/PixelButton";
-import { GameCanvas } from "@/components/game/GameCanvas";
+import { Engine2D, MapData } from "@/components/game/Engine2D";
+import { MAPS } from "@/lib/maps";
 import { Pager } from "@/components/ui/Pager";
 import { useState, useRef } from "react";
-
-import { PageTransition } from "@/components/ui/PageTransition";
 import { audio } from "@/lib/audio";
 
 export default function HubPage() {
@@ -36,6 +35,7 @@ export default function HubPage() {
   const logEndRef = useRef<HTMLDivElement>(null);
   
   const [pagerMessage, setPagerMessage] = useState<string | null>(null);
+  const [currentMap, setCurrentMap] = useState<string>('ER_MAIN');
   
   const addLog = (msg: string) => {
     setLogs(prev => [...prev.slice(-19), `${new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })} - ${msg}`]);
@@ -180,8 +180,26 @@ export default function HubPage() {
     router.push('/summary');
   };
 
-  const formatClock = (mins: number) => {
-    const hours = Math.floor(mins / 60) + 8; // Start at 08:00
+  const handleInteract = (id: string, type: string) => {
+    if (type === 'bed') {
+      const bedIndex = parseInt(id.replace('bed_', '')) - 1;
+      const activeCase = activeCases.find(c => c.bedIndex === bedIndex);
+      if (activeCase) {
+        audio.playClick();
+        router.push(`/simulator/play/${activeCase.id}`);
+      } else {
+        addLog(`Bed is empty.`);
+      }
+    }
+  };
+
+  const handleDoor = (target: string) => {
+    addLog(`Traveling to ${target}...`);
+    setCurrentMap(target);
+  };
+
+  const formatTime = (mins: number) => {
+    const hours = Math.floor(mins / 60) + 8;
     const m = mins % 60;
     return `${hours.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
   };
@@ -195,23 +213,27 @@ export default function HubPage() {
         }}
       >
       <Pager message={pagerMessage} onClear={() => setPagerMessage(null)} />
-      
-      {shiftMode === 'on-shift' && (
-        <div className="absolute top-4 right-4 z-50 flex items-center justify-center bg-black bg-opacity-80 px-4 py-2 rounded-lg border-2 border-red-900 shadow-2xl pointer-events-none">
-          <span className="text-3xl text-red-600 drop-shadow-[0_0_8px_rgba(220,38,38,0.8)] font-bold animate-pulse">
-            {formatClock(clockMinutes)}
-          </span>
-        </div>
-      )}
 
-      {/* Top 60%: The Game World (PixiJS) */}
-      <div className="relative h-[60%] w-full border-b-[4px] border-[#30363d]">
-        <GameCanvas />
+      {/* Top: Game Area */}
+      <div className="relative h-[60%] w-full border-b-[4px] border-[#30363d] overflow-hidden bg-black flex items-center justify-center">
+        {shiftMode === 'on-shift' || shiftMode === 'boss-battle' ? (
+          <Engine2D 
+            mapData={MAPS[currentMap]} 
+            onInteract={handleInteract} 
+            onDoor={handleDoor} 
+            activeCaseIds={activeCases.map(c => `bed_${(c.bedIndex || 0) + 1}`)} 
+          />
+        ) : (
+          <div className="text-center text-gray-600 animate-pulse">
+            <span className="text-4xl block mb-2">🏥</span>
+            <p>Code Rama Hospital</p>
+            <p className="text-xs mt-1 text-gray-700">Waiting for shift to begin...</p>
+          </div>
+        )}
       </div>
 
-      {/* Bottom 40%: The Dashboard / Control Center */}
+      {/* Bottom 40%: The Dashboard */}
       <div className="h-[40%] bg-[#0d1117] flex flex-col z-10 relative">
-        {/* Top Bar of Dashboard (Stats) */}
         <div className="flex justify-between items-center bg-[#161b22] px-4 py-2 border-b-2 border-[#30363d]">
           <div className="flex flex-col gap-1 w-1/3">
             <p className="text-xs text-pixel-gold">{translate('current_rank', language)}: <span className="text-white text-sm">{localizedRank}</span></p>
@@ -225,37 +247,28 @@ export default function HubPage() {
           </div>
           
           <div className="flex flex-col items-end w-1/3">
-             <div className="flex justify-between w-full text-xs text-pixel-alert mb-1">
-               <span>{translate('energy', language)}</span>
-               <span>{energy}/{maxEnergy}</span>
-             </div>
-             <div className="w-full h-2 bg-black border border-white">
-               <div className="h-full bg-pixel-success transition-all duration-300" style={{ width: `${(energy/maxEnergy)*100}%` }}></div>
-             </div>
+            <span className="text-xl text-white font-bold">{formatTime(clockMinutes)}</span>
+            <div className="flex items-center gap-1 w-24">
+              <span className="text-[10px] text-gray-400">EN</span>
+              <div className="w-full h-2 bg-gray-800 rounded-full border border-gray-600 overflow-hidden">
+                <div 
+                  className={`h-full transition-all duration-500 ${energy > 50 ? 'bg-pixel-success' : energy > 20 ? 'bg-pixel-warning' : 'bg-pixel-alert'}`}
+                  style={{ width: `${(energy / maxEnergy) * 100}%` }}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Dashboard Main Area: Split Log and Actions */}
-        <div 
-          className="flex-1 flex p-2 gap-2 overflow-hidden"
-          style={{ paddingBottom: 'calc(0.5rem + var(--safe-bottom))' }}
-        >
-          {/* Status Log (Left) */}
-          <div className="flex-1 bg-black border-2 border-gray-700 rounded p-3 overflow-y-auto flex flex-col text-[11px] leading-relaxed space-y-1 font-mono relative shadow-inner">
-            <div className="fixed inset-0 pointer-events-none opacity-20" style={{ background: 'repeating-linear-gradient(transparent, transparent 2px, #000 2px, #000 4px)' }}></div>
-            {logs.map((log, i) => (
-              <div key={i} className={`z-10 relative ${log.includes('Triage') ? 'text-green-400 font-bold' : 'text-green-700'}`}>
-                {'>'} {log}
-              </div>
-            ))}
-            <div ref={logEndRef} className="h-4" />
-          </div>
-
-          {/* Action Panel (Right) */}
-          <div className="w-1/3 flex flex-col gap-2">
-            <div className="flex justify-between bg-black p-2 border border-gray-700 rounded text-xs">
-               <span className="text-pixel-text-muted">XP: {xp}</span>
-               <span className="text-pixel-success">${currency}</span>
+        <div className="flex-1 overflow-y-auto p-4 flex gap-4">
+          <div className="w-1/2 flex flex-col gap-4">
+            <div className="flex items-center justify-between bg-black px-4 py-2 rounded border border-[#30363d]">
+               <span className="text-pixel-text-muted">XP</span>
+               <span className="text-blue-400 font-bold">{xp}</span>
+            </div>
+            <div className="flex items-center justify-between bg-black px-4 py-2 rounded border border-[#30363d]">
+               <span className="text-pixel-text-muted">CASH</span>
+               <span className="text-pixel-success font-bold">${currency}</span>
             </div>
             
             {shiftMode === 'on-shift' || shiftMode === 'boss-battle' ? (
@@ -274,17 +287,22 @@ export default function HubPage() {
             
             <PixelButton 
               onClick={toggleOnCall} 
-              variant={shiftMode === 'on-call' ? 'success' : 'primary'}
-              className="py-3 text-xs"
+              variant="secondary" 
+              className="py-2 text-xs"
+              disabled={shiftMode !== 'off-duty' && shiftMode !== 'on-call'}
             >
-              {shiftMode === 'on-call' ? (language === 'th' ? 'เข้าเวร On-Call: เปิด' : 'ON CALL: ACTIVE') : (language === 'th' ? 'เตรียมรับเวร' : 'GO ON CALL')}
+              {shiftMode === 'on-call' ? translate('pager_off', language) : translate('pager_on', language)}
             </PixelButton>
-            
-            <div className="flex gap-2 mt-auto">
-              <PixelButton onClick={() => router.push('/profile')} variant="primary" className="py-3 flex-1 text-xs">{language === 'th' ? 'ชุด' : 'DRESS'}</PixelButton>
-              <PixelButton onClick={() => router.push('/hub/shop')} variant="gold" className="py-3 flex-1 text-xs">{translate('shop', language)}</PixelButton>
-              <PixelButton onClick={() => router.push('/hub/skills')} variant="success" className="py-3 flex-1 text-xs">{translate('skills', language)}</PixelButton>
-            </div>
+          </div>
+
+          <div className="w-1/2 bg-black border-2 border-[#30363d] rounded p-2 overflow-y-auto font-mono text-[10px] leading-tight flex flex-col">
+            {logs.map((log, i) => (
+              <div key={i} className="mb-1">
+                <span className="text-gray-500">{`>`} </span>
+                <span className={log.includes('Triage:') || log.includes('BOSS') ? 'text-pixel-alert' : 'text-gray-300'}>{log}</span>
+              </div>
+            ))}
+            <div ref={logEndRef} />
           </div>
         </div>
       </div>

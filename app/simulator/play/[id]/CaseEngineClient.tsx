@@ -25,7 +25,7 @@ const CASES: Record<string, Record<string, any>> = {
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
-import { GameCanvas } from "@/components/game/GameCanvas";
+
 import { MinigameOverlay } from "@/components/game/MinigameOverlay";
 
 function CaseEngineContent({ params }: { params: { id: string } }) {
@@ -190,7 +190,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
         />
       )}
       <div className="min-h-screen bg-pixel-bg text-pixel-text font-pixel flex flex-col p-4 relative">
-        <GameCanvas />
+        <div className="w-full h-full relative z-10 border-4 border-gray-800" />
         <div className="relative z-10 flex flex-col h-full pointer-events-none">
           <PixelPanel className="mb-4 flex justify-between pointer-events-auto" variant="dark">
             <div>

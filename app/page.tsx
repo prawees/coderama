@@ -29,7 +29,7 @@ export default function RootPage() {
     <div className="min-h-screen bg-pixel-bg text-pixel-text font-pixel flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md animate-slide-up">
         <div className="text-center mb-8">
-          <h1 className="text-4xl text-pixel-primary drop-shadow-md mb-2">ER HERO</h1>
+          <h1 className="text-4xl text-pixel-primary drop-shadow-md mb-2">Code Rama</h1>
           <p className="text-pixel-text-muted text-sm tracking-widest uppercase">
             {langInput === "th" ? "เริ่มกะเวรของคุณ" : "Start your shift"}
           </p>
