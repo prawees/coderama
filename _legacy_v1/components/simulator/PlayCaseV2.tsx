@@ -407,21 +407,8 @@ export default function PlayCase({ caseId }: { caseId: string }) {
         );
     }
 
-    // Start
-    const { 
-        gameStarted, 
-        gameOver, 
-        gameOverReason, 
-        elapsed, 
-        minutes, 
-        seconds, 
-        health, 
-        playerEvents,
-        startGame
-    } = useGameStore();
-
     if (!gameStarted) {
-        return <MainMenu caseData={caseData} onStart={startGame} />;
+        return <MainMenu caseData={caseData} onStart={storeStartGame} />;
     }
 
     const gameTimeUp = gameOver || (minutes === 0 && seconds === 0);

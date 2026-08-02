@@ -1,0 +1,91 @@
+{
+  "title": "55yo M - Code Blue (V-Fib)",
+  "age": "55",
+  "sex": "M",
+  "chiefComplaint": "Crushing chest pain, unresponsive",
+  "diagnoses": ["Acute Myocardial Infarction", "Ventricular Fibrillation"],
+  "background": "Patient clutched his chest in the waiting room and collapsed. No pulse is palpable. Time is tissue.",
+  "patientAppearance": {
+    "skinTone": "#ffc0cb",
+    "bmiFactor": 1.2,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": { "value": 0, "abnormal": true },
+    "sbp": { "value": 0, "abnormal": true },
+    "dbp": { "value": 0, "abnormal": true },
+    "rr": { "value": 0, "abnormal": true },
+    "temp": { "value": 36.5, "abnormal": false },
+    "spo2": { "value": 0, "abnormal": true },
+    "gcs": { "value": 3, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Unresponsive, cyanotic, diaphoretic", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "No palpable pulse", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Apneic", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 3, pupils fixed and dilated", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "Rhythm Strip", "report": "Chaotic, irregular deflections of varying amplitude. No identifiable P waves, QRS complexes, or T waves.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": {
+      "start": {
+        "vitals": { "bp": "0/0", "hr": 0, "o2": "0%" },
+        "narrative": "Patient is pulseless and apneic. The monitor shows Ventricular Fibrillation.",
+        "options": [
+          { "id": "opt1", "text": "Begin CPR & Defibrillate (200J)", "targetNode": "cpr_shock", "requiredRank": "Intern" },
+          { "id": "opt2", "text": "Push Epinephrine 1mg IV", "targetNode": "epi_early", "requiredRank": "R1" },
+          { "id": "opt3", "text": "Push Amiodarone 300mg IV", "targetNode": "amio_early", "requiredRank": "R3" },
+          { "id": "opt4", "text": "Intubate immediately", "targetNode": "intubate_early", "requiredRank": "R2" }
+        ]
+      },
+      "cpr_shock": {
+        "vitals": { "bp": "0/0", "hr": 0, "o2": "0%" },
+        "narrative": "CPR initiated and shock delivered. Rhythm check shows persistent V-Fib.",
+        "options": [
+          { "id": "opt1", "text": "Resume CPR & Push Epinephrine 1mg IV", "targetNode": "correct_epi", "requiredRank": "R1" },
+          { "id": "opt2", "text": "Defibrillate again immediately", "targetNode": "shock_again", "requiredRank": "Intern" }
+        ]
+      },
+      "epi_early": {
+        "vitals": { "bp": "0/0", "hr": 0, "o2": "0%" },
+        "narrative": "Epinephrine given, but without high-quality CPR and defibrillation, it does not convert the rhythm.",
+        "options": null
+      },
+      "amio_early": {
+        "vitals": { "bp": "0/0", "hr": 0, "o2": "0%" },
+        "narrative": "Amiodarone is not the first-line action for V-Fib before a shock. Patient remains in V-Fib.",
+        "options": null
+      },
+      "intubate_early": {
+        "vitals": { "bp": "0/0", "hr": 0, "o2": "0%" },
+        "narrative": "Intubation delays high-quality CPR and defibrillation, which are the most critical early interventions for V-Fib.",
+        "options": null
+      },
+      "correct_epi": {
+        "vitals": { "bp": "0/0", "hr": 0, "o2": "0%" },
+        "narrative": "Epinephrine pushed and CPR continued for 2 minutes. Rhythm check shows persistent V-Fib.",
+        "options": [
+          { "id": "opt1", "text": "Defibrillate (200J) & Push Amiodarone 300mg IV", "targetNode": "correct_amio", "requiredRank": "R3" },
+          { "id": "opt2", "text": "Push Atropine 1mg IV", "targetNode": "wrong_atropine", "requiredRank": "Intern" }
+        ]
+      },
+      "shock_again": {
+        "vitals": { "bp": "0/0", "hr": 0, "o2": "0%" },
+        "narrative": "Sequential shocks without CPR do not allow the heart to refill. Patient deteriorates to Asystole.",
+        "options": null
+      },
+      "correct_amio": {
+        "vitals": { "bp": "110/70", "hr": 85, "o2": "96%" },
+        "narrative": "ROSC achieved! Patient has a palpable pulse and blood pressure improves. Prepare for post-cardiac arrest care.",
+        "options": null
+      },
+      "wrong_atropine": {
+        "vitals": { "bp": "0/0", "hr": 0, "o2": "0%" },
+        "narrative": "Atropine is not indicated for V-Fib. Patient deteriorates to Asystole.",
+        "options": null
+      }
+    }
+  }
+}

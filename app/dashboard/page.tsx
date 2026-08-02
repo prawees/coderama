@@ -1,9 +1,5 @@
-import LectureDashboard from "@/components/dashboard/LectureDashboard";
-
-export const metadata = {
-  title: "Lecture Manager",
-};
+import { redirect } from 'next/navigation';
 
 export default function DashboardPage() {
-  return <LectureDashboard />;
+  redirect('/dashboard/cases');
 }

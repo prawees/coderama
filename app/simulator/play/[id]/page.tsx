@@ -1,15 +1,12 @@
-import PlayCase from "@/components/simulator/PlayCase";
-import SimulatorNav from "@/components/simulator/SimulatorNav";
+import { CaseEngineClient } from "./CaseEngineClient";
 
-export default function SimulatorPlayPage({ params }: { params: { id: string } }) {
-    return (
-        <div>
-            <SimulatorNav caseId={params.id} hidePlay />
-            <PlayCase caseId={params.id} />
-        </div>
-    );
+export async function generateStaticParams() {
+  return [
+    { id: 'case_02_fluids' },
+    { id: 'case_01' } // Add more as we create them
+  ];
 }
 
-export function generateStaticParams() {
-  return [{ id: "ekZU9TLV0HfmfMV2MVKe" }];
+export default function CaseEnginePage({ params }: { params: { id: string } }) {
+  return <CaseEngineClient params={params} />;
 }

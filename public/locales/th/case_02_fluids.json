@@ -1,0 +1,240 @@
+{
+  "title": "45yo F - Fluids & Resuscitation",
+  "age": "45",
+  "sex": "F",
+  "chiefComplaint": "Severe vomiting, diarrhea, and confusion",
+  "diagnoses": [
+    "Hypovolemic Shock",
+    "Hyponatremia"
+  ],
+  "background": "Patient has a history of congestive heart failure. She presents with severe dehydration from 3 days of gastroenteritis. She is lethargic and hypotensive. Caution: High risk of fluid overload and cerebral edema if fluids are aggressively mismanaged.",
+  "patientAppearance": {
+    "skinTone": "#e2b88b",
+    "bmiFactor": 1.1,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 130,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 75,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 40,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 24,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 37.8,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 94,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 11,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Lethargic, dry mucous membranes, poor skin turgor",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Tachycardic, weak thready pulses",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Tachypneic, lungs clear to auscultation",
+      "abnormal": false
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "Confused, sluggish but reactive pupils",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "chem1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "Sodium",
+      "value": "118",
+      "unit": "mmol/L",
+      "normalRange": "135-145",
+      "abnormal": true,
+      "report": "Severe Hyponatremia"
+    },
+    {
+      "id": "chem2",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "Potassium",
+      "value": "3.1",
+      "unit": "mmol/L",
+      "normalRange": "3.5-5.0",
+      "abnormal": true,
+      "report": "Hypokalemia"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "fluids_normal",
+        "type": "intervention",
+        "position": {
+          "x": 200,
+          "y": 100
+        },
+        "data": {
+          "label": "Normal Saline 0.9%",
+          "actions": [
+            "Normal Saline (0.9% NaCl) IV"
+          ],
+          "requiredRank": "Intern"
+        }
+      },
+      {
+        "id": "fluids_hyper",
+        "type": "intervention",
+        "position": {
+          "x": 200,
+          "y": 200
+        },
+        "data": {
+          "label": "Hypertonic Saline 3%",
+          "actions": [
+            "Hypertonic Saline (3% NaCl) IV"
+          ],
+          "requiredRank": "R3"
+        }
+      },
+      {
+        "id": "fluids_d5w",
+        "type": "intervention",
+        "position": {
+          "x": 200,
+          "y": 300
+        },
+        "data": {
+          "label": "D5W",
+          "actions": [
+            "D5W IV"
+          ],
+          "requiredRank": "Intern"
+        }
+      },
+      {
+        "id": "out_correct",
+        "type": "outcome",
+        "position": {
+          "x": 500,
+          "y": 100
+        },
+        "data": {
+          "label": "Stabilized",
+          "outcomeType": "improved",
+          "narrative": "Fluid resuscitation with Normal Saline improves blood pressure. Sodium is correcting at a safe rate.",
+          "vitalChanges": {
+            "hr": 105,
+            "sbp": 95,
+            "gcs": 13
+          }
+        }
+      },
+      {
+        "id": "out_overload",
+        "type": "outcome",
+        "position": {
+          "x": 500,
+          "y": 200
+        },
+        "data": {
+          "label": "Osmotic Demyelination",
+          "outcomeType": "critical",
+          "narrative": "Hypertonic saline caused overly rapid sodium correction in a chronic setting, risking osmotic demyelination syndrome.",
+          "vitalChanges": {
+            "gcs": 6
+          }
+        }
+      },
+      {
+        "id": "out_edema",
+        "type": "outcome",
+        "position": {
+          "x": 500,
+          "y": 300
+        },
+        "data": {
+          "label": "Cerebral Edema",
+          "outcomeType": "critical",
+          "narrative": "D5W (free water) exacerbated the severe hyponatremia, leading to rapid cellular swelling and cerebral edema.",
+          "vitalChanges": {
+            "gcs": 4,
+            "hr": 45,
+            "sbp": 160
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start",
+        "target": "fluids_normal"
+      },
+      {
+        "id": "e2",
+        "source": "start",
+        "target": "fluids_hyper"
+      },
+      {
+        "id": "e3",
+        "source": "start",
+        "target": "fluids_d5w"
+      },
+      {
+        "id": "e4",
+        "source": "fluids_normal",
+        "target": "out_correct"
+      },
+      {
+        "id": "e5",
+        "source": "fluids_hyper",
+        "target": "out_overload"
+      },
+      {
+        "id": "e6",
+        "source": "fluids_d5w",
+        "target": "out_edema"
+      }
+    ]
+  }
+}

@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { VT323 } from "next/font/google";
 import "./globals.css";
+import { ClientLayout } from "./ClientLayout";
 
-const inter = Inter({
+const vt323 = VT323({
+  weight: "400",
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-pixel",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "RAMA Toxico | E-Learning",
-  description: "RAMA Toxico | E-Learning",
+  title: "Code Rama",
+  description: "ER Management Idle RPG",
 };
 
 export default function RootLayout({
@@ -19,8 +21,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="font-sans">{children}</body>
+    <html lang="en" className={vt323.variable}>
+      <head>
+        <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      </head>
+      <body className="font-pixel text-slate-100 bg-slate-950 antialiased selection:bg-rose-500 selection:text-white">
+        <ClientLayout>
+          {children}
+        </ClientLayout>
+      </body>
     </html>
   );
 }

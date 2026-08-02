@@ -1,80 +1,80 @@
 @import "tailwindcss";
 
 @theme {
-  /* Primary — vivid iris/purple, the anchor color of the whole UI */
-  --color-iris-50: #f5f3ff;
-  --color-iris-100: #ede9fe;
-  --color-iris-200: #ddd6fe;
-  --color-iris-300: #c4b5fd;
-  --color-iris-400: #a48afc;
-  --color-iris-500: #8b6ef8;
-  --color-iris-600: #7c5cfc;
-  --color-iris-700: #6842e0;
-  --color-iris-800: #5433b8;
-  --color-iris-900: #402993;
+  /* High-Color Modern Pixel Art Palette (Stardew/Dave the Diver style) */
+  --color-pixel-bg: #1a1c2c;
+  --color-pixel-panel: #29366f;
+  --color-pixel-panel-light: #3b5dc9;
+  
+  --color-pixel-health: #41a6f6;
+  --color-pixel-health-dark: #29366f;
+  
+  --color-pixel-alert: #d95763;
+  --color-pixel-alert-dark: #ac3232;
+  
+  --color-pixel-success: #99e550;
+  --color-pixel-success-dark: #6abe30;
+  
+  --color-pixel-gold: #fbf236;
+  --color-pixel-gold-dark: #d77bba;
+  
+  --color-pixel-text: #f4f4f4;
+  --color-pixel-text-muted: #9badb7;
 
-  /* Supporting mesh accents — used only in the signature gradient, never in UI chrome */
-  --color-mesh-blue: #4f7cff;
-  --color-mesh-teal: #2fd6c0;
-  --color-mesh-pink: #ff6fa5;
-  --color-mesh-amber: #ffb84d;
+  --font-pixel: var(--font-pixel), "Press Start 2P", "VT323", monospace;
 
-  --color-ink-900: #1a1523;
-  --color-ink-700: #3f3856;
-  --color-ink-500: #6b6480;
-  --color-ink-300: #a7a2b8;
-
-  --color-canvas: #fafaf9;
-
-  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-
-  --shadow-soft: 0 1px 2px rgba(26, 21, 35, 0.04), 0 8px 24px -8px rgba(26, 21, 35, 0.08);
-  --shadow-button: 0 1px 2px rgba(104, 66, 224, 0.08), 0 6px 16px -4px rgba(124, 92, 252, 0.45);
-
-  --background-image-mesh-gradient: radial-gradient(at 20% 20%, #7c5cfc 0px, transparent 50%),
-    radial-gradient(at 80% 10%, #4f7cff 0px, transparent 50%),
-    radial-gradient(at 90% 70%, #2fd6c0 0px, transparent 50%),
-    radial-gradient(at 15% 85%, #ff6fa5 0px, transparent 50%),
-    radial-gradient(at 60% 50%, #6842e0 0px, transparent 55%);
-
-  --animate-float: float 8s ease-in-out infinite;
-  --animate-float-slow: float 12s ease-in-out infinite;
-  --animate-float-delayed: float 10s ease-in-out infinite 2s;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  50% {
-    transform: translate(0, -16px) rotate(3deg);
-  }
+  /* Safe Area Insets for iOS */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
 }
 
 @layer base {
   html {
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: none;
+    font-smoothing: none;
+    image-rendering: pixelated;
   }
 
   body {
-    @apply bg-canvas text-ink-900;
-  }
-
-  /* Visible keyboard focus everywhere, styled to match the brand rather than removed */
-  :focus-visible {
-    outline: 2px solid #7c5cfc;
-    outline-offset: 2px;
-    border-radius: 6px;
+    @apply bg-pixel-bg text-pixel-text font-pixel tracking-wider;
+    padding-top: var(--safe-top);
+    padding-left: var(--safe-left);
+    padding-right: var(--safe-right);
+    /* Bottom padding handled per-component to avoid clipping full-screen canvas */
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+/* Pixel Art Custom Utilities */
+@layer utilities {
+  .pixel-border {
+    box-shadow: 
+      -4px 0 0 0 black,
+      4px 0 0 0 black,
+      0 -4px 0 0 black,
+      0 4px 0 0 black,
+      -4px -4px 0 0 black,
+      4px -4px 0 0 black,
+      -4px 4px 0 0 black,
+      4px 4px 0 0 black;
+  }
+
+  .pixel-border-sm {
+    box-shadow: 
+      -2px 0 0 0 black,
+      2px 0 0 0 black,
+      0 -2px 0 0 black,
+      0 2px 0 0 black,
+      -2px -2px 0 0 black,
+      2px -2px 0 0 black,
+      -2px 2px 0 0 black,
+      2px 2px 0 0 black;
+  }
+
+  .pixel-shadow {
+    box-shadow: 
+      4px 4px 0 0 rgba(0,0,0,0.5);
   }
 }
+
