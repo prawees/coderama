@@ -1,0 +1,61 @@
+{
+  "title": "5mo M Severe Bronchiolitis",
+  "age": "0.42",
+  "sex": "M",
+  "chiefComplaint": "Working hard to breathe and not feeding",
+  "diagnoses": ["RSV bronchiolitis", "Viral-induced wheeze", "Bacterial pneumonia", "Congenital heart disease with failure", "Pertussis"],
+  "background": "Five month old, born at 34 weeks, weight 5.8 kg. Four days of coryza then progressive cough and noisy breathing. Today he has taken less than a third of his normal feeds, has had two brief pauses in breathing that frightened his mother, and has had four wet nappies in 24 hours instead of the usual eight. His two year old sister has a cold. It is peak season, and the department has seen nineteen similar infants this week. Most of them needed nothing. This one does.",
+  "patientAppearance": { "skinTone": "#f2caa4", "bmiFactor": 0.9, "ageGroup": "child" },
+  "vitals": {
+    "hr": { "value": 182, "abnormal": true },
+    "sbp": { "value": 78, "abnormal": false },
+    "dbp": { "value": 46, "abnormal": false },
+    "rr": { "value": 72, "abnormal": true },
+    "temp": { "value": 38.1, "abnormal": true },
+    "spo2": { "value": 86, "abnormal": true },
+    "gcs": { "value": 14, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Miserable, exhausted rather than agitated, which is the more worrying of the two. Grunting intermittently. Too breathless to feed", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Profuse clear nasal secretions blocking both nostrils (infants are obligate nasal breathers, so this alone worsens the work of breathing), head bobbing, nasal flaring, dry mucous membranes, anterior fontanelle slightly sunken", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 182/min, capillary refill 3 seconds, femoral pulses present and equal, no murmur, no hepatomegaly to suggest cardiac failure", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Respiratory rate 72 with marked subcostal, intercostal and sternal recession, tracheal tug. Widespread fine inspiratory crackles with expiratory wheeze in all zones. Prolonged expiratory phase. Observed apnoeic pause of 12 seconds during examination", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, mildly distended from air swallowing, liver edge palpable 1 cm below the costal margin which is normal at this age and displaced by hyperinflation, no masses", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Perioral cyanosis during coughing episodes, mottled peripheries, reduced turgor, capillary refill 3 seconds, no rash", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 14, drowsy and less responsive than his mother describes as normal, normal tone, anterior fontanelle sunken. Drowsiness in bronchiolitis means carbon dioxide retention and exhaustion, and it is the sign that predicts intubation", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "sat1", "kind": "lab", "category": "POCT", "name": "Pulse oximetry on room air", "value": "86", "unit": "%", "normalRange": "94-100", "abnormal": true, "report": "Persistent hypoxaemia. Saturation is the single most useful measurement in bronchiolitis and it is one of the few that should change your decision." },
+    { "id": "gas1", "kind": "lab", "category": "ABG", "name": "Capillary blood gas", "value": "pH 7.26 / pCO2 68 / HCO3 28", "unit": "-", "normalRange": "pH 7.32-7.42", "abnormal": true, "report": "Respiratory acidosis with carbon dioxide retention, confirming exhaustion. Do not perform this routinely in bronchiolitis. It is indicated here because of the apnoeas and the drowsiness." },
+    { "id": "rsv1", "kind": "lab", "category": "Micro", "name": "Respiratory viral PCR (nasopharyngeal)", "value": "RSV positive", "unit": "-", "normalRange": "Negative", "abnormal": true, "report": "Positive. Does not change treatment for this infant, but it does determine cohorting and isolation, which is why it is worth doing in an admitted patient and not worth doing in one going home." },
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Chest X-ray", "report": "Hyperinflation with flattened hemidiaphragms, peribronchial thickening and patchy right middle lobe atelectasis. No lobar consolidation, no effusion. Routine chest X-ray in bronchiolitis increases antibiotic prescribing without improving outcomes, because atelectasis is repeatedly misread as pneumonia. It is justified here by the severity and the oxygen requirement.", "imageUrl": "", "abnormal": true },
+    { "id": "na1", "kind": "lab", "category": "Elytes", "name": "Sodium", "value": "131", "unit": "mmol/L", "normalRange": "135-145", "abnormal": true, "report": "Mild hyponatraemia, common in bronchiolitis from inappropriate ADH secretion. Use isotonic fluid and restrict to two thirds maintenance." },
+    { "id": "cbc1", "kind": "lab", "category": "CBC", "name": "White cell count and CRP", "value": "WBC 11.2 / CRP 14 mg/L", "unit": "-", "normalRange": "WBC 6.0-17.0", "abnormal": false, "report": "Unremarkable, consistent with a viral illness. Serious bacterial co-infection occurs in under 1% of infants with typical bronchiolitis." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Nasal suction and oxygen", "actions": ["Gentle nasal suction", "Oxygen to target saturations 92% or above", "Minimal handling", "Continuous saturation and apnoea monitoring"], "doseMap": { "Gentle nasal suction": "Cheap, immediately effective, and repeatedly forgotten. Clearing the nose alone can drop the respiratory rate substantially in an obligate nasal breather", "Oxygen to target saturations 92% or above": "Do not chase 100%. Higher targets prolong admission without benefit" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Escalate respiratory support for apnoea and exhaustion", "actions": ["High flow nasal cannula oxygen", "Prepare for CPAP if no improvement", "Senior paediatric review"], "doseMap": { "High flow nasal cannula oxygen": "2 L/kg/min (about 12 L/min for 5.8 kg), heated and humidified. Reassess at 60 to 90 minutes. Failure to improve by then predicts the need for CPAP or intubation" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Hydration by the least invasive route that works", "actions": ["Nasogastric feeding or IV fluids", "Restrict to two thirds maintenance with isotonic fluid", "Strict fluid balance and daily sodium"], "doseMap": { "Nasogastric feeding or IV fluids": "Nasogastric feeding is preferred if the respiratory rate allows, since it preserves gut function and avoids a cannula. At 72 breaths per minute the aspiration risk is significant, so IV is the safer choice tonight", "Restrict to two thirds maintenance with isotonic fluid": "Roughly 39 mL/h at full maintenance for 5.8 kg, so about 26 mL/h. Fluid restriction reflects the SIADH risk" } } },
+      { "id": "req4", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Withhold the treatments that do not work", "actions": ["No salbutamol", "No nebulised adrenaline as routine", "No corticosteroids", "No antibiotics without evidence of bacterial infection", "No chest physiotherapy"], "doseMap": { "No salbutamol": "Multiple trials show no benefit in bronchiolitis under 12 months. A transient improvement in wheeze is not the same as a shorter admission or less oxygen. Prescribing it is the commonest error in this diagnosis" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 1200, "y": 200 }, "data": { "label": "Response to high flow", "outcomeType": "improved", "narrative": "After 90 minutes on high flow the respiratory rate falls to 54, recession lessens, saturations reach 94% and the apnoeas stop. Repeat gas shows a pCO2 of 52 and a pH of 7.32. He avoids intubation.", "vitalChanges": { "hr": 158, "sbp": 82, "dbp": 48, "rr": 54, "spo2": 94, "gcs": 15 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Explain why you are deliberately not prescribing anything, and mean it (Empathy)", "ethicalValue": 15, "narrative": "His mother has been to two clinics and both gave salbutamol and an antibiotic, and she reasonably concludes that this hospital is doing less for a sicker child. You explain that oxygen, suction and feeding are the treatment, that the drugs she was given do not work for this illness, and that the reason he is now improving is the support and not a prescription. Then you show her the numbers on the monitor going the right way. Dr. Bob calls it a waste of eight minutes. She brings her daughter to this department instead of a clinic four months later, on day one instead of day four." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Admit with clear escalation criteria", "actions": ["Paediatric ward or HDU admission", "Wean high flow as tolerated", "Contact and droplet precautions", "Discharge criteria: maintaining saturations in air and feeding above 75% of normal"], "doseMap": {} } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Course", "outcomeType": "improved", "narrative": "Peak severity at day 5 of illness, which is typical. Weaned off high flow on day 3 of admission and off oxygen on day 4. Feeding fully by day 5.", "vitalChanges": { "hr": 140, "sbp": 84, "dbp": 50, "rr": 40, "spo2": 97, "temp": 37.0, "gcs": 15 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 5 with advice that the cough will continue for two to four weeks, which prevents three unnecessary return visits. Prematurity at 34 weeks is documented as a risk factor for next season. No antibiotics, no salbutamol and no steroids were given at any point.", "vitalChanges": { "hr": 132, "sbp": 86, "dbp": 52, "rr": 36, "spo2": 98, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "req4" },
+      { "id": "e5", "source": "req4", "target": "out1" },
+      { "id": "e6", "source": "out1", "target": "ethical_1" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e_skip", "source": "out1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

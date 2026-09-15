@@ -1,74 +1,123 @@
-# Clinical Simulation Platform
+# 🏥 Code Rama (โค้ด รามา)
+### 2D Hospital Simulation RPG & Emergency Room Clinical Engine
 
-A medical simulation app for training clinical decision-making. Case authors build interactive management graphs; players navigate scenarios by ordering investigations, selecting medications with correct dosages, and making disposition decisions.
+> *"Welcome to Code Rama ER, Doctor. Get ready for a real 'Ward Wen Yern' (brutal shift) — 36-hour calls, broken coffee machines, and patients mapped directly to the National License (NL) blueprints."*
 
-Built with **Next.js 14** (App Router), **Tailwind CSS**, **Firebase Auth + Firestore**, and **Clerk**.
+---
 
-## Features
+## 🎮 What is Code Rama?
 
-- **Case Designer** — authors create cases with vitals, history, physical exam, and a directed graph of management nodes
-- **Graph Editor** — drag-and-drop graph builder with intervention, required intervention, outcome, diagnosis, and lab result nodes
-- **Player** — step through a case: review vitals, order labs/imaging, select interventions with dose options, make diagnosis
-- **Dose-aware matching** — medications carry dose selections; wrong doses trigger deterioration outcomes
-- **Disposition system** — disposition options unlock after completing required management
-- **Google sign-in** via Firebase Auth (with Clerk for session management)
-- **Responsive** — left panel (gradient mesh) hides below `lg`, form stays centered
+**Code Rama** is a retro 2D pixel medical RPG and clinical simulation platform built on **Next.js 14**, **Pixi.js 8**, and **Zustand**. 
 
-## Setup
+Combining classic RPG progression with high-fidelity medical decision-making, players step into the shoes of a medical doctor rising through the ranks of an overworked emergency department. Manage chaotic ER beds, interpret 12-lead ECGs and lab panels, perform life-saving procedure minigames, navigate complex hospital politics, and survive the grueling 30-day shift campaign.
 
-1. **Install dependencies**
+---
 
-   ```bash
-   npm install
-   ```
+## 📖 The 30-Day Story Campaign
 
-2. **Create a Firebase project** at [console.firebase.google.com](https://console.firebase.google.com), then:
-   - Enable **Authentication → Email/Password** and **Google** providers
-   - Create a **Cloud Firestore** database
-   - Copy your web app config values
+The narrative spans **30 in-game days** featuring branching dialogue, ethical dilemmas, relationship progression, and career milestone exams:
 
-3. **Set environment variables**
+- **Days 1–5: Med Student (MED_Y5 / Extern)**  
+  Starting out under the stern supervision of **Prof. Somchai**. Learn triage protocols, fluid resuscitation, and basic toxicology.
+- **Days 6–10: Sub-Intern (MED_Y6)**  
+  Increased bed capacity, motorcycle trauma cases, fast-paced triage, and sudden mid-shift emergency alerts.
+- **Days 11–15: Intern Year (The Brutal Ward)**  
+  The infamous 36-hour shifts. Exhaustion, power outages, and deepening coworker relationships.
+- **Days 16–25: Resident (R1–R3)**  
+  Complex multi-system trauma, DKA, septic shock, VIP patient dilemmas, and ethical choices that affect your hospital Karma.
+- **Days 26–30: Attending & Chief of Medicine**  
+  End-of-year promotion exams, high-stakes boss battles (mass casualty incident response), and the **Prestige / Legacy System** (retiring to begin a *Legacy of Wealth* or *Legacy of Knowledge*).
 
-   ```bash
-   cp .env.local.example .env.local
-   ```
+> **Bilingual Narrative**: Story dialogue and cutscenes are available in both **English** and **Thai** (`lib/StoryManager.ts`, `lib/StoryManagerTH.ts`).
 
-   Fill in the `NEXT_PUBLIC_FIREBASE_*` values and any other required keys.
+---
 
-4. **Run the dev server**
+## 🩺 Clinical Simulation Engine
 
-   ```bash
-   npm run dev
-   ```
+The clinical engine powers over **50 interactive medical scenarios** mapped to core medical licensing blueprints:
 
-   Visit [http://localhost:3000](http://localhost:3000).
+- **Realistic Management Graphs**: Each case runs on an interactive directed acyclic graph (DAG) of interventions, required treatments, lab orders, and diagnostic branch points.
+- **Dynamic Vitals & Real-Time Feedback**: Heart rate, blood pressure, SpO2, respiratory rate, and GCS dynamically respond to treatment timings and drug choices.
+- **Defibrillator & CPR Procedure Minigame**: Framerate-independent timing bar with real-time feedback and tactile haptics.
+- **Universal Clinical Outcome Resolver**: Evaluates multi-step management choices, recognizing clinical stabilization (`improved`, `resolved`, `correct`, `stabilized`) and logging shift statistics.
 
-## Project structure
+---
 
+## 🏥 2D Pixel ER World (Pixi.js 8)
+
+- **Interactive ER Beds**: Hospital beds render dynamic pixel sprites with mattresses, pillows, blankets, and patients whose visual appearance reflects their case data (skin tones, shirt colors).
+- **Bedside Status Alarms**: Active beds display pulsing visual monitors — green heart pulse for stable cases, critical red alarms when triage timers near expiration.
+- **Coworker NPCs & Friendship System**:
+  - **Nurse Ann (`Ann ❤️`)**: Gift Specialty Coffee purchased from the Supply Closet to build friendship hearts and unlock emotional cutscenes.
+  - **Ajarn Grump (`Aj. Grump`)**: The grumpy senior attending on break who tells you to get back to treating patients.
+- **Contextual Action Prompts**: Dynamic floating HUD instructions appear when approaching beds, NPCs, the consult terminal, or leaderboard screens.
+- **Audio Synthesizer Engine**: Adaptive chiptune music tracks and ambient procedural hospital hums (`lib/audio.ts`, `lib/music.ts`).
+
+---
+
+## 🛒 Economy & Progression
+
+- **Supply Closet (`/hub/shop`)**:
+  - Consumables: Double Espresso (restores 50 energy during brutal shifts).
+  - Hospital Upgrades: Automated ECG machines, lounge espresso maker, triage monitors.
+  - Personal Gear: Stethoscopes, clinical scrubs, and running shoes providing passive energy and stat buffs.
+- **Doctor ID Badge (`/profile`)**: Customize your doctor's hair, scrubs, pants, shoes, and skin tone.
+- **Promotion Exams & Leaderboards**: Track XP, clinical accuracy, and patient survival rates across shift summaries (`/summary`).
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+- **Framework**: Next.js 14 (App Router, configured for static export `output: 'export'`)
+- **2D Engine**: Pixi.js 8 (WebGL / WebGPU canvas renderer)
+- **State Management**: Zustand with persistent storage
+- **Styling**: Tailwind CSS with custom pixel UI components (`PixelPanel`, `PixelButton`)
+- **Audio**: Web Audio API procedural synthesizers + generative chiptune tracks
+- **Mobile & Desktop Shell**: Capacitor (iOS/Android) & Electron (macOS desktop bundle)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone & Install
+
+```bash
+git clone https://github.com/prawees/coderama.git
+cd coderama
+npm install
 ```
-app/
-  simulator/          — case designer, graph editor
-  simulator/play/     — case player
-components/simulator/
-  CaseDesigner.tsx    — create/edit case metadata
-  GraphEditor.tsx     — authoring graph canvas
-  PlayCase.tsx        — player state machine & graph execution
-  ManagementPanel.tsx — player intervention/disposition UI
-  ImagingPanel.tsx    — player imaging & lab viewer
-  database.ts         — medication doses, management library
-  types.ts            — shared types
-  utils.ts            — helpers
-lib/firebase.ts       — Firebase auth + Firestore init
+
+### 2. Run Development Server
+
+```bash
+npm run dev
 ```
 
-## Authoring a case
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-1. Go to `/simulator` → **New Case**
-2. Fill in vitals, history, physical exam
-3. Build a management graph:
-   - **Intervention nodes** — actions the player can take; attach required dose via `doseMap`
-   - **Required nodes** — mandatory interventions; `requiredDoseMap` gates the bonus reward
-   - **Outcome nodes** — health changes, vital changes, or `unlockEvent` (unlocks dispositions)
-   - **Diagnosis nodes** — set the correct diagnosis; player must match it exactly
-   - **Lab result nodes** — display lab data when the player orders a test
-4. Publish → share the case ID with players
+### 3. Build Static Export
+
+```bash
+npm run build
+```
+
+Generates the complete static build in `out/` with all 51 medical cases pre-rendered.
+
+---
+
+## 🎮 Controls
+
+| Action | Keyboard | Touch / On-Screen |
+| :--- | :--- | :--- |
+| **Movement** | `W / A / S / D` or `Arrow Keys` | Virtual D-Pad |
+| **Interact / Treat / Talk** | `A` or `Spacebar` | Tap Action Prompt |
+| **Minigame Timing** | `Spacebar` | Tap ECG Monitor Bar |
+| **Quick Triage** | Number keys `1 / 2 / 3` | Tap Bed Pills in Dashboard |
+
+---
+
+## 🤝 Collaboration Notes (for Porames & Team)
+
+- **Art & Assets**: The 2D sprites and UI are ripe for human touch / rework (e.g. Fable polish, character portraits, custom tilesets).
+- **Clinical Cases**: Case JSON files live in `public/locales/en/` and `public/locales/th/`. New cases can be added by declaring a `managementGraph` with vitals and diagnostic nodes.
+- **Story Campaigns**: Mid-shift events, ethical choices, and cutscenes are defined in `lib/StoryManager.ts` and `lib/StoryManagerTH.ts`.

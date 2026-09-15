@@ -1,0 +1,58 @@
+{
+  "title": "51yo M VIP Executive Screening Demand (Non-Emergency)",
+  "age": "51",
+  "sex": "M",
+  "chiefComplaint": "Wants a whole-body MRI tonight because a friend was diagnosed with pancreatic cancer",
+  "diagnoses": ["No acute pathology", "Tension headache", "Gastro-oesophageal reflux", "Health anxiety", "Alcohol-related sleep disturbance"],
+  "background": "Arrives at 22:40 in the private emergency suite. A close friend of the same age was diagnosed with metastatic pancreatic cancer eight days ago. He has no symptoms other than vague intermittent upper abdominal discomfort after late dinners and poor sleep. He completed a full executive health package at this hospital eleven weeks ago, which was entirely normal including abdominal ultrasound and tumour markers. He has flown in for one night and wants a whole-body MRI, a full tumour marker panel and a CT abdomen before his flight at 09:00. He is a repeat guest and a significant account. Khun Mali has already messaged the department twice.",
+  "patientAppearance": { "skinTone": "#e6bb92", "bmiFactor": 1.15, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 78, "abnormal": false },
+    "sbp": { "value": 138, "abnormal": true },
+    "dbp": { "value": 86, "abnormal": true },
+    "rr": { "value": 16, "abnormal": false },
+    "temp": { "value": 36.7, "abnormal": false },
+    "spo2": { "value": 98, "abnormal": false },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Well, well nourished, no weight loss, no cachexia, no jaundice, arrives in business clothing after a dinner meeting", "abnormal": false },
+    { "id": "hent1", "system": "HENT", "finding": "No scleral icterus, no pallor, no cervical or supraclavicular lymphadenopathy, no oral lesions, mild pharyngeal erythema consistent with reflux", "abnormal": false },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Regular rate and rhythm, normal heart sounds, no murmur, blood pressure mildly elevated at 138/86 consistent with white coat effect and evening alcohol", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds bilaterally, no wheeze, normal effort, no cough", "abnormal": false },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender including deep epigastric palpation, no mass, no organomegaly, no ascites, Courvoisier's sign absent, bowel sounds normal", "abnormal": false },
+    { "id": "skin1", "system": "Skin", "finding": "Normal colour, no jaundice, no scratch marks, no spider naevi, no palmar erythema, no acanthosis nigricans", "abnormal": false },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 15, fully orientated, no focal deficit. He is not anxious in the way case_23 was anxious. He is transactional: he believes screening is a purchasable good and he is prepared to pay for the best version of it", "abnormal": false }
+  ],
+  "investigations": [
+    { "id": "prev1", "kind": "lab", "category": "Records", "name": "Executive health package, 11 weeks ago", "value": "All within normal limits", "unit": "-", "normalRange": "-", "abnormal": false, "report": "Full blood count, liver and renal function, HbA1c 5.6%, lipids, abdominal ultrasound, chest X-ray and ECG all normal. Repeating any of this eleven weeks later has no plausible yield in an asymptomatic man." },
+    { "id": "lft1", "kind": "lab", "category": "Chemistry", "name": "Liver function tests (if ordered)", "value": "Bilirubin 0.8, ALP 78, AST 26, ALT 31", "unit": "-", "normalRange": "ALT <41 U/L", "abnormal": false, "report": "Normal. A normal alkaline phosphatase and bilirubin in an asymptomatic patient with a soft non-tender abdomen make pancreatic head pathology very unlikely." },
+    { "id": "ca199", "kind": "lab", "category": "Tumour markers", "name": "CA 19-9 (requested by patient)", "value": "Not performed", "unit": "U/mL", "normalRange": "<37", "abnormal": false, "report": "Explicitly not recommended for screening by any guideline. In asymptomatic populations the positive predictive value for pancreatic cancer is under 1%. It is also falsely elevated in benign biliary disease, diabetes and smokers, and a mildly raised value in this man would generate an endoscopic ultrasound with a real perforation risk." },
+    { "id": "mri1", "kind": "imaging", "category": "Imaging", "name": "Whole-body MRI (requested by patient)", "report": "Not performed. Around 30 to 40% of asymptomatic adults have at least one incidental finding on whole-body MRI. The great majority are benign, and the resulting investigation cascade carries measurable physical risk with no demonstrated mortality benefit in asymptomatic average-risk adults.", "imageUrl": "", "abnormal": false },
+    { "id": "ct1", "kind": "imaging", "category": "Imaging", "name": "CT abdomen (requested by patient)", "report": "Not performed. Effective dose around 8 mSv. There is no screening indication and no symptom to investigate.", "imageUrl": "", "abnormal": false }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Take a proper history and examine, do not skip to the negotiation", "actions": ["Full history including family history and risk factors", "Complete abdominal examination", "Review the executive package from 11 weeks ago", "Screen for genuine red flags"], "doseMap": { "Screen for genuine red flags": "Painless jaundice, unexplained weight loss, new-onset diabetes after age 50, steatorrhoea, persistent back pain. He has none. A first-degree family history would change the calculus, and he has none of that either" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 480, "y": 200 }, "data": { "label": "No indication for emergency imaging", "outcomeType": "improved", "narrative": "Asymptomatic apart from postprandial reflux, normal examination, normal comprehensive workup eleven weeks ago, no family history and no red flags. There is no emergency question here to answer.", "vitalChanges": {} } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 720, "y": 420 }, "data": { "label": "Say no to a paying customer and explain the harm in his own terms (Empathy)", "ethicalValue": 25, "narrative": "Ordering the scan is easy, profitable, and nobody would ever criticise you for it. You decline instead, and you frame it the way he actually thinks: this is a purchase with a 30 to 40% chance of returning a finding that is almost certainly meaningless, and that finding will then own the next two years of his calendar. Then you ask about his friend, and he talks for six minutes about being fifty-one and watching someone the same age get a death sentence. That was the presenting complaint the whole time. Khun Mali logs the encounter at zero revenue. Ajarn Kit sees it and says nothing." } },
+      { "id": "req2", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Decline the non-indicated imaging and markers", "actions": ["No whole-body MRI", "No CT abdomen", "No CA 19-9 or tumour marker panel", "Document the discussion and the reasoning"], "doseMap": { "Document the discussion and the reasoning": "Record what was requested, what was declined, why, and that the patient understood. This protects him from the next doctor who says yes, and protects you" } } },
+      { "id": "req3", "type": "required", "position": { "x": 1200, "y": 200 }, "data": { "label": "Address the actual symptoms he does have", "actions": ["Trial of a proton pump inhibitor for reflux", "Advice on late meals and alcohol", "Blood pressure recheck out of hours in a calm setting"], "doseMap": { "Trial of a proton pump inhibitor for reflux": "Omeprazole 20 mg daily for 4 weeks with review. If symptoms persist beyond that or alarm features develop, endoscopy is then indicated on merit" } } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Redirect to evidence-based screening in the correct setting", "actions": ["Refer to primary care or the health screening clinic, not the emergency department", "Offer colorectal cancer screening, which is age appropriate and evidence based", "Cardiovascular risk assessment", "Written red flag advice"], "doseMap": { "Offer colorectal cancer screening, which is age appropriate and evidence based": "At 51 this has actual mortality benefit, unlike everything he asked for. Redirecting the impulse is more effective than refusing it" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 120 }, "data": { "label": "Correct disposition", "outcomeType": "resolved", "narrative": "Discharged in 25 minutes with a PPI trial, a colonoscopy referral he actually attends, and no imaging. Revenue for the encounter: 2,400 baht. He returns eight months later with a genuine problem and asks for you by name, which is the only metric in this case worth anything.", "vitalChanges": {} } },
+      { "id": "out3", "type": "outcome", "position": { "x": 1680, "y": 340 }, "data": { "label": "Compliance path", "outcomeType": "worsened", "narrative": "If you order the panel: the whole-body MRI shows a 12 mm adrenal adenoma and a 7 mm renal cyst, and CA 19-9 comes back at 44 U/mL. That generates endocrine referral, a dexamethasone suppression test, interval imaging, an endoscopic ultrasound of a normal pancreas, and a small bleed at biopsy requiring admission. Eighteen months later everything is confirmed benign. Departmental revenue for the encounter: 142,000 baht. Khun Mali sends a congratulatory note.", "vitalChanges": {} } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "out1" },
+      { "id": "e3", "source": "out1", "target": "ethical_1" },
+      { "id": "e_skip", "source": "out1", "target": "req2" },
+      { "id": "e4", "source": "ethical_1", "target": "req2" },
+      { "id": "e5", "source": "req2", "target": "req3" },
+      { "id": "e6", "source": "req3", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "req1", "target": "out3" }
+    ]
+  }
+}

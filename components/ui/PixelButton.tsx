@@ -8,14 +8,14 @@ interface PixelButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export function PixelButton({ children, variant = 'primary', className = "", ...props }: PixelButtonProps) {
-  const baseStyle = "pixel-border px-4 py-2 font-pixel text-xl uppercase transition-transform active:translate-y-1 active:shadow-none pixel-shadow cursor-pointer select-none";
+  const baseStyle = "pixel-border px-4 py-2 font-pixel text-xl uppercase transition-transform duration-100 active:scale-95 cursor-pointer select-none";
   
   const variantStyles = {
-    primary: "bg-pixel-panel-light text-white hover:brightness-110",
-    alert: "bg-pixel-alert text-white hover:brightness-110",
-    success: "bg-pixel-success text-pixel-bg hover:brightness-110",
-    gold: "bg-pixel-gold text-pixel-bg hover:brightness-110",
-    secondary: "bg-gray-600 text-white hover:brightness-110",
+    primary: "bg-[#1f6feb] text-white hover:bg-[#388bfd]",
+    alert: "bg-[#da3633] text-white hover:bg-[#f85149]",
+    success: "bg-[#2ea043] text-white hover:bg-[#3fb950]",
+    gold: "bg-[#d29922] text-[#0d1117] hover:bg-[#e3b341]",
+    secondary: "bg-[#21262d] text-gray-300 hover:bg-[#30363d]",
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {

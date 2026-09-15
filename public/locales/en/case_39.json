@@ -1,0 +1,61 @@
+{
+  "title": "57yo M Necrotising Fasciitis (Vibrio vulnificus)",
+  "age": "57",
+  "sex": "M",
+  "chiefComplaint": "Severe leg pain and fever 20 hours after handling seafood",
+  "diagnoses": ["Necrotising fasciitis (Vibrio vulnificus)", "Cellulitis", "Deep vein thrombosis", "Gout", "Compartment syndrome"],
+  "background": "Seafood wholesaler at a fish market. He cut his right shin on an oyster crate yesterday morning and washed it in seawater. Twenty hours later he has agonising pain in the leg, rigors and vomiting. He has cirrhosis from chronic hepatitis B and takes no regular medication. Chronic liver disease and iron overload raise the risk of fulminant Vibrio vulnificus infection by roughly eighty-fold, and this history plus rapid progression is the pattern.",
+  "patientAppearance": { "skinTone": "#cfa261", "bmiFactor": 1.0, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 134, "abnormal": true },
+    "sbp": { "value": 78, "abnormal": true },
+    "dbp": { "value": 42, "abnormal": true },
+    "rr": { "value": 32, "abnormal": true },
+    "temp": { "value": 39.2, "abnormal": true },
+    "spo2": { "value": 94, "abnormal": true },
+    "gcs": { "value": 13, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Toxic, agitated, sweating, in pain that is grossly out of proportion to the visible skin changes. Pain far exceeding what the skin explains is the single most important early sign and it appears before anything looks bad", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Mildly icteric sclerae from underlying cirrhosis, dry mucous membranes, no oral lesions, no neck stiffness", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 134/min, hypotensive at 78/42, warm peripheries with a bounding pulse and a wide pulse pressure, typical of early distributive septic shock", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoeic at 32/min compensating for metabolic acidosis, clear breath sounds, no crackles", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Moderate ascites and splenomegaly consistent with known cirrhosis, non-tender, no peritonism", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Right shin with a small healing laceration surrounded by dusky violaceous discolouration extending to the knee, three tense haemorrhagic bullae, skin anaesthesia over a 10 cm patch, crepitus on deep palpation, and a woody hard feel to the subcutaneous tissue. The border is indistinct rather than sharply demarcated, unlike cellulitis", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 13 (E3V4M6), confused from sepsis, no focal deficit. Cutaneous anaesthesia over the affected area from destruction of superficial nerves is an early and highly specific sign", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "lric1", "kind": "lab", "category": "Scoring", "name": "LRINEC score components", "value": "CRP 340, WBC 22.4, Hb 10.8, Na 128, creatinine 2.4, glucose 210. Score 11", "unit": "-", "normalRange": "Score <6 low risk", "abnormal": true, "report": "Score of 11 indicates high risk. A low LRINEC score does not exclude necrotising fasciitis and has caused fatal delays. The score supports a clinical suspicion, it never overrules one." },
+    { "id": "lac1", "kind": "lab", "category": "Chemistry", "name": "Lactate", "value": "7.8", "unit": "mmol/L", "normalRange": "0.5-2.0", "abnormal": true, "report": "Severe septic shock with tissue hypoperfusion." },
+    { "id": "ct1", "kind": "imaging", "category": "Imaging", "name": "CT of the leg with contrast", "report": "Gas tracking along the deep fascial planes of the anterior and lateral compartments, fascial thickening and non-enhancement of the deep fascia, and fat stranding. Findings support necrotising fasciitis. Imaging is useful only when it does not delay surgery, and a normal scan does not exclude the diagnosis.", "imageUrl": "", "abnormal": true },
+    { "id": "bc1", "kind": "lab", "category": "Micro", "name": "Blood culture and wound Gram stain", "value": "Curved Gram negative rods, later confirmed as Vibrio vulnificus", "unit": "-", "normalRange": "No growth", "abnormal": true, "report": "Positive at 9 hours. Curved Gram negative bacilli in a patient with cirrhosis and seawater exposure is close to diagnostic and changes the antibiotic choice, since doxycycline plus a third generation cephalosporin is specifically required." },
+    { "id": "ck1", "kind": "lab", "category": "Chemistry", "name": "Creatine kinase", "value": "6200", "unit": "U/L", "normalRange": "30-200", "abnormal": true, "report": "Muscle involvement. Raised CK with disproportionate pain increases concern for necrotising infection rather than simple cellulitis." },
+    { "id": "coag1", "kind": "lab", "category": "Coagulation", "name": "INR and platelets", "value": "INR 2.0 / platelets 62 x10^9/L", "unit": "-", "normalRange": "INR 0.9-1.2", "abnormal": true, "report": "Coagulopathy from sepsis on a background of cirrhosis. Correct before theatre, but do not let correction delay it." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Recognise pain out of proportion and call surgery immediately", "actions": ["Mark the skin border with a pen and time it", "Test for cutaneous anaesthesia", "Immediate surgical consult", "Do not wait for imaging or scores"], "doseMap": { "Mark the skin border with a pen and time it": "Advancing several centimetres per hour distinguishes this from cellulitis within thirty minutes and is free" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Aggressive fluid resuscitation and cultures", "actions": ["Balanced crystalloid 30 mL/kg", "Blood cultures and wound Gram stain", "Lactate", "Noradrenaline if fluid unresponsive"], "doseMap": { "Balanced crystalloid 30 mL/kg": "About 2 litres, with reassessment. Do not delay antibiotics to obtain cultures if access is difficult" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Broad spectrum antibiotics with specific Vibrio and toxin cover", "actions": ["Meropenem IV", "Doxycycline IV", "Clindamycin IV"], "doseMap": { "Meropenem IV": "1 g IV every 8 hours for broad cover", "Doxycycline IV": "100 mg every 12 hours. Specifically required for Vibrio vulnificus, and combination with a third generation cephalosporin or carbapenem improves survival", "Clindamycin IV": "900 mg every 8 hours. Added for its antitoxin effect through suppression of bacterial protein synthesis, which is independent of its antibacterial action" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Rapid progression", "outcomeType": "worsened", "narrative": "Within 45 minutes the discoloured margin has advanced 6 cm past the pen line and reached the mid-thigh. Blood pressure falls to 70/38 despite 2 litres and noradrenaline. Antibiotics do not penetrate dead tissue. Only the knife will change this trajectory.", "vitalChanges": { "hr": 148, "sbp": 70, "dbp": 38, "rr": 36, "spo2": 91, "gcs": 11 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Tell him and his family that amputation is likely, before he loses capacity (Empathy)", "ethicalValue": 20, "narrative": "He is still lucid enough to consent, but that will not be true in an hour. You do not hand this to the surgeons on the way to theatre. You tell him now, plainly, that the operation may end with the leg being removed above the knee, that this is what gives him the best chance of surviving the night, and that his work involves standing all day. His son is a fishmonger too, and you make sure he hears the part about the seawater exposure and cirrhosis, because he shares both risk factors. Pi Pim later says the second half of that was public health done at a bedside." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Emergency surgical debridement, this is the only definitive treatment", "actions": ["Immediate theatre for radical debridement", "Excise to bleeding viable tissue", "Plan re-look at 24 hours", "Amputation if the infection cannot be controlled"], "doseMap": { "Immediate theatre for radical debridement": "Every hour of delay to first debridement measurably increases mortality. Debridement must extend to healthy bleeding tissue, and inadequate first debridement is the commonest surgical error" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 200 }, "data": { "label": "Theatre", "outcomeType": "improved", "narrative": "Extensive necrosis of the deep fascia with dishwater fluid and easy separation of tissue planes by finger dissection, which is the operative hallmark. Radical debridement from ankle to mid-thigh with sparing of the muscle. Two further debridements at 24 and 48 hours. The limb is salvaged.", "vitalChanges": { "hr": 118, "sbp": 96, "dbp": 54, "rr": 24, "temp": 38.4, "gcs": 3 } } },
+      { "id": "req5", "type": "required", "position": { "x": 1920, "y": 200 }, "data": { "label": "ICU support and reconstruction planning", "actions": ["ICU with vasopressor support", "Serial debridement until clean", "Negative pressure wound therapy", "Plastic surgery for later grafting", "Nutrition support"], "doseMap": {} } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Split thickness skin grafting on day 16. Discharged to rehabilitation at week 6 with a functional but scarred and stiff leg. Reported mortality for Vibrio vulnificus necrotising infection in cirrhotic patients exceeds 50%, and the difference here was the time from door to knife: 94 minutes. His son now wears gloves at the market.", "vitalChanges": { "hr": 86, "sbp": 116, "dbp": 70, "rr": 16, "temp": 36.9, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "out2", "target": "req5" },
+      { "id": "e9", "source": "req5", "target": "out3" }
+    ]
+  }
+}

@@ -1,16 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useERStore, GEAR_DATABASE, GearItem } from "@/lib/erStore";
+import { useERStore, GEAR_DATABASE, GearItem, UPGRADES_DATABASE, UpgradeItem } from "@/lib/erStore";
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { PageTransition } from "@/components/ui/PageTransition";
-import { Coffee, Stethoscope, Shirt, Footprints } from "lucide-react";
+import { Coffee, Stethoscope, Shirt, Footprints, Zap, Sofa } from "lucide-react";
 import { audio } from "@/lib/audio";
 
 export default function ShopPage() {
   const router = useRouter();
-  const { currency, inventory, equipped, buyGear, equipGear } = useERStore();
+  const { currency, inventory, equipped, buyGear, equipGear, hospitalUpgrades, buyUpgrade } = useERStore();
 
   const handleBuy = (item: GearItem) => {
     if (currency >= item.cost) {
@@ -28,6 +28,9 @@ export default function ShopPage() {
       case 'stethoscope': return <Stethoscope className="w-8 h-8 text-pixel-health" />;
       case 'scrubs': return <Shirt className="w-8 h-8 text-pixel-gold" />;
       case 'shoes': return <Footprints className="w-8 h-8 text-pixel-success" />;
+      case 'coffee': return <Coffee className="w-8 h-8 text-orange-400" />;
+      case 'zap': return <Zap className="w-8 h-8 text-yellow-400" />;
+      case 'sofa': return <Sofa className="w-8 h-8 text-purple-400" />;
       default: return <Stethoscope className="w-8 h-8" />;
     }
   };
@@ -82,9 +85,48 @@ export default function ShopPage() {
             </div>
           </div>
 
-          <div className="h-1 bg-gray-800 rounded-full" />
+          <h2 className="text-2xl text-center text-pixel-accent drop-shadow-md mb-2 mt-8">HOSPITAL UPGRADES</h2>
+          <div className="grid grid-cols-1 gap-4 mb-8">
+            {Object.values(UPGRADES_DATABASE).map((item) => {
+              const isOwned = hospitalUpgrades.includes(item.id);
+              const canAfford = currency >= item.cost;
+              
+              return (
+                <div key={item.id} className={`flex items-center bg-[#161b22] border-2 rounded-lg p-4 shadow-md ${isOwned ? 'border-pixel-gold bg-[#262111]' : 'border-[#30363d]'}`}>
+                  <div className="p-3 bg-black rounded-xl border border-gray-700 shadow-inner mr-4">
+                    {getIcon(item.icon)}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg text-white font-bold">{item.name}</h3>
+                    <p className="text-xs text-gray-400 leading-tight">{item.description}</p>
+                  </div>
+                  <div className="flex flex-col items-end ml-4">
+                    <span className={`text-lg font-bold mb-2 ${isOwned ? 'text-pixel-gold' : canAfford ? 'text-pixel-success' : 'text-pixel-alert'}`}>
+                      {isOwned ? 'OWNED' : `$${item.cost}`}
+                    </span>
+                    {!isOwned && (
+                      <PixelButton 
+                        onClick={() => {
+                          if (canAfford) {
+                            audio.playCashRegister();
+                            buyUpgrade(item.id, item.cost);
+                          }
+                        }}
+                        disabled={!canAfford}
+                        className={`text-xs px-4 py-2 ${canAfford ? 'bg-pixel-success border-green-600' : 'opacity-50 grayscale'}`}
+                      >
+                        PURCHASE
+                      </PixelButton>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
-          {/* Gear Grid */}
+          <div className="h-1 bg-gray-800 rounded-full my-6" />
+          
+          <h2 className="text-2xl text-center text-pixel-accent drop-shadow-md mb-2">PERSONAL GEAR</h2>
           <div className="grid grid-cols-2 gap-4">
             {Object.values(GEAR_DATABASE).map((item) => {
               const isOwned = inventory.includes(item.id);

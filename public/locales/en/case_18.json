@@ -1,0 +1,61 @@
+{
+  "title": "24yo F Postpartum Haemorrhage",
+  "age": "24",
+  "sex": "F",
+  "chiefComplaint": "Heavy vaginal bleeding 40 minutes after delivery",
+  "diagnoses": ["Uterine atony", "Retained placental fragments", "Genital tract trauma", "Uterine inversion", "Coagulopathy"],
+  "background": "Delivered a 4.1 kg boy at a sub-district health centre 40 minutes ago after a prolonged second stage, then transferred by ambulance with continuous bleeding. Grand multipara, para 4. Labour was augmented with oxytocin for 9 hours. The placenta was delivered apparently complete. Estimated loss before arrival is at least 900 mL and the sheets are soaked. The baby is well and is in the ambulance with her mother.",
+  "patientAppearance": { "skinTone": "#e0b087", "bmiFactor": 1.1, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 136, "abnormal": true },
+    "sbp": { "value": 82, "abnormal": true },
+    "dbp": { "value": 44, "abnormal": true },
+    "rr": { "value": 28, "abnormal": true },
+    "temp": { "value": 36.0, "abnormal": true },
+    "spo2": { "value": 96, "abnormal": false },
+    "gcs": { "value": 14, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Pale, cold and shivering, drowsy but rousable, repeatedly asking about the baby", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Marked conjunctival and palmar pallor, dry lips, no jaundice, capillary refill in the lips delayed", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 136/min, thready pulse, capillary refill 5 seconds. Note that a healthy young woman can lose 1500 mL before her blood pressure moves, so tachycardia is the early sign and hypotension is a late one", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear chest, tachypnoeic, no crackles, air hunger from anaemia", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Uterine fundus soft, boggy and above the umbilicus, poorly contracted, no rebound. A soft high fundus is the diagnosis, made with a hand and no equipment", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Cold clammy mottled peripheries, temperature 36.0 C and falling, IV site oozing, no rash", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 14 (E4V4M6), anxious and slow, no focal deficit, no seizure. Consider eclampsia if there were hypertension, but her booking pressures were normal", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "hb1", "kind": "lab", "category": "CBC", "name": "Haemoglobin", "value": "6.1", "unit": "g/dL", "normalRange": "12.0-15.5", "abnormal": true, "report": "Severe acute anaemia. Her booking haemoglobin was 10.4 g/dL, so this represents a large loss on top of pre-existing iron deficiency." },
+    { "id": "fib1", "kind": "lab", "category": "Coagulation", "name": "Fibrinogen", "value": "1.4", "unit": "g/L", "normalRange": "Pregnancy 4.0-6.0", "abnormal": true, "report": "Fibrinogen below 2 g/L in postpartum haemorrhage strongly predicts progression to severe haemorrhage. Pregnancy normally doubles fibrinogen, so a value in the normal non-pregnant range is already dangerous." },
+    { "id": "coag2", "kind": "lab", "category": "Coagulation", "name": "INR and platelets", "value": "INR 1.5 / platelets 88 x10^9/L", "unit": "-", "normalRange": "INR 0.9-1.2", "abnormal": true, "report": "Early dilutional coagulopathy." },
+    { "id": "bg1", "kind": "lab", "category": "Blood bank", "name": "Blood group and crossmatch", "value": "B Rh positive", "unit": "-", "normalRange": "-", "abnormal": false, "report": "Four units crossmatched. Rh positive, so anti-D is not required." },
+    { "id": "us1", "kind": "imaging", "category": "Imaging", "name": "Bedside pelvic ultrasound", "report": "Distended uterine cavity containing echogenic material measuring 3 cm, consistent with retained placental fragments or clot. Free fluid in the pouch of Douglas. No uterine rupture or inversion seen.", "imageUrl": "", "abnormal": true },
+    { "id": "lac1", "kind": "lab", "category": "Chemistry", "name": "Lactate", "value": "5.2", "unit": "mmol/L", "normalRange": "0.5-2.0", "abnormal": true, "report": "Haemorrhagic shock." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Call for help, two IV lines, and quantify the loss", "actions": ["Obstetric emergency call", "IV access 16G x2", "Weigh swabs and pads rather than eyeballing loss", "Group and crossmatch 4 units, coagulation, fibrinogen"], "doseMap": { "Weigh swabs and pads rather than eyeballing loss": "Visual estimation underestimates true loss by 30 to 50%, which is the single commonest reason postpartum haemorrhage is recognised late" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Uterine massage and bimanual compression while drugs are drawn up", "actions": ["Bimanual uterine compression", "Empty the bladder with a catheter", "Rub up a contraction"], "doseMap": { "Bimanual uterine compression": "Mechanical control buys the 3 to 5 minutes the drugs need. A full bladder prevents the uterus contracting" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Uterotonics in sequence and tranexamic acid", "actions": ["Oxytocin IV", "Ergometrine IM", "Misoprostol sublingual", "Tranexamic acid IV"], "doseMap": { "Oxytocin IV": "5 units slow IV then 40 units in 500 mL over 4 hours", "Ergometrine IM": "0.2 mg IM. Contraindicated in hypertension and pre-eclampsia", "Misoprostol sublingual": "600-800 mcg sublingually", "Tranexamic acid IV": "1 g over 10 min, within 3 hours of delivery, repeat once after 30 min if bleeding continues" } } },
+      { "id": "req4", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Blood products early, guided by fibrinogen", "actions": ["Emergency O negative or group specific red cells", "Fresh frozen plasma", "Cryoprecipitate for fibrinogen below 2 g/L", "Active warming"], "doseMap": { "Cryoprecipitate for fibrinogen below 2 g/L": "Or fibrinogen concentrate if available. Correcting fibrinogen early changes the trajectory of this case" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 1200, "y": 200 }, "data": { "label": "Partial response", "outcomeType": "improved", "narrative": "The uterus firms up after ergometrine and the flow slows, then loosens again ten minutes later. Ultrasound shows retained material. Drugs alone will not finish this.", "vitalChanges": { "hr": 118, "sbp": 96, "dbp": 54, "rr": 24, "gcs": 15 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Bring the baby to her and tell her the truth about what happens next (Empathy)", "ethicalValue": 15, "narrative": "She has asked about the baby six times and nobody has answered because everyone is busy with her uterus. You have the nurse bring him to the doorway so she can see him, and you tell her plainly that she is bleeding, that she needs theatre now, and that she may need a transfusion. Forty seconds. She stops fighting the oxygen mask and signs the consent herself, which matters, because the alternative was an emergency consent form signed by a husband who is 60 km away." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Theatre for examination under anaesthesia and evacuation", "actions": ["Examination under anaesthesia", "Manual removal of retained products", "Inspect cervix and vagina for tears", "Intrauterine balloon tamponade if atony persists"], "doseMap": { "Intrauterine balloon tamponade if atony persists": "Inflate with 300-500 mL warm saline. A positive tamponade test avoids laparotomy in most cases" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Haemostasis achieved", "outcomeType": "improved", "narrative": "A 4 cm placental fragment is removed and a second degree vaginal tear is repaired. The uterus contracts firmly. A balloon is placed and removed at 12 hours. Total loss 2200 mL, transfused 5 units of red cells, 4 of plasma and 10 of cryoprecipitate. No hysterectomy.", "vitalChanges": { "hr": 94, "sbp": 112, "dbp": 66, "rr": 18, "temp": 36.6, "gcs": 15 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Haemoglobin 8.9 g/dL after transfusion. She breastfeeds on day 1. Discharged day 4 on iron with contraception counselling, and a note in her record that grand multiparity plus a 9 hour oxytocin augmentation plus a 4.1 kg baby is a stack of atony risk factors that should have had a prophylactic plan before delivery.", "vitalChanges": { "hr": 84, "sbp": 116, "dbp": 70, "rr": 16, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "req4" },
+      { "id": "e5", "source": "req4", "target": "out1" },
+      { "id": "e6", "source": "out1", "target": "ethical_1" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e_skip", "source": "out1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

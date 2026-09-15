@@ -105,6 +105,19 @@
         }
       },
       {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 100,
+          "y": 100
+        },
+        "data": {
+          "label": "โทรหาญาติเพื่อซักประวัติ (Empathy)",
+          "ethicalValue": 10,
+          "narrative": "ญาติขอบคุณที่โทรมาและให้ประวัติที่เป็นประโยชน์ ชื่อเสียงของคุณเพิ่มขึ้น"
+        }
+      },
+      {
         "id": "req1",
         "type": "required",
         "position": {
@@ -112,7 +125,7 @@
           "y": 0
         },
         "data": {
-          "label": "Give Atropine",
+          "label": "ให้ Atropine",
           "actions": [
             "Atropine IV"
           ],
@@ -129,9 +142,9 @@
           "y": 0
         },
         "data": {
-          "label": "Outcome",
+          "label": "ผลลัพธ์",
           "outcomeType": "improved",
-          "narrative": "Heart rate slightly improved.",
+          "narrative": "อัตราการเต้นของหัวใจดีขึ้นเล็กน้อย",
           "vitalChanges": {
             "hr": 45,
             "sbp": 90
@@ -143,10 +156,20 @@
       {
         "id": "e1",
         "source": "start1",
-        "target": "req1"
+        "target": "ethical_1"
       },
       {
         "id": "e2",
+        "source": "ethical_1",
+        "target": "req1"
+      },
+      {
+        "id": "e_skip",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e3",
         "source": "req1",
         "target": "out1"
       }

@@ -1,0 +1,61 @@
+{
+  "title": "47yo M Methanol Poisoning",
+  "age": "47",
+  "sex": "M",
+  "chiefComplaint": "Blind and breathing heavily the morning after drinking",
+  "diagnoses": ["Methanol poisoning", "Ethylene glycol poisoning", "Diabetic ketoacidosis", "Salicylate toxicity", "Uraemia"],
+  "background": "Drank home-distilled spirit (ya dong) at a funeral gathering about 16 hours ago. He woke with severe headache, vomiting and abdominal pain, then noticed his vision was blurred and described it as looking through a snowstorm. By the time he arrived he could only perceive light. Three other men from the same gathering are reportedly unwell at home, and one has not woken up. The characteristic delay of 12 to 24 hours means the toxic metabolite, formic acid, has had time to accumulate.",
+  "patientAppearance": { "skinTone": "#b5804f", "bmiFactor": 1.0, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 112, "abnormal": true },
+    "sbp": { "value": 104, "abnormal": true },
+    "dbp": { "value": 62, "abnormal": true },
+    "rr": { "value": 34, "abnormal": true },
+    "temp": { "value": 36.4, "abnormal": false },
+    "spo2": { "value": 97, "abnormal": false },
+    "gcs": { "value": 13, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Distressed, deep sighing Kussmaul respirations, smells of alcohol but is not clinically intoxicated, which is itself a clue since methanol produces less inebriation than ethanol", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Pupils 6 mm, dilated and sluggishly reactive. Fundoscopy shows optic disc hyperaemia with blurred margins and retinal oedema. Visual acuity is light perception only in both eyes", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 112/min, blood pressure maintained, capillary refill 3 seconds, no murmur", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear lung fields with deep rapid Kussmaul breathing compensating for severe metabolic acidosis. Any fall in respiratory rate here signals decompensation, not improvement", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Diffuse epigastric tenderness without guarding, repeated vomiting, no rebound. Haemorrhagic pancreatitis is a recognised complication", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Warm and dry, no jaundice, no needle marks, no rash, capillary refill normal centrally", "abnormal": false },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 13 (E3V4M6), confused and agitated, no focal limb deficit, no meningism. Basal ganglia damage, specifically putaminal necrosis, is the classic late finding and causes a parkinsonian syndrome in survivors", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "abg1", "kind": "lab", "category": "ABG", "name": "Arterial blood gas", "value": "pH 6.94 / pCO2 12 / HCO3 4 / anion gap 38", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Profound high anion gap metabolic acidosis with maximal respiratory compensation. A pH below 7.0 in methanol poisoning is associated with high mortality and is an indication for dialysis on its own." },
+    { "id": "osm1", "kind": "lab", "category": "Chemistry", "name": "Osmolar gap", "value": "42", "unit": "mOsm/kg", "normalRange": "<10", "abnormal": true, "report": "Raised osmolar gap from unmetabolised parent alcohol. As methanol is converted to formic acid the osmolar gap falls and the anion gap rises, so a late presentation can have a near-normal osmolar gap. A normal gap never excludes the diagnosis." },
+    { "id": "meth1", "kind": "lab", "category": "Toxicology", "name": "Serum methanol level", "value": "68", "unit": "mg/dL", "normalRange": "0", "abnormal": true, "report": "Confirmatory, but the assay is unavailable in most Thai hospitals and typically takes many hours. Never wait for it. Treat on the acidosis, the osmolar gap and the visual symptoms." },
+    { "id": "lac1", "kind": "lab", "category": "Chemistry", "name": "Lactate and ketones", "value": "Lactate 3.1 mmol/L / beta-hydroxybutyrate 0.4 mmol/L", "unit": "-", "normalRange": "Lactate 0.5-2.0 mmol/L", "abnormal": true, "report": "Lactate and ketones together account for only a small part of an anion gap of 38. The unexplained remainder is formic acid, and that arithmetic is the diagnosis." },
+    { "id": "poc1", "kind": "lab", "category": "POCT", "name": "Capillary glucose", "value": "108", "unit": "mg/dL", "normalRange": "70-140", "abnormal": false, "report": "Normal, excluding diabetic ketoacidosis as the cause of the acidosis." },
+    { "id": "ct1", "kind": "imaging", "category": "Imaging", "name": "CT brain (non-contrast)", "report": "Symmetrical low attenuation in both putamina with early haemorrhagic change. Bilateral putaminal necrosis is close to pathognomonic for methanol poisoning and predicts a permanent parkinsonian syndrome.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Recognise the pattern: severe anion gap acidosis plus visual loss", "actions": ["Blood gas with anion gap", "Calculate the osmolar gap", "Formal visual acuity and fundoscopy", "Capillary glucose and salicylate level"], "doseMap": { "Calculate the osmolar gap": "Measured minus calculated osmolality. Combined with an unexplained anion gap it makes the diagnosis without any specialised assay" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Block alcohol dehydrogenase immediately, do not wait for confirmation", "actions": ["Fomepizole IV", "Or ethanol infusion if fomepizole is unavailable"], "doseMap": { "Fomepizole IV": "15 mg/kg IV loading, then 10 mg/kg every 12 hours. Preferred: no sedation, no monitoring of levels", "Or ethanol infusion if fomepizole is unavailable": "Loading dose to achieve a blood ethanol of 100-150 mg/dL, then maintenance infusion. Widely used in Thailand because of cost, but it requires hourly level monitoring, causes sedation and confounds neurological assessment" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Bicarbonate and folinic acid", "actions": ["Sodium bicarbonate IV", "Folinic acid IV"], "doseMap": { "Sodium bicarbonate IV": "1-2 mEq/kg boluses targeting pH above 7.2. Correcting acidaemia keeps formate in its ionised form, which reduces entry into the retina and brain. This is one of the few situations where bicarbonate genuinely treats the mechanism", "Folinic acid IV": "50 mg IV every 4 hours. Accelerates formate metabolism to carbon dioxide and water" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Acidosis partially corrected", "outcomeType": "improved", "narrative": "pH improves to 7.16 after 300 mEq of bicarbonate. He remains profoundly acidotic with an anion gap of 30 and no improvement in vision. Bicarbonate is buying time, not treating the poison. He needs the formate removed.", "vitalChanges": { "hr": 104, "sbp": 110, "dbp": 66, "rr": 30, "gcs": 14 } } },
+      { "id": "req4", "type": "required", "position": { "x": 1200, "y": 200 }, "data": { "label": "Urgent haemodialysis", "actions": ["Emergency haemodialysis", "Nephrology and ICU referral", "Continue the alcohol dehydrogenase blocker during dialysis"], "doseMap": { "Emergency haemodialysis": "Indicated for pH below 7.3, visual symptoms, methanol above 50 mg/dL, or renal failure. He meets three. Dialysis removes both methanol and formate, which nothing else does", "Continue the alcohol dehydrogenase blocker during dialysis": "Dialysis removes fomepizole and ethanol too, so the dose must be increased during treatment" } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Trace the other drinkers instead of treating only the patient in front of you (Empathy)", "ethicalValue": 25, "narrative": "He mentions three other men at the gathering, one of whom has not woken up. You do not stop at your patient. You get the village name, call the district health office and the local hospital at 03:00, and have the batch traced. Four more men are found: two are already acidotic and asymptomatic, one is blind, and one is dead. The two asymptomatic men are treated before formate accumulates and both keep their sight, purely because someone asked who else was drinking. Nurse Ann says this is the only case she has seen where a single phone call saved two people who were never in the department." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "ICU care and public health notification", "actions": ["ICU admission with repeat gases", "Ophthalmology review", "Notify the district health office and food safety authority", "Continue dialysis until the anion gap normalises"], "doseMap": {} } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Acidosis resolved", "outcomeType": "improved", "narrative": "Two sessions of dialysis over 14 hours normalise the pH and close the anion gap. Vision improves from light perception to counting fingers at one metre. The optic nerve damage that was already established is permanent.", "vitalChanges": { "hr": 88, "sbp": 118, "dbp": 72, "rr": 18, "gcs": 15 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 9 with permanent visual impairment (6/60 bilaterally) and a mild bradykinetic parkinsonian syndrome from the putaminal necrosis. He is registered for visual disability support. The still and the batch are traced, and eleven bottles are removed from three villages.", "vitalChanges": { "hr": 80, "sbp": 122, "dbp": 74, "rr": 16, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "req4" },
+      { "id": "e6", "source": "req4", "target": "ethical_1" },
+      { "id": "e_skip", "source": "req4", "target": "req5" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

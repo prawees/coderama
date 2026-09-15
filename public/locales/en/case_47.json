@@ -1,0 +1,63 @@
+{
+  "title": "66yo F Acute Ischaemic Stroke (Thrombolysis Window)",
+  "age": "66",
+  "sex": "F",
+  "chiefComplaint": "Sudden right sided weakness and unable to speak, 70 minutes ago",
+  "diagnoses": ["Acute ischaemic stroke, left middle cerebral artery territory", "Intracerebral haemorrhage", "Hypoglycaemia", "Todd's paresis after seizure", "Functional neurological disorder"],
+  "background": "Last known well at 07:10 when her daughter left for work. Found at 07:40 unable to speak, with a drooping right face and a limp right arm. Arrived at 08:20, so 70 minutes from onset. She has atrial fibrillation and was prescribed a direct oral anticoagulant but stopped it four months ago after a nosebleed, without telling anyone. Also hypertension and type 2 diabetes. Weight approximately 62 kg. The daughter is present and can confirm the timeline precisely, which is the most valuable thing in this entire case.",
+  "patientAppearance": { "skinTone": "#dcb187", "bmiFactor": 1.1, "ageGroup": "elderly" },
+  "vitals": {
+    "hr": { "value": 96, "abnormal": true },
+    "sbp": { "value": 192, "abnormal": true },
+    "dbp": { "value": 104, "abnormal": true },
+    "rr": { "value": 18, "abnormal": false },
+    "temp": { "value": 36.9, "abnormal": false },
+    "spo2": { "value": 96, "abnormal": false },
+    "gcs": { "value": 13, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Awake, distressed, frightened, trying to speak and producing only fragments. She is fully aware of what is happening to her, which is worth remembering before anyone talks across her", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Right facial droop sparing the forehead, indicating an upper motor neurone lesion. Forced gaze deviation to the left. Tongue deviates to the right on protrusion. No head injury, no tongue laceration to suggest a seizure", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Irregularly irregular pulse at 96/min consistent with atrial fibrillation, hypertensive at 192/104, no murmur, no carotid bruit, peripheries warm", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, normal effort, no aspiration. Swallow not yet tested and she must be kept nil by mouth until it is", "abnormal": false },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, no organomegaly, bladder not palpable, no evidence of occult bleeding", "abnormal": false },
+    { "id": "skin1", "system": "Skin", "finding": "Warm and well perfused, no bruising, no petechiae, no recent puncture sites, no signs of trauma anywhere. Relevant because any of these would raise the bleeding risk from thrombolysis", "abnormal": false },
+    { "id": "cns1", "system": "Neurological", "finding": "Global aphasia with no comprehension and no meaningful output. Right hemiplegia with power 0/5 in the arm and 2/5 in the leg. Right homonymous hemianopia. Right sided sensory inattention. NIHSS 19", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "poc1", "kind": "lab", "category": "POCT", "name": "Capillary glucose", "value": "116", "unit": "mg/dL", "normalRange": "70-140", "abnormal": false, "report": "Normal. Hypoglycaemia is the great stroke mimic, it can produce a dense hemiplegia with aphasia, and it is fully reversible. Check it before the CT, not after." },
+    { "id": "ct1", "kind": "imaging", "category": "Imaging", "name": "Non-contrast CT brain", "report": "No haemorrhage. Hyperdense left middle cerebral artery sign. Early ischaemic change with loss of the insular ribbon and grey-white differentiation in the left basal ganglia. ASPECTS 8. The only question this scan has to answer before thrombolysis is whether there is blood.", "imageUrl": "", "abnormal": true },
+    { "id": "cta1", "kind": "imaging", "category": "Imaging", "name": "CT angiogram of head and neck", "report": "Occlusion of the left M1 segment of the middle cerebral artery. Good collateral filling. A large vessel occlusion makes her a candidate for mechanical thrombectomy in addition to thrombolysis, and identifying it changes where she needs to be in the next hour.", "imageUrl": "", "abnormal": true },
+    { "id": "coag1", "kind": "lab", "category": "Coagulation", "name": "INR, platelets and APTT", "value": "INR 1.1 / platelets 234 x10^9/L / APTT 30 s", "unit": "-", "normalRange": "INR 0.9-1.2", "abnormal": false, "report": "Normal. She stopped the anticoagulant four months ago, so there is no residual effect. Had she taken a direct oral anticoagulant within 48 hours, thrombolysis would have been contraindicated without a specific reversal strategy." },
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Atrial fibrillation at 94/min. No acute ischaemic change. Confirms the likely cardioembolic mechanism, which is what the discontinued anticoagulant was preventing.", "imageUrl": "", "abnormal": true },
+    { "id": "cbc1", "kind": "lab", "category": "CBC", "name": "Haemoglobin and renal function", "value": "Hb 12.8 g/dL / creatinine 1.0 mg/dL", "unit": "-", "normalRange": "Hb 12.0-15.5 g/dL", "abnormal": false, "report": "Normal. Adequate renal function for contrast." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Stroke call, glucose, and establish the last known well time to the minute", "actions": ["Activate the stroke pathway on arrival", "Capillary glucose", "NIHSS scoring", "Establish last known well time from a witness"], "doseMap": { "Establish last known well time from a witness": "Not when the deficit was found, but when she was last seen normal. That single number decides whether she gets treated at all, and once the daughter leaves to park the car it may become unobtainable" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Immediate non-contrast CT, then CT angiogram", "actions": ["Non-contrast CT brain within 20 minutes of arrival", "CT angiogram of head and neck", "Do not wait for full blood results if there is no bleeding history"], "doseMap": { "Do not wait for full blood results if there is no bleeding history": "In a patient with no anticoagulant exposure and no bleeding history, waiting for coagulation results costs 30 to 45 minutes of brain. Around 1.9 million neurons are lost per minute in a large vessel occlusion" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Lower the blood pressure to below 185/110 before thrombolysis, and no further", "actions": ["Labetalol IV", "Or nicardipine infusion", "Target below 185/110 pre-thrombolysis and below 180/105 for 24 hours after"], "doseMap": { "Labetalol IV": "10-20 mg IV over 1-2 min, repeat once after 10 min", "Target below 185/110 pre-thrombolysis and below 180/105 for 24 hours after": "Do not over-correct. In an untreated occlusion the hypertension is maintaining collateral perfusion of the penumbra, and dropping it aggressively extends the infarct. If she were not a thrombolysis candidate, permissive hypertension up to 220/120 would be correct" } } },
+      { "id": "req4", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Intravenous thrombolysis within the window", "actions": ["Alteplase IV", "Or tenecteplase as a single bolus where available", "No antiplatelet or anticoagulant for 24 hours afterwards"], "doseMap": { "Alteplase IV": "0.9 mg/kg (56 mg), 10% as a bolus over 1 min and the remainder over 60 min, maximum 90 mg", "Or tenecteplase as a single bolus where available": "0.25 mg/kg as a single bolus. Non-inferior to alteplase and far faster to give, which matters most when transferring for thrombectomy", "No antiplatelet or anticoagulant for 24 hours afterwards": "And repeat the CT at 24 hours before starting either" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 1200, "y": 200 }, "data": { "label": "Door to needle 41 minutes", "outcomeType": "improved", "narrative": "Thrombolysis started 111 minutes from onset. NIHSS improves from 19 to 15 during the infusion. The M1 occlusion is unlikely to be cleared by lysis alone, which is why the CT angiogram mattered: she needs the clot removed mechanically.", "vitalChanges": { "hr": 88, "sbp": 168, "dbp": 92, "gcs": 14 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Talk to her, not only to her daughter, and explain the risk in the room (Empathy)", "ethicalValue": 20, "narrative": "She has global aphasia, so everyone naturally turns to the daughter. Aphasia is not unconsciousness and it is frequently not a loss of comprehension of tone, situation or intent. You stand where she can see you, tell her directly what is happening and what the drug does, including the roughly 6% risk of bleeding into the brain, and use yes and no with her hand before turning to the daughter for the formal consent discussion. Nurse Ann says most of the department talks over stroke patients as though the room were empty, and the patients remember it for years afterwards." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Mechanical thrombectomy for the large vessel occlusion", "actions": ["Immediate referral to the neurointerventional team", "Transfer without waiting for the alteplase infusion to finish", "Continue blood pressure control and monitoring in transit"], "doseMap": { "Transfer without waiting for the alteplase infusion to finish": "Thrombectomy is indicated up to 24 hours from onset in selected patients with a large vessel occlusion, and earlier is better. The infusion runs during transfer" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Reperfusion", "outcomeType": "improved", "narrative": "Thrombectomy achieves TICI 2b reperfusion at 3 hours 20 minutes from onset with two passes. NIHSS 8 at 24 hours. Repeat CT shows an established but modest left basal ganglia infarct with no haemorrhagic transformation.", "vitalChanges": { "hr": 84, "sbp": 152, "dbp": 86, "gcs": 15 } } },
+      { "id": "req6", "type": "required", "position": { "x": 2160, "y": 200 }, "data": { "label": "Secondary prevention and the conversation about the anticoagulant", "actions": ["Restart anticoagulation at the appropriate interval after the infarct", "Swallow assessment before any oral intake", "Early speech therapy and physiotherapy", "Address why the anticoagulant was stopped"], "doseMap": { "Address why the anticoagulant was stopped": "She stopped it after a nosebleed and told nobody, because she assumed she would be told off. That silence caused this stroke. The fix is telling her explicitly that she should call rather than stop, and giving her a number that a person actually answers" } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2400, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Modified Rankin Scale 2 at 90 days: she walks unaided and has mild word-finding difficulty. Anticoagulation restarted on day 6. She keeps the appointment card with the stroke nurse's direct number, which is the intervention most likely to prevent the second stroke.", "vitalChanges": { "hr": 78, "sbp": 132, "dbp": 78, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "req4" },
+      { "id": "e5", "source": "req4", "target": "out1" },
+      { "id": "e6", "source": "out1", "target": "ethical_1" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e_skip", "source": "out1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "req6" },
+      { "id": "e10", "source": "req6", "target": "out3" }
+    ]
+  }
+}

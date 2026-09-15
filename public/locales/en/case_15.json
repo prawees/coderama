@@ -1,0 +1,58 @@
+{
+  "title": "34yo F Low Acuity URI (Non-Emergency)",
+  "age": "34",
+  "sex": "F",
+  "chiefComplaint": "Runny nose and cough for 3 days, wants an IV drip and antibiotics",
+  "diagnoses": ["Viral upper respiratory tract infection", "Allergic rhinitis", "Acute bacterial sinusitis", "Streptococcal pharyngitis"],
+  "background": "Presents to the emergency department at 02:20 on a Friday night, walking, carrying her own bag. Three days of clear rhinorrhoea, sneezing, mild sore throat and a dry cough. No fever measured at home. She is eating and drinking normally and went to work yesterday. She has come at this hour because the outpatient queue is four hours long in the morning and she has a flight to Chiang Mai on Sunday. She asks specifically for a saline drip, an antibiotic injection and a certificate for two days off work. Two motorcycle traumas are inbound with a four minute ETA.",
+  "patientAppearance": { "skinTone": "#e6bd97", "bmiFactor": 1.0, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 82, "abnormal": false },
+    "sbp": { "value": 118, "abnormal": false },
+    "dbp": { "value": 74, "abnormal": false },
+    "rr": { "value": 16, "abnormal": false },
+    "temp": { "value": 37.2, "abnormal": false },
+    "spo2": { "value": 99, "abnormal": false },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Well, comfortable, sitting and using her phone, speaking in full sentences, no distress", "abnormal": false },
+    { "id": "hent1", "system": "HENT", "finding": "Clear rhinorrhoea with boggy turbinates, mild pharyngeal erythema without exudate, no tonsillar swelling, no cervical lymphadenopathy, no trismus, tympanic membranes normal. Centor score 0", "abnormal": false },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Regular rate and rhythm, normal heart sounds, capillary refill under 2 seconds, peripheries warm", "abnormal": false },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds throughout, no wheeze or crackles, no tachypnoea, no accessory muscle use", "abnormal": false },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, bowel sounds normal, no organomegaly", "abnormal": false },
+    { "id": "skin1", "system": "Skin", "finding": "Warm and dry, well perfused, no rash, no petechiae, normal turgor", "abnormal": false },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 15, alert and fully orientated, no neck stiffness, no photophobia, no focal deficit", "abnormal": false }
+  ],
+  "investigations": [
+    { "id": "poc1", "kind": "lab", "category": "POCT", "name": "Tympanic temperature (repeat)", "value": "37.2", "unit": "C", "normalRange": "36.5-37.5", "abnormal": false, "report": "Afebrile. Recorded because the patient reports feeling hot, not because it changes management." },
+    { "id": "cbc1", "kind": "lab", "category": "CBC", "name": "Complete blood count (if ordered)", "value": "WBC 7.4, neutrophils 58%", "unit": "x10^9/L", "normalRange": "4.0-11.0", "abnormal": false, "report": "Normal. This test was not indicated. It costs 30 minutes of nursing time, delays two incoming trauma patients, and a marginally abnormal result would have generated further unnecessary testing." },
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Chest X-ray (if ordered)", "report": "Normal lungs, normal cardiac silhouette, no consolidation. Not indicated. There is no fever, no tachypnoea, no hypoxia and no focal chest signs, so the pre-test probability of pneumonia is under 1% and the radiation and cost are pure waste.", "imageUrl": "", "abnormal": false },
+    { "id": "strep1", "kind": "lab", "category": "Micro", "name": "Rapid streptococcal antigen (if ordered)", "value": "Negative", "unit": "-", "normalRange": "Negative", "abnormal": false, "report": "Negative, as predicted by a Centor score of 0. Guidelines advise against testing at this score because a positive result is more likely to represent carriage than infection." },
+    { "id": "sat1", "kind": "lab", "category": "POCT", "name": "Pulse oximetry on room air", "value": "99", "unit": "%", "normalRange": "95-100", "abnormal": false, "report": "Normal. Combined with a clear chest and a respiratory rate of 16, this effectively excludes a lower respiratory tract infection needing emergency care." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Focused history and examination to exclude red flags", "actions": ["Full vital signs", "HENT and chest examination", "Screen for red flags: dyspnoea, chest pain, stridor, dehydration, immunosuppression, neck stiffness"], "doseMap": {} } },
+      { "id": "out1", "type": "outcome", "position": { "x": 480, "y": 200 }, "data": { "label": "No emergency pathology", "outcomeType": "improved", "narrative": "Normal vital signs, clear chest, Centor 0, no red flags. This is a self-limiting viral illness on day 3 of a typical 7 to 10 day course. There is nothing here that requires an emergency department.", "vitalChanges": {} } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 720, "y": 420 }, "data": { "label": "Take 90 seconds to explain, rather than dismissing her as a time waster (Empathy)", "ethicalValue": 15, "narrative": "It would be faster to say she should not be here. Instead you tell her what she actually has, why antibiotics will not shorten it, what the expected course is, and exactly which symptoms should bring her back. She says nobody has ever explained it before, which is why she has been requesting drips for ten years. Pi Jai notes the conversation took less time than writing the antibiotic prescription would have." } },
+      { "id": "req2", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Decline the non-indicated requests and say why", "actions": ["No IV fluids: she is drinking normally", "No antibiotics: viral illness, Centor 0", "No routine bloods or chest X-ray", "Address the underlying concern about the flight"], "doseMap": { "No antibiotics: viral illness, Centor 0": "Explain harm concretely: resistance, diarrhoea in about 1 in 10, and a small risk of severe cutaneous reaction. Vague refusal invites doctor shopping, a concrete reason does not" } } },
+      { "id": "req3", "type": "required", "position": { "x": 1200, "y": 200 }, "data": { "label": "Symptomatic treatment she can buy herself", "actions": ["Paracetamol", "Saline nasal irrigation", "Fluids and rest advice"], "doseMap": { "Paracetamol": "500-1000 mg orally every 6 hours as needed, maximum 4 g/day" } } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Redirect to the correct service and give a written safety net", "actions": ["Refer to outpatient department or the primary care unit for routine follow up", "Written return advice", "Medical certificate only if genuinely indicated"], "doseMap": { "Written return advice": "Return for shortness of breath, chest pain, fever above 38.5 C for more than 3 days, inability to swallow fluids, or symptoms worsening after day 10" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 120 }, "data": { "label": "Correct disposition", "outcomeType": "resolved", "narrative": "Discharged in 14 minutes with advice and no prescription. The resus team is free when the two motorcycle casualties arrive three minutes later. She recovers uneventfully and flies on Sunday. Not every correct emergency decision involves a procedure.", "vitalChanges": {} } },
+      { "id": "out3", "type": "outcome", "position": { "x": 1680, "y": 340 }, "data": { "label": "Resource waste path", "outcomeType": "worsened", "narrative": "If you instead give the drip, the antibiotic injection and a chest X-ray, she occupies a monitored bed for 90 minutes and one nurse is unavailable when the first trauma arrives in cardiac arrest. She returns in four days with antibiotic associated diarrhoea. Nothing in her illness was changed by anything you did. This is what harm looks like when it is polite and well-intentioned.", "vitalChanges": {} } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "out1" },
+      { "id": "e3", "source": "out1", "target": "ethical_1" },
+      { "id": "e_skip", "source": "out1", "target": "req2" },
+      { "id": "e4", "source": "ethical_1", "target": "req2" },
+      { "id": "e5", "source": "req2", "target": "req3" },
+      { "id": "e6", "source": "req3", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "req1", "target": "out3" }
+    ]
+  }
+}

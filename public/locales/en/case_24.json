@@ -1,0 +1,61 @@
+{
+  "title": "44yo F Post-Abdominoplasty Haemorrhage",
+  "age": "44",
+  "sex": "F",
+  "chiefComplaint": "Faint and swollen abdomen 14 hours after a tummy tuck",
+  "diagnoses": ["Postoperative haemorrhage with expanding haematoma", "Venous thromboembolism", "Wound infection", "Anaesthetic reaction", "Concealed haemorrhagic shock"],
+  "background": "Abdominoplasty with flank liposuction performed yesterday afternoon at an affiliated cosmetic clinic, discharged the same evening to the hospital's recovery suite. She woke at 05:00 feeling faint and her compression garment felt tight. The clinic advised by telephone that tightness is normal and to take an extra tramadol. She was found grey and cold by the suite nurse at 07:20. Her drains were removed before discharge, which removed the only warning system she had. She is on an oral contraceptive and takes a herbal supplement containing ginkgo, which she did not disclose because it is not a medicine.",
+  "patientAppearance": { "skinTone": "#f0c9a5", "bmiFactor": 1.15, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 132, "abnormal": true },
+    "sbp": { "value": 84, "abnormal": true },
+    "dbp": { "value": 46, "abnormal": true },
+    "rr": { "value": 26, "abnormal": true },
+    "temp": { "value": 35.7, "abnormal": true },
+    "spo2": { "value": 96, "abnormal": false },
+    "gcs": { "value": 14, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Pale, cold, clammy and drowsy, apologising repeatedly for making a fuss, which is a classic presentation of concealed haemorrhage in a patient who has been told her symptoms are normal", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Marked conjunctival pallor, dry mucous membranes, no jaundice, no airway compromise, no facial swelling", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 132/min, thready pulse, capillary refill 5 seconds, no murmur, JVP flat", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, tachypnoeic, no pleuritic pain, calves soft and non-tender, which makes pulmonary embolism less likely than bleeding", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Grossly distended and tense beneath the compression garment, exquisitely tender, dressings soaked with old blood, girth increased by 9 cm from the recorded postoperative measurement. Remove the garment to examine, it conceals both the swelling and the bleeding", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Cold mottled peripheries, extensive flank bruising tracking to both loins, undermined skin flap dusky at the inferior edge, temperature 35.7 C", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 14 (E4V4M6), drowsy from hypoperfusion and residual anaesthesia, no focal deficit, pupils equal and reactive", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "hb1", "kind": "lab", "category": "CBC", "name": "Haemoglobin", "value": "6.4", "unit": "g/dL", "normalRange": "12.0-15.5", "abnormal": true, "report": "Preoperative haemoglobin was 13.2 g/dL. This represents massive concealed loss into the abdominal wall and flanks." },
+    { "id": "us1", "kind": "imaging", "category": "Imaging", "name": "Bedside ultrasound of the abdominal wall", "report": "Large heterogeneous collection measuring approximately 15 x 9 cm in the subcutaneous plane between the flap and the fascia, with a swirling appearance suggesting active bleeding. No free intraperitoneal fluid. The fascia is intact.", "imageUrl": "", "abnormal": true },
+    { "id": "coag1", "kind": "lab", "category": "Coagulation", "name": "INR and fibrinogen", "value": "INR 1.6 / fibrinogen 1.3 g/L", "unit": "-", "normalRange": "INR 0.9-1.2", "abnormal": true, "report": "Dilutional and consumptive coagulopathy. The undisclosed ginkgo supplement has antiplatelet activity and is a recognised and under-recognised contributor to cosmetic surgery bleeding." },
+    { "id": "lac1", "kind": "lab", "category": "Chemistry", "name": "Lactate", "value": "4.9", "unit": "mmol/L", "normalRange": "0.5-2.0", "abnormal": true, "report": "Haemorrhagic shock." },
+    { "id": "bg1", "kind": "lab", "category": "Blood bank", "name": "Group and crossmatch", "value": "A Rh positive", "unit": "-", "normalRange": "-", "abnormal": false, "report": "Four units crossmatched. No group and save was done preoperatively at the clinic, which is itself a finding." },
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Sinus tachycardia at 130/min. No S1Q3T3 pattern, no right heart strain, no ischaemic changes. Does not support pulmonary embolism as the cause of her collapse.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Remove the compression garment and expose the abdomen", "actions": ["Cut off the compression garment", "Full abdominal examination", "Measure and mark abdominal girth"], "doseMap": { "Cut off the compression garment": "The garment hides expanding swelling and tamponades nothing useful. Patients and clinics are reluctant to remove it. Remove it" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Two large bore lines, bloods and bedside ultrasound", "actions": ["IV access 16G x2", "Full blood count, coagulation, fibrinogen, lactate", "Group and crossmatch 4 units", "Bedside ultrasound of the wall and abdomen"], "doseMap": {} } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Blood products and tranexamic acid, not crystalloid loading", "actions": ["Emergency red cells", "Fresh frozen plasma and cryoprecipitate", "Tranexamic acid IV", "Active warming"], "doseMap": { "Tranexamic acid IV": "1 g over 10 min", "Fresh frozen plasma and cryoprecipitate": "Target fibrinogen above 2 g/L before theatre" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Transient responder", "outcomeType": "improved", "narrative": "Systolic reaches 104 after two units, then falls to 88 within fifteen minutes. Girth increases another 2 cm. She is bleeding faster than you can transfuse and no further product will settle this outside theatre.", "vitalChanges": { "hr": 120, "sbp": 88, "dbp": 50, "rr": 24, "temp": 36.0, "gcs": 15 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Document the telephone advice accurately and tell her the truth about the delay (Empathy)", "ethicalValue": 20, "narrative": "The hospital shares a director with the clinic, and Khun Mali has already asked whether the notes could describe this as an unavoidable complication. It is a complication, and the two hour delay caused by telephone reassurance is also a fact. You write both, with times. Then you tell the patient, in plain language, that she bled, that the delay mattered, and that she is entitled to the full record. Ajarn Kit reads the note and says nothing at all, which from him is a form of agreement." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Emergency theatre for evacuation and haemostasis", "actions": ["Plastic surgery and general surgery consult", "Theatre for haematoma evacuation and control of bleeding perforators", "Anaesthetic assessment with shock precautions"], "doseMap": {} } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 200 }, "data": { "label": "Haemostasis", "outcomeType": "improved", "narrative": "1.9 litres of clot evacuated. Bleeding traced to two unligated perforating vessels in the left flank liposuction bed. Drains placed. Total transfusion 6 units of red cells, 4 of plasma, 10 of cryoprecipitate. The inferior flap edge survives.", "vitalChanges": { "hr": 96, "sbp": 112, "dbp": 66, "rr": 18, "temp": 36.6, "gcs": 15 } } },
+      { "id": "req5", "type": "required", "position": { "x": 1920, "y": 200 }, "data": { "label": "Postoperative care and incident reporting", "actions": ["High dependency observation", "Delayed thromboprophylaxis once haemostasis is secure", "Flap perfusion monitoring", "Formal incident report covering the same-day discharge, drain removal and telephone advice"], "doseMap": { "Delayed thromboprophylaxis once haemostasis is secure": "She has competing bleeding and clotting risks. Mechanical prophylaxis now, chemical prophylaxis at 24 to 48 hours" } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 6 with partial flap edge necrosis requiring dressings for eight weeks. She keeps the full record. The clinic's same-day discharge policy for abdominoplasty is quietly changed four months later and nobody sends an email saying why.", "vitalChanges": { "hr": 84, "sbp": 118, "dbp": 72, "rr": 16, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "out2", "target": "req5" },
+      { "id": "e9", "source": "req5", "target": "out3" }
+    ]
+  }
+}

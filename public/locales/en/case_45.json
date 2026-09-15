@@ -1,0 +1,61 @@
+{
+  "title": "34yo M 45% Burn with Inhalational Injury",
+  "age": "34",
+  "sex": "M",
+  "chiefComplaint": "Burns from a gas cylinder explosion in an enclosed kitchen",
+  "diagnoses": ["45% TBSA mixed depth burn with inhalational injury", "Carbon monoxide poisoning", "Cyanide toxicity", "Blast injury", "Circumferential chest burn with restrictive ventilation"],
+  "background": "LPG cylinder explosion in a closed restaurant kitchen 40 minutes ago. He was trapped in the enclosed space for several minutes before being pulled out. Colleagues poured cooking oil on the burns, which is a common local practice that traps heat and complicates assessment. Weight 70 kg. Burning synthetic kitchen furnishings in a confined space means both carbon monoxide and cyanide exposure should be assumed rather than tested for.",
+  "patientAppearance": { "skinTone": "#c98d5f", "bmiFactor": 1.0, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 138, "abnormal": true },
+    "sbp": { "value": 96, "abnormal": true },
+    "dbp": { "value": 58, "abnormal": true },
+    "rr": { "value": 32, "abnormal": true },
+    "temp": { "value": 35.6, "abnormal": true },
+    "spo2": { "value": 99, "abnormal": true },
+    "gcs": { "value": 12, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Confused and agitated, soot-covered, oil smeared over the burn surfaces, shivering, in severe pain over the partial thickness areas and none over the full thickness areas", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Singed eyebrows and nasal hairs, soot in the nostrils and oropharynx, hoarse voice, carbonaceous sputum, early facial and lip oedema, no stridor yet. Every one of these predicts airway loss within hours", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 138/min, blood pressure 96/58, capillary refill 4 seconds in unburnt skin. Hypotension in the first hour after a burn is not from the burn and means you should look for haemorrhage or blast injury", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoeic at 32/min with a circumferential full thickness burn across the chest wall restricting expansion. Coarse crackles and wheeze. Oxygen saturation reads 99% and is unreliable, because pulse oximetry cannot distinguish carboxyhaemoglobin from oxyhaemoglobin", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, no guarding, no evidence of blast abdominal injury, bowel sounds present, no circumferential abdominal burn compromising ventilation", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Burns to the face (4%), anterior chest and abdomen (18%), both arms circumferentially (18%) and patchy anterior thighs (5%), giving approximately 45% total body surface area by the Rule of Nines, excluding areas of simple erythema. Mixed partial and full thickness. Both arms have circumferential leathery eschar with weak radial pulses", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 12 (E3V4M5), confused and agitated. In an enclosed space fire, confusion is carbon monoxide or cyanide until proven otherwise, and not simply pain or fear", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "co1", "kind": "lab", "category": "ABG", "name": "Co-oximetry (carboxyhaemoglobin)", "value": "COHb 28%", "unit": "%", "normalRange": "<3% non-smoker", "abnormal": true, "report": "Severe carbon monoxide poisoning. Only co-oximetry can measure this, since standard pulse oximetry reads carboxyhaemoglobin as oxyhaemoglobin and gives a falsely reassuring 99%." },
+    { "id": "lac1", "kind": "lab", "category": "Chemistry", "name": "Lactate", "value": "12.4", "unit": "mmol/L", "normalRange": "0.5-2.0", "abnormal": true, "report": "A lactate above 10 in an enclosed space fire victim, out of proportion to the shock state, is a strong surrogate marker for cyanide toxicity. Cyanide assays take too long to be useful and treatment is empirical." },
+    { "id": "abg1", "kind": "lab", "category": "ABG", "name": "Arterial blood gas", "value": "pH 7.18 / pCO2 44 / pO2 96 / HCO3 14", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Severe metabolic acidosis with a normal PaO2. A normal oxygen tension with profound acidosis and a high lactate is the pattern of cellular asphyxiants." },
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Chest X-ray", "report": "Clear lung fields initially. Chest radiography is typically normal in the first 24 hours of inhalational injury, so a normal film provides no reassurance whatsoever.", "imageUrl": "", "abnormal": false },
+    { "id": "hb1", "kind": "lab", "category": "CBC", "name": "Haemoglobin and haematocrit", "value": "Hb 17.8 g/dL / Hct 54%", "unit": "-", "normalRange": "Hb 13.5-17.5 g/dL", "abnormal": true, "report": "Haemoconcentration from massive plasma loss into burnt tissue. A high haemoglobin here means fluid loss and not adequacy." },
+    { "id": "ck1", "kind": "lab", "category": "Chemistry", "name": "Creatine kinase and creatinine", "value": "CK 8400 U/L / creatinine 1.6 mg/dL", "unit": "-", "normalRange": "CK 30-200 U/L", "abnormal": true, "report": "Deep muscle injury with early acute kidney injury." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Early intubation before the airway closes", "actions": ["Immediate rapid sequence intubation", "Use the largest tube available", "Do not cut the tube, and secure with ties rather than tape"], "doseMap": { "Immediate rapid sequence intubation": "Hoarse voice, soot in the oropharynx and facial burns mean the airway will swell shut over the next few hours. Intubate now while it is easy. Waiting for stridor means a surgical airway through burnt tissue", "Do not cut the tube, and secure with ties rather than tape": "Facial oedema will displace a short tube, and adhesive tape does not hold on burnt skin" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "100% oxygen and empirical cyanide antidote", "actions": ["100% oxygen via the ventilator", "Hydroxocobalamin IV", "Co-oximetry, not pulse oximetry"], "doseMap": { "100% oxygen via the ventilator": "Reduces the carboxyhaemoglobin half life from about 4 hours on room air to under 1 hour", "Hydroxocobalamin IV": "5 g IV over 15 min. Give empirically for an enclosed space fire with a lactate above 8 and altered consciousness. Safe in the absence of cyanide, unlike nitrite-based kits which cause methaemoglobinaemia and are dangerous alongside carbon monoxide" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Calculate the burn area and start fluid resuscitation", "actions": ["Rule of Nines assessment excluding erythema", "Remove the cooking oil and cool the wounds", "Modified Parkland fluid regimen", "Urinary catheter with hourly output"], "doseMap": { "Modified Parkland fluid regimen": "2-4 mL x kg x %TBSA of Ringer's lactate in 24 hours (2 x 70 x 45 = 6300 mL), half in the first 8 hours from the time of injury and not from arrival. Titrate to urine output of 0.5 mL/kg/h, and stop chasing the formula once the urine output is adequate", "Remove the cooking oil and cool the wounds": "Cool running water for 20 minutes if within 3 hours, then warm the patient actively. Cooling the wound and warming the patient at the same time is the balance" } } },
+      { "id": "req4", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Escharotomy for the circumferential chest and limb burns", "actions": ["Chest wall escharotomy", "Bilateral upper limb escharotomy", "Analgesia, though full thickness eschar is insensate"], "doseMap": { "Chest wall escharotomy": "Circumferential full thickness chest burn prevents chest expansion and causes ventilatory failure that no ventilator setting will fix. Incise along the anterior axillary lines and across the costal margin", "Bilateral upper limb escharotomy": "Mid-medial and mid-lateral incisions. Loss of pulse is a late sign, so act on tense eschar and rising compartment pressure" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 1200, "y": 200 }, "data": { "label": "Stabilised", "outcomeType": "improved", "narrative": "Ventilation improves markedly after chest escharotomy with peak pressures falling from 42 to 28 cmH2O. Radial pulses return after limb escharotomy. Lactate falls to 4.2 within two hours of hydroxocobalamin. Carboxyhaemoglobin falls to 8% on 100% oxygen.", "vitalChanges": { "hr": 116, "sbp": 108, "dbp": 64, "rr": 16, "temp": 36.4, "gcs": 3 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Give the family a realistic prognosis and let them see him before transfer (Empathy)", "ethicalValue": 20, "narrative": "His wife arrives as he is being packaged for transfer. The efficient thing is to leave. You take four minutes: you tell her the burn covers about 45% of his body, that with inhalational injury this carries a substantial risk of death, that the burns centre is two hours away and she cannot travel in the ambulance, and that he is sedated and not in pain. Then you let her stand next to him. Pi Pim says that the families who cope worst are not the ones who got bad news, they are the ones who were moved out of the way efficiently." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Burns centre transfer with proper packaging", "actions": ["Referral to a specialist burns centre", "Cling film dressings, not wet dressings", "Active warming during transport", "Nasogastric tube and early enteral feeding", "Tetanus prophylaxis, no prophylactic antibiotics"], "doseMap": { "Cling film dressings, not wet dressings": "Wet dressings over a large burn cause profound hypothermia during a two hour transfer", "Tetanus prophylaxis, no prophylactic antibiotics": "Prophylactic systemic antibiotics select resistant organisms without reducing burn wound sepsis" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Burns centre course", "outcomeType": "improved", "narrative": "Serial excision and grafting from day 3. Ventilator associated pneumonia on day 9, treated. Acute kidney injury requiring five sessions of dialysis. Extubated day 22. ICU stay 34 days.", "vitalChanges": { "hr": 98, "sbp": 114, "dbp": 68, "rr": 20, "temp": 37.2, "gcs": 15 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged to rehabilitation at four months with extensive grafting, hypertrophic scarring requiring pressure garments for two years, and a restrictive ventilatory defect. The early intubation and the chest escharotomy are the two decisions that made the rest of it possible.", "vitalChanges": { "hr": 84, "sbp": 118, "dbp": 72, "rr": 18, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "req4" },
+      { "id": "e5", "source": "req4", "target": "out1" },
+      { "id": "e6", "source": "out1", "target": "ethical_1" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e_skip", "source": "out1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

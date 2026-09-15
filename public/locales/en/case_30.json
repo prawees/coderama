@@ -1,0 +1,61 @@
+{
+  "title": "22yo F Paraquat Ingestion",
+  "age": "22",
+  "sex": "F",
+  "chiefComplaint": "Mouth pain and vomiting after swallowing herbicide",
+  "diagnoses": ["Paraquat poisoning", "Corrosive ingestion", "Glyphosate-surfactant poisoning", "Organophosphate poisoning"],
+  "background": "Brought in by her older brother about 3 hours after swallowing an unknown quantity of a blue-green liquid from an unlabelled bottle stored in the family shed. Paraquat has been banned in Thailand since 2020, but old stock is still kept on farms. She is fully conscious and now regrets it. There is no antidote and no treatment that reliably alters the outcome, so the honest work of this case is early recognition, avoiding the interventions that make it worse, and the conversation.",
+  "patientAppearance": { "skinTone": "#dda87a", "bmiFactor": 0.85, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 106, "abnormal": true },
+    "sbp": { "value": 108, "abnormal": false },
+    "dbp": { "value": 66, "abnormal": false },
+    "rr": { "value": 22, "abnormal": true },
+    "temp": { "value": 36.8, "abnormal": false },
+    "spo2": { "value": 97, "abnormal": false },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Alert, in pain, frightened, deceptively well-looking. Early paraquat poisoning looks far less serious than it is, and this appearance misleads clinicians into under-triaging", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Extensive ulceration of the tongue, palate and posterior pharynx with a white pseudomembrane developing. Drooling because swallowing is too painful. Voice hoarse. Airway patent but the pharyngeal oedema needs watching", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Mild sinus tachycardia, blood pressure normal at present, capillary refill 2 seconds, no murmur", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, saturations 97% on room air. This is the crucial window: the lungs are currently normal and progressive fibrosis develops over the following 5 to 14 days", "abnormal": false },
+    { "id": "abd1", "system": "Abdomen", "finding": "Epigastric tenderness, repeated vomiting, no peritonism, bowel sounds present, no evidence of perforation", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Chemical burns to the lips and chin where liquid spilled, staining on the fingers and shirt, warm and well perfused peripherally", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 15, fully orientated and able to participate in decisions about her own care. This matters, because everything that follows depends on her being able to understand it", "abnormal": false }
+  ],
+  "investigations": [
+    { "id": "urine1", "kind": "lab", "category": "Bedside", "name": "Urine dithionite test", "value": "Dark blue", "unit": "-", "normalRange": "No colour change", "abnormal": true, "report": "Sodium dithionite added to urine turns blue in the presence of paraquat, and the depth of colour reflects the concentration. A cheap bedside test that confirms the diagnosis within minutes and carries prognostic weight. A dark blue result indicates a large ingestion." },
+    { "id": "cr1", "kind": "lab", "category": "Chemistry", "name": "Creatinine (serial)", "value": "1.1 mg/dL at 3h, 2.4 at 12h, 4.1 at 24h", "unit": "-", "normalRange": "0.5-1.0 mg/dL", "abnormal": true, "report": "The rate of rise of creatinine in the first 24 hours is one of the best available prognostic indicators. A rapid rise indicates a large absorbed dose." },
+    { "id": "abg1", "kind": "lab", "category": "ABG", "name": "Arterial blood gas on room air", "value": "pH 7.36 / pO2 92 / HCO3 22", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": false, "report": "Normal at presentation. Draw it on room air. Do not put this patient on supplemental oxygen to obtain a better number, because oxygen actively accelerates the lung injury." },
+    { "id": "lft1", "kind": "lab", "category": "Chemistry", "name": "Liver function", "value": "AST 88 / ALT 74 / bilirubin 1.9 mg/dL", "unit": "-", "normalRange": "AST <40 U/L", "abnormal": true, "report": "Early hepatic injury. Multi-organ involvement in the first 48 hours reflects dose." },
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Chest X-ray (baseline)", "report": "Clear lung fields, normal cardiac silhouette. Baseline film for comparison. Progressive reticular then confluent opacification typically appears from day 5 onward.", "imageUrl": "", "abnormal": false },
+    { "id": "endo1", "kind": "imaging", "category": "Imaging", "name": "Upper GI endoscopy assessment", "report": "Deferred in the acute phase. Extensive oropharyngeal and oesophageal ulceration is expected; early endoscopy adds perforation risk and does not change management.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Confirm the agent and do the urine dithionite test", "actions": ["Urine dithionite test", "Identify the container and concentration if possible", "Baseline bloods and room air blood gas", "Contact the poisons centre"], "doseMap": { "Contact the poisons centre": "Ramathibodi Poison Centre, 1367. Call early, not when the patient deteriorates" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Withhold supplemental oxygen unless saturations fall below 90%", "actions": ["No supplemental oxygen", "Room air monitoring", "Document the reason prominently at the bedside and in the notes"], "doseMap": { "No supplemental oxygen": "Paraquat kills lung tissue through redox cycling that requires oxygen. Supplemental oxygen measurably accelerates pulmonary fibrosis. This is the single most counter-intuitive instruction in toxicology and it will be countermanded by well-meaning staff unless it is written large" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Early adsorbent and supportive care", "actions": ["Activated charcoal or Fuller's earth if within 2-4 hours and airway is safe", "IV fluids for renal perfusion", "Analgesia for the oropharyngeal burns", "Antiemetic"], "doseMap": { "Activated charcoal or Fuller's earth if within 2-4 hours and airway is safe": "Benefit is limited and time-critical. Do not force it in a vomiting patient with a compromised airway, aspiration will kill her sooner than the paraquat", "Analgesia for the oropharyngeal burns": "Opioid analgesia titrated. The ulceration is severely painful and undertreating it is common" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Prognostic picture clarifies", "outcomeType": "worsened", "narrative": "The dithionite test is dark blue and creatinine rises from 1.1 to 4.1 mg/dL over 24 hours. Taken together this indicates a large absorbed dose. Immunosuppression protocols and haemoperfusion have been tried in this situation and the evidence for benefit is weak at best. Being honest about that now is part of the treatment.", "vitalChanges": { "hr": 118, "sbp": 102, "dbp": 60, "rr": 26, "spo2": 94 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Tell her the truth, at her pace, and ask what she wants from the time (Empathy)", "ethicalValue": 25, "narrative": "She is fully conscious and she asks you directly whether she is going to die. The temptation is to talk about dialysis and experimental protocols and let the family hear something hopeful. You sit down instead, ask what she already understands, and tell her honestly what the tests suggest and what is and is not known. She asks for her mother, and for the pain to be controlled, and both are things you can actually deliver. Pi Pim says afterwards that this is the hardest conversation in medicine and the one where evasion does the most damage, because it steals the days a person still has." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Involve psychiatry and palliative care together, early", "actions": ["Urgent psychiatric assessment while she is able to participate", "Palliative care referral for symptom control", "Family support and interpreter if needed", "Continue full supportive care"], "doseMap": { "Urgent psychiatric assessment while she is able to participate": "She retains capacity now. Assessment and, more importantly, support must happen while that is true. Do not treat psychiatric involvement as something for survivors only" } } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Symptom control and avoidance of futile escalation", "actions": ["Opioid and anxiolytic titration for dyspnoea", "Continue room air unless hypoxaemia is symptomatic", "Discuss ceiling of treatment with patient and family", "Renal support if it improves comfort or buys meaningful time"], "doseMap": { "Discuss ceiling of treatment with patient and family": "Intubation and ventilation in established paraquat lung fibrosis prolongs dying without altering the outcome. This is a conversation to have with her, not about her" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Day 8", "outcomeType": "worsened", "narrative": "Progressive breathlessness with reticular then confluent opacification on the chest X-ray. Symptoms are controlled. Her mother and brother are with her. Nothing about this outcome was changed by anything done in the emergency department, and the things that were done well were the honesty and the analgesia.", "vitalChanges": { "hr": 124, "sbp": 96, "dbp": 56, "rr": 32, "spo2": 84 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Aftermath and prevention", "outcomeType": "resolved", "narrative": "The family is offered bereavement support and the brother, who drove her in, is specifically followed up: relatives who feel they acted too slowly carry this for years. The unlabelled stock is reported to the district agricultural office, which finds nine more banned containers in the same sub-district. Means restriction is the only intervention in pesticide self-poisoning with strong population-level evidence, and it is the one that happens outside the hospital.", "vitalChanges": {} } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

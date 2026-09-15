@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist, StateStorage, createJSONStorage } from 'zustand/middleware';
 import { Preferences } from '@capacitor/preferences';
+import { QUEST_DATABASE } from './quests';
 
 // Custom Capacitor Storage Engine for Zustand Persist
 const capacitorStorage: StateStorage = {
@@ -17,6 +18,16 @@ const capacitorStorage: StateStorage = {
 };
 
 export type ShiftMode = 'off-duty' | 'on-call' | 'on-shift' | 'boss-battle';
+
+export type Era = 'MED_Y5' | 'MED_Y6' | 'INTERN' | 'RESIDENT' | 'PROFESSOR';
+
+export const getEra = (day: number): Era => {
+  if (day <= 5) return 'MED_Y5';
+  if (day <= 10) return 'MED_Y6';
+  if (day <= 15) return 'INTERN';
+  if (day <= 30) return 'RESIDENT';
+  return 'PROFESSOR';
+};
 
 export type Rank = 'MS5' | 'MS6' | 'Intern' | 'R1' | 'R2' | 'R3' | 'Asst. Prof' | 'Assoc. Prof' | 'Prof';
 
@@ -70,12 +81,31 @@ export const GEAR_DATABASE: Record<string, GearItem> = {
   'littmann_classic': { id: 'littmann_classic', name: 'Littmann Classic', type: 'stethoscope', statBonus: 'XP_BOOST', bonusValue: 1.1, cost: 500 },
   'neon_scrubs': { id: 'neon_scrubs', name: 'Neon Scrubs', type: 'scrubs', statBonus: 'CASH_BOOST', bonusValue: 1.2, cost: 800 },
   'running_shoes': { id: 'running_shoes', name: 'Running Shoes', type: 'shoes', statBonus: 'TIME_EXTENSION', bonusValue: 60, cost: 300 }, // +60 seconds to shift
+  'special_coffee': { id: 'special_coffee', name: 'Specialty Coffee', type: 'shoes', statBonus: 'TIME_EXTENSION', bonusValue: 0, cost: 50 }, // Used as a gift
+};
+
+export interface UpgradeItem {
+  id: string;
+  name: string;
+  description: string;
+  cost: number;
+  icon: string;
+}
+
+export const UPGRADES_DATABASE: Record<string, UpgradeItem> = {
+  'upg_espresso': { id: 'upg_espresso', name: 'Espresso Machine', description: 'Restores 10 Energy at the start of every shift.', cost: 800, icon: 'coffee' },
+  'upg_pager': { id: 'upg_pager', name: 'Premium Pager', description: 'Earn 10% more Cash from all cases.', cost: 1500, icon: 'zap' },
+  'upg_lounge': { id: 'upg_lounge', name: 'Staff Lounge Sofa', description: 'Sleeping restores an extra 20 Energy.', cost: 1200, icon: 'sofa' },
 };
 
 export interface PlayerAppearance {
+  skinColor: string; // hex string e.g. '#ffcc99'
   hairColor: string;
-  scrubsColor: string;
-  skinColor: string;
+  topColor: string;
+  bottomColor: string;
+  shoeColor: string;
+  hairStyle: string;
+  topStyle: string;
 }
 
 interface ERState {
@@ -96,6 +126,7 @@ interface ERState {
   playerName: string;
   playerGender: 'M' | 'F' | 'O';
   language: 'en' | 'th';
+  university: string;
 
   // Gear & Appearance
   inventory: string[];
@@ -104,6 +135,7 @@ interface ERState {
     scrubs: string | null;
     shoes: string | null;
   };
+  hospitalUpgrades: string[];
   appearance: PlayerAppearance;
   unlockedSkills: string[];
   shiftStats: {
@@ -114,9 +146,21 @@ interface ERState {
 
   // RPG State
   friendships: Record<string, number>;
+  karma: number; // For narrative engine / reputation
   activeQuests: string[];
   completedQuests: string[];
   tutorialCompleted: boolean;
+  syncEnabled: boolean;
+  currentDay: number; // For campaign progression
+  storyFlags: Record<string, boolean | number | string>; // For narrative branching consequences
+  
+  // Settings
+  sfxVolume: number;
+  musicVolume: number;
+  
+  // Prestige System
+  prestigeCount: number;
+  legacyPerks: string[];
 
   // Actions
   setShiftMode: (mode: ShiftMode) => void;
@@ -124,23 +168,35 @@ interface ERState {
   removeCase: (caseId: string) => void;
   resolveMissedCases: () => void;
   addXp: (amount: number) => void;
+  forcePromote: () => void;
   spendXp: (amount: number) => boolean;
   unlockSkill: (skillId: string, cost: number) => boolean;
   addCurrency: (amount: number) => void;
-  setupPlayer: (name: string, gender: 'M' | 'F' | 'O', lang: 'en' | 'th') => void;
+  setupPlayer: (name: string, gender: 'M' | 'F' | 'O', language: 'en' | 'th', appearance: PlayerAppearance, university: string) => void;
   buyGear: (itemId: string, cost: number) => boolean;
   equipGear: (itemId: string, type: GearType) => void;
+  buyUpgrade: (upgradeId: string, cost: number) => boolean;
   deductEnergy: (amount: number) => void;
   restoreEnergy: (amount: number) => void;
   setClock: (minutes: number) => void;
   incrementClock: (minutes: number) => void;
   setAppearance: (appearance: Partial<PlayerAppearance>) => void;
   setPendingPromotion: (status: boolean) => void;
+  resetGame: () => void;
   resetShiftStats: () => void;
-  updateFriendship: (npcId: string, delta: number) => void;
+  updateFriendship: (npcId: string, amount: number) => void;
+  addKarma: (amount: number) => void;
   startQuest: (questId: string) => void;
   completeQuest: (questId: string) => void;
   completeTutorial: () => void;
+  setSyncEnabled: (sync: boolean) => void;
+  incrementDay: () => void;
+  removeFromInventory: (itemId: string) => void;
+  setStoryFlag: (key: string, value: boolean | number | string) => void;
+  setSfxVolume: (vol: number) => void;
+  setMusicVolume: (vol: number) => void;
+  setPlayerName: (name: string) => void;
+  prestige: (perk: string) => void;
 }
 
 export const useERStore = create<ERState>()(
@@ -156,27 +212,44 @@ export const useERStore = create<ERState>()(
       maxEnergy: 100,
       clockMinutes: 0,
       isPendingPromotion: false,
+      prestigeCount: 0,
+      legacyPerks: [],
 
-      friendships: {},
+      friendships: {
+        nurse_ann: 0,
+        dr_bob: 0
+      },
+      karma: 0,
       activeQuests: [],
       completedQuests: [],
       tutorialCompleted: false,
+      syncEnabled: false,
+      currentDay: 1,
+      storyFlags: {},
+      sfxVolume: 0.5,
+      musicVolume: 0.5,
 
       // Player Identity
-      playerName: 'Player',
+      playerName: 'Doctor',
       playerGender: 'O',
-      language: 'en',
+      language: 'th',
+      university: 'Rama',
 
       inventory: [],
+      hospitalUpgrades: [],
       equipped: {
         stethoscope: null,
         scrubs: null,
         shoes: null
       },
       appearance: {
-        hairColor: '#8b4513', // default brown
-        scrubsColor: '#1f6feb', // default blue
-        skinColor: '#ffc0cb', // default skin
+        skinColor: '#ffcc99',
+        hairColor: '#000000',
+        topColor: '#ffffff',
+        bottomColor: '#333333',
+        shoeColor: '#000000',
+        hairStyle: 'hair_1',
+        topStyle: 'top_1'
       },
       unlockedSkills: [],
       shiftStats: {
@@ -185,10 +258,19 @@ export const useERStore = create<ERState>()(
         cashEarned: 0,
       },
 
+      setPlayerName: (name) => set({ playerName: name }),
       setShiftMode: (mode) => set({ shiftMode: mode }),
       addCase: (newCase) => set((state) => {
-        // Assign a random bed (0 to 3) if not already assigned
-        const caseWithBed = { ...newCase, bedIndex: newCase.bedIndex ?? Math.floor(Math.random() * 4) };
+        if (newCase.bedIndex !== undefined) {
+          return { activeCases: [...state.activeCases, newCase] };
+        }
+        // Find available bed among ER beds 0, 1, 2
+        const occupiedBeds = new Set(state.activeCases.map(c => c.bedIndex));
+        const availableBeds = [0, 1, 2].filter(idx => !occupiedBeds.has(idx));
+        const chosenBed = availableBeds.length > 0
+          ? availableBeds[Math.floor(Math.random() * availableBeds.length)]
+          : Math.floor(Math.random() * 3);
+        const caseWithBed = { ...newCase, bedIndex: chosenBed };
         return { activeCases: [...state.activeCases, caseWithBed] };
       }),
       removeCase: (caseId) => set((state) => ({
@@ -227,12 +309,12 @@ export const useERStore = create<ERState>()(
         
         const newLifetimeXp = state.lifetimeXp + (amount * boost);
         
-        // If they crossed a threshold and aren't already pending
-        if (newLifetimeXp >= nextThreshold && !state.isPendingPromotion && currentRank !== 'Prof') {
+        // Cap lifetimeXp at nextThreshold - 1 so they don't promote automatically.
+        // They must take the End of Year test to push it to the nextThreshold!
+        if (newLifetimeXp >= nextThreshold && currentRank !== 'Prof') {
           return {
             xp: state.xp + (amount * boost),
-            lifetimeXp: nextThreshold, // Cap it exactly at the threshold until they pass the boss
-            isPendingPromotion: true,
+            lifetimeXp: nextThreshold - 1, 
             shiftStats: {
               ...state.shiftStats,
               xpEarned: state.shiftStats.xpEarned + (amount * boost)
@@ -243,13 +325,16 @@ export const useERStore = create<ERState>()(
         // Normal gain
         return {
           xp: state.xp + (amount * boost),
-          lifetimeXp: state.isPendingPromotion ? state.lifetimeXp : newLifetimeXp,
+          lifetimeXp: newLifetimeXp,
           shiftStats: {
             ...state.shiftStats,
             xpEarned: state.shiftStats.xpEarned + (amount * boost)
           }
         };
       }),
+      forcePromote: () => set((state) => ({
+        lifetimeXp: state.lifetimeXp + 1
+      })),
       spendXp: (amount) => {
         const { xp } = get();
         if (xp >= amount) {
@@ -284,6 +369,9 @@ export const useERStore = create<ERState>()(
         if (state.unlockedSkills.includes('SPEED_READER')) {
           multiplier += 0.1; // +10% cash payout
         }
+        if (state.hospitalUpgrades.includes('upg_pager')) {
+          multiplier += 0.1; // +10% cash payout
+        }
         
         // If amount is negative (deducting cash), don't apply the positive multiplier to make them lose more!
         const earned = amount < 0 ? amount : Math.floor(amount * multiplier);
@@ -293,27 +381,54 @@ export const useERStore = create<ERState>()(
           shiftStats: { ...state.shiftStats, cashEarned: amount > 0 ? state.shiftStats.cashEarned + earned : state.shiftStats.cashEarned, casesTreated: amount > 0 ? state.shiftStats.casesTreated + 1 : state.shiftStats.casesTreated }
         };
       }),
-      setupPlayer: (name, gender, lang) => set({
-        playerName: name,
+      setupPlayer: (name, gender, language, appearance, university) => set({ 
+        playerName: name, 
         playerGender: gender,
-        language: lang,
+        language,
+        appearance,
+        university
       }),
       buyGear: (itemId, cost) => {
         const { currency, inventory } = get();
         if (currency >= cost && !inventory.includes(itemId)) {
-          set({ 
-            currency: currency - cost,
-            inventory: [...inventory, itemId]
-          });
+          set((state) => ({ 
+            currency: state.currency - cost,
+            inventory: [...state.inventory, itemId]
+          }));
+          
+          // Quest logic
+          if (get().activeQuests.includes('q_gear_up')) {
+            get().completeQuest('q_gear_up');
+          }
+          
           return true;
         }
         return false;
       },
-      equipGear: (itemId, type) => set((state) => ({
-        equipped: { ...state.equipped, [type]: itemId }
+      removeFromInventory: (itemId) => set((state) => ({
+        inventory: state.inventory.filter(i => i !== itemId)
       })),
+      equipGear: (itemId, type) => {
+        set((state) => ({
+          equipped: { ...state.equipped, [type]: itemId }
+        }));
+      },
+      buyUpgrade: (upgradeId, cost) => {
+        const { currency, hospitalUpgrades } = get();
+        if (currency >= cost && !hospitalUpgrades.includes(upgradeId)) {
+          set((state) => ({
+            currency: state.currency - cost,
+            hospitalUpgrades: [...state.hospitalUpgrades, upgradeId]
+          }));
+          return true;
+        }
+        return false;
+      },
       deductEnergy: (amount) => set((state) => ({ energy: Math.max(0, state.energy - amount) })),
-      restoreEnergy: (amount) => set((state) => ({ energy: Math.min(state.maxEnergy, state.energy + amount) })),
+      restoreEnergy: (amount) => set((state) => {
+        const max = state.hospitalUpgrades.includes('upg_lounge') ? 120 : state.maxEnergy;
+        return { energy: Math.min(max, state.energy + amount) };
+      }),
       setClock: (minutes) => set({ clockMinutes: minutes }),
       incrementClock: (minutes) => set((state) => {
         let multiplier = 1.0; // 1 real sec = 1 in game min
@@ -324,35 +439,110 @@ export const useERStore = create<ERState>()(
       }),
       setAppearance: (appearance) => set((state) => ({ appearance: { ...state.appearance, ...appearance } })),
       setPendingPromotion: (status) => set({ isPendingPromotion: status }),
+      resetGame: () => set({
+        currency: 0,
+        xp: 0,
+        lifetimeXp: 0,
+        energy: 100,
+        karma: 0,
+        currentDay: 1,
+        activeCases: [],
+        friendships: {},
+        inventory: [],
+        equipped: { stethoscope: null, scrubs: null, shoes: null },
+        activeQuests: [],
+        storyFlags: {},
+        shiftMode: 'off-duty',
+        isPendingPromotion: false
+      }),
       resetShiftStats: () => set((state) => ({
         shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 }
       })),
-      updateFriendship: (npcId, delta) => set((state) => ({
-        friendships: { ...state.friendships, [npcId]: (state.friendships[npcId] || 0) + delta }
+      updateFriendship: (npcId, amount) => set((state) => ({
+        friendships: { ...state.friendships, [npcId]: (state.friendships[npcId] || 0) + amount }
       })),
+      addKarma: (amount) => set((state) => ({ karma: (state.karma || 0) + amount })),
       startQuest: (questId) => set((state) => ({
         activeQuests: state.activeQuests.includes(questId) ? state.activeQuests : [...state.activeQuests, questId]
       })),
-      completeQuest: (questId) => set((state) => ({
-        activeQuests: state.activeQuests.filter(q => q !== questId),
-        completedQuests: state.completedQuests.includes(questId) ? state.completedQuests : [...state.completedQuests, questId]
-      })),
+      completeQuest: (questId) => {
+        const state = get();
+        if (state.completedQuests.includes(questId)) return;
+        
+        const quest = QUEST_DATABASE[questId];
+        if (quest) {
+          state.addCurrency(quest.rewardCash);
+          if (quest.rewardXp > 0) {
+            state.addXp(quest.rewardXp);
+          }
+        }
+        
+        set((state) => ({
+          activeQuests: state.activeQuests.filter(q => q !== questId),
+          completedQuests: [...state.completedQuests, questId]
+        }));
+      },
       completeTutorial: () => set({ tutorialCompleted: true }),
+      setSyncEnabled: (sync: boolean) => set({ syncEnabled: sync }),
+      incrementDay: () => set((state) => ({ currentDay: state.currentDay + 1 })),
+      setStoryFlag: (key, value) => set((state) => ({
+        storyFlags: { ...state.storyFlags, [key]: value }
+      })),
+      setSfxVolume: (vol) => {
+        set({ sfxVolume: vol });
+        // Dispatch custom event so the non-react audio systems can hear it immediately
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('volumeChanged', { detail: { sfxVolume: vol, musicVolume: get().musicVolume } }));
+        }
+      },
+      setMusicVolume: (vol) => {
+        set({ musicVolume: vol });
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('volumeChanged', { detail: { sfxVolume: get().sfxVolume, musicVolume: vol } }));
+        }
+      },
+      prestige: (perk) => set(state => ({
+         prestigeCount: state.prestigeCount + 1,
+         legacyPerks: [...state.legacyPerks, perk],
+         xp: 0,
+         lifetimeXp: 0,
+         currentDay: 1,
+         currency: 1000,
+         storyFlags: {},
+         activeQuests: [],
+         completedQuests: [],
+         friendships: {},
+         isPendingPromotion: false,
+         clockMinutes: 0
+      }))
     }),
     {
-      name: 'code-rama-er-store',
+      name: 'code-rama-storage',
       storage: createJSONStorage(() => capacitorStorage),
       partialize: (state) => ({
         shiftMode: state.shiftMode,
         activeCases: state.activeCases,
         lastSaved: Date.now(),
         xp: state.xp,
+        lifetimeXp: state.lifetimeXp,
         currency: state.currency,
         inventory: state.inventory,
         equipped: state.equipped,
         energy: state.energy,
         clockMinutes: state.clockMinutes,
-        appearance: state.appearance
+        playerName: state.playerName,
+        playerGender: state.playerGender,
+        language: state.language,
+        university: state.university,
+        appearance: state.appearance,
+        activeQuests: state.activeQuests,
+        completedQuests: state.completedQuests,
+        friendships: state.friendships,
+        tutorialCompleted: state.tutorialCompleted,
+        currentDay: state.currentDay,
+        storyFlags: state.storyFlags,
+        prestigeCount: state.prestigeCount,
+        legacyPerks: state.legacyPerks,
       })
     }
   )

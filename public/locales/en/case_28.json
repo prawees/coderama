@@ -1,0 +1,61 @@
+{
+  "title": "63yo M Generalised Tetanus",
+  "age": "63",
+  "sex": "M",
+  "chiefComplaint": "Jaw stiffness and painful whole-body spasms",
+  "diagnoses": ["Generalised tetanus", "Strychnine poisoning", "Dystonic reaction to metoclopramide", "Neuroleptic malignant syndrome", "Meningitis"],
+  "background": "Stepped on a rusty nail in a fish pond nine days ago. He cleaned it with local spirit and did not attend hospital. Five days ago he noticed jaw stiffness, then difficulty swallowing, then generalised painful spasms triggered by noise and touch. He has no record of tetanus immunisation. He was given metoclopramide at a private clinic yesterday for vomiting, which muddied the picture because a dystonic reaction looks superficially similar and responds to diphenhydramine, and tetanus does not.",
+  "patientAppearance": { "skinTone": "#b07a48", "bmiFactor": 0.85, "ageGroup": "elderly" },
+  "vitals": {
+    "hr": { "value": 132, "abnormal": true },
+    "sbp": { "value": 186, "abnormal": true },
+    "dbp": { "value": 104, "abnormal": true },
+    "rr": { "value": 28, "abnormal": true },
+    "temp": { "value": 38.2, "abnormal": true },
+    "spo2": { "value": 91, "abnormal": true },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Rigid, sweating profusely, fully conscious and terrified throughout every spasm. Consciousness is preserved in tetanus, which means every one of these spasms is experienced in full", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Trismus with mouth opening limited to 12 mm, risus sardonicus with fixed grimacing facial muscles, difficulty swallowing saliva, no oropharyngeal abscess or dental source found", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 132/min with wide blood pressure swings between 186/104 and 92/50 over minutes. Autonomic instability appears in the second week and is now the leading cause of death in treated tetanus", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Shallow respirations, laryngeal spasm during examination causing transient desaturation, chest wall rigidity limiting expansion, no consolidation on auscultation", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Board-like rigidity of the abdominal wall without tenderness on palpation and with normal bowel sounds. Rigidity without peritonism is the point: this is muscle, not peritoneum", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Healed puncture wound on the right sole with surrounding induration and a small amount of purulent discharge. Profuse diaphoresis. Ten percent of tetanus cases never have an identifiable wound", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 15 throughout. Opisthotonic posturing during spasms triggered by light touch and by the sound of a trolley. Reflexes brisk, no focal deficit, no meningism. This is the clinical picture that separates it from meningitis", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "clin1", "kind": "lab", "category": "Clinical", "name": "Spatula test", "value": "Positive (reflex masseter spasm)", "unit": "-", "normalRange": "Gag reflex with expulsion", "abnormal": true, "report": "Touching the posterior pharynx with a spatula produces reflex biting rather than gagging. Sensitivity around 94%, specificity around 100%, and it costs nothing. Tetanus is a clinical diagnosis and there is no confirmatory laboratory test." },
+    { "id": "ck1", "kind": "lab", "category": "Chemistry", "name": "Creatine kinase", "value": "8600", "unit": "U/L", "normalRange": "30-200", "abnormal": true, "report": "Rhabdomyolysis from sustained spasm. Monitor renal function." },
+    { "id": "abg1", "kind": "lab", "category": "ABG", "name": "Arterial blood gas", "value": "pH 7.28 / pCO2 54 / pO2 62 / lactate 4.2", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Mixed acidosis with hypoventilation from chest wall rigidity and laryngospasm. This trajectory ends in respiratory arrest during a spasm." },
+    { "id": "cbc1", "kind": "lab", "category": "CBC", "name": "White cell count", "value": "14.2", "unit": "x10^9/L", "normalRange": "4.0-11.0", "abnormal": true, "report": "Mild leucocytosis. Non-specific, and normal white cells would not exclude the diagnosis." },
+    { "id": "cr1", "kind": "lab", "category": "Chemistry", "name": "Creatinine and potassium", "value": "Creatinine 1.7 mg/dL / K 5.2 mmol/L", "unit": "-", "normalRange": "Creatinine 0.7-1.3 mg/dL", "abnormal": true, "report": "Acute kidney injury from rhabdomyolysis with early hyperkalaemia." },
+    { "id": "tox1", "kind": "lab", "category": "Toxicology", "name": "Strychnine screen", "value": "Negative", "unit": "-", "normalRange": "Negative", "abnormal": false, "report": "Negative. Strychnine poisoning causes near-identical spasms but with full muscle relaxation between episodes, whereas tetanus maintains baseline rigidity. The bedside distinction is more reliable than the test." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Move him to a dark, quiet, minimal-stimulation room immediately", "actions": ["Dark quiet single room", "Cluster all nursing interventions", "Warn all staff that touch, light and noise trigger spasms"], "doseMap": { "Dark quiet single room": "This is a treatment, not a comfort measure. Every avoidable stimulus is an avoidable spasm, and spasms cause the hypoxia, the rhabdomyolysis and the fractures" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Secure the airway early, before laryngospasm forces the issue", "actions": ["Early elective intubation", "Plan for tracheostomy", "Avoid awake laryngoscopy attempts"], "doseMap": { "Early elective intubation": "Do this electively and early. Emergency intubation during laryngospasm with trismus is close to impossible, and these patients typically need 2 to 3 weeks of ventilation, so tracheostomy is planned rather than improvised" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Human tetanus immunoglobulin, wound care and antibiotics", "actions": ["Human tetanus immunoglobulin IM", "Surgical wound debridement after immunoglobulin", "Metronidazole IV", "Tetanus toxoid at a different site"], "doseMap": { "Human tetanus immunoglobulin IM": "3000-6000 units IM, given before debridement so circulating toxin released by surgery is neutralised. Immunoglobulin neutralises only unbound toxin, it cannot reverse toxin already fixed to nerve terminals", "Metronidazole IV": "500 mg every 8 hours for 7-10 days. Preferred over penicillin, which is itself a GABA antagonist and can worsen spasms", "Tetanus toxoid at a different site": "The disease does not confer immunity, so active immunisation is still required" } } },
+      { "id": "req4", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Spasm control with high dose benzodiazepines and magnesium", "actions": ["Diazepam or midazolam infusion", "Magnesium sulphate infusion", "Neuromuscular blockade if spasms persist"], "doseMap": { "Diazepam or midazolam infusion": "Doses far above normal are expected, often 100-500 mg diazepam equivalent daily. Titrate to spasm control", "Magnesium sulphate infusion": "4 g loading then 2-3 g/h, targeting a serum level of 2-4 mmol/L. Reduces spasm frequency and helps the autonomic instability", "Neuromuscular blockade if spasms persist": "Rocuronium infusion with adequate sedation. Never paralyse without deep sedation in a fully conscious patient" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 1200, "y": 200 }, "data": { "label": "Spasms controlled, autonomic storm begins", "outcomeType": "worsened", "narrative": "Spasms settle on day 2 with magnesium and infusion sedation. From day 6 he swings between 210/120 with a heart rate of 160 and 80/40 with a heart rate of 45, within minutes. This autonomic instability, not the spasms, is what kills treated tetanus patients.", "vitalChanges": { "hr": 158, "sbp": 210, "dbp": 118, "rr": 16, "temp": 38.8, "gcs": 3 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Explain to the family that he is awake and can hear, and prioritise analgesia (Empathy)", "ethicalValue": 20, "narrative": "Before sedation, you explain to his wife that he is fully conscious during every spasm, that this is uniquely cruel among critical illnesses, and that pain control and sedation are being treated as a priority rather than an afterthought. You also tell the nursing team to talk to him during care even once he is paralysed. Pi Pim later uses this case to teach that a paralysed patient is a conscious patient until sedation is proven adequate, and that the commonest sin in a tetanus ICU is paralysis with inadequate sedation." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Manage the autonomic instability and long ICU course", "actions": ["Continue magnesium", "Short acting agents for autonomic swings", "Nutrition support, high caloric requirement", "Thromboprophylaxis and pressure area care"], "doseMap": { "Short acting agents for autonomic swings": "Labetalol or esmolol for hypertensive surges. Avoid long acting beta blockers alone, which have been associated with sudden death in tetanus", "Nutrition support, high caloric requirement": "Energy expenditure can be doubled by sustained muscle activity. Early enteral feeding" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Slow recovery", "outcomeType": "improved", "narrative": "Autonomic instability settles from day 18. Weaned off the tracheostomy at day 26. Total ICU stay 31 days. He has significant ICU-acquired weakness and will need months of rehabilitation.", "vitalChanges": { "hr": 88, "sbp": 128, "dbp": 78, "rr": 18, "temp": 37.0, "gcs": 15 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged to rehabilitation at week 7. He completes the primary immunisation course, because surviving tetanus confers no immunity at all. The entire five-week course, and the cost of it, was preventable by a vaccine that costs under fifty baht.", "vitalChanges": { "hr": 80, "sbp": 124, "dbp": 76, "rr": 16, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "req4" },
+      { "id": "e5", "source": "req4", "target": "out1" },
+      { "id": "e6", "source": "out1", "target": "ethical_1" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e_skip", "source": "out1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

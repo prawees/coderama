@@ -1,0 +1,61 @@
+{
+  "title": "17yo F Meningococcal Septicaemia",
+  "age": "17",
+  "sex": "F",
+  "chiefComplaint": "Fever, leg pain and a rash for 9 hours",
+  "diagnoses": ["Meningococcal septicaemia with meningitis", "Dengue haemorrhagic fever", "Toxic shock syndrome", "Rickettsial infection", "Acute leukaemia"],
+  "background": "Boarding school student. Fever and headache from midnight, then severe pain in both calves by 04:00 and cold hands and feet, which she and the school nurse attributed to influenza. A rash was first noticed at 07:00 and had spread noticeably by 08:30. She arrives at 09:10, nine hours from first symptom. Two other students in the same dormitory have been unwell this week. Severe limb pain, cold peripheries and abnormal skin colour appear a median of eight hours before the classic rash and meningism, and they are the signs that buy time.",
+  "patientAppearance": { "skinTone": "#e9c199", "bmiFactor": 0.9, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 142, "abnormal": true },
+    "sbp": { "value": 84, "abnormal": true },
+    "dbp": { "value": 44, "abnormal": true },
+    "rr": { "value": 32, "abnormal": true },
+    "temp": { "value": 39.4, "abnormal": true },
+    "spo2": { "value": 95, "abnormal": true },
+    "gcs": { "value": 13, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Ill, drowsy, mottled and grey, shivering, complaining bitterly of pain in both calves which is out of proportion to anything visible", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Photophobia, mild neck stiffness, dry mucous membranes, no papilloedema on fundoscopy, conjunctival petechiae present. Neck stiffness is absent in a substantial proportion of meningococcal disease and its absence excludes nothing", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 142/min, hypotensive at 84/44, capillary refill 5 seconds, cold peripheries to the mid forearm and mid calf with a clear cold-warm demarcation line. Hypotension in a 17 year old is a very late sign of shock", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoeic at 32/min compensating for metabolic acidosis, clear breath sounds, no crackles or focal signs", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, generally tender without guarding, no organomegaly, no rebound. Abdominal pain is a common early feature and has led to laparotomy in misdiagnosed cases", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Non-blanching purpuric rash over the trunk, both legs and the conjunctivae, with two lesions over 3 cm and dusky centres. New lesions appeared over the twenty minutes of assessment, which is confirmed by drawing around them. Cold mottled peripheries with a demarcation line", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 13 (E3V4M6), drowsy and irritable, no focal deficit, mild neck stiffness, no seizure. Deteriorating consciousness in this setting is cerebral hypoperfusion, raised intracranial pressure, or both", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "lac1", "kind": "lab", "category": "Chemistry", "name": "Lactate", "value": "6.8", "unit": "mmol/L", "normalRange": "0.5-2.0", "abnormal": true, "report": "Severe tissue hypoperfusion. In meningococcal disease the lactate and the capillary refill tell you more about how close she is to dying than the blood pressure does, because adolescents maintain their blood pressure until the moment they do not." },
+    { "id": "coag1", "kind": "lab", "category": "Coagulation", "name": "INR, fibrinogen and platelets", "value": "INR 2.2 / fibrinogen 0.9 g/L / platelets 48 x10^9/L", "unit": "-", "normalRange": "INR 0.9-1.2", "abnormal": true, "report": "Disseminated intravascular coagulation. This is the process producing the purpura, and it is the reason a lumbar puncture is contraindicated right now." },
+    { "id": "bc1", "kind": "lab", "category": "Micro", "name": "Blood culture and meningococcal PCR", "value": "Gram negative diplococci on the film at 6 hours; Neisseria meningitidis group B by PCR", "unit": "-", "normalRange": "No growth", "abnormal": true, "report": "Positive. PCR remains positive for several days after antibiotics start, which is why it should be sent even when treatment has already been given and cultures are likely to be sterile." },
+    { "id": "gluc1", "kind": "lab", "category": "POCT", "name": "Glucose, sodium and calcium", "value": "Glucose 58 mg/dL / Na 128 mmol/L / ionised Ca 0.88 mmol/L", "unit": "-", "normalRange": "Glucose 70-140 mg/dL", "abnormal": true, "report": "Hypoglycaemia, hyponatraemia and hypocalcaemia. All three occur in severe meningococcal sepsis, all three worsen myocardial function, and all three are correctable within minutes." },
+    { "id": "cbc1", "kind": "lab", "category": "CBC", "name": "White cell count and CRP", "value": "WBC 2.4 x10^9/L with a marked left shift / CRP 210 mg/L", "unit": "-", "normalRange": "WBC 4.0-11.0", "abnormal": true, "report": "Leucopenia, which in this context is a marker of severity and overwhelming sepsis rather than a reason to doubt bacterial infection." },
+    { "id": "cort1", "kind": "lab", "category": "Endocrine", "name": "Random cortisol", "value": "180", "unit": "nmol/L", "normalRange": ">400 in shock", "abnormal": true, "report": "Inappropriately low, raising the possibility of adrenal haemorrhage (Waterhouse-Friderichsen syndrome), which is a recognised complication of fulminant meningococcaemia." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Antibiotics in the first minutes, before anything else is arranged", "actions": ["Ceftriaxone IV immediately", "Blood cultures only if they cost no delay", "Oxygen and monitoring"], "doseMap": { "Ceftriaxone IV immediately": "2 g IV. Every hour of delay increases mortality substantially. If venous access takes more than a few minutes, give it intraosseously or intramuscularly rather than waiting. The commonest fatal error in this disease is antibiotics delayed for imaging, for a lumbar puncture, or for a senior opinion" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Aggressive fluid resuscitation for the capillary leak", "actions": ["Balanced crystalloid boluses", "Reassess perfusion after each bolus", "Correct glucose, sodium and calcium"], "doseMap": { "Balanced crystalloid boluses": "20 mL/kg (about 1200 mL) rapidly, repeated. Fluid requirements in meningococcal septicaemia are enormous because of the capillary leak, often 60 to 100 mL/kg in the first hours. Under-resuscitation here is far more common than over-resuscitation" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Early vasoactive support, do not persist with fluid alone", "actions": ["Adrenaline or noradrenaline infusion after 40-60 mL/kg", "Peripheral or intraosseous infusion until central access is available", "Hydrocortisone for catecholamine-resistant shock"], "doseMap": { "Adrenaline or noradrenaline infusion after 40-60 mL/kg": "Cold shock with a long capillary refill favours adrenaline. Do not wait for a central line, a dilute peripheral infusion is safer than an hour of untreated shock", "Hydrocortisone for catecholamine-resistant shock": "50 mg IV every 6 hours, given the low cortisol and the possibility of adrenal haemorrhage" } } },
+      { "id": "req4", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Do not perform a lumbar puncture, and do not delay treatment for imaging", "actions": ["Defer lumbar puncture", "Meningococcal PCR on blood instead", "Dexamethasone is not indicated in meningococcal septicaemia"], "doseMap": { "Defer lumbar puncture": "Contraindicated here by shock, coagulopathy with a fibrinogen of 0.9, a platelet count of 48, and reduced consciousness. Blood PCR gives the organism without the risk. A lumbar puncture in this patient can cause coning or an epidural haematoma and changes nothing about tonight's treatment" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 1200, "y": 200 }, "data": { "label": "Deterioration despite treatment", "outcomeType": "worsened", "narrative": "After 3.5 litres of crystalloid and an adrenaline infusion the systolic reaches 92 but the purpura continues to extend, the fingers and toes become dusky, and she requires intubation for a falling conscious level. Antibiotics given at 14 minutes from arrival. This disease progresses for hours after correct treatment begins.", "vitalChanges": { "hr": 148, "sbp": 92, "dbp": 48, "rr": 16, "spo2": 96, "gcs": 3 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Make the public health call yourself, at 09:40, and do not delegate it (Empathy)", "ethicalValue": 25, "narrative": "Her parents are four hours away and her school has 380 boarding students, two of whom are already unwell. The temptation is to focus entirely on the resuscitation and leave notification to the ward. You make the call from the resus room: the district communicable disease unit is notified within the hour, close contacts including the dormitory and the two unwell students are identified for ciprofloxacin prophylaxis, and vaccination is arranged. One of those two students is admitted that afternoon with early meningococcaemia and does well. The phone call took four minutes and it is the highest yield thing done all day." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "ICU care and management of the coagulopathy and limb ischaemia", "actions": ["ICU admission with invasive monitoring", "Blood products guided by fibrinogen and bleeding, not by numbers alone", "Plastic and vascular surgical review of the ischaemic digits", "Notify public health and arrange contact prophylaxis"], "doseMap": { "Blood products guided by fibrinogen and bleeding, not by numbers alone": "Cryoprecipitate for fibrinogen below 1.5 g/L. Do not correct platelets prophylactically in the absence of bleeding or a planned procedure" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Survival with tissue loss", "outcomeType": "improved", "narrative": "Shock resolves over 48 hours. Purpura fulminans causes full thickness necrosis of three toes on the left foot and the tips of two fingers. Extubated day 6. No neurological deficit and normal hearing on screening, which is not guaranteed after meningococcal disease.", "vitalChanges": { "hr": 96, "sbp": 112, "dbp": 66, "rr": 18, "temp": 37.2, "spo2": 98, "gcs": 15 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Amputation of three toes at week 3, then rehabilitation. Discharged day 28. She is screened for complement deficiency, which is standard after invasive meningococcal disease in an adolescent, and it is negative. The school runs a vaccination programme and there are no further cases. Nine hours from first symptom to antibiotics is the number that explains the toes.", "vitalChanges": { "hr": 82, "sbp": 116, "dbp": 70, "rr": 16, "temp": 36.8, "spo2": 99, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "req4" },
+      { "id": "e5", "source": "req4", "target": "out1" },
+      { "id": "e6", "source": "out1", "target": "ethical_1" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e_skip", "source": "out1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

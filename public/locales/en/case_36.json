@@ -1,0 +1,61 @@
+{
+  "title": "49yo F Massive Pulmonary Embolism",
+  "age": "49",
+  "sex": "F",
+  "chiefComplaint": "Collapse and severe breathlessness",
+  "diagnoses": ["High-risk (massive) pulmonary embolism", "Acute myocardial infarction", "Cardiac tamponade", "Aortic dissection", "Septic shock"],
+  "background": "Flew Bangkok to Frankfurt and back within eight days, landing four hours ago. Total knee replacement eleven days before the trip, and she stopped her prophylactic enoxaparin early because the injections stung. She had two days of right calf discomfort that she attributed to the surgery. She collapsed at the baggage carousel, briefly lost consciousness, and arrived by ambulance with saturations of 84% on high flow oxygen.",
+  "patientAppearance": { "skinTone": "#eabf99", "bmiFactor": 1.3, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 136, "abnormal": true },
+    "sbp": { "value": 74, "abnormal": true },
+    "dbp": { "value": 44, "abnormal": true },
+    "rr": { "value": 34, "abnormal": true },
+    "temp": { "value": 37.1, "abnormal": false },
+    "spo2": { "value": 84, "abnormal": true },
+    "gcs": { "value": 13, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Grey, distressed, air hungry, unable to speak more than three words at a time, cold and clammy", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Central cyanosis, jugular venous pressure raised to the earlobe at 45 degrees, no facial swelling, no stridor", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 136/min, loud palpable P2, right ventricular heave, hypotensive at 74/44, capillary refill 5 seconds. Raised JVP with clear lungs and shock is the combination that should make you think right ventricle", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds bilaterally with profound hypoxaemia. Hypoxaemia out of all proportion to the auscultation and chest X-ray findings is the classic pattern", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, mildly pulsatile liver edge from right heart failure, no masses, bowel sounds normal", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Cold mottled peripheries, right calf swollen 4 cm greater than the left with pitting oedema, healed knee arthroplasty scar, no cellulitis", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 13 (E3V4M6), confused from hypoxia and low cardiac output, no focal deficit, pupils equal and reactive", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "echo1", "kind": "imaging", "category": "Imaging", "name": "Bedside echocardiogram", "report": "Severely dilated right ventricle with a right to left ventricular ratio above 1.2, septal flattening in systole and diastole (D-shaped left ventricle), and McConnell's sign with akinesia of the mid free wall and preserved apical contraction. Dilated non-collapsing inferior vena cava. No pericardial effusion. In a patient too unstable for the CT scanner, this is enough to justify thrombolysis.", "imageUrl": "", "abnormal": true },
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Sinus tachycardia at 134/min with S1Q3T3 pattern, incomplete right bundle branch block and T wave inversion in V1 to V4. Right heart strain. Sensitivity is poor, so a normal ECG would not have excluded this.", "imageUrl": "", "abnormal": true },
+    { "id": "ctpa1", "kind": "imaging", "category": "Imaging", "name": "CT pulmonary angiogram", "report": "Large saddle embolus at the pulmonary artery bifurcation with extensive bilateral central and lobar filling defects. Right to left ventricular ratio of 1.6 and reflux of contrast into the inferior vena cava, both indicating right heart strain. Obtained only after initial stabilisation.", "imageUrl": "", "abnormal": true },
+    { "id": "trop1", "kind": "lab", "category": "Cardiac", "name": "High sensitivity troponin T and NT-proBNP", "value": "Troponin 186 ng/L / NT-proBNP 4200 pg/mL", "unit": "-", "normalRange": "Troponin <14 ng/L", "abnormal": true, "report": "Both elevated, indicating right ventricular myocardial injury and strain. These are prognostic markers, not diagnostic ones, and they must not delay treatment." },
+    { "id": "abg1", "kind": "lab", "category": "ABG", "name": "Arterial blood gas", "value": "pH 7.28 / pCO2 26 / pO2 46 / lactate 6.2", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Hypoxaemia with respiratory alkalosis and a superimposed lactic acidosis from shock." },
+    { "id": "us2", "kind": "imaging", "category": "Imaging", "name": "Compression ultrasound of the right leg", "report": "Non-compressible right femoral and popliteal veins with echogenic thrombus. Confirms the source. Can be performed at the bedside in two minutes and supports the diagnosis when the patient is too unstable to move.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Oxygen, monitoring and bedside echocardiogram, not a trip to the scanner", "actions": ["High flow oxygen 15 L/min", "Continuous monitoring and arterial line", "Bedside echocardiogram", "Leg compression ultrasound"], "doseMap": { "Bedside echocardiogram": "A shocked patient sent to the CT scanner can arrest in the scanner where nobody can help. Echo answers the question that matters, which is whether the right ventricle is failing" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Cautious fluid and early vasopressor", "actions": ["Small fluid bolus 250-500 mL", "Noradrenaline infusion early", "Avoid large volume loading"], "doseMap": { "Avoid large volume loading": "An overloaded failing right ventricle bows the septum into the left ventricle and reduces cardiac output further. More than about 500 mL in high-risk pulmonary embolism can precipitate arrest", "Noradrenaline infusion early": "Maintains coronary perfusion to the strained right ventricle. Start it rather than persisting with fluid" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Anticoagulate immediately", "actions": ["Unfractionated heparin IV bolus and infusion"], "doseMap": { "Unfractionated heparin IV bolus and infusion": "80 units/kg bolus then 18 units/kg/h. Unfractionated heparin is preferred over low molecular weight heparin here because it is short acting and reversible, which matters if thrombolysis or embolectomy follows" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Persistent shock", "outcomeType": "worsened", "narrative": "Despite noradrenaline at 0.3 mcg/kg/min, the systolic remains 76 and lactate climbs to 7.4. This is high-risk pulmonary embolism with sustained hypotension, and anticoagulation alone will not save her. She needs the clot burden reduced now.", "vitalChanges": { "hr": 142, "sbp": 76, "dbp": 44, "rr": 36, "spo2": 86, "gcs": 12 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Explain the bleeding risk of thrombolysis honestly, in the 60 seconds available (Empathy)", "ethicalValue": 20, "narrative": "She is confused but not incapable, and her daughter is present. You do not simply proceed. You say, in plain words, that the drug carries roughly a 2% risk of bleeding into the brain and that without it she is likely to die tonight, and that eleven days from a knee replacement raises the bleeding risk further. She says do it. Her daughter asks whether there is another option and you explain surgical embolectomy honestly, including that this hospital cannot do it at 04:00. Ninety seconds. It is enough, and consent obtained under pressure is still consent if the information is true." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Systemic thrombolysis for haemodynamic instability", "actions": ["Alteplase IV", "Stop the heparin infusion during the bolus regimen", "Cross-match and have blood available"], "doseMap": { "Alteplase IV": "100 mg over 2 hours, or 0.6 mg/kg over 15 min in cardiac arrest. Recent major surgery is a relative and not an absolute contraindication when the alternative is death from obstructive shock", "Stop the heparin infusion during the bolus regimen": "Restart without a bolus once the APTT falls below twice normal" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 200 }, "data": { "label": "Reperfusion", "outcomeType": "improved", "narrative": "Ninety minutes into the infusion the systolic rises to 108, saturations reach 94% and lactate falls to 3.1. Repeat echo shows the right to left ventricular ratio improving to 0.9. She has a large haematoma at the knee wound but no intracranial bleeding.", "vitalChanges": { "hr": 104, "sbp": 108, "dbp": 62, "rr": 24, "spo2": 94, "gcs": 15 } } },
+      { "id": "req5", "type": "required", "position": { "x": 1920, "y": 200 }, "data": { "label": "ICU care and long-term anticoagulation planning", "actions": ["ICU admission with neurological observations", "Transition to oral anticoagulation once stable", "Thrombophilia and malignancy screen", "Explore why prophylaxis was stopped"], "doseMap": { "Explore why prophylaxis was stopped": "She stopped because the injections stung and nobody had explained what they were preventing. That is a communication failure with a mortality rate, and it is fixable" } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 8 on a direct oral anticoagulant for at least six months. Echo at three months shows normal right ventricular size. She is counselled about chronic thromboembolic pulmonary hypertension, which affects a small percentage of survivors and presents as unexplained breathlessness months later.", "vitalChanges": { "hr": 82, "sbp": 122, "dbp": 76, "rr": 16, "spo2": 97, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "out2", "target": "req5" },
+      { "id": "e9", "source": "req5", "target": "out3" }
+    ]
+  }
+}

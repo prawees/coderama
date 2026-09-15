@@ -1,0 +1,62 @@
+{
+  "title": "26yo M Status Epilepticus",
+  "age": "26",
+  "sex": "M",
+  "chiefComplaint": "Continuous seizure for 25 minutes",
+  "diagnoses": ["Convulsive status epilepticus", "Neurocysticercosis", "Meningoencephalitis", "Alcohol withdrawal seizure", "Psychogenic non-epileptic seizure"],
+  "background": "Known epilepsy since age 19, on phenytoin. He ran out of tablets eight days ago while working away from home. Witnesses describe continuous generalised convulsive activity beginning about 25 minutes before arrival, with two brief pauses of a few seconds. Paramedics gave one dose of intramuscular midazolam en route with no effect. He grew up on a pig farm in Nakhon Phanom, which is relevant, since neurocysticercosis is the commonest identifiable cause of adult-onset seizures in much of rural Thailand.",
+  "patientAppearance": { "skinTone": "#c99763", "bmiFactor": 0.95, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 152, "abnormal": true },
+    "sbp": { "value": 168, "abnormal": true },
+    "dbp": { "value": 96, "abnormal": true },
+    "rr": { "value": 30, "abnormal": true },
+    "temp": { "value": 38.4, "abnormal": true },
+    "spo2": { "value": 84, "abnormal": true },
+    "gcs": { "value": 3, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Actively convulsing with generalised tonic-clonic activity, cyanosed, incontinent of urine, drenched in sweat", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Clenched jaw preventing oral airway insertion, frothy blood-stained saliva, lateral tongue laceration, no head injury palpable, no neck stiffness assessable during the seizure", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 152/min, hypertensive at 168/96 from the catecholamine surge, warm and well perfused peripherally", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Ineffective irregular respiration during tonic phases, saturations 84%, coarse crackles suggesting aspiration, chest wall rigidity", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Rigid during tonic phases, no organomegaly assessable, no evidence of trauma, incontinent", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Cyanosed centrally, diaphoretic, a small palpable subcutaneous nodule over the left forearm which may represent a cysticercus, no rash or petechiae, no needle marks", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 3 with continuous convulsive activity. Pupils 5 mm and unreactive during the seizure. After 30 minutes the motor activity may become subtle or stop entirely while electrical seizure continues, which is non-convulsive status and is easily mistaken for a post-ictal state", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "poc1", "kind": "lab", "category": "POCT", "name": "Capillary glucose", "value": "68", "unit": "mg/dL", "normalRange": "70-140", "abnormal": true, "report": "Borderline low. Check glucose in every seizing patient within the first minute. Hypoglycaemia is the most rapidly reversible cause and is missed when everyone reaches for a benzodiazepine first." },
+    { "id": "phen1", "kind": "lab", "category": "Therapeutic drug", "name": "Phenytoin level", "value": "<2", "unit": "mcg/mL", "normalRange": "10-20", "abnormal": true, "report": "Undetectable, consistent with eight days without medication. Non-adherence and drug interruption are the commonest precipitants of status in known epilepsy." },
+    { "id": "gas1", "kind": "lab", "category": "ABG", "name": "Arterial blood gas", "value": "pH 6.96 / pCO2 58 / pO2 48 / lactate 14.2", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Severe mixed acidosis with a very high lactate from muscle activity. A lactate of this magnitude after a convulsive seizure is expected and clears rapidly. It does not by itself indicate sepsis or ischaemia." },
+    { "id": "ct1", "kind": "imaging", "category": "Imaging", "name": "CT brain (non-contrast)", "report": "Multiple small calcified lesions in both cerebral hemispheres with one ring-enhancing lesion in the left parietal region with surrounding oedema. Appearances consistent with neurocysticercosis at mixed stages. No haemorrhage, no midline shift.", "imageUrl": "", "abnormal": true },
+    { "id": "na1", "kind": "lab", "category": "Elytes", "name": "Sodium, calcium and magnesium", "value": "Na 138 / corrected Ca 9.2 mg/dL / Mg 0.78 mmol/L", "unit": "-", "normalRange": "Na 135-145 mmol/L", "abnormal": false, "report": "Normal, excluding the common metabolic precipitants." },
+    { "id": "ck1", "kind": "lab", "category": "Chemistry", "name": "Creatine kinase", "value": "4800", "unit": "U/L", "normalRange": "30-200", "abnormal": true, "report": "Rhabdomyolysis from prolonged muscle activity. Start fluids and monitor renal function." },
+    { "id": "eeg1", "kind": "imaging", "category": "Neurophysiology", "name": "EEG", "report": "Continuous left parietal epileptiform discharges persisting after clinical convulsions ceased, confirming ongoing non-convulsive status. Without this the patient would have been assumed to be post-ictal and left untreated for hours.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Airway, oxygen, glucose and timing, all in the first 60 seconds", "actions": ["Nasopharyngeal airway and suction", "High flow oxygen", "Capillary glucose", "Note the seizure start time and assign a timekeeper"], "doseMap": { "Nasopharyngeal airway and suction": "The jaw is clenched, so do not force an oral airway. A nasopharyngeal airway works", "Note the seizure start time and assign a timekeeper": "Status is defined at 5 minutes of continuous activity. Without a timekeeper, benzodiazepine doses are given late and second line agents are given far too late" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Adequate benzodiazepine dosing, the commonest failure is underdosing", "actions": ["Lorazepam IV or midazolam IM", "Repeat once after 5 minutes if seizures continue", "Thiamine if alcohol is a possibility"], "doseMap": { "Lorazepam IV or midazolam IM": "Lorazepam 4 mg IV, or midazolam 10 mg IM if there is no IV access. He has already had one prehospital dose, so give a full second dose now", "Repeat once after 5 minutes if seizures continue": "A maximum of two doses. Underdosing benzodiazepines and then giving a third and fourth dose instead of moving to a second line agent is the single most common management error in status" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Second line antiepileptic after two benzodiazepine doses", "actions": ["Levetiracetam IV", "Or sodium valproate IV", "Or phenytoin IV with cardiac monitoring"], "doseMap": { "Levetiracetam IV": "60 mg/kg up to 4500 mg over 10 min. The ESETT trial found levetiracetam, valproate and fosphenytoin equally effective, so choose on side effect profile and availability", "Or phenytoin IV with cardiac monitoring": "20 mg/kg at no more than 50 mg/min with continuous ECG. Causes hypotension and arrhythmia when infused quickly, and tissue necrosis if it extravasates. He is phenytoin naive in practice, since his level is undetectable" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Refractory status", "outcomeType": "worsened", "narrative": "Convulsions persist 42 minutes after onset despite two benzodiazepine doses and levetiracetam. This is refractory status epilepticus. Neuronal injury begins after roughly 30 minutes of continuous seizure activity, so this is now a time-critical brain injury, not a waiting game.", "vitalChanges": { "hr": 158, "sbp": 142, "dbp": 84, "rr": 26, "spo2": 88, "temp": 38.8 } } },
+      { "id": "req4", "type": "required", "position": { "x": 1200, "y": 200 }, "data": { "label": "Intubate and induce anaesthesia for refractory status", "actions": ["Rapid sequence intubation", "Propofol or midazolam infusion", "Continuous EEG monitoring", "Vasopressor support"], "doseMap": { "Rapid sequence intubation": "Avoid long acting paralysis, which masks ongoing seizure activity. Use a short acting agent and get EEG on as soon as possible", "Propofol or midazolam infusion": "Titrate to seizure suppression or burst suppression on EEG. Thiopental is an alternative" } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Find out why he ran out of tablets, and fix that rather than the seizure only (Empathy)", "ethicalValue": 20, "narrative": "His brother explains that he works construction in another province, his prescription is registered to a hospital eight hours away, and he cannot take three days off to collect tablets. Writing non-adherent in the discharge summary would be accurate and useless. You arrange transfer of his prescription to a hospital near his worksite, a 90 day supply, and a written card he can show any pharmacy. Nong Wan asks why this matters when the seizure is the emergency, and the answer is that the seizure was a symptom of a supply chain." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Find and treat the underlying cause", "actions": ["CT brain", "Lumbar puncture once seizures are controlled and imaging is safe", "Treat neurocysticercosis with albendazole plus corticosteroids", "Fluids for rhabdomyolysis"], "doseMap": { "Treat neurocysticercosis with albendazole plus corticosteroids": "Always give corticosteroids with or before antiparasitic treatment. Killing the cysts provokes an inflammatory response that can worsen oedema and seizures" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Seizure control", "outcomeType": "improved", "narrative": "Burst suppression achieved on a propofol infusion. EEG shows continued electrographic seizures for a further six hours before control. Weaned and extubated on day 3. He has a mild expressive dysphasia that improves over two weeks, attributable to the duration of the status rather than to any single decision.", "vitalChanges": { "hr": 92, "sbp": 118, "dbp": 70, "rr": 16, "spo2": 97, "temp": 37.2, "gcs": 14 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 12 on levetiracetam, chosen over phenytoin for its simpler monitoring, with a 90 day supply and a prescription transferred to a hospital near his worksite. Completes albendazole with steroid cover. Advised not to drive for one year and, more usefully, told exactly how to get his next prescription without losing three days of pay.", "vitalChanges": { "hr": 78, "sbp": 120, "dbp": 74, "rr": 16, "spo2": 98, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "req4" },
+      { "id": "e6", "source": "req4", "target": "ethical_1" },
+      { "id": "e_skip", "source": "req4", "target": "req5" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

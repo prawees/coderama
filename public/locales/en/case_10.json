@@ -1,0 +1,416 @@
+{
+  "title": "34yo M Opioid Overdose",
+  "age": "34",
+  "sex": "M",
+  "chiefComplaint": "Unresponsive with slow breathing",
+  "diagnoses": [
+    "Opioid overdose",
+    "Benzodiazepine co-ingestion",
+    "Hypoglycaemia",
+    "Pontine haemorrhage",
+    "Organophosphate poisoning"
+  ],
+  "background": "Found by his brother slumped in the bathroom, unresponsive, with a syringe and a burnt spoon on the floor. Unknown down time, last seen well 90 minutes earlier. His brother says he was discharged from a rehabilitation programme three weeks ago after a period of abstinence. Bystanders gave no naloxone. Past history of hepatitis C. No prescribed medications.",
+  "patientAppearance": {
+    "skinTone": "#b98a68",
+    "bmiFactor": 0.85,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 52,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 92,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 54,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 5,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 35.4,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 78,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 6,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Unresponsive to voice, withdraws to pain only, cyanosed around the lips, thin and unkempt",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Pinpoint pupils 1 mm bilaterally with sluggish reaction, snoring stertorous airway relieved by jaw thrust, vomitus at the angle of the mouth, no head injury or haemotympanum",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus bradycardia at 52/min, regular, normal heart sounds, capillary refill 3 seconds, peripheral pulses present",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Shallow irregular respirations at 5/min, bibasal coarse crackles, no wheeze, chest expansion symmetrical",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, non-distended, absent bowel sounds, no organomegaly, bladder not palpable",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cool and dry, old and fresh needle track marks over both antecubital fossae, a fresh puncture with surrounding erythema on the left forearm, a pressure area with induration over the right hip, no diaphoresis",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 6 (E1V1M4), generalised hypotonia, no lateralising signs, plantars downgoing, no fasciculations or seizure activity",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Capillary glucose",
+      "value": "96",
+      "unit": "mg/dL",
+      "normalRange": "70-140",
+      "abnormal": false,
+      "report": "Normal. Hypoglycaemia excluded as the cause of coma. Check this in every unresponsive patient before anything else."
+    },
+    {
+      "id": "vbg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Venous blood gas",
+      "value": "pH 7.16 / pCO2 74 / HCO3 24",
+      "unit": "-",
+      "normalRange": "pH 7.32-7.42",
+      "abnormal": true,
+      "report": "Acute respiratory acidosis from hypoventilation. This is the finding that kills, not the pupils."
+    },
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Creatine kinase",
+      "value": "4280",
+      "unit": "U/L",
+      "normalRange": "30-200",
+      "abnormal": true,
+      "report": "Rhabdomyolysis from prolonged immobility. Check renal function and start fluids."
+    },
+    {
+      "id": "cr1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Creatinine",
+      "value": "1.6",
+      "unit": "mg/dL",
+      "normalRange": "0.7-1.3",
+      "abnormal": true,
+      "report": "Acute kidney injury, likely myoglobinuric and pre-renal."
+    },
+    {
+      "id": "para1",
+      "kind": "lab",
+      "category": "Toxicology",
+      "name": "Serum paracetamol",
+      "value": "<10",
+      "unit": "mcg/mL",
+      "normalRange": "<10",
+      "abnormal": false,
+      "report": "Undetectable at 4 hours or more post ingestion. Co-ingestion of paracetamol combination tablets excluded."
+    },
+    {
+      "id": "sal1",
+      "kind": "lab",
+      "category": "Toxicology",
+      "name": "Serum salicylate",
+      "value": "<2",
+      "unit": "mg/dL",
+      "normalRange": "<2",
+      "abnormal": false,
+      "report": "Negative."
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "12-Lead ECG",
+      "report": "Sinus bradycardia at 50/min. QRS 92 ms, QTc 430 ms. No Brugada pattern and no terminal R wave in aVR, which argues against sodium channel blocking co-ingestion.",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Portable Chest X-ray",
+      "report": "Patchy bilateral basal airspace opacification consistent with aspiration or naloxone associated non-cardiogenic pulmonary oedema. Normal heart size. No pneumothorax.",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "label": "Airway first: suction, jaw thrust and bag-mask ventilation with oxygen",
+          "actions": [
+            "Suction airway",
+            "Jaw thrust and oropharyngeal airway",
+            "Bag-valve-mask ventilation with 15 L/min oxygen"
+          ],
+          "doseMap": {
+            "Bag-valve-mask ventilation with 15 L/min oxygen": "10-12 breaths/min until spontaneous respiration returns"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "label": "Check glucose and attach monitoring",
+          "actions": [
+            "Capillary glucose",
+            "Cardiac monitor, SpO2 and end-tidal CO2",
+            "IV access"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "label": "Titrated naloxone to restore ventilation, not consciousness",
+          "actions": [
+            "Naloxone IV"
+          ],
+          "doseMap": {
+            "Naloxone IV": "0.04 to 0.4 mg IV, repeat every 2-3 min up to 2 mg. Aim for a respiratory rate above 12, not a fully awake patient. Use 0.4-0.8 mg IM if there is no IV access"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "Ventilation restored",
+          "outcomeType": "improved",
+          "narrative": "After 0.4 mg in divided doses his respiratory rate rises to 14 and saturations reach 96%. He opens his eyes, is confused and agitated, and pulls at the mask. He is not in florid withdrawal because you titrated. Intubation is avoided.",
+          "vitalChanges": {
+            "hr": 78,
+            "sbp": 108,
+            "dbp": 64,
+            "rr": 14,
+            "spo2": 96,
+            "gcs": 13
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 400
+        },
+        "data": {
+          "label": "Speak to him without judgement, ask what he used, and offer harm reduction rather than a lecture (Empathy)",
+          "ethicalValue": 15,
+          "narrative": "You avoid the word addict, explain that his tolerance dropped during abstinence and that this is why the same dose nearly killed him, and ask what would actually help. He tells you it was fentanyl-adulterated heroin and agrees to talk to the addiction team. Dr. Bob calls it a waste of a bed. Nurse Ann quietly disagrees."
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "label": "Observe for re-sedation and treat rhabdomyolysis",
+          "actions": [
+            "Monitored observation at least 4-6 hours after the last naloxone dose",
+            "Naloxone infusion if repeated dosing is needed",
+            "IV crystalloid for rhabdomyolysis",
+            "Repeat venous gas"
+          ],
+          "doseMap": {
+            "Naloxone infusion if repeated dosing is needed": "Run at two thirds of the effective bolus dose per hour and titrate",
+            "IV crystalloid for rhabdomyolysis": "Normal saline to maintain urine output of 1-2 mL/kg/h"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "Re-sedation event",
+          "outcomeType": "worsened",
+          "narrative": "At 70 minutes his respiratory rate drops to 7 again. Naloxone has a shorter half life than the long acting synthetic opioid he took. You give another dose and start an infusion.",
+          "vitalChanges": {
+            "hr": 62,
+            "sbp": 98,
+            "dbp": 58,
+            "rr": 7,
+            "spo2": 88,
+            "gcs": 10
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "Discharge planning with take-home naloxone and treatment linkage",
+          "actions": [
+            "Take-home naloxone kit with training for patient and brother",
+            "Buprenorphine initiation or addiction service referral",
+            "Hepatitis C and HIV screening offer",
+            "Written overdose prevention advice"
+          ],
+          "doseMap": {
+            "Buprenorphine initiation or addiction service referral": "Start when the Clinical Opiate Withdrawal Scale is above 12 to avoid precipitated withdrawal"
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "After 12 hours he is off the infusion, ventilating normally, and creatine kinase is falling on fluids. He leaves with a naloxone kit, his brother has been trained to use it, and he has an appointment with the addiction service in two days.",
+          "vitalChanges": {
+            "hr": 76,
+            "sbp": 116,
+            "dbp": 70,
+            "rr": 16,
+            "spo2": 97,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "out2",
+        "target": "req5"
+      },
+      {
+        "id": "e9",
+        "source": "req5",
+        "target": "out3"
+      }
+    ]
+  }
+}

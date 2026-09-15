@@ -1,0 +1,62 @@
+{
+  "title": "45yo M Crush Syndrome (Building Collapse)",
+  "age": "45",
+  "sex": "M",
+  "chiefComplaint": "Both legs trapped under a collapsed concrete slab for 6 hours",
+  "diagnoses": ["Crush syndrome with rhabdomyolysis", "Hyperkalaemic cardiac arrest risk", "Compartment syndrome", "Hypovolaemic shock", "Acute kidney injury"],
+  "background": "Construction worker trapped in the partial collapse of a building under demolition. He was conscious and talking to rescuers throughout. Both legs were pinned below the knee by a concrete slab for approximately 6 hours. He is 78 kg. He received one litre of saline through a line placed by the ambulance crew while still trapped, which is the single most important decision anyone made today. Extrication happened 25 minutes ago. He looks deceptively well.",
+  "patientAppearance": { "skinTone": "#bd8552", "bmiFactor": 1.0, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 118, "abnormal": true },
+    "sbp": { "value": 98, "abnormal": true },
+    "dbp": { "value": 58, "abnormal": true },
+    "rr": { "value": 24, "abnormal": true },
+    "temp": { "value": 35.4, "abnormal": true },
+    "spo2": { "value": 96, "abnormal": false },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Fully alert, dusty, cold, calm and cooperative, complaining mainly of thirst. The mismatch between how well a crush victim looks immediately after extrication and what is about to happen to their potassium is the central trap of this presentation", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Dry mucous membranes, dust in the nose and mouth, no facial injury, no soot or airway burn, cervical collar applied at scene, no neck tenderness", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 118/min with occasional ventricular ectopics, borderline hypotension, capillary refill 4 seconds in the arms. The ectopics are the warning that reperfusion potassium is already reaching the heart", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds bilaterally, no chest wall injury, no flail segment, tachypnoeic from acidosis rather than from a chest problem", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, no seatbelt or compression mark, pelvis stable, no evidence of intra-abdominal injury from the collapse", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Both lower legs are grossly swollen, tense, woody hard and cold below the knee, with extensive bruising and blistering. Pulses are absent in both feet. Sensation is absent below both knees. Core temperature 35.4 C from six hours on concrete", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 15 throughout and fully orientated. Dense sensory loss and no motor function below both knees. Upper limbs entirely normal. He has been conscious for the whole six hours and is going to remember all of it", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "k1", "kind": "lab", "category": "Elytes", "name": "Potassium (point of care)", "value": "7.2", "unit": "mmol/L", "normalRange": "3.5-5.0", "abnormal": true, "report": "Life-threatening hyperkalaemia from reperfusion of crushed muscle. This is the number that kills crush victims, and it typically peaks in the minutes to hours after the weight is lifted rather than while they are trapped." },
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Peaked tented T waves in V2 to V5, flattened P waves and a QRS duration of 132 ms. Progression to a sine wave pattern and then to arrest can occur within minutes. Continuous cardiac monitoring must be applied before extrication, not after.", "imageUrl": "", "abnormal": true },
+    { "id": "ck1", "kind": "lab", "category": "Chemistry", "name": "Creatine kinase", "value": "88000", "unit": "U/L", "normalRange": "30-200", "abnormal": true, "report": "Massive rhabdomyolysis. Values above 5000 predict acute kidney injury, and above 75000 predict a high likelihood of renal replacement therapy." },
+    { "id": "ua1", "kind": "lab", "category": "Urine", "name": "Urinalysis", "value": "Dark brown urine, dipstick blood 4+, no red cells on microscopy, pH 5.2", "unit": "-", "normalRange": "Negative", "abnormal": true, "report": "Myoglobinuria. Myoglobin is nephrotoxic in acidic urine, which is the rationale for alkalinisation." },
+    { "id": "gas1", "kind": "lab", "category": "ABG", "name": "Blood gas, calcium and lactate", "value": "pH 7.18 / HCO3 13 / ionised Ca 0.82 mmol/L / lactate 5.6", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Metabolic acidosis with hypocalcaemia. Hypocalcaemia worsens the cardiac effects of hyperkalaemia, and acidosis drives potassium further out of cells." },
+    { "id": "cr1", "kind": "lab", "category": "Chemistry", "name": "Creatinine, phosphate and urate", "value": "Creatinine 2.8 mg/dL / phosphate 2.4 mmol/L / urate 12 mg/dL", "unit": "-", "normalRange": "Creatinine 0.7-1.3 mg/dL", "abnormal": true, "report": "Established acute kidney injury with hyperphosphataemia and hyperuricaemia, the full biochemical picture of massive cell lysis." },
+    { "id": "ct1", "kind": "imaging", "category": "Imaging", "name": "CT trauma series", "report": "Bilateral comminuted tibial and fibular fractures. Gross muscle oedema in all four compartments of both legs. No head, cervical spine, chest, abdominal or pelvic injury.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Cardiac monitor and point of care potassium before anything else", "actions": ["Continuous cardiac monitoring", "12-lead ECG", "Point of care potassium and blood gas", "Defibrillator pads on"], "doseMap": { "Continuous cardiac monitoring": "Ideally applied before extrication. The fatal arrhythmia arrives with reperfusion, so the moment the weight comes off is the moment of highest risk and it should never be unmonitored" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Treat hyperkalaemia immediately, on the ECG rather than on the result", "actions": ["Calcium gluconate or chloride IV", "Insulin with dextrose", "Salbutamol nebuliser", "Sodium bicarbonate"], "doseMap": { "Calcium gluconate or chloride IV": "10 mL of 10% calcium chloride IV over 3 min, repeated as needed. Stabilises the myocardium within minutes. It does not lower potassium, so it must be followed by agents that do", "Insulin with dextrose": "10 units of soluble insulin in 50 mL of 50% dextrose IV over 15 min, with hourly glucose monitoring", "Sodium bicarbonate": "1-2 mEq/kg. Shifts potassium intracellularly and alkalinises the urine, which is doing two jobs at once here" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Very large volume fluid resuscitation, and start it before extrication where possible", "actions": ["Normal saline at high rate", "Urinary catheter with hourly output", "Avoid potassium-containing fluids", "Consider urinary alkalinisation"], "doseMap": { "Normal saline at high rate": "1 to 1.5 litres per hour initially, targeting urine output of 200 to 300 mL/h. Total requirements in the first 24 hours are frequently 10 to 12 litres. This is the single intervention that prevents dialysis-requiring renal failure", "Avoid potassium-containing fluids": "No Ringer's lactate and no Hartmann's solution in established crush syndrome, since both contain potassium" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Ventricular arrhythmia during reperfusion", "outcomeType": "worsened", "narrative": "Twelve minutes after arrival he develops a broad complex tachycardia with a QRS of 160 ms and a systolic of 70. Further calcium and bicarbonate restore a sinus rhythm. Repeat potassium is 6.4. He needed the calcium before the laboratory result was ever available.", "vitalChanges": { "hr": 168, "sbp": 70, "dbp": 40, "rr": 28, "spo2": 93, "gcs": 13 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Tell him about the legs while he can still take part in the decision (Empathy)", "ethicalValue": 25, "narrative": "Both legs are pulseless, insensate and woody after six hours, and amputation is a real possibility. He is fully alert now and will not be in an hour. You tell him what you have found, that fasciotomy is the next step, that amputation may follow, and that the alternative to removing dead muscle is dying of it. He asks you to call his wife and to tell his son not to come into the resus room. You do both. Pi Ek, on the phone later, says that a conscious patient with a survivable injury and an unsurvivable limb deserves to hear it from the person who examined him, and almost never does." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Fasciotomy decision, and it is not automatic", "actions": ["Orthopaedic and vascular surgical review", "Fasciotomy for viable muscle with compartment syndrome", "Primary amputation if the muscle is already necrotic", "Tetanus prophylaxis and antibiotics"], "doseMap": { "Fasciotomy for viable muscle with compartment syndrome": "Fasciotomy through six hours of dead muscle opens an enormous infected wound and increases sepsis and mortality without saving a limb. The decision turns on whether the muscle is viable, which is a surgical judgement made in theatre and not in the resus room" } } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Early renal replacement and ICU care", "actions": ["ICU admission", "Early haemodialysis or continuous renal replacement", "Repeat potassium every 1-2 hours until stable", "Active rewarming", "Serial creatine kinase and calcium"], "doseMap": { "Early haemodialysis or continuous renal replacement": "Indicated for refractory hyperkalaemia, oliguria, or severe acidosis. In crush syndrome dialysis is often needed for potassium control rather than for uraemia, and it may be needed within hours" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Course", "outcomeType": "worsened", "narrative": "At theatre the anterior and deep posterior compartments of both legs contain frankly necrotic non-contractile muscle. Below-knee amputation is performed on the left; the right leg is fasciotomised and salvaged. Creatine kinase peaks at 210000 on day 2. He requires nine sessions of dialysis over three weeks before renal function begins to return.", "vitalChanges": { "hr": 104, "sbp": 108, "dbp": 62, "rr": 20, "temp": 36.6, "gcs": 3 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Dialysis independent by week 5 with a creatinine of 1.6 mg/dL. Transferred to rehabilitation at week 7 for prosthetic fitting. He keeps the right leg with a significant functional deficit. The litre of saline given by the ambulance crew while he was still under the slab is, on the evidence, why he has any kidneys left at all.", "vitalChanges": { "hr": 84, "sbp": 122, "dbp": 74, "rr": 16, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

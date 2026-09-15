@@ -12,7 +12,15 @@ export const MAPS: Record<string, MapData> = {
       { x: 3, y: 3, id: 'bed_1', type: 'bed' },
       { x: 7, y: 3, id: 'bed_2', type: 'bed' },
       { x: 11, y: 3, id: 'bed_3', type: 'bed' },
-      { x: 7, y: 9, id: 'door_south', type: 'door', target: 'AMBULANCE_BAY' }
+      { x: 7, y: 9, id: 'door_south', type: 'door', target: 'AMBULANCE_BAY' },
+      { x: 2, y: 1, id: 'leaderboard', type: 'computer' },
+      { x: 12, y: 1, id: 'consults', type: 'computer' },
+      // Thai Props
+      { x: 1, y: 8, id: 'prop_chair1', type: 'prop', variant: 'green_chair' },
+      { x: 2, y: 8, id: 'prop_chair2', type: 'prop', variant: 'green_chair' },
+      { x: 3, y: 8, id: 'prop_chair3', type: 'prop', variant: 'green_chair' },
+      { x: 13, y: 1, id: 'prop_m150', type: 'prop', variant: 'm150_box' },
+      { x: 1, y: 1, id: 'prop_mama', type: 'prop', variant: 'mama_cup' }
     ]
   },
   AMBULANCE_BAY: {

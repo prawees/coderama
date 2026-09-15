@@ -1,0 +1,61 @@
+{
+  "title": "33yo F Thyroid Storm",
+  "age": "33",
+  "sex": "F",
+  "chiefComplaint": "Fever, palpitations and agitation",
+  "diagnoses": ["Thyroid storm", "Sepsis", "Sympathomimetic toxicity", "Neuroleptic malignant syndrome", "Serotonin syndrome"],
+  "background": "Known Graves disease diagnosed two years ago. She stopped methimazole four months ago when she became pregnant, after reading online that it harms the fetus, and did not tell anyone. She is now 22 weeks pregnant. She has had a urinary tract infection for four days, which is the precipitant. Over 36 hours she has become febrile, agitated and confused, and her family brought her in when she stopped making sense. Untreated thyroid storm carries mortality between 10 and 30%.",
+  "patientAppearance": { "skinTone": "#eec39d", "bmiFactor": 0.85, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 168, "abnormal": true },
+    "sbp": { "value": 156, "abnormal": true },
+    "dbp": { "value": 58, "abnormal": true },
+    "rr": { "value": 32, "abnormal": true },
+    "temp": { "value": 40.2, "abnormal": true },
+    "spo2": { "value": 95, "abnormal": false },
+    "gcs": { "value": 12, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Agitated and delirious, drenched in sweat, thin with obvious recent weight loss, warm to touch, restless in the bed", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Bilateral exophthalmos with lid lag and lid retraction, diffusely enlarged smooth goitre with an audible bruit over both lobes, no tracheal deviation, no stridor", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Atrial fibrillation at 168/min with a wide pulse pressure of 156/58, bounding pulses, third heart sound, bibasal crackles indicating high output cardiac failure", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoeic at 32/min with fine bibasal crackles from pulmonary congestion, no bronchial breathing or focal consolidation", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Gravid uterus consistent with 22 weeks, fetal heart rate 176 (tachycardic, mirroring the mother), hyperactive bowel sounds with diarrhoea, mild right upper quadrant tenderness from hepatic congestion", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Warm, flushed and profusely diaphoretic, pretibial myxoedema over both shins, fine tremor of the outstretched hands, onycholysis", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 12 (E3V4M5), agitated delirium, brisk reflexes with a fine tremor, proximal muscle weakness, no focal deficit, no neck stiffness", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "tft1", "kind": "lab", "category": "Endocrine", "name": "Thyroid function", "value": "TSH <0.01 mIU/L / free T4 68 pmol/L / free T3 24 pmol/L", "unit": "-", "normalRange": "Free T4 12-22 pmol/L", "abnormal": true, "report": "Severe biochemical thyrotoxicosis. The absolute hormone levels do not distinguish storm from uncomplicated thyrotoxicosis. Thyroid storm is a clinical diagnosis based on organ dysfunction, and treatment must never wait for these results." },
+    { "id": "burch1", "kind": "lab", "category": "Scoring", "name": "Burch-Wartofsky score", "value": "85", "unit": "points", "normalRange": "<25 unlikely", "abnormal": true, "report": "Temperature 40.2 (30 points), severe agitation and delirium (20), diarrhoea (10), heart rate above 140 (25), pulmonary congestion (10), precipitant present (10). A score above 45 is highly suggestive of storm." },
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Atrial fibrillation with a rapid ventricular response at 168/min. No ischaemic ST changes. Atrial fibrillation occurs in 10 to 35% of thyrotoxic patients and is a common presenting feature in this age group.", "imageUrl": "", "abnormal": true },
+    { "id": "lft1", "kind": "lab", "category": "Chemistry", "name": "Liver function", "value": "Bilirubin 3.2 mg/dL / AST 92 / ALT 78", "unit": "-", "normalRange": "Bilirubin <1.2 mg/dL", "abnormal": true, "report": "Jaundice with hepatic dysfunction from congestion. Jaundice in thyroid storm is a poor prognostic sign and also complicates the use of thionamides, which are themselves hepatotoxic." },
+    { "id": "ua1", "kind": "lab", "category": "Micro", "name": "Urinalysis and culture", "value": "Nitrite positive, leucocytes 3+, E. coli on culture", "unit": "-", "normalRange": "Negative", "abnormal": true, "report": "Urinary tract infection as the precipitant. Thyroid storm almost always has a trigger, and failing to find and treat it means the storm does not settle." },
+    { "id": "gluc1", "kind": "lab", "category": "POCT", "name": "Glucose and calcium", "value": "Glucose 168 mg/dL / corrected calcium 11.2 mg/dL", "unit": "-", "normalRange": "Calcium 8.5-10.2 mg/dL", "abnormal": true, "report": "Hyperglycaemia and hypercalcaemia, both recognised features of thyrotoxicosis through increased bone turnover." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Treat clinically, do not wait for thyroid function results", "actions": ["Calculate Burch-Wartofsky score", "Continuous cardiac monitoring", "IV access and bloods including TFTs", "Active cooling with paracetamol, never aspirin"], "doseMap": { "Active cooling with paracetamol, never aspirin": "Aspirin displaces thyroid hormone from thyroid binding globulin and raises free hormone levels, making the storm worse. This is a specific and frequently made error" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Beta blockade first for the adrenergic storm", "actions": ["Propranolol IV or oral", "Esmolol infusion if titration is needed", "Cautious use given the cardiac failure"], "doseMap": { "Propranolol IV or oral": "1 mg IV slowly, repeated, or 60-80 mg orally every 4-6 hours. Propranolol is preferred because at high doses it also blocks peripheral conversion of T4 to T3", "Cautious use given the cardiac failure": "She has high output failure rather than pump failure, so beta blockade is still indicated, but titrate with an esmolol infusion so it can be stopped if the output falls" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Thionamide before iodine, and the order matters", "actions": ["Propylthiouracil (preferred here)", "Then iodine at least one hour later", "Hydrocortisone IV"], "doseMap": { "Propylthiouracil (preferred here)": "600 mg loading then 200-250 mg every 4 hours. Preferred over methimazole in storm because it also blocks peripheral T4 to T3 conversion, and preferred in the first trimester, though she is at 22 weeks", "Then iodine at least one hour later": "Lugol's iodine or potassium iodide, at least 1 hour after the thionamide. Giving iodine first provides substrate for new hormone synthesis and worsens the storm. This sequencing is the highest yield teaching point in the case", "Hydrocortisone IV": "100 mg IV every 8 hours. Blocks peripheral conversion and treats the relative adrenal insufficiency of storm" } } },
+      { "id": "req4", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Treat the precipitant and support the patient", "actions": ["Antibiotics for the urinary tract infection", "IV fluids with dextrose", "Cooling measures", "Fetal monitoring and obstetric involvement"], "doseMap": { "IV fluids with dextrose": "High metabolic rate depletes glycogen. Fluid requirements are large from fever, sweating and diarrhoea" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 1200, "y": 200 }, "data": { "label": "Initial response", "outcomeType": "improved", "narrative": "Heart rate falls to 118 over four hours with esmolol, temperature to 38.4 with cooling. She remains delirious. Fetal heart rate settles to 152 as the mother improves, which is the expected pattern.", "vitalChanges": { "hr": 118, "sbp": 138, "dbp": 68, "rr": 26, "temp": 38.4, "gcs": 13 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Address why she stopped her medication without making her feel stupid (Empathy)", "ethicalValue": 20, "narrative": "She stopped a life-saving drug because of something she read while pregnant and frightened, and she did not tell her doctor because she expected to be scolded. Once she is lucid you tell her that untreated thyrotoxicosis in pregnancy is far more dangerous to a fetus than the medication, that her instinct to protect the baby was right even though the conclusion was wrong, and that the important thing now is that she can tell you when she is worried about a drug. You arrange joint endocrine and obstetric follow-up rather than two separate clinics she has to navigate alone." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "ICU admission and definitive planning", "actions": ["ICU or high dependency admission", "Continue the four drug regimen with tapering", "Cholestyramine if hormone levels remain very high", "Endocrinology and obstetric joint care"], "doseMap": { "Cholestyramine if hormone levels remain very high": "4 g four times daily. Interrupts enterohepatic recirculation of thyroid hormone. Useful when the response is slow" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Resolution", "outcomeType": "improved", "narrative": "Fever resolves by 36 hours, delirium clears by day 3 and she reverts to sinus rhythm spontaneously on day 4 without anticoagulation being required. Free T4 falls to 32 pmol/L by day 5. The pregnancy continues with a normal anomaly scan.", "vitalChanges": { "hr": 92, "sbp": 122, "dbp": 74, "rr": 18, "temp": 37.0, "gcs": 15 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 8 on propylthiouracil with weekly thyroid function monitoring and joint clinic follow-up. Definitive treatment with radioiodine or surgery is deferred until after delivery, since radioiodine is absolutely contraindicated in pregnancy. She delivers a healthy infant at 38 weeks.", "vitalChanges": { "hr": 84, "sbp": 118, "dbp": 72, "rr": 16, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "req4" },
+      { "id": "e5", "source": "req4", "target": "out1" },
+      { "id": "e6", "source": "out1", "target": "ethical_1" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e_skip", "source": "out1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

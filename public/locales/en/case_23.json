@@ -1,0 +1,58 @@
+{
+  "title": "29yo F Health Anxiety (Non-Emergency)",
+  "age": "29",
+  "sex": "F",
+  "chiefComplaint": "Convinced she has lymphoma after finding a lump in her neck",
+  "diagnoses": ["Benign reactive cervical lymph node", "Health anxiety", "Lymphoma", "Thyroid nodule", "Tuberculous lymphadenitis"],
+  "background": "Presents to the private emergency department at 21:00 with a printed 14-page document from the internet and a symptom diary. She found a small mobile lump in her neck eleven days ago and has been palpating it many times daily since. She reports night sweats, but on questioning these are on nights when the air conditioner is switched off, and she has not lost weight (she has weighed herself daily and is 0.4 kg heavier than last month). She has had two ultrasounds at two other private hospitals in the last nine days, both reported as normal reactive nodes. She asks for a PET-CT and an excisional biopsy tonight. Her father died of lymphoma when she was fourteen.",
+  "patientAppearance": { "skinTone": "#eec19c", "bmiFactor": 1.0, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 92, "abnormal": false },
+    "sbp": { "value": 122, "abnormal": false },
+    "dbp": { "value": 78, "abnormal": false },
+    "rr": { "value": 18, "abnormal": false },
+    "temp": { "value": 36.9, "abnormal": false },
+    "spo2": { "value": 99, "abnormal": false },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Well nourished, well, visibly anxious, tearful when discussing her father, no cachexia, no pallor", "abnormal": false },
+    { "id": "hent1", "system": "HENT", "finding": "Single 9 mm soft, mobile, non-tender node in the right posterior cervical chain with overlying skin excoriation from repeated palpation. No supraclavicular node, no fixed or matted nodes, no thyroid mass, oropharynx normal, tympanic membranes normal", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Regular rate and rhythm, normal heart sounds, no murmur, peripheries warm", "abnormal": false },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds bilaterally, no stridor, no effusion, normal effort", "abnormal": false },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, no hepatomegaly, no splenomegaly, no abdominal or inguinal lymphadenopathy", "abnormal": false },
+    { "id": "skin1", "system": "Skin", "finding": "Normal colour and turgor, no bruising, no petechiae, no rash, no pruritic excoriations other than over the node itself", "abnormal": false },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 15, fully orientated, no focal deficit. Her insight is partial: she can state that two ultrasounds were normal and simultaneously that she is certain the diagnosis has been missed", "abnormal": false }
+  ],
+  "investigations": [
+    { "id": "prev1", "kind": "imaging", "category": "Imaging", "name": "Previous neck ultrasounds (2, from other hospitals)", "report": "Both reports describe a 9 mm right posterior cervical node with preserved fatty hilum, normal ovoid morphology and normal vascular pattern. Benign reactive appearance. No other abnormal nodes. Preserved hilum with an ovoid shape is a reassuring combination and matches the bedside examination.", "imageUrl": "", "abnormal": false },
+    { "id": "cbc1", "kind": "lab", "category": "CBC", "name": "Complete blood count with differential (if ordered)", "value": "WBC 6.8, Hb 13.1, platelets 264, normal differential, no blasts", "unit": "-", "normalRange": "WBC 4.0-11.0", "abnormal": false, "report": "Entirely normal. Requested by the patient rather than indicated by findings. It will not reassure her, because reassurance is not what a test does for health anxiety." },
+    { "id": "ldh1", "kind": "lab", "category": "Chemistry", "name": "LDH (if ordered)", "value": "182", "unit": "U/L", "normalRange": "140-280", "abnormal": false, "report": "Normal. Poor sensitivity and specificity for lymphoma, and a marginally raised value would have triggered a cascade of further imaging with a very low pre-test probability." },
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Chest X-ray (if ordered)", "report": "Normal mediastinal contours, no hilar or mediastinal lymphadenopathy, clear lungs. Not indicated. Doing it in the emergency department at 21:00 changes nothing that outpatient follow-up would not handle better.", "imageUrl": "", "abnormal": false },
+    { "id": "petct1", "kind": "imaging", "category": "Imaging", "name": "PET-CT (requested by patient)", "report": "Not performed and not indicated. Effective dose approximately 15 mSv, cost around 60,000 baht, and in a 29 year old with a benign-appearing 9 mm reactive node the probability of a false positive requiring invasive follow-up substantially exceeds the probability of finding disease.", "imageUrl": "", "abnormal": false }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Take the lump seriously and examine properly for red flags", "actions": ["Full lymph node survey including supraclavicular, axillary and inguinal", "Assess node size, mobility, consistency and fixation", "Screen for true B symptoms: documented weight loss, drenching night sweats, unexplained fever", "Review the previous imaging rather than repeating it"], "doseMap": { "Screen for true B symptoms: documented weight loss, drenching night sweats, unexplained fever": "Ask for objective evidence. Weight from a scale, sweat that soaks bedding and requires changing clothes. Her reported symptoms do not meet either definition" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 480, "y": 200 }, "data": { "label": "No red flags", "outcomeType": "improved", "narrative": "A 9 mm soft mobile posterior cervical node in a well young adult, with two normal ultrasounds showing preserved hilar architecture and no true B symptoms. This is a benign reactive node. It is also not an emergency, and it never was.", "vitalChanges": {} } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 720, "y": 420 }, "data": { "label": "Name the real problem out loud, gently, instead of ordering the scan (Empathy)", "ethicalValue": 20, "narrative": "The clinical question was settled in four minutes. You spend eleven more on the actual one. You say that her father died when she was fourteen, that this lump appeared eleven days ago and that she has now had three medical assessments in nine days, and you ask whether the fear might be the thing that needs treating. She cries and says nobody has ever connected the two out loud. Ordering the PET-CT would have taken thirty seconds and would have bought her about four days of relief before the next lump." } },
+      { "id": "req2", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Decline the PET-CT and biopsy, and explain the reasoning concretely", "actions": ["No PET-CT", "No excisional biopsy", "No repeat ultrasound within the same month", "Explain false positive risk in concrete numbers"], "doseMap": { "Explain false positive risk in concrete numbers": "Vague refusal sends her to a fourth hospital. Concrete numbers, the radiation dose, and the specific way a false positive would lead to an unnecessary operation give her something to reason with" } } },
+      { "id": "req3", "type": "required", "position": { "x": 1200, "y": 200 }, "data": { "label": "Give a defined follow-up plan with an explicit endpoint", "actions": ["Outpatient general medicine or ENT review in 4 weeks", "Single repeat ultrasound at 6 weeks if the node persists", "Written red flag list", "Advise stopping self-palpation, which keeps the node inflamed"], "doseMap": { "Written red flag list": "Node above 2 cm, hard or fixed, supraclavicular location, documented weight loss above 10% in 6 months, drenching night sweats, or a new node elsewhere" } } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Offer help for the anxiety itself", "actions": ["Offer referral to psychological services for health anxiety", "Discuss with her GP or primary care physician", "Do not prescribe benzodiazepines from the emergency department"], "doseMap": { "Offer referral to psychological services for health anxiety": "Cognitive behavioural therapy has good evidence for health anxiety. Offer, do not impose, and accept that she may decline tonight" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 120 }, "data": { "label": "Correct disposition", "outcomeType": "resolved", "narrative": "Discharged with no imaging and a four week appointment. She accepts the psychology referral. The node is 4 mm at follow-up and gone by twelve weeks. Total cost to her: one consultation. Total cost of the alternative path: about 90,000 baht and a scar.", "vitalChanges": {} } },
+      { "id": "out3", "type": "outcome", "position": { "x": 1680, "y": 340 }, "data": { "label": "Cascade path", "outcomeType": "worsened", "narrative": "If you order the PET-CT, it shows mild uptake in the node (SUV 2.1, entirely consistent with reactive change) plus an incidental 6 mm lung nodule. That generates a chest CT, a respiratory referral, two years of surveillance scans and an excisional biopsy of a benign node. She is more frightened at the end of it than at the start. Nothing that happened was negligent, and all of it was harm.", "vitalChanges": {} } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "out1" },
+      { "id": "e3", "source": "out1", "target": "ethical_1" },
+      { "id": "e_skip", "source": "out1", "target": "req2" },
+      { "id": "e4", "source": "ethical_1", "target": "req2" },
+      { "id": "e5", "source": "req2", "target": "req3" },
+      { "id": "e6", "source": "req3", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "req1", "target": "out3" }
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "title": "17yo M Pelvic Fracture Haemorrhage",
+  "age": "17",
+  "sex": "M",
+  "chiefComplaint": "Motorcycle versus pickup truck, shocked on arrival",
+  "diagnoses": ["Open book pelvic fracture with haemorrhagic shock", "Intra-abdominal haemorrhage", "Retroperitoneal haematoma", "Urethral injury", "Traumatic brain injury"],
+  "background": "Friday night on the Friendship Highway. No helmet. He was thrown roughly 15 metres and the bike went under the truck. EMS applied a scoop stretcher and gave 500 mL of saline en route. Down time 35 minutes. His mother is riding a scooter from Non Sung and is 40 minutes away. He is 17, so consent for theatre is a live problem.",
+  "patientAppearance": { "skinTone": "#d09a6a", "bmiFactor": 0.9, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 142, "abnormal": true },
+    "sbp": { "value": 72, "abnormal": true },
+    "dbp": { "value": 38, "abnormal": true },
+    "rr": { "value": 32, "abnormal": true },
+    "temp": { "value": 35.1, "abnormal": true },
+    "spo2": { "value": 93, "abnormal": true },
+    "gcs": { "value": 12, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Young, agitated and combative from hypoperfusion, grey and cold, road rash over the whole left side", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Scalp laceration 8 cm over the left parietal region with active venous bleeding, no midface instability, no CSF rhinorrhoea, cervical collar applied, no haemotympanum", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 142/min, radial pulse barely palpable, femoral pulse present, capillary refill over 5 seconds, no JVD", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Equal air entry bilaterally, tender left ribs 8 to 10 without flail, no surgical emphysema, tachypnoeic from acidosis", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Distended, diffusely tender, seatbelt sign absent, pelvis feels unstable on gentle assessment. Do not spring the pelvis repeatedly, each examination disrupts clot", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Cold clammy mottled skin to mid-thigh, extensive abrasions, blood at the urethral meatus and a scrotal haematoma, temperature 35.1 C and falling", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 12 (E3V4M5), agitated, pupils 3 mm equal and reactive, moves all limbs, no lateralising signs", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "fast1", "kind": "imaging", "category": "Imaging", "name": "eFAST", "report": "No free fluid in Morison's pouch, splenorenal recess or pelvis. No pericardial effusion. Lung sliding present bilaterally. A negative FAST does not exclude retroperitoneal pelvic bleeding, which is where this patient is losing blood.", "imageUrl": "", "abnormal": false },
+    { "id": "pxr1", "kind": "imaging", "category": "Imaging", "name": "Pelvic X-ray", "report": "Symphyseal diastasis of 4.5 cm with widening of both sacroiliac joints. Anteroposterior compression injury, Young-Burgess type 2. Open book pattern with a large potential retroperitoneal volume.", "imageUrl": "", "abnormal": true },
+    { "id": "hb1", "kind": "lab", "category": "CBC", "name": "Haemoglobin", "value": "8.2", "unit": "g/dL", "normalRange": "13.5-17.5", "abnormal": true, "report": "Already low after only 500 mL of pre-hospital crystalloid, indicating substantial ongoing loss." },
+    { "id": "abg1", "kind": "lab", "category": "ABG", "name": "Blood gas with base deficit", "value": "pH 7.11 / base deficit -14 / lactate 7.9", "unit": "-", "normalRange": "base deficit -2 to +2", "abnormal": true, "report": "Severe base deficit predicts transfusion requirement and mortality better than blood pressure in young trauma patients, who compensate until they suddenly do not." },
+    { "id": "coag1", "kind": "lab", "category": "Coagulation", "name": "Fibrinogen and INR", "value": "Fibrinogen 1.1 g/L / INR 1.7", "unit": "-", "normalRange": "Fibrinogen 2.0-4.0 g/L", "abnormal": true, "report": "Acute traumatic coagulopathy. The lethal triad of hypothermia, acidosis and coagulopathy is already established." },
+    { "id": "ct1", "kind": "imaging", "category": "Imaging", "name": "CT trauma series with contrast (after stabilisation)", "report": "Large retroperitoneal haematoma with active arterial contrast extravasation from a branch of the internal iliac artery. Bilateral superior and inferior pubic rami fractures. No solid organ injury. Small bladder neck injury. No intracranial haemorrhage.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Pelvic binder at the level of the greater trochanters, immediately", "actions": ["Apply pelvic binder", "Internally rotate and strap the legs"], "doseMap": { "Apply pelvic binder": "Centre over the greater trochanters, not the iliac crests. A binder placed too high does not close the pelvic volume" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Catastrophic haemorrhage control and airway with oxygen", "actions": ["Direct pressure and staples to the scalp laceration", "Oxygen 15 L/min", "Two large bore IV or intraosseous access"], "doseMap": {} } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Blood not crystalloid, plus tranexamic acid", "actions": ["Activate massive transfusion protocol", "Emergency O negative red cells", "Tranexamic acid IV", "Stop crystalloid"], "doseMap": { "Activate massive transfusion protocol": "1:1:1 red cells, plasma, platelets. Add cryoprecipitate for fibrinogen below 1.5 g/L", "Tranexamic acid IV": "1 g over 10 min then 1 g over 8 hours, only if within 3 hours of injury" } } },
+      { "id": "req4", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Aggressive rewarming, the third arm of the lethal triad", "actions": ["Forced air warming blanket", "Fluid and blood warmer", "Remove wet clothing, raise room temperature"], "doseMap": {} } },
+      { "id": "out1", "type": "outcome", "position": { "x": 1200, "y": 200 }, "data": { "label": "Transient responder", "outcomeType": "improved", "narrative": "After 4 units of red cells and 4 of plasma his systolic reaches 96, then drifts back to 84 within ten minutes. He is still bleeding and no product will fix that. He needs a haemostatic intervention, not more resuscitation.", "vitalChanges": { "hr": 126, "sbp": 84, "dbp": 48, "rr": 28, "temp": 35.6, "gcs": 13 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 400 }, "data": { "label": "Proceed under emergency doctrine and phone the mother yourself from the resus room (Empathy)", "ethicalValue": 15, "narrative": "He is a minor and his mother is 40 minutes away. You do not wait, because emergency treatment necessary to preserve life does not require parental consent. You also do not simply proceed in silence. You take 60 seconds, phone her while she is stopped at the roadside, tell her he is alive, tell her what you are about to do and why you cannot wait for her, and tell her which door to come to. Pi Jai says afterwards that this is the call families remember for the rest of their lives." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Definitive haemorrhage control: angioembolisation or preperitoneal packing", "actions": ["Interventional radiology angioembolisation", "Or preperitoneal pelvic packing and external fixation if IR unavailable", "Orthopaedic and general surgical consult"], "doseMap": { "Or preperitoneal pelvic packing and external fixation if IR unavailable": "In a provincial hospital at 02:00, packing in theatre is the realistic option and it is the correct one" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Haemostasis", "outcomeType": "improved", "narrative": "Preperitoneal packing plus external fixation. Estimated blood loss 2.8 litres. Total transfusion 11 units of red cells. He goes to ICU packed and intubated, for planned re-look at 48 hours. Damage control, not definitive repair.", "vitalChanges": { "hr": 104, "sbp": 106, "dbp": 62, "temp": 36.2, "gcs": 12 } } },
+      { "id": "req6", "type": "required", "position": { "x": 2160, "y": 200 }, "data": { "label": "Do not pass a urethral catheter, suprapubic drainage instead", "actions": ["Retrograde urethrogram or urology consult", "Suprapubic catheter", "ICU admission with ongoing warming and coagulation correction"], "doseMap": { "Suprapubic catheter": "Blood at the meatus with a pelvic fracture indicates urethral injury. Blind catheterisation converts a partial tear into a complete one" } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2400, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Packs removed on day 3, definitive pelvic fixation on day 6. He walks with a frame at three weeks. He will have chronic sacroiliac pain and he will almost certainly ride again without a helmet, which is the part of this job that never resolves.", "vitalChanges": { "hr": 88, "sbp": 116, "dbp": 70, "rr": 18, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "req4" },
+      { "id": "e5", "source": "req4", "target": "out1" },
+      { "id": "e6", "source": "out1", "target": "ethical_1" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e_skip", "source": "out1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "req6" },
+      { "id": "e10", "source": "req6", "target": "out3" }
+    ]
+  }
+}

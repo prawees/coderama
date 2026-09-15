@@ -1,0 +1,61 @@
+{
+  "title": "31yo F Amniotic Fluid Embolism",
+  "age": "31",
+  "sex": "F",
+  "chiefComplaint": "Sudden collapse during labour",
+  "diagnoses": ["Amniotic fluid embolism", "Pulmonary thromboembolism", "Eclampsia", "Anaphylaxis to anaesthetic agent", "Total spinal anaesthesia", "Placental abruption"],
+  "background": "Para 2 at 39+4 weeks, in established labour, 8 cm dilated, on an oxytocin infusion for augmentation. Membranes ruptured artificially eleven minutes ago. She said she felt suddenly cold and frightened, then had a brief seizure and collapsed. This sense of impending doom immediately preceding collapse is described in a large proportion of cases and is often the only warning. The obstetric emergency call goes out at 03:14.",
+  "patientAppearance": { "skinTone": "#eec39c", "bmiFactor": 1.2, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 148, "abnormal": true },
+    "sbp": { "value": 62, "abnormal": true },
+    "dbp": { "value": 32, "abnormal": true },
+    "rr": { "value": 38, "abnormal": true },
+    "temp": { "value": 36.5, "abnormal": false },
+    "spo2": { "value": 72, "abnormal": true },
+    "gcs": { "value": 6, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Unresponsive, cyanosed, gasping, in extremis within four minutes of feeling unwell. The speed of deterioration is itself diagnostic", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Central cyanosis of the lips and tongue, frothy blood-stained secretions at the mouth, no facial or airway swelling and no urticaria, which argues against anaphylaxis", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 148/min, profound hypotension, impalpable radial pulses with a weak central pulse, capillary refill over 6 seconds. Initial right ventricular failure from acute pulmonary vasoconstriction, followed within minutes by left ventricular failure", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Widespread coarse crackles, saturations 72% on 15 L/min, poor air entry, no wheeze, no unilateral absence of breath sounds", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Gravid uterus, hypertonic and firm, fetal heart rate 68 bpm and falling on the cardiotocograph. Torrential fresh vaginal bleeding beginning about eight minutes after collapse as the coagulopathy establishes", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Cyanosed and mottled, bleeding freely from the intravenous cannula site and from the epidural insertion site, no rash. Oozing from every puncture site is the visible marker of disseminated intravascular coagulation", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 6, post-ictal, pupils 4 mm and sluggish. Neurological injury here is hypoxic and is determined by how fast circulation is restored", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "coag1", "kind": "lab", "category": "Coagulation", "name": "Fibrinogen, INR and platelets", "value": "Fibrinogen <0.5 g/L / INR 3.8 / platelets 42 x10^9/L", "unit": "-", "normalRange": "Fibrinogen 4.0-6.0 in pregnancy", "abnormal": true, "report": "Fulminant disseminated intravascular coagulation. Fibrinogen collapsing from a pregnancy baseline of 4 to 6 g/L to under 0.5 within minutes is close to specific for amniotic fluid embolism among obstetric catastrophes." },
+    { "id": "abg1", "kind": "lab", "category": "ABG", "name": "Arterial blood gas", "value": "pH 6.98 / pCO2 62 / pO2 38 / lactate 12.4", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Profound mixed acidosis with severe hypoxaemia." },
+    { "id": "echo1", "kind": "imaging", "category": "Imaging", "name": "Bedside transthoracic echocardiogram", "report": "Severely dilated, poorly contracting right ventricle with septal bowing into the left ventricle and a small underfilled left ventricle. No pericardial effusion. This right ventricular failure pattern guides treatment: it demands vasopressor and pulmonary vasodilator support, and it means aggressive fluid loading will make things worse.", "imageUrl": "", "abnormal": true },
+    { "id": "hb1", "kind": "lab", "category": "CBC", "name": "Haemoglobin (serial)", "value": "10.4 then 6.2 g/dL over 25 minutes", "unit": "g/dL", "normalRange": "11.0-14.0 in pregnancy", "abnormal": true, "report": "Rapid fall from postpartum haemorrhage on a background of complete coagulopathy." },
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Sinus tachycardia at 146/min with right axis deviation, S1Q3T3 pattern and T wave inversion in V1 to V4. Acute right heart strain. Indistinguishable from massive pulmonary thromboembolism on ECG alone.", "imageUrl": "", "abnormal": true },
+    { "id": "ca1", "kind": "lab", "category": "Elytes", "name": "Ionised calcium", "value": "0.82", "unit": "mmol/L", "normalRange": "1.15-1.30", "abnormal": true, "report": "Hypocalcaemia from massive transfusion with citrated products. Calcium is required for both coagulation and myocardial contractility and is repeatedly forgotten during massive transfusion." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Obstetric emergency call, left lateral displacement, airway and oxygen", "actions": ["Activate obstetric and neonatal emergency teams", "Manual left uterine displacement", "100% oxygen and prepare for intubation", "Two large bore IV lines"], "doseMap": { "Manual left uterine displacement": "Rather than a tilted table, since effective chest compressions require a flat surface. Aortocaval compression by a term uterus can halve cardiac output during CPR" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Prepare for perimortem caesarean section within 4 minutes if she arrests", "actions": ["Scalpel at the bedside", "Assign a timekeeper who announces elapsed minutes aloud", "Neonatal team ready"], "doseMap": { "Scalpel at the bedside": "If cardiac arrest occurs at over 20 weeks gestation, delivery must begin by 4 minutes and be completed by 5. This is done at the bedside, not in theatre, and it is done primarily to improve maternal resuscitation by relieving aortocaval compression" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Support the right ventricle, do not flood it", "actions": ["Noradrenaline infusion", "Inotrope for right ventricular support", "Cautious fluid only", "Bedside echocardiogram to guide"], "doseMap": { "Noradrenaline infusion": "Start early for vasoplegia", "Inotrope for right ventricular support": "Dobutamine or milrinone. Consider inhaled nitric oxide or a pulmonary vasodilator if available", "Cautious fluid only": "A failing dilated right ventricle is made worse by volume loading. This is the opposite of the reflex for an obstetric collapse with bleeding, and it is why the echo matters" } } },
+      { "id": "req4", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Massive transfusion aimed at fibrinogen", "actions": ["Activate massive transfusion protocol", "Cryoprecipitate or fibrinogen concentrate early", "Tranexamic acid IV", "Calcium replacement"], "doseMap": { "Cryoprecipitate or fibrinogen concentrate early": "Target fibrinogen above 2 g/L. In amniotic fluid embolism the coagulopathy is often more immediately lethal than the cardiac event, and it will not respond to red cells alone", "Calcium replacement": "10 mL of 10% calcium chloride, repeated, guided by ionised calcium" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 1200, "y": 200 }, "data": { "label": "Cardiac arrest and perimortem delivery", "outcomeType": "worsened", "narrative": "She arrests in pulseless electrical activity at minute 6. Perimortem caesarean is started at 4 minutes into the arrest and the infant is delivered at 4 minutes 40 seconds, Apgar 3 then 7 after resuscitation. Maternal circulation returns 90 seconds after delivery, which is the effect the procedure is designed to produce.", "vitalChanges": { "hr": 132, "sbp": 78, "dbp": 44, "rr": 14, "spo2": 88, "gcs": 3 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Assign someone to the husband, and debrief the team afterwards (Empathy)", "ethicalValue": 20, "narrative": "Her husband watched his wife's abdomen opened on a delivery bed. You assign a senior midwife to stay with him from that moment, rather than leaving him in a corridor for two hours as usually happens. Afterwards, you insist on a team debrief at 08:00 rather than letting everyone go home: the junior midwife who was holding the fetal monitor is 23 and has just watched a perimortem caesarean, and she is going to remember whether anyone spoke to her. Pi Pim runs the debrief and says the department loses more staff to unprocessed nights like this one than to salaries." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Post-arrest ICU care and haemorrhage control", "actions": ["ICU admission with targeted temperature management", "Uterine haemostasis: balloon tamponade or B-Lynch suture", "Continue product-guided transfusion", "Consider ECMO referral if refractory"], "doseMap": { "Uterine haemostasis: balloon tamponade or B-Lynch suture": "Hysterectomy if bleeding is uncontrolled, but only after fibrinogen has been corrected. Operating into an uncorrected coagulopathy makes the bleeding worse" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Survival with organ support", "outcomeType": "improved", "narrative": "Total transfusion: 14 units of red cells, 12 of plasma, 20 of cryoprecipitate, 3 pools of platelets. Uterus preserved with a balloon. Extubated day 4. Mild cognitive impairment from the hypoxic period, improving at three months. Reported survival has improved substantially with early recognition and aggressive product replacement.", "vitalChanges": { "hr": 96, "sbp": 108, "dbp": 62, "rr": 18, "spo2": 96, "gcs": 14 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 16 with her daughter. Referred to the national amniotic fluid embolism registry. She is counselled that recurrence in a future pregnancy has been reported but is not clearly increased, which is an honest answer rather than a reassuring one. The unit reviews its perimortem caesarean readiness and moves the scalpel pack into every delivery room.", "vitalChanges": { "hr": 84, "sbp": 116, "dbp": 70, "rr": 16, "spo2": 98, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "req4" },
+      { "id": "e5", "source": "req4", "target": "out1" },
+      { "id": "e6", "source": "out1", "target": "ethical_1" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e_skip", "source": "out1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

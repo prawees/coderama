@@ -32,12 +32,15 @@
   "managementGraph": {
     "nodes": [
       { "id": "start1", "type": "start", "position": { "x": 0, "y": 0 }, "data": { "label": "Start" } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 100, "y": 100 }, "data": { "label": "Call family for history (Empathy)", "ethicalValue": 10, "narrative": "The family appreciates the call and provides a detailed medical history. Your reputation increases." } },
       { "id": "req1", "type": "required", "position": { "x": 200, "y": 0 }, "data": { "label": "Give Atropine", "actions": ["Atropine IV"], "doseMap": { "Atropine IV": "1 mg" } } },
       { "id": "out1", "type": "outcome", "position": { "x": 400, "y": 0 }, "data": { "label": "Outcome", "outcomeType": "improved", "narrative": "Heart rate slightly improved.", "vitalChanges": { "hr": 45, "sbp": 90 } } }
     ],
     "edges": [
-      { "id": "e1", "source": "start1", "target": "req1" },
-      { "id": "e2", "source": "req1", "target": "out1" }
+      { "id": "e1", "source": "start1", "target": "ethical_1" },
+      { "id": "e2", "source": "ethical_1", "target": "req1" },
+      { "id": "e_skip", "source": "start1", "target": "req1" },
+      { "id": "e3", "source": "req1", "target": "out1" }
     ]
   }
 }

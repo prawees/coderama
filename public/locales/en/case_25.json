@@ -1,0 +1,61 @@
+{
+  "title": "36yo F Fat Embolism after Liposuction",
+  "age": "36",
+  "sex": "F",
+  "chiefComplaint": "Breathless and confused 28 hours after large volume liposuction",
+  "diagnoses": ["Fat embolism syndrome", "Pulmonary thromboembolism", "Lidocaine systemic toxicity", "Fluid overload pulmonary oedema", "Sepsis"],
+  "background": "Large volume liposuction of the abdomen, flanks and thighs with gluteal fat grafting, performed 28 hours ago. Approximately 5.5 litres of aspirate removed in one session under tumescent anaesthesia. She was discharged after six hours of observation. Overnight she became breathless and agitated, and her partner brought her in when she stopped making sense. She takes a combined oral contraceptive. She is a marketing executive and has a product launch in four days, which is why she chose the single-session option over two staged procedures.",
+  "patientAppearance": { "skinTone": "#f2cba8", "bmiFactor": 1.0, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 128, "abnormal": true },
+    "sbp": { "value": 96, "abnormal": true },
+    "dbp": { "value": 58, "abnormal": true },
+    "rr": { "value": 36, "abnormal": true },
+    "temp": { "value": 38.4, "abnormal": true },
+    "spo2": { "value": 86, "abnormal": true },
+    "gcs": { "value": 12, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Agitated, confused, air hungry, unable to give a coherent history, pulling at the oxygen mask", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Subconjunctival petechiae in both eyes. Retinal examination shows cotton wool spots and retinal fat globules (Purtscher-like retinopathy), which is close to diagnostic in this setting", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 128/min, loud P2, no murmur, JVP mildly raised, capillary refill 3 seconds", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Bilateral fine crackles throughout, no wheeze, saturations 86% on 15 L/min, respiratory rate 36. Hypoxaemia disproportionate to the chest X-ray findings", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Extensive bruising and tenderness over all liposuction sites, no peritonism, compression garments in place, no evidence of intra-abdominal perforation", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Non-blanching petechial rash across the upper chest, anterior axillary folds and neck, in a distribution that spares the lower body. This petechial rash appears in about half of cases, is often missed under a gown, and typically fades within 24 hours", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 12 (E3V4M5), agitated and disorientated, no focal deficit, no meningism. Cerebral involvement precedes or accompanies the respiratory picture in most cases", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "abg1", "kind": "lab", "category": "ABG", "name": "Arterial blood gas", "value": "pH 7.46 / pCO2 28 / pO2 48 / P/F ratio 160", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Severe hypoxaemic respiratory failure with a respiratory alkalosis. A PaO2 below 60 mmHg is a major Gurd criterion for fat embolism syndrome." },
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Portable Chest X-ray", "report": "Bilateral diffuse patchy alveolar infiltrates in a snowstorm pattern, normal heart size, no pleural effusion, no pneumothorax. The infiltrates are less impressive than the degree of hypoxaemia, which is characteristic.", "imageUrl": "", "abnormal": true },
+    { "id": "ctpa1", "kind": "imaging", "category": "Imaging", "name": "CT pulmonary angiogram", "report": "No filling defect in the pulmonary arteries to the segmental level, excluding large thromboembolism. Widespread ground glass opacification with interlobular septal thickening. Findings support fat embolism rather than thrombotic embolism.", "imageUrl": "", "abnormal": true },
+    { "id": "cbc1", "kind": "lab", "category": "CBC", "name": "Haemoglobin and platelets", "value": "Hb 9.2 g/dL / platelets 78 x10^9/L", "unit": "-", "normalRange": "Hb 12.0-15.5 g/dL", "abnormal": true, "report": "Anaemia and thrombocytopenia, both minor Gurd criteria. A sudden unexplained drop in both after orthopaedic or cosmetic surgery should raise this diagnosis." },
+    { "id": "echo1", "kind": "imaging", "category": "Imaging", "name": "Bedside echocardiogram", "report": "Right ventricle mildly dilated with preserved function, no McConnell's sign, no thrombus in transit. Left ventricular function normal. Argues against massive pulmonary thromboembolism and against cardiogenic pulmonary oedema.", "imageUrl": "", "abnormal": true },
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Sinus tachycardia at 126/min with non-specific ST depression in V1 to V3. No S1Q3T3 pattern. QTc 430 ms, which does not support lidocaine toxicity from the tumescent solution.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "High flow oxygen and full exposure to look for the petechial rash", "actions": ["High flow oxygen 15 L/min", "Expose chest, axillae and neck", "Fundoscopy", "Continuous monitoring"], "doseMap": { "Expose chest, axillae and neck": "The petechial rash is the finding that makes this diagnosis at the bedside and it fades within 24 hours. If you do not look under the gown in the first hours, you will never see it" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Exclude the treatable mimics before settling on the diagnosis", "actions": ["CT pulmonary angiogram", "Bedside echocardiogram", "ECG and lidocaine toxicity assessment", "Blood cultures and sepsis screen"], "doseMap": { "ECG and lidocaine toxicity assessment": "Tumescent liposuction uses very large lidocaine doses with delayed peak absorption at 12 to 14 hours. Toxicity presents with perioral numbness, tinnitus, seizures and arrhythmia, and it has a specific antidote" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Supportive respiratory management, there is no specific treatment", "actions": ["Non-invasive ventilation or intubation with lung protective settings", "PEEP titration", "No heparin, no steroids as treatment"], "doseMap": { "No heparin, no steroids as treatment": "Neither has evidence for established fat embolism syndrome and heparin may worsen bleeding at surgical sites. Prophylactic steroids have weak evidence in high risk orthopaedic patients only, which is not this situation" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Progressive hypoxaemia", "outcomeType": "worsened", "narrative": "She fails a trial of non-invasive ventilation and is intubated at hour 3 with a P/F ratio of 130, meeting criteria for moderate ARDS. Fat embolism syndrome is self-limiting over 3 to 7 days, so the job is to keep her alive and out of ventilator induced injury while it resolves.", "vitalChanges": { "hr": 136, "sbp": 92, "dbp": 54, "rr": 20, "spo2": 91, "gcs": 3 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Tell the partner what actually happened, including the volume aspirated (Empathy)", "ethicalValue": 20, "narrative": "The clinic's coordinator arrives and offers to handle the family communication. You decline and speak to the partner yourself. You explain what fat embolism is, that 5.5 litres in one session substantially exceeds the volume most guidelines consider safe, and that this complication is uncommon but recognised. He asks whether she was told. You do not know, and you say that you do not know rather than guessing in either direction. That sentence is the difference between honesty and taking a side." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "ICU with lung protective ventilation and neuroprotection", "actions": ["ICU admission", "Tidal volume 6 mL/kg predicted body weight", "Avoid fever and maintain normoglycaemia", "Mechanical thromboprophylaxis"], "doseMap": { "Tidal volume 6 mL/kg predicted body weight": "Plateau pressure below 30 cmH2O. Consider proning if P/F stays below 150" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 200 }, "data": { "label": "Resolution phase", "outcomeType": "improved", "narrative": "Oxygenation improves from day 4. Extubated day 6. She has a period of confusion and short-term memory difficulty that resolves over three weeks. Neurological recovery in fat embolism is usually complete, which is worth telling the family early because the acute picture looks catastrophic.", "vitalChanges": { "hr": 94, "sbp": 112, "dbp": 68, "rr": 20, "spo2": 96, "temp": 37.0, "gcs": 14 } } },
+      { "id": "req5", "type": "required", "position": { "x": 1920, "y": 200 }, "data": { "label": "Reporting and prevention", "actions": ["Adverse event report to the medical director", "Recommend staged procedures above 4 litres aspirate", "Recommend overnight observation after large volume liposuction", "Occupational and psychological follow up"], "doseMap": {} } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 14 with normal cognition and mild exertional breathlessness that resolves by three months. She missed the product launch. The clinic's single-session volume limit is revised, and the revision is dated the week after your report, which is the closest thing to an acknowledgement anyone gets.", "vitalChanges": { "hr": 82, "sbp": 118, "dbp": 72, "rr": 16, "spo2": 98, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "out2", "target": "req5" },
+      { "id": "e9", "source": "req5", "target": "out3" }
+    ]
+  }
+}

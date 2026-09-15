@@ -1,0 +1,61 @@
+{
+  "title": "45yo M Organophosphate Poisoning",
+  "age": "45",
+  "sex": "M",
+  "chiefComplaint": "Found collapsed in a cassava field, frothing at the mouth",
+  "diagnoses": ["Organophosphate poisoning", "Carbamate poisoning", "Opioid overdose", "Status epilepticus", "Brainstem stroke"],
+  "background": "Sugarcane and cassava farmer, brought in by neighbours on a pickup truck 40 minutes after being found beside an overturned knapsack sprayer. An empty chlorpyrifos bottle was found with him. His wife says he has been drinking heavily since the harvest failed and they argued last night. He is soaked in the concentrate.",
+  "patientAppearance": { "skinTone": "#b5793f", "bmiFactor": 0.9, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 42, "abnormal": true },
+    "sbp": { "value": 88, "abnormal": true },
+    "dbp": { "value": 52, "abnormal": true },
+    "rr": { "value": 8, "abnormal": true },
+    "temp": { "value": 36.1, "abnormal": false },
+    "spo2": { "value": 81, "abnormal": true },
+    "gcs": { "value": 7, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Unresponsive, soaked clothing with a strong solvent and garlic odour, generalised sweating, muscle fasciculations visible over the chest and thighs", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Pinpoint pupils 1 mm and unreactive, copious frothy oral and nasal secretions requiring continuous suction, lacrimation, airway soiled", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus bradycardia at 42/min, hypotensive, peripheries warm and wet, no murmur", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Coarse crackles throughout both lungs from bronchorrhoea, wheeze, shallow ineffective respirations at 8/min. This is what kills, the patient drowns in their own secretions", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, hyperactive bowel sounds, faecal and urinary incontinence, no guarding", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Profuse diaphoresis, contaminated clothing still in place, chemical erythema over the back where the sprayer leaked, no needle marks", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 7 (E1V2M4), generalised fasciculations, flaccid tone between fasciculations, no seizure activity at present", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "abg1", "kind": "lab", "category": "ABG", "name": "Arterial blood gas", "value": "pH 7.14 / pCO2 68 / pO2 54 / HCO3 20", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Type 2 respiratory failure with mixed acidosis. Ventilatory failure from bronchorrhoea and respiratory muscle weakness." },
+    { "id": "che1", "kind": "lab", "category": "Toxicology", "name": "Plasma butyrylcholinesterase", "value": "480", "unit": "U/L", "normalRange": "4900-11900", "abnormal": true, "report": "Severely depressed, confirming cholinesterase inhibition. It confirms the diagnosis but must not delay atropine, which is given on clinical grounds." },
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Sinus bradycardia at 42/min with first degree AV block. QTc 510 ms. Prolonged QT predicts later torsades in organophosphate poisoning and needs magnesium and electrolyte correction.", "imageUrl": "", "abnormal": true },
+    { "id": "poc1", "kind": "lab", "category": "POCT", "name": "Capillary glucose", "value": "142", "unit": "mg/dL", "normalRange": "70-140", "abnormal": true, "report": "Mildly elevated, no hypoglycaemia. Excludes the other common cause of a collapsed farmer." },
+    { "id": "k1", "kind": "lab", "category": "Elytes", "name": "Potassium and magnesium", "value": "K 3.1 / Mg 0.62", "unit": "mmol/L", "normalRange": "K 3.5-5.0 / Mg 0.7-1.0", "abnormal": true, "report": "Both low, compounding the QT prolongation. Replace before torsades occurs." },
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Portable Chest X-ray", "report": "Bilateral diffuse airspace opacification consistent with aspiration and bronchorrhoea. Endotracheal tube 3 cm above the carina.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Protect yourself and decontaminate before anything else", "actions": ["Double gloves, gown, eye protection", "Remove and bag all clothing", "Copious water irrigation of skin and hair", "Ventilate the resus area"], "doseMap": {} } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Airway with continuous suction and assisted ventilation", "actions": ["Yankauer suction, continuous", "Bag-valve-mask with 15 L/min oxygen"], "doseMap": { "Bag-valve-mask with 15 L/min oxygen": "Do not attempt intubation with suxamethonium, it is metabolised by cholinesterase and paralysis will be prolonged for hours. Use rocuronium if paralysis is required" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Aggressive atropine, doubling every 5 minutes until the chest is dry", "actions": ["Atropine IV bolus", "Double the dose every 5 minutes"], "doseMap": { "Atropine IV bolus": "2-3 mg IV, then double the dose every 5 min until secretions dry, chest clear on auscultation, heart rate above 80 and systolic above 90. Total doses over 50 mg are common and expected" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Atropinisation achieved", "outcomeType": "improved", "narrative": "After a cumulative 34 mg of atropine over 25 minutes the chest is clear, the secretions stop and the heart rate rises. Pupils remain small, which is expected and must not be used as the endpoint.", "vitalChanges": { "hr": 96, "sbp": 108, "dbp": 64, "rr": 14, "spo2": 96 } } },
+      { "id": "req4", "type": "required", "position": { "x": 1200, "y": 200 }, "data": { "label": "Pralidoxime for nicotinic features and enzyme reactivation", "actions": ["Pralidoxime IV loading dose", "Pralidoxime infusion"], "doseMap": { "Pralidoxime IV loading dose": "30 mg/kg (about 2 g) IV over 30 min", "Pralidoxime infusion": "8 mg/kg/h for at least 24 hours and until atropine requirement falls" } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 400 }, "data": { "label": "Talk to the wife about the argument, without blame, and arrange psychiatric review (Empathy)", "ethicalValue": 15, "narrative": "She is convinced this is her fault and the neighbours are already treating it as a family shame. You separate her from the crowd, tell her that pesticide self-poisoning is the commonest method of suicide in rural Thailand and not a private failure of her marriage, and arrange for the mental health nurse to see them both. Pi Ek later tells you that the conversation matters more than the atropine, because the second attempt is the one that usually succeeds." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "ICU admission and watch for the intermediate syndrome", "actions": ["ICU admission with atropine infusion", "Serial neck flexion and respiratory muscle strength", "Magnesium and potassium replacement", "No prophylactic gastric lavage"], "doseMap": { "ICU admission with atropine infusion": "Titrate infusion to keep the chest dry. Intermediate syndrome causes respiratory failure at 24 to 96 hours after apparent recovery" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Intermediate syndrome at 48 hours", "outcomeType": "worsened", "narrative": "On day 2 he is alert but cannot lift his head off the pillow and his tidal volumes fall. Proximal muscle and neck flexor weakness without fasciculations. He is reintubated. This is the phase that kills patients who appeared to be recovering.", "vitalChanges": { "rr": 8, "spo2": 90, "gcs": 14 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Extubated on day 6. Cholinesterase recovering. He is seen by psychiatry before discharge and the district health volunteer arranges secure pesticide storage for the village, which is the only intervention with population level evidence behind it.", "vitalChanges": { "hr": 82, "sbp": 118, "dbp": 72, "rr": 16, "spo2": 97, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "req4" },
+      { "id": "e6", "source": "req4", "target": "ethical_1" },
+      { "id": "e_skip", "source": "req4", "target": "req5" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "title": "58yo M Inferior STEMI (VIP Pathway Delay)",
+  "age": "58",
+  "sex": "M",
+  "chiefComplaint": "Crushing chest pain for 50 minutes",
+  "diagnoses": ["Inferior ST elevation myocardial infarction with right ventricular involvement", "Aortic dissection", "Pericarditis", "Oesophageal spasm", "Pulmonary embolism"],
+  "background": "Airline board member, brought by his driver directly to the VIP entrance on the fourth floor rather than the emergency department, because that is the pathway his membership package describes. He was offered tea and a private room. The first ECG was performed 34 minutes after arrival, when a nurse became concerned. He has hypertension, type 2 diabetes and a 30 pack-year smoking history, and he takes sildenafil, last dose about 5 hours ago. His chest pain began 50 minutes before arrival.",
+  "patientAppearance": { "skinTone": "#e0b489", "bmiFactor": 1.2, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 46, "abnormal": true },
+    "sbp": { "value": 88, "abnormal": true },
+    "dbp": { "value": 56, "abnormal": true },
+    "rr": { "value": 22, "abnormal": true },
+    "temp": { "value": 36.4, "abnormal": false },
+    "spo2": { "value": 95, "abnormal": false },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Diaphoretic, grey, clutching his sternum, nauseated, minimising his symptoms and asking whether this can wait until after a scheduled call", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Pale and sweating, no jaundice, no carotid bruit, elevated jugular venous pressure to the angle of the jaw with clear lungs, which is the combination that signals right ventricular infarction", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Bradycardic at 46/min with an irregular pause, hypotensive, soft heart sounds, no murmur, equal radial and femoral pulses with no blood pressure differential between arms", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear lung fields with no crackles. Clear lungs plus hypotension plus raised JVP separates right ventricular infarction from left ventricular failure, and the distinction changes the treatment completely", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, mild epigastric tenderness which he attributes to indigestion, no pulsatile mass, bowel sounds normal", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Cold, grey and clammy, capillary refill 4 seconds, no rash, no peripheral oedema", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 15, fully orientated, no focal deficit, no syncope reported", "abnormal": false }
+  ],
+  "investigations": [
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "ST elevation of 3 mm in II, III and aVF with III greater than II, reciprocal ST depression in I and aVL. Sinus bradycardia at 46/min with second degree AV block, Mobitz I. Inferior STEMI, likely right coronary artery occlusion.", "imageUrl": "", "abnormal": true },
+    { "id": "ecg2", "kind": "imaging", "category": "Imaging", "name": "Right-sided ECG (V4R)", "report": "ST elevation of 1.5 mm in V4R, confirming right ventricular infarction. This single extra tracing takes 90 seconds and changes management: this patient is preload dependent, so nitrates and morphine can drop his blood pressure catastrophically.", "imageUrl": "", "abnormal": true },
+    { "id": "trop1", "kind": "lab", "category": "Cardiac", "name": "High sensitivity troponin T", "value": "48", "unit": "ng/L", "normalRange": "<14", "abnormal": true, "report": "Elevated but only modestly, as expected this early. In a diagnostic STEMI ECG, the troponin result must never delay activation of the catheterisation laboratory." },
+    { "id": "echo1", "kind": "imaging", "category": "Imaging", "name": "Bedside echocardiogram", "report": "Dilated hypokinetic right ventricle with inferior wall akinesia. No pericardial effusion, no aortic root dilatation, no intimal flap seen. Left ventricular ejection fraction approximately 45%.", "imageUrl": "", "abnormal": true },
+    { "id": "cr1", "kind": "lab", "category": "Chemistry", "name": "Creatinine and potassium", "value": "Creatinine 1.4 mg/dL / K 4.2 mmol/L", "unit": "-", "normalRange": "Creatinine 0.7-1.3 mg/dL", "abnormal": true, "report": "Mild renal impairment. Relevant for contrast load at angiography, but not a reason to delay it." },
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Portable Chest X-ray", "report": "Normal mediastinal width, no widened aorta, clear lungs, no pulmonary oedema. Helps exclude dissection but must not delay reperfusion.", "imageUrl": "", "abnormal": false }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "ECG within 10 minutes of first medical contact, wherever in the building he is", "actions": ["12-lead ECG immediately", "Right-sided leads V4R", "Continuous cardiac monitoring", "Defibrillator pads applied"], "doseMap": { "12-lead ECG immediately": "The target is 10 minutes from first contact. This patient's was at 34 minutes because the VIP pathway routed him past the department that owns that target" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Activate the catheterisation laboratory before anything else", "actions": ["Cath lab activation", "Aspirin", "Ticagrelor or clopidogrel loading dose", "Do not wait for troponin"], "doseMap": { "Aspirin": "300 mg chewed", "Ticagrelor or clopidogrel loading dose": "Ticagrelor 180 mg orally, per local protocol" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Withhold nitrates and morphine, this is a preload dependent right ventricle", "actions": ["No nitroglycerin", "No morphine", "Cautious fluid bolus", "Atropine for symptomatic bradycardia"], "doseMap": { "No nitroglycerin": "Absolutely contraindicated here: right ventricular infarction plus sildenafil within 24 hours. Either alone can cause profound hypotension, together they can cause arrest", "Cautious fluid bolus": "250 mL normal saline aliquots with reassessment, target systolic above 90. Stop if crackles develop", "Atropine for symptomatic bradycardia": "0.5 mg IV, repeat to a maximum of 3 mg" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Haemodynamic response to fluid", "outcomeType": "improved", "narrative": "After 750 mL of saline the systolic rises to 104 and the heart rate improves to 58 following atropine. He remains preload dependent. Lungs stay clear. The correct treatment for this hypotension was volume, and the instinctive treatment (nitrates for chest pain) would have been close to lethal.", "vitalChanges": { "hr": 58, "sbp": 104, "dbp": 64, "rr": 20, "spo2": 96 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Refuse to wait for the private cardiologist and document the pathway delay (Empathy)", "ethicalValue": 20, "narrative": "Khun Mali relays that the family would prefer to wait 40 minutes for their own cardiologist to arrive from Sukhumvit rather than use the on-call interventionist. You say no, in front of witnesses, and explain to the patient directly that every 30 minutes of delay measurably increases his chance of dying and of heart failure afterwards. Then you write the 34 minute door-to-ECG time in the notes as a fact rather than a complaint. Ajarn Kit tells you afterwards that the second thing was braver than the first." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Primary PCI, target door to balloon under 90 minutes", "actions": ["Transfer to catheterisation laboratory", "Anticoagulation per cath lab protocol", "Prepare for transient bradycardia and hypotension during reperfusion"], "doseMap": { "Prepare for transient bradycardia and hypotension during reperfusion": "Bezold-Jarisch reflex is common with right coronary reperfusion. Have atropine and pacing available" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 200 }, "data": { "label": "Reperfusion", "outcomeType": "improved", "narrative": "Total occlusion of the proximal right coronary artery, stented with TIMI 3 flow restored. Door to balloon 96 minutes, of which 34 were spent on the fourth floor being offered tea. Peak troponin 8400 ng/L.", "vitalChanges": { "hr": 72, "sbp": 118, "dbp": 70, "rr": 16, "spo2": 98 } } },
+      { "id": "req5", "type": "required", "position": { "x": 1920, "y": 200 }, "data": { "label": "Post-PCI care and system incident report", "actions": ["Coronary care unit admission", "Dual antiplatelet therapy, statin, beta blocker once haemodynamically stable", "Smoking cessation and diabetes review", "File a formal incident report on the VIP entry pathway"], "doseMap": { "Beta blocker once haemodynamically stable": "Not in the acute phase while he is bradycardic and preload dependent. Start when stable" } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 4 with an ejection fraction of 48%. The incident report is acknowledged, filed and not acted on for eleven months, until a second board member is routed the same way and does worse. The pathway is changed the following week.", "vitalChanges": { "hr": 68, "sbp": 122, "dbp": 74, "rr": 16, "spo2": 98 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "out2", "target": "req5" },
+      { "id": "e9", "source": "req5", "target": "out3" }
+    ]
+  }
+}

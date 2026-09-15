@@ -7,9 +7,10 @@ interface NurseNPCProps {
   scale: number;
   tileSize: number;
   onPositionChange?: (pos: {x: number, y: number}) => void;
+  emote?: string | null;
 }
 
-export function NurseNPC({ mapData, scale, tileSize, onPositionChange }: NurseNPCProps) {
+export function NurseNPC({ mapData, scale, tileSize, onPositionChange, emote }: NurseNPCProps) {
   // Start at a random empty tile
   const [pos, setPos] = useState({ x: 8, y: 5 });
   const [dir, setDir] = useState<'up' | 'down' | 'left' | 'right'>('down');
@@ -24,8 +25,8 @@ export function NurseNPC({ mapData, scale, tileSize, onPositionChange }: NurseNP
 
   useEffect(() => {
     const moveTimer = setInterval(() => {
-      // 50% chance to stand still
-      if (Math.random() < 0.5) {
+      // 50% chance to stand still, or 100% chance if emote is active
+      if (emote || Math.random() < 0.5) {
         setFrame(1);
         return;
       }
@@ -59,7 +60,7 @@ export function NurseNPC({ mapData, scale, tileSize, onPositionChange }: NurseNP
     }, 2000);
 
     return () => clearInterval(moveTimer);
-  }, [pos, mapData, onPositionChange]);
+  }, [pos, mapData, onPositionChange, emote]);
 
   const getSpriteOffset = () => {
     let row = 0;
@@ -85,6 +86,13 @@ export function NurseNPC({ mapData, scale, tileSize, onPositionChange }: NurseNP
         backgroundImage: 'url(/assets/nurse.jpg)',
         ...getSpriteOffset()
       }}
-    />
+    >
+      {emote && (
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-8 h-8 bg-white border-2 border-black rounded-lg shadow-lg flex items-center justify-center animate-bounce z-20 font-bold text-black font-pixel">
+          {emote}
+          <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-b-2 border-r-2 border-black rotate-45" />
+        </div>
+      )}
+    </div>
   );
 }

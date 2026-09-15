@@ -7,13 +7,13 @@ interface PixelPanelProps {
 }
 
 export function PixelPanel({ children, className = "", variant = 'dark' }: PixelPanelProps) {
-  const baseStyle = "pixel-border p-4 relative";
+  const baseStyle = "pixel-border p-4 relative backdrop-blur-md shadow-2xl transition-all duration-300";
   
   const variantStyles = {
-    dark: "bg-pixel-panel text-pixel-text",
-    light: "bg-pixel-panel-light text-white",
-    alert: "bg-pixel-alert text-white",
-    success: "bg-pixel-success text-black",
+    dark: "bg-[#0d1117]/90 text-gray-200",
+    light: "bg-[#161b22]/90 text-white",
+    alert: "bg-[#da3633]/90 text-white",
+    success: "bg-[#2ea043]/90 text-white",
   };
 
   return (

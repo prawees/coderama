@@ -1,0 +1,62 @@
+{
+  "title": "22yo F Eclampsia at 34 Weeks",
+  "age": "22",
+  "sex": "F",
+  "chiefComplaint": "Seizure at home at 34 weeks pregnant",
+  "diagnoses": ["Eclampsia", "HELLP syndrome", "Intracranial haemorrhage", "Cerebral venous sinus thrombosis", "Epilepsy in pregnancy"],
+  "background": "Primigravida at 34+2 weeks. Booked late and attended only two antenatal visits, both at a sub-district health centre where her blood pressure was recorded as 148/96 and 156/98 and treated as anxiety. For three days she has had a severe frontal headache, flashing lights and epigastric pain that she and her family attributed to indigestion. She had a witnessed generalised tonic-clonic seizure lasting about 90 seconds at home, and a second in the ambulance. The fetus is moving. Her husband is a fisherman and is at sea.",
+  "patientAppearance": { "skinTone": "#e8bd93", "bmiFactor": 1.25, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 108, "abnormal": true },
+    "sbp": { "value": 186, "abnormal": true },
+    "dbp": { "value": 118, "abnormal": true },
+    "rr": { "value": 22, "abnormal": true },
+    "temp": { "value": 37.0, "abnormal": false },
+    "spo2": { "value": 94, "abnormal": true },
+    "gcs": { "value": 11, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Post-ictal, drowsy, agitated when roused, obviously pregnant with a fundal height consistent with 34 weeks, generalised oedema", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Facial and periorbital oedema, tongue laceration from the seizure, no neck stiffness, fundoscopy shows retinal arteriolar spasm without papilloedema or haemorrhage", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Severe hypertension at 186/118 on repeated measurement with an appropriately sized cuff, tachycardia, no murmur, peripheries warm", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Bibasal crackles suggesting early pulmonary oedema, saturations 94% on room air, no wheeze. Pulmonary oedema is a leading cause of death in severe pre-eclampsia and is worsened by careless fluid administration", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Gravid uterus, fundal height 33 cm, right upper quadrant and epigastric tenderness from hepatic capsular stretch, uterus soft and non-tender with no evidence of abruption, no vaginal bleeding. Fetal heart rate 132 with reduced variability and occasional late decelerations", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Marked pitting oedema to the thighs, facial puffiness, no petechiae or bruising, no jaundice, capillary refill normal", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 11 (E3V3M5), post-ictal, hyperreflexic at the knees with 4 beats of ankle clonus, no focal deficit, pupils equal and reactive. Clonus is the sign that this is neurologically active and that seizures will recur", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "plt1", "kind": "lab", "category": "CBC", "name": "Platelet count", "value": "68", "unit": "x10^9/L", "normalRange": "150-400", "abnormal": true, "report": "Thrombocytopenia. Combined with haemolysis and raised transaminases this makes HELLP syndrome. A platelet count below 75 also affects the anaesthetic options for delivery." },
+    { "id": "lft1", "kind": "lab", "category": "Chemistry", "name": "AST, ALT and LDH", "value": "AST 340 / ALT 290 / LDH 820", "unit": "U/L", "normalRange": "AST <40", "abnormal": true, "report": "Hepatic injury with raised LDH indicating haemolysis. HELLP syndrome confirmed. Watch for subcapsular hepatic haematoma, which presents with the same right upper quadrant pain and can rupture." },
+    { "id": "ua1", "kind": "lab", "category": "Urine", "name": "Urine protein-creatinine ratio", "value": "480", "unit": "mg/mmol", "normalRange": "<30", "abnormal": true, "report": "Heavy proteinuria. Note that proteinuria is not required for the diagnosis of pre-eclampsia when there is organ dysfunction, and eclampsia can occur without it." },
+    { "id": "cr1", "kind": "lab", "category": "Chemistry", "name": "Creatinine and uric acid", "value": "Creatinine 1.3 mg/dL / uric acid 8.4 mg/dL", "unit": "-", "normalRange": "Creatinine 0.5-1.0 mg/dL in pregnancy", "abnormal": true, "report": "Acute kidney injury. A creatinine that would be normal outside pregnancy is abnormal in pregnancy, where the baseline is lower." },
+    { "id": "ctg1", "kind": "imaging", "category": "Obstetric", "name": "Cardiotocography", "report": "Baseline 132 bpm with reduced variability (under 5 bpm) and repeated late decelerations. Fetal compromise, likely from placental insufficiency and maternal seizure-related hypoxia. Improves after maternal stabilisation, which is the argument for stabilising the mother first.", "imageUrl": "", "abnormal": true },
+    { "id": "ct1", "kind": "imaging", "category": "Imaging", "name": "CT brain (non-contrast)", "report": "No intracranial haemorrhage, no mass lesion, no established infarct. Posterior white matter low attenuation consistent with posterior reversible encephalopathy syndrome. Imaging is indicated here because of the focal-onset description and prolonged reduced consciousness, and is not routine in typical eclampsia.", "imageUrl": "", "abnormal": true },
+    { "id": "coag1", "kind": "lab", "category": "Coagulation", "name": "Fibrinogen and INR", "value": "Fibrinogen 2.2 g/L / INR 1.2", "unit": "-", "normalRange": "Fibrinogen 4.0-6.0 in pregnancy", "abnormal": true, "report": "Fibrinogen low for pregnancy. Watch for progression to disseminated intravascular coagulation, particularly if abruption occurs." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Left lateral position, airway, oxygen and protect from injury", "actions": ["Left lateral tilt", "Oxygen 15 L/min", "Suction and airway protection", "Padded rails, do not restrain"], "doseMap": { "Left lateral tilt": "Relieves aortocaval compression from the gravid uterus. Supine positioning alone can cause profound hypotension and worsen fetal perfusion" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Magnesium sulphate, not diazepam, for eclamptic seizures", "actions": ["Magnesium sulphate IV loading dose", "Magnesium sulphate maintenance infusion", "Monitor reflexes, respiratory rate and urine output"], "doseMap": { "Magnesium sulphate IV loading dose": "4 g IV over 5-15 min. Magnesium is superior to diazepam and phenytoin for both treating and preventing eclamptic seizures, and this is one of the most robust findings in obstetric medicine", "Magnesium sulphate maintenance infusion": "1 g/h for at least 24 hours after the last seizure or after delivery, whichever is later", "Monitor reflexes, respiratory rate and urine output": "Loss of patellar reflexes is the first sign of toxicity, then respiratory depression. Calcium gluconate 1 g IV is the antidote and should be at the bedside" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Control the blood pressure without dropping it too fast", "actions": ["Labetalol IV", "Or hydralazine IV", "Or oral nifedipine"], "doseMap": { "Labetalol IV": "20 mg IV, doubling every 10 min to a maximum of 300 mg. Target systolic 140-150 and diastolic 90-100", "Or hydralazine IV": "5 mg IV every 20 min. Causes more maternal hypotension and fetal distress than labetalol. Avoid dropping the pressure abruptly, since placental perfusion has no autoregulation and a rapid fall causes fetal compromise" } } },
+      { "id": "req4", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Restrict fluids and give antenatal corticosteroids", "actions": ["Restrict IV fluid to 80 mL/h total", "Strict fluid balance and hourly urine output", "Betamethasone IM for fetal lung maturity"], "doseMap": { "Restrict IV fluid to 80 mL/h total": "Fluid overload causing pulmonary oedema is a leading cause of maternal death in pre-eclampsia. Resist the instinct to give boluses for oliguria", "Betamethasone IM for fetal lung maturity": "12 mg IM, two doses 24 hours apart. Give the first dose now, but never delay delivery for the second if the mother is deteriorating" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 1200, "y": 200 }, "data": { "label": "Maternal stabilisation", "outcomeType": "improved", "narrative": "No further seizures after magnesium. Blood pressure falls to 152/96 over 40 minutes with labetalol. GCS improves to 14. Fetal heart rate variability improves as the mother stabilises, which demonstrates the principle: stabilise the mother and the fetus usually follows.", "vitalChanges": { "hr": 94, "sbp": 152, "dbp": 96, "rr": 18, "spo2": 97, "gcs": 14 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Explain the delivery decision to her directly, and do not blame the clinic in front of her (Empathy)", "ethicalValue": 20, "narrative": "Her blood pressure was recorded as elevated twice at the health centre and called anxiety. Her mother is in the corridor and wants to know who is at fault. You tell the patient herself, once she is lucid, that delivery is the only treatment for this condition, that her baby will be born at 34 weeks and will very likely do well, and that this is not something she caused by eating the wrong food. To the family you say the missed readings will be reviewed properly, and you file that review yourself the next day rather than making it a corridor accusation. Pi Pim notes that both halves of that were correct and most people manage only one." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Delivery, the only definitive treatment", "actions": ["Urgent obstetric and neonatal team involvement", "Delivery once the mother is stabilised", "Continue magnesium through and after delivery", "Anaesthetic review, platelet count limits neuraxial options"], "doseMap": { "Delivery once the mother is stabilised": "Stabilise then deliver. Delivering an actively fitting, severely hypertensive woman increases maternal mortality. At 34 weeks with HELLP and fetal compromise, expectant management is not an option" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Delivery and immediate postpartum", "outcomeType": "improved", "narrative": "Caesarean section under general anaesthesia because of the platelet count. Live male infant, 1980 g, Apgars 6 and 9, admitted to the neonatal unit. Platelets nadir at 42 on day 2 then recover. She remains on magnesium for 24 hours postpartum, which is when about a third of eclamptic seizures actually occur.", "vitalChanges": { "hr": 88, "sbp": 142, "dbp": 88, "rr": 16, "spo2": 98, "gcs": 15 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 6 on oral antihypertensives with a six week postnatal review. Counselled on the roughly 15% recurrence risk and on aspirin from 12 weeks in a future pregnancy. The baby goes home at three weeks. The two dismissed blood pressure readings are formally reviewed and the health centre changes its referral threshold.", "vitalChanges": { "hr": 82, "sbp": 132, "dbp": 82, "rr": 16, "spo2": 99, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "req4" },
+      { "id": "e5", "source": "req4", "target": "out1" },
+      { "id": "e6", "source": "out1", "target": "ethical_1" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e_skip", "source": "out1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

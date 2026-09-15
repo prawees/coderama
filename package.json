@@ -2,11 +2,29 @@
   "name": "code-rama",
   "version": "0.1.0",
   "private": true,
+  "main": "electron/main.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pack-mac": "electron-builder --mac"
+  },
+  "build": {
+    "appId": "com.ramag7.coderama",
+    "productName": "Code Rama",
+    "mac": {
+      "target": "dmg",
+      "icon": "public/assets/icon.png"
+    },
+    "directories": {
+      "output": "dist-desktop"
+    },
+    "files": [
+      "out/**/*",
+      "electron/main.js",
+      "package.json"
+    ]
   },
   "dependencies": {
     "@capacitor/core": "^8.4.2",
@@ -21,8 +39,9 @@
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
     "date-fns": "^4.4.0",
+    "electron-serve": "^3.0.1",
     "eventemitter3": "^5.0.4",
-    "firebase": "^11.0.2",
+    "firebase": "^11.10.0",
     "firebase-admin": "^14.1.0",
     "framer-motion": "^12.43.0",
     "html-to-image": "^1.11.13",
@@ -32,6 +51,7 @@
     "moment": "^2.30.1",
     "next": "14.2.16",
     "pixi.js": "^8.19.0",
+    "pureimage": "^0.4.20",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^17.0.11",
@@ -46,8 +66,12 @@
     "@types/node": "^20.14.0",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
+    "concurrently": "^10.0.4",
+    "electron": "^43.3.0",
+    "electron-builder": "^26.15.3",
     "postcss": "^8.4.38",
     "tailwindcss": "^4.3.2",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.2",
+    "wait-on": "^9.1.0"
   }
 }

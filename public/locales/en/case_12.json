@@ -1,0 +1,62 @@
+{
+  "title": "21yo M Dengue Shock Syndrome",
+  "age": "21",
+  "sex": "M",
+  "chiefComplaint": "Fever for 5 days, now cold and drowsy",
+  "diagnoses": ["Dengue shock syndrome", "Septic shock", "Leptospirosis", "Scrub typhus", "Malaria"],
+  "background": "Rice farmer from Pak Thong Chai. Five days of high fever, retro-orbital pain, severe myalgia and vomiting. The fever broke this morning and the family thought he was improving, then he became cold, clammy and confused. Two neighbours have had dengue this month. No comorbidities. He took an unknown NSAID from the village shop for four days.",
+  "patientAppearance": { "skinTone": "#c08552", "bmiFactor": 0.85, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 132, "abnormal": true },
+    "sbp": { "value": 88, "abnormal": true },
+    "dbp": { "value": 78, "abnormal": true },
+    "rr": { "value": 28, "abnormal": true },
+    "temp": { "value": 36.3, "abnormal": true },
+    "spo2": { "value": 95, "abnormal": false },
+    "gcs": { "value": 13, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Restless then drowsy, cold clammy peripheries despite being afebrile, narrow pulse pressure of 10 mmHg", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Flushed face, injected conjunctivae, gum bleeding on gentle probing, no neck stiffness, dry tongue", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia, weak thready pulse, capillary refill 5 seconds, narrow pulse pressure, heart sounds normal", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Reduced air entry at the right base with stony dull percussion, consistent with pleural effusion from plasma leak", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Tender hepatomegaly 3 cm below the costal margin, shifting dullness, no rebound, severe abdominal pain is a dengue warning sign", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Confluent blanching rash with islands of sparing over both legs, scattered petechiae, positive tourniquet test, cool mottled knees", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 13 (E3V4M6), no focal deficit, no meningism, pupils equal and reactive", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "hct1", "kind": "lab", "category": "CBC", "name": "Haematocrit", "value": "54", "unit": "%", "normalRange": "40-50", "abnormal": true, "report": "Rise of more than 20% above baseline of 43%. This is the marker of plasma leakage and the number you titrate fluid against." },
+    { "id": "plt1", "kind": "lab", "category": "CBC", "name": "Platelet count", "value": "18", "unit": "x10^9/L", "normalRange": "150-400", "abnormal": true, "report": "Severe thrombocytopenia. Do not transfuse platelets in the absence of significant bleeding, it does not improve outcome." },
+    { "id": "ns1", "kind": "lab", "category": "Serology", "name": "Dengue NS1 antigen and IgM", "value": "NS1 positive, IgM positive", "unit": "-", "normalRange": "Negative", "abnormal": true, "report": "Confirms acute dengue. He is in the critical phase, which begins as the fever falls." },
+    { "id": "lft1", "kind": "lab", "category": "Chemistry", "name": "AST and ALT", "value": "AST 480 / ALT 310", "unit": "U/L", "normalRange": "<40", "abnormal": true, "report": "Transaminitis with AST above ALT, typical of dengue. Severe hepatitis is a severe dengue criterion." },
+    { "id": "us1", "kind": "imaging", "category": "Imaging", "name": "Bedside ultrasound", "report": "Right pleural effusion, gallbladder wall thickening to 8 mm, small volume ascites and a collapsible inferior vena cava. Plasma leak with intravascular depletion.", "imageUrl": "", "abnormal": true },
+    { "id": "lac1", "kind": "lab", "category": "Chemistry", "name": "Lactate", "value": "4.4", "unit": "mmol/L", "normalRange": "0.5-2.0", "abnormal": true, "report": "Hypoperfusion." },
+    { "id": "coag1", "kind": "lab", "category": "Coagulation", "name": "INR", "value": "1.6", "unit": "-", "normalRange": "0.9-1.2", "abnormal": true, "report": "Coagulopathy from hepatic involvement." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Recognise the critical phase and get a baseline haematocrit", "actions": ["Haematocrit", "Platelet count", "Dengue NS1 and IgM", "Bedside ultrasound for effusion and ascites"], "doseMap": {} } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Isotonic crystalloid bolus for compensated shock", "actions": ["Normal saline or Ringer lactate bolus"], "doseMap": { "Normal saline or Ringer lactate bolus": "10 mL/kg over 1 hour, reassess haematocrit and pulse pressure after each bolus. Over-resuscitation causes fatal fluid overload in the reabsorption phase" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Stop the NSAID and avoid intramuscular injections", "actions": ["Discontinue NSAID", "Paracetamol for fever", "No IM injections, no aspirin"], "doseMap": { "Paracetamol for fever": "500 mg orally every 6 hours, maximum 2 g/day given the transaminitis" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Partial response", "outcomeType": "improved", "narrative": "Pulse pressure widens to 22 mmHg after the second bolus. Haematocrit falls to 48%. He is warmer and more alert but urine output is only 0.3 mL/kg/h.", "vitalChanges": { "hr": 112, "sbp": 100, "dbp": 72, "rr": 24, "gcs": 15 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 400 }, "data": { "label": "Explain to the family why he got worse after the fever broke (Empathy)", "ethicalValue": 10, "narrative": "The family believed the falling fever meant recovery and nearly took him home this morning. You explain that dengue is most dangerous in the 24 to 48 hours after defervescence. They immediately understand, and they tell you the neighbour's daughter is at home with the same story on day five. Pi Jai sends a message to the village health volunteer." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Titrate to urine output and haematocrit, not to blood pressure alone", "actions": ["Reduce fluid to 5-7 mL/kg/h then 3 mL/kg/h", "Hourly urine output", "4 hourly haematocrit", "Strict fluid balance chart"], "doseMap": { "Reduce fluid to 5-7 mL/kg/h then 3 mL/kg/h": "Target urine output 0.5 mL/kg/h. Higher targets drive fluid overload" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 200 }, "data": { "label": "Reabsorption phase", "outcomeType": "improved", "narrative": "At 30 hours his haematocrit drops to 38%, urine output rises and the rash becomes confluent and itchy. Fluids are stopped. Platelets are 24 and rising. He never needed a transfusion.", "vitalChanges": { "hr": 88, "sbp": 116, "dbp": 74, "rr": 18, "gcs": 15 } } },
+      { "id": "req5", "type": "required", "position": { "x": 1920, "y": 200 }, "data": { "label": "Admit for monitored observation through the critical phase", "actions": ["Ward admission with 4 hourly observations", "Watch for fluid overload and pulmonary oedema", "Bleeding precautions"], "doseMap": {} } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged on day 8 with a platelet count of 96 and no bleeding. Vector control is notified. The neighbour's daughter arrives that evening in early shock and is caught in time.", "vitalChanges": { "hr": 78, "sbp": 118, "dbp": 76, "rr": 16, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "out2", "target": "req5" },
+      { "id": "e9", "source": "req5", "target": "out3" }
+    ]
+  }
+}

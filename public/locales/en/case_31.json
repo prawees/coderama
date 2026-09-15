@@ -1,0 +1,61 @@
+{
+  "title": "9mo M Intussusception",
+  "age": "0.75",
+  "sex": "M",
+  "chiefComplaint": "Episodes of screaming and drawing up the legs, now lethargic",
+  "diagnoses": ["Ileocolic intussusception", "Gastroenteritis", "Incarcerated inguinal hernia", "Malrotation with midgut volvulus", "Sepsis"],
+  "background": "Previously well 9 month old, weight 8.5 kg. Eighteen hours of intermittent severe crying in episodes lasting 2 to 3 minutes every 15 to 20 minutes, during which he draws his knees up and goes pale. Between episodes he was initially normal, but over the last four hours he has become floppy and difficult to rouse even between attacks. Two episodes of vomiting, now bile-stained. The mother describes one nappy containing dark red jelly-like stool. He had a viral illness a week ago, which is the usual trigger through lymphoid hypertrophy acting as a lead point.",
+  "patientAppearance": { "skinTone": "#f0c69f", "bmiFactor": 0.95, "ageGroup": "child" },
+  "vitals": {
+    "hr": { "value": 178, "abnormal": true },
+    "sbp": { "value": 72, "abnormal": true },
+    "dbp": { "value": 40, "abnormal": true },
+    "rr": { "value": 46, "abnormal": true },
+    "temp": { "value": 37.8, "abnormal": true },
+    "spo2": { "value": 96, "abnormal": false },
+    "gcs": { "value": 12, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Pale, floppy and lethargic between episodes, then screaming and inconsolable during them. Lethargy out of proportion to the apparent illness is a recognised and frequently misread presentation of intussusception", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Sunken anterior fontanelle, dry mucous membranes, no tears when crying, no neck stiffness, tympanic membranes normal, throat clear", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 178/min, capillary refill 4 seconds centrally, weak peripheral pulses, cool hands and feet to the wrists and ankles", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear chest, tachypnoeic without recession or grunting, which suggests compensation for metabolic acidosis rather than a primary respiratory problem", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft between episodes with a palpable sausage-shaped mass in the right upper quadrant and an empty right iliac fossa (Dance's sign). Tender during episodes with guarding. Bowel sounds high-pitched. No hernia in either groin, testes normal", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Pale and mottled with reduced turgor and skin tenting over the abdomen. No purpura. Look specifically for Henoch-Schonlein purpura, which can cause a pathological lead point", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 12, floppy, reduced spontaneous movement, no focal deficit, anterior fontanelle sunken rather than bulging, which argues against meningitis", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "us1", "kind": "imaging", "category": "Imaging", "name": "Abdominal ultrasound", "report": "Target sign in the right upper quadrant with a 3.2 cm diameter bowel-within-bowel appearance, and a pseudokidney sign on longitudinal view. No free fluid, no visible pathological lead point. Doppler shows preserved flow in the intussusceptum, which favours viable bowel. Ultrasound has sensitivity and specificity approaching 100% in trained hands and is the investigation of choice.", "imageUrl": "", "abnormal": true },
+    { "id": "poc1", "kind": "lab", "category": "POCT", "name": "Capillary glucose", "value": "54", "unit": "mg/dL", "normalRange": "70-140", "abnormal": true, "report": "Hypoglycaemia. Small children deplete glycogen quickly when not feeding, and this contributes to the lethargy. Correct it early." },
+    { "id": "gas1", "kind": "lab", "category": "ABG", "name": "Venous blood gas", "value": "pH 7.24 / HCO3 14 / lactate 4.6 / base deficit -11", "unit": "-", "normalRange": "pH 7.32-7.42", "abnormal": true, "report": "Metabolic acidosis with hyperlactataemia from hypoperfusion and possible bowel ischaemia. A significant base deficit raises concern about the viability of the bowel." },
+    { "id": "na1", "kind": "lab", "category": "Elytes", "name": "Sodium and potassium", "value": "Na 133 / K 3.2 mmol/L", "unit": "mmol/L", "normalRange": "Na 135-145", "abnormal": true, "report": "Hyponatraemia and hypokalaemia from vomiting and third space losses." },
+    { "id": "cbc1", "kind": "lab", "category": "CBC", "name": "White cell count and haemoglobin", "value": "WBC 19.8 / Hb 10.2 g/dL", "unit": "-", "normalRange": "WBC 6.0-17.0", "abnormal": true, "report": "Leucocytosis. Non-specific, but a very high count with acidosis raises concern about ischaemic or perforated bowel." },
+    { "id": "axr1", "kind": "imaging", "category": "Imaging", "name": "Abdominal X-ray", "report": "Paucity of bowel gas in the right upper quadrant with a soft tissue mass effect. No free air under the diaphragm, so perforation is excluded and reduction can proceed. A normal abdominal film never excludes intussusception, so it is used to exclude perforation, not to make the diagnosis.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Recognise shock and correct glucose", "actions": ["Capillary glucose", "IV or intraosseous access", "Dextrose bolus", "Full septic screen consideration"], "doseMap": { "Dextrose bolus": "2 mL/kg of 10% dextrose (17 mL), recheck at 30 minutes" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Fluid resuscitate before any attempt at reduction", "actions": ["Isotonic crystalloid bolus", "Nasogastric tube for decompression", "Nil by mouth", "Reassess perfusion after each bolus"], "doseMap": { "Isotonic crystalloid bolus": "10-20 mL/kg (85-170 mL) of normal saline, repeat as needed. A shocked infant must not go to the radiology suite for reduction, because a perforation during reduction in an unresuscitated child is catastrophic" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Ultrasound to confirm, abdominal film to exclude perforation", "actions": ["Abdominal ultrasound", "Abdominal X-ray for free air", "Paediatric surgical consult before reduction"], "doseMap": { "Paediatric surgical consult before reduction": "Surgery must be aware and available before any reduction attempt, because perforation occurs in roughly 1% of attempts" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Resuscitated and diagnosis confirmed", "outcomeType": "improved", "narrative": "After 340 mL of saline and dextrose, perfusion improves, capillary refill falls to 2 seconds and he becomes more alert between episodes. Ultrasound confirms an ileocolic intussusception with preserved Doppler flow and no free air. He is now safe to attempt reduction.", "vitalChanges": { "hr": 152, "sbp": 86, "dbp": 48, "rr": 40, "gcs": 14 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Tell the mother explicitly that the delay was not her fault (Empathy)", "ethicalValue": 15, "narrative": "She waited eighteen hours because he was normal between the episodes, and the clinic she attended at hour six told her it was colic. She is now saying, repeatedly, that she should have come sooner. You tell her plainly that intermittent symptoms with a completely well child in between are exactly why this diagnosis is missed, that she brought him when he changed, and that the mass you can feel means the diagnosis is certain and treatable. Nong Wan watches and later says this was the moment he understood that the parent is also a patient." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Air enema reduction under radiological guidance", "actions": ["Pneumatic (air) enema reduction", "Antibiotics before the attempt", "Surgical team present"], "doseMap": { "Pneumatic (air) enema reduction": "Pressure limited to 120 mmHg. Success rate 80-90% in a resuscitated child. Air is preferred over barium: lower perforation rate and less peritoneal contamination if perforation occurs", "Antibiotics before the attempt": "Broad spectrum cover appropriate for weight, given the possibility of perforation or bowel ischaemia" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 200 }, "data": { "label": "Successful reduction", "outcomeType": "improved", "narrative": "Reduction achieved on the second attempt with free reflux of air into the terminal ileum. He settles within twenty minutes, takes a feed at four hours and looks like a different child. Recurrence occurs in about 10% of cases, mostly within the first 48 hours.", "vitalChanges": { "hr": 128, "sbp": 94, "dbp": 54, "rr": 32, "temp": 37.2, "gcs": 15 } } },
+      { "id": "req5", "type": "required", "position": { "x": 1920, "y": 200 }, "data": { "label": "Observe for recurrence and safety-net the discharge", "actions": ["Admit for at least 24 hours of observation", "Resume feeding gradually", "Written recurrence advice for the parents", "Consider lead point investigation if recurrent or if over 2 years old"], "doseMap": { "Written recurrence advice for the parents": "Return immediately for the same pattern of intermittent screaming, pallor, vomiting or lethargy. Recurrence is common and early return means another enema rather than an operation" } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged at 30 hours, feeding normally. No operation, no bowel resection, no stoma. The difference between this and a laparotomy with resection was resuscitating first and getting the ultrasound rather than treating eighteen hours of intermittent crying as colic.", "vitalChanges": { "hr": 120, "sbp": 96, "dbp": 56, "rr": 30, "temp": 36.9, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "out2", "target": "req5" },
+      { "id": "e9", "source": "req5", "target": "out3" }
+    ]
+  }
+}

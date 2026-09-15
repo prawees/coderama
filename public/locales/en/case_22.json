@@ -1,0 +1,61 @@
+{
+  "title": "41yo M Leptospirosis with Pulmonary Haemorrhage",
+  "age": "41",
+  "sex": "M",
+  "chiefComplaint": "Fever, jaundice and coughing blood",
+  "diagnoses": ["Severe leptospirosis (Weil's disease) with pulmonary haemorrhage", "Dengue", "Scrub typhus", "Melioidosis", "Acute viral hepatitis"],
+  "background": "Rice farmer, working barefoot in flooded paddy for two weeks after heavy rain. He has a healing abrasion on his left shin. Six days of high fever, severe calf and thigh myalgia and headache, then dark urine and yellow eyes from day 4. This morning he coughed up bright red blood twice. Several buffalo and many rats around the field. Local rainfall has been the heaviest in nine years, which is the epidemiology that matters.",
+  "patientAppearance": { "skinTone": "#c9a55c", "bmiFactor": 0.9, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 124, "abnormal": true },
+    "sbp": { "value": 88, "abnormal": true },
+    "dbp": { "value": 50, "abnormal": true },
+    "rr": { "value": 34, "abnormal": true },
+    "temp": { "value": 38.9, "abnormal": true },
+    "spo2": { "value": 85, "abnormal": true },
+    "gcs": { "value": 14, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Deeply jaundiced with an orange rather than lemon hue, tachypnoeic, coughing frank blood into a bowl, anxious and exhausted", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Marked conjunctival suffusion without discharge, a red eye with no exudate that is close to pathognomonic in the right setting. Scleral icterus, dry lips, no neck stiffness, no eschar found on full skin survey", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 124/min, hypotensive, capillary refill 4 seconds, no murmur, JVP not raised. Myocarditis occurs and can cause arrhythmia", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Coarse crackles throughout both lung fields, frank haemoptysis, saturations 85% on 15 L/min. Pulmonary haemorrhage carries mortality above 50% and is now the thing that will kill him, not the liver", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Tender hepatomegaly 3 cm below the costal margin, no splenomegaly, no ascites, exquisite tenderness on squeezing the calf muscles", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Jaundiced, healing abrasion over the left shin as the likely entry point, no rash, no petechiae, no eschar in the axillae, groin or under the waistband", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 14 (E4V4M6), mildly confused, severe muscle tenderness limiting examination, no focal deficit, no meningism", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Portable Chest X-ray", "report": "Diffuse bilateral patchy alveolar opacification, most marked in the lower and mid zones, with a normal cardiac silhouette. Alveolar haemorrhage, not pulmonary oedema and not lobar pneumonia.", "imageUrl": "", "abnormal": true },
+    { "id": "bili1", "kind": "lab", "category": "Chemistry", "name": "Bilirubin, AST and ALT", "value": "Total bilirubin 18.4 mg/dL / AST 180 / ALT 140", "unit": "-", "normalRange": "Bilirubin <1.2 mg/dL", "abnormal": true, "report": "Very high bilirubin with only mildly raised transaminases. This dissociation separates leptospirosis from viral hepatitis, where transaminases are in the thousands." },
+    { "id": "cr1", "kind": "lab", "category": "Chemistry", "name": "Creatinine and potassium", "value": "Creatinine 4.2 mg/dL / K 3.0 mmol/L", "unit": "-", "normalRange": "Creatinine 0.7-1.3 mg/dL", "abnormal": true, "report": "Acute kidney injury with hypokalaemia. Non-oliguric hypokalaemic renal failure is characteristic of leptospirosis and unusual in other causes of acute kidney injury." },
+    { "id": "cbc1", "kind": "lab", "category": "CBC", "name": "White cells and platelets", "value": "WBC 18.4 with neutrophilia / platelets 42 x10^9/L", "unit": "-", "normalRange": "WBC 4.0-11.0", "abnormal": true, "report": "Neutrophil leucocytosis with thrombocytopenia. The high white cell count argues against dengue, where leucopenia is the rule." },
+    { "id": "sero1", "kind": "lab", "category": "Serology", "name": "Leptospira IgM rapid test and PCR", "value": "IgM positive, blood PCR positive", "unit": "-", "normalRange": "Negative", "abnormal": true, "report": "IgM can be negative in the first week, so a negative test never justifies withholding antibiotics. Treat on epidemiology and clinical picture." },
+    { "id": "ck1", "kind": "lab", "category": "Chemistry", "name": "Creatine kinase", "value": "1850", "unit": "U/L", "normalRange": "30-200", "abnormal": true, "report": "Raised CK with jaundice and renal failure. Helps separate leptospirosis from viral hepatitis." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Oxygenation and early recognition of alveolar haemorrhage", "actions": ["High flow oxygen", "Portable chest X-ray", "Sit upright", "Cross-match blood"], "doseMap": { "High flow oxygen": "15 L/min via non-rebreather, prepare for intubation with lung protective settings" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Start antibiotics immediately, do not wait for serology", "actions": ["Ceftriaxone IV", "Or penicillin G IV"], "doseMap": { "Ceftriaxone IV": "1-2 g IV daily for 7 days", "Or penicillin G IV": "1.5 million units IV every 6 hours. Warn about the Jarisch-Herxheimer reaction in the first hours" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Cautious fluid resuscitation and potassium replacement", "actions": ["Careful crystalloid boluses with reassessment", "Potassium chloride replacement", "Vasopressor if fluid unresponsive"], "doseMap": { "Careful crystalloid boluses with reassessment": "250-500 mL aliquots. Aggressive fluid loading worsens pulmonary haemorrhage, so use small volumes and add noradrenaline early" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Respiratory deterioration", "outcomeType": "worsened", "narrative": "Saturations fall to 80% despite maximal oxygen and haemoptysis increases. He is intubated with lung protective ventilation and PEEP of 12. The alveolar haemorrhage, not the liver or kidney, is now the immediate threat.", "vitalChanges": { "hr": 138, "sbp": 82, "dbp": 46, "rr": 18, "spo2": 90, "gcs": 3 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Have the honest conversation with his wife before intubation, not after (Empathy)", "ethicalValue": 15, "narrative": "You have four minutes before he is tubed and he is still able to speak. You bring his wife in, tell them both that pulmonary haemorrhage from leptospirosis kills more than half of the people who get it, and let them say what they need to say to each other. It costs four minutes of preoxygenation time. Pi Jai says afterwards that families forgive almost any outcome except being denied the last conversation." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "ICU with renal replacement and blood products", "actions": ["ICU admission with lung protective ventilation", "Early haemodialysis for the acute kidney injury", "Platelets and blood products for active bleeding", "Nephrology consult"], "doseMap": { "Early haemodialysis for the acute kidney injury": "Early dialysis reduces mortality in severe leptospirosis. Do not wait for the classic threshold indications" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 200 }, "data": { "label": "Day 5 turning point", "outcomeType": "improved", "narrative": "Haemoptysis stops at 60 hours. He receives five sessions of dialysis. Bilirubin peaks at 26 mg/dL then falls. He is extubated on day 9. Renal function in leptospirosis usually recovers completely, which is the one generous feature of this disease.", "vitalChanges": { "hr": 96, "sbp": 112, "dbp": 66, "rr": 20, "spo2": 96, "temp": 37.2, "gcs": 14 } } },
+      { "id": "req5", "type": "required", "position": { "x": 1920, "y": 200 }, "data": { "label": "Notify and protect the rest of the village", "actions": ["Notify the district communicable disease unit", "Advise boots and wound covering during flooding", "Consider doxycycline prophylaxis for high risk exposed workers"], "doseMap": { "Consider doxycycline prophylaxis for high risk exposed workers": "200 mg weekly during peak exposure. Evidence is modest but the intervention is cheap and this outbreak has an obvious source" } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 21 with a creatinine of 1.3 mg/dL and no oxygen requirement. Two further cases from the same sub-district arrive that week and are treated on day 2 rather than day 6, and neither one bleeds.", "vitalChanges": { "hr": 82, "sbp": 118, "dbp": 72, "rr": 16, "spo2": 98, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "out2", "target": "req5" },
+      { "id": "e9", "source": "req5", "target": "out3" }
+    ]
+  }
+}

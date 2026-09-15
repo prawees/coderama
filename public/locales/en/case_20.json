@@ -1,0 +1,60 @@
+{
+  "title": "38yo M Traumatic Hand Amputation",
+  "age": "38",
+  "sex": "M",
+  "chiefComplaint": "Hand caught in a sugarcane cutting machine",
+  "diagnoses": ["Traumatic transmetacarpal amputation", "Crush avulsion injury", "Compartment syndrome of the forearm", "Haemorrhagic shock", "Tetanus-prone wound"],
+  "background": "Sugarcane harvester, injured 90 minutes ago when he reached into a jammed cutting drum without shutting it off. His co-workers wrapped the stump in a shirt and drove him in on a tractor trailer. The amputated part was retrieved and is loose in a plastic bag with ice water directly against the tissue, which is the wrong way to transport it. He is right hand dominant and this is his right hand. He has no formal employment contract and no compensation cover.",
+  "patientAppearance": { "skinTone": "#a9713f", "bmiFactor": 0.95, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 118, "abnormal": true },
+    "sbp": { "value": 104, "abnormal": true },
+    "dbp": { "value": 62, "abnormal": true },
+    "rr": { "value": 24, "abnormal": true },
+    "temp": { "value": 36.2, "abnormal": false },
+    "spo2": { "value": 97, "abnormal": false },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Alert, grey, sweating, holding the wrapped stump above his head as instructed by a co-worker, remarkably calm in the way that severe pain and adrenaline sometimes produce", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Pale conjunctivae, dry lips, no head injury, no facial trauma, speaking in full sentences", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 118/min, blood pressure maintained, capillary refill 3 seconds in the uninjured hand, brachial and radial pulses present on the injured arm", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear chest, tachypnoeic from pain and anxiety, no chest trauma", "abnormal": false },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft and non-tender, no other injury found on secondary survey, no seatbelt or handlebar mark", "abnormal": false },
+    { "id": "skin1", "system": "Skin", "finding": "Amputation through the metacarpals with ragged crushed edges and contaminated cane fibre and soil in the wound. Bleeding is now venous ooze rather than arterial spurt. Forearm swollen and tense to mid-forearm with pain on passive finger extension of the remaining digits", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 15. Median and ulnar sensory distribution absent distal to the wrist. Thumb and index remain attached but are pale, cold and capillary refill is over 5 seconds", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "hb1", "kind": "lab", "category": "CBC", "name": "Haemoglobin", "value": "9.8", "unit": "g/dL", "normalRange": "13.5-17.5", "abnormal": true, "report": "Moderate acute anaemia from field blood loss. Group and crossmatch 4 units." },
+    { "id": "xr1", "kind": "imaging", "category": "Imaging", "name": "X-ray right hand and forearm", "report": "Transmetacarpal amputation through the shafts of the second to fifth metacarpals with comminution. Radius and ulna intact. Radio-opaque debris in the soft tissues. Comminution over a long segment is the finding that predicts replantation will fail.", "imageUrl": "", "abnormal": true },
+    { "id": "ck1", "kind": "lab", "category": "Chemistry", "name": "Creatine kinase", "value": "3600", "unit": "U/L", "normalRange": "30-200", "abnormal": true, "report": "Rising, from crushed muscle. Watch renal function and start fluids." },
+    { "id": "coag1", "kind": "lab", "category": "Coagulation", "name": "INR and platelets", "value": "INR 1.2 / platelets 210 x10^9/L", "unit": "-", "normalRange": "INR 0.9-1.2", "abnormal": false, "report": "Normal. No coagulopathy yet, which is favourable for surgery." },
+    { "id": "cr1", "kind": "lab", "category": "Chemistry", "name": "Creatinine and potassium", "value": "Creatinine 1.2 mg/dL / K 4.6 mmol/L", "unit": "-", "normalRange": "Creatinine 0.7-1.3 mg/dL", "abnormal": false, "report": "Normal baseline. Repeat after reperfusion or fasciotomy, when potassium can rise abruptly." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Direct pressure and elevation, no blind clamping", "actions": ["Direct pressure with a bulky dressing", "Elevate the limb", "Tourniquet only if pressure fails"], "doseMap": { "Tourniquet only if pressure fails": "Windlass tourniquet proximal to the elbow, note the application time on the skin. Blind clamping in a bleeding field destroys the vessels and nerves a surgeon needs for repair" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Correct storage of the amputated part", "actions": ["Wrap the part in saline-moistened gauze", "Seal in a plastic bag", "Place the bag on ice water, never the tissue directly on ice"], "doseMap": { "Place the bag on ice water, never the tissue directly on ice": "Direct ice contact causes frostbite and ends any chance of replantation. Target 4 C. Warm ischaemia tolerance is about 6 hours, cold ischaemia about 12" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Analgesia, fluids, tetanus and antibiotics", "actions": ["Morphine IV titrated", "IV crystalloid", "Tetanus toxoid and immunoglobulin", "IV antibiotics"], "doseMap": { "Morphine IV titrated": "2-4 mg IV every 5 min to effect", "Tetanus toxoid and immunoglobulin": "Heavily contaminated agricultural wound, give both if immunisation status is unknown", "IV antibiotics": "Cefazolin 2 g IV plus gentamicin, add penicillin for soil contamination and clostridial risk" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Stabilised, but the forearm is worsening", "outcomeType": "worsened", "narrative": "Bleeding is controlled and the pain settles, but forearm compartment pressures are clinically high: tense swelling, pain on passive stretch, and progressive sensory loss in the remaining digits. Do not wait for a pressure measurement or for pulses to disappear. Pulses are the last sign and by then the muscle is dead.", "vitalChanges": { "hr": 104, "sbp": 112, "dbp": 66, "rr": 20 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Tell him honestly that replantation is unlikely, before he is anaesthetised (Empathy)", "ethicalValue": 15, "narrative": "The co-workers have already told him the hospital will sew it back on. It is a crushed, contaminated, long-segment avulsion in his dominant hand and the honest probability of a functional replant is low. You tell him that yourself, in the resus room, while he can still ask questions. You also tell him what a functional prosthesis and hand therapy can realistically give him, and you get the social worker started on the compensation claim tonight rather than in a week. Pi Ek says the second half of that conversation is the part that determines whether he works again." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Urgent fasciotomy and theatre, do not wait for transfer", "actions": ["Emergency forearm fasciotomy", "Orthopaedic and plastic surgery consult", "Transfer discussion with the replantation centre"], "doseMap": { "Emergency forearm fasciotomy": "Clinical diagnosis. Volar and dorsal incisions. A fasciotomy done unnecessarily costs a scar, a fasciotomy done late costs the forearm" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 200 }, "data": { "label": "Theatre findings", "outcomeType": "improved", "narrative": "Fasciotomy releases tense but viable muscle. The replantation team declines the amputated part on the grounds of crush and contamination and performs a revision amputation with thumb preservation. Preserving the thumb is worth more functionally than any prosthesis.", "vitalChanges": { "hr": 92, "sbp": 118, "dbp": 70, "rr": 16 } } },
+      { "id": "req5", "type": "required", "position": { "x": 1920, "y": 200 }, "data": { "label": "Rhabdomyolysis prevention and rehabilitation planning", "actions": ["IV fluids targeting urine output 1-2 mL/kg/h", "Daily creatine kinase and renal function", "Hand therapy referral", "Occupational compensation claim and social work"], "doseMap": {} } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Fasciotomy wounds closed on day 5. No renal failure. Discharged day 11. He has a functional thumb and a compensation claim in progress. He asks whether the machine will be fixed, and the honest answer is that the guard was removed two seasons ago because it slowed the harvest.", "vitalChanges": { "hr": 84, "sbp": 120, "dbp": 74, "rr": 16 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "out2", "target": "req5" },
+      { "id": "e9", "source": "req5", "target": "out3" }
+    ]
+  }
+}

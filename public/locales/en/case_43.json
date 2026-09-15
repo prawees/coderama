@@ -1,0 +1,58 @@
+{
+  "title": "39yo M Chronic Back Pain, Opioid Request (Non-Emergency)",
+  "age": "39",
+  "sex": "M",
+  "chiefComplaint": "Severe back pain, requests a pethidine injection by name",
+  "diagnoses": ["Chronic non-specific low back pain", "Opioid use disorder", "Renal colic", "Cauda equina syndrome", "Vertebral osteomyelitis"],
+  "background": "Fourth attendance in this department in six weeks and the eleventh across four hospitals in three months. He describes 10 out of 10 lumbar pain, reports allergies to every non-opioid analgesic offered, and asks for pethidine by name and by dose. He declines to give the name of a regular doctor. Records show he has previously left without being seen when told no. He worked as a lorry driver until a back injury two years ago and has not worked since. He is neither a criminal nor a liar. He is most likely a man with a chronic pain problem, an opioid use disorder, or both, and both of those are treatable medical conditions that this presentation is a symptom of.",
+  "patientAppearance": { "skinTone": "#d3a06f", "bmiFactor": 1.05, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 76, "abnormal": false },
+    "sbp": { "value": 128, "abnormal": false },
+    "dbp": { "value": 80, "abnormal": false },
+    "rr": { "value": 16, "abnormal": false },
+    "temp": { "value": 36.8, "abnormal": false },
+    "spo2": { "value": 99, "abnormal": false },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Comfortable at rest, moves onto the trolley without assistance, reports 10 out of 10 pain while scrolling on his phone. Note this observation without moralising about it: pain behaviour and pain intensity correlate poorly, and this discrepancy is information rather than proof of anything", "abnormal": false },
+    { "id": "hent1", "system": "HENT", "finding": "No pallor, mucous membranes moist, pupils 3 mm and equal with normal reaction, no rhinorrhoea, no yawning, no piloerection, so he is not in acute withdrawal", "abnormal": false },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Regular rate and rhythm, normal heart sounds, no murmur (specifically listened for, because injecting drug use raises endocarditis risk), peripheries warm", "abnormal": false },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, normal respiratory rate, no cough", "abnormal": false },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, no renal angle tenderness on either side, no palpable bladder, no pulsatile mass, bowel sounds normal", "abnormal": false },
+    { "id": "skin1", "system": "Skin", "finding": "No injection sites, no cellulitis or abscess, no track marks, no rash over the spine, no midline tenderness or step deformity on palpation of the lumbar spine", "abnormal": false },
+    { "id": "cns1", "system": "Neurological", "finding": "Normal power 5/5 in both legs, reflexes symmetrical, straight leg raise negative bilaterally, normal perianal sensation, normal anal tone, no urinary retention or incontinence. No red flags for cauda equina. Do this examination properly and document it, because the one time it is skipped is the time it matters", "abnormal": false }
+  ],
+  "investigations": [
+    { "id": "records1", "kind": "lab", "category": "Records", "name": "Shared prescription monitoring record", "value": "31 opioid prescriptions from 9 prescribers in 4 months", "unit": "-", "normalRange": "-", "abnormal": true, "report": "Checking the record is a clinical act, not a policing act. It establishes that he has an opioid use disorder, which is the actual diagnosis and the thing that needs treatment." },
+    { "id": "ua1", "kind": "lab", "category": "Urine", "name": "Urinalysis", "value": "No blood, no nitrite, no leucocytes", "unit": "-", "normalRange": "Negative", "abnormal": false, "report": "Negative. Effectively excludes renal colic, which was the stated diagnosis on two previous attendances." },
+    { "id": "xr1", "kind": "imaging", "category": "Imaging", "name": "Lumbar spine X-ray (if ordered)", "report": "Mild degenerative change at L4-L5, unchanged from a film taken 14 months ago. No fracture, no lytic lesion, no disc space loss to suggest infection. Imaging in non-specific low back pain without red flags does not improve outcomes and reliably produces findings that entrench a patient's belief in structural damage.", "imageUrl": "", "abnormal": true },
+    { "id": "cbc1", "kind": "lab", "category": "CBC", "name": "White cell count and CRP (if ordered)", "value": "WBC 7.1 / CRP 3 mg/L", "unit": "-", "normalRange": "WBC 4.0-11.0", "abnormal": false, "report": "Normal. Argues against vertebral osteomyelitis or discitis, which would be the diagnosis not to miss in a patient with any injecting history." },
+    { "id": "cows1", "kind": "lab", "category": "Scoring", "name": "Clinical Opiate Withdrawal Scale", "value": "3", "unit": "points", "normalRange": "<5 no withdrawal", "abnormal": false, "report": "No significant withdrawal at present. Relevant because buprenorphine initiation requires a score above 12, so starting it now would precipitate withdrawal." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Assess for red flags properly before deciding anything about drugs", "actions": ["Full neurological examination of the lower limbs", "Perianal sensation and anal tone", "Ask about urinary retention and saddle anaesthesia", "Screen for fever, weight loss, cancer history, injecting drug use, trauma"], "doseMap": { "Full neurological examination of the lower limbs": "The assumption that a frequent attender has nothing wrong is how cauda equina and spinal abscess get missed. Examine him as though you had never seen his file" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 480, "y": 200 }, "data": { "label": "No emergency pathology", "outcomeType": "improved", "narrative": "Normal neurological examination, no red flags, normal observations, negative urinalysis. There is no emergency here. There is a chronic pain problem and an opioid use disorder, and neither is treated with a pethidine injection at 23:00.", "vitalChanges": {} } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 720, "y": 420 }, "data": { "label": "Say no without contempt, and offer the treatment he actually needs (Empathy)", "ethicalValue": 25, "narrative": "There are two easy paths. Give the injection to end the encounter, or refuse curtly and let him leave angry. You take the third. You tell him you are not going to give pethidine, and you tell him why in one sentence rather than five. Then you say that eleven attendances in three months is not the behaviour of someone who is fine, ask what he thinks is happening, and offer opioid agonist treatment as a medical option rather than a moral one. He is silent for a while and then says he has not been able to say it out loud to anyone. Dr. Bob says this took nineteen minutes that the department did not have. He is right, and it was still correct." } },
+      { "id": "req2", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Decline the parenteral opioid clearly and without negotiation", "actions": ["No pethidine", "No parenteral opioid", "No opioid prescription to take away", "Document the decision and the reasoning factually"], "doseMap": { "No pethidine": "Pethidine has no place in modern practice: short duration, a neurotoxic metabolite that accumulates, and high abuse potential. It should not be given even when an opioid is genuinely indicated", "Document the decision and the reasoning factually": "Write what was found and what was decided. Do not write drug seeker. Pejorative labels follow a patient through every future presentation and are how the person with the spinal abscess gets discharged" } } },
+      { "id": "req3", "type": "required", "position": { "x": 1200, "y": 200 }, "data": { "label": "Offer genuine non-opioid management for the pain", "actions": ["Regular paracetamol and a topical NSAID", "Encourage continued movement rather than bed rest", "Explain the evidence for physiotherapy and graded activity", "Test the reported allergies rather than accepting them at face value"], "doseMap": { "Test the reported allergies rather than accepting them at face value": "Ask what actually happened with each drug. Reported allergies to every non-opioid frequently turn out to be side effects, or a single bad experience, and several agents become available again once explored gently" } } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Refer for opioid use disorder treatment and chronic pain care", "actions": ["Refer to addiction services for opioid agonist therapy", "Refer to a chronic pain clinic", "Offer a take-home naloxone kit", "Suggest a single named prescriber to consolidate his care"], "doseMap": { "Offer a take-home naloxone kit": "He is using opioids from multiple sources and is at real overdose risk. Offering naloxone is not an accusation, it is the same logic as a seatbelt", "Suggest a single named prescriber to consolidate his care": "Care fragmented across nine prescribers is dangerous. One prescriber with a written plan reduces both overdose risk and emergency attendances" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 120 }, "data": { "label": "Correct disposition", "outcomeType": "resolved", "narrative": "He leaves without an injection, with a naloxone kit, a pain clinic referral and an addiction service appointment for the following week. He attends. Ten weeks later he is on buprenorphine, has not returned to any emergency department, and the pain is no worse than it was. The intervention that worked was nineteen minutes and a referral, not an analgesic.", "vitalChanges": {} } },
+      { "id": "out3", "type": "outcome", "position": { "x": 1680, "y": 340 }, "data": { "label": "Path of least resistance", "outcomeType": "worsened", "narrative": "If you give the pethidine: the encounter takes four minutes instead of nineteen, everyone is comfortable, and he returns in nine days. His tolerance rises, the escalation continues, and eighteen months later he dies of an overdose of a supply nobody was supervising. Every individual decision along that path was made by a tired doctor choosing the quick option, and not one of them was recorded as an error.", "vitalChanges": {} } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "out1" },
+      { "id": "e3", "source": "out1", "target": "ethical_1" },
+      { "id": "e_skip", "source": "out1", "target": "req2" },
+      { "id": "e4", "source": "ethical_1", "target": "req2" },
+      { "id": "e5", "source": "req2", "target": "req3" },
+      { "id": "e6", "source": "req3", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "req1", "target": "out3" }
+    ]
+  }
+}

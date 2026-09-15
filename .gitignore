@@ -72,3 +72,7 @@ node_modules/
 # macOS
 .DS_Store
 out/
+dist-desktop/
+scratch/
+tsconfig.tsbuildinfo
+*.tsbuildinfo

@@ -1,0 +1,61 @@
+{
+  "title": "28yo M High-Voltage Electrical Injury",
+  "age": "28",
+  "sex": "M",
+  "chiefComplaint": "Electrocuted while working on a rooftop, thrown clear",
+  "diagnoses": ["High-voltage electrical injury with rhabdomyolysis", "Compartment syndrome", "Cardiac arrhythmia", "Blunt trauma from the fall", "Thermal burns"],
+  "background": "Air conditioning installer. His aluminium ladder contacted an 11 kV overhead distribution line. Witnesses report he was rigid for several seconds, then thrown about two metres onto a concrete roof and fell a further 3 metres. Brief loss of consciousness. Colleagues began compressions before realising he had a pulse. He is 76 kg. In high-voltage injury the visible skin wounds represent a small fraction of the damage, since current follows the path of least resistance through nerve, blood vessel and muscle deep to the skin.",
+  "patientAppearance": { "skinTone": "#c08a56", "bmiFactor": 1.0, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 124, "abnormal": true },
+    "sbp": { "value": 104, "abnormal": true },
+    "dbp": { "value": 64, "abnormal": false },
+    "rr": { "value": 26, "abnormal": true },
+    "temp": { "value": 36.0, "abnormal": false },
+    "spo2": { "value": 96, "abnormal": false },
+    "gcs": { "value": 14, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Alert but agitated and confused, in severe pain in the right arm, smell of burnt tissue, clothing charred at the right hand and left foot", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Occipital scalp haematoma from the fall, no facial burns, no singed nasal hairs and no soot in the oropharynx so no inhalational injury, cervical collar in place, tympanic membranes intact", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 124/min with occasional ventricular ectopics, blood pressure maintained, radial pulse present on the left but not palpable on the right, capillary refill 2 seconds centrally", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Equal air entry, tender right ribs 6 to 8 from the fall, no surgical emphysema, no flail segment, tachypnoeic from pain and acidosis", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, mildly tender in the right upper quadrant, no rebound, no seatbelt sign, pelvis stable. Blunt abdominal injury from the fall must be excluded separately from the electrical injury", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Deep charred contact wound over the right palm (entry) measuring 4 cm, and a similar exit wound over the left heel. Total burn surface area under 3%, which is deceptive. Right forearm is tense, swollen and hard with pain on passive finger extension", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 14 (E4V4M6), confused, no focal deficit centrally. Right hand is insensate over the median distribution with weak finger flexion. Peripheral nerve injury is common and may be immediate or delayed by days to weeks", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "ck1", "kind": "lab", "category": "Chemistry", "name": "Creatine kinase", "value": "42000", "unit": "U/L", "normalRange": "30-200", "abnormal": true, "report": "Massive rhabdomyolysis. Values in high-voltage injury are frequently far higher than the visible wounds suggest, because the muscle damage is deep and extensive." },
+    { "id": "ua1", "kind": "lab", "category": "Urine", "name": "Urinalysis", "value": "Dark tea-coloured urine, dipstick blood 4+, no red cells on microscopy", "unit": "-", "normalRange": "Negative", "abnormal": true, "report": "Myoglobinuria. Dipstick positive for blood with no red cells on microscopy is the classic finding and confirms pigment nephropathy risk." },
+    { "id": "k1", "kind": "lab", "category": "Elytes", "name": "Potassium and creatinine", "value": "K 6.1 mmol/L / creatinine 2.2 mg/dL", "unit": "-", "normalRange": "K 3.5-5.0 mmol/L", "abnormal": true, "report": "Hyperkalaemia from muscle breakdown with acute kidney injury. Potassium will rise further after fasciotomy releases the damaged compartment." },
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Sinus tachycardia with frequent ventricular ectopics and peaked T waves consistent with hyperkalaemia. No ST elevation. Arrhythmia is the immediate cause of death in electrical injury and 24 hours of monitoring is indicated after high-voltage exposure or loss of consciousness.", "imageUrl": "", "abnormal": true },
+    { "id": "gas1", "kind": "lab", "category": "ABG", "name": "Blood gas and lactate", "value": "pH 7.22 / HCO3 16 / lactate 5.8", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Metabolic acidosis from muscle necrosis and hypoperfusion." },
+    { "id": "ct1", "kind": "imaging", "category": "Imaging", "name": "CT head, cervical spine and torso", "report": "Small right frontal contusion without mass effect. No cervical spine injury. Right ribs 6 to 8 fractures with a small pulmonary contusion. No intra-abdominal injury. The fall must be worked up as blunt trauma in its own right.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Treat as blunt trauma as well as electrical injury", "actions": ["Primary survey with cervical spine precautions", "Continuous cardiac monitoring", "12-lead ECG", "Full trauma imaging"], "doseMap": { "Treat as blunt trauma as well as electrical injury": "The fall and the tetanic muscle contraction cause fractures and internal injury independent of the current. Focusing only on the burns misses the spine and the head" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Aggressive fluid resuscitation, far beyond burn surface area formulas", "actions": ["Large volume crystalloid", "Urinary catheter with hourly output", "Do not use the Parkland formula here"], "doseMap": { "Large volume crystalloid": "Target urine output 1.5-2 mL/kg/h (about 115-150 mL/h), which is roughly double the target for a thermal burn", "Do not use the Parkland formula here": "Surface area based formulas grossly underestimate requirements in high-voltage injury, because the muscle damage is invisible. Titrate to urine output, not to a calculation" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Treat hyperkalaemia and monitor for arrhythmia", "actions": ["Calcium gluconate for ECG changes", "Insulin and dextrose", "Continuous cardiac monitoring for at least 24 hours", "Repeat potassium every 2 hours"], "doseMap": { "Calcium gluconate for ECG changes": "10 mL of 10% IV over 3 min, repeat as needed", "Continuous cardiac monitoring for at least 24 hours": "Indicated after high-voltage exposure, loss of consciousness or an abnormal initial ECG. He has all three" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Compartment syndrome of the right forearm", "outcomeType": "worsened", "narrative": "The forearm is tense and woody with progressive sensory loss and pain on passive stretch. The radial pulse is absent, which is a late sign. Deep muscle necrosis under intact skin is characteristic and there is no way to assess it without opening the compartment.", "vitalChanges": { "hr": 132, "sbp": 98, "dbp": 60, "rr": 28 } } },
+      { "id": "req4", "type": "required", "position": { "x": 1200, "y": 200 }, "data": { "label": "Urgent fasciotomy, with anticipation of a potassium surge", "actions": ["Emergency forearm fasciotomy and carpal tunnel release", "Prepare for reperfusion hyperkalaemia", "Orthopaedic and burns surgical involvement"], "doseMap": { "Prepare for reperfusion hyperkalaemia": "Releasing a necrotic compartment washes potassium and myoglobin into the circulation. Have calcium, insulin, dextrose and a defibrillator ready before the incision" } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Report the unsafe worksite and tell him he can be treated regardless of documentation status (Empathy)", "ethicalValue": 20, "narrative": "He is 28, he is not on any formal employment contract, and his first coherent question is whether he will have to pay and whether his employer will find out. You tell him the emergency treatment is covered, that reporting the incident does not jeopardise his care, and that an aluminium ladder within reach of an 11 kV line is a fatal setup that will kill the next installer if nobody records it. You file the occupational injury report yourself. Three of his colleagues are working on the same building tomorrow." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Burns centre transfer and ongoing monitoring", "actions": ["Transfer to a burns centre", "Serial debridement of necrotic muscle", "Renal support if myoglobinuria persists", "Ophthalmology review for delayed cataract", "Neurology follow-up for delayed neuropathy"], "doseMap": { "Ophthalmology review for delayed cataract": "Cataract develops in a proportion of high-voltage survivors, sometimes months later, and needs baseline documentation now" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Course", "outcomeType": "improved", "narrative": "Fasciotomy releases extensive necrotic flexor muscle requiring debridement on days 2 and 4. Creatine kinase peaks at 68000 on day 2. Creatinine peaks at 3.8 mg/dL and he requires two sessions of dialysis, then recovers. The hand is salvaged but the median nerve deficit persists.", "vitalChanges": { "hr": 96, "sbp": 116, "dbp": 70, "rr": 18 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged to rehabilitation at week 5 with skin grafting to the forearm and a persistent median nerve deficit needing tendon transfer at six months. Renal function normalises. The occupational report leads to an inspection and the removal of two more ladders from the same contractor's sites.", "vitalChanges": { "hr": 82, "sbp": 120, "dbp": 74, "rr": 16 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "req4" },
+      { "id": "e6", "source": "req4", "target": "ethical_1" },
+      { "id": "e_skip", "source": "req4", "target": "req5" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

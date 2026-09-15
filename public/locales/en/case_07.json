@@ -1,0 +1,451 @@
+{
+  "title": "27yo F Anaphylaxis",
+  "age": "27",
+  "sex": "F",
+  "chiefComplaint": "Rash and difficulty breathing after a meal",
+  "diagnoses": [
+    "Anaphylaxis",
+    "Angioedema",
+    "Acute asthma exacerbation",
+    "Vasovagal syncope"
+  ],
+  "background": "Brought in by friends 20 minutes after eating shrimp fried rice at a street stall. She developed itching in her palms, then a spreading rash, throat tightness and vomiting. She has known allergic rhinitis and mild asthma, uses salbutamol MDI once or twice a month. She carries no adrenaline autoinjector. She took cetirizine 10 mg at the restaurant with no improvement. Last menstrual period 2 weeks ago.",
+  "patientAppearance": {
+    "skinTone": "#e8b98a",
+    "bmiFactor": 1.0,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 128,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 82,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 44,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 28,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.8,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 89,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 14,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Anxious, sitting upright, flushed and diaphoretic, speaking in short phrases",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Swollen lips and tongue, hoarse voice, audible inspiratory stridor, no drooling, mouth opening adequate, Mallampati now III from tongue swelling",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia, thready radial pulse, capillary refill 4 seconds, no murmur, JVP flat",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Diffuse expiratory wheeze in all fields, prolonged expiratory phase, suprasternal and intercostal retractions, poor air entry at both bases",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, mild diffuse tenderness without guarding, hyperactive bowel sounds, one episode of vomiting in triage",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Generalised confluent urticaria over trunk and limbs, warm flushed periphery over a cool clammy forehead, no purpura",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 14 (E4V4M6), agitated and frightened, no focal deficit, pupils 4 mm equal and reactive",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "12-Lead ECG",
+      "report": "Sinus tachycardia at 126/min. No ischaemic ST changes. Normal QTc.",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Portable Chest X-ray",
+      "report": "Hyperinflated lung fields with flattened hemidiaphragms. No consolidation, effusion or pneumothorax. Normal cardiac silhouette.",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Capillary glucose",
+      "value": "104",
+      "unit": "mg/dL",
+      "normalRange": "70-140",
+      "abnormal": false,
+      "report": "Normal. Excludes hypoglycaemia as a cause of altered behaviour."
+    },
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Arterial blood gas (room air)",
+      "value": "pH 7.31 / pCO2 32 / pO2 58 / HCO3 16",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Hypoxaemia with metabolic acidosis and partial respiratory compensation, consistent with shock and bronchospasm."
+    },
+    {
+      "id": "lac1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Lactate",
+      "value": "4.1",
+      "unit": "mmol/L",
+      "normalRange": "0.5-2.0",
+      "abnormal": true,
+      "report": "Elevated, consistent with distributive shock and hypoperfusion."
+    },
+    {
+      "id": "tryp1",
+      "kind": "lab",
+      "category": "Immunology",
+      "name": "Serum tryptase (acute)",
+      "value": "42",
+      "unit": "ng/mL",
+      "normalRange": "<11.4",
+      "abnormal": true,
+      "report": "Markedly raised. Confirmatory only, resulted after the resuscitation. Repeat a baseline level at 24 hours."
+    },
+    {
+      "id": "cbc1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Haematocrit",
+      "value": "47",
+      "unit": "%",
+      "normalRange": "36-46",
+      "abnormal": true,
+      "report": "Haemoconcentration from capillary leak and plasma extravasation."
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 160,
+          "y": 380
+        },
+        "data": {
+          "label": "Sit at eye level, tell her what is happening and that you are giving adrenaline now (Empathy)",
+          "ethicalValue": 10,
+          "narrative": "You take 15 seconds to explain the plan in plain language while the nurse draws up adrenaline. Her respiratory rate settles slightly as the panic drops. Her friend hands over the packaging from the meal, which lists shrimp paste and peanut oil."
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 320,
+          "y": 200
+        },
+        "data": {
+          "label": "IM adrenaline to the anterolateral thigh",
+          "actions": [
+            "Adrenaline (epinephrine) 1 mg/mL IM"
+          ],
+          "doseMap": {
+            "Adrenaline (epinephrine) 1 mg/mL IM": "0.5 mg (0.5 mL of 1:1000) IM mid anterolateral thigh, repeat every 5 min as needed"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 560,
+          "y": 200
+        },
+        "data": {
+          "label": "High flow oxygen and position supine with legs raised",
+          "actions": [
+            "Oxygen via non-rebreather mask",
+            "Supine with legs elevated"
+          ],
+          "doseMap": {
+            "Oxygen via non-rebreather mask": "15 L/min, target SpO2 94-98%"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 800,
+          "y": 200
+        },
+        "data": {
+          "label": "Two large bore IV lines and rapid crystalloid bolus",
+          "actions": [
+            "IV access 18G x2",
+            "Normal saline bolus"
+          ],
+          "doseMap": {
+            "Normal saline bolus": "20 mL/kg (about 1000 mL) over 10-15 min, reassess after each bolus"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1040,
+          "y": 200
+        },
+        "data": {
+          "label": "Partial response",
+          "outcomeType": "improved",
+          "narrative": "Stridor softens and the urticaria starts to fade. She is still wheezing and remains hypotensive after the first litre.",
+          "vitalChanges": {
+            "hr": 118,
+            "sbp": 94,
+            "dbp": 56,
+            "rr": 24,
+            "spo2": 94,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1280,
+          "y": 80
+        },
+        "data": {
+          "label": "Second IM adrenaline dose at 5 minutes for persistent hypotension",
+          "actions": [
+            "Adrenaline (epinephrine) 1 mg/mL IM (repeat)"
+          ],
+          "doseMap": {
+            "Adrenaline (epinephrine) 1 mg/mL IM (repeat)": "0.5 mg IM, then start IV infusion if a third dose is needed"
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1280,
+          "y": 320
+        },
+        "data": {
+          "label": "Nebulised bronchodilator for ongoing wheeze",
+          "actions": [
+            "Salbutamol nebuliser"
+          ],
+          "doseMap": {
+            "Salbutamol nebuliser": "2.5 mg in 3 mL saline, driven by oxygen, repeat as needed"
+          }
+        }
+      },
+      {
+        "id": "req6",
+        "type": "required",
+        "position": {
+          "x": 1520,
+          "y": 200
+        },
+        "data": {
+          "label": "Adjuncts after adrenaline, never instead of it",
+          "actions": [
+            "Chlorpheniramine IV",
+            "Hydrocortisone IV"
+          ],
+          "doseMap": {
+            "Chlorpheniramine IV": "10 mg slow IV",
+            "Hydrocortisone IV": "200 mg IV"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1760,
+          "y": 200
+        },
+        "data": {
+          "label": "Stabilised",
+          "outcomeType": "improved",
+          "narrative": "Stridor resolves, wheeze clears to scattered end-expiratory squeaks, and the rash is fading. She is talking in full sentences.",
+          "vitalChanges": {
+            "hr": 96,
+            "sbp": 112,
+            "dbp": 68,
+            "rr": 18,
+            "spo2": 98,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "req7",
+        "type": "required",
+        "position": {
+          "x": 2000,
+          "y": 200
+        },
+        "data": {
+          "label": "Admit for observation and arrange discharge safety net",
+          "actions": [
+            "Monitored observation 6-12 hours",
+            "Prescribe 2 adrenaline autoinjectors",
+            "Written anaphylaxis action plan",
+            "Allergy clinic referral and 24h baseline tryptase"
+          ],
+          "doseMap": {
+            "Prescribe 2 adrenaline autoinjectors": "0.3 mg autoinjector, demonstrate technique before discharge"
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2240,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "She is observed for 8 hours with no biphasic reaction. She leaves with two autoinjectors, an action plan, and an allergy clinic appointment. Her friend photographs the stall sign so she can avoid it.",
+          "vitalChanges": {
+            "hr": 84,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 16,
+            "spo2": 99,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e2",
+        "source": "ethical_1",
+        "target": "req1"
+      },
+      {
+        "id": "e_skip",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e3",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e4",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e5",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req4",
+        "target": "req6"
+      },
+      {
+        "id": "e9",
+        "source": "req5",
+        "target": "req6"
+      },
+      {
+        "id": "e10",
+        "source": "req6",
+        "target": "out2"
+      },
+      {
+        "id": "e11",
+        "source": "out2",
+        "target": "req7"
+      },
+      {
+        "id": "e12",
+        "source": "req7",
+        "target": "out3"
+      }
+    ]
+  }
+}

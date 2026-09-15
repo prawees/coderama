@@ -1,0 +1,61 @@
+{
+  "title": "52yo F Russell's Viper Envenomation",
+  "age": "52",
+  "sex": "F",
+  "chiefComplaint": "Snakebite to the right foot while harvesting, now bleeding from the gums",
+  "diagnoses": ["Russell's viper (Daboia siamensis) envenomation", "Malayan pit viper envenomation", "Green pit viper envenomation", "Dry bite", "Cellulitis"],
+  "background": "Bitten two hours ago while cutting rice at dusk. A neighbour tied a cloth tourniquet above the knee and applied crushed herbs to the wound. She describes a short, thick, brown snake with dark oval blotches. She has taken no medication. She lives 40 km from the hospital and the pickup truck broke down on the way. Four vials of Russell's viper antivenom are in the fridge and the next delivery is Tuesday.",
+  "patientAppearance": { "skinTone": "#b8834e", "bmiFactor": 0.95, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 108, "abnormal": true },
+    "sbp": { "value": 96, "abnormal": true },
+    "dbp": { "value": 58, "abnormal": true },
+    "rr": { "value": 22, "abnormal": true },
+    "temp": { "value": 37.0, "abnormal": false },
+    "spo2": { "value": 97, "abnormal": false },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Anxious, in severe pain, cooperative and fully alert, a cloth tourniquet still tied tightly around the right thigh", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Spontaneous gum bleeding, blood-stained saliva, no ptosis, no ophthalmoplegia, full mouth opening, normal voice. Absence of neurotoxic signs helps distinguish from cobra or krait envenomation", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia, borderline hypotension, capillary refill 3 seconds, dorsalis pedis pulse present on the bitten limb", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, normal effort, no respiratory muscle weakness, single breath count 32", "abnormal": false },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, mild generalised tenderness, no guarding, no flank bruising, bowel sounds present", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Two fang marks 12 mm apart on the dorsum of the right foot with oozing serosanguinous fluid, swelling to mid-calf, herbal paste over the wound, bruising extending proximally, bleeding from the IV cannula site", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 15, no ptosis, no bulbar weakness, normal power in all limbs, sensation intact distally", "abnormal": false }
+  ],
+  "investigations": [
+    { "id": "wbct1", "kind": "lab", "category": "Bedside", "name": "20 minute whole blood clotting test", "value": "Non-clotting at 20 minutes", "unit": "-", "normalRange": "Clot forms within 20 min", "abnormal": true, "report": "Fresh venous blood placed in a clean, dry, unwashed glass tube fails to clot at 20 minutes. This is the single most useful test in a Thai district hospital and it is the indication for antivenom on its own." },
+    { "id": "coag1", "kind": "lab", "category": "Coagulation", "name": "INR and fibrinogen", "value": "INR >8 (unmeasurable) / fibrinogen <0.5 g/L", "unit": "-", "normalRange": "INR 0.9-1.2", "abnormal": true, "report": "Venom induced consumption coagulopathy. Fresh frozen plasma without antivenom is fuel on a fire, the venom will consume it too." },
+    { "id": "plt1", "kind": "lab", "category": "CBC", "name": "Platelet count", "value": "62", "unit": "x10^9/L", "normalRange": "150-400", "abnormal": true, "report": "Thrombocytopenia, characteristic of Russell's viper envenomation." },
+    { "id": "cr1", "kind": "lab", "category": "Chemistry", "name": "Creatinine and potassium", "value": "Creatinine 1.9 mg/dL / K 5.1 mmol/L", "unit": "-", "normalRange": "Creatinine 0.5-1.0 mg/dL", "abnormal": true, "report": "Early acute kidney injury. Russell's viper is the leading snake cause of dialysis-requiring renal failure in Southeast Asia." },
+    { "id": "ck1", "kind": "lab", "category": "Chemistry", "name": "Creatine kinase", "value": "2100", "unit": "U/L", "normalRange": "30-200", "abnormal": true, "report": "Rhabdomyolysis contributing to renal injury." },
+    { "id": "ua1", "kind": "lab", "category": "Urine", "name": "Urinalysis", "value": "Blood 3+, protein 2+, no red cells on microscopy", "unit": "-", "normalRange": "Negative", "abnormal": true, "report": "Positive dipstick blood with no red cells indicates myoglobinuria or haemoglobinuria." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Remove the tourniquet carefully and immobilise the limb", "actions": ["Slow removal of the constricting band with monitoring", "Splint the limb at heart level", "Remove the herbal paste and clean the wound", "Do not incise, suck or apply ice"], "doseMap": { "Slow removal of the constricting band with monitoring": "Release with resuscitation drugs at hand. Sudden release can wash a bolus of venom into the circulation" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "20 minute whole blood clotting test and species identification", "actions": ["20 minute whole blood clotting test", "Ask about the snake's appearance", "Examine for neurotoxic signs: ptosis, single breath count"], "doseMap": {} } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Give specific antivenom for systemic envenomation", "actions": ["Russell's viper monovalent antivenom IV", "Adrenaline drawn up at the bedside before infusion"], "doseMap": { "Russell's viper monovalent antivenom IV": "3 vials reconstituted in 100 mL normal saline over 30-60 min. Repeat after 6 hours if the clotting test remains non-clotting", "Adrenaline drawn up at the bedside before infusion": "0.5 mg 1:1000 IM ready for anaphylactoid reaction, which occurs in up to 20% of infusions" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Anaphylactoid reaction during infusion", "outcomeType": "worsened", "narrative": "Twelve minutes in she develops urticaria, wheeze and a fall in blood pressure. The infusion is stopped, IM adrenaline is given, and after 20 minutes the antivenom is restarted at a slower rate and completed. This is expected, not a reason to withhold the only effective treatment.", "vitalChanges": { "hr": 124, "sbp": 84, "dbp": 50, "rr": 26, "spo2": 93 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Do not shame the family for the tourniquet and the herbs (Empathy)", "ethicalValue": 10, "narrative": "The neighbour who tied the tourniquet is standing in the corridor waiting to be blamed. You tell him plainly that the cloth and the paste do not help and can cause harm, and in the same breath that driving her 40 km on a broken truck is why she is alive. He listens to the first part because you said the second. He is the village health volunteer for four hundred people, and next time he will bring the next patient straight in." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Repeat clotting test at 6 hours and give further antivenom if still non-clotting", "actions": ["Repeat 20 minute whole blood clotting test at 6 hours", "Further antivenom if non-clotting", "Do not give FFP or platelets before antivenom"], "doseMap": { "Further antivenom if non-clotting": "3 more vials. Only two vials remain in the fridge, so contact the regional depot and the referral hospital now, not at 06:00" } } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Fluids and monitoring for acute kidney injury", "actions": ["IV crystalloid targeting urine output 1-2 mL/kg/h", "Hourly urine output and daily creatinine", "Nephrology referral for dialysis planning", "Tetanus prophylaxis"], "doseMap": { "Tetanus prophylaxis": "Give once the coagulopathy has corrected, not into a bleeding muscle" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Coagulopathy corrected", "outcomeType": "improved", "narrative": "Clotting restored at 14 hours after a total of 6 vials. Gum bleeding stops. Creatinine peaks at 3.4 mg/dL on day 3 and she requires two sessions of haemodialysis, then recovers.", "vitalChanges": { "hr": 88, "sbp": 112, "dbp": 68, "rr": 18 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged on day 9 with normal renal function and a permanently swollen foot. The limb was never fasciotomised, which was correct: swelling from envenomation is rarely true compartment syndrome and fasciotomy into a coagulopathic limb is a well documented way to kill someone.", "vitalChanges": { "hr": 80, "sbp": 118, "dbp": 72, "rr": 16 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

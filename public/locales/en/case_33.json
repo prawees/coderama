@@ -1,0 +1,61 @@
+{
+  "title": "12d M Late-Onset Neonatal Sepsis",
+  "age": "0.03",
+  "sex": "M",
+  "chiefComplaint": "Not feeding, floppy, and mother says he is just not right",
+  "diagnoses": ["Late-onset group B streptococcal sepsis with meningitis", "Duct-dependent congenital heart disease", "Inborn error of metabolism", "Non-accidental injury", "Necrotising enterocolitis"],
+  "background": "Twelve day old term male, born at 39 weeks by normal delivery, birth weight 3.1 kg, now 2.9 kg. Discharged well on day 2. Maternal group B streptococcus status was never tested because she booked late. For the last eight hours he has fed poorly, felt cold to touch, and his mother says only that he is not himself. He has not had a fever. Neonates with sepsis are frequently afebrile or hypothermic, and a well-looking neonate can be bacteraemic. The mother's statement is the most reliable piece of data in this presentation.",
+  "patientAppearance": { "skinTone": "#f5d0ac", "bmiFactor": 0.85, "ageGroup": "child" },
+  "vitals": {
+    "hr": { "value": 196, "abnormal": true },
+    "sbp": { "value": 52, "abnormal": true },
+    "dbp": { "value": 28, "abnormal": true },
+    "rr": { "value": 68, "abnormal": true },
+    "temp": { "value": 35.4, "abnormal": true },
+    "spo2": { "value": 92, "abnormal": true },
+    "gcs": { "value": 10, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Lethargic, floppy, weak high-pitched cry, poor response to handling, does not root or suck. Hypothermic at 35.4 C rather than febrile", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Anterior fontanelle full and slightly tense when held upright, which in a neonate is a late sign of meningitis. Dry mucous membranes, no dysmorphic features, red reflex present bilaterally, no conjunctivitis", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 196/min, capillary refill 5 seconds centrally, weak brachial pulses, femoral pulses present and equal which argues against coarctation, no murmur, no hepatomegaly", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoea at 68 with grunting and mild subcostal recession, clear air entry bilaterally, no crackles, intermittent apnoeic pauses observed on the monitor", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, mildly distended, no visible bowel loops, no abdominal wall erythema, umbilical stump separated and clean with no periumbilical flare, bowel sounds present, no organomegaly", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Mottled and cool to the elbows and knees, capillary refill 5 seconds, no purpura or petechiae, no bruising anywhere, no jaundice, skin turgor reduced", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS equivalent 10, hypotonic with poor head control and reduced spontaneous movement, Moro reflex incomplete, no seizure observed but subtle neonatal seizures include lip smacking, cycling movements and eye deviation, all easily missed", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "poc1", "kind": "lab", "category": "POCT", "name": "Capillary glucose", "value": "32", "unit": "mg/dL", "normalRange": "45-100 (neonate)", "abnormal": true, "report": "Hypoglycaemia. Correct immediately. It is both a consequence of sepsis and an independent cause of neurological injury in a neonate." },
+    { "id": "lp1", "kind": "lab", "category": "Micro", "name": "Lumbar puncture (CSF)", "value": "WBC 1240/mm3 (92% neutrophils), protein 220 mg/dL, glucose 12 mg/dL, Gram positive cocci in chains", "unit": "-", "normalRange": "WBC <20/mm3 in neonates", "abnormal": true, "report": "Bacterial meningitis with Gram positive cocci in chains, consistent with group B streptococcus. Up to a third of neonates with late-onset GBS sepsis have meningitis, so lumbar puncture is part of the workup and not an optional extra. Do not delay antibiotics to obtain it." },
+    { "id": "bc1", "kind": "lab", "category": "Micro", "name": "Blood culture", "value": "Streptococcus agalactiae (group B) at 14 hours", "unit": "-", "normalRange": "No growth", "abnormal": true, "report": "Positive. Sensitive to penicillin. Take cultures before antibiotics only if it costs no time." },
+    { "id": "gas1", "kind": "lab", "category": "ABG", "name": "Blood gas and lactate", "value": "pH 7.14 / pCO2 38 / HCO3 12 / lactate 8.4", "unit": "-", "normalRange": "pH 7.32-7.42", "abnormal": true, "report": "Severe metabolic acidosis with hyperlactataemia. Septic shock." },
+    { "id": "cbc1", "kind": "lab", "category": "CBC", "name": "White cells and platelets", "value": "WBC 2.8 x10^9/L with a left shift / platelets 74 x10^9/L", "unit": "-", "normalRange": "WBC 5.0-21.0", "abnormal": true, "report": "Leucopenia with thrombocytopenia. In neonatal sepsis a low white cell count is more ominous than a high one, and a normal count never excludes sepsis." },
+    { "id": "crp1", "kind": "lab", "category": "Chemistry", "name": "CRP", "value": "68", "unit": "mg/L", "normalRange": "<10", "abnormal": true, "report": "Raised, but CRP lags by 12 to 24 hours and a normal early value is common in fulminant sepsis. Never use it to decide whether to start antibiotics in a neonate." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Treat as sepsis on suspicion alone, check glucose immediately", "actions": ["Capillary glucose", "IV or intraosseous access within 5 minutes", "Blood culture if it costs no delay", "Thermal support and warming"], "doseMap": { "IV or intraosseous access within 5 minutes": "Go intraosseous early in a shocked neonate. Repeated failed cannulation attempts are the commonest cause of delayed antibiotics" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Correct hypoglycaemia", "actions": ["Dextrose 10% bolus", "Dextrose infusion"], "doseMap": { "Dextrose 10% bolus": "2 mL/kg of 10% dextrose (6 mL), recheck in 30 min", "Dextrose infusion": "Glucose delivery rate 6-8 mg/kg/min to maintain glucose above 45 mg/dL" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Antibiotics within one hour, meningitic doses", "actions": ["Ampicillin IV", "Cefotaxime IV", "Add aciclovir if there are seizures, vesicles or hepatitis"], "doseMap": { "Ampicillin IV": "100 mg/kg (290 mg) IV. Covers group B streptococcus and Listeria", "Cefotaxime IV": "50 mg/kg (145 mg) IV. Use cefotaxime rather than ceftriaxone in neonates, since ceftriaxone displaces bilirubin and precipitates with calcium-containing fluids", "Add aciclovir if there are seizures, vesicles or hepatitis": "20 mg/kg IV every 8 hours. Neonatal herpes simplex can be indistinguishable from bacterial sepsis and is missed until it is too late" } } },
+      { "id": "req4", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Fluid resuscitation and inotropes for fluid-refractory shock", "actions": ["Isotonic crystalloid bolus", "Reassess after every bolus for hepatomegaly and crackles", "Adrenaline or dopamine infusion if shock persists"], "doseMap": { "Isotonic crystalloid bolus": "10 mL/kg (29 mL) aliquots, not 20 mL/kg. Neonatal myocardium tolerates volume poorly and fluid overload is easy to cause", "Adrenaline or dopamine infusion if shock persists": "Start after 2 to 3 boluses rather than persisting with volume" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 1200, "y": 200 }, "data": { "label": "Response to resuscitation", "outcomeType": "improved", "narrative": "Antibiotics given 38 minutes after arrival. After 60 mL of saline and an adrenaline infusion, capillary refill improves to 3 seconds and lactate falls to 4.1. He remains hypotonic. The lumbar puncture is performed once he is stable, and shows meningitis.", "vitalChanges": { "hr": 172, "sbp": 64, "dbp": 36, "rr": 58, "spo2": 96, "temp": 36.6, "gcs": 12 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Believe the mother, and tell her that you believed her (Empathy)", "ethicalValue": 20, "narrative": "Her only complaint was that he was not himself, and she was sent home from a clinic six hours earlier for exactly that reason: no fever, no specific sign, an anxious first-time mother. You tell her explicitly that she was right, that a parent saying a neonate is not himself is one of the strongest predictors of serious illness in the entire literature, and that she should say that sentence to any doctor she ever meets and expect it to be taken seriously. Pi Pim uses this exact case in teaching, because the failure was not knowledge, it was dismissal." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Extended antibiotic course and neonatal intensive care", "actions": ["NICU admission", "Extend to 14-21 days of IV antibiotics for GBS meningitis", "Cranial ultrasound and repeat lumbar puncture at 24-48 hours", "Hearing screen and neurodevelopmental follow-up"], "doseMap": { "Extend to 14-21 days of IV antibiotics for GBS meningitis": "Minimum 14 days for GBS meningitis, and 21 days if there are complications. A 7 day bacteraemia course is inadequate once meningitis is confirmed" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Course", "outcomeType": "improved", "narrative": "Repeat CSF is sterile at 48 hours. He has two subtle seizures on day 2 that respond to phenobarbitone. Cranial ultrasound shows no ventriculitis or abscess. Feeding by day 6, off inotropes by day 3.", "vitalChanges": { "hr": 148, "sbp": 72, "dbp": 42, "rr": 46, "spo2": 98, "temp": 36.9, "gcs": 15 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 18 after completing 14 days of antibiotics, feeding fully and gaining weight. Hearing screen normal. Enrolled in neurodevelopmental follow-up, since around a quarter of survivors of neonatal GBS meningitis have long-term impairment. His mother is told, correctly, that the 38 minute door-to-antibiotic time is why the number is a quarter and not higher.", "vitalChanges": { "hr": 140, "sbp": 76, "dbp": 44, "rr": 42, "spo2": 99, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "req4" },
+      { "id": "e5", "source": "req4", "target": "out1" },
+      { "id": "e6", "source": "out1", "target": "ethical_1" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e_skip", "source": "out1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

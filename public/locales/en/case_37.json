@@ -1,0 +1,61 @@
+{
+  "title": "62yo M Type A Aortic Dissection",
+  "age": "62",
+  "sex": "M",
+  "chiefComplaint": "Sudden tearing chest pain radiating to the back",
+  "diagnoses": ["Stanford type A aortic dissection", "ST elevation myocardial infarction", "Pulmonary embolism", "Oesophageal rupture", "Acute pericarditis"],
+  "background": "Sudden severe interscapular tearing pain at maximum intensity from the first second, while lifting a suitcase. Long history of poorly controlled hypertension with intermittent adherence to three agents. He describes the pain as migrating from between the shoulder blades down toward the abdomen over twenty minutes. A doctor at a nearby clinic saw ST changes and gave him aspirin and clopidogrel, and was preparing to arrange thrombolysis when the family decided to drive him here instead.",
+  "patientAppearance": { "skinTone": "#d09a68", "bmiFactor": 1.1, "ageGroup": "elderly" },
+  "vitals": {
+    "hr": { "value": 112, "abnormal": true },
+    "sbp": { "value": 178, "abnormal": true },
+    "dbp": { "value": 96, "abnormal": true },
+    "rr": { "value": 26, "abnormal": true },
+    "temp": { "value": 36.6, "abnormal": false },
+    "spo2": { "value": 96, "abnormal": false },
+    "gcs": { "value": 14, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "In severe distress, restless and unable to find a comfortable position, diaphoretic, describing the worst pain of his life with an abrupt maximal onset", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "No jugular venous distension initially, hoarse voice from recurrent laryngeal nerve stretch, no Horner syndrome, carotid pulses present but the left is weaker than the right", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Blood pressure 178/96 in the right arm and 132/74 in the left, a 46 mmHg differential. Early diastolic murmur at the left sternal edge indicating new aortic regurgitation. Right femoral pulse weak, left femoral pulse absent", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, tachypnoeic from pain, no crackles, no pleural rub. Left pleural effusion may develop from haemorrhage into the pleural space", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft with disproportionate periumbilical pain and no tenderness on palpation, which raises mesenteric malperfusion from the dissection flap. No pulsatile mass palpable, bowel sounds present", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Diaphoretic, left leg cooler and paler than the right with delayed capillary refill, no rash, no bruising", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 14, transient right arm weakness that has now resolved, no dysphasia, pupils equal. Stroke-like features occur in around 15% of dissections and are the reason some are thrombolysed by mistake, with catastrophic results", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "ct1", "kind": "imaging", "category": "Imaging", "name": "CT angiogram of the aorta", "report": "Intimal flap extending from the aortic root through the arch and descending aorta to the level of the left common iliac artery. Stanford type A. False lumen compresses the left common carotid and left common iliac origins. Small pericardial effusion. Aortic root diameter 52 mm. No mesenteric occlusion. This is the definitive investigation and it must be obtained fast, not perfectly.", "imageUrl": "", "abnormal": true },
+    { "id": "echo1", "kind": "imaging", "category": "Imaging", "name": "Bedside echocardiogram", "report": "Dilated aortic root with a visible mobile flap, moderate to severe aortic regurgitation, and a 12 mm pericardial effusion without tamponade physiology. Available in minutes and enough to stop anyone from giving thrombolysis.", "imageUrl": "", "abnormal": true },
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Sinus tachycardia with 1.5 mm ST elevation in II, III and aVF. The dissection flap involves the right coronary ostium. This is a genuine inferior STEMI caused by a dissection, and thrombolysis here would be lethal. Roughly 1 to 2% of type A dissections present with coronary involvement.", "imageUrl": "", "abnormal": true },
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Chest X-ray", "report": "Widened mediastinum at 9.5 cm, loss of the normal aortic knuckle contour and a small left pleural effusion. Around 12 to 20% of dissections have a normal chest film, so a normal film never excludes it.", "imageUrl": "", "abnormal": true },
+    { "id": "ddim1", "kind": "lab", "category": "Chemistry", "name": "D-dimer", "value": "6400", "unit": "ng/mL", "normalRange": "<500", "abnormal": true, "report": "Markedly elevated. A D-dimer below 500 within 24 hours of symptom onset has good negative predictive value for dissection, but a raised value is entirely non-specific and must never be used to diagnose it." },
+    { "id": "cr1", "kind": "lab", "category": "Chemistry", "name": "Creatinine and lactate", "value": "Creatinine 1.8 mg/dL / lactate 3.4 mmol/L", "unit": "-", "normalRange": "Creatinine 0.7-1.3 mg/dL", "abnormal": true, "report": "Renal impairment from renal artery involvement and a rising lactate suggesting a degree of malperfusion." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Blood pressure in both arms and pulses in all four limbs before anything else", "actions": ["Bilateral arm blood pressure", "Palpate all four limb pulses", "12-lead ECG", "Bedside echocardiogram"], "doseMap": { "Bilateral arm blood pressure": "Takes 90 seconds. A pulse or pressure differential in a patient with chest pain is the finding that prevents you from thrombolysing a dissection. It is omitted in most chest pain assessments" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Stop and withhold antiplatelets and anticoagulation", "actions": ["No further antiplatelet agents", "No heparin", "Absolutely no thrombolysis", "Document the ECG findings and the reason for withholding"], "doseMap": { "Absolutely no thrombolysis": "Thrombolysis in type A dissection has a mortality above 70%. The clinic already gave dual antiplatelets on the basis of the ST elevation, which increases the surgical bleeding risk and cannot be undone" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Beta blocker first, then vasodilator, and control pain aggressively", "actions": ["Esmolol or labetalol IV", "Then sodium nitroprusside or nicardipine", "Morphine IV"], "doseMap": { "Esmolol or labetalol IV": "Target heart rate below 60 and systolic 100-120. Rate control reduces the shear force (dP/dt) that propagates the dissection", "Then sodium nitroprusside or nicardipine": "Only after adequate beta blockade. A vasodilator given first causes reflex tachycardia, which increases shear force and extends the dissection. The order of these two drugs is the whole lesson", "Morphine IV": "Titrate generously. Pain drives the catecholamine surge that propagates the flap, so analgesia is haemodynamic treatment here" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Haemodynamic control achieved", "outcomeType": "improved", "narrative": "Heart rate 58 and systolic 112 after esmolol and nitroprusside. Pain is controlled with 12 mg of morphine. The left femoral pulse becomes palpable as flow through the true lumen improves. CT confirms type A dissection. Cardiothoracic surgery is activated.", "vitalChanges": { "hr": 58, "sbp": 112, "dbp": 68, "rr": 20, "gcs": 15 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Tell the family the mortality figures honestly, and do not blame the clinic doctor in front of them (Empathy)", "ethicalValue": 20, "narrative": "His son asks what the chances are. Type A dissection carries roughly 1 to 2% mortality per hour untreated, and operative mortality is around 15 to 25%. You say those numbers rather than saying it is serious. The son then asks whether the clinic doctor made a mistake. You say that an inferior STEMI pattern from a dissection is one of the genuine traps in emergency medicine, that the family's decision to drive here is why he is alive, and that the case will be reviewed properly. Ajarn Kit, reading the note later, remarks that most doctors would have taken the free opportunity to look good." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Emergency cardiothoracic surgery, this is a surgical disease", "actions": ["Immediate cardiothoracic referral and theatre", "Cross-match 6 units", "Correct coagulation given the dual antiplatelet load", "Arterial line in the right arm, the higher pressure side"], "doseMap": { "Correct coagulation given the dual antiplatelet load": "Platelet transfusion may be needed intraoperatively because of the clopidogrel given at the clinic" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1680, "y": 200 }, "data": { "label": "Surgical repair", "outcomeType": "improved", "narrative": "Bentall procedure with aortic root and ascending aorta replacement plus valve replacement, under deep hypothermic circulatory arrest. Bypass time 246 minutes. Significant bleeding requiring 9 units of red cells, attributable in part to the antiplatelet load. He survives.", "vitalChanges": { "hr": 88, "sbp": 108, "dbp": 62, "rr": 16, "gcs": 3 } } },
+      { "id": "req5", "type": "required", "position": { "x": 1920, "y": 200 }, "data": { "label": "ICU care and lifelong surveillance", "actions": ["Cardiac ICU admission", "Strict blood pressure control, target systolic below 120", "Serial imaging of the residual descending dissection", "Screen first-degree relatives for aortopathy"], "doseMap": { "Screen first-degree relatives for aortopathy": "Around 20% of thoracic aortic dissections have a heritable component. His two children should be imaged" } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Extubated day 3, discharged day 14 with mild residual renal impairment. Lifelong beta blockade and annual CT surveillance of the residual type B component. His daughter's screening scan shows a 44 mm ascending aorta and she enters surveillance, which is arguably the most valuable outcome of the entire admission.", "vitalChanges": { "hr": 62, "sbp": 116, "dbp": 70, "rr": 16, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "out2" },
+      { "id": "e8", "source": "out2", "target": "req5" },
+      { "id": "e9", "source": "req5", "target": "out3" }
+    ]
+  }
+}

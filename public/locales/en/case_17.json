@@ -1,0 +1,62 @@
+{
+  "title": "29yo M Severe Falciparum Malaria",
+  "age": "29",
+  "sex": "M",
+  "chiefComplaint": "Fever and confusion for 6 days",
+  "diagnoses": ["Severe Plasmodium falciparum malaria", "Bacterial meningitis", "Dengue", "Leptospirosis", "Typhoid fever"],
+  "background": "Migrant forestry worker, arrived from the Thai-Myanmar border in Tak province eleven days ago and now working on a rubber plantation. Six days of intermittent high fever with rigors, initially treated at a pharmacy with paracetamol and an unidentified tablet. He became confused this morning and had one generalised seizure in the truck. He speaks limited Thai and a co-worker is interpreting. He has no health insurance and is worried about the bill.",
+  "patientAppearance": { "skinTone": "#a9713f", "bmiFactor": 0.8, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 126, "abnormal": true },
+    "sbp": { "value": 92, "abnormal": true },
+    "dbp": { "value": 54, "abnormal": true },
+    "rr": { "value": 32, "abnormal": true },
+    "temp": { "value": 39.6, "abnormal": true },
+    "spo2": { "value": 94, "abnormal": true },
+    "gcs": { "value": 9, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Cachectic, hot to touch, drowsy and confused, deep acidotic breathing, unable to follow commands in any language", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Scleral icterus, pale conjunctivae, dry mucous membranes, no neck stiffness, no rash, retinal whitening and a single retinal haemorrhage on fundoscopy", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia, bounding then thready pulse, capillary refill 4 seconds, soft systolic flow murmur from anaemia", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Deep sighing Kussmaul respirations at 32/min, bibasal fine crackles suggesting early acute lung injury, no consolidation", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Tender splenomegaly 4 cm below the costal margin, hepatomegaly 2 cm, no ascites. Handle the spleen gently, splenic rupture is a recognised complication", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Jaundiced, hot dry skin, reduced turgor, no petechiae or purpura, no eschar found after a full search including axillae and groin", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 9 (E2V2M5), post-ictal, no focal deficit, no meningism, pupils equal and reactive, plantars downgoing. Cerebral malaria is a diagnosis of exclusion after hypoglycaemia is corrected", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "sm1", "kind": "lab", "category": "Micro", "name": "Thick and thin blood smear", "value": "P. falciparum, 14% parasitaemia, schizonts present", "unit": "-", "normalRange": "No parasites", "abnormal": true, "report": "Parasitaemia above 10% is a severe malaria criterion on its own. Circulating schizonts indicate a heavy sequestered load. Repeat the smear 12 hourly to track clearance." },
+    { "id": "rdt1", "kind": "lab", "category": "Micro", "name": "Rapid diagnostic test (HRP2)", "value": "Positive for P. falciparum", "unit": "-", "normalRange": "Negative", "abnormal": true, "report": "Positive. Stays positive for weeks after treatment, so it confirms diagnosis but cannot be used to monitor response." },
+    { "id": "poc1", "kind": "lab", "category": "POCT", "name": "Capillary glucose", "value": "38", "unit": "mg/dL", "normalRange": "70-140", "abnormal": true, "report": "Profound hypoglycaemia. This is a severe malaria criterion, a cause of the seizure and the coma, and it is reversible in 90 seconds. Check it before you attribute anything to cerebral malaria." },
+    { "id": "hb1", "kind": "lab", "category": "CBC", "name": "Haemoglobin and platelets", "value": "Hb 6.4 g/dL / platelets 34 x10^9/L", "unit": "-", "normalRange": "Hb 13.5-17.5 g/dL", "abnormal": true, "report": "Severe anaemia (a severity criterion below 7 g/dL) with thrombocytopenia from haemolysis and sequestration." },
+    { "id": "lac1", "kind": "lab", "category": "Chemistry", "name": "Lactate and bicarbonate", "value": "Lactate 7.2 mmol/L / HCO3 11 mmol/L", "unit": "-", "normalRange": "Lactate 0.5-2.0 mmol/L", "abnormal": true, "report": "Metabolic acidosis with hyperlactataemia. Acidosis is the strongest single predictor of death in severe malaria." },
+    { "id": "cr1", "kind": "lab", "category": "Chemistry", "name": "Creatinine and bilirubin", "value": "Creatinine 2.8 mg/dL / total bilirubin 5.6 mg/dL", "unit": "-", "normalRange": "Creatinine 0.7-1.3 mg/dL", "abnormal": true, "report": "Acute kidney injury and jaundice, two further severity criteria. This patient meets at least six." },
+    { "id": "bc1", "kind": "lab", "category": "Micro", "name": "Blood cultures", "value": "Pending", "unit": "-", "normalRange": "No growth", "abnormal": false, "report": "Sent before antibiotics. Concomitant Gram negative bacteraemia occurs in up to 10% of severe malaria and is easily missed." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Glucose first in any febrile patient with reduced consciousness", "actions": ["Capillary glucose", "IV dextrose bolus"], "doseMap": { "IV dextrose bolus": "50 mL of 50% dextrose IV, then 10% dextrose infusion. Recheck glucose every hour, hypoglycaemia recurs, especially on quinine" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 480, "y": 200 }, "data": { "label": "Partial neurological improvement", "outcomeType": "improved", "narrative": "GCS improves from 9 to 12 within ten minutes of the dextrose. The residual impairment is real cerebral malaria, but you now know how much of it was reversible sugar.", "vitalChanges": { "gcs": 12 } } },
+      { "id": "req2", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Thick and thin smear plus rapid diagnostic test, without delaying treatment", "actions": ["Thick and thin blood smear", "Rapid diagnostic test", "Blood cultures", "Full severity criteria assessment"], "doseMap": {} } },
+      { "id": "req3", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "IV artesunate, the only correct first line drug for severe malaria", "actions": ["Artesunate IV"], "doseMap": { "Artesunate IV": "2.4 mg/kg IV at 0, 12 and 24 hours, then daily. Artesunate reduces mortality by about a third compared with quinine. Do not give oral therapy to a patient who cannot swallow, and do not wait for the smear if the suspicion is high" } } },
+      { "id": "req4", "type": "required", "position": { "x": 1200, "y": 200 }, "data": { "label": "Empirical antibiotics and cautious fluids", "actions": ["Broad spectrum IV antibiotics", "Cautious crystalloid resuscitation", "Avoid aggressive fluid loading"], "doseMap": { "Broad spectrum IV antibiotics": "Ceftriaxone 2 g IV daily, until blood cultures exclude coexisting bacteraemia", "Cautious crystalloid resuscitation": "Small aliquots with reassessment. Aggressive fluid loading increases pulmonary oedema and mortality in severe malaria" } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Find a proper interpreter and treat first, sort the billing later (Empathy)", "ethicalValue": 15, "narrative": "The co-worker interpreting is frightened and is softening everything you say. You find a Burmese speaking cleaner who has worked here nine years and ask her to interpret properly, so that consent for transfusion is real rather than a nod. You also tell the co-worker to stop worrying about the bill tonight, because emergency care for a non-insured migrant is covered by a fund most people do not know exists, and because a man with 14% parasitaemia should not be making financial decisions." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Transfuse, monitor and admit to ICU", "actions": ["Packed red cell transfusion", "ICU or high dependency admission", "12 hourly parasite count", "Hourly glucose and neurological observations"], "doseMap": { "Packed red cell transfusion": "For haemoglobin below 7 g/dL with severe malaria. Transfuse slowly with attention to fluid overload" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Clinical improvement", "outcomeType": "improved", "narrative": "Parasitaemia falls to 4% at 24 hours and 0.2% at 48 hours. GCS 15 by day 3. Acidosis resolves without dialysis. Watch for post-artesunate delayed haemolysis at 7 to 21 days, which will bring him back if nobody warns him.", "vitalChanges": { "hr": 92, "sbp": 112, "dbp": 68, "rr": 20, "temp": 37.4, "gcs": 15 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Full oral artemisinin combination course completed. Discharged day 7 with written return advice in Burmese for delayed haemolysis, and the plantation is notified so the other twelve workers can be screened. Two of them are positive and asymptomatic.", "vitalChanges": { "hr": 82, "sbp": 118, "dbp": 72, "rr": 16, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "out1" },
+      { "id": "e3", "source": "out1", "target": "req2" },
+      { "id": "e4", "source": "req2", "target": "req3" },
+      { "id": "e5", "source": "req3", "target": "req4" },
+      { "id": "e6", "source": "req4", "target": "ethical_1" },
+      { "id": "e_skip", "source": "req4", "target": "req5" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "title": "54yo M Variceal Upper GI Bleed",
+  "age": "54",
+  "sex": "M",
+  "chiefComplaint": "Vomiting large volumes of fresh blood",
+  "diagnoses": ["Bleeding oesophageal varices", "Peptic ulcer haemorrhage", "Mallory-Weiss tear", "Gastric antral vascular ectasia", "Aortoenteric fistula"],
+  "background": "Known cirrhosis from chronic hepatitis B with previously documented grade 3 oesophageal varices. He stopped his propranolol six months ago because it made him tired and has not attended for band ligation. Three episodes of large volume haematemesis over two hours and one black tarry stool. He drank alcohol tonight. His wife says he has been more confused for the last two days, which suggests encephalopathy was already developing before the bleed.",
+  "patientAppearance": { "skinTone": "#d9b06a", "bmiFactor": 0.95, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 128, "abnormal": true },
+    "sbp": { "value": 82, "abnormal": true },
+    "dbp": { "value": 48, "abnormal": true },
+    "rr": { "value": 26, "abnormal": true },
+    "temp": { "value": 36.2, "abnormal": false },
+    "spo2": { "value": 93, "abnormal": true },
+    "gcs": { "value": 12, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Pale, jaundiced, drowsy, cachectic with temporal wasting, blood over his shirt and around the mouth, actively retching", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Scleral icterus, marked conjunctival pallor, fetor hepaticus, dried blood in the oropharynx, no dental source of bleeding, airway currently patent but at high aspiration risk", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 128/min, thready pulse, capillary refill 5 seconds, hyperdynamic circulation typical of cirrhosis, no murmur", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Reduced air entry at the right base with dullness suggesting a small hepatic hydrothorax, no frank aspiration signs yet, tachypnoeic", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Distended with tense ascites and shifting dullness, caput medusae, splenomegaly 5 cm below the costal margin, non-tender with no rebound, which argues against spontaneous bacterial peritonitis for now", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Jaundiced, multiple spider naevi over the chest, palmar erythema, several spontaneous bruises, cold clammy peripheries, no needle track marks", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 12 (E3V4M5), disorientated in time and place, asterixis present on wrist extension, no focal deficit. Grade 2 hepatic encephalopathy, worsened by the protein load of blood in the gut", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "hb1", "kind": "lab", "category": "CBC", "name": "Haemoglobin and platelets", "value": "Hb 5.8 g/dL / platelets 48 x10^9/L", "unit": "-", "normalRange": "Hb 13.5-17.5 g/dL", "abnormal": true, "report": "Severe anaemia with thrombocytopenia from hypersplenism. Transfuse to a target of 7 to 8 g/dL only. Over-transfusion raises portal pressure and increases rebleeding and mortality." },
+    { "id": "coag1", "kind": "lab", "category": "Coagulation", "name": "INR and fibrinogen", "value": "INR 2.4 / fibrinogen 1.1 g/L", "unit": "-", "normalRange": "INR 0.9-1.2", "abnormal": true, "report": "Coagulopathy of liver disease. A raised INR in cirrhosis does not reliably indicate a bleeding tendency, because both procoagulant and anticoagulant factors fall together. Do not chase the INR with plasma, since the volume load raises portal pressure." },
+    { "id": "lft1", "kind": "lab", "category": "Chemistry", "name": "Bilirubin, albumin and creatinine", "value": "Bilirubin 4.8 mg/dL / albumin 24 g/L / creatinine 1.9 mg/dL", "unit": "-", "normalRange": "Albumin 35-50 g/L", "abnormal": true, "report": "Child-Pugh C with a MELD score around 24. Renal impairment raises concern about hepatorenal syndrome, which changes the prognosis considerably." },
+    { "id": "endo1", "kind": "imaging", "category": "Imaging", "name": "Upper GI endoscopy", "report": "Three columns of grade 3 oesophageal varices with an active spurting bleed from one at 38 cm and red wale marks on the others. Portal hypertensive gastropathy. No peptic ulcer. Successful band ligation of four varices with control of the bleeding.", "imageUrl": "", "abnormal": true },
+    { "id": "lac1", "kind": "lab", "category": "Chemistry", "name": "Lactate and ammonia", "value": "Lactate 5.4 mmol/L / ammonia 118 mcmol/L", "unit": "-", "normalRange": "Lactate 0.5-2.0 mmol/L", "abnormal": true, "report": "Haemorrhagic shock with raised ammonia. Ammonia levels correlate poorly with encephalopathy grade and should not be used to guide treatment." },
+    { "id": "asc1", "kind": "lab", "category": "Micro", "name": "Diagnostic ascitic tap", "value": "Neutrophils 380/mm3", "unit": "-", "normalRange": "<250/mm3", "abnormal": true, "report": "Spontaneous bacterial peritonitis, present in around 20% of cirrhotic patients who present with variceal bleeding and frequently missed because attention is on the haematemesis." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Airway first, this patient will aspirate", "actions": ["Sit upright, suction available", "Consider early intubation for airway protection", "High flow oxygen"], "doseMap": { "Consider early intubation for airway protection": "GCS 12 with encephalopathy and torrential haematemesis. Aspiration pneumonia is a leading cause of death in variceal bleeding, and intubation before endoscopy is often the right call" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Restrictive transfusion, target haemoglobin 7 to 8 g/dL", "actions": ["Two large bore IV lines", "Cross-match 6 units", "Packed red cells to a target of 7-8 g/dL", "Restrictive crystalloid"], "doseMap": { "Packed red cells to a target of 7-8 g/dL": "A restrictive strategy improves survival compared with a target of 9 g/dL in variceal bleeding. Transfusing to a normal haemoglobin raises portal pressure and provokes rebleeding. This is one of the clearest examples in medicine of more treatment causing more death" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Vasoactive drug and antibiotics before endoscopy", "actions": ["Terlipressin or octreotide IV", "Prophylactic ceftriaxone IV", "Proton pump infusion until varices are confirmed"], "doseMap": { "Terlipressin or octreotide IV": "Terlipressin 2 mg IV then 1-2 mg every 4-6 hours. Start before endoscopy, it reduces bleeding and improves survival", "Prophylactic ceftriaxone IV": "1 g IV daily for 7 days. Antibiotic prophylaxis in cirrhotic GI bleeding reduces mortality and is one of the highest yield and most frequently forgotten interventions in this presentation" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Partial stabilisation", "outcomeType": "improved", "narrative": "After 3 units of red cells and terlipressin, systolic reaches 98 and the haematemesis slows. Haemoglobin is 7.4 and the transfusion is stopped rather than continued to a comfortable number. He is intubated for endoscopy.", "vitalChanges": { "hr": 108, "sbp": 98, "dbp": 56, "rr": 20, "spo2": 96, "gcs": 3 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1200, "y": 420 }, "data": { "label": "Talk to him about why he stopped the propranolol, without moralising about the alcohol (Empathy)", "ethicalValue": 15, "narrative": "The easy version of this conversation is a lecture about drinking. The useful version is asking why he stopped a tablet that was preventing exactly this. He stopped because it made him too tired to work as a security guard, and nobody offered an alternative or explained what it was for. You arrange carvedilol, a hepatology follow-up appointment before discharge rather than a letter, and an alcohol service referral he actually accepts because you did not open with it. Nurse Ann notes that he has been admitted four times and this is the first time anyone asked." } },
+      { "id": "req4", "type": "required", "position": { "x": 1440, "y": 200 }, "data": { "label": "Urgent endoscopy with band ligation within 12 hours", "actions": ["Endoscopic variceal band ligation", "Balloon tamponade only as a bridge if endoscopy fails", "Consider TIPS for uncontrolled or early rebleeding"], "doseMap": { "Balloon tamponade only as a bridge if endoscopy fails": "Sengstaken-Blakemore tube for a maximum of 24 hours, only in an intubated patient. High complication rate including oesophageal rupture. It is a bridge to definitive treatment and never a treatment" } } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "Treat the encephalopathy and the peritonitis", "actions": ["Lactulose via nasogastric tube", "Extend antibiotics for spontaneous bacterial peritonitis", "IV albumin", "Diagnostic ascitic tap in every cirrhotic admission"], "doseMap": { "Lactulose via nasogastric tube": "25 mL every 12 hours, titrated to 2 or 3 soft stools daily", "IV albumin": "1.5 g/kg on day 1 and 1 g/kg on day 3 for spontaneous bacterial peritonitis, which reduces hepatorenal syndrome and mortality" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Course", "outcomeType": "improved", "narrative": "No rebleeding after banding. Extubated day 2. Encephalopathy clears with lactulose. Ascitic neutrophils normalise by day 5. Creatinine improves with albumin, avoiding hepatorenal syndrome. Six week mortality after a variceal bleed in Child-Pugh C disease is roughly 30%, and he is on the surviving side of that.", "vitalChanges": { "hr": 92, "sbp": 112, "dbp": 66, "rr": 18, "spo2": 96, "gcs": 15 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 9 on carvedilol, with a banding programme booked at two-weekly intervals until eradication, and a hepatology appointment in his hand rather than in the post. Assessed for transplant candidacy, which depends on documented abstinence. He attends the first banding session, which is more than he managed after the previous three admissions.", "vitalChanges": { "hr": 84, "sbp": 116, "dbp": 70, "rr": 16, "spo2": 97, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "ethical_1" },
+      { "id": "e6", "source": "ethical_1", "target": "req4" },
+      { "id": "e_skip", "source": "out1", "target": "req4" },
+      { "id": "e7", "source": "req4", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

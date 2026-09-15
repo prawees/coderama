@@ -1,0 +1,62 @@
+{
+  "title": "56yo M Exertional Heat Stroke",
+  "age": "56",
+  "sex": "M",
+  "chiefComplaint": "Collapsed in a rice field, confused and not sweating",
+  "diagnoses": ["Exertional heat stroke", "Heat exhaustion", "Sepsis", "Anticholinergic toxidrome", "Thyroid storm"],
+  "background": "Working in an open rice field since 06:00. Ambient temperature 41 C with 70% humidity, no shade, wearing long sleeves and a hat. He was noted to stop responding at about 14:30 and had a brief generalised seizure. He takes hydrochlorothiazide for hypertension, which impairs heat tolerance. His family poured cool water over him and drove him in, which is the single most useful thing anyone did today.",
+  "patientAppearance": { "skinTone": "#a06a3a", "bmiFactor": 0.95, "ageGroup": "adult" },
+  "vitals": {
+    "hr": { "value": 148, "abnormal": true },
+    "sbp": { "value": 86, "abnormal": true },
+    "dbp": { "value": 44, "abnormal": true },
+    "rr": { "value": 34, "abnormal": true },
+    "temp": { "value": 41.6, "abnormal": true },
+    "spo2": { "value": 94, "abnormal": true },
+    "gcs": { "value": 8, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Unresponsive to voice, hot to touch, agitated when stimulated, core temperature 41.6 C measured rectally. Central nervous system dysfunction plus core temperature above 40 C is the definition, and no other feature is required", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Dry mucous membranes, no neck stiffness, no papilloedema, pupils 4 mm and reactive, no tongue laceration despite the reported seizure", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 148/min, hyperdynamic precordium, bounding then weak pulses, capillary refill 4 seconds, hypotensive from vasodilatation and volume loss", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoeic at 34/min, clear breath sounds, no crackles at present. Watch for ARDS at 24 to 48 hours", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, bowel sounds sluggish, no organomegaly, no rigidity", "abnormal": false },
+    { "id": "skin1", "system": "Skin", "finding": "Hot, flushed and dry with no sweating over the trunk. Anhidrosis is a late and ominous sign, and its absence never excludes heat stroke, since half of exertional cases are still sweating", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 8 (E2V2M4), post-ictal, no focal deficit, no meningism, cerebellar signs may emerge later as a permanent sequela", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "temp1", "kind": "lab", "category": "POCT", "name": "Rectal core temperature", "value": "41.6", "unit": "C", "normalRange": "36.5-37.5", "abnormal": true, "report": "Rectal or oesophageal only. Tympanic and axillary readings underestimate core temperature by up to 2 C in heat stroke and have caused fatal undertreatment." },
+    { "id": "ck1", "kind": "lab", "category": "Chemistry", "name": "Creatine kinase", "value": "18400", "unit": "U/L", "normalRange": "30-200", "abnormal": true, "report": "Severe rhabdomyolysis. Exertional heat stroke damages muscle directly and this drives the acute kidney injury." },
+    { "id": "lft1", "kind": "lab", "category": "Chemistry", "name": "AST, ALT and INR", "value": "AST 620 / ALT 410 / INR 2.1", "unit": "-", "normalRange": "AST <40 U/L", "abnormal": true, "report": "Hepatic injury with early coagulopathy. Liver failure peaks at 48 to 96 hours and is the commonest cause of late death in heat stroke." },
+    { "id": "cr1", "kind": "lab", "category": "Chemistry", "name": "Creatinine, potassium and sodium", "value": "Creatinine 2.6 mg/dL / K 5.8 / Na 149 mmol/L", "unit": "-", "normalRange": "Creatinine 0.7-1.3 mg/dL", "abnormal": true, "report": "Acute kidney injury with hyperkalaemia from rhabdomyolysis and hypernatraemia from free water loss. The thiazide contributed." },
+    { "id": "abg1", "kind": "lab", "category": "ABG", "name": "Arterial blood gas and lactate", "value": "pH 7.24 / lactate 6.8 / HCO3 15", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Metabolic acidosis. Lactate above 4 in exertional heat stroke predicts poor outcome." },
+    { "id": "poc1", "kind": "lab", "category": "POCT", "name": "Capillary glucose", "value": "62", "unit": "mg/dL", "normalRange": "70-140", "abnormal": true, "report": "Hypoglycaemia from hepatic glycogen depletion. Correct it before attributing the coma to hyperthermia alone." },
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Sinus tachycardia at 146/min with peaked T waves in V2 to V4 from hyperkalaemia. No ischaemic ST elevation. QTc 420 ms.", "imageUrl": "", "abnormal": true }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Measure a true core temperature and start cooling in the first minutes", "actions": ["Rectal or oesophageal temperature probe", "Remove all clothing", "Begin cooling immediately, before imaging or lines"], "doseMap": { "Begin cooling immediately, before imaging or lines": "Time above 40 C determines organ damage. Cooling started within 30 minutes carries near-zero mortality, delayed past 2 hours carries about 30%" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Aggressive active cooling to 38.5 C, then stop", "actions": ["Cold water immersion if available", "Otherwise ice packs to neck, axillae and groin with continuous water misting and fanning", "Cold IV fluids"], "doseMap": { "Cold water immersion if available": "The fastest method, about 0.2 C per minute. Stop at 38.5 C to avoid overshoot hypothermia", "Cold IV fluids": "Normal saline at 4 C, 20 mL/kg. Do not give antipyretics: paracetamol and NSAIDs do not work in heat stroke because the hypothalamic set point is normal, and both worsen the liver and kidney injury" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Airway, glucose and benzodiazepine for shivering or seizures", "actions": ["Oxygen and airway support", "Dextrose for hypoglycaemia", "Diazepam or midazolam for shivering"], "doseMap": { "Diazepam or midazolam for shivering": "Shivering generates heat and defeats cooling. Midazolam 2-5 mg IV titrated" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 960, "y": 200 }, "data": { "label": "Cooled to 38.4 C in 34 minutes", "outcomeType": "improved", "narrative": "Cooling stops at 38.4 C. GCS improves to 12 within the hour. He remains hypotensive and profoundly volume depleted, and the rhabdomyolysis is only now becoming the main problem.", "vitalChanges": { "hr": 118, "sbp": 98, "dbp": 56, "rr": 26, "temp": 38.4, "gcs": 12 } } },
+      { "id": "req4", "type": "required", "position": { "x": 1200, "y": 200 }, "data": { "label": "Treat rhabdomyolysis and hyperkalaemia", "actions": ["High volume IV crystalloid", "Calcium gluconate for ECG changes", "Insulin and dextrose", "Hourly urine output"], "doseMap": { "High volume IV crystalloid": "Target urine output 2 mL/kg/h. This is the only treatment with good evidence for preventing myoglobinuric renal failure", "Calcium gluconate for ECG changes": "10 mL of 10% IV over 3 min, repeat as needed" } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Ask about the working conditions, and act on the answer (Empathy)", "ethicalValue": 10, "narrative": "His son mentions there are eleven other workers in the same field, no shade structure and one shared water bottle, and that the contractor pays by area cut rather than by hour, which makes resting a financial penalty. You put it in the notes, notify the district health office, and tell the son plainly which early symptoms mean stop working now. Two of the eleven arrive that evening with heat exhaustion and go home the same night, which only happened because someone asked a question that was not about the patient in front of them." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "ICU admission and organ support", "actions": ["ICU admission", "Serial liver function and coagulation", "Nephrology referral for possible dialysis", "Avoid nephrotoxic and hepatotoxic drugs"], "doseMap": { "Avoid nephrotoxic and hepatotoxic drugs": "No paracetamol, no NSAIDs, no aminoglycosides unless there is no alternative" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Day 3 course", "outcomeType": "worsened", "narrative": "Transaminases peak at 4100 on day 3 with an INR of 3.2 and grade 2 encephalopathy. Creatinine peaks at 5.1 mg/dL and he needs three sessions of haemodialysis. Both recover. Liver failure at 48 to 96 hours is the phase people forget after a successful resuscitation.", "vitalChanges": { "hr": 104, "sbp": 106, "dbp": 62, "temp": 37.2, "gcs": 13 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 16 with mild persistent gait ataxia, a recognised permanent cerebellar sequela of heat stroke. His thiazide is switched. He is advised that heat tolerance stays impaired for months and that he is now at higher lifetime risk, which for a man paid by area cut is advice and not a solution.", "vitalChanges": { "hr": 84, "sbp": 124, "dbp": 76, "rr": 16, "temp": 36.8, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "out1" },
+      { "id": "e5", "source": "out1", "target": "req4" },
+      { "id": "e6", "source": "req4", "target": "ethical_1" },
+      { "id": "e_skip", "source": "req4", "target": "req5" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

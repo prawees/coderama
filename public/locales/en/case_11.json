@@ -1,0 +1,409 @@
+{
+  "title": "27yo F Ruptured Ectopic Pregnancy",
+  "age": "27",
+  "sex": "F",
+  "chiefComplaint": "Sudden lower abdominal pain and collapse",
+  "diagnoses": [
+    "Ruptured ectopic pregnancy",
+    "Ruptured ovarian cyst with haemoperitoneum",
+    "Ovarian torsion",
+    "Pelvic inflammatory disease",
+    "Appendicitis"
+  ],
+  "background": "Sudden severe right lower quadrant pain two hours ago while at work, followed by a witnessed syncopal episode. She reports light vaginal spotting for three days and thought her period was late. Last menstrual period was seven weeks ago and she describes her cycles as usually regular. She has a copper intrauterine device inserted 18 months ago and a past episode of chlamydia treated three years ago. She has not taken a pregnancy test. Right shoulder tip pain started in the ambulance.",
+  "patientAppearance": {
+    "skinTone": "#eec5a3",
+    "bmiFactor": 0.95,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 128,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 76,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 40,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 26,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.6,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 98,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 14,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Pale, clammy, restless with pain, lying still with knees drawn up",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Conjunctival pallor, dry mucous membranes, no jaundice, no lymphadenopathy",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia, thready radial pulse, capillary refill 4 seconds, normal heart sounds, JVP not visible",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Clear breath sounds, shallow rapid respirations limited by abdominal pain",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Distended and diffusely tender with worst pain in the right iliac fossa, guarding and rebound tenderness, percussion tenderness across the lower abdomen, absent bowel sounds",
+      "abnormal": true
+    },
+    {
+      "id": "pelv1",
+      "system": "Pelvic",
+      "finding": "Dark blood in the vaginal vault, closed cervical os, IUD threads visible, severe cervical motion tenderness, tender fullness in the right adnexa, boggy pouch of Douglas",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cool pale peripheries with mottling to the knees, no rash, no bruising",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 14 (E4V4M6), anxious and slow to respond during pain spikes, no focal deficit",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "hcg1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Urine beta-hCG",
+      "value": "Positive",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": true,
+      "report": "Positive. Any woman of reproductive age with abdominal pain and shock has an ectopic pregnancy until proven otherwise, and an intrauterine device does not exclude pregnancy."
+    },
+    {
+      "id": "us1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Bedside FAST and transvaginal ultrasound",
+      "report": "Free fluid in Morison's pouch and the pelvis with echogenic swirling material suggesting clotted blood. Empty uterus with a thin endometrial stripe and the IUD in situ. Right adnexal heterogeneous mass 34 mm separate from the ovary with surrounding fluid. No intrauterine gestational sac.",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "hb1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Haemoglobin",
+      "value": "7.8",
+      "unit": "g/dL",
+      "normalRange": "12.0-15.5",
+      "abnormal": true,
+      "report": "Acute anaemia from intraperitoneal haemorrhage. A normal initial haemoglobin would not have excluded this."
+    },
+    {
+      "id": "shcg1",
+      "kind": "lab",
+      "category": "Endocrine",
+      "name": "Serum beta-hCG",
+      "value": "4820",
+      "unit": "IU/L",
+      "normalRange": "<5 (non-pregnant)",
+      "abnormal": true,
+      "report": "Above the discriminatory zone. An empty uterus at this level with free fluid indicates ectopic pregnancy. In an unstable patient this result should not delay theatre."
+    },
+    {
+      "id": "bg1",
+      "kind": "lab",
+      "category": "Blood bank",
+      "name": "Blood group and crossmatch",
+      "value": "O Rh negative",
+      "unit": "-",
+      "normalRange": "-",
+      "abnormal": true,
+      "report": "Rh negative. Four units crossmatched. Anti-D immunoglobulin required."
+    },
+    {
+      "id": "lac1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Lactate",
+      "value": "4.8",
+      "unit": "mmol/L",
+      "normalRange": "0.5-2.0",
+      "abnormal": true,
+      "report": "Haemorrhagic shock with tissue hypoperfusion."
+    },
+    {
+      "id": "coag1",
+      "kind": "lab",
+      "category": "Coagulation",
+      "name": "INR and fibrinogen",
+      "value": "INR 1.3 / fibrinogen 1.8 g/L",
+      "unit": "-",
+      "normalRange": "INR 0.9-1.2 / fibrinogen 2.0-4.0 g/L",
+      "abnormal": true,
+      "report": "Early dilutional and consumptive coagulopathy. Give balanced blood product ratios rather than crystalloid."
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "label": "Urine pregnancy test and two large bore IV lines with bloods",
+          "actions": [
+            "Urine beta-hCG",
+            "IV access 16G x2",
+            "CBC, coagulation, lactate, group and crossmatch 4 units"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "label": "Bedside FAST and transvaginal ultrasound without leaving the resuscitation area",
+          "actions": [
+            "Bedside FAST",
+            "Transvaginal ultrasound"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "label": "Activate massive transfusion and give blood, not litres of crystalloid",
+          "actions": [
+            "Emergency O negative red cells",
+            "Activate massive transfusion protocol",
+            "Tranexamic acid IV",
+            "Limited crystalloid"
+          ],
+          "doseMap": {
+            "Emergency O negative red cells": "2 units immediately while crossmatched blood is prepared",
+            "Activate massive transfusion protocol": "1:1:1 red cells, plasma and platelets",
+            "Tranexamic acid IV": "1 g over 10 min",
+            "Limited crystalloid": "Keep under 1000 mL, permissive hypotension until bleeding is controlled"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "Transient response",
+          "outcomeType": "improved",
+          "narrative": "Two units of packed cells lift her pressure briefly, then it starts falling again. This is a transient responder. The bleeding is surgical and no amount of product will fix it in the department.",
+          "vitalChanges": {
+            "hr": 118,
+            "sbp": 88,
+            "dbp": 50,
+            "rr": 24,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 400
+        },
+        "data": {
+          "label": "Tell her she is pregnant and that the pregnancy cannot be saved, before she goes to theatre (Empathy)",
+          "ethicalValue": 15,
+          "narrative": "You take 40 seconds to say she is pregnant, that the pregnancy is in the wrong place and cannot survive, and that surgery now is what will save her life. You ask if there is anyone she wants called. She asks you to call her sister. Doing this before anaesthesia rather than after is the difference between informed consent and a patient waking up to news nobody prepared her for."
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "label": "Immediate obstetrics and gynaecology referral for theatre",
+          "actions": [
+            "Emergency gynaecology consult",
+            "Nil by mouth and anaesthetic review",
+            "Consent for laparoscopy or laparotomy, possible salpingectomy"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "To theatre",
+          "outcomeType": "improved",
+          "narrative": "She is in theatre 28 minutes after arrival. Laparoscopy finds 1200 mL of haemoperitoneum and a ruptured right tubal pregnancy. Right salpingectomy is performed and the bleeding stops.",
+          "vitalChanges": {
+            "hr": 96,
+            "sbp": 108,
+            "dbp": 64,
+            "rr": 18,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "Post-operative care including anti-D for this Rh negative patient",
+          "actions": [
+            "Anti-D immunoglobulin",
+            "Repeat haemoglobin and coagulation",
+            "Analgesia and thromboprophylaxis",
+            "Early pregnancy unit follow up and counselling"
+          ],
+          "doseMap": {
+            "Anti-D immunoglobulin": "250-300 mcg IM within 72 hours"
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "Haemoglobin is 9.6 g/dL after four units. She is extubated and stable on the gynaecology ward. Counselling covers future fertility with one remaining tube and the raised risk of a repeat ectopic pregnancy. Her sister is at the bedside.",
+          "vitalChanges": {
+            "hr": 84,
+            "sbp": 116,
+            "dbp": 70,
+            "rr": 16,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "out2",
+        "target": "req5"
+      },
+      {
+        "id": "e9",
+        "source": "req5",
+        "target": "out3"
+      }
+    ]
+  }
+}

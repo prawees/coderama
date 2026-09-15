@@ -1,0 +1,47 @@
+{
+  "title": "55yo M VIP Donor",
+  "age": "55",
+  "sex": "M",
+  "chiefComplaint": "Mild Chest Pain",
+  "diagnoses": ["Unstable Angina", "Anxiety"],
+  "background": "Patient is a wealthy hospital board member who demands immediate attention. He complains of mild chest discomfort after an argument with his broker.",
+  "patientAppearance": {
+    "skinTone": "#ffdbac",
+    "bmiFactor": 1.2,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": { "value": 110, "abnormal": true },
+    "sbp": { "value": 160, "abnormal": true },
+    "dbp": { "value": 95, "abnormal": true },
+    "rr": { "value": 20, "abnormal": false },
+    "temp": { "value": 37.0, "abnormal": false },
+    "spo2": { "value": 98, "abnormal": false },
+    "gcs": { "value": 15, "abnormal": false }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Anxious, demanding, well-dressed, slightly diaphoretic", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardic, regular rhythm, no murmurs", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds bilaterally", "abnormal": false },
+    { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender", "abnormal": false },
+    { "id": "cns1", "system": "Neurological", "finding": "Alert and oriented x3, moving all extremities well", "abnormal": false }
+  ],
+  "investigations": [
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Sinus tachycardia at 110 bpm. No acute ST changes or T wave inversions.", "imageUrl": "", "abnormal": false },
+    { "id": "trop1", "kind": "lab", "category": "Cardiac", "name": "Troponin T", "value": "<0.01", "unit": "ng/mL", "normalRange": "<0.01", "abnormal": false, "report": "Negative" }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 0 }, "data": { "label": "Start" } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 100, "y": 100 }, "data": { "label": "Reassure and listen (Empathy)", "ethicalValue": 20, "narrative": "The VIP calms down significantly. He promises to fund the new ICU wing." } },
+      { "id": "req1", "type": "required", "position": { "x": 200, "y": 0 }, "data": { "label": "Give Aspirin & Nitro", "actions": ["Aspirin PO", "Nitroglycerin SL"], "doseMap": { "Aspirin PO": "324 mg", "Nitroglycerin SL": "0.4 mg" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 400, "y": 0 }, "data": { "label": "Outcome", "outcomeType": "improved", "narrative": "Chest pain resolved. VIP is very happy.", "vitalChanges": { "hr": 85, "sbp": 130, "dbp": 80 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "ethical_1" },
+      { "id": "e2", "source": "ethical_1", "target": "req1" },
+      { "id": "e_skip", "source": "start1", "target": "req1" },
+      { "id": "e3", "source": "req1", "target": "out1" }
+    ]
+  }
+}

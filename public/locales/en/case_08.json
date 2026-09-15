@@ -1,0 +1,399 @@
+{
+  "title": "32yo M Tension Pneumothorax",
+  "age": "32",
+  "sex": "M",
+  "chiefComplaint": "Chest pain and severe dyspnoea after a motorcycle crash",
+  "diagnoses": [
+    "Tension pneumothorax",
+    "Haemothorax",
+    "Cardiac tamponade",
+    "Flail chest with pulmonary contusion"
+  ],
+  "background": "Motorcycle versus pickup truck at about 60 km/h, 25 minutes ago. He was wearing a helmet, no loss of consciousness. He landed on his left side against a kerb. EMS report progressive dyspnoea and falling saturations during transport despite a non-rebreather mask. No past medical history, no medications, does not smoke.",
+  "patientAppearance": {
+    "skinTone": "#c98d63",
+    "bmiFactor": 1.05,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 134,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 78,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 46,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 36,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.2,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 84,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 13,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Agitated, air hungry, unable to lie flat, diaphoretic, in obvious distress",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Trachea deviated to the right at the suprasternal notch, distended neck veins, helmet abrasion over left zygoma, no midface instability, cervical collar in place",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia, heart sounds displaced to the right and distant, radial pulse thready and absent on inspiration, capillary refill 5 seconds",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Absent breath sounds over the entire left hemithorax, hyperresonant to percussion on the left, left chest wall lagging on inspiration, tenderness and crepitus over left ribs 4 to 7",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, mildly tender in the left upper quadrant, no rebound or guarding, pelvis stable, no seatbelt sign",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cool, pale and mottled peripheries, subcutaneous emphysema over the left chest wall and supraclavicular fossa, road rash over left shoulder and hip, no external haemorrhage",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 13 (E3V4M6), restless and confused from hypoxia, pupils 3 mm equal and reactive, moves all four limbs",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "us1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "eFAST (bedside ultrasound)",
+      "report": "Left anterior chest: absent lung sliding, absent B-lines, barcode sign on M-mode with a lung point laterally. No pericardial effusion. No free fluid in Morison's pouch, splenorenal recess or pelvis. Performed in 90 seconds at the bedside without delaying decompression.",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Portable Chest X-ray (post decompression)",
+      "report": "Left chest drain in situ with tip directed apically. Residual 10% left apical pneumothorax. Left ribs 5 and 6 fractures. Mediastinum midline. No haemothorax. Lungs otherwise clear.",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Arterial blood gas (on 15 L/min)",
+      "value": "pH 7.22 / pCO2 52 / pO2 51 / HCO3 18",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Mixed respiratory and metabolic acidosis with severe hypoxaemia. Drawn before decompression."
+    },
+    {
+      "id": "lac1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Lactate",
+      "value": "5.6",
+      "unit": "mmol/L",
+      "normalRange": "0.5-2.0",
+      "abnormal": true,
+      "report": "Obstructive shock with impaired venous return."
+    },
+    {
+      "id": "hb1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Haemoglobin",
+      "value": "13.4",
+      "unit": "g/dL",
+      "normalRange": "13.5-17.5",
+      "abnormal": false,
+      "report": "Near normal. Argues against major haemorrhage as the dominant cause of shock, though early haemoglobin can be falsely reassuring."
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "12-Lead ECG",
+      "report": "Sinus tachycardia at 132/min. Low voltage complexes in the left precordial leads. No electrical alternans. No ischaemic changes.",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "tns1",
+      "kind": "lab",
+      "category": "Blood bank",
+      "name": "Group and crossmatch",
+      "value": "O Rh positive",
+      "unit": "-",
+      "normalRange": "-",
+      "abnormal": false,
+      "report": "Two units crossmatched and held. Massive transfusion protocol not activated."
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "label": "Primary survey with high flow oxygen and cervical spine control",
+          "actions": [
+            "Oxygen via non-rebreather mask",
+            "Manual in-line stabilisation and collar",
+            "Cardiac and SpO2 monitoring"
+          ],
+          "doseMap": {
+            "Oxygen via non-rebreather mask": "15 L/min"
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 480,
+          "y": 400
+        },
+        "data": {
+          "label": "Explain the needle decompression to him before you do it and get verbal consent (Empathy)",
+          "ethicalValue": 10,
+          "narrative": "He is frightened and fighting the mask. You name what you are about to do and why, in one sentence, and put a hand on his shoulder. He stops fighting and lets you work. Nurse Ann notes you did not have to sedate him."
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "label": "Immediate needle or finger decompression, do not wait for the X-ray",
+          "actions": [
+            "Needle thoracostomy, 5th intercostal space anterior axillary line, left"
+          ],
+          "doseMap": {
+            "Needle thoracostomy, 5th intercostal space anterior axillary line, left": "14G cannula at least 5 cm long, or open finger thoracostomy if body habitus is thick"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "Immediate response",
+          "outcomeType": "improved",
+          "narrative": "A rush of air escapes. The trachea returns to midline within a minute, neck veins flatten, and his agitation settles as saturations climb.",
+          "vitalChanges": {
+            "hr": 112,
+            "sbp": 98,
+            "dbp": 60,
+            "rr": 28,
+            "spo2": 93,
+            "gcs": 14
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "Definitive left chest drain",
+          "actions": [
+            "Tube thoracostomy, left, 5th intercostal space",
+            "Local anaesthetic infiltration"
+          ],
+          "doseMap": {
+            "Tube thoracostomy, left, 5th intercostal space": "28 Fr drain to underwater seal, no clamping",
+            "Local anaesthetic infiltration": "1% lidocaine 10-20 mL"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "label": "IV access, analgesia and confirmatory chest X-ray",
+          "actions": [
+            "IV access 16G x2",
+            "Fentanyl IV titrated",
+            "Portable chest X-ray"
+          ],
+          "doseMap": {
+            "Fentanyl IV titrated": "25-50 mcg IV every 5 min to effect, monitor respiratory rate"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "Stabilised",
+          "outcomeType": "improved",
+          "narrative": "The drain swings and bubbles on expiration. Repeat film shows the lung nearly fully re-expanded. He is pain free enough to take deep breaths.",
+          "vitalChanges": {
+            "hr": 94,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 20,
+            "spo2": 97,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "Complete secondary survey and trauma imaging",
+          "actions": [
+            "Head to pelvis secondary survey",
+            "CT chest, abdomen and pelvis with contrast",
+            "Trauma surgery admission"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "CT confirms left rib fractures 4 to 7 with a small pulmonary contusion and no intra-abdominal injury. He is admitted to the surgical ward with the drain, incentive spirometry and a regional block plan.",
+          "vitalChanges": {
+            "hr": 88,
+            "sbp": 124,
+            "dbp": 76,
+            "rr": 18,
+            "spo2": 98,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e3",
+        "source": "ethical_1",
+        "target": "req2"
+      },
+      {
+        "id": "e_skip",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e4",
+        "source": "req2",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "req3"
+      },
+      {
+        "id": "e6",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "out2",
+        "target": "req5"
+      },
+      {
+        "id": "e9",
+        "source": "req5",
+        "target": "out3"
+      }
+    ]
+  }
+}

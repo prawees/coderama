@@ -1,0 +1,62 @@
+{
+  "title": "71yo F Myxoedema Coma",
+  "age": "71",
+  "sex": "F",
+  "chiefComplaint": "Found unresponsive and cold at home",
+  "diagnoses": ["Myxoedema coma", "Sepsis", "Hypothermia from environmental exposure", "Sedative overdose", "Adrenal crisis"],
+  "background": "Lives alone. Total thyroidectomy for goitre eleven years ago. She ran out of levothyroxine about seven weeks ago and did not attend for a repeat prescription because the clinic moved and the new location is two bus rides away. Her neighbour found her on the floor, cold and unrousable, after not seeing her for two days. It is the cool season and her house has no heating. She has had a cough for a week, which is the likely precipitant. Mortality remains 20 to 40% even with treatment.",
+  "patientAppearance": { "skinTone": "#e2c4a0", "bmiFactor": 1.25, "ageGroup": "elderly" },
+  "vitals": {
+    "hr": { "value": 42, "abnormal": true },
+    "sbp": { "value": 84, "abnormal": true },
+    "dbp": { "value": 52, "abnormal": true },
+    "rr": { "value": 8, "abnormal": true },
+    "temp": { "value": 31.8, "abnormal": true },
+    "spo2": { "value": 88, "abnormal": true },
+    "gcs": { "value": 7, "abnormal": true }
+  },
+  "exam": [
+    { "id": "ga1", "system": "General appearance", "finding": "Unresponsive, profoundly cold to touch at 31.8 C, puffy and doughy in appearance, breathing slowly and shallowly", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Periorbital and facial non-pitting oedema, macroglossia, coarse dry skin, loss of the outer third of both eyebrows, hoarse quality to the little speech she produces, well-healed thyroidectomy scar across the neck", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Bradycardia at 42/min, hypotensive, distant muffled heart sounds suggesting pericardial effusion, non-pitting oedema of both legs, capillary refill 5 seconds", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Hypoventilating at 8 breaths per minute with shallow tidal volumes, right basal crackles suggesting pneumonia, reduced air entry at both bases from pleural effusions", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Distended with sluggish absent bowel sounds and clinical ileus, no peritonism, faecal loading on palpation, bladder palpable to the umbilicus from retention", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Cold, dry, coarse and scaly with a yellowish tinge from carotenaemia, non-pitting myxoedematous swelling of the hands and face, no pressure sores despite the fall", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 7 (E1V2M4), delayed relaxation phase of the ankle reflexes which is close to specific for hypothyroidism, no focal deficit, no seizure activity, pupils sluggish", "abnormal": true }
+  ],
+  "investigations": [
+    { "id": "tft1", "kind": "lab", "category": "Endocrine", "name": "Thyroid function", "value": "TSH 128 mIU/L / free T4 1.8 pmol/L", "unit": "-", "normalRange": "TSH 0.4-4.0 mIU/L", "abnormal": true, "report": "Profound primary hypothyroidism. Treatment must be started on clinical grounds, since waiting several hours for this result in a patient with this presentation is fatal." },
+    { "id": "na1", "kind": "lab", "category": "Elytes", "name": "Sodium and glucose", "value": "Na 118 mmol/L / glucose 44 mg/dL", "unit": "-", "normalRange": "Na 135-145 mmol/L", "abnormal": true, "report": "Severe hyponatraemia from impaired free water excretion, plus hypoglycaemia. Correct the sodium slowly at no more than 8 to 10 mmol/L in 24 hours to avoid osmotic demyelination." },
+    { "id": "gas1", "kind": "lab", "category": "ABG", "name": "Arterial blood gas", "value": "pH 7.21 / pCO2 78 / pO2 52 / HCO3 30", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Type 2 respiratory failure with carbon dioxide retention from central hypoventilation and respiratory muscle weakness. This is the immediate threat to life." },
+    { "id": "cort1", "kind": "lab", "category": "Endocrine", "name": "Random cortisol", "value": "84", "unit": "nmol/L", "normalRange": ">400 in acute illness", "abnormal": true, "report": "Inappropriately low for the degree of physiological stress. Coexisting adrenal insufficiency occurs in a proportion of these patients, and giving thyroid hormone before steroid can precipitate adrenal crisis." },
+    { "id": "ecg1", "kind": "imaging", "category": "Imaging", "name": "12-Lead ECG", "report": "Sinus bradycardia at 42/min with low voltage complexes throughout, prolonged QTc of 540 ms, and J waves in the inferior leads from hypothermia. Low voltage supports a pericardial effusion.", "imageUrl": "", "abnormal": true },
+    { "id": "cxr1", "kind": "imaging", "category": "Imaging", "name": "Chest X-ray", "report": "Enlarged globular cardiac silhouette consistent with pericardial effusion, bilateral small pleural effusions and right lower lobe consolidation. The pneumonia is the precipitant.", "imageUrl": "", "abnormal": true },
+    { "id": "ck1", "kind": "lab", "category": "Chemistry", "name": "Creatine kinase", "value": "1240", "unit": "U/L", "normalRange": "30-200", "abnormal": true, "report": "Raised, a recognised feature of severe hypothyroidism as well as of a long lie on the floor." }
+  ],
+  "managementGraph": {
+    "nodes": [
+      { "id": "start1", "type": "start", "position": { "x": 0, "y": 200 }, "data": { "label": "Start" } },
+      { "id": "req1", "type": "required", "position": { "x": 240, "y": 200 }, "data": { "label": "Airway and ventilation, then glucose", "actions": ["Assisted ventilation and intubation for hypercapnic failure", "Capillary glucose and dextrose", "Cardiac monitoring", "Core temperature probe"], "doseMap": { "Assisted ventilation and intubation for hypercapnic failure": "A respiratory rate of 8 with a pCO2 of 78 will not correct with oxygen alone. Hypoventilation is the commonest cause of death in myxoedema coma" } } },
+      { "id": "req2", "type": "required", "position": { "x": 480, "y": 200 }, "data": { "label": "Hydrocortisone BEFORE thyroid hormone", "actions": ["Hydrocortisone IV", "Take a random cortisol first if it costs no delay"], "doseMap": { "Hydrocortisone IV": "100 mg IV every 8 hours. Give this before levothyroxine. Thyroid hormone raises metabolic demand and accelerates cortisol clearance, and in a patient with coexisting adrenal insufficiency it can precipitate a fatal adrenal crisis. The sequence is the whole lesson in this case" } } },
+      { "id": "req3", "type": "required", "position": { "x": 720, "y": 200 }, "data": { "label": "Intravenous thyroid hormone replacement", "actions": ["Levothyroxine IV loading dose", "Then daily IV levothyroxine", "Consider adding liothyronine in severe cases"], "doseMap": { "Levothyroxine IV loading dose": "200-400 mcg IV, reduced in the elderly and in ischaemic heart disease, then 50-100 mcg IV daily. Oral absorption is unreliable with ileus, so the intravenous route is required", "Consider adding liothyronine in severe cases": "5-20 mcg IV then 2.5-10 mcg every 8 hours. Faster onset but higher risk of arrhythmia in an elderly patient" } } },
+      { "id": "req4", "type": "required", "position": { "x": 960, "y": 200 }, "data": { "label": "Passive rewarming only, and treat the precipitant", "actions": ["Passive external rewarming with blankets", "Warmed IV fluids", "Antibiotics for the pneumonia", "Cautious fluid replacement"], "doseMap": { "Passive external rewarming with blankets": "Do not use active external rewarming. It causes peripheral vasodilatation in a patient who cannot increase cardiac output, and precipitates circulatory collapse. Rewarm at no more than 0.5 C per hour", "Cautious fluid replacement": "The myocardium is impaired and there may be a pericardial effusion. Use small aliquots and correct sodium slowly" } } },
+      { "id": "out1", "type": "outcome", "position": { "x": 1200, "y": 200 }, "data": { "label": "Slow improvement", "outcomeType": "improved", "narrative": "Over 24 hours temperature rises to 35.2 C, heart rate to 58 and sodium corrects to 124 at a safe rate. She remains ventilated. Recovery in myxoedema coma is measured in days, not hours, and impatience here causes harm.", "vitalChanges": { "hr": 58, "sbp": 104, "dbp": 62, "rr": 14, "temp": 35.2, "spo2": 96, "gcs": 9 } } },
+      { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 1440, "y": 420 }, "data": { "label": "Ask why she ran out of a tablet she has taken for eleven years (Empathy)", "ethicalValue": 20, "narrative": "The easy explanation is non-compliance in an elderly patient, and it goes in the notes in three words. You ask the neighbour instead. The clinic relocated, the new site takes two buses she cannot manage, and the pharmacy would not dispense without a new prescription. She was not non-compliant, she was defeated by logistics. You arrange a community pharmacy repeat, a home visit from the district nurse and a social work referral. Nurse Ann says this is the difference between treating myxoedema coma once and treating it three times." } },
+      { "id": "req5", "type": "required", "position": { "x": 1680, "y": 200 }, "data": { "label": "ICU care with slow, patient correction", "actions": ["ICU admission", "Monitor for arrhythmia during hormone replacement", "Correct sodium no faster than 8-10 mmol/L per 24 hours", "Echocardiogram for the pericardial effusion", "Avoid all sedatives, which are cleared very slowly"], "doseMap": { "Avoid all sedatives, which are cleared very slowly": "Drug metabolism is profoundly slowed. Sedatives and opioids given at normal doses accumulate and are a common iatrogenic cause of failure to wake" } } },
+      { "id": "out2", "type": "outcome", "position": { "x": 1920, "y": 200 }, "data": { "label": "Recovery", "outcomeType": "improved", "narrative": "Extubated on day 5. Sodium normalises by day 6. The pericardial effusion resolves without drainage as thyroid replacement takes effect. Hydrocortisone is weaned once a short synacthen test confirms intact adrenal function.", "vitalChanges": { "hr": 68, "sbp": 118, "dbp": 70, "rr": 16, "temp": 36.6, "spo2": 97, "gcs": 15 } } },
+      { "id": "out3", "type": "outcome", "position": { "x": 2160, "y": 200 }, "data": { "label": "Disposition", "outcomeType": "resolved", "narrative": "Discharged day 14 on oral levothyroxine with a 90 day supply in her hand, a community pharmacy repeat arranged, and a district nurse visiting weekly for a month. The prescription logistics were the actual pathology and they were the last thing anyone looked at.", "vitalChanges": { "hr": 72, "sbp": 124, "dbp": 74, "rr": 16, "temp": 36.8, "spo2": 98, "gcs": 15 } } }
+    ],
+    "edges": [
+      { "id": "e1", "source": "start1", "target": "req1" },
+      { "id": "e2", "source": "req1", "target": "req2" },
+      { "id": "e3", "source": "req2", "target": "req3" },
+      { "id": "e4", "source": "req3", "target": "req4" },
+      { "id": "e5", "source": "req4", "target": "out1" },
+      { "id": "e6", "source": "out1", "target": "ethical_1" },
+      { "id": "e7", "source": "ethical_1", "target": "req5" },
+      { "id": "e_skip", "source": "out1", "target": "req5" },
+      { "id": "e8", "source": "req5", "target": "out2" },
+      { "id": "e9", "source": "out2", "target": "out3" }
+    ]
+  }
+}

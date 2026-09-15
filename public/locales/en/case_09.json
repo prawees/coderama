@@ -1,0 +1,457 @@
+{
+  "title": "19yo F Diabetic Ketoacidosis",
+  "age": "19",
+  "sex": "F",
+  "chiefComplaint": "Vomiting, abdominal pain and drowsiness",
+  "diagnoses": [
+    "Diabetic ketoacidosis",
+    "Gastroenteritis",
+    "Acute appendicitis",
+    "Salicylate toxicity",
+    "Hyperosmolar hyperglycaemic state"
+  ],
+  "background": "First year university student. Four weeks of thirst, frequent urination and 6 kg weight loss that she attributed to exam stress. Two days of vomiting and diffuse abdominal pain, and today she became too drowsy to attend class. No known diabetes and no family history. No alcohol. Last menstrual period 3 weeks ago. Her roommate says she has been breathing strangely since this morning.",
+  "patientAppearance": {
+    "skinTone": "#f0c8a0",
+    "bmiFactor": 0.75,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 124,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 94,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 56,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 30,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 37.1,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 99,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 14,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Thin, drowsy but rousable, deep sighing Kussmaul respirations, fruity acetone odour on the breath",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Dry cracked lips, tacky mucous membranes, sunken eyes, no oral thrush, no neck stiffness",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia, low volume pulse, capillary refill 3 seconds, JVP not visible, no murmur",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Clear breath sounds bilaterally, deep and rapid regular respirations, no crackles or wheeze",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Diffuse tenderness without rebound or guarding, no localisation to McBurney's point, sluggish bowel sounds, no organomegaly",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Reduced turgor with skin tenting over the sternum, cool dry peripheries, no rash or infected wound, no injection sites",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 14 (E3V5M6), slow to answer but orientated, no focal deficit, pupils 3 mm equal and reactive, no papilloedema",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Capillary glucose",
+      "value": "512",
+      "unit": "mg/dL",
+      "normalRange": "70-140",
+      "abnormal": true,
+      "report": "Severe hyperglycaemia."
+    },
+    {
+      "id": "vbg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Venous blood gas",
+      "value": "pH 7.08 / pCO2 18 / HCO3 6",
+      "unit": "-",
+      "normalRange": "pH 7.32-7.42",
+      "abnormal": true,
+      "report": "Severe high anion gap metabolic acidosis with maximal respiratory compensation. This meets severe DKA criteria."
+    },
+    {
+      "id": "bhb1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Beta-hydroxybutyrate",
+      "value": "6.8",
+      "unit": "mmol/L",
+      "normalRange": "<0.6",
+      "abnormal": true,
+      "report": "Marked ketonaemia. Use this rather than urine ketones to track clearance."
+    },
+    {
+      "id": "k1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "Potassium",
+      "value": "5.4",
+      "unit": "mmol/L",
+      "normalRange": "3.5-5.0",
+      "abnormal": true,
+      "report": "Measured potassium is high but total body potassium is severely depleted. It will fall sharply once insulin starts."
+    },
+    {
+      "id": "na1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "Sodium",
+      "value": "129",
+      "unit": "mmol/L",
+      "normalRange": "135-145",
+      "abnormal": true,
+      "report": "Pseudohyponatraemia from hyperglycaemia. Corrected sodium is approximately 135 mmol/L."
+    },
+    {
+      "id": "cr1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Creatinine",
+      "value": "1.4",
+      "unit": "mg/dL",
+      "normalRange": "0.5-1.0",
+      "abnormal": true,
+      "report": "Pre-renal acute kidney injury from volume depletion. Anion gap 30 mmol/L."
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "12-Lead ECG",
+      "report": "Sinus tachycardia at 122/min. Tall peaked T waves in V2 to V4 consistent with hyperkalaemia. Normal QRS duration. No ischaemic changes.",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "ua1",
+      "kind": "lab",
+      "category": "Urine",
+      "name": "Urinalysis",
+      "value": "Ketones 4+, glucose 4+, nitrite negative, leucocyte esterase negative",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": true,
+      "report": "Ketonuria and glycosuria. No evidence of urinary tract infection as a precipitant."
+    },
+    {
+      "id": "cbc2",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "White cell count",
+      "value": "16.2",
+      "unit": "x10^9/L",
+      "normalRange": "4.0-11.0",
+      "abnormal": true,
+      "report": "Leucocytosis is common in DKA itself. Only pursue infection if there is fever, a source, or a left shift with bands."
+    },
+    {
+      "id": "hba1c",
+      "kind": "lab",
+      "category": "Endocrine",
+      "name": "HbA1c",
+      "value": "13.8",
+      "unit": "%",
+      "normalRange": "<5.7",
+      "abnormal": true,
+      "report": "Confirms months of untreated hyperglycaemia, consistent with new onset type 1 diabetes."
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "label": "IV access, point of care glucose, ketones and venous gas with potassium",
+          "actions": [
+            "IV access 18G x2",
+            "Capillary glucose",
+            "Venous blood gas with electrolytes",
+            "Beta-hydroxybutyrate"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "label": "Fluid resuscitation first, before any insulin",
+          "actions": [
+            "Normal saline bolus"
+          ],
+          "doseMap": {
+            "Normal saline bolus": "15-20 mL/kg (about 1000 mL) over the first hour, then 250-500 mL/h guided by perfusion"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "label": "Perfusion improves",
+          "outcomeType": "improved",
+          "narrative": "After the first litre she is more alert and her peripheries warm up. Glucose has already fallen to 448 mg/dL from dilution and renal clearance alone.",
+          "vitalChanges": {
+            "hr": 110,
+            "sbp": 106,
+            "dbp": 64,
+            "rr": 28,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 960,
+          "y": 400
+        },
+        "data": {
+          "label": "Sit down and tell her she has newly diagnosed type 1 diabetes, and call her parents with her permission (Empathy)",
+          "ethicalValue": 15,
+          "narrative": "You explain the diagnosis in plain language before the insulin drip starts, and ask what she wants her parents told. She cries, then asks good questions about whether she can still go back to class. Nurse Ann arranges the diabetes nurse educator for the morning. Dr. Bob mutters that the ward can do that later."
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "Check potassium before starting insulin and replace as needed",
+          "actions": [
+            "Serum potassium",
+            "Potassium chloride in maintenance fluid"
+          ],
+          "doseMap": {
+            "Potassium chloride in maintenance fluid": "If K 3.3-5.3 mmol/L add 20-30 mmol/L to the fluid. If K below 3.3 mmol/L hold insulin and replace first. If above 5.3 mmol/L give no potassium and recheck in 2 hours"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "label": "Fixed rate insulin infusion, no bolus",
+          "actions": [
+            "Regular insulin IV infusion"
+          ],
+          "doseMap": {
+            "Regular insulin IV infusion": "0.1 units/kg/h continuous (about 5 units/h). A bolus adds no benefit and increases the risk of hypokalaemia and cerebral oedema"
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "Hourly monitoring and add dextrose when glucose falls below 250 mg/dL",
+          "actions": [
+            "Hourly capillary glucose",
+            "2 hourly potassium and venous gas",
+            "5% or 10% dextrose co-infusion",
+            "Hourly urine output"
+          ],
+          "doseMap": {
+            "5% or 10% dextrose co-infusion": "Start when glucose is below 250 mg/dL, keep the insulin running to clear ketones. Aim for a fall in glucose of 50-75 mg/dL per hour"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "Acidosis clearing",
+          "outcomeType": "improved",
+          "narrative": "At six hours pH is 7.28, bicarbonate 15 mmol/L, beta-hydroxybutyrate 1.9 mmol/L and potassium 3.9 mmol/L on replacement. Kussmaul breathing has stopped. You did not give bicarbonate, which is correct at this pH.",
+          "vitalChanges": {
+            "hr": 92,
+            "sbp": 116,
+            "dbp": 70,
+            "rr": 18,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "req6",
+        "type": "required",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Transition to subcutaneous insulin only after resolution criteria are met",
+          "actions": [
+            "Long acting subcutaneous insulin",
+            "Overlap 1-2 hours before stopping the infusion",
+            "Endocrinology and diabetes educator referral"
+          ],
+          "doseMap": {
+            "Long acting subcutaneous insulin": "Give 1-2 hours before stopping the drip. Resolution means anion gap under 12, bicarbonate at least 15 and beta-hydroxybutyrate under 0.6 with the patient eating"
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2400,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "She is admitted to the medical ward on a basal bolus regimen. The diabetes educator starts carbohydrate counting and injection technique before discharge. No cerebral oedema, no hypokalaemic arrhythmia.",
+          "vitalChanges": {
+            "hr": 84,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 16,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "out1"
+      },
+      {
+        "id": "e4",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e5",
+        "source": "ethical_1",
+        "target": "req3"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req3"
+      },
+      {
+        "id": "e6",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "req6"
+      },
+      {
+        "id": "e10",
+        "source": "req6",
+        "target": "out3"
+      }
+    ]
+  }
+}
