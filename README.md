@@ -1,7 +1,7 @@
 # 🏥 Code Rama (โค้ด รามา)
 ### 2D Hospital Simulation RPG & Emergency Room Clinical Engine
 
-> *"Welcome to Code Rama ER, Doctor. Get ready for a real 'Ward Wen Yern' (brutal shift) — 36-hour calls, broken coffee machines, and patients mapped directly to the National License (NL) blueprints."*
+> *"Welcome to Code Rama ER, Doctor. Get ready for a real 'เวรเยิน' experience with 36-hour calls, broken coffee machines, and patients mapped directly to the National License (NL) blueprints."*
 
 ---
 
