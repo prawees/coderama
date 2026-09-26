@@ -5,6 +5,9 @@ import * as PIXI from "pixi.js";
 import { audio } from "@/lib/audio";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { useERStore, ActiveCase } from "@/lib/erStore";
+import { renderCharacterSheet, specFromAppearance, GRUMP_SPEC, ANN_SPEC, renderPatientChip, FRAME_W, FRAME_H, SHEET_COLS, SHEET_ROWS } from "@/lib/pixelSprites";
+import { nearestRamp, SKIN_RAMPS, SCRUB_RAMPS } from "@/lib/palettes";
+import { tNow } from "@/lib/i18n/useT";
 
 export interface Vector2 { x: number; y: number; }
 type Direction = 'up' | 'down' | 'left' | 'right';
@@ -163,20 +166,18 @@ export function PixiEngine2D({ mapData, onInteract, onDoor, activeCases, clockMi
         const assignedCase = cases.find(c => c.bedIndex === bedIndex);
 
         if (assignedCase) {
-          const patientG = new PIXI.Graphics();
-          const skinHex = parseInt((assignedCase.skinTone || '#f1c27d').replace('#', ''), 16);
-          const shirtHex = parseInt((assignedCase.shirtColor || '#1f6feb').replace('#', ''), 16);
-
-          // Head on pillow
-          patientG.circle(REAL_TILE / 2, 18, 7);
-          patientG.fill({ color: skinHex });
-          patientG.stroke({ color: 0x000000, width: 1 });
-
-          // Torso under blanket
-          patientG.rect(REAL_TILE / 2 - 8, 24, 16, 12);
-          patientG.fill({ color: shirtHex });
-
-          itemContainer.addChild(patientG);
+          // Palette-swapped 16×16 patient chip (skin ramp + gown ramp), integer-scaled ×2
+          const chip = renderPatientChip(
+            nearestRamp(assignedCase.skinTone, SKIN_RAMPS),
+            nearestRamp(assignedCase.shirtColor, SCRUB_RAMPS)
+          );
+          const chipTex = PIXI.Texture.from(chip);
+          chipTex.source.scaleMode = 'nearest';
+          const patientSprite = new PIXI.Sprite(chipTex);
+          patientSprite.scale.set(SCALE);
+          patientSprite.x = REAL_TILE / 2 - 16;
+          patientSprite.y = 10;
+          itemContainer.addChild(patientSprite);
 
           // Status Badge / Expiration Alert
           const isCritical = Date.now() > assignedCase.expiresAt - 60000;
@@ -310,26 +311,25 @@ export function PixiEngine2D({ mapData, onInteract, onDoor, activeCases, clockMi
         containerRef.current.appendChild(app.canvas);
       }
 
-      const safeHair = appearance?.hairStyle === 'hair_short' ? 'hair_1' : (appearance?.hairStyle || 'hair_1');
-      const safeTop = appearance?.topStyle === 'top_scrubs' ? 'top_1' : (appearance?.topStyle || 'top_1');
-
-      // Load Layer Assets
+      // Floor tileset (external) + procedurally palette-swapped character sheets (no tinting).
       PIXI.Assets.add({ alias: 'tileset', src: '/assets/tileset.jpg' });
-      PIXI.Assets.add({ alias: 'body', src: '/assets/layers/body.png' });
-      PIXI.Assets.add({ alias: 'hair', src: `/assets/layers/${safeHair}.png` });
-      PIXI.Assets.add({ alias: 'top', src: `/assets/layers/${safeTop}.png` });
-      PIXI.Assets.add({ alias: 'bottom', src: '/assets/layers/bottom_1.png' });
-      PIXI.Assets.add({ alias: 'shoes', src: '/assets/layers/shoes_1.png' });
-      PIXI.Assets.add({ alias: 'nurse', src: '/assets/nurse_sprite.png' });
-      
-      let textures;
+      let textures: { tileset: PIXI.Texture };
       try {
-        textures = await PIXI.Assets.load(['tileset', 'body', 'hair', 'top', 'bottom', 'shoes', 'nurse']);
+        textures = await PIXI.Assets.load(['tileset']) as any;
       } catch (e) {
         console.error("Failed to load PixiEngine2D textures", e);
         return;
       }
       if (!isMounted) return;
+
+      const sheetTexture = (canvas: HTMLCanvasElement) => {
+        const tex = PIXI.Texture.from(canvas);
+        tex.source.scaleMode = 'nearest';
+        return tex;
+      };
+      const playerSheet = sheetTexture(renderCharacterSheet(specFromAppearance(appearance as any)));
+      const annSheet = sheetTexture(renderCharacterSheet(ANN_SPEC));
+      const grumpSheet = sheetTexture(renderCharacterSheet(GRUMP_SPEC));
 
       // Create main game container (Camera)
       const world = new PIXI.Container();
@@ -368,80 +368,48 @@ export function PixiEngine2D({ mapData, onInteract, onDoor, activeCases, clockMi
       }
       playerContainer.x = playerPosRef.current.x * REAL_TILE;
       playerContainer.y = playerPosRef.current.y * REAL_TILE;
-      playerContainer.scale.set(SCALE);
 
-      const createLayerSprite = (texture: PIXI.Texture, hexColor: string) => {
-        const frameWidth = texture.width / 3;
-        const frameHeight = texture.height / 4;
-        const getFrames = (row: number) => {
-           return [
-             new PIXI.Texture({ source: texture.source, frame: new PIXI.Rectangle(0, row * frameHeight, frameWidth, frameHeight) }),
-             new PIXI.Texture({ source: texture.source, frame: new PIXI.Rectangle(frameWidth, row * frameHeight, frameWidth, frameHeight) }),
-             new PIXI.Texture({ source: texture.source, frame: new PIXI.Rectangle(frameWidth * 2, row * frameHeight, frameWidth, frameHeight) }),
-             new PIXI.Texture({ source: texture.source, frame: new PIXI.Rectangle(frameWidth, row * frameHeight, frameWidth, frameHeight) })
-           ];
-        };
-        const animations = {
-          down: getFrames(0), left: getFrames(1), right: getFrames(2), up: getFrames(3)
-        };
-        const sprite = new PIXI.AnimatedSprite(animations.down);
-        sprite.animationSpeed = 0.1;
-        sprite.anchor.set(0.5, 0.5);
-        sprite.tint = parseInt((hexColor || '#ffffff').replace('#', ''), 16);
-        // Store animations array on sprite for easy swapping in ticker
-        (sprite as any).__animations = animations;
-        return sprite;
+      // Slice a 3×4 sheet into 4-frame walk cycles (L, idle, R, idle). Integer scale only.
+      const sliceSheet = (texture: PIXI.Texture) => {
+        const fw = texture.width / SHEET_COLS;
+        const fh = texture.height / SHEET_ROWS;
+        const frame = (col: number, row: number) => new PIXI.Texture({ source: texture.source, frame: new PIXI.Rectangle(col * fw, row * fh, fw, fh) });
+        const cycle = (row: number) => [frame(0, row), frame(1, row), frame(2, row), frame(1, row)];
+        return { down: cycle(0), left: cycle(1), right: cycle(2), up: cycle(3) };
       };
 
-      const bodySprite = createLayerSprite(textures.body, appearance?.skinColor);
-      const bottomSprite = createLayerSprite(textures.bottom, appearance?.bottomColor);
-      const shoesSprite = createLayerSprite(textures.shoes, appearance?.shoeColor);
-      const topSprite = createLayerSprite(textures.top, appearance?.topColor);
-      const hairSprite = createLayerSprite(textures.hair, appearance?.hairColor);
-
-      playerContainer.addChild(bodySprite);
-      playerContainer.addChild(bottomSprite);
-      playerContainer.addChild(shoesSprite);
-      playerContainer.addChild(topSprite);
-      playerContainer.addChild(hairSprite);
+      const playerAnims = sliceSheet(playerSheet);
+      const playerSprite = new PIXI.AnimatedSprite(playerAnims.down);
+      playerSprite.animationSpeed = 0.12;
+      playerSprite.anchor.set(0.5, 0.75); // feet at tile centre-bottom
+      (playerSprite as any).__animations = playerAnims;
+      playerSprite.scale.set(SCALE);
+      playerSprite.x = REAL_TILE / 2;
+      playerSprite.y = REAL_TILE / 2;
+      playerContainer.addChild(playerSprite);
 
       world.addChild(playerContainer);
 
-      // 5. Setup NPCs
+      // 5. Setup NPCs - bespoke sheets, no tint hacks
       const npcContainer = new PIXI.Container();
-      
-      const createNPC = (texture: PIXI.Texture, startX: number, startY: number, tintHex?: number) => {
-         const frameWidth = texture.width / 3;
-         const frameHeight = texture.height / 4;
-         const getFrames = (row: number) => {
-            return [
-              new PIXI.Texture({ source: texture.source, frame: new PIXI.Rectangle(0, row * frameHeight, frameWidth, frameHeight) }),
-              new PIXI.Texture({ source: texture.source, frame: new PIXI.Rectangle(frameWidth, row * frameHeight, frameWidth, frameHeight) }),
-              new PIXI.Texture({ source: texture.source, frame: new PIXI.Rectangle(frameWidth * 2, row * frameHeight, frameWidth, frameHeight) }),
-              new PIXI.Texture({ source: texture.source, frame: new PIXI.Rectangle(frameWidth, row * frameHeight, frameWidth, frameHeight) })
-            ];
-         };
-         const animations = {
-           down: getFrames(0), left: getFrames(1), right: getFrames(2), up: getFrames(3)
-         };
+
+      const createNPC = (texture: PIXI.Texture, startX: number, startY: number) => {
+         const animations = sliceSheet(texture);
          const sprite = new PIXI.AnimatedSprite(animations.down);
-         sprite.animationSpeed = 0.05;
-         sprite.anchor.set(0.5, 0.5);
-         if (tintHex) sprite.tint = tintHex;
+         sprite.animationSpeed = 0.06;
+         sprite.anchor.set(0.5, 0.75);
          (sprite as any).__animations = animations;
          (sprite as any).__targetPos = { x: startX * REAL_TILE, y: startY * REAL_TILE };
          (sprite as any).__gridPos = { x: startX, y: startY };
          (sprite as any).__moveTimer = 0;
          sprite.x = startX * REAL_TILE;
          sprite.y = startY * REAL_TILE;
-         const targetHeight = REAL_TILE * 1.25; // slightly taller than a tile
-         const targetScale = targetHeight / frameHeight;
-         sprite.scale.set(targetScale);
+         sprite.scale.set(SCALE);
          return sprite;
       };
 
-      const nurseAnn = createNPC(textures.nurse, 8, 5);
-      const drGrump = createNPC(textures.nurse, 12, 3, 0xffcccc); // Red tint for grump
+      const nurseAnn = createNPC(annSheet, 8, 5);
+      const drGrump = createNPC(grumpSheet, 12, 3);
       
       // Nurse Ann Nameplate
       const nurseNameBadge = new PIXI.Container();
@@ -450,13 +418,14 @@ export function PixiEngine2D({ mapData, onInteract, onDoor, activeCases, clockMi
       nurseBg.fill({ color: 0x000000, alpha: 0.75 });
       nurseBg.stroke({ color: 0x38bdf8, width: 1 });
       const nurseTxt = new PIXI.Text({
-        text: npcEmote ? `Ann ${npcEmote}` : "Ann",
-        style: { fontFamily: "monospace", fontSize: 9, fill: 0x38bdf8, fontWeight: "bold" }
+        text: npcEmote ? `${tNow('npc.ann')} ${npcEmote}` : tNow('npc.ann'),
+        style: { fontFamily: "VT323, Noto Sans Thai, monospace", fontSize: 12, fill: 0x73eff7 }
       });
       nurseTxt.anchor.set(0.5);
       nurseNameBadge.addChild(nurseBg);
       nurseNameBadge.addChild(nurseTxt);
-      nurseNameBadge.y = -REAL_TILE * 0.6;
+      nurseNameBadge.y = -FRAME_H * 0.85;
+      nurseNameBadge.scale.set(1 / SCALE);
       nurseAnn.addChild(nurseNameBadge);
 
       // Dr. Grump Nameplate
@@ -466,13 +435,14 @@ export function PixiEngine2D({ mapData, onInteract, onDoor, activeCases, clockMi
       grumpBg.fill({ color: 0x000000, alpha: 0.75 });
       grumpBg.stroke({ color: 0xf87171, width: 1 });
       const grumpTxt = new PIXI.Text({
-        text: "Aj. Grump",
-        style: { fontFamily: "monospace", fontSize: 9, fill: 0xfca5a5, fontWeight: "bold" }
+        text: tNow('npc.grump'),
+        style: { fontFamily: "VT323, Noto Sans Thai, monospace", fontSize: 12, fill: 0xef7d57 }
       });
       grumpTxt.anchor.set(0.5);
       grumpNameBadge.addChild(grumpBg);
       grumpNameBadge.addChild(grumpTxt);
-      grumpNameBadge.y = -REAL_TILE * 0.6;
+      grumpNameBadge.y = -FRAME_H * 0.85;
+      grumpNameBadge.scale.set(1 / SCALE);
       drGrump.addChild(grumpNameBadge);
 
       npcContainer.addChild(nurseAnn);
@@ -606,9 +576,9 @@ export function PixiEngine2D({ mapData, onInteract, onDoor, activeCases, clockMi
          const py = playerPosRef.current.y;
 
          if (nurseAnn && Math.hypot(px - nurseAnn.x / REAL_TILE, py - nurseAnn.y / REAL_TILE) < 1.35) {
-           promptText = "TALK: NURSE ANN";
+           promptText = tNow('engine.talk_ann');
          } else if (drGrump && Math.hypot(px - drGrump.x / REAL_TILE, py - drGrump.y / REAL_TILE) < 1.35) {
-           promptText = "TALK: DR. GRUMP";
+           promptText = tNow('engine.talk_grump');
          } else {
            const facing = (app as any).__facingDir || 'down';
            let fx = Math.round(px);
@@ -627,11 +597,11 @@ export function PixiEngine2D({ mapData, onInteract, onDoor, activeCases, clockMi
              if (targetItem.type === 'bed') {
                const bedIdx = parseInt(targetItem.id.replace('bed_', '')) - 1;
                const hasPatient = activeCases.some(c => c.bedIndex === bedIdx);
-               promptText = hasPatient ? `TREAT PATIENT (BED ${bedIdx + 1})` : `BED ${bedIdx + 1} (EMPTY)`;
+               promptText = hasPatient ? tNow('engine.treat_bed', { n: bedIdx + 1 }) : tNow('engine.bed_empty', { n: bedIdx + 1 });
              } else if (targetItem.type === 'computer') {
-               promptText = targetItem.id === 'leaderboard' ? "VIEW LEADERBOARD" : "VIEW CONSULTS";
+               promptText = targetItem.id === 'leaderboard' ? tNow('engine.leaderboard') : tNow('engine.consults');
              } else if (targetItem.type === 'door') {
-               promptText = targetItem.target === 'AMBULANCE_BAY' ? "ENTER AMBULANCE BAY" : "ENTER ER";
+               promptText = targetItem.target === 'AMBULANCE_BAY' ? tNow('engine.enter_bay') : tNow('engine.enter_er');
              }
            }
          }
@@ -734,7 +704,7 @@ export function PixiEngine2D({ mapData, onInteract, onDoor, activeCases, clockMi
          (appRef.current as any).__keys = (appRef.current as any).__keys || {};
          (appRef.current as any).__keys[e.key] = true;
       }
-      if (e.key === ' ' || e.key === 'Enter') {
+      if (e.key === ' ' || e.key === 'Enter' || e.key === 'e' || e.key === 'E') {
          // Debounce interaction
          if (!(window as any).__interactDebounce) {
             (window as any).__interactDebounce = true;
@@ -765,10 +735,15 @@ export function PixiEngine2D({ mapData, onInteract, onDoor, activeCases, clockMi
       {/* Canvas Mount Point */}
       <div ref={containerRef} className="absolute inset-0 z-0" />
 
-      {/* VIRTUAL D-PAD OVERLAY */}
-      <div className="absolute bottom-8 left-8 flex flex-col items-center opacity-70 z-50 pointer-events-auto">
-        <button 
-          className="w-16 h-16 bg-gray-700 border-4 border-gray-900 active:bg-gray-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold shadow-xl mb-1"
+      {/* Keyboard hint (desktop) */}
+      <div className="absolute top-3 left-3 z-40 pointer-events-none hidden [@media(hover:hover)]:block">
+        <span className="bg-pixel-ink/90 border-2 border-[#333c57] text-pixel-text-muted px-2 py-1 text-sm font-pixel">{tNow('engine.controls')}</span>
+      </div>
+
+      {/* VIRTUAL D-PAD OVERLAY - touch devices only */}
+      <div className="absolute bottom-6 left-6 flex-col items-center z-50 pointer-events-auto hidden [@media(hover:none)]:flex">
+        <button
+          className="w-16 h-16 bg-[#333c57] border-4 border-pixel-ink active:bg-[#566c86] flex items-center justify-center text-white text-2xl font-bold mb-1"
           onTouchStart={() => handleMoveDown('up')} onTouchEnd={() => handleMoveUp()}
           onMouseDown={() => handleMoveDown('up')} onMouseUp={() => handleMoveUp()}
           onMouseLeave={() => handleMoveUp()}
@@ -795,19 +770,19 @@ export function PixiEngine2D({ mapData, onInteract, onDoor, activeCases, clockMi
         </div>
       </div>
       
-      {/* INTERACT PROMPT & BUTTON */}
-      <div className="absolute bottom-8 right-8 z-50 pointer-events-auto flex flex-col items-center gap-2">
+      {/* INTERACT PROMPT (all) & ACTION BUTTON (touch only) */}
+      <div className="absolute bottom-6 right-6 z-50 pointer-events-auto flex flex-col items-center gap-2">
         {nearbyPrompt && (
-          <div className="bg-black/90 border-2 border-[#58a6ff] text-[#58a6ff] px-3 py-1.5 rounded-lg text-xs font-bold tracking-wider shadow-lg animate-bounce pointer-events-none whitespace-nowrap font-pixel">
+          <div className="bg-pixel-ink border-4 border-[#41a6f6] text-[#73eff7] px-3 py-1.5 text-lg tracking-wider pixel-shadow pointer-events-none whitespace-nowrap font-pixel animate-bounce">
             {nearbyPrompt}
           </div>
         )}
-        <button 
-          className="w-20 h-20 md:w-24 md:h-24 bg-red-600 border-4 border-red-800 active:bg-red-400 rounded-full flex flex-col items-center justify-center text-white text-xl font-bold font-pixel shadow-xl shadow-red-900/50"
+        <button
+          className="w-20 h-20 bg-[#d95763] border-4 border-pixel-ink active:bg-[#ef7d57] flex-col items-center justify-center text-white text-xl font-bold font-pixel pixel-shadow hidden [@media(hover:none)]:flex"
           onClick={handleInteract}
         >
-          <span>A</span>
-          <span className="text-[10px] text-red-200">ACTION</span>
+          <span>E</span>
+          <span className="text-[10px] text-[#ffe9c9]">{tNow('engine.action')}</span>
         </button>
       </div>
     </div>

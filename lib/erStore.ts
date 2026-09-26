@@ -99,14 +99,38 @@ export const UPGRADES_DATABASE: Record<string, UpgradeItem> = {
 };
 
 export interface PlayerAppearance {
-  skinColor: string; // hex string e.g. '#ffcc99'
-  hairColor: string;
-  topColor: string;
-  bottomColor: string;
-  shoeColor: string;
-  hairStyle: string;
-  topStyle: string;
+  // v2: palette-swap ramps (see lib/palettes.ts). Hex fields below are legacy
+  // and only read once by migrateAppearance() to pick the nearest ramp.
+  skinRamp?: string;
+  hairRamp?: string;
+  topRamp?: string;
+  bottomRamp?: string;
+  shoeRamp?: string;
+  skinColor?: string;
+  hairColor?: string;
+  topColor?: string;
+  bottomColor?: string;
+  shoeColor?: string;
+  hairStyle: string; // 'short' | 'long' | 'bun' | 'messy' | 'bald'
+  topStyle: string;  // 'scrubs' | 'coat'
 }
+
+/** One-time upgrade of a persisted v1 (hex-tint) appearance to v2 ramps. */
+export const migrateAppearance = (a: PlayerAppearance): PlayerAppearance => {
+  if (a.skinRamp && a.hairRamp && a.topRamp && a.bottomRamp && a.shoeRamp) return a;
+  const { nearestRamp, SKIN_RAMPS, HAIR_RAMPS, SCRUB_RAMPS, BOTTOM_RAMPS, SHOE_RAMPS } = require('./palettes');
+  return {
+    hairStyle: a.hairStyle === 'hair_2' ? 'long' : a.hairStyle === 'hair_1' || a.hairStyle === 'hair_short' ? 'short' : a.hairStyle || 'short',
+    topStyle: a.topStyle === 'top_2' ? 'coat' : 'scrubs',
+    skinRamp: a.skinRamp || nearestRamp(a.skinColor, SKIN_RAMPS).id,
+    hairRamp: a.hairRamp || nearestRamp(a.hairColor, HAIR_RAMPS).id,
+    topRamp: a.topRamp || nearestRamp(a.topColor, SCRUB_RAMPS).id,
+    bottomRamp: a.bottomRamp || nearestRamp(a.bottomColor, BOTTOM_RAMPS).id,
+    shoeRamp: a.shoeRamp || nearestRamp(a.shoeColor, SHOE_RAMPS).id,
+  };
+};
+
+import type { CaseReport } from './scorecard';
 
 interface ERState {
   shiftMode: ShiftMode;
@@ -161,6 +185,15 @@ interface ERState {
   // Prestige System
   prestigeCount: number;
   legacyPerks: string[];
+
+  // Faculty pitch: OSCE/NL report cards + attending consult
+  caseReports: CaseReport[];
+  lastReport: CaseReport | null;
+  consultUsedThisShift: boolean;
+  addCaseReport: (report: CaseReport) => void;
+  clearLastReport: () => void;
+  useConsultAttending: () => boolean;
+  drinkCoffee: () => boolean;
 
   // Actions
   setShiftMode: (mode: ShiftMode) => void;
@@ -217,7 +250,28 @@ export const useERStore = create<ERState>()(
 
       friendships: {
         nurse_ann: 0,
-        dr_bob: 0
+        dr_grump: 0
+      },
+      caseReports: [],
+      lastReport: null,
+      consultUsedThisShift: false,
+      addCaseReport: (report) => set((state) => ({
+        caseReports: [...state.caseReports.slice(-49), report],
+        lastReport: report,
+      })),
+      clearLastReport: () => set({ lastReport: null }),
+      useConsultAttending: () => {
+        const s = get();
+        if (s.consultUsedThisShift || (s.friendships['dr_grump'] || 0) < 3) return false;
+        set({ consultUsedThisShift: true });
+        return true;
+      },
+      drinkCoffee: () => {
+        const s = get();
+        if (!s.inventory.includes('special_coffee')) return false;
+        s.removeFromInventory('special_coffee');
+        s.restoreEnergy(25);
+        return true;
       },
       karma: 0,
       activeQuests: [],
@@ -243,13 +297,13 @@ export const useERStore = create<ERState>()(
         shoes: null
       },
       appearance: {
-        skinColor: '#ffcc99',
-        hairColor: '#000000',
-        topColor: '#ffffff',
-        bottomColor: '#333333',
-        shoeColor: '#000000',
-        hairStyle: 'hair_1',
-        topStyle: 'top_1'
+        skinRamp: 'skin_light',
+        hairRamp: 'hair_black',
+        topRamp: 'scrub_teal',
+        bottomRamp: 'pants_charcoal',
+        shoeRamp: 'shoes_white',
+        hairStyle: 'short',
+        topStyle: 'scrubs'
       },
       unlockedSkills: [],
       shiftStats: {
@@ -381,11 +435,11 @@ export const useERStore = create<ERState>()(
           shiftStats: { ...state.shiftStats, cashEarned: amount > 0 ? state.shiftStats.cashEarned + earned : state.shiftStats.cashEarned, casesTreated: amount > 0 ? state.shiftStats.casesTreated + 1 : state.shiftStats.casesTreated }
         };
       }),
-      setupPlayer: (name, gender, language, appearance, university) => set({ 
-        playerName: name, 
+      setupPlayer: (name, gender, language, appearance, university) => set({
+        playerName: name,
         playerGender: gender,
         language,
-        appearance,
+        appearance: migrateAppearance(appearance),
         university
       }),
       buyGear: (itemId, cost) => {
@@ -455,8 +509,9 @@ export const useERStore = create<ERState>()(
         shiftMode: 'off-duty',
         isPendingPromotion: false
       }),
-      resetShiftStats: () => set((state) => ({
-        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 }
+      resetShiftStats: () => set(() => ({
+        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 },
+        consultUsedThisShift: false,
       })),
       updateFriendship: (npcId, amount) => set((state) => ({
         friendships: { ...state.friendships, [npcId]: (state.friendships[npcId] || 0) + amount }
@@ -543,7 +598,16 @@ export const useERStore = create<ERState>()(
         storyFlags: state.storyFlags,
         prestigeCount: state.prestigeCount,
         legacyPerks: state.legacyPerks,
-      })
+        caseReports: state.caseReports,
+        hospitalUpgrades: state.hospitalUpgrades,
+        unlockedSkills: state.unlockedSkills,
+        karma: state.karma,
+      }),
+      merge: (persisted: any, current) => {
+        const merged = { ...current, ...(persisted || {}) };
+        if (merged.appearance) merged.appearance = migrateAppearance(merged.appearance);
+        return merged;
+      },
     }
   )
 );

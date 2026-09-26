@@ -3,11 +3,16 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useERStore, getEra } from "@/lib/erStore";
-import { getLocalizedRankTitle, translate } from "@/lib/localization";
+import { getLocalizedRankTitle } from "@/lib/localization";
+import { useT } from "@/lib/i18n/useT";
+import { useTransition } from "@/lib/transition";
+import { QUEST_DATABASE } from "@/lib/quests";
+import { PixiPreview } from "@/components/game/PixiPreview";
+import { PixelPanel } from "@/components/ui/PixelPanel";
 import { scheduleOnCallCases, cancelOnCallCases } from "@/lib/notifications";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { PixelButton } from "@/components/ui/PixelButton";
-import { MapData } from "@/components/game/Engine2D";
+import { MapData } from "@/components/game/PixiEngine2D";
 import { PixiEngine2D } from "@/components/game/PixiEngine2D";
 import { MAPS } from "@/lib/maps";
 import { Pager } from "@/components/ui/Pager";
@@ -31,8 +36,10 @@ export default function HubPage() {
     tutorialCompleted, completeTutorial, updateFriendship, friendships,
     activeQuests, completedQuests, startQuest, completeQuest, restoreEnergy,
     currentDay, incrementDay, inventory, removeFromInventory, setStoryFlag, addKarma, addXp, forcePromote, storyFlags,
-    hospitalUpgrades
+    hospitalUpgrades, appearance, consultUsedThisShift, drinkCoffee
   } = useERStore();
+  const { t } = useT();
+  const { wipeTo } = useTransition();
   
   const [isQuestsOpen, setIsQuestsOpen] = useState(false);
   const [isCinematic, setIsCinematic] = useState(false);
@@ -51,7 +58,7 @@ export default function HubPage() {
   const prevThreshold = [...thresholds].reverse().find(t => t <= (lifetimeXp || 0)) || 0;
   const progressPercent = Math.min(100, Math.max(0, ((lifetimeXp || 0) - prevThreshold) / (nextThreshold === Infinity ? prevThreshold : nextThreshold - prevThreshold) * 100));
   
-  const [logs, setLogs] = useState<string[]>(['System: ER Dashboard initialized.']);
+  const [logs, setLogs] = useState<string[]>([]);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [isConsultsOpen, setIsConsultsOpen] = useState(false);
   const logEndRef = useRef<HTMLDivElement>(null);
@@ -332,12 +339,12 @@ export default function HubPage() {
       if (state.clockMinutes === 200 && Math.random() < 0.3 && !isPowerOutage) {
          setIsPowerOutage(true);
          audio.playBump();
-         addLog("WARNING: POWER OUTAGE DETECTED! Emergency generators kicking in.");
+         addLog(t('hub.power_outage'));
       }
       if (state.clockMinutes === 260 && isPowerOutage) {
          setIsPowerOutage(false);
          audio.playShiftStart();
-         addLog("Power restored.");
+         addLog(t('hub.power_restored'));
       }
       
     }, tickRate);
@@ -348,7 +355,7 @@ export default function HubPage() {
          // BOSS BATTLE SCRIPT
          if (state.activeCases.length === 0 && state.clockMinutes < 300) {
             audio.playPager();
-            addLog("BOSS BATTLE: INCOMING MASS CASUALTY!");
+            addLog(t('hub.boss_incoming'));
             
             addCase({
               id: `boss_asthma_${Date.now()}`,
@@ -389,21 +396,12 @@ export default function HubPage() {
          
          if (state.activeCases.length < maxCases && Math.random() < spawnChance) {
             audio.playPager();
-            addLog("Triage: New patient arrived at ER!");
+            addLog(t('hub.new_patient'));
             const selectedCase = possibleCases[Math.floor(Math.random() * possibleCases.length)];
             
-            if (selectedCase === "case_01") setPagerMessage("*BEEP BEEP*\n28yo M - Toxicology");
-            else if (selectedCase === "case_02_fluids") setPagerMessage("*BEEP BEEP*\n45yo F - Hypovolemic Shock");
-            else if (selectedCase === "case_03_cardiac") setPagerMessage("*BEEP BEEP*\n55yo M - Cardiac Arrest");
-            else if (selectedCase === "case_04_svt") setPagerMessage("*BEEP BEEP*\n35yo F - Palpitations");
-            else if (selectedCase === "case_05_asthma") setPagerMessage("*BEEP BEEP*\n6yo M - Severe Wheezing");
-            else if (selectedCase === "case_06_trauma") setPagerMessage("*BEEP BEEP*\n22yo M - Motorcycle Crash");
-            else if (selectedCase === "case_07" || selectedCase === "case_07_vip") setPagerMessage("*BEEP BEEP*\n55yo M - Chest Pain (VIP)");
-            else if (selectedCase === "case_08") setPagerMessage("*BEEP BEEP*\n19yo F - DKA");
-            else if (selectedCase === "case_09") setPagerMessage("*BEEP BEEP*\nAnaphylaxis");
-            else if (selectedCase === "case_10") setPagerMessage("*BEEP BEEP*\nSepsis Protocol");
-            else if (selectedCase === "case_11") setPagerMessage("*BEEP BEEP*\nComplex Trauma");
-            else setPagerMessage(`*BEEP BEEP*\nNew Patient (${selectedCase})`);
+            const pagerKey = `pager.${selectedCase}`;
+            const pagerLine = t(pagerKey) === pagerKey ? t('pager.generic', { id: selectedCase }) : t(pagerKey);
+            setPagerMessage(`*BEEP BEEP*\n${pagerLine}`);
 
             const skinTones = ["#ffc0cb", "#8d5524", "#c68642", "#e0ac69", "#f1c27d", "#ffdbac"];
             const shirtColors = ["#1f6feb", "#f87171", "#a3e635", "#facc15", "#c084fc"];
@@ -480,7 +478,7 @@ export default function HubPage() {
              ]);
              setActionOnDialogueEnd('PRESTIGE');
            } else {
-             addLog(language === 'th' ? "เอาชนะบอสได้แล้ว! ปลดล็อกการเลื่อนขั้น!" : "BOSS DEFEATED! PROMOTION UNLOCKED!");
+             addLog(t('hub.boss_defeated'));
              setDialogueQueue([
                { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `ยอดเยี่ยมมากวันนี้ คุณรับมือกับเหตุการณ์ผู้ป่วยจำนวนมากได้อย่างไร้ที่ติ` : `Incredible work today. You handled that mass casualty event flawlessly.` },
                { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `ผมขออนุมัติการเลื่อนขั้นของคุณอย่างเป็นทางการ` : `I am officially authorizing your promotion.` },
@@ -533,9 +531,9 @@ export default function HubPage() {
     // Apply Upgrades
     if (hospitalUpgrades.includes('upg_espresso')) {
       restoreEnergy(10);
-      addLog(`${localizedRank} clocked in for Day ${currentDay}. (Espresso: +10 Energy)`);
+      addLog(t('hub.clocked_in_espresso', { rank: localizedRank, day: currentDay }));
     } else {
-      addLog(`${localizedRank} clocked in for Day ${currentDay}.`);
+      addLog(t('hub.clocked_in', { rank: localizedRank, day: currentDay }));
     }
   };
 
@@ -553,7 +551,7 @@ export default function HubPage() {
     setClock(0);
     resetShiftStats();
     setShiftMode('boss-battle');
-    addLog(`PROMOTION EXAM STARTED! Good luck, ${localizedRank}.`);
+    addLog(t('hub.exam_started', { rank: localizedRank }));
   };
 
   const handleInteract = (id: string, type: string) => {
@@ -562,72 +560,94 @@ export default function HubPage() {
       const activeCase = activeCases.find(c => c.bedIndex === bedIndex);
       if (activeCase) {
         audio.playClick();
-        router.push(`/simulator/play/${activeCase.caseDataId}?instanceId=${activeCase.id}`);
+        wipeTo(`/simulator/play/${activeCase.caseDataId}?instanceId=${activeCase.id}`, t('hub.treat'));
       } else {
-        addLog(`Bed is empty.`);
+        addLog(t('hub.bed_empty_log'));
       }
     } else if (type === 'npc') {
       audio.playClick();
       
       if (id === 'grump_npc') {
-         setDialogueQueue([
-           { speaker: "Dr. Grump", text: `Don't bother me, ${localizedRank}. I'm on my break. Go see patients!` }
-         ]);
+         const gh = friendships['dr_grump'] || 0;
+         const grump = t('npc.grump');
+         if (inventory.includes('special_coffee')) {
+           removeFromInventory('special_coffee');
+           updateFriendship('dr_grump', 1);
+           addLog(t('hub.gift_coffee_grump'));
+           const nh = gh + 1;
+           if (nh === 3) {
+             setIsCinematic(true);
+             setDialogueQueue([
+               { speaker: grump, text: t('npc.grump_gift') },
+               { speaker: grump, text: t('npc.grump_3') },
+               { speaker: "System", text: t('npc.grump_3_sys') },
+             ]);
+             addLog(t('hub.heart_event', { name: grump }));
+           } else if (nh === 2) {
+             setDialogueQueue([{ speaker: grump, text: t('npc.grump_2') }, { speaker: "System", text: t('npc.friendship_up', { name: grump, n: nh }) }]);
+           } else {
+             setDialogueQueue([{ speaker: grump, text: t('npc.grump_gift') }, { speaker: "System", text: t('npc.friendship_up', { name: grump, n: nh }) }]);
+           }
+           return;
+         }
+         const line = gh >= 3 ? t('npc.grump_3') : gh >= 1 ? t('npc.grump_1') : t('npc.grump_idle', { rank: localizedRank });
+         setDialogueQueue([{ speaker: grump, text: line }]);
          return;
       }
       
       const currentHearts = friendships['nurse_ann'] || 0;
+      const ann = t('npc.ann');
       
       if (inventory.includes('special_coffee')) {
          // Gift flow
          removeFromInventory('special_coffee');
          updateFriendship('nurse_ann', 1);
-         addLog(`You gave Nurse Ann a Specialty Coffee! (Hearts +1)`);
+         addLog(t('hub.gift_coffee_ann'));
          
          const newHearts = currentHearts + 1;
          
          if (newHearts === 2) {
            setIsCinematic(true);
            setDialogueQueue([
-             { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: `This is exactly what I needed! You're really thoughtful.` },
-             { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: `I was actually having a really rough day... we lost a patient this morning.` },
-             { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: `But this helps. Thank you.` },
-             { speaker: "System", text: `Nurse Ann's friendship increased to ${newHearts} hearts!` }
+             { speaker: ann, portrait: "/assets/nurse_sprite.png", text: t('npc.ann_ev2_a') },
+             { speaker: ann, portrait: "/assets/nurse_sprite.png", text: t('npc.ann_ev2_b') },
+             { speaker: ann, portrait: "/assets/nurse_sprite.png", text: t('npc.ann_ev2_c') },
+             { speaker: "System", text: t('npc.friendship_up', { name: ann, n: newHearts }) }
            ]);
-           addLog(`Heart Event Triggered: The Rough Day`);
+           addLog(t('hub.heart_event', { name: ann }));
          } else if (newHearts === 4) {
            setIsCinematic(true);
            setDialogueQueue([
-             { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: `You always know how to cheer me up. I'm glad we're working together.` },
-             { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: `In this hospital, it's easy to burn out. But having someone like you around makes it bearable.` },
-             { speaker: "System", text: `Nurse Ann's friendship increased to ${newHearts} hearts!` }
+             { speaker: ann, portrait: "/assets/nurse_sprite.png", text: t('npc.ann_ev4_a') },
+             { speaker: ann, portrait: "/assets/nurse_sprite.png", text: t('npc.ann_ev4_b') },
+             { speaker: "System", text: t('npc.friendship_up', { name: ann, n: newHearts }) }
            ]);
-           addLog(`Heart Event Triggered: Close Coworkers!`);
+           addLog(t('hub.heart_event', { name: ann }));
          } else {
            setDialogueQueue([
-             { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: `Oh wow, is this coffee for me? Thank you so much, ${localizedRank}!` },
-             { speaker: "System", text: `Nurse Ann's friendship increased to ${newHearts} hearts!` }
+             { speaker: ann, portrait: "/assets/nurse_sprite.png", text: t('npc.ann_gift', { rank: localizedRank }) },
+             { speaker: "System", text: t('npc.friendship_up', { name: ann, n: newHearts }) }
            ]);
          }
          
          if (newHearts >= 2 && activeQuests.includes('q_social_butterfly')) {
            completeQuest('q_social_butterfly');
-           addLog("Quest Completed: Social Butterfly!");
+           addLog(t('hub.quest_done', { name: QUEST_DATABASE['q_social_butterfly']?.title || 'Social Butterfly' }));
          }
       } else {
          // Standard chat flow
-         let dialogText = `Oh, hi ${localizedRank}. It's so busy today!`;
-         if (currentHearts >= 2) dialogText = `Thanks for all your hard work today. We really appreciate it!`;
-         if (currentHearts >= 4) dialogText = `You're one of my favorite doctors to work with! Keep it up!`;
+         let dialogText = t('npc.ann_idle', { rank: localizedRank });
+         if (currentHearts >= 2) dialogText = t('npc.ann_2');
+         if (currentHearts >= 4) dialogText = t('npc.ann_4');
          
          setDialogueQueue([
-           { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: dialogText }
+           { speaker: ann, portrait: "/assets/nurse_sprite.png", text: dialogText }
          ]);
       }
       
       if (currentHearts >= 2 && activeQuests.includes('q_social_butterfly')) {
         completeQuest('q_social_butterfly');
-        addLog("Quest Completed: Social Butterfly!");
+        addLog(t('hub.quest_done', { name: QUEST_DATABASE['q_social_butterfly']?.title || 'Social Butterfly' }));
       }
     } else if (id === 'leaderboard') {
       audio.playClick();
@@ -639,7 +659,7 @@ export default function HubPage() {
   };
 
   const handleDoor = (target: string) => {
-    addLog(`Traveling to ${target}...`);
+    addLog(t('hub.traveling', { place: target === 'AMBULANCE_BAY' ? t('engine.enter_bay') : t('engine.enter_er') }));
     if (target === 'AMBULANCE_BAY') {
       setSpawnPos({ x: 7, y: 1 });
     } else if (target === 'ER_MAIN') {
@@ -652,257 +672,178 @@ export default function HubPage() {
 
   const formatTime = (mins: number) => {
     const hours = Math.floor(mins / 60) + 8;
-    const m = mins % 60;
+    const m = Math.floor(mins % 60);
     return `${hours.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
   };
 
+  const onShift = shiftMode === 'on-shift' || shiftMode === 'boss-battle';
+  const grumpHearts = friendships['dr_grump'] || 0;
+  const annHearts = friendships['nurse_ann'] || 0;
+  const eraKey = ({ MED_Y5: 'hub.era_ms5', MED_Y6: 'hub.era_ms6', INTERN: 'hub.era_intern', RESIDENT: 'hub.era_resident', PROFESSOR: 'hub.era_professor' } as Record<string, string>)[currentEra];
+  const questNames = activeQuests.map((q) => QUEST_DATABASE[q]?.title || q);
+  const Hearts = ({ n }: { n: number }) => (
+    <span className="tracking-tighter">{Array.from({ length: 5 }, (_, i) => <span key={i} className={i < n ? 'text-[#d95763]' : 'text-[#333c57]'}>♥</span>)}</span>
+  );
+
   return (
     <PageTransition>
-      <div 
-        className="w-full h-[100dvh] flex flex-col font-pixel relative select-none touch-none"
-        style={{
-          background: "radial-gradient(circle at 50% 50%, #29366f 0%, #1a1c2c 100%)",
-        }}
-      >
-      <Pager message={pagerMessage} onClear={() => setPagerMessage(null)} />
+      <div className="absolute inset-0 flex font-pixel select-none bg-pixel-bg">
+        <Pager message={pagerMessage} onClear={() => setPagerMessage(null)} />
 
-      {/* Top: Game Area */}
-      <div className="relative h-[60%] w-full border-b-[4px] border-[#30363d] overflow-hidden bg-black flex items-center justify-center">
-        <div className="absolute top-4 right-4 flex items-center gap-2 z-50">
-          <PixelButton onClick={() => router.push('/hub/shop')} variant="secondary" className="px-2.5 py-1.5 text-xs bg-black/80 border-amber-500/60 hover:border-amber-400 text-amber-300 shadow-md">
-            🛒 SHOP
-          </PixelButton>
-          <PixelButton onClick={() => router.push('/profile')} variant="secondary" className="px-2.5 py-1.5 text-xs bg-black/80 border-blue-500/60 hover:border-blue-400 text-blue-300 shadow-md">
-            🪪 BADGE
-          </PixelButton>
-          <PixelButton onClick={() => setIsSettingsOpen(true)} variant="secondary" className="px-2.5 py-1.5 text-xs bg-black/80 shadow-md">
-            ⚙️
-          </PixelButton>
-        </div>
-        
-        <div className="w-full h-full bg-black overflow-hidden relative shadow-inner">
-            <PixiEngine2D 
-              mapData={MAPS[currentMap]} 
-              onInteract={handleInteract} 
-              onDoor={handleDoor} 
-              activeCases={activeCases} 
-              clockMinutes={clockMinutes}
-              spawnPos={spawnPos}
-              era={getEra(lifetimeXp)}
-              npcEmote={friendships['nurse_ann'] >= 4 ? "❤️" : null}
-              currentDay={currentDay}
-              isFastForwarding={isFastForwarding}
-            />
-            
-            {/* Power Outage Overlay */}
-            {isPowerOutage && (
-              <div className="absolute inset-0 pointer-events-none z-[60]" style={{
-                 background: `radial-gradient(circle at center, transparent 10%, rgba(0,0,0,0.9) 60%)`
-              }} />
-            )}
-        </div>
-        
-        {shiftMode !== 'on-shift' && shiftMode !== 'boss-battle' && (
-          <div className="absolute top-4 left-4 z-50 bg-black/70 backdrop-blur-md p-4 rounded-xl border-2 border-[#30363d] shadow-lg pointer-events-none">
-            <span className="text-4xl block mb-2 text-center animate-pulse">🏥</span>
-            <p className="text-white font-bold text-lg">Code Rama Hospital</p>
-            <p className="text-xs mt-1 text-[#8b949e]">Waiting for shift to begin...</p>
-          </div>
-        )}
-        
-        {dialogueQueue.length > 0 && (
-          <DialogueBox 
-            speakerName={dialogueQueue[0].speaker}
-            text={dialogueQueue[0].text}
-            portraitUrl={dialogueQueue[0].portrait}
-            choices={dialogueQueue[0].choices}
-            onComplete={handleDialogueComplete}
-          />
-        )}
-
-        {/* Cinematic Letterbox */}
-        <div className={`absolute top-0 left-0 w-full h-24 bg-black transition-transform duration-1000 z-40 ${isCinematic ? 'translate-y-0' : '-translate-y-full'}`} />
-        <div className={`absolute bottom-0 left-0 w-full h-24 bg-black transition-transform duration-1000 z-40 ${isCinematic ? 'translate-y-0' : 'translate-y-full'}`} />
-      </div>
-
-      {/* Bottom 40%: The Dashboard */}
-      <div className="h-[40%] bg-[#0d1117] flex flex-col z-10 relative shadow-[0_-10px_30px_rgba(0,0,0,0.8)] border-t-4 border-[#30363d]">
-        <div className="flex justify-between items-center bg-[#161b22] px-4 py-3 border-b-4 border-[#21262d] shadow-inner">
-              <div className="flex flex-col gap-1 w-1/3">
-                <p className="text-xs text-[#d29922] drop-shadow-md">{translate('current_rank', language)}: <span className="text-white text-sm font-bold ml-1">{localizedRank}</span></p>
-                {isReadyForPromotion ? (
-                  <p className="text-xs text-[#da3633] animate-pulse font-bold tracking-widest">PROMOTION READY!</p>
-                ) : (
-                  <div className="w-full h-3 bg-black border-2 border-[#30363d] rounded-full cursor-pointer shadow-inner overflow-hidden" onClick={() => setIsQuestsOpen(true)}>
-                    <div className="h-full bg-gradient-to-r from-[#1f6feb] to-[#58a6ff] transition-all duration-300" style={{ width: `${progressPercent}%` }} />
-                  </div>
-                )}
-                <button 
-                  onClick={() => setIsQuestsOpen(true)}
-                  className="mt-1 text-[10px] text-gray-400 hover:text-white hover:underline text-left transition-colors"
-                >
-                  View Quests ({activeQuests.length})
-                </button>
+        {/* ═══ LEFT SIDEBAR - Doctor / Clock / Energy ═══ */}
+        <aside className="w-[22%] min-w-[260px] h-full flex flex-col gap-3 p-3 bg-pixel-ink border-r-8 border-pixel-ink overflow-hidden">
+          <PixelPanel variant="wood" title={t('hub.rank')} className="shrink-0">
+            <div className="flex items-center gap-3">
+              <div className="w-14 h-14 bg-pixel-ink border-4 border-[#3d2210] flex items-center justify-center overflow-hidden">
+                <PixiPreview {...(appearance as any)} />
               </div>
-          
-          {/* Dashboard Tabs Toggle */}
-          <div className="flex gap-2 bg-black/50 p-1 rounded-lg border-2 border-[#30363d]">
-            <button 
-              onClick={() => setActiveTab('ACTIONS')}
-              className={`px-3 py-1 text-xs rounded font-bold transition-colors ${activeTab === 'ACTIONS' ? 'bg-[#1f6feb] text-white' : 'text-gray-400 hover:text-white'}`}
-            >
-              ACTIONS
-            </button>
-            <button 
-              onClick={() => setActiveTab('LOGS')}
-              className={`px-3 py-1 text-xs rounded font-bold transition-colors flex items-center gap-1 ${activeTab === 'LOGS' ? 'bg-[#2ea043] text-white' : 'text-gray-400 hover:text-white'}`}
-            >
-              LOGS
-              {logs.length > 0 && <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />}
-            </button>
-          </div>
-          
-          <div className="flex flex-col items-end w-1/3">
-            <span className="text-2xl text-white font-bold drop-shadow-md tracking-wider">{formatTime(clockMinutes)}</span>
-            <div className="flex items-center gap-2 w-28 mt-1">
-              <span className="text-xs text-[#8b949e] font-bold">EN</span>
-              <div className="w-full h-3 bg-black rounded-full border-2 border-[#30363d] shadow-inner overflow-hidden">
-                <div 
-                  className={`h-full transition-all duration-500 ${energy > 50 ? 'bg-gradient-to-r from-[#2ea043] to-[#3fb950]' : energy > 20 ? 'bg-gradient-to-r from-[#d29922] to-[#e3b341]' : 'bg-gradient-to-r from-[#da3633] to-[#ff7b72]'}`}
-                  style={{ width: `${(energy / maxEnergy) * 100}%` }}
-                />
+              <div className="min-w-0">
+                <div className="text-xl text-pixel-gold truncate">{localizedRank}</div>
+                <div className="text-sm text-pixel-text-muted truncate">{t(eraKey)} · {t('hub.day')} {currentDay}</div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="flex-1 overflow-hidden p-4 bg-repeat relative bg-[url(/assets/carbon_fiber.png)]">
-          
-          {activeTab === 'ACTIONS' && (
-            <div className="w-full flex flex-col gap-4 max-w-md mx-auto">
-              <div className="flex gap-4">
-                <div className="flex-1 flex items-center justify-between bg-black/50 backdrop-blur-sm px-4 py-3 rounded-lg border-2 border-[#30363d] shadow-inner">
-                   <span className="text-[#8b949e] font-bold tracking-widest">XP</span>
-                   <span className="text-[#58a6ff] font-bold text-lg drop-shadow-[0_0_5px_rgba(88,166,255,0.8)]">{xp}</span>
-                </div>
-                <div className="flex-1 flex items-center justify-between bg-black/50 backdrop-blur-sm px-4 py-3 rounded-lg border-2 border-[#30363d] shadow-inner">
-                   <span className="text-[#8b949e] font-bold tracking-widest">CASH</span>
-                   <span className="text-[#3fb950] font-bold text-lg drop-shadow-[0_0_5px_rgba(63,185,80,0.8)]">${currency}</span>
-                </div>
+            {isReadyForPromotion ? (
+              <div className="mt-2 text-lg text-[#d95763] blink">{t('hub.promotion_ready')}</div>
+            ) : (
+              <div className="mt-2">
+                <div className="flex justify-between text-sm text-pixel-text-muted"><span>{t('hub.next_rank')}</span><span>{lifetimeXp}/{nextThreshold === Infinity ? '∞' : nextThreshold}</span></div>
+                <div className="pixel-bar mt-1"><div className="fill bg-[#41a6f6]" style={{ width: `${progressPercent}%` }} /><div className="ticks" /></div>
               </div>
-              
-              {shiftMode === 'on-shift' || shiftMode === 'boss-battle' ? (
-                <>
-                  {/* ER Beds Quick Status */}
-                  <div className="grid grid-cols-3 gap-2 w-full">
-                    {[0, 1, 2].map((bedIdx) => {
-                      const c = activeCases.find((item) => item.bedIndex === bedIdx);
-                      return (
-                        <button
-                          key={bedIdx}
-                          onClick={() => {
-                            if (c) {
-                              audio.playClick();
-                              router.push(`/simulator/play/${c.caseDataId}?instanceId=${c.id}`);
-                            }
-                          }}
-                          disabled={!c}
-                          className={`py-2 px-1 rounded-lg border-2 text-xs flex flex-col items-center justify-center transition-all ${
-                            c 
-                              ? 'bg-red-950/80 border-red-500 text-red-100 hover:bg-red-900 active:scale-95 shadow-[0_0_12px_rgba(255,0,0,0.4)] animate-pulse cursor-pointer' 
-                              : 'bg-black/40 border-[#30363d] text-gray-500 opacity-60 cursor-default'
-                          }`}
-                        >
-                          <span className="font-bold">BED {bedIdx + 1}</span>
-                          <span className="text-[10px] mt-0.5 truncate max-w-full font-mono">
-                            {c ? '🚨 TREAT' : 'EMPTY'}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
+            )}
+          </PixelPanel>
 
-                  <div className="flex gap-2 w-full">
-                    <PixelButton onClick={() => { setShiftMode('off-duty'); router.push('/summary'); }} variant="alert" className="flex-1 py-3 text-base shadow-lg">
-                      {shiftMode === 'boss-battle' ? (language === 'th' ? 'ยอมแพ้' : 'SURRENDER') : translate('end_shift', language)}
-                    </PixelButton>
-                    
-                    {activeCases.length === 0 && (
-                       <PixelButton onClick={() => { setIsFastForwarding(true); fastForwardTarget.current = clockMinutes + 60; }} variant="secondary" className="flex-1 py-3 text-base shadow-lg animate-pulse text-[#d29922] border-[#d29922]">
-                         ⏩ +60m
-                       </PixelButton>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <div className="flex flex-col gap-2">
-                  {isReadyForPromotion && (
-                    <PixelButton onClick={() => { audio.playShiftStart(); setClock(0); resetShiftStats(); setShiftMode('boss-battle'); addLog(language === 'th' ? `เริ่มสอบเลื่อนขั้น! โชคดีนะ ${localizedRank}` : `END OF YEAR TEST STARTED! Good luck, ${localizedRank}.`); }} variant="alert" className="w-full py-4 text-base shadow-[0_0_15px_rgba(255,0,0,0.5)] animate-pulse">
-                      {language === 'th' ? 'สอบเลื่อนขั้นประจำปี' : 'END OF YEAR TEST'}
-                    </PixelButton>
-                  )}
-                  <div className="relative">
-                    <PixelButton onClick={startShift} variant="primary" className="w-full py-4 text-base shadow-lg">
-                      {translate('start_shift', language)}
-                    </PixelButton>
-                    {currentDay === 1 && !tutorialCompleted && dialogueQueue.length === 0 && (
-                      <div className="absolute top-1/2 -translate-y-1/2 -left-12 text-3xl animate-bounce drop-shadow-[0_0_10px_rgba(255,255,255,1)]">
-                         👉
-                      </div>
-                    )}
-                  </div>
+          <PixelPanel variant="metal" title={t('hub.clock')} className="shrink-0">
+            <div className="font-heading text-2xl text-[#99e550] text-center py-1 scanlines">{formatTime(clockMinutes)}</div>
+            <div className="mt-2">
+              <div className="flex justify-between text-sm text-pixel-text-muted"><span>{t('hub.energy')}</span><span>{Math.round(energy)}/{maxEnergy}</span></div>
+              <div className="pixel-bar mt-1"><div className={`fill ${energy > 50 ? 'bg-[#6abe30]' : energy > 20 ? 'bg-[#d29922]' : 'bg-[#d95763]'}`} style={{ width: `${(energy / maxEnergy) * 100}%` }} /><div className="ticks" /></div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 mt-3 text-center">
+              <div className="border-4 border-[#333c57] bg-pixel-ink py-1"><div className="text-sm text-pixel-text-muted">{t('hub.xp')}</div><div className="text-xl text-[#73eff7]">{Math.round(xp)}</div></div>
+              <div className="border-4 border-[#333c57] bg-pixel-ink py-1"><div className="text-sm text-pixel-text-muted">{t('hub.cash')}</div><div className="text-xl text-[#99e550]">${currency}</div></div>
+            </div>
+            <PixelButton size="sm" variant="wood" className="w-full mt-2" disabled={!inventory.includes('special_coffee')} onClick={() => { if (drinkCoffee()) { audio.playCashRegister(); addLog(t('hub.coffee_drunk')); } }}>
+              ☕ {inventory.includes('special_coffee') ? t('hub.drink_coffee') : t('hub.no_coffee')}
+            </PixelButton>
+          </PixelPanel>
 
-                  <div className="grid grid-cols-2 gap-2 mt-1">
-                    <PixelButton 
-                      onClick={() => router.push('/hub/shop')} 
-                      variant="secondary" 
-                      className="py-2 text-xs border-amber-500/50 hover:border-amber-400 text-amber-300"
-                    >
-                      🛒 SUPPLY CLOSET
-                    </PixelButton>
-                    <PixelButton 
-                      onClick={() => router.push('/profile')} 
-                      variant="secondary" 
-                      className="py-2 text-xs border-blue-500/50 hover:border-blue-400 text-blue-300"
-                    >
-                      🪪 ID BADGE
-                    </PixelButton>
-                  </div>
-                </div>
-              )}
-              
-              <PixelButton 
-                onClick={toggleOnCall} 
-                variant="secondary" 
-                className="w-full py-2 text-base"
-                disabled={shiftMode !== 'off-duty' && shiftMode !== 'on-call'}
-              >
-                {shiftMode === 'on-call' ? translate('pager_off', language) : translate('pager_on', language)}
-              </PixelButton>
+          <PixelPanel variant="wood" title={t('hub.relationships')} className="shrink-0">
+            <div className="flex justify-between text-lg"><span className="text-[#73eff7]">{t('npc.ann')}</span><Hearts n={annHearts} /></div>
+            <div className="flex justify-between text-lg"><span className="text-[#ef7d57]">{t('npc.grump')}</span><Hearts n={grumpHearts} /></div>
+            <div className={`mt-2 text-sm border-4 px-2 py-1 ${grumpHearts >= 3 ? (consultUsedThisShift ? 'border-[#333c57] text-pixel-text-muted' : 'border-[#99e550] text-[#99e550]') : 'border-[#333c57] text-pixel-text-muted'}`}>
+              {t('hub.consult_attending')}: {grumpHearts >= 3 ? (consultUsedThisShift ? t('hub.consult_used') : t('hub.consult_ready')) : t('hub.consult_locked')}
+            </div>
+          </PixelPanel>
+
+          <PixelButton size="sm" variant="wood" className="w-full mt-auto" onClick={() => router.push('/cases')}>📚 {t('nav.cases')}</PixelButton>
+          <div className="grid grid-cols-3 gap-2">
+            <PixelButton size="sm" variant="gold" onClick={() => router.push('/hub/shop')}>🛒</PixelButton>
+            <PixelButton size="sm" variant="primary" onClick={() => router.push('/profile')}>🪪</PixelButton>
+            <PixelButton size="sm" variant="secondary" onClick={() => setIsSettingsOpen(true)}>⚙</PixelButton>
+          </div>
+        </aside>
+
+        {/* ═══ CENTER - 2D Ward viewport ═══ */}
+        <main className="flex-1 h-full relative bg-black overflow-hidden">
+          <PixiEngine2D
+            mapData={MAPS[currentMap]}
+            onInteract={handleInteract}
+            onDoor={handleDoor}
+            activeCases={activeCases}
+            clockMinutes={clockMinutes}
+            spawnPos={spawnPos}
+            era={getEra(lifetimeXp)}
+            npcEmote={annHearts >= 4 ? "❤" : null}
+            currentDay={currentDay}
+            isFastForwarding={isFastForwarding}
+          />
+          {isPowerOutage && <div className="absolute inset-0 pointer-events-none z-[60] bg-pixel-ink/80 dither" />}
+
+          {!onShift && (
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 pixel-frame-metal rivets pointer-events-none">
+              <div className="frame-inner px-6 py-3 text-center">
+                <p className="font-heading text-xs text-pixel-gold">{t('hub.hospital')}</p>
+                <p className="text-lg text-pixel-text-muted mt-1">{t('hub.waiting_shift')}</p>
+              </div>
             </div>
           )}
-          
-          {activeTab === 'LOGS' && (
-            <div className="w-full h-full bg-black/80 backdrop-blur-md border-4 border-[#30363d] rounded-xl p-3 overflow-y-auto font-mono text-xs leading-relaxed flex flex-col shadow-inner">
-              {logs.map((log, i) => (
-                <div key={i} className="mb-1.5 flex gap-2">
-                  <span className="text-[#1f6feb]">{`>`}</span>
-                  <span className={log.includes('Triage:') || log.includes('BOSS') ? 'text-[#ff7b72] font-bold' : 'text-[#c9d1d9]'}>{log}</span>
+
+          {dialogueQueue.length > 0 && (
+            <DialogueBox speakerName={dialogueQueue[0].speaker} text={dialogueQueue[0].text} portraitUrl={dialogueQueue[0].portrait} choices={dialogueQueue[0].choices} onComplete={handleDialogueComplete} />
+          )}
+          <div className={`absolute top-0 left-0 w-full h-16 bg-black transition-transform duration-700 z-40 ${isCinematic ? 'translate-y-0' : '-translate-y-full'}`} />
+          <div className={`absolute bottom-0 left-0 w-full h-16 bg-black transition-transform duration-700 z-40 ${isCinematic ? 'translate-y-0' : 'translate-y-full'}`} />
+        </main>
+
+        {/* ═══ RIGHT SIDEBAR - Objectives / Triage / Log ═══ */}
+        <aside className="w-[24%] min-w-[280px] h-full flex flex-col gap-3 p-3 bg-pixel-ink border-l-8 border-pixel-ink overflow-hidden">
+          <PixelPanel variant="wood" title={t('hub.objectives')} className="shrink-0">
+            {questNames.length === 0 ? <p className="text-lg text-pixel-text-muted">-</p> : questNames.slice(0, 4).map((q, i) => (
+              <div key={i} className="text-lg leading-tight flex gap-2"><span className="text-pixel-gold">▸</span><span className="truncate">{q}</span></div>
+            ))}
+            <button onClick={() => setIsQuestsOpen(true)} className="mt-1 text-sm text-[#73eff7] hover:underline text-left">{t('hub.view_quests', { n: activeQuests.length })}</button>
+          </PixelPanel>
+
+          <PixelPanel variant="metal" title={t('hub.triage_queue')} className="shrink-0">
+            {[0, 1, 2].map((bedIdx) => {
+              const c = activeCases.find((item) => item.bedIndex === bedIdx);
+              const critical = c ? Date.now() > c.expiresAt - 60000 : false;
+              return (
+                <button key={bedIdx} disabled={!c}
+                  onClick={() => { if (c) { audio.playClick(); wipeTo(`/simulator/play/${c.caseDataId}?instanceId=${c.id}`, t('hub.treat')); } }}
+                  className={`w-full flex items-center justify-between px-3 py-2 mb-1 border-4 text-lg ${c ? (critical ? 'border-[#d95763] bg-[#3a0e14] text-white blink' : 'border-[#ffcd75] bg-[#3a2a08] text-white hover:bg-[#5a3f0c]') : 'border-[#333c57] bg-pixel-ink text-pixel-text-muted'}`}>
+                  <span>{t('hub.bed')} {bedIdx + 1}</span>
+                  <span>{c ? `${critical ? '‼ ' : ''}${t('pager.' + c.caseDataId) !== 'pager.' + c.caseDataId ? t('pager.' + c.caseDataId) : c.caseDataId}` : t('hub.empty')}</span>
+                </button>
+              );
+            })}
+            {activeCases.length === 0 && <p className="text-sm text-pixel-text-muted mt-1">{t('hub.no_patients')}</p>}
+          </PixelPanel>
+
+          <div className="flex flex-col gap-2 shrink-0">
+            {onShift ? (
+              <div className="flex gap-2">
+                <PixelButton variant="alert" className="flex-1" onClick={() => { setShiftMode('off-duty'); router.push('/summary'); }}>
+                  {shiftMode === 'boss-battle' ? t('hub.surrender') : t('hub.end_shift')}
+                </PixelButton>
+                {activeCases.length === 0 && (
+                  <PixelButton variant="gold" onClick={() => { setIsFastForwarding(true); fastForwardTarget.current = clockMinutes + 60; }}>⏩</PixelButton>
+                )}
+              </div>
+            ) : (
+              <>
+                {isReadyForPromotion && (
+                  <PixelButton variant="alert" className="w-full blink" onClick={() => { audio.playShiftStart(); setClock(0); resetShiftStats(); setShiftMode('boss-battle'); addLog(t('hub.exam_started', { rank: localizedRank })); }}>
+                    {t('hub.year_end_test')}
+                  </PixelButton>
+                )}
+                <div className="relative">
+                  <PixelButton variant="success" size="lg" className="w-full" onClick={startShift}>{t('hub.start_shift')}</PixelButton>
+                  {currentDay === 1 && !tutorialCompleted && dialogueQueue.length === 0 && <div className="absolute top-1/2 -translate-y-1/2 -left-10 text-3xl animate-bounce">👉</div>}
                 </div>
+                <PixelButton variant="secondary" size="sm" className="w-full" onClick={toggleOnCall} disabled={shiftMode !== 'off-duty' && shiftMode !== 'on-call'}>
+                  {shiftMode === 'on-call' ? t('hub.pager_off') : t('hub.pager_on')}
+                </PixelButton>
+              </>
+            )}
+          </div>
+
+          <PixelPanel variant="metal" title={t('hub.ward_log')} className="flex-1 min-h-0">
+            <div className="flex-1 overflow-y-auto text-base leading-snug scanlines pr-1">
+              {logs.map((log, i) => (
+                <div key={i} className="flex gap-2"><span className="text-[#41a6f6]">›</span><span className={/Triage|BOSS|คัดกรอง|บอส/.test(log) ? 'text-[#ef7d57]' : 'text-[#c2c3c7]'}>{log}</span></div>
               ))}
               <div ref={logEndRef} />
             </div>
-          )}
-        </div>
-      </div>
-      
-      {/* Modals */}
-      <AnimatePresence>
-        {isQuestsOpen && <QuestsModal onClose={() => setIsQuestsOpen(false)} />}
-        {isLeaderboardOpen && <LeaderboardModal onClose={() => setIsLeaderboardOpen(false)} />}
-        {isConsultsOpen && <ConsultsModal onClose={() => setIsConsultsOpen(false)} />}
-        {isSettingsOpen && <SettingsMenu isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />}
-      </AnimatePresence>
+          </PixelPanel>
+        </aside>
+
+        <AnimatePresence>
+          {isQuestsOpen && <QuestsModal onClose={() => setIsQuestsOpen(false)} />}
+          {isLeaderboardOpen && <LeaderboardModal onClose={() => setIsLeaderboardOpen(false)} />}
+          {isConsultsOpen && <ConsultsModal onClose={() => setIsConsultsOpen(false)} />}
+          {isSettingsOpen && <SettingsMenu isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />}
+        </AnimatePresence>
       </div>
     </PageTransition>
   );

@@ -494,7 +494,7 @@ function MaterialCard({
           {material.type === "pdf" && (
             <div className="flex items-center gap-2.5 rounded-lg border border-dashed border-ink-900/15 bg-ink-900/[0.015] px-3 py-2.5 text-[12.5px] text-ink-300">
               <PdfPlaceholderIcon />
-              File upload coming soon — for now this material is a placeholder.
+              File upload coming soon - for now this material is a placeholder.
             </div>
           )}
         </div>

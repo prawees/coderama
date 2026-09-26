@@ -1,0 +1,63 @@
+/* Built-in story cases. Generated from public/locales; add new JSON files here. */
+import case01_en from "@/public/locales/en/case_01.json";
+import case02_en from "@/public/locales/en/case_02_fluids.json";
+import case03_en from "@/public/locales/en/case_03_cardiac.json";
+import case07_en from "@/public/locales/en/case_07.json";
+import case08_en from "@/public/locales/en/case_08.json";
+import case09_en from "@/public/locales/en/case_09.json";
+import case10_en from "@/public/locales/en/case_10.json";
+import case11_en from "@/public/locales/en/case_11.json";
+import case12_en from "@/public/locales/en/case_12.json";
+import case13_en from "@/public/locales/en/case_13.json";
+import case14_en from "@/public/locales/en/case_14.json";
+import case15_en from "@/public/locales/en/case_15.json";
+import case16_en from "@/public/locales/en/case_16.json";
+import case17_en from "@/public/locales/en/case_17.json";
+import case18_en from "@/public/locales/en/case_18.json";
+import case19_en from "@/public/locales/en/case_19.json";
+import case20_en from "@/public/locales/en/case_20.json";
+import case21_en from "@/public/locales/en/case_21.json";
+import case22_en from "@/public/locales/en/case_22.json";
+import case23_en from "@/public/locales/en/case_23.json";
+import case24_en from "@/public/locales/en/case_24.json";
+import case25_en from "@/public/locales/en/case_25.json";
+import case26_en from "@/public/locales/en/case_26.json";
+import case27_en from "@/public/locales/en/case_27.json";
+import case28_en from "@/public/locales/en/case_28.json";
+import case29_en from "@/public/locales/en/case_29.json";
+import case30_en from "@/public/locales/en/case_30.json";
+import case31_en from "@/public/locales/en/case_31.json";
+import case32_en from "@/public/locales/en/case_32.json";
+import case33_en from "@/public/locales/en/case_33.json";
+import case34_en from "@/public/locales/en/case_34.json";
+import case35_en from "@/public/locales/en/case_35.json";
+import case36_en from "@/public/locales/en/case_36.json";
+import case37_en from "@/public/locales/en/case_37.json";
+import case38_en from "@/public/locales/en/case_38.json";
+import case39_en from "@/public/locales/en/case_39.json";
+import case40_en from "@/public/locales/en/case_40.json";
+import case41_en from "@/public/locales/en/case_41.json";
+import case42_en from "@/public/locales/en/case_42.json";
+import case43_en from "@/public/locales/en/case_43.json";
+import case44_en from "@/public/locales/en/case_44.json";
+import case45_en from "@/public/locales/en/case_45.json";
+import case46_en from "@/public/locales/en/case_46.json";
+import case47_en from "@/public/locales/en/case_47.json";
+import case48_en from "@/public/locales/en/case_48.json";
+import case49_en from "@/public/locales/en/case_49.json";
+import case50_en from "@/public/locales/en/case_50.json";
+import case01_th from "@/public/locales/th/case_01.json";
+import case02_th from "@/public/locales/th/case_02_fluids.json";
+import case03_th from "@/public/locales/th/case_03_cardiac.json";
+import case04_en from "@/public/locales/en/case_04_svt.json";
+import case05_en from "@/public/locales/en/case_05_asthma.json";
+import case06_en from "@/public/locales/en/case_06_trauma.json";
+import case07_vip_en from "@/public/locales/en/case_07_vip.json";
+import case04_th from "@/public/locales/th/case_04_svt.json";
+import case05_th from "@/public/locales/th/case_05_asthma.json";
+import case06_th from "@/public/locales/th/case_06_trauma.json";
+
+export const BUILTIN_RAW: Record<"en" | "th", Record<string, any>> = {
+  en: { "case_01": case01_en, "case_02_fluids": case02_en, "case_03_cardiac": case03_en, "case_04_svt": case04_en, "case_05_asthma": case05_en, "case_06_trauma": case06_en, "case_07": case07_en, "case_07_vip": case07_vip_en, "case_08": case08_en, "case_09": case09_en, "case_10": case10_en, "case_11": case11_en, "case_12": case12_en, "case_13": case13_en, "case_14": case14_en, "case_15": case15_en, "case_16": case16_en, "case_17": case17_en, "case_18": case18_en, "case_19": case19_en, "case_20": case20_en, "case_21": case21_en, "case_22": case22_en, "case_23": case23_en, "case_24": case24_en, "case_25": case25_en, "case_26": case26_en, "case_27": case27_en, "case_28": case28_en, "case_29": case29_en, "case_30": case30_en, "case_31": case31_en, "case_32": case32_en, "case_33": case33_en, "case_34": case34_en, "case_35": case35_en, "case_36": case36_en, "case_37": case37_en, "case_38": case38_en, "case_39": case39_en, "case_40": case40_en, "case_41": case41_en, "case_42": case42_en, "case_43": case43_en, "case_44": case44_en, "case_45": case45_en, "case_46": case46_en, "case_47": case47_en, "case_48": case48_en, "case_49": case49_en, "case_50": case50_en },
+  th: { "case_01": case01_th, "case_02_fluids": case02_th, "case_03_cardiac": case03_th, "case_04_svt": case04_th, "case_05_asthma": case05_th, "case_06_trauma": case06_th },
+};

@@ -1,7 +1,7 @@
 export default function MeshPanel() {
   return (
     <div className="relative hidden overflow-hidden bg-ink-900 lg:flex lg:w-[46%] xl:w-[42%]">
-      {/* Gradient mesh — the signature element */}
+      {/* Gradient mesh - the signature element */}
       <div className="absolute inset-0 bg-mesh-gradient opacity-90" />
       <div
         className="absolute inset-0 opacity-[0.07]"
@@ -37,7 +37,7 @@ export default function MeshPanel() {
             right where you left it.
           </h1>
 
-          {/* Floating glass card — signature detail, echoes a real product surface */}
+          {/* Floating glass card - signature detail, echoes a real product surface */}
           <div className="mt-10 animate-float-delayed rounded-2xl border border-white/15 bg-white/10 p-4 shadow-2xl backdrop-blur-md">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">

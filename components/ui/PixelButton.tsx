@@ -4,36 +4,31 @@ import { Capacitor } from "@capacitor/core";
 import { audio } from "@/lib/audio";
 
 interface PixelButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'alert' | 'success' | 'gold' | 'secondary';
+  variant?: 'primary' | 'alert' | 'success' | 'gold' | 'secondary' | 'wood';
+  size?: 'sm' | 'md' | 'lg';
 }
 
-export function PixelButton({ children, variant = 'primary', className = "", ...props }: PixelButtonProps) {
-  const baseStyle = "pixel-border px-4 py-2 font-pixel text-xl uppercase transition-transform duration-100 active:scale-95 cursor-pointer select-none";
-  
-  const variantStyles = {
-    primary: "bg-[#1f6feb] text-white hover:bg-[#388bfd]",
-    alert: "bg-[#da3633] text-white hover:bg-[#f85149]",
-    success: "bg-[#2ea043] text-white hover:bg-[#3fb950]",
-    gold: "bg-[#d29922] text-[#0d1117] hover:bg-[#e3b341]",
-    secondary: "bg-[#21262d] text-gray-300 hover:bg-[#30363d]",
+/** Chunky Stardew-style button: 4px ink outline, flat fill, hard bevel, 4px press travel. */
+export function PixelButton({ children, variant = 'primary', size = 'md', className = "", ...props }: PixelButtonProps) {
+  const base = "pixel-btn font-pixel uppercase cursor-pointer select-none inline-flex items-center justify-center gap-2 leading-none";
+  const sizes = { sm: "px-3 py-2 text-base", md: "px-4 py-3 text-xl", lg: "px-6 py-4 text-2xl" };
+  const variants = {
+    primary: "bg-[#3b5dc9] text-white hover:bg-[#41a6f6]",
+    alert: "bg-[#d95763] text-white hover:bg-[#ef7d57]",
+    success: "bg-[#6abe30] text-[#0d0b14] hover:bg-[#99e550]",
+    gold: "bg-[#d29922] text-[#0d0b14] hover:bg-[#fbf236]",
+    secondary: "bg-[#333c57] text-[#f4f4f4] hover:bg-[#566c86]",
+    wood: "bg-[#8d5524] text-[#ffe9c9] hover:bg-[#c68642]",
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     audio.playClick();
-    if (Capacitor.isNativePlatform()) {
-      Haptics.impact({ style: ImpactStyle.Light }).catch(() => {});
-    }
-    if (props.onClick) {
-      props.onClick(e);
-    }
+    if (Capacitor.isNativePlatform()) Haptics.impact({ style: ImpactStyle.Light }).catch(() => {});
+    props.onClick?.(e);
   };
 
   return (
-    <button 
-      className={`${baseStyle} ${variantStyles[variant]} ${className}`}
-      {...props}
-      onClick={handleClick}
-    >
+    <button className={`${base} ${sizes[size]} ${variants[variant]} ${className}`} {...props} onClick={handleClick}>
       {children}
     </button>
   );

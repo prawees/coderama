@@ -46,7 +46,7 @@ The clinical engine powers over **50 interactive medical scenarios** mapped to c
 ## 🏥 2D Pixel ER World (Pixi.js 8)
 
 - **Interactive ER Beds**: Hospital beds render dynamic pixel sprites with mattresses, pillows, blankets, and patients whose visual appearance reflects their case data (skin tones, shirt colors).
-- **Bedside Status Alarms**: Active beds display pulsing visual monitors — green heart pulse for stable cases, critical red alarms when triage timers near expiration.
+- **Bedside Status Alarms**: Active beds display pulsing visual monitors - green heart pulse for stable cases, critical red alarms when triage timers near expiration.
 - **Coworker NPCs & Friendship System**:
   - **Nurse Ann (`Ann ❤️`)**: Gift Specialty Coffee purchased from the Supply Closet to build friendship hearts and unlock emotional cutscenes.
   - **Ajarn Grump (`Aj. Grump`)**: The grumpy senior attending on break who tells you to get back to treating patients.

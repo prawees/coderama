@@ -107,7 +107,7 @@ export function UserProfile() {
               <div className="bg-black/40 rounded-xl p-4 border border-white/5 flex items-center justify-between">
                 <div>
                   <div className="text-xs text-ink-400 uppercase font-bold tracking-wider mb-1">Total Cases</div>
-                  <div className="text-xl font-bold text-white">—</div> {/* Placeholder for future stats */}
+                  <div className="text-xl font-bold text-white">-</div> {/* Placeholder for future stats */}
                 </div>
                 <Trophy className="text-amber-500/50" size={32} />
               </div>

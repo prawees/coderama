@@ -1,4 +1,4 @@
-import { MapData } from "@/components/game/Engine2D";
+import { MapData } from "@/components/game/PixiEngine2D";
 
 export const MAPS: Record<string, MapData> = {
   ER_MAIN: {

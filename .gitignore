@@ -76,3 +76,4 @@ dist-desktop/
 scratch/
 tsconfig.tsbuildinfo
 *.tsbuildinfo
+.claude/

@@ -1,29 +1,42 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════════════════
+   CODE RAMA - Landscape PC pixel-art theme
+   Rules: flat tones or 2px dither, no smooth gradients, no blur, 0-blur
+   shadows only, 4px chunky outlines, integer pixel scaling.
+   ═══════════════════════════════════════════════════════════════════════ */
 @theme {
-  /* High-Color Modern Pixel Art Palette (Stardew/Dave the Diver style) */
   --color-pixel-bg: #1a1c2c;
+  --color-pixel-ink: #0d0b14;
   --color-pixel-panel: #29366f;
   --color-pixel-panel-light: #3b5dc9;
-  
   --color-pixel-health: #41a6f6;
-  --color-pixel-health-dark: #29366f;
-  
   --color-pixel-alert: #d95763;
   --color-pixel-alert-dark: #ac3232;
-  
   --color-pixel-success: #99e550;
   --color-pixel-success-dark: #6abe30;
-  
   --color-pixel-gold: #fbf236;
-  --color-pixel-gold-dark: #d77bba;
-  
+  --color-pixel-gold-dark: #d29922;
   --color-pixel-text: #f4f4f4;
   --color-pixel-text-muted: #9badb7;
 
-  --font-pixel: var(--font-pixel), "Press Start 2P", "VT323", monospace;
+  /* Wood frame ramp */
+  --color-wood-hl: #e0ac69;
+  --color-wood-mid: #8d5524;
+  --color-wood-sh: #5a3319;
+  --color-wood-k: #3d2210;
+  /* Metal frame ramp */
+  --color-metal-hl: #dfe9f0;
+  --color-metal-mid: #94b0c2;
+  --color-metal-sh: #566c86;
+  --color-metal-k: #333c57;
+  /* Parchment for report cards */
+  --color-paper: #ffe9c9;
+  --color-paper-sh: #e0c39a;
 
-  /* Safe Area Insets for iOS */
+  --font-pixel: var(--font-pixel-body), "VT323", var(--font-thai), "Noto Sans Thai", monospace;
+  --font-pixel-heading: var(--font-pixel-heading), "Press Start 2P", var(--font-thai), "Noto Sans Thai", monospace;
+
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left: env(safe-area-inset-left, 0px);
@@ -35,60 +48,150 @@
     -webkit-font-smoothing: none;
     font-smoothing: none;
     image-rendering: pixelated;
+    background: #000;
+    height: 100%;
   }
 
   body {
-    @apply bg-pixel-bg text-pixel-text font-pixel tracking-wider;
-    padding-top: var(--safe-top);
-    padding-left: var(--safe-left);
-    padding-right: var(--safe-right);
-    margin: 0 auto;
-    
-    /* Native App Safeguards */
-    overscroll-behavior-y: none;
-    touch-action: none;
+    @apply text-pixel-text font-pixel tracking-wide;
+    background: #000;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
   }
 
-  @media (min-width: 768px) {
-    html {
-      background: #000;
-    }
-    body {
-      max-width: 480px;
-      height: 100vh;
-      border-left: 2px solid #30363d;
-      border-right: 2px solid #30363d;
-      box-shadow: 0 0 50px rgba(0,0,0,0.8);
-      position: relative;
-      overflow: hidden;
-    }
-  }
+  img, canvas { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+  ::-webkit-scrollbar { width: 12px; height: 12px; }
+  ::-webkit-scrollbar-track { background: #0d0b14; border-left: 2px solid #333c57; }
+  ::-webkit-scrollbar-thumb { background: #566c86; border: 2px solid #0d0b14; }
+  ::-webkit-scrollbar-thumb:hover { background: #94b0c2; }
 }
 
-/* Pixel Art Custom Utilities */
 @layer utilities {
+  /* ── 16:9 stage that letterboxes inside any viewport ─────────────── */
+  .game-stage {
+    position: relative;
+    width: min(100vw, calc(100vh * 16 / 9));
+    height: min(100vh, calc(100vw * 9 / 16));
+    margin: auto;
+    background: var(--color-pixel-bg);
+    overflow: hidden;
+  }
+  .game-stage-full { position: relative; width: 100vw; height: 100dvh; overflow: hidden; }
+
+  /* ── Dither patterns (2px checker, hard stops - never a smooth gradient) */
+  .dither {
+    background-image:
+      repeating-conic-gradient(rgba(0,0,0,0.35) 0 25%, transparent 0 50%);
+    background-size: 4px 4px;
+  }
+  .dither-light {
+    background-image:
+      repeating-conic-gradient(rgba(255,255,255,0.08) 0 25%, transparent 0 50%);
+    background-size: 4px 4px;
+  }
+  .scanlines {
+    background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.25) 0 2px, transparent 2px 4px);
+  }
+
+  /* ── Chunky frames (Stardew menu style) ──────────────────────────── */
+  .pixel-frame {
+    border: 4px solid var(--color-pixel-ink);
+    box-shadow:
+      inset 0 0 0 4px var(--color-wood-mid),
+      inset 4px 4px 0 4px var(--color-wood-hl),
+      inset -4px -4px 0 4px var(--color-wood-sh),
+      4px 4px 0 0 rgba(0,0,0,0.6);
+    background: var(--color-wood-mid);
+    padding: 16px;
+  }
+  .pixel-frame > .frame-inner {
+    background: #1a1c2c;
+    border: 4px solid var(--color-wood-k);
+    height: 100%;
+  }
+  .pixel-frame-metal {
+    border: 4px solid var(--color-pixel-ink);
+    box-shadow:
+      inset 0 0 0 4px var(--color-metal-mid),
+      inset 4px 4px 0 4px var(--color-metal-hl),
+      inset -4px -4px 0 4px var(--color-metal-sh),
+      4px 4px 0 0 rgba(0,0,0,0.6);
+    background: var(--color-metal-mid);
+    padding: 12px;
+  }
+  .pixel-frame-metal > .frame-inner {
+    background: #0d0b14;
+    border: 4px solid var(--color-metal-k);
+    height: 100%;
+  }
+  .pixel-frame-paper {
+    border: 4px solid var(--color-pixel-ink);
+    box-shadow: inset -4px -4px 0 0 var(--color-paper-sh), 6px 6px 0 0 rgba(0,0,0,0.6);
+    background: var(--color-paper);
+    color: #1a1c2c;
+  }
+
+  /* Corner rivets for metal frames */
+  .rivets::before, .rivets::after {
+    content: ""; position: absolute; width: 8px; height: 8px;
+    background: var(--color-metal-hl); box-shadow: 2px 2px 0 0 var(--color-metal-k);
+  }
+  .rivets::before { top: 6px; left: 6px; }
+  .rivets::after { bottom: 6px; right: 6px; }
+
+  /* ── Legacy names kept for other pages ───────────────────────────── */
   .pixel-border {
     border: 4px solid #000;
-    box-shadow: 
-      inset -4px -4px 0px 0px rgba(0, 0, 0, 0.4),
-      inset 4px 4px 0px 0px rgba(255, 255, 255, 0.2);
-    border-radius: 8px; /* Small rounding to soften harsh CSS corners while keeping pixel aesthetic */
+    box-shadow: inset -4px -4px 0 0 rgba(0,0,0,0.4), inset 4px 4px 0 0 rgba(255,255,255,0.2);
   }
-
   .pixel-border-sm {
     border: 2px solid #000;
-    box-shadow: 
-      inset -2px -2px 0px 0px rgba(0, 0, 0, 0.4),
-      inset 2px 2px 0px 0px rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    box-shadow: inset -2px -2px 0 0 rgba(0,0,0,0.4), inset 2px 2px 0 0 rgba(255,255,255,0.2);
+  }
+  .pixel-shadow { box-shadow: 4px 4px 0 0 rgba(0,0,0,0.5); }
+
+  /* ── Chunky button ───────────────────────────────────────────────── */
+  .pixel-btn {
+    border: 4px solid var(--color-pixel-ink);
+    box-shadow: inset 0 4px 0 0 rgba(255,255,255,0.25), inset 0 -4px 0 0 rgba(0,0,0,0.35), 0 4px 0 0 var(--color-pixel-ink);
+    transform: translateY(0);
+    transition: transform 60ms steps(2), box-shadow 60ms steps(2);
+  }
+  .pixel-btn:active:not(:disabled) {
+    transform: translateY(4px);
+    box-shadow: inset 0 4px 0 0 rgba(0,0,0,0.35), 0 0 0 0 var(--color-pixel-ink);
+  }
+  .pixel-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* ── Segmented stat bar (energy/XP) ──────────────────────────────── */
+  .pixel-bar {
+    height: 16px; background: #0d0b14; border: 3px solid #333c57;
+    box-shadow: inset 2px 2px 0 0 #000; position: relative; overflow: hidden;
+  }
+  .pixel-bar > .fill { height: 100%; box-shadow: inset 0 3px 0 0 rgba(255,255,255,0.35), inset 0 -3px 0 0 rgba(0,0,0,0.35); }
+  .pixel-bar > .ticks {
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(90deg, transparent 0 10%, rgba(0,0,0,0.5) 10% calc(10% + 2px));
   }
 
-  .pixel-shadow {
-    box-shadow: 
-      4px 4px 0 0 rgba(0,0,0,0.5);
-  }
+  /* ── Heading font ────────────────────────────────────────────────── */
+  .font-heading { font-family: var(--font-pixel-heading); letter-spacing: 0.02em; line-height: 1.6; }
+
+  /* ── Screen wipe (diagonal pixel blocks) ─────────────────────────── */
+  @keyframes wipe-in { from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); } to { clip-path: polygon(0 0, 130% 0, 100% 100%, -30% 100%); } }
+  @keyframes wipe-out { from { clip-path: polygon(-30% 0, 100% 0, 130% 100%, 0 100%); } to { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); } }
+  .wipe-in { animation: wipe-in 420ms steps(14) forwards; }
+  .wipe-out { animation: wipe-out 420ms steps(14) forwards; }
+
+  @keyframes shake { 0%,100% { transform: translate(0,0); } 20% { transform: translate(-6px, 2px); } 40% { transform: translate(6px,-2px); } 60% { transform: translate(-4px,0); } 80% { transform: translate(4px,2px); } }
+  .animate-shake { animation: shake 0.4s steps(5); }
+
+  @keyframes blink-step { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+  .blink { animation: blink-step 1s steps(1) infinite; }
 }
-

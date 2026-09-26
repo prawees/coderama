@@ -38,6 +38,7 @@
     "@miniplex/react": "^2.0.0-next.10",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
+    "@xyflow/react": "^12.12.0",
     "date-fns": "^4.4.0",
     "electron-serve": "^3.0.1",
     "eventemitter3": "^5.0.4",

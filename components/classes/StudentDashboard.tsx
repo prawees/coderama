@@ -185,7 +185,7 @@ export default function StudentDashboard({ classId }: { classId?: string }) {
         if (!classId) return;
         setSelection({ level: "lecture", classId, lectureId: lec.id });
 
-        // Materials already fetched for this lecture — no need to hit Firestore again.
+        // Materials already fetched for this lecture - no need to hit Firestore again.
         const existing = lectures.find((l) => l.id === lec.id);
         if (existing && existing.materials.length > 0) return;
 
