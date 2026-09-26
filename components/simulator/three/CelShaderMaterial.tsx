@@ -39,7 +39,7 @@ export const CelShaderMaterial = shaderMaterial(
     uniform vec3 rimColor;
     uniform float rimIntensity;
     uniform vec3 lightDirection;
-    uniform vec3 palette[32];
+    uniform vec3 palette[48];
     uniform int paletteSize;
     varying vec3 vNormal;
     varying vec3 vViewPosition;
@@ -47,7 +47,7 @@ export const CelShaderMaterial = shaderMaterial(
     vec3 snapToPalette(vec3 c) {
       vec3 best = palette[0];
       float bestD = 1e9;
-      for (int i = 0; i < 32; i++) {
+      for (int i = 0; i < 48; i++) {
         if (i >= paletteSize) break;
         vec3 d = c - palette[i];
         float dist = dot(d, d);

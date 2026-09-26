@@ -1,179 +1,98 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useERStore, GEAR_DATABASE, GearItem, UPGRADES_DATABASE, UpgradeItem } from "@/lib/erStore";
+import { useERStore, GEAR_DATABASE, GearItem, UPGRADES_DATABASE } from "@/lib/erStore";
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
-import { PageTransition } from "@/components/ui/PageTransition";
-import { Coffee, Stethoscope, Shirt, Footprints, Zap, Sofa } from "lucide-react";
+import { Coffee, Stethoscope, Shirt, Footprints, Zap, Sofa, CupSoda } from "lucide-react";
 import { audio } from "@/lib/audio";
+import { useT } from "@/lib/i18n/useT";
+
+const ICONS: Record<string, JSX.Element> = {
+  stethoscope: <Stethoscope className="w-8 h-8" />, scrubs: <Shirt className="w-8 h-8" />, shoes: <Footprints className="w-8 h-8" />,
+  coffee: <Coffee className="w-8 h-8" />, zap: <Zap className="w-8 h-8" />, sofa: <Sofa className="w-8 h-8" />, espresso: <CupSoda className="w-8 h-8" />,
+};
+
+function Item({ icon, name, desc, price, children, highlight }: { icon: string; name: string; desc: string; price?: string; children: React.ReactNode; highlight?: boolean }) {
+  return (
+    <div className={`flex items-center gap-3 border-4 p-2 ${highlight ? 'border-[#ffd866] bg-[#1e3a66]' : 'border-[#0b1626] bg-[#16263f]'}`}>
+      <div className="w-14 h-14 shrink-0 bg-[#c7dafa] border-4 border-[#0b1626] flex items-center justify-center text-[#254671]">{ICONS[icon]}</div>
+      <div className="flex-1 min-w-0">
+        <div className="text-xl leading-tight text-white">{name}</div>
+        <div className="text-base leading-tight text-[#a9bfd9]">{desc}</div>
+      </div>
+      <div className="flex flex-col items-end gap-1 shrink-0">
+        {price && <span className="text-xl text-[#ffd866]">{price}</span>}
+        {children}
+      </div>
+    </div>
+  );
+}
 
 export default function ShopPage() {
   const router = useRouter();
-  const { currency, inventory, equipped, buyGear, equipGear, hospitalUpgrades, buyUpgrade } = useERStore();
+  const { t } = useT();
+  const { currency, inventory, equipped, buyGear, equipGear, hospitalUpgrades, buyUpgrade, addCurrency, restoreEnergy, energy, maxEnergy } = useERStore();
+  const gear = Object.values(GEAR_DATABASE).filter((g) => g.id !== 'special_coffee');
+  const coffee = GEAR_DATABASE['special_coffee'];
 
-  const handleBuy = (item: GearItem) => {
-    if (currency >= item.cost) {
-      audio.playCashRegister();
-      buyGear(item.id, item.cost);
-    }
-  };
-
-  const handleEquip = (item: GearItem) => {
-    equipGear(item.id, item.type);
-  };
-
-  const getIcon = (type: string) => {
-    switch (type) {
-      case 'stethoscope': return <Stethoscope className="w-8 h-8 text-pixel-health" />;
-      case 'scrubs': return <Shirt className="w-8 h-8 text-pixel-gold" />;
-      case 'shoes': return <Footprints className="w-8 h-8 text-pixel-success" />;
-      case 'coffee': return <Coffee className="w-8 h-8 text-orange-400" />;
-      case 'zap': return <Zap className="w-8 h-8 text-yellow-400" />;
-      case 'sofa': return <Sofa className="w-8 h-8 text-purple-400" />;
-      default: return <Stethoscope className="w-8 h-8" />;
-    }
-  };
+  const buyGearItem = (item: GearItem) => { if (currency >= item.cost && buyGear(item.id, item.cost)) audio.playCashRegister(); };
 
   return (
-    <PageTransition>
-      <div className="min-h-screen bg-[#0d1117] text-white font-pixel flex flex-col relative pb-[var(--safe-bottom)]">
-        
-        {/* Header */}
-        <div className="bg-[#161b22] border-b-4 border-[#30363d] p-4 flex justify-between items-center shadow-lg pt-[calc(1rem+var(--safe-top))] z-10 sticky top-0">
-          <PixelButton onClick={() => router.push('/hub')} className="text-sm px-4 py-2 bg-gray-800 border-2 border-gray-600 rounded active:bg-gray-700">
-            &larr; BACK
-          </PixelButton>
-          <div className="text-right">
-            <p className="text-xs text-gray-400">BALANCE</p>
-            <p className="text-xl text-pixel-success font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">${currency}</p>
-          </div>
-        </div>
-
-        {/* Shop Content */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-6">
-          <h1 className="text-3xl text-center text-pixel-gold drop-shadow-md mb-2">SUPPLY CLOSET</h1>
-
-          {/* Consumable: Coffee */}
-          <div className="bg-gradient-to-r from-[#2a1708] to-[#1a0f05] rounded-xl border-2 border-[#54341b] p-4 shadow-black shadow-lg relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-2 opacity-20">
-              <Coffee className="w-24 h-24" />
-            </div>
-            <div className="flex justify-between items-start relative z-10">
-              <div>
-                <h3 className="text-xl text-orange-200">Double Espresso</h3>
-                <p className="text-xs text-orange-400 mt-1">Consumable • Restores 50 Energy</p>
-              </div>
-              <div className={`text-lg font-bold ${currency >= 20 ? 'text-pixel-success' : 'text-pixel-alert'}`}>
-                $20
-              </div>
-            </div>
-            <div className="mt-4 relative z-10">
-              <PixelButton 
-                onClick={() => {
-                  if (currency >= 20) {
-                    audio.playCashRegister();
-                    useERStore.getState().addCurrency(-20);
-                    useERStore.getState().restoreEnergy(50);
-                  }
-                }} 
-                disabled={currency < 20}
-                className={`w-full py-3 text-lg ${currency < 20 ? 'opacity-50 grayscale' : 'bg-orange-600 border-orange-400 text-white'}`}
-              >
-                BUY & DRINK
-              </PixelButton>
-            </div>
-          </div>
-
-          <h2 className="text-2xl text-center text-pixel-accent drop-shadow-md mb-2 mt-8">HOSPITAL UPGRADES</h2>
-          <div className="grid grid-cols-1 gap-4 mb-8">
-            {Object.values(UPGRADES_DATABASE).map((item) => {
-              const isOwned = hospitalUpgrades.includes(item.id);
-              const canAfford = currency >= item.cost;
-              
-              return (
-                <div key={item.id} className={`flex items-center bg-[#161b22] border-2 rounded-lg p-4 shadow-md ${isOwned ? 'border-pixel-gold bg-[#262111]' : 'border-[#30363d]'}`}>
-                  <div className="p-3 bg-black rounded-xl border border-gray-700 shadow-inner mr-4">
-                    {getIcon(item.icon)}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg text-white font-bold">{item.name}</h3>
-                    <p className="text-xs text-gray-400 leading-tight">{item.description}</p>
-                  </div>
-                  <div className="flex flex-col items-end ml-4">
-                    <span className={`text-lg font-bold mb-2 ${isOwned ? 'text-pixel-gold' : canAfford ? 'text-pixel-success' : 'text-pixel-alert'}`}>
-                      {isOwned ? 'OWNED' : `$${item.cost}`}
-                    </span>
-                    {!isOwned && (
-                      <PixelButton 
-                        onClick={() => {
-                          if (canAfford) {
-                            audio.playCashRegister();
-                            buyUpgrade(item.id, item.cost);
-                          }
-                        }}
-                        disabled={!canAfford}
-                        className={`text-xs px-4 py-2 ${canAfford ? 'bg-pixel-success border-green-600' : 'opacity-50 grayscale'}`}
-                      >
-                        PURCHASE
-                      </PixelButton>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="h-1 bg-gray-800 rounded-full my-6" />
-          
-          <h2 className="text-2xl text-center text-pixel-accent drop-shadow-md mb-2">PERSONAL GEAR</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {Object.values(GEAR_DATABASE).map((item) => {
-              const isOwned = inventory.includes(item.id);
-              const isEquipped = equipped[item.type] === item.id;
-              const canAfford = currency >= item.cost;
-
-              return (
-                <div key={item.id} className={`flex flex-col bg-[#161b22] border-2 rounded-lg p-3 shadow-md ${isEquipped ? 'border-pixel-gold bg-[#262111]' : 'border-[#30363d]'}`}>
-                  <div className="flex-1 flex flex-col items-center text-center">
-                    <div className="mb-2 p-3 bg-black rounded-full border border-gray-700 shadow-inner">
-                      {getIcon(item.type)}
-                    </div>
-                    <h3 className="text-sm text-white font-bold mb-1 leading-tight">{item.name}</h3>
-                    <p className="text-xs text-gray-400 mb-2">{item.statBonus.replace('_', ' ')}</p>
-                    
-                    {!isOwned && (
-                      <p className={`text-sm font-bold mt-auto mb-3 ${canAfford ? 'text-pixel-success' : 'text-pixel-alert'}`}>
-                        ${item.cost}
-                      </p>
-                    )}
-                  </div>
-                  
-                  <div className="mt-auto">
-                    {!isOwned ? (
-                      <PixelButton 
-                        onClick={() => handleBuy(item)} 
-                        disabled={!canAfford}
-                        className={`w-full text-xs py-2 ${!canAfford ? 'opacity-50' : 'bg-blue-600 border-blue-400'}`}
-                      >
-                        BUY
-                      </PixelButton>
-                    ) : (
-                      <PixelButton 
-                        onClick={() => handleEquip(item)}
-                        className={`w-full text-xs py-2 ${isEquipped ? 'bg-pixel-gold text-black border-yellow-300' : 'bg-gray-700 border-gray-500'}`}
-                        disabled={isEquipped}
-                      >
-                        {isEquipped ? 'EQUIPPED' : 'EQUIP'}
-                      </PixelButton>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+    <div className="absolute inset-0 bg-pixel-bg font-pixel p-4 flex flex-col gap-3">
+      <div className="flex items-center justify-between">
+        <h1 className="font-heading text-sm text-[#ffd866] tracking-widest">{t('shop.title')}</h1>
+        <div className="flex items-center gap-4">
+          <span className="text-xl text-[#a9bfd9]">{t('hub.energy')} {Math.round(energy)}/{maxEnergy}</span>
+          <span className="bg-[#0b1626] border-4 border-[#2c4a73] px-3 py-1 text-2xl text-[#99e550]">{t('shop.balance')} ${currency}</span>
+          <PixelButton size="sm" variant="primary" onClick={() => router.push('/hub')}>{t('nav.back_to_hub')}</PixelButton>
         </div>
       </div>
-    </PageTransition>
+
+      <div className="flex-1 min-h-0 grid grid-cols-3 gap-4">
+        <PixelPanel variant="wood" title={t('shop.consumables')}>
+          <div className="space-y-2 overflow-y-auto">
+            <Item icon="espresso" name={t('shop.espresso_name')} desc={t('shop.espresso_desc')} price="$20">
+              <PixelButton size="sm" variant="success" disabled={currency < 20} onClick={() => { if (currency < 20) return; audio.playCashRegister(); addCurrency(-20); restoreEnergy(50); }}>{t('shop.drink_now')}</PixelButton>
+            </Item>
+            <Item icon="coffee" name={t('shop.coffee_name')} desc={t('shop.coffee_desc')} price={`$${coffee.cost}`} highlight={inventory.includes('special_coffee')}>
+              {inventory.includes('special_coffee')
+                ? <span className="text-lg text-[#ffd866]">{t('shop.owned')}</span>
+                : <PixelButton size="sm" variant="success" disabled={currency < coffee.cost} onClick={() => buyGearItem(coffee)}>{t('shop.buy')}</PixelButton>}
+            </Item>
+          </div>
+        </PixelPanel>
+
+        <PixelPanel variant="wood" title={t('shop.gear')}>
+          <div className="space-y-2 overflow-y-auto">
+            {gear.map((item) => {
+              const owned = inventory.includes(item.id);
+              const isEq = equipped[item.type] === item.id;
+              return (
+                <Item key={item.id} icon={item.type} name={t(`shop.item.${item.id}`)} desc={t(`shop.item.${item.id}_desc`)} price={owned ? undefined : `$${item.cost}`} highlight={isEq}>
+                  {!owned
+                    ? <PixelButton size="sm" variant="success" disabled={currency < item.cost} onClick={() => buyGearItem(item)}>{t('shop.buy')}</PixelButton>
+                    : <PixelButton size="sm" variant={isEq ? 'gold' : 'secondary'} disabled={isEq} onClick={() => equipGear(item.id, item.type)}>{isEq ? t('shop.equipped') : t('shop.equip')}</PixelButton>}
+                </Item>
+              );
+            })}
+          </div>
+        </PixelPanel>
+
+        <PixelPanel variant="wood" title={t('shop.upgrades')}>
+          <div className="space-y-2 overflow-y-auto">
+            {Object.values(UPGRADES_DATABASE).map((item) => {
+              const owned = hospitalUpgrades.includes(item.id);
+              return (
+                <Item key={item.id} icon={item.icon} name={t(`shop.item.${item.id}`)} desc={t(`shop.item.${item.id}_desc`)} price={owned ? undefined : `$${item.cost}`} highlight={owned}>
+                  {owned ? <span className="text-lg text-[#ffd866]">{t('shop.owned')}</span>
+                    : <PixelButton size="sm" variant="success" disabled={currency < item.cost} onClick={() => { if (currency >= item.cost && buyUpgrade(item.id, item.cost)) audio.playCashRegister(); }}>{t('shop.buy')}</PixelButton>}
+                </Item>
+              );
+            })}
+          </div>
+        </PixelPanel>
+      </div>
+    </div>
   );
 }

@@ -3,8 +3,10 @@
 import { useEffect, useState, useRef } from "react";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { audio } from "@/lib/audio";
-
 import { CutsceneChoice } from "@/lib/StoryManager";
+import { portrait, GRUMP_SPEC, RecolorSpec, SheetName } from "@/lib/spriteRecolor";
+import { SKIN_RAMPS, HAIR_RAMPS, SCRUB_RAMPS } from "@/lib/palettes";
+import { useT } from "@/lib/i18n/useT";
 
 interface DialogueBoxProps {
   speakerName?: string;
@@ -14,100 +16,90 @@ interface DialogueBoxProps {
   onComplete: (choice?: CutsceneChoice) => void;
 }
 
+/** Pick a portrait from the real sprite sheets based on who is speaking. */
+function portraitFor(speaker = "", url = ""): { sheet: SheetName; spec?: RecolorSpec } | null {
+  const k = `${speaker} ${url}`.toLowerCase();
+  if (!speaker || /^system$/i.test(speaker.trim())) return null;
+  if (/nurse|ann|แอน|พยาบาล/.test(k)) return { sheet: 'nurse' };
+  if (/grump|กรัมป์/.test(k)) return { sheet: 'doctor', spec: GRUMP_SPEC };
+  if (/somchai|prof|director|ผอ|อาจารย์|attending/.test(k)) return { sheet: 'doctor', spec: { hair: HAIR_RAMPS[0], scrubs: SCRUB_RAMPS[2], skin: SKIN_RAMPS[2] } };
+  let h = 0; for (const ch of speaker) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return { sheet: 'doctor', spec: { skin: SKIN_RAMPS[h % 6], hair: HAIR_RAMPS[(h >> 4) % 4], scrubs: SCRUB_RAMPS[(h >> 8) % 6] } };
+}
+
+const PITCH: Record<string, number> = { nurse: 1200, grump: 380, system: 600 };
+
 export function DialogueBox({ speakerName, portraitUrl, text, choices, onComplete }: DialogueBoxProps) {
-  const [displayedText, setDisplayedText] = useState("");
-  const [isFinished, setIsFinished] = useState(false);
-  const textIndex = useRef(0);
+  const { t } = useT();
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+  const [face, setFace] = useState<string | null>(null);
+  const idx = useRef(0);
 
   useEffect(() => {
-    // Reset state when text changes
-    setDisplayedText("");
-    setIsFinished(false);
-    textIndex.current = 0;
+    const p = portraitFor(speakerName, portraitUrl);
+    let alive = true;
+    if (p) portrait(p.sheet, p.spec, 3).then((u) => { if (alive) setFace(u); }).catch(() => setFace(null));
+    else setFace(null);
+    return () => { alive = false; };
+  }, [speakerName, portraitUrl]);
 
+  useEffect(() => {
+    setDisplayed(""); setDone(false); idx.current = 0;
+    const pitchKey = /nurse|ann|แอน/i.test(speakerName || '') ? 'nurse' : /grump|กรัมป์/i.test(speakerName || '') ? 'grump' : /system/i.test(speakerName || '') ? 'system' : '';
     const timer = setInterval(() => {
-      if (textIndex.current < text.length) {
-        const currentIndex = textIndex.current;
-        setDisplayedText((prev) => prev + text.charAt(currentIndex));
-        textIndex.current++;
-        // Play blip sound occasionally
-        if (textIndex.current % 3 === 0) {
-           let pitch = 800; // default medium pitch
-           if (speakerName === 'Nurse Ann') pitch = 1200; // higher pitch
-           else if (speakerName === 'Attending') pitch = 400; // low pitch
-           else if (speakerName === 'System') pitch = 600; // robot-ish
-           audio.playDialogueBark(pitch);
-        }
-      } else {
-        setIsFinished(true);
-        clearInterval(timer);
-      }
-    }, 40); // typing speed
-
+      if (idx.current < text.length) {
+        const i = idx.current;
+        setDisplayed((prev) => prev + text.charAt(i));
+        idx.current++;
+        if (idx.current % 3 === 0) audio.playDialogueBark(PITCH[pitchKey] ?? 800);
+      } else { setDone(true); clearInterval(timer); }
+    }, 28);
     return () => clearInterval(timer);
-  }, [text]);
+  }, [text, speakerName]);
 
-  const handleNext = () => {
-    if (!isFinished) {
-      // Skip typing animation
-      setDisplayedText(text);
-      setIsFinished(true);
-      textIndex.current = text.length;
-    } else if (!choices || choices.length === 0) {
-      Haptics.impact({ style: ImpactStyle.Light });
-      onComplete();
-    }
+  const next = () => {
+    if (!done) { setDisplayed(text); setDone(true); idx.current = text.length; return; }
+    if (!choices || choices.length === 0) { Haptics.impact({ style: ImpactStyle.Light }).catch(() => {}); onComplete(); }
   };
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if ((e.key === ' ' || e.key === 'Enter' || e.key === 'e' || e.key === 'E') && (!choices?.length || !done)) { e.preventDefault(); next(); } };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  });
 
-  const handleChoice = (c: CutsceneChoice, e: React.MouseEvent) => {
-    e.stopPropagation();
-    Haptics.impact({ style: ImpactStyle.Heavy });
-    onComplete(c);
-  };
+  const isSystem = !speakerName || /^system$/i.test(speakerName.trim());
 
   return (
-    <div 
-      className="absolute bottom-4 left-4 right-4 bg-[#0d1117]/95 border-4 border-[#30363d] rounded-2xl p-4 flex gap-4 z-[100] shadow-[0_10px_30px_rgba(0,0,0,0.8)] cursor-pointer backdrop-blur-md transition-all"
-      onClick={handleNext}
-    >
-      {portraitUrl && (
-        <div className="w-20 h-20 bg-gray-900 border-4 border-[#1f6feb] rounded-xl flex-shrink-0 shadow-[inset_0_0_10px_rgba(0,0,0,1)] overflow-hidden relative">
-          <img 
-            src={portraitUrl} 
-            alt={speakerName || 'Speaker'} 
-            className="absolute max-w-none pixelated" 
-            style={{ 
-              width: "300%", // 3 columns
-              height: "400%", // 4 rows
-              left: "-100%", // second column (index 1)
-              top: "0%" // first row (index 0)
-            }} 
-          />
-        </div>
-      )}
-      
-      <div className="flex-1 flex flex-col justify-center font-pixel text-white pt-1">
-        {speakerName && (
-          <div className="text-[#58a6ff] text-lg mb-1 drop-shadow-md font-bold uppercase tracking-widest">{speakerName}</div>
-        )}
-        <div className="text-xl leading-relaxed tracking-wide min-h-[3rem] text-gray-200">
-          {displayedText}
-          {isFinished && (!choices || choices.length === 0) && <span className="animate-bounce inline-block ml-2 text-[#58a6ff]">▼</span>}
-        </div>
-        
-        {isFinished && choices && choices.length > 0 && (
-          <div className="mt-4 flex flex-col gap-2">
-            {choices.map((c, idx) => (
-              <button 
-                key={idx}
-                onClick={(e) => handleChoice(c, e)}
-                className="bg-[#21262d] hover:bg-[#30363d] border-2 border-[#58a6ff] text-white px-4 py-3 rounded-lg text-left transition-colors font-bold shadow-md active:bg-[#1f6feb]"
-              >
-                {c.text}
-              </button>
-            ))}
+    <div className="absolute bottom-3 left-3 right-3 z-[100] cursor-pointer select-none" onClick={next}>
+      <div className="pixel-frame !p-2">
+        <div className="frame-inner flex gap-3 p-3 min-h-[118px]">
+          {face && (
+            <div className="shrink-0 w-[112px] h-[118px] bg-[#c7dafa] border-4 border-[#0b1626] overflow-hidden flex items-end justify-center">
+              <img src={face} alt={speakerName} className="w-[192px] max-w-none -mb-1" style={{ imageRendering: 'pixelated' }} />
+            </div>
+          )}
+          <div className="flex-1 min-w-0 flex flex-col">
+            {!isSystem && (
+              <div className="self-start -mt-1 mb-1 px-2 bg-[#f3f6ff] border-2 border-[#0b1626] text-[#254671] text-lg leading-tight">{speakerName}</div>
+            )}
+            <div className={`text-2xl leading-snug ${isSystem ? 'text-[#b5e2ff]' : 'text-[#f3f6ff]'}`}>
+              {displayed}
+              {done && (!choices || choices.length === 0) && <span className="blink ml-2 text-[#ffd866]">▼</span>}
+            </div>
+            {done && choices && choices.length > 0 && (
+              <div className="mt-2 grid grid-cols-1 gap-1">
+                {choices.map((c, i) => (
+                  <button key={i} onClick={(e) => { e.stopPropagation(); Haptics.impact({ style: ImpactStyle.Heavy }).catch(() => {}); onComplete(c); }}
+                    className="pixel-btn text-left bg-[#1e3a66] hover:bg-[#3f7fc0] text-white px-3 py-1 text-xl">
+                    ▸ {c.text}
+                  </button>
+                ))}
+              </div>
+            )}
+            {!done && <div className="mt-auto text-right text-sm text-[#6d82a3]">{t('dlg.skip')}</div>}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, query, where, getDocs, doc, updateDoc } from "firebase/firestore";
 import { db, auth } from "@/lib/firebase";
 import { PixelPanel } from "@/components/ui/PixelPanel";
+import { useT } from "@/lib/i18n/useT";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { useERStore } from "@/lib/erStore";
 
@@ -10,6 +11,7 @@ interface ConsultsModalProps {
 }
 
 export function ConsultsModal({ onClose }: ConsultsModalProps) {
+  const { t } = useT();
   const [consults, setConsults] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const { addXp, addCurrency } = useERStore();
@@ -60,28 +62,28 @@ export function ConsultsModal({ onClose }: ConsultsModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-      <PixelPanel className="w-full max-w-2xl max-h-[90vh] flex flex-col" variant="dark">
-        <h2 className="text-3xl text-pixel-primary font-bold text-center mb-2 uppercase">Doctors Lounge</h2>
-        <p className="text-center text-gray-400 text-sm mb-4">Provide consults to other doctors to earn rewards!</p>
+    <div className="absolute inset-0 bg-[#0b1626]/80 z-50 flex items-center justify-center p-4">
+      <PixelPanel className="w-full max-w-2xl max-h-[90vh] flex flex-col" variant="metal">
+        <h2 className="font-heading text-sm text-[#ffd866] text-center mb-2">{t('cons.title')}</h2>
+        <p className="text-center text-[#a9bfd9] text-lg mb-3">{t('cons.sub')}</p>
         
         <div className="flex-1 overflow-y-auto pr-2 space-y-4">
           {loading ? (
-            <div className="text-center text-gray-400 py-8 animate-pulse">Checking the pager for consult requests...</div>
+            <div className="text-center text-[#a9bfd9] text-xl py-8 blink">{t('cons.loading')}</div>
           ) : (
             consults.map((consult) => (
-              <div key={consult.id} className="bg-gray-900 border-2 border-gray-700 p-4 rounded flex flex-col gap-3">
+              <div key={consult.id} className="bg-[#16263f] border-4 border-[#0b1626] p-3 flex flex-col gap-2">
                 <div className="flex justify-between items-start">
                   <div>
-                    <div className="text-white font-bold">{consult.requesterName} requested a consult!</div>
-                    <div className="text-xs text-gray-400">Case: {consult.caseId} | Node: {consult.currentNodeId}</div>
+                    <div className="text-xl text-white">{t('cons.requested', { name: consult.requesterName })}</div>
+                    <div className="text-base text-[#a9bfd9]">{consult.caseId}</div>
                   </div>
-                  <div className="text-xs text-pixel-gold bg-black px-2 py-1 rounded">Reward: 50 XP</div>
+                  <div className="text-lg text-[#ffd866] bg-[#0b1626] px-2">{t('cons.reward')}</div>
                 </div>
                 
-                <div className="bg-black p-3 rounded text-sm text-gray-300 border border-gray-800">
-                  <span className="text-pixel-accent">Vitals:</span> {consult.vitals} <br/>
-                  <span className="text-pixel-accent">Situation:</span> {consult.narrative}
+                <div className="bg-[#0b1626] p-2 text-lg text-[#f3f6ff] border-2 border-[#2c4a73]">
+                  <span className="text-[#b5e2ff]">{t('cons.vitals')}:</span> {consult.vitals} <br/>
+                  <span className="text-[#b5e2ff]">{t('cons.situation')}:</span> {consult.narrative}
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
@@ -89,10 +91,10 @@ export function ConsultsModal({ onClose }: ConsultsModalProps) {
                     <PixelButton 
                       key={idx}
                       variant="secondary"
-                      className="text-xs py-2 whitespace-normal h-auto"
+                      size="sm" className="whitespace-normal h-auto normal-case text-left"
                       onClick={() => handleProvideConsult(consult.id, opt.isCorrect)}
                     >
-                      Recommend: {opt.text}
+                      {t('cons.recommend')}: {opt.text}
                     </PixelButton>
                   ))}
                 </div>
@@ -100,18 +102,16 @@ export function ConsultsModal({ onClose }: ConsultsModalProps) {
             ))
           )}
           {!loading && consults.length === 0 && (
-            <div className="text-center text-gray-400 py-8">
-              No open consults. Enjoy your coffee! ☕
-            </div>
+            <div className="text-center text-[#a9bfd9] text-xl py-8">{t('cons.empty')}</div>
           )}
         </div>
 
         <div className="mt-4 pt-4 border-t-2 border-gray-800 flex justify-between">
           <PixelButton onClick={fetchConsults} variant="secondary">
-            Refresh
+            {t('cons.refresh')}
           </PixelButton>
           <PixelButton onClick={onClose} variant="primary">
-            Back to Shift
+            {t('cons.back')}
           </PixelButton>
         </div>
       </PixelPanel>

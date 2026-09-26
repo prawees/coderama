@@ -89,14 +89,14 @@ export function MinigameOverlay({ interventionName, onComplete, onBeat }: Miniga
     return () => window.removeEventListener("keydown", onKey);
   }, [hits, misses]);
 
-  const border = feedback === 'success' ? 'border-[#99e550]' : feedback === 'fail' ? 'border-[#d95763]' : flash === 'hit' ? 'border-[#99e550]' : flash === 'miss' ? 'border-[#d95763]' : 'border-[#333c57]';
+  const border = feedback === 'success' ? 'border-[#99e550]' : feedback === 'fail' ? 'border-[#d95763]' : flash === 'hit' ? 'border-[#99e550]' : flash === 'miss' ? 'border-[#d95763]' : 'border-[#2c4a73]';
 
   return (
     <div className="absolute inset-0 z-[200] flex items-center justify-center bg-pixel-ink/85 dither">
       <div className={`w-[560px] max-w-[90%] ${shake ? 'animate-shake' : ''}`}>
         <PixelPanel variant="metal" className="p-0">
           <div className={`flex flex-col items-center p-6 gap-4 border-4 ${border} bg-pixel-ink`}>
-            <div className="w-full flex justify-between items-center border-b-4 border-[#333c57] pb-2">
+            <div className="w-full flex justify-between items-center border-b-4 border-[#2c4a73] pb-2">
               <span className="text-[#d95763] font-heading text-[10px] tracking-widest blink">{t('mini.header')}</span>
               <span className="text-[#99e550] text-lg">{isCPR ? t('mini.cpr_rate') : 'STABLE'}</span>
             </div>
@@ -106,7 +106,7 @@ export function MinigameOverlay({ interventionName, onComplete, onBeat }: Miniga
             {isCPR && (
               <div className="flex gap-2">
                 {Array.from({ length: TOTAL }, (_, i) => (
-                  <div key={i} className={`w-8 h-8 border-4 border-pixel-ink ${i < hits ? 'bg-[#99e550]' : 'bg-[#333c57]'}`} />
+                  <div key={i} className={`w-8 h-8 border-4 border-pixel-ink ${i < hits ? 'bg-[#99e550]' : 'bg-[#2c4a73]'}`} />
                 ))}
                 <span className="ml-3 text-xl text-pixel-text-muted self-center">{t('mini.compressions', { n: hits, total: TOTAL })}</span>
               </div>
@@ -116,7 +116,7 @@ export function MinigameOverlay({ interventionName, onComplete, onBeat }: Miniga
               {feedback === 'success' ? t('mini.perfect') : feedback === 'fail' ? t('mini.missed') : t('mini.target')}
             </p>
 
-            <div className="w-full h-14 bg-black border-4 border-[#333c57] relative cursor-pointer overflow-hidden scanlines" onClick={handleAction}>
+            <div className="w-full h-14 bg-black border-4 border-[#2c4a73] relative cursor-pointer overflow-hidden scanlines" onClick={handleAction}>
               <div className="absolute top-0 bottom-0 bg-[#38b764]" style={{ left: `${targetStart}%`, width: `${targetEnd - targetStart}%` }} />
               <div className="absolute top-0 bottom-0 w-1 bg-[#99e550]" style={{ left: `${targetStart}%` }} />
               <div className="absolute top-0 bottom-0 w-1 bg-[#99e550]" style={{ left: `${targetEnd}%` }} />

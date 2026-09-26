@@ -83,7 +83,7 @@ function ClinicalRun({ c, instanceId, fromLibrary }: { c: ClinicalCase; instance
   };
 
   const cond = sim.status === 'died' ? 'dead' : sim.stability >= 75 ? 'stable' : sim.stability >= 35 ? 'unstable' : 'periarrest';
-  const condColor = { stable: '#38b764', unstable: '#d29922', periarrest: '#d95763', dead: '#566c86' }[cond];
+  const condColor = { stable: '#38b764', unstable: '#d29922', periarrest: '#d95763', dead: '#6d82a3' }[cond];
   const examinedRegions = useMemo(() => Array.from(new Set(sim.examined.map((id) => EXAM_ITEMS.find((i) => i.id === id)?.region).filter(Boolean))) as BodyRegion[], [sim.examined]);
   const inbox = sim.orders.filter((o) => o.seen).slice(-3).reverse();
 
@@ -109,20 +109,20 @@ function ClinicalRun({ c, instanceId, fromLibrary }: { c: ClinicalCase; instance
       {report && <Debrief c={c} sim={sim} report={report} onSignOff={signOff} />}
 
       {/* TOP: 3D bedside */}
-      <div className="relative h-[56%] w-full border-b-8 border-pixel-ink bg-[#1a1c2c]">
+      <div className="relative h-[56%] w-full border-b-8 border-pixel-ink bg-[#16263f]">
         <ExamSuite3D
           vitalsRef={vitalsRef} pendingRef={pendingRef} elapsedRef={elapsedRef} joltRef={joltRef} breathingRateRef={breathingRateRef}
           appearance={c.appearance} examined={examinedRegions} pendingLabel={t('cx.monitor_off')}
           onHotspot={(r) => { setRegion(r); setTab('exam'); }}
         />
 
-        <div className="absolute top-3 left-3 z-10 max-w-[34%] bg-pixel-ink border-4 border-[#566c86] pixel-shadow px-3 py-2">
+        <div className="absolute top-3 left-3 z-10 max-w-[34%] bg-pixel-ink border-4 border-[#6d82a3] pixel-shadow px-3 py-2">
           <div className="text-xl text-pixel-gold leading-tight">{t('cx.patient')}: {t('case.age')} {c.age} · {c.sex}</div>
           <div className="text-base text-[#ffe9c9] leading-tight line-clamp-2">{c.chiefComplaint}</div>
         </div>
 
         <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
-          <div className="bg-pixel-ink border-4 border-[#566c86] px-3 py-1 font-heading text-xs text-[#99e550]">T+{simClock(sim.t)}</div>
+          <div className="bg-pixel-ink border-4 border-[#6d82a3] px-3 py-1 font-heading text-xs text-[#99e550]">T+{simClock(sim.t)}</div>
           <div className="border-4 border-pixel-ink px-3 py-1 text-lg text-white whitespace-nowrap" style={{ background: condColor }}>{t('cx.condition')}: {t(`cx.cond_${cond}`)}</div>
         </div>
         <div className="absolute bottom-3 left-3 z-10 flex gap-2">
@@ -134,11 +134,11 @@ function ClinicalRun({ c, instanceId, fromLibrary }: { c: ClinicalCase; instance
         <div className="absolute top-3 right-3 z-10 flex flex-col gap-1 w-48">
           {REGIONS.map((r) => (
             <button key={r} onClick={() => { setRegion(r); setTab('exam'); }}
-              className={`pixel-btn text-left px-3 py-0.5 text-lg ${region === r && tab === 'exam' ? 'bg-[#3b5dc9] text-white' : examinedRegions.includes(r) ? 'bg-[#10301c] text-[#99e550]' : 'bg-[#1a1c2c] text-[#f4f4f4] hover:bg-[#29366f]'}`}>
+              className={`pixel-btn text-left px-3 py-0.5 text-lg ${region === r && tab === 'exam' ? 'bg-[#3f7fc0] text-white' : examinedRegions.includes(r) ? 'bg-[#10301c] text-[#99e550]' : 'bg-[#16263f] text-[#f4f4f4] hover:bg-[#1e3a66]'}`}>
               {examinedRegions.includes(r) ? '✓ ' : '▸ '}{REGION_LABEL[r][lang]}
             </button>
           ))}
-          <button onClick={() => { setRegion(null); setTab('exam'); }} className="pixel-btn text-left px-3 py-0.5 text-lg bg-[#5d275d] text-white">{t('cx.region_all')}</button>
+          <button onClick={() => { setRegion(null); setTab('exam'); }} className="pixel-btn text-left px-3 py-0.5 text-lg bg-[#6b2f5f] text-white">{t('cx.region_all')}</button>
         </div>
 
         {sim.popup && !report && (
@@ -153,12 +153,12 @@ function ClinicalRun({ c, instanceId, fromLibrary }: { c: ClinicalCase; instance
 
       {/* BOTTOM: clinical console */}
       <div className="flex-1 min-h-0 w-full flex bg-pixel-ink">
-        <div className="w-44 shrink-0 flex flex-col border-r-4 border-[#333c57] bg-[#1a1c2c]">
+        <div className="w-44 shrink-0 flex flex-col border-r-4 border-[#2c4a73] bg-[#16263f]">
           {tabs.map((tb) => (
             <button key={tb.id} onClick={() => setTab(tb.id)}
-              className={`text-left px-3 py-2 text-lg border-b-4 border-pixel-ink flex justify-between items-center leading-none ${tab === tb.id ? 'bg-[#3b5dc9] text-white' : 'text-pixel-text-muted hover:bg-[#29366f]'}`}>
+              className={`text-left px-3 py-2 text-lg border-b-4 border-pixel-ink flex justify-between items-center leading-none ${tab === tb.id ? 'bg-[#3f7fc0] text-white' : 'text-pixel-text-muted hover:bg-[#1e3a66]'}`}>
               <span>{tb.label}</span>
-              {!!tb.badge && <span className="text-sm bg-pixel-ink px-1 border-2 border-[#566c86]">{tb.badge}</span>}
+              {!!tb.badge && <span className="text-sm bg-pixel-ink px-1 border-2 border-[#6d82a3]">{tb.badge}</span>}
             </button>
           ))}
         </div>
@@ -172,12 +172,12 @@ function ClinicalRun({ c, instanceId, fromLibrary }: { c: ClinicalCase; instance
           {tab === 'log' && <TimelinePanel sim={sim} />}
         </div>
 
-        <div className="w-60 shrink-0 border-l-4 border-[#333c57] p-2 flex flex-col gap-2 min-h-0">
+        <div className="w-60 shrink-0 border-l-4 border-[#2c4a73] p-2 flex flex-col gap-2 min-h-0">
           <VitalsStrip sim={sim} />
           <div className="min-h-0 overflow-y-auto">
-            <div className="text-lg text-[#73eff7] uppercase mb-1">{t('cx.inbox')}</div>
+            <div className="text-lg text-[#b5e2ff] uppercase mb-1">{t('cx.inbox')}</div>
             {inbox.map((o) => (
-              <button key={o.name} onClick={() => setTab('inv')} className={`w-full text-left text-base px-2 py-1 mb-1 border-4 leading-tight ${o.results.some((r) => r.abnormal) ? 'border-[#ffcd75]' : 'border-[#333c57]'}`}>
+              <button key={o.name} onClick={() => setTab('inv')} className={`w-full text-left text-base px-2 py-1 mb-1 border-4 leading-tight ${o.results.some((r) => r.abnormal) ? 'border-[#ffcd75]' : 'border-[#2c4a73]'}`}>
                 {o.name}
               </button>
             ))}

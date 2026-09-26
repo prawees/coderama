@@ -12,9 +12,7 @@ import { PixelPanel } from "@/components/ui/PixelPanel";
 import { scheduleOnCallCases, cancelOnCallCases } from "@/lib/notifications";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { PixelButton } from "@/components/ui/PixelButton";
-import { MapData } from "@/components/game/PixiEngine2D";
 import { PixiEngine2D } from "@/components/game/PixiEngine2D";
-import { MAPS } from "@/lib/maps";
 import { Pager } from "@/components/ui/Pager";
 import { DialogueBox } from "@/components/game/DialogueBox";
 import { QuestsModal } from "@/components/game/QuestsModal";
@@ -42,6 +40,7 @@ export default function HubPage() {
   const { wipeTo } = useTransition();
   
   const [isQuestsOpen, setIsQuestsOpen] = useState(false);
+  const lastBreak = useRef<{ coffee: number | null; nap: number | null }>({ coffee: null, nap: null });
   const [isCinematic, setIsCinematic] = useState(false);
   
   const { getRankFromXp, RANK_THRESHOLDS } = require('@/lib/erStore');
@@ -64,8 +63,6 @@ export default function HubPage() {
   const logEndRef = useRef<HTMLDivElement>(null);
   
   const [pagerMessage, setPagerMessage] = useState<string | null>(null);
-  const [currentMap, setCurrentMap] = useState<string>('ER_MAIN');
-  const [spawnPos, setSpawnPos] = useState<{x: number, y: number} | undefined>(undefined);
   const [dialogueQueue, setDialogueQueue] = useState<CutsceneNode[]>([]);
   const [caseToInject, setCaseToInject] = useState<string | null>(null);
   const [actionOnDialogueEnd, setActionOnDialogueEnd] = useState<'START_SHIFT' | 'END_SHIFT' | 'PRESTIGE' | null>(null);
@@ -79,6 +76,7 @@ export default function HubPage() {
   const fastForwardTarget = useRef<number | null>(null);
 
   const currentEra = getEra(currentDay);
+  const onShift = shiftMode === 'on-shift' || shiftMode === 'boss-battle';
 
   const addLog = (msg: string) => {
     setLogs(prev => [...prev.slice(-19), `${new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })} - ${msg}`]);
@@ -280,7 +278,7 @@ export default function HubPage() {
           if (perk === 'legacy_wealth') useERStore.getState().addCurrency(5000);
           if (perk === 'legacy_knowledge') useERStore.getState().addXp(5000);
           
-          addLog("PRESTIGE COMPLETE. A new legacy begins.");
+          addLog(t('hub.prestige_done'));
           setActionOnDialogueEnd(null);
         }
         
@@ -470,10 +468,10 @@ export default function HubPage() {
            
            if (getRankFromXp(lifetimeXp) === 'Prof') {
              setDialogueQueue([
-               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: "You have reached the pinnacle of medicine. You are now the Chief of Medicine!" },
-               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: "Will you retire and start a new legacy, passing on your knowledge to the next generation?", choices: [
-                  { text: "Legacy of Wealth (Start with 5000 Cash)", nextId: "legacy_wealth", flagEffect: "prestige_wealth" },
-                  { text: "Legacy of Knowledge (Start with 5000 XP)", nextId: "legacy_knowledge", flagEffect: "prestige_knowledge" }
+               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: t('hub.prestige_1') },
+               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: t('hub.prestige_2'), choices: [
+                  { text: t('hub.legacy_wealth'), nextId: "legacy_wealth", flagEffect: "prestige_wealth" },
+                  { text: t('hub.legacy_knowledge'), nextId: "legacy_knowledge", flagEffect: "prestige_knowledge" }
                ]}
              ]);
              setActionOnDialogueEnd('PRESTIGE');
@@ -632,7 +630,7 @@ export default function HubPage() {
          
          if (newHearts >= 2 && activeQuests.includes('q_social_butterfly')) {
            completeQuest('q_social_butterfly');
-           addLog(t('hub.quest_done', { name: QUEST_DATABASE['q_social_butterfly']?.title || 'Social Butterfly' }));
+           addLog(t('hub.quest_done', { name: t('quest.q_social_butterfly.title') }));
          }
       } else {
          // Standard chat flow
@@ -647,8 +645,24 @@ export default function HubPage() {
       
       if (currentHearts >= 2 && activeQuests.includes('q_social_butterfly')) {
         completeQuest('q_social_butterfly');
-        addLog(t('hub.quest_done', { name: QUEST_DATABASE['q_social_butterfly']?.title || 'Social Butterfly' }));
+        addLog(t('hub.quest_done', { name: t('quest.q_social_butterfly.title') }));
       }
+    } else if (type === 'coffee') {
+      const last = lastBreak.current.coffee;
+      if (last !== null && clockMinutes - last < 120 && onShift) { setDialogueQueue([{ speaker: "System", text: t('hub.coffee_empty') }]); return; }
+      lastBreak.current.coffee = clockMinutes;
+      audio.playCashRegister();
+      restoreEnergy(15);
+      if (onShift) incrementClock(10);
+      addLog(t('hub.coffee_brewed'));
+    } else if (type === 'rest') {
+      const last = lastBreak.current.nap;
+      if (last !== null && clockMinutes - last < 180 && onShift) { setDialogueQueue([{ speaker: "System", text: t('hub.nap_denied') }]); return; }
+      lastBreak.current.nap = clockMinutes;
+      restoreEnergy(onShift ? 30 : 50);
+      if (onShift) incrementClock(45);
+      setDialogueQueue([{ speaker: "System", text: onShift ? t('hub.nap_shift') : t('hub.nap_off') }]);
+      addLog(t('hub.nap_log'));
     } else if (id === 'leaderboard') {
       audio.playClick();
       setIsLeaderboardOpen(true);
@@ -658,17 +672,6 @@ export default function HubPage() {
     }
   };
 
-  const handleDoor = (target: string) => {
-    addLog(t('hub.traveling', { place: target === 'AMBULANCE_BAY' ? t('engine.enter_bay') : t('engine.enter_er') }));
-    if (target === 'AMBULANCE_BAY') {
-      setSpawnPos({ x: 7, y: 1 });
-    } else if (target === 'ER_MAIN') {
-      setSpawnPos({ x: 7, y: 8 });
-    } else {
-      setSpawnPos(undefined);
-    }
-    setCurrentMap(target);
-  };
 
   const formatTime = (mins: number) => {
     const hours = Math.floor(mins / 60) + 8;
@@ -676,13 +679,12 @@ export default function HubPage() {
     return `${hours.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
   };
 
-  const onShift = shiftMode === 'on-shift' || shiftMode === 'boss-battle';
   const grumpHearts = friendships['dr_grump'] || 0;
   const annHearts = friendships['nurse_ann'] || 0;
   const eraKey = ({ MED_Y5: 'hub.era_ms5', MED_Y6: 'hub.era_ms6', INTERN: 'hub.era_intern', RESIDENT: 'hub.era_resident', PROFESSOR: 'hub.era_professor' } as Record<string, string>)[currentEra];
-  const questNames = activeQuests.map((q) => QUEST_DATABASE[q]?.title || q);
+  const questNames = activeQuests.map((q) => t(`quest.${q}.title`));
   const Hearts = ({ n }: { n: number }) => (
-    <span className="tracking-tighter">{Array.from({ length: 5 }, (_, i) => <span key={i} className={i < n ? 'text-[#d95763]' : 'text-[#333c57]'}>♥</span>)}</span>
+    <span className="tracking-tighter">{Array.from({ length: 5 }, (_, i) => <span key={i} className={i < n ? 'text-[#d95763]' : 'text-[#2c4a73]'}>♥</span>)}</span>
   );
 
   return (
@@ -694,7 +696,7 @@ export default function HubPage() {
         <aside className="w-[22%] min-w-[260px] h-full flex flex-col gap-3 p-3 bg-pixel-ink border-r-8 border-pixel-ink overflow-hidden">
           <PixelPanel variant="wood" title={t('hub.rank')} className="shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-14 h-14 bg-pixel-ink border-4 border-[#3d2210] flex items-center justify-center overflow-hidden">
+              <div className="w-16 h-[72px] bg-[#c7dafa] border-4 border-[#0b1626] flex items-start justify-center overflow-hidden shrink-0">
                 <PixiPreview {...(appearance as any)} />
               </div>
               <div className="min-w-0">
@@ -719,8 +721,8 @@ export default function HubPage() {
               <div className="pixel-bar mt-1"><div className={`fill ${energy > 50 ? 'bg-[#6abe30]' : energy > 20 ? 'bg-[#d29922]' : 'bg-[#d95763]'}`} style={{ width: `${(energy / maxEnergy) * 100}%` }} /><div className="ticks" /></div>
             </div>
             <div className="grid grid-cols-2 gap-2 mt-3 text-center">
-              <div className="border-4 border-[#333c57] bg-pixel-ink py-1"><div className="text-sm text-pixel-text-muted">{t('hub.xp')}</div><div className="text-xl text-[#73eff7]">{Math.round(xp)}</div></div>
-              <div className="border-4 border-[#333c57] bg-pixel-ink py-1"><div className="text-sm text-pixel-text-muted">{t('hub.cash')}</div><div className="text-xl text-[#99e550]">${currency}</div></div>
+              <div className="border-4 border-[#2c4a73] bg-pixel-ink py-1"><div className="text-sm text-pixel-text-muted">{t('hub.xp')}</div><div className="text-xl text-[#b5e2ff]">{Math.round(xp)}</div></div>
+              <div className="border-4 border-[#2c4a73] bg-pixel-ink py-1"><div className="text-sm text-pixel-text-muted">{t('hub.cash')}</div><div className="text-xl text-[#99e550]">${currency}</div></div>
             </div>
             <PixelButton size="sm" variant="wood" className="w-full mt-2" disabled={!inventory.includes('special_coffee')} onClick={() => { if (drinkCoffee()) { audio.playCashRegister(); addLog(t('hub.coffee_drunk')); } }}>
               ☕ {inventory.includes('special_coffee') ? t('hub.drink_coffee') : t('hub.no_coffee')}
@@ -728,9 +730,9 @@ export default function HubPage() {
           </PixelPanel>
 
           <PixelPanel variant="wood" title={t('hub.relationships')} className="shrink-0">
-            <div className="flex justify-between text-lg"><span className="text-[#73eff7]">{t('npc.ann')}</span><Hearts n={annHearts} /></div>
+            <div className="flex justify-between text-lg"><span className="text-[#b5e2ff]">{t('npc.ann')}</span><Hearts n={annHearts} /></div>
             <div className="flex justify-between text-lg"><span className="text-[#ef7d57]">{t('npc.grump')}</span><Hearts n={grumpHearts} /></div>
-            <div className={`mt-2 text-sm border-4 px-2 py-1 ${grumpHearts >= 3 ? (consultUsedThisShift ? 'border-[#333c57] text-pixel-text-muted' : 'border-[#99e550] text-[#99e550]') : 'border-[#333c57] text-pixel-text-muted'}`}>
+            <div className={`mt-2 text-sm border-4 px-2 py-1 ${grumpHearts >= 3 ? (consultUsedThisShift ? 'border-[#2c4a73] text-pixel-text-muted' : 'border-[#99e550] text-[#99e550]') : 'border-[#2c4a73] text-pixel-text-muted'}`}>
               {t('hub.consult_attending')}: {grumpHearts >= 3 ? (consultUsedThisShift ? t('hub.consult_used') : t('hub.consult_ready')) : t('hub.consult_locked')}
             </div>
           </PixelPanel>
@@ -746,16 +748,12 @@ export default function HubPage() {
         {/* ═══ CENTER - 2D Ward viewport ═══ */}
         <main className="flex-1 h-full relative bg-black overflow-hidden">
           <PixiEngine2D
-            mapData={MAPS[currentMap]}
             onInteract={handleInteract}
-            onDoor={handleDoor}
             activeCases={activeCases}
             clockMinutes={clockMinutes}
-            spawnPos={spawnPos}
-            era={getEra(lifetimeXp)}
-            npcEmote={annHearts >= 4 ? "❤" : null}
-            currentDay={currentDay}
+            npcEmote={annHearts >= 4 ? "♥" : null}
             isFastForwarding={isFastForwarding}
+            paused={dialogueQueue.length > 0 || isSettingsOpen || isQuestsOpen || isLeaderboardOpen || isConsultsOpen}
           />
           {isPowerOutage && <div className="absolute inset-0 pointer-events-none z-[60] bg-pixel-ink/80 dither" />}
 
@@ -781,7 +779,7 @@ export default function HubPage() {
             {questNames.length === 0 ? <p className="text-lg text-pixel-text-muted">-</p> : questNames.slice(0, 4).map((q, i) => (
               <div key={i} className="text-lg leading-tight flex gap-2"><span className="text-pixel-gold">▸</span><span className="truncate">{q}</span></div>
             ))}
-            <button onClick={() => setIsQuestsOpen(true)} className="mt-1 text-sm text-[#73eff7] hover:underline text-left">{t('hub.view_quests', { n: activeQuests.length })}</button>
+            <button onClick={() => setIsQuestsOpen(true)} className="mt-1 text-sm text-[#b5e2ff] hover:underline text-left">{t('hub.view_quests', { n: activeQuests.length })}</button>
           </PixelPanel>
 
           <PixelPanel variant="metal" title={t('hub.triage_queue')} className="shrink-0">
@@ -791,7 +789,7 @@ export default function HubPage() {
               return (
                 <button key={bedIdx} disabled={!c}
                   onClick={() => { if (c) { audio.playClick(); wipeTo(`/simulator/play/${c.caseDataId}?instanceId=${c.id}`, t('hub.treat')); } }}
-                  className={`w-full flex items-center justify-between px-3 py-2 mb-1 border-4 text-lg ${c ? (critical ? 'border-[#d95763] bg-[#3a0e14] text-white blink' : 'border-[#ffcd75] bg-[#3a2a08] text-white hover:bg-[#5a3f0c]') : 'border-[#333c57] bg-pixel-ink text-pixel-text-muted'}`}>
+                  className={`w-full flex items-center justify-between px-3 py-2 mb-1 border-4 text-lg ${c ? (critical ? 'border-[#d95763] bg-[#3a0e14] text-white blink' : 'border-[#ffcd75] bg-[#3a2a08] text-white hover:bg-[#5a3f0c]') : 'border-[#2c4a73] bg-pixel-ink text-pixel-text-muted'}`}>
                   <span>{t('hub.bed')} {bedIdx + 1}</span>
                   <span>{c ? `${critical ? '‼ ' : ''}${t('pager.' + c.caseDataId) !== 'pager.' + c.caseDataId ? t('pager.' + c.caseDataId) : c.caseDataId}` : t('hub.empty')}</span>
                 </button>

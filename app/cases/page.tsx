@@ -31,7 +31,7 @@ export default function CaseLibraryPage() {
 
   const play = (path: string) => wipeTo(path, t('lib.play'));
   const Card = ({ title, sub, children }: { title: string; sub?: string; children: React.ReactNode }) => (
-    <div className="bg-[#1a1c2c] border-4 border-[#333c57] p-3 flex flex-col gap-2">
+    <div className="bg-[#16263f] border-4 border-[#2c4a73] p-3 flex flex-col gap-2">
       <div className="text-xl leading-tight text-[#ffe9c9]">{title}</div>
       {sub && <div className="text-base text-pixel-text-muted leading-tight line-clamp-2">{sub}</div>}
       <div className="flex flex-wrap gap-2 mt-auto">{children}</div>
@@ -60,7 +60,7 @@ export default function CaseLibraryPage() {
 
       <div className="flex gap-2">
         {(['builtin', 'custom', 'cloud'] as Tab[]).map((k) => (
-          <button key={k} onClick={() => setTab(k)} className={`px-4 py-1 text-xl border-4 ${tab === k ? 'border-[#fbf236] bg-[#29366f] text-white' : 'border-[#333c57] text-pixel-text-muted'}`}>
+          <button key={k} onClick={() => setTab(k)} className={`px-4 py-1 text-xl border-4 ${tab === k ? 'border-[#ffd866] bg-[#1e3a66] text-white' : 'border-[#2c4a73] text-pixel-text-muted'}`}>
             {t(`lib.${k}`)} {k === 'builtin' ? `(${builtins.length})` : k === 'custom' ? `(${local.length})` : ''}
           </button>
         ))}

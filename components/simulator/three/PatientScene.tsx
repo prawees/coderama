@@ -35,7 +35,7 @@ export function PatientScene(p: PatientSceneProps) {
         maxPolarAngle={1.25}
         minAzimuthAngle={-1.1}
         maxAzimuthAngle={1.1}
-        target={[0, 0.55, 0.2]}
+        target={[0, 0.45, 0.1]}
       />
       <ambientLight intensity={0.9} />
       <directionalLight position={[2, 4, -3]} intensity={0.6} />

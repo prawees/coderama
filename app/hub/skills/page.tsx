@@ -5,6 +5,7 @@ import { useERStore } from "@/lib/erStore";
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { PageTransition } from "@/components/ui/PageTransition";
+import { useT } from "@/lib/i18n/useT";
 
 const SKILLS_DB = [
   {
@@ -30,6 +31,7 @@ const SKILLS_DB = [
 export default function SkillsPage() {
   const router = useRouter();
   const { xp, unlockedSkills, unlockSkill } = useERStore();
+  const { t } = useT();
 
   const handleUnlock = (skillId: string, cost: number) => {
     if (xp >= cost) {
@@ -47,11 +49,11 @@ export default function SkillsPage() {
         {/* Header */}
         <PixelPanel className="flex justify-between items-center mb-6 z-10 sticky top-[var(--safe-top)]" variant="dark">
           <div>
-            <h1 className="text-2xl text-pixel-gold">SKILL TREE</h1>
-            <p className="text-sm text-gray-400">Available XP: {xp}</p>
+            <h1 className="text-2xl text-pixel-gold">{t('skill.title')}</h1>
+            <p className="text-lg text-[#a9bfd9]">{t('skill.xp', { n: xp })}</p>
           </div>
           <PixelButton onClick={() => router.push('/hub')} variant="alert">
-            BACK TO HUB
+            {t('nav.back_to_hub')}
           </PixelButton>
         </PixelPanel>
 
@@ -67,10 +69,10 @@ export default function SkillsPage() {
                 variant="dark"
               >
                 <div className="flex justify-between items-start">
-                  <h2 className="text-xl text-pixel-primary">{skill.name}</h2>
-                  {isUnlocked && <span className="text-pixel-gold text-sm animate-pulse">UNLOCKED</span>}
+                  <h2 className="text-xl text-[#b5e2ff]">{t(`skill.${skill.id}`)}</h2>
+                  {isUnlocked && <span className="text-pixel-gold text-lg">{t('skill.unlocked')}</span>}
                 </div>
-                <p className="text-gray-400 flex-grow text-sm">{skill.description}</p>
+                <p className="text-[#a9bfd9] flex-grow text-lg">{t(`skill.${skill.id}_desc`)}</p>
                 
                 {!isUnlocked && (
                   <PixelButton 
@@ -79,7 +81,7 @@ export default function SkillsPage() {
                     onClick={() => handleUnlock(skill.id, skill.cost)}
                     className={`w-full ${!canAfford ? 'opacity-50 grayscale' : ''}`}
                   >
-                    {canAfford ? `UNLOCK (${skill.cost} XP)` : `NEED ${skill.cost} XP`}
+                    {canAfford ? t('skill.unlock', { n: skill.cost }) : t('skill.need', { n: skill.cost })}
                   </PixelButton>
                 )}
               </PixelPanel>

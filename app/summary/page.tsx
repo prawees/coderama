@@ -1,144 +1,108 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useERStore } from "@/lib/erStore";
-import { PageTransition } from "@/components/ui/PageTransition";
 import { PixelButton } from "@/components/ui/PixelButton";
+import { PixelPanel } from "@/components/ui/PixelPanel";
 import { audio } from "@/lib/audio";
 import { music } from "@/lib/music";
 import { motion } from "framer-motion";
+import { useT } from "@/lib/i18n/useT";
+import { portrait, GRUMP_SPEC } from "@/lib/spriteRecolor";
 
+const GRADE_BG: Record<string, string> = { A: '#2f9e8f', B: '#3f7fc0', C: '#d29922', D: '#dd363d' };
+
+/** End-of-shift summary. Ajarn Grump reviews your OSCE grades; a strong shift earns his respect. */
 export default function SummaryPage() {
   const router = useRouter();
-  const { shiftStats, energy, clockMinutes, restoreEnergy, activeQuests, completeQuest, currentDay, language } = useERStore();
-  const [showNext, setShowNext] = useState(false);
-  const [showRoast, setShowRoast] = useState(false);
+  const { t } = useT();
+  const { shiftStats, clockMinutes, restoreEnergy, activeQuests, completeQuest, currentDay, caseReports, updateFriendship, storyFlags, setStoryFlag, friendships } = useERStore();
+  const [face, setFace] = useState<string | null>(null);
+  const [step, setStep] = useState(0);
+  const applied = useRef(false);
   const isEndOfEpisode = currentDay === 6 || currentDay === 11 || currentDay === 16 || currentDay === 31;
 
+  const shiftReports = useMemo(() => caseReports.slice(-Math.max(0, shiftStats.casesTreated)).slice(-6), [caseReports, shiftStats.casesTreated]);
+  const avg = shiftReports.length ? Math.round(shiftReports.reduce((a, r) => a + r.overall, 0) / shiftReports.length) : null;
+  const earnedRespect = avg !== null && avg >= 80 && shiftReports.length >= 2;
+
   useEffect(() => {
-    // Fade to the comforting 'home' track on shift end
     music.fadeToTrack('home', 3.0);
+    if (shiftStats.cashEarned > 0 || shiftStats.xpEarned > 0) setTimeout(() => audio.playCashRegister(), 500);
+    const hasLounge = useERStore.getState().hospitalUpgrades.includes('upg_lounge');
+    setTimeout(() => restoreEnergy(hasLounge ? 120 : 100), 100);
+    if (shiftStats.casesTreated > 0 && activeQuests.includes('q_first_shift')) completeQuest('q_first_shift');
+    portrait('doctor', GRUMP_SPEC, 3).then(setFace).catch(() => {});
+    const timers = [setTimeout(() => setStep(1), 600), setTimeout(() => setStep(2), 1400), setTimeout(() => setStep(3), 2200)];
+    return () => timers.forEach(clearTimeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    // Play cash register sound when summary loads
-    if (shiftStats.cashEarned > 0 || shiftStats.xpEarned > 0) {
-      setTimeout(() => audio.playCashRegister(), 500);
-    }
-    
-    // Automatically restore energy fully after sleeping/ending shift
-    setTimeout(() => {
-      // Check if lounge upgrade is owned to restore 120 instead of 100
-      const hasLounge = useERStore.getState().hospitalUpgrades.includes('upg_lounge');
-      restoreEnergy(hasLounge ? 120 : 100); 
-    }, 100);
+  // Grump's respect is earned once per day from performance, not only from gifts.
+  useEffect(() => {
+    const flag = `grump_respect_day_${currentDay}`;
+    if (applied.current || !earnedRespect || storyFlags[flag]) return;
+    applied.current = true;
+    updateFriendship('dr_grump', 1);
+    setStoryFlag(flag, true);
+  }, [earnedRespect, currentDay, storyFlags, updateFriendship, setStoryFlag]);
 
-    // Trigger First Shift Quest
-    if (shiftStats.casesTreated > 0 && activeQuests.includes('q_first_shift')) {
-      completeQuest('q_first_shift');
-    }
-
-    setTimeout(() => setShowRoast(true), 1500);
-    setTimeout(() => setShowNext(true), 3500);
-  }, [shiftStats, restoreEnergy, activeQuests, completeQuest]);
-
-  const shiftDurationHours = Math.floor(clockMinutes / 60);
+  const roastKey = shiftStats.casesTreated === 0 ? 'sum.grump_none' : avg === null ? 'sum.grump_low' : avg >= 85 ? 'sum.grump_great' : avg >= 70 ? 'sum.grump_ok' : avg >= 50 ? 'sum.grump_low' : 'sum.grump_bad';
+  const stat = (label: string, value: string, color: string, show: boolean) => (
+    <motion.div initial={{ opacity: 0, x: -12 }} animate={show ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.25, ease: 'linear' }}
+      className="flex justify-between items-baseline border-b-4 border-[#2c4a73] py-2">
+      <span className="text-xl text-[#a9bfd9]">{label}</span>
+      <span className="text-3xl" style={{ color }}>{value}</span>
+    </motion.div>
+  );
 
   return (
-    <PageTransition>
-      <div className="w-full h-[100dvh] bg-[#0d1117] text-white font-pixel flex flex-col items-center justify-center p-6 relative">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900 to-black pointer-events-none" />
-        
-        <motion.div 
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="bg-black border-4 border-[#30363d] rounded-xl p-8 shadow-[0_0_30px_rgba(0,0,0,0.8)] w-full max-w-sm relative z-10"
-        >
-          <h1 className="text-3xl text-center text-pixel-gold mb-8 drop-shadow-md">{language === 'th' ? 'สรุปผลเข้าเวร' : 'SHIFT SUMMARY'}</h1>
+    <div className="absolute inset-0 bg-pixel-bg font-pixel p-6 flex gap-5 items-stretch">
+      <PixelPanel variant="wood" title={t('sum.title')} className="w-[38%]">
+        {stat(t('sum.duration'), t('sum.hours', { n: Math.floor(clockMinutes / 60) }), '#f3f6ff', step >= 0)}
+        {stat(t('sum.patients'), String(shiftStats.casesTreated), '#b5e2ff', step >= 1)}
+        {stat(t('sum.xp'), `+${Math.round(shiftStats.xpEarned)}`, '#71abdb', step >= 2)}
+        {stat(t('sum.pay'), `$${shiftStats.cashEarned}`, '#99e550', step >= 3)}
+        <div className="mt-auto pt-4">
+          <PixelButton size="lg" variant={isEndOfEpisode ? 'gold' : 'primary'} className="w-full"
+            onClick={() => router.push(isEndOfEpisode ? '/summary/year-end' : '/hub')}>
+            {isEndOfEpisode ? t('sum.next_year') : t('sum.clock_out')}
+          </PixelButton>
+        </div>
+      </PixelPanel>
 
-          <div className="space-y-6">
-            <motion.div 
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="flex justify-between items-center border-b border-gray-700 pb-2"
-            >
-              <span className="text-gray-400">{language === 'th' ? 'ระยะเวลาเวร:' : 'Shift Duration:'}</span>
-              <span className="text-lg">{shiftDurationHours} {language === 'th' ? 'ชั่วโมง' : 'Hours'}</span>
-            </motion.div>
-
-            <motion.div 
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 1.0 }}
-              className="flex justify-between items-center border-b border-gray-700 pb-2"
-            >
-              <span className="text-gray-400">{language === 'th' ? 'ผู้ป่วยที่รับรักษา:' : 'Patients Treated:'}</span>
-              <span className="text-lg text-pixel-primary">{shiftStats.casesTreated}</span>
-            </motion.div>
-
-            <motion.div 
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 1.5 }}
-              className="flex justify-between items-center border-b border-gray-700 pb-2"
-            >
-              <span className="text-gray-400">{language === 'th' ? 'XP ที่ได้:' : 'XP Gained:'}</span>
-              <span className="text-xl text-blue-400">+{shiftStats.xpEarned} XP</span>
-            </motion.div>
-
-            <motion.div 
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 2.0 }}
-              className="flex justify-between items-center"
-            >
-              <span className="text-gray-400">{language === 'th' ? 'ค่าตอบแทน:' : 'Paycheck:'}</span>
-              <span className="text-2xl text-pixel-success font-bold">${shiftStats.cashEarned}</span>
-            </motion.div>
-          </div>
-
-          {showRoast && (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="mt-8 bg-gray-900 border-2 border-red-900 rounded p-4 relative"
-            >
-              <div className="flex gap-4">
-                <div className="w-16 h-16 bg-black border-2 border-red-500 rounded-md shadow-inner shrink-0 relative overflow-hidden">
-                  <div className="w-full h-full bg-[url(/assets/nurse.jpg)] bg-[length:300%_400%] bg-[-48px_-144px]" />
-                  <div className="absolute inset-0 bg-red-600/40 mix-blend-multiply" />
-                </div>
-                <div>
-                  <h3 className="text-red-500 font-bold mb-1">{language === 'th' ? 'อ.หมอ Grump' : 'Ajarn Grump'}</h3>
-                  <p className="text-sm text-gray-300 leading-tight">
-                    {shiftStats.casesTreated === 0 
-                      ? (language === 'th' ? "แอบไปนอนที่ห้องพักแพทย์มาทั้งคืนหรือไง? ไร้ประโยชน์จริงๆ หมอที่แท้จริงเขาไม่นอนกันหรอก" : "Did you sleep in the on-call room all night? Pathetic. Real doctors don't sleep.")
-                      : shiftStats.casesTreated <= 2 
-                      ? (language === 'th' ? "ทำได้แค่ผ่านเกณฑ์ขั้นต่ำเองเหรอ ฉันหวังว่าจะเห็นความตั้งใจมากกว่านี้จากนักศึกษาของรามาฯ นะ" : "You barely did the bare minimum. I expected more hustle from a Rama student.")
-                      : (language === 'th' ? "หึ... ก็ไม่เลว แต่ก็อย่าเพิ่งได้ใจไป ยังมีอีกหลายอย่างที่เธอไม่รู้" : "Hmph. Not terrible. But don't let it go to your head, there's a lot you still don't know.")}
-                  </p>
+      <div className="flex-1 flex flex-col gap-5 min-w-0">
+        <PixelPanel variant="metal" title={t('report.title')} className="flex-1 min-h-0">
+          {shiftReports.length === 0 && <p className="text-xl text-[#a9bfd9]">{t('sum.no_cases')}</p>}
+          <div className="grid grid-cols-2 gap-2 overflow-y-auto">
+            {shiftReports.map((r) => (
+              <div key={r.timestamp} className="flex items-center gap-3 border-4 border-[#0b1626] bg-[#16263f] p-2">
+                <div className="w-12 h-12 border-4 border-[#0b1626] flex items-center justify-center font-heading text-base text-white" style={{ background: GRADE_BG[r.overallGrade] }}>{r.overallGrade}</div>
+                <div className="min-w-0">
+                  <div className="text-xl truncate">{r.caseId}</div>
+                  <div className="text-base text-[#a9bfd9]">{r.outcomeGood ? t('db.outcome_won') : t('db.outcome_ended')} · {r.overall}/100</div>
                 </div>
               </div>
-            </motion.div>
-          )}
+            ))}
+          </div>
+        </PixelPanel>
 
-          {showNext && (
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-10"
-            >
-              <PixelButton 
-                onClick={() => isEndOfEpisode ? router.push('/summary/year-end') : router.push('/hub')} 
-                className={`w-full py-4 text-xl shadow-lg ${isEndOfEpisode ? 'bg-purple-600 border-purple-400' : 'bg-blue-600 border-blue-400'}`}
-              >
-                {isEndOfEpisode ? (language === 'th' ? 'เลื่อนขึ้นปีใหม่' : 'CONTINUE TO NEXT YEAR') : (language === 'th' ? 'เลิกงาน' : 'CLOCK OUT')}
-              </PixelButton>
-            </motion.div>
-          )}
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={step >= 3 ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.3, ease: 'linear' }}>
+          <div className="pixel-frame !p-2">
+            <div className="frame-inner flex gap-3 p-3">
+              <div className="shrink-0 w-[112px] h-[112px] bg-[#c7dafa] border-4 border-[#0b1626] overflow-hidden flex items-end justify-center">
+                {face && <img src={face} alt="" className="w-[192px] max-w-none" style={{ imageRendering: 'pixelated' }} />}
+              </div>
+              <div>
+                <div className="inline-block px-2 bg-[#f3f6ff] border-2 border-[#0b1626] text-[#254671] text-lg">{t('npc.grump')}</div>
+                <p className="text-2xl leading-snug mt-1">{t(roastKey)}</p>
+                {earnedRespect && <p className="text-xl text-[#ffd866] mt-1">♥ {t('sum.respect', { n: friendships['dr_grump'] || 0 })}</p>}
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
-    </PageTransition>
+    </div>
   );
 }

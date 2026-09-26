@@ -14,10 +14,10 @@ export default function ExamSuite3D(props: PatientSceneProps) {
   return (
     <Canvas
       dpr={[0.75, 1]}
-      camera={{ position: [2.4, 1.6, 2.6], fov: 42, near: 0.1, far: 30 }}
+      camera={{ position: [2.3, 2.2, 2.3], fov: 40, near: 0.1, far: 30 }}
       gl={{ antialias: false, powerPreference: "high-performance", toneMapping: THREE.NoToneMapping }}
       style={{ imageRendering: "pixelated" }}
-      onCreated={({ gl }) => { gl.setClearColor(new THREE.Color("#1a1c2c")); }}
+      onCreated={({ gl }) => { gl.setClearColor(new THREE.Color("#c7dafa")); }}
     >
       <Suspense fallback={null}>
         <PatientScene {...props} />

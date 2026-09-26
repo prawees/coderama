@@ -28,10 +28,10 @@ export function PixelPanel({ children, className = "", variant = 'dark', title }
     return <div className={`pixel-frame-paper p-5 ${className}`}>{children}</div>;
   }
   const flat = {
-    dark: "bg-[#0d0b14] text-[#f4f4f4] border-[#333c57]",
-    light: "bg-[#1a1c2c] text-white border-[#566c86]",
+    dark: "bg-[#0b1626] text-[#f4f4f4] border-[#2c4a73]",
+    light: "bg-[#16263f] text-white border-[#6d82a3]",
     alert: "bg-[#ac3232] text-white border-[#5d1a1a]",
-    success: "bg-[#6abe30] text-[#0d0b14] border-[#2e5a12]",
+    success: "bg-[#6abe30] text-[#0b1626] border-[#2e5a12]",
   }[variant];
   return <div className={`border-4 ${flat} p-4 relative pixel-shadow ${className}`}>{children}</div>;
 }

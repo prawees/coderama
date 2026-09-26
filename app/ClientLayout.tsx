@@ -5,6 +5,7 @@ import { StatusBar, Style } from "@capacitor/status-bar";
 import { Capacitor } from "@capacitor/core";
 import { initSync } from "@/lib/syncEngine";
 import { initCloudSync } from "@/lib/cloudSync";
+import { useERStore } from "@/lib/erStore";
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -15,6 +16,9 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
     initSync();
     initCloudSync();
   }, []);
+
+  const language = useERStore((st) => st.language);
+  useEffect(() => { document.documentElement.lang = language; }, [language]);
 
   return <>{children}</>;
 }

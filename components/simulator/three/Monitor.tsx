@@ -92,7 +92,7 @@ export function Monitor({ vitalsRef, pendingRef, elapsedRef, pendingLabel }: Mon
     <group position={[-1.25, 1.05, -1.1]} rotation={[0, 0.55, 0]}>
       <OutlineHull geometry={frameGeom} thickness={0.03} />
       <mesh geometry={frameGeom}>
-        <celShaderMaterial color={new THREE.Color("#94b0c2")} rimIntensity={0} />
+        <celShaderMaterial color={new THREE.Color("#b9c9df")} rimIntensity={0} />
       </mesh>
       <mesh position={[0, 0, 0.065]}>
         <planeGeometry args={[1.44, 0.9]} />
@@ -101,7 +101,7 @@ export function Monitor({ vitalsRef, pendingRef, elapsedRef, pendingLabel }: Mon
       {/* Pole */}
       <mesh position={[0, -0.9, 0]}>
         <cylinderGeometry args={[0.03, 0.03, 1.2, 6]} />
-        <celShaderMaterial color={new THREE.Color("#566c86")} rimIntensity={0} />
+        <celShaderMaterial color={new THREE.Color("#6d82a3")} rimIntensity={0} />
       </mesh>
     </group>
   );

@@ -63,7 +63,7 @@ export function Patient({ pulseRef, joltRef, breathingRateRef, appearance, exami
       {/* Blanket */}
       <OutlineHull geometry={blanketGeom} rotation={[-Math.PI / 2, 0, Math.PI]} position={[0.1, 0.02, 0.3]} scale={bodyScale.map((s) => s * 1.03) as any} />
       <mesh geometry={blanketGeom} rotation={[-Math.PI / 2, 0, Math.PI]} position={[0.1, 0.02, 0.3]} scale={bodyScale}>
-        <celShaderMaterial color={new THREE.Color("#3b5dc9")} rimIntensity={0} />
+        <celShaderMaterial color={new THREE.Color("#3f7fc0")} rimIntensity={0} />
       </mesh>
 
       {/* Hotspots */}

@@ -13,12 +13,12 @@ export function PixelButton({ children, variant = 'primary', size = 'md', classN
   const base = "pixel-btn font-pixel uppercase cursor-pointer select-none inline-flex items-center justify-center gap-2 leading-none";
   const sizes = { sm: "px-3 py-2 text-base", md: "px-4 py-3 text-xl", lg: "px-6 py-4 text-2xl" };
   const variants = {
-    primary: "bg-[#3b5dc9] text-white hover:bg-[#41a6f6]",
-    alert: "bg-[#d95763] text-white hover:bg-[#ef7d57]",
-    success: "bg-[#6abe30] text-[#0d0b14] hover:bg-[#99e550]",
-    gold: "bg-[#d29922] text-[#0d0b14] hover:bg-[#fbf236]",
-    secondary: "bg-[#333c57] text-[#f4f4f4] hover:bg-[#566c86]",
-    wood: "bg-[#8d5524] text-[#ffe9c9] hover:bg-[#c68642]",
+    primary: "bg-[#3f7fc0] text-white hover:bg-[#41a6f6]",
+    alert: "bg-[#dd363d] text-white hover:bg-[#ef5b5f]",
+    success: "bg-[#2f9e8f] text-white hover:bg-[#3dbba8]",
+    gold: "bg-[#d29922] text-[#0b1626] hover:bg-[#ffd866]",
+    secondary: "bg-[#2c4a73] text-[#f4f4f4] hover:bg-[#6d82a3]",
+    wood: "bg-[#f3f6ff] text-[#254671] hover:bg-white",
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {

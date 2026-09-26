@@ -27,6 +27,9 @@ export const MASTER_PALETTE = [
   '#a7f070', '#38b764', '#257179',
   '#3d2210', '#8d5524', '#c68642', '#e0ac69', '#f1c27d', '#ffdbac',
   '#d95763', '#ac3232', '#99e550', '#6abe30', '#d77bba', '#9badb7', '#000000',
+  // Hospital palette sampled from the ER map and tileset art
+  '#0b1626', '#132b43', '#254671', '#3f7fc0', '#71abdb', '#b5e2ff', '#c7dafa', '#eef4ff',
+  '#93dbda', '#2f9e8f', '#dd363d', '#f3ecd2', '#b9c9df', '#6d82a3', '#71b4e8', '#f3f6ff',
 ] as const;
 
 // ─── Skin ramps (human, hue-shifted) ────────────────────────────────────

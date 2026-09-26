@@ -8,422 +8,201 @@ import { PixelButton } from "@/components/ui/PixelButton";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { audio } from "@/lib/audio";
 import { music, TrackId } from "@/lib/music";
-
-import { PixiIntro } from "@/components/game/PixiIntro";
-import { PixiPreview } from "@/components/game/PixiPreview";
+import { AppearancePicker } from "@/components/game/AppearancePicker";
 import { SettingsMenu } from "@/components/game/SettingsMenu";
+import { SpriteWalker } from "@/components/game/SpriteWalker";
+import { tr, Lang } from "@/lib/i18n/dictionary";
 
-type MenuState = 'INTRO' | 'SPLASH' | 'MENU' | 'SETUP' | 'SETTINGS';
+type MenuState = 'INTRO' | 'SPLASH' | 'MENU' | 'SETUP' | 'SETTINGS' | 'ABOUT' | 'CREDITS';
+
+const SCHOOLS: { id: string; en: string; th: string }[] = [
+  { id: 'Rama', en: 'Ramathibodi Hospital', th: 'คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี' },
+  { id: 'Siriraj', en: 'Siriraj Hospital', th: 'คณะแพทยศาสตร์ศิริราชพยาบาล' },
+  { id: 'Chula', en: 'Chulalongkorn University', th: 'คณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย' },
+  { id: 'ChiangMai', en: 'Chiang Mai University', th: 'คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่' },
+  { id: 'KhonKaen', en: 'Khon Kaen University', th: 'คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น' },
+  { id: 'Other', en: 'Other medical school', th: 'สถาบันอื่น' },
+];
 
 export default function RootPage() {
   const router = useRouter();
-  const { setupPlayer, playerName, playerGender, language, xp } = useERStore();
+  const { setupPlayer, language, xp, setLanguage } = useERStore() as any;
 
-  const [menuState, setMenuState] = useState<MenuState | 'ABOUT' | 'CREDITS'>('INTRO');
+  const [menuState, setMenuState] = useState<MenuState>('INTRO');
   const [wizardStep, setWizardStep] = useState(1);
   const [nameInput, setNameInput] = useState("");
-  const [genderInput, setGenderInput] = useState<'M'|'F'|'O'>('M');
+  const [genderInput, setGenderInput] = useState<'M' | 'F' | 'O'>('M');
   const [uniInput, setUniInput] = useState("Rama");
-  const [langInput, setLangInput] = useState<'en' | 'th'>(language);
+  const [langInput, setLangInput] = useState<Lang>(language);
+  const [look, setLook] = useState({ skinRamp: 'skin_light', hairRamp: 'hair_brown', topRamp: 'scrub_navy' });
+  const [nameError, setNameError] = useState(false);
+  const t = (k: string, v?: Record<string, string | number>) => tr(k, langInput, v);
 
-  // Customization State
-  const [skinColor, setSkinColor] = useState("#ffcc99");
-  const [hairColor, setHairColor] = useState("#000000");
-  const [topColor, setTopColor] = useState("#ffffff");
-  const [bottomColor, setBottomColor] = useState("#333333");
-  const [shoeColor, setShoeColor] = useState("#000000");
-  const [hairStyle, setHairStyle] = useState("hair_1");
-  const [topStyle, setTopStyle] = useState("top_1");
-
-  // Auto-transition from Intro to Splash
   useEffect(() => {
-    if (menuState === 'INTRO') {
-      const timer = setTimeout(() => {
-        setMenuState('SPLASH');
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
+    if (menuState !== 'INTRO') return;
+    const timer = setTimeout(() => setMenuState('SPLASH'), 2600);
+    return () => clearTimeout(timer);
   }, [menuState]);
 
+  const pickLang = (l: Lang) => { audio.playClick(); setLangInput(l); useERStore.setState({ language: l }); };
+
   const handleSplashTap = () => {
-    Haptics.impact({ style: ImpactStyle.Light });
+    Haptics.impact({ style: ImpactStyle.Light }).catch(() => {});
     audio.playClick();
-    
-    const tracks: TrackId[] = ['sunrise', 'first_house', 'home', 'wandering', 'deep_mines', 'the_void', 'nightfall'];
+    const tracks: TrackId[] = ['sunrise', 'first_house', 'home', 'wandering'];
     music.playTrack(tracks[Math.floor(Math.random() * tracks.length)]);
-    
     setMenuState('MENU');
   };
 
   const handleNewGame = () => {
-    Haptics.impact({ style: ImpactStyle.Medium });
+    Haptics.impact({ style: ImpactStyle.Medium }).catch(() => {});
     audio.playClick();
-    
-    // Reset stats for New Game
     useERStore.setState({
-      xp: 0,
-      lifetimeXp: 0,
-      currency: 1000,
-      currentDay: 1,
-      activeCases: [],
-      shiftMode: 'off-duty',
-      energy: 100,
-      maxEnergy: 100,
-      inventory: [],
-      equipped: { stethoscope: null, scrubs: null, shoes: null },
-      hospitalUpgrades: [],
-      unlockedSkills: [],
-      activeQuests: [],
-      completedQuests: [],
-      tutorialCompleted: false,
-      friendships: { nurse_ann: 0, dr_bob: 0 }
+      xp: 0, lifetimeXp: 0, currency: 1000, currentDay: 1, activeCases: [], shiftMode: 'off-duty',
+      energy: 100, maxEnergy: 100, inventory: [], equipped: { stethoscope: null, scrubs: null, shoes: null },
+      hospitalUpgrades: [], unlockedSkills: [], activeQuests: [], completedQuests: [], tutorialCompleted: false,
+      friendships: { nurse_ann: 0, dr_grump: 0 }, caseReports: [], consultUsedThisShift: false,
     });
-    
     setWizardStep(1);
     setMenuState('SETUP');
   };
 
   const handleContinue = () => {
-    Haptics.impact({ style: ImpactStyle.Heavy });
-    audio.playClick();
-    audio.stopMenuChiptune();
-    music.stopTrack();
+    Haptics.impact({ style: ImpactStyle.Heavy }).catch(() => {});
+    audio.playClick(); audio.stopMenuChiptune(); music.stopTrack();
     router.push("/hub");
   };
 
-  const handleStart = async () => {
-    await Haptics.impact({ style: ImpactStyle.Heavy });
-    if (!nameInput.trim()) {
-      alert(langInput === "th" ? "กรุณาใส่ชื่อของคุณ!" : "Please enter your name!");
-      return;
-    }
-    
-    audio.stopMenuChiptune();
-    music.stopTrack();
-    setupPlayer(nameInput.trim() || (langInput === 'th' ? 'สมชาย' : 'John Doe'), genderInput, langInput, {
-      skinColor,
-      hairColor,
-      topColor,
-      bottomColor,
-      shoeColor,
-      hairStyle,
-      topStyle
+  const handleStart = () => {
+    if (!nameInput.trim()) { setNameError(true); setWizardStep(1); return; }
+    Haptics.impact({ style: ImpactStyle.Heavy }).catch(() => {});
+    audio.stopMenuChiptune(); music.stopTrack();
+    setupPlayer(nameInput.trim(), genderInput, langInput, {
+      ...look, bottomRamp: 'pants_charcoal', shoeRamp: 'shoes_black', hairStyle: 'short', topStyle: 'scrubs',
     }, uniInput);
-    audio.playShiftStart(); // A little dramatic sound for starting
+    audio.playShiftStart();
     router.push("/hub");
   };
+
+  const Choice = ({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) => (
+    <button onClick={() => { audio.playClick(); onClick(); }}
+      className={`flex-1 py-2 px-3 text-xl border-4 ${active ? 'border-[#ffd866] bg-[#3f7fc0] text-white' : 'border-[#0b1626] bg-[#16263f] text-[#a9bfd9] hover:text-white'}`}>
+      {children}
+    </button>
+  );
 
   return (
-    <div className="min-h-screen bg-black text-pixel-text font-pixel flex flex-col items-center justify-center p-4 relative overflow-hidden select-none">
-      
-      {/* PixiJS Background and Animated Characters */}
-      <PixiIntro hue={0} showCharacter={menuState === 'SETUP'} />
-      
-      {/* Intro Overlay */}
+    <div className="absolute inset-0 bg-[#16263f] font-pixel text-white overflow-hidden select-none">
+      {/* Floor-tile dither backdrop */}
+      <div className="absolute inset-0 opacity-40 dither-light" />
+
       {menuState === 'INTRO' && (
-        <div 
-          className="absolute inset-0 z-50 flex items-center justify-center bg-black cursor-pointer"
-          onClick={() => setMenuState('SPLASH')}
-        >
-          <div className="text-center animate-pulse flex flex-col gap-2">
-            <h2 className="text-gray-300 text-xl tracking-[0.4em] mb-4 font-bold">A GAME BY RAMA G7 CLUB</h2>
-            
-            <h1 className="text-white text-5xl tracking-widest font-bold drop-shadow-[0_0_15px_rgba(255,255,255,0.8)] mt-4">CODE RAMA</h1>
-            
-            <div className="mt-8 flex flex-col gap-1 text-gray-500 text-sm tracking-widest">
-              <p>DEVELOPED BY PRAWEES</p>
-              <p>CONCEPT BY PORAMES</p>
-            </div>
-          </div>
+        <div className="absolute inset-0 z-50 bg-[#0b1626] flex flex-col items-center justify-center gap-3 cursor-pointer" onClick={() => setMenuState('SPLASH')}>
+          <p className="text-xl tracking-[0.4em] text-[#a9bfd9]">{t('title.presents')}</p>
+          <p className="font-heading text-2xl text-white mt-3">CODE RAMA</p>
+          <p className="text-lg text-[#6d82a3] mt-6">{t('title.credit_dev')}</p>
+          <p className="text-lg text-[#6d82a3]">{t('title.credit_concept')}</p>
         </div>
       )}
 
-      <div className="w-full max-w-md z-10 flex flex-col items-center justify-center min-h-screen py-4">
-        
-        {/* Title Logo */}
-        <div className={`transition-all duration-700 ease-in-out flex flex-col items-center ${
-          menuState === 'SPLASH' ? 'scale-100 mb-12 opacity-100' : 
-          menuState === 'SETUP' ? 'scale-0 h-0 opacity-0 mb-0 pointer-events-none' : 
-          'scale-75 mb-4 opacity-100'
-        }`}>
-          <img src="/assets/logo_new.jpg" alt="CODE RAMA" className="w-64 md:w-80 rounded-xl shadow-[0_0_20px_rgba(88,166,255,0.4)]" />
-        </div>
+      {/* Left: the isometric ward */}
+      <div className="absolute left-0 top-0 bottom-0 w-[58%] flex items-center justify-center p-6">
+        <img src="/assets/ui/ward_iso.png" alt="" className="max-w-full max-h-full" style={{ imageRendering: 'pixelated' }} />
+        {(menuState === 'MENU' || menuState === 'SPLASH') && (
+          <div className="absolute bottom-[9%] left-[46%] flex items-end gap-2 pointer-events-none">
+            <SpriteWalker sheet="doctor" dir="down" walking={false} scale={1.5} />
+            <SpriteWalker sheet="nurse" dir="left" walking fps={4} scale={1.5} />
+          </div>
+        )}
+      </div>
+
+      {/* Right: logo and menus */}
+      <div className="absolute right-0 top-0 bottom-0 w-[42%] flex flex-col items-center justify-center gap-3 p-6">
+        {menuState !== 'SETUP' && (
+          <img src="/assets/ui/logo.png" alt="CODE RAMA" className="w-[48%] max-w-[260px]" style={{ imageRendering: 'pixelated' }} />
+        )}
 
         {menuState === 'SPLASH' && (
-          <div 
-            className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-32 cursor-pointer"
-            onClick={handleSplashTap}
-          >
-            <p className="text-2xl text-yellow-400 animate-pulse drop-shadow-md">
-              TAP TO START
-            </p>
-          </div>
+          <button onClick={handleSplashTap} className="mt-4 text-3xl text-[#ffd866] blink">{t('title.press_start')}</button>
         )}
 
         {menuState === 'MENU' && (
-          <div className="w-full space-y-3 animate-slide-up flex flex-col items-center">
-            {xp > 0 && (
-              <PixelButton onClick={handleContinue} variant="primary" className="w-64 py-2 text-2xl shadow-[0_0_15px_rgba(46,160,67,0.5)]">
-                CONTINUE
-              </PixelButton>
-            )}
-            <PixelButton onClick={handleNewGame} variant={xp > 0 ? "secondary" : "primary"} className="w-64 py-2 text-xl">
-              NEW GAME
-            </PixelButton>
-            <PixelButton onClick={() => setMenuState('SETTINGS')} variant="secondary" className="w-64 py-2 text-lg text-gray-400">
-              SETTINGS
-            </PixelButton>
-            <div className="flex gap-4">
-              <PixelButton onClick={() => setMenuState('ABOUT')} variant="secondary" className="w-30 py-2 text-sm text-gray-500">
-                ABOUT
-              </PixelButton>
-              <PixelButton onClick={() => setMenuState('CREDITS')} variant="secondary" className="w-30 py-2 text-sm text-gray-500">
-                CREDITS
-              </PixelButton>
+          <div className="flex flex-col items-stretch gap-2 w-[70%] max-w-[320px]">
+            {xp > 0 && <PixelButton variant="success" onClick={handleContinue}>{t('title.continue')}</PixelButton>}
+            <PixelButton variant={xp > 0 ? 'secondary' : 'success'} onClick={handleNewGame}>{t('title.new_game')}</PixelButton>
+            <PixelButton variant="primary" onClick={() => router.push('/cases')}>{t('nav.cases')}</PixelButton>
+            <PixelButton variant="secondary" onClick={() => setMenuState('SETTINGS')}>{t('nav.settings')}</PixelButton>
+            <div className="flex gap-2">
+              <PixelButton size="sm" variant="secondary" className="flex-1" onClick={() => setMenuState('ABOUT')}>{t('title.about')}</PixelButton>
+              <PixelButton size="sm" variant="secondary" className="flex-1" onClick={() => setMenuState('CREDITS')}>{t('title.credits')}</PixelButton>
+            </div>
+            <div className="flex gap-2 mt-1">
+              <Choice active={langInput === 'en'} onClick={() => pickLang('en')}>English</Choice>
+              <Choice active={langInput === 'th'} onClick={() => pickLang('th')}>ไทย</Choice>
             </div>
           </div>
         )}
 
-        {menuState === 'ABOUT' && (
-          <PixelPanel variant="dark" className="w-full space-y-6 animate-slide-up">
-            <h2 className="text-center text-xl text-yellow-400">ABOUT</h2>
-            <p className="text-gray-300 text-sm leading-relaxed text-center">
-              CODE RAMA is a hospital simulator set across different eras.
-              Manage your shift, treat patients, and navigate the brutal realities of medical ethics.
-            </p>
-            <PixelButton onClick={() => setMenuState('MENU')} variant="secondary" className="w-full mt-4">
-              BACK
-            </PixelButton>
-          </PixelPanel>
-        )}
-
-        {menuState === 'CREDITS' && (
-          <PixelPanel variant="dark" className="w-full space-y-6 animate-slide-up">
-            <h2 className="text-center text-xl text-yellow-400">CREDITS</h2>
-            <div className="text-gray-300 text-sm leading-relaxed text-center space-y-2">
-              <p>Designed and Built with passion.</p>
-              <p>Engine: Next.js + React</p>
-              <p>Special Thanks: The Medical Community</p>
-            </div>
-            <PixelButton onClick={() => setMenuState('MENU')} variant="secondary" className="w-full mt-4">
-              BACK
-            </PixelButton>
+        {(menuState === 'ABOUT' || menuState === 'CREDITS') && (
+          <PixelPanel variant="wood" title={menuState === 'ABOUT' ? t('title.about') : t('title.credits')} className="w-[86%]">
+            <p className="text-xl leading-snug whitespace-pre-line">{menuState === 'ABOUT' ? t('title.about_body') : t('title.credits_body')}</p>
+            <PixelButton size="sm" variant="secondary" className="mt-3" onClick={() => setMenuState('MENU')}>{t('nav.back')}</PixelButton>
           </PixelPanel>
         )}
 
         <SettingsMenu isOpen={menuState === 'SETTINGS'} onClose={() => setMenuState('MENU')} />
 
-        {menuState === 'SETUP' && (
-          <PixelPanel variant="dark" className="w-full max-h-[90vh] space-y-3 animate-slide-up shadow-2xl relative z-10 pb-4">
-            
-            {/* Step 1: Introduction and Name */}
-            {wizardStep === 1 && (
-              <div className="space-y-4 flex flex-col items-center">
-                <div className="w-24 h-24 bg-gray-900 border-4 border-[#1f6feb] rounded-xl overflow-hidden relative mb-2">
-                  <img 
-                    src="/assets/doctor_sprite.png" 
-                    alt="Prof. Somchai" 
-                    className="absolute max-w-none pixelated" 
-                    style={{ 
-                      width: "300%", height: "400%", left: "-100%", top: "0%" 
-                    }} 
-                  />
-                </div>
-                <div className="bg-black/80 border-4 border-[#30363d] rounded-xl p-4 w-full">
-                  <p className="text-[#58a6ff] text-lg font-bold mb-2">Prof. Somchai</p>
-                  <p className="text-white text-lg">
-                    {langInput === "th" ? "นศพ...ชื่ออะไรจ้ะ ?" : "Medical Student... what is your name?"}
-                  </p>
-                </div>
-                
-                <div className="w-full space-y-2">
-                  <div className="flex items-center gap-2 bg-black border-4 border-[#30363d] rounded p-3 focus-within:border-[#58a6ff] transition-colors shadow-inner text-white font-pixel">
-                     <span>{langInput === "th" ? "นศพ." : "MS."}</span>
-                     <input 
-                       type="text" 
-                       className="flex-1 bg-transparent border-none outline-none text-center"
-                       placeholder={langInput === "th" ? "สมชาย" : "John Doe"}
-                       value={nameInput}
-                       onChange={(e) => setNameInput(e.target.value)}
-                       maxLength={15}
-                     />
-                     <span>{langInput === "th" ? "ปี 5" : "Yr 5"}</span>
-                  </div>
-                </div>
+      </div>
 
-                <div className="pt-4 flex gap-4 w-full">
-                  <PixelButton onClick={() => setMenuState('MENU')} variant="secondary" className="w-1/3">
-                    BACK
-                  </PixelButton>
-                  <PixelButton onClick={() => setWizardStep(2)} variant="primary" className="flex-1 text-xl shadow-[0_0_15px_rgba(88,166,255,0.6)]">
-                    NEXT
-                  </PixelButton>
+      {/* Setup wizard */}
+      {menuState === 'SETUP' && (
+        <div className="absolute inset-0 z-20 bg-[#0b1626]/80 flex items-center justify-center p-8">
+          <PixelPanel variant="wood" title={t('title.setup_step', { n: wizardStep })} className="w-[880px] max-w-full">
+            {wizardStep === 1 && (
+              <div className="flex gap-5 items-center">
+                <div className="shrink-0 bg-[#c7dafa] border-4 border-[#0b1626] p-2"><SpriteWalker sheet="doctor" dir="down" walking={false} /></div>
+                <div className="flex-1 space-y-3">
+                  <div className="inline-block px-2 bg-[#f3f6ff] border-2 border-[#0b1626] text-[#254671] text-lg">Prof. Somchai</div>
+                  <p className="text-2xl leading-snug">{t('title.ask_name')}</p>
+                  <div className={`flex items-center gap-2 bg-[#0b1626] border-4 ${nameError ? 'border-[#dd363d]' : 'border-[#2c4a73]'} px-3 py-2 text-2xl`}>
+                    <span className="text-[#a9bfd9]">{t('title.ms_prefix')}</span>
+                    <input autoFocus value={nameInput} maxLength={18} onChange={(e) => { setNameInput(e.target.value); setNameError(false); }}
+                      onKeyDown={(e) => e.key === 'Enter' && nameInput.trim() && setWizardStep(2)}
+                      placeholder={t('title.name_placeholder')} className="flex-1 bg-transparent outline-none select-text text-white" />
+                  </div>
+                  {nameError && <p className="text-lg text-[#ef5b5f]">{t('title.name_required')}</p>}
                 </div>
               </div>
             )}
-            
-            {/* Step 2: Basic Info */}
             {wizardStep === 2 && (
               <div className="space-y-4">
-                <div className="space-y-2">
-                  <label className="text-pixel-accent uppercase text-sm">
-                    {langInput === "th" ? "เพศ" : "Gender"}
-                  </label>
+                <div>
+                  <div className="text-lg text-[#b5e2ff] mb-1">{t('title.gender')}</div>
                   <div className="flex gap-2">
-                    {(['M', 'F', 'O'] as const).map(g => (
-                      <button
-                        key={g}
-                        onClick={() => { audio.playClick(); setGenderInput(g); }}
-                        className={`flex-1 py-2 text-center border-4 font-bold transition-all ${
-                          genderInput === g 
-                            ? 'bg-[#1f6feb] border-[#58a6ff] text-white shadow-[0_0_10px_rgba(88,166,255,0.5)]' 
-                            : 'bg-[#21262d] border-[#30363d] text-gray-400'
-                        }`}
-                      >
-                        {g === 'M' ? (langInput === 'th' ? 'ชาย' : 'Male') : 
-                         g === 'F' ? (langInput === 'th' ? 'หญิง' : 'Female') : 
-                         (langInput === 'th' ? 'อื่นๆ' : 'Other')}
-                      </button>
-                    ))}
+                    <Choice active={genderInput === 'M'} onClick={() => setGenderInput('M')}>{t('title.male')}</Choice>
+                    <Choice active={genderInput === 'F'} onClick={() => setGenderInput('F')}>{t('title.female')}</Choice>
+                    <Choice active={genderInput === 'O'} onClick={() => setGenderInput('O')}>{t('title.other')}</Choice>
                   </div>
                 </div>
-
-                <div className="space-y-2">
-                  <label className="text-pixel-accent uppercase text-sm">
-                    {langInput === "th" ? "สถาบันการศึกษา" : "University / Medical School"}
-                  </label>
-                  <select 
-                    className="w-full bg-black border-4 border-[#30363d] rounded p-3 text-white font-pixel outline-none focus:border-[#58a6ff] transition-colors shadow-inner"
-                    value={uniInput}
-                    onChange={(e) => { audio.playClick(); setUniInput(e.target.value); }}
-                  >
-                    <option value="Rama">Ramathibodi Hospital (Rama)</option>
-                    <option value="Siriraj">Siriraj Hospital</option>
-                    <option value="Chula">Chulalongkorn University</option>
-                    <option value="ChiangMai">Chiang Mai University (CMU)</option>
-                    <option value="KhonKaen">Khon Kaen University (KKU)</option>
-                    <option value="Other">Other / General</option>
-                  </select>
-                </div>
-                
-                <div className="pt-4 flex gap-4 w-full">
-                  <PixelButton onClick={() => setWizardStep(1)} variant="secondary" className="w-1/3">
-                    BACK
-                  </PixelButton>
-                  <PixelButton onClick={() => setWizardStep(3)} variant="primary" className="flex-1 text-xl shadow-[0_0_15px_rgba(88,166,255,0.6)]">
-                    NEXT
-                  </PixelButton>
+                <div>
+                  <div className="text-lg text-[#b5e2ff] mb-1">{t('title.school')}</div>
+                  <div className="grid grid-cols-2 gap-2">
+                    {SCHOOLS.map((s) => <Choice key={s.id} active={uniInput === s.id} onClick={() => setUniInput(s.id)}>{s[langInput]}</Choice>)}
+                  </div>
                 </div>
               </div>
             )}
+            {wizardStep === 3 && <AppearancePicker value={look} onChange={(v) => setLook(v as typeof look)} />}
 
-            {/* Step 3: Customization */}
-            {wizardStep === 3 && (
-              <div className="space-y-2">
-                <label className="text-pixel-accent uppercase text-sm">
-                  {langInput === "th" ? "ปรับแต่งตัวละคร" : "Character Customization"}
-                </label>
-                
-                <div className="flex flex-col md:flex-row gap-4 items-start bg-black/40 p-3 rounded-lg border-2 border-[#30363d]">
-                  
-                  {/* Left Side: Preview */}
-                  <div className="flex flex-col items-center gap-2 w-full md:w-1/3">
-                    <div className="w-24 h-24 rounded-md border-4 border-[#30363d] bg-black/80 flex items-center justify-center relative shadow-inner overflow-hidden">
-                       <PixiPreview 
-                         skinColor={skinColor}
-                         hairColor={hairColor}
-                         topColor={topColor}
-                         bottomColor={bottomColor}
-                         shoeColor={shoeColor}
-                         hairStyle={hairStyle}
-                         topStyle={topStyle}
-                       />
-                       <div className="absolute inset-0 z-10 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] rounded-sm pointer-events-none" />
-                    </div>
-                    <span className="text-xs text-gray-500 text-center uppercase tracking-widest mt-2">
-                      {langInput === "th" ? "ตัวอย่าง" : "PREVIEW"}
-                    </span>
-                  </div>
-
-                  {/* Right Side: Options */}
-                  <div className="flex flex-col gap-2 w-full md:w-2/3">
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="flex flex-col gap-1">
-                        <label className="text-xs text-gray-400">{langInput === "th" ? "สีผิว" : "Skin"}</label>
-                        <input type="color" value={skinColor} onChange={(e) => setSkinColor(e.target.value)} className="w-full h-6 cursor-pointer rounded border-0" />
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <label className="text-xs text-gray-400">{langInput === "th" ? "สีผม" : "Hair"}</label>
-                        <input type="color" value={hairColor} onChange={(e) => setHairColor(e.target.value)} className="w-full h-6 cursor-pointer rounded border-0" />
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <label className="text-xs text-gray-400">{langInput === "th" ? "เสื้อ" : "Shirt"}</label>
-                        <input type="color" value={topColor} onChange={(e) => setTopColor(e.target.value)} className="w-full h-6 cursor-pointer rounded border-0" />
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <label className="text-xs text-gray-400">{langInput === "th" ? "กางเกง" : "Pants"}</label>
-                        <input type="color" value={bottomColor} onChange={(e) => setBottomColor(e.target.value)} className="w-full h-6 cursor-pointer rounded border-0" />
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <label className="text-xs text-gray-400">{langInput === "th" ? "รองเท้า" : "Shoes"}</label>
-                        <input type="color" value={shoeColor} onChange={(e) => setShoeColor(e.target.value)} className="w-full h-6 cursor-pointer rounded border-0" />
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-1 mt-1">
-                      <label className="text-xs text-gray-400">{langInput === "th" ? "ทรงผม" : "Hair Style"}</label>
-                      <select 
-                        value={hairStyle} 
-                        onChange={(e) => setHairStyle(e.target.value)}
-                        className="w-full bg-black border-2 border-[#30363d] rounded p-1 text-white text-sm outline-none focus:border-[#58a6ff]"
-                      >
-                        <option value="hair_1">{langInput === "th" ? "ผมสั้น" : "Short Hair"}</option>
-                        <option value="hair_2">{langInput === "th" ? "ผมยาว" : "Long Hair"}</option>
-                      </select>
-                    </div>
-
-                    <div className="flex flex-col gap-1 mt-1">
-                      <label className="text-xs text-gray-400">{langInput === "th" ? "ชุดประจำตำแหน่ง" : "Uniform"}</label>
-                      <select 
-                        value={topStyle} 
-                        onChange={(e) => setTopStyle(e.target.value)}
-                        className="w-full bg-black border-2 border-[#30363d] rounded p-1 text-white text-sm outline-none focus:border-[#58a6ff]"
-                      >
-                        <option value="top_1">{langInput === "th" ? "ชุดนักศึกษาแพทย์" : "Medical Student Uniform"}</option>
-                        <option value="top_2">{langInput === "th" ? "ชุดสครับ" : "Scrubs"}</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-2 mt-4">
-                  <label className="text-pixel-accent uppercase text-sm">
-                    Language / ภาษา
-                  </label>
-                  <div className="flex gap-2">
-                    <button onClick={() => { audio.playClick(); setLangInput('en'); }} className={`flex-1 py-3 text-center border-4 font-bold transition-all ${langInput === 'en' ? 'bg-[#2ea043] border-[#3fb950] text-white shadow-[0_0_10px_rgba(63,185,80,0.5)]' : 'bg-[#21262d] border-[#30363d] text-gray-400'}`}>
-                      English
-                    </button>
-                    <button onClick={() => { audio.playClick(); setLangInput('th'); }} className={`flex-1 py-3 text-center border-4 font-bold transition-all ${langInput === 'th' ? 'bg-[#2ea043] border-[#3fb950] text-white shadow-[0_0_10px_rgba(63,185,80,0.5)]' : 'bg-[#21262d] border-[#30363d] text-gray-400'}`}>
-                      ไทย
-                    </button>
-                  </div>
-                </div>
-
-                <div className="pt-4 flex gap-4">
-                  <PixelButton onClick={() => setWizardStep(2)} variant="secondary" className="w-1/3">
-                    BACK
-                  </PixelButton>
-                  <PixelButton onClick={handleStart} variant="primary" className="flex-1 text-xl shadow-[0_0_15px_rgba(88,166,255,0.6)]">
-                    {langInput === "th" ? "เริ่มเกม" : "START"}
-                  </PixelButton>
-                </div>
-              </div>
-            )}
+            <div className="flex justify-between mt-5">
+              <PixelButton variant="secondary" onClick={() => (wizardStep === 1 ? setMenuState('MENU') : setWizardStep(wizardStep - 1))}>{t('nav.back')}</PixelButton>
+              {wizardStep < 3
+                ? <PixelButton variant="primary" onClick={() => { if (wizardStep === 1 && !nameInput.trim()) { setNameError(true); return; } setWizardStep(wizardStep + 1); }}>{t('title.next')}</PixelButton>
+                : <PixelButton variant="success" size="lg" onClick={handleStart}>{t('title.begin')}</PixelButton>}
+            </div>
           </PixelPanel>
-        )}
-        
-      </div>
+        </div>
+      )}
     </div>
   );
 }

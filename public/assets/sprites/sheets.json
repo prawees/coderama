@@ -1,0 +1,98 @@
+{
+  "doctor": {
+    "frameW": 64,
+    "frameH": 112,
+    "cols": 5,
+    "rows": [
+      "down",
+      "left",
+      "right",
+      "up"
+    ]
+  },
+  "nurse": {
+    "frameW": 64,
+    "frameH": 112,
+    "cols": 3,
+    "rows": [
+      "down",
+      "left",
+      "right",
+      "up"
+    ]
+  },
+  "walk": {
+    "doctor": {
+      "down": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "left": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "right": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "up": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "nurse": {
+      "down": [
+        0,
+        1,
+        2
+      ],
+      "left": [
+        0,
+        1,
+        2
+      ],
+      "right": [
+        0,
+        1,
+        2
+      ],
+      "up": [
+        0,
+        2
+      ]
+    }
+  },
+  "idle": {
+    "doctor": 2,
+    "nurse": 0
+  },
+  "props": [
+    "bedside_table",
+    "bin_biohazard",
+    "bin_recycle",
+    "blanket_blue",
+    "chairs_blue",
+    "crash_cart",
+    "door_emergency",
+    "floor_tile",
+    "iv_pole",
+    "monitor_cart",
+    "sanitizer",
+    "supply_cart",
+    "vitals_monitor_cart",
+    "wall_window",
+    "water_cooler"
+  ]
+}
