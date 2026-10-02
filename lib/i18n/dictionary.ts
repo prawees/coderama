@@ -463,6 +463,7 @@ export const DICTIONARY = {
   'skill.SPEED_READER_desc': { en: '+10% cash from every case.', th: 'ได้เงินเพิ่ม 10% ทุกเคส' },
   'skill.unlock': { en: 'UNLOCK ({n} XP)', th: 'ปลดล็อก ({n} XP)' },
   'skill.need': { en: 'NEED {n} XP', th: 'ต้องมี {n} XP' },
+  'cx.no_questions': { en: 'No questions asked yet.', th: 'ยังไม่ได้ถามคำถาม' },
 } satisfies Record<string, Entry>;
 
 export type DictKey = keyof typeof DICTIONARY;

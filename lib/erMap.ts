@@ -40,11 +40,12 @@ export const BLOCKED: Rect[] = [
   R(0, 565, 205, 38), R(310, 565, 405, 38), R(820, 565, 204, 38),
   // ER bay: walls, nurses' station, carts, curtain poles
   R(0, 600, 205, 145), R(310, 600, 405, 118), R(820, 600, 204, 145),
-  R(405, 715, 262, 88),
+  R(405, 715, 262, 82),
   R(28, 712, 72, 110), R(940, 712, 58, 110), R(102, 722, 52, 68),
-  R(320, 680, 20, 330), R(686, 680, 20, 330),
+  // Privacy-curtain rails: only the top section is solid, the curtains below are drawn open.
+  R(320, 680, 20, 90), R(686, 680, 20, 90),
   // ER bay beds, bedside tables, IV poles
-  R(105, 822, 97, 188), R(462, 822, 97, 188), R(822, 822, 97, 188),
+  R(105, 832, 97, 178), R(462, 832, 97, 178), R(822, 832, 97, 178),
   R(28, 935, 70, 75), R(355, 935, 72, 75), R(925, 935, 72, 75),
   R(205, 888, 48, 122), R(560, 888, 48, 80), R(770, 890, 52, 120),
 ];
@@ -61,8 +62,8 @@ export const INTERACTABLES: Interactable[] = [
 
 /** Straight-line patrol routes (checked against BLOCKED at runtime). */
 export const NPC_ROUTES: Record<'nurse_ann' | 'grump_npc', { x: number; y: number }[]> = {
-  nurse_ann: [{ x: 760, y: 790 }, { x: 760, y: 520 }, { x: 900, y: 520 }, { x: 760, y: 520 }, { x: 760, y: 790 }, { x: 700, y: 835 }],
-  grump_npc: [{ x: 250, y: 520 }, { x: 120, y: 520 }, { x: 250, y: 520 }, { x: 250, y: 790 }, { x: 380, y: 520 }],
+  nurse_ann: [{ x: 760, y: 532 }, { x: 900, y: 532 }, { x: 760, y: 532 }, { x: 760, y: 826 }, { x: 640, y: 826 }, { x: 760, y: 826 }],
+  grump_npc: [{ x: 250, y: 532 }, { x: 120, y: 532 }, { x: 250, y: 532 }, { x: 250, y: 790 }, { x: 250, y: 532 }, { x: 400, y: 532 }],
 };
 
 export const FEET = { w: 30, h: 14 };

@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { EXAM_ITEMS, EXAM_GROUPS, ExamGroup, BodyRegion, REGION_LABEL, HISTORY_HEADINGS, ACTION_CATEGORIES, ActionCategory, CatalogAction } from "@/lib/clinical/catalog";
 import type { ClinicalCase, CaseInvestigation, Lang } from "@/lib/clinical/model";
 import { simClock, SimState, SimAction, Order } from "@/lib/clinical/engine";
@@ -74,9 +75,9 @@ export function HistoryPanel({ c, sim, dispatch }: { c: ClinicalCase; sim: SimSt
   sim.asked.forEach((id) => c.history.find((h) => h.id === id)?.unlocks.forEach((u) => unlocked.add(u)));
   const asked = sim.asked.map((id) => c.history.find((h) => h.id === id)!).filter(Boolean).reverse();
   return (
-    <div className="grid grid-cols-2 gap-4 h-full min-h-0">
-      <div className="overflow-y-auto pr-1 space-y-2">
-        <p className="text-base text-pixel-text-muted">{t('cx.history_hint')}</p>
+    <div className="grid grid-cols-2 gap-6 h-full min-h-0 px-2">
+      <div className="overflow-y-auto pr-4 space-y-4 custom-scrollbar">
+        <p className="text-base text-pixel-text-muted pb-2 border-b-2 border-pixel-ink">{t('cx.history_hint')}</p>
         {HISTORY_HEADINGS.map((h) => {
           const qs = c.history.filter((q) => q.category === h.id && unlocked.has(q.id));
           if (!qs.length) return null;
@@ -84,24 +85,29 @@ export function HistoryPanel({ c, sim, dispatch }: { c: ClinicalCase; sim: SimSt
             <div key={h.id}>
               <H3>{h[lang]}</H3>
               {qs.map((q) => (
-                <button key={q.id} disabled={sim.asked.includes(q.id)} onClick={() => dispatch({ type: 'ask', id: q.id })}
-                  className={`w-full text-left px-3 py-1 mb-1 text-lg border-4 ${sim.asked.includes(q.id) ? 'border-[#2c4a73] text-[#6d82a3]' : 'border-[#3f7fc0] bg-[#16263f] hover:bg-[#1e3a66]'}`}>
-                  {sim.asked.includes(q.id) ? '✓ ' : '? '}{qText(q.q, lang)}
-                </button>
+                <motion.button layout key={q.id} disabled={sim.asked.includes(q.id)} onClick={() => dispatch({ type: 'ask', id: q.id })}
+                  whileHover={sim.asked.includes(q.id) ? {} : { scale: 1.01 }} whileTap={sim.asked.includes(q.id) ? {} : { scale: 0.98 }}
+                  className={`w-full text-left px-4 py-2 mb-2 text-lg border-4 shadow-sm transition-colors ${sim.asked.includes(q.id) ? 'border-[#2c4a73] bg-[#0b1626] text-[#6d82a3] opacity-60' : 'border-[#3f7fc0] bg-[#16263f] text-[#f4f4f4] hover:bg-[#1e3a66] hover:border-[#41a6f6]'}`}>
+                  {sim.asked.includes(q.id) ? '✓ ' : '▸ '}{qText(q.q, lang)}
+                </motion.button>
               ))}
             </div>
           );
         })}
       </div>
-      <div className="overflow-y-auto pr-1 space-y-2">
+      <div className="overflow-y-auto pr-4 space-y-3 custom-scrollbar border-l-4 border-pixel-ink pl-6">
         <H3>{t('cx.transcript')}</H3>
-        {asked.length === 0 && <p className="text-lg text-pixel-text-muted">...</p>}
-        {asked.map((q) => (
-          <Row key={q.id}>
+        {asked.length === 0 && <p className="text-lg text-[#6d82a3]">{t('cx.no_questions')}</p>}
+        <AnimatePresence initial={false}>
+          {asked.map((q) => (
+            <motion.div key={q.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} layout>
+              <Row className="mb-2">
             <div className="text-base text-[#b5e2ff]">{t('cx.doctor')}: {qText(q.q, lang)}</div>
             <div className="text-lg text-[#ffe9c9] leading-snug">{t('cx.patient')}: {q.answer}</div>
-          </Row>
-        ))}
+              </Row>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );
@@ -115,42 +121,49 @@ export function ExamPanel({ c, sim, dispatch, region, clearRegion }: { c: Clinic
   const findings = sim.events.filter((e) => e.kind === 'exam').slice().reverse();
   const doneGroup = (g: ExamGroup) => sim.examined.some((id) => EXAM_ITEMS.find((i) => i.id === id)?.group === g);
   return (
-    <div className="grid grid-cols-2 gap-4 h-full min-h-0">
-      <div className="flex flex-col min-h-0">
-        <div className="flex flex-wrap gap-1 mb-2">
+    <div className="grid grid-cols-2 gap-6 h-full min-h-0 px-2">
+      <div className="flex flex-col min-h-0 pr-4">
+        <div className="flex flex-wrap gap-2 mb-3 pb-2 border-b-2 border-pixel-ink">
           {EXAM_GROUPS.map((g) => (
-            <button key={g.id} onClick={() => { clearRegion(); setGroup(g.id); }}
-              className={`px-2 py-1 text-lg border-4 ${!region && group === g.id ? 'border-[#ffd866] bg-[#1e3a66] text-white' : 'border-[#2c4a73] bg-pixel-ink text-pixel-text-muted hover:text-white'}`}
+            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} key={g.id} onClick={() => { clearRegion(); setGroup(g.id); }}
+              className={`px-3 py-2 text-lg border-4 shadow-sm ${!region && group === g.id ? 'border-[#ffd866] bg-[#1e3a66] text-white' : 'border-[#2c4a73] bg-pixel-ink text-[#a9bfd9] hover:bg-[#16263f] hover:text-white'}`}
               title={g[lang]}>
-              {doneGroup(g.id) ? '✓' : ''}{g.id === 'SEC' ? (lang === 'th' ? 'ละเอียด' : '2°') : g.id}
-            </button>
+              {doneGroup(g.id) ? '✓ ' : ''}{g.id === 'SEC' ? (lang === 'th' ? 'ละเอียด' : '2°') : g.id}
+            </motion.button>
           ))}
         </div>
-        <div className="text-base text-[#ffd866] mb-1">
-          {region ? <>{t('cx.region_filter', { region: REGION_LABEL[region][lang] })} <button className="underline text-[#b5e2ff] ml-2" onClick={clearRegion}>{t('cx.clear')}</button></> : EXAM_GROUPS.find((g) => g.id === group)?.[lang]}
+        <div className="text-lg text-[#ffd866] mb-3">
+          {region ? <>{t('cx.region_filter', { region: REGION_LABEL[region][lang] })} <button className="underline text-[#b5e2ff] ml-3 hover:text-white" onClick={clearRegion}>{t('cx.clear')}</button></> : EXAM_GROUPS.find((g) => g.id === group)?.[lang]}
         </div>
-        <div className="overflow-y-auto pr-1 space-y-1">
-          {items.map((i) => {
-            const done = sim.examined.includes(i.id);
-            return (
-              <button key={i.id} onClick={() => dispatch({ type: 'exam', id: i.id })}
-                className={`w-full text-left px-3 py-1 text-lg border-4 flex justify-between gap-2 ${done ? 'border-[#38b764] bg-[#10301c]' : 'border-[#3f7fc0] bg-[#16263f] hover:bg-[#1e3a66]'}`}>
-                <span>{done ? '✓ ' : ''}{i[lang]}</span>
-                {region && <span className="text-sm text-[#6d82a3] shrink-0">{i.group === 'SEC' ? '2°' : i.group}</span>}
-              </button>
-            );
-          })}
+        <div className="overflow-y-auto pr-2 space-y-2 custom-scrollbar">
+          <AnimatePresence mode="popLayout">
+            {items.map((i) => {
+              const done = sim.examined.includes(i.id);
+              return (
+                <motion.button layout initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} key={i.id} onClick={() => dispatch({ type: 'exam', id: i.id })}
+                  whileHover={done ? {} : { scale: 1.02 }} whileTap={done ? {} : { scale: 0.98 }}
+                  className={`w-full text-left px-4 py-2 text-lg border-4 flex justify-between items-center gap-2 transition-colors ${done ? 'border-[#38b764] bg-[#10301c] text-[#99e550] opacity-80' : 'border-[#3f7fc0] bg-[#16263f] hover:bg-[#1e3a66] hover:border-[#41a6f6]'}`}>
+                  <span>{done ? '✓ ' : '▸ '}{i[lang]}</span>
+                  {region && <span className="text-sm px-2 py-1 bg-pixel-ink border-2 border-[#2c4a73] shrink-0">{i.group === 'SEC' ? '2°' : i.group}</span>}
+                </motion.button>
+              );
+            })}
+          </AnimatePresence>
         </div>
       </div>
-      <div className="overflow-y-auto pr-1 space-y-2">
+      <div className="overflow-y-auto pr-4 space-y-3 custom-scrollbar border-l-4 border-pixel-ink pl-6">
         <H3>{t('cx.findings')}</H3>
-        {findings.length === 0 && <p className="text-lg text-pixel-text-muted">{t('cx.no_findings')}</p>}
-        {findings.map((f, i) => (
-          <Row key={i} tone={f.tone === 'warn' ? 'warn' : 'info'}>
-            <div className="text-base text-[#b5e2ff]">T+{simClock(f.t)} · {f.text}</div>
-            <div className="text-lg leading-snug">{f.detail}</div>
-          </Row>
-        ))}
+        {findings.length === 0 && <p className="text-lg text-[#6d82a3] italic">{t('cx.no_findings')}</p>}
+        <AnimatePresence initial={false}>
+          {findings.map((f, i) => (
+            <motion.div key={i} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} layout>
+              <Row tone={f.tone === 'warn' ? 'warn' : 'info'} className="mb-2 shadow-sm">
+                <div className="text-base text-[#b5e2ff]">T+{simClock(f.t)} · {f.text}</div>
+                <div className="text-lg leading-snug">{f.detail}</div>
+              </Row>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );
@@ -204,28 +217,37 @@ export function InvestigationsPanel({ c, sim, dispatch }: { c: ClinicalCase; sim
   const [cat, setCat] = useState(cats[0]);
   const list = q ? c.tests.filter((x) => (x.name + ' ' + (x.aliases || []).join(' ')).toLowerCase().includes(q.toLowerCase())) : c.tests.filter((x) => x.category === cat);
   return (
-    <div className="grid grid-cols-[1fr_1.2fr] gap-4 h-full min-h-0">
-      <div className="flex flex-col min-h-0">
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('cx.search')} className="bg-pixel-ink border-4 border-[#2c4a73] px-2 py-1 text-lg mb-2 outline-none focus:border-[#41a6f6] select-text" />
-        <div className="flex flex-wrap gap-1 mb-2">
-          {cats.map((k) => <button key={k} onClick={() => { setQ(''); setCat(k); }} className={`px-2 text-base border-2 ${!q && cat === k ? 'border-[#ffd866] text-white' : 'border-[#2c4a73] text-pixel-text-muted'}`}>{k}</button>)}
+    <div className="grid grid-cols-[1fr_1.2fr] gap-6 h-full min-h-0 px-2">
+      <div className="flex flex-col min-h-0 pr-4">
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('cx.search')} className="bg-pixel-ink border-4 border-[#2c4a73] px-3 py-2 text-lg mb-3 outline-none focus:border-[#41a6f6] select-text transition-colors" />
+        <div className="flex flex-wrap gap-2 mb-3 pb-2 border-b-2 border-pixel-ink">
+          {cats.map((k) => <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} key={k} onClick={() => { setQ(''); setCat(k); }} className={`px-2 py-1 text-base border-2 shadow-sm ${!q && cat === k ? 'border-[#ffd866] bg-[#1e3a66] text-white' : 'border-[#2c4a73] text-pixel-text-muted hover:text-white'}`}>{k}</motion.button>)}
         </div>
-        <div className="overflow-y-auto pr-1 space-y-1">
-          {list.map((x) => {
-            const ordered = sim.orders.some((o) => o.name === x.name);
-            return (
-              <button key={x.name} disabled={ordered} onClick={() => dispatch({ type: 'order', name: x.name })}
-                className={`w-full text-left px-3 py-1 text-lg border-4 flex justify-between ${ordered ? 'border-[#2c4a73] text-[#6d82a3]' : 'border-[#3f7fc0] bg-[#16263f] hover:bg-[#1e3a66]'}`}>
-                <span>{x.name}</span><span className="text-sm self-center">{ordered ? t('cx.ordered') : `~${Math.max(1, Math.round(x.turnaround / 60))}m`}</span>
-              </button>
-            );
-          })}
+        <div className="overflow-y-auto pr-2 space-y-2 custom-scrollbar">
+          <AnimatePresence mode="popLayout">
+            {list.map((x) => {
+              const ordered = sim.orders.some((o) => o.name === x.name);
+              return (
+                <motion.button layout initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} key={x.name} disabled={ordered} onClick={() => dispatch({ type: 'order', name: x.name })}
+                  whileHover={ordered ? {} : { scale: 1.02 }} whileTap={ordered ? {} : { scale: 0.98 }}
+                  className={`w-full text-left px-4 py-2 text-lg border-4 flex justify-between items-center transition-colors shadow-sm ${ordered ? 'border-[#2c4a73] bg-[#0b1626] text-[#6d82a3] opacity-70' : 'border-[#3f7fc0] bg-[#16263f] hover:bg-[#1e3a66] hover:border-[#41a6f6]'}`}>
+                  <span>{x.name}</span><span className="text-sm px-2 py-1 bg-pixel-ink border-2 border-[#2c4a73] self-center">{ordered ? t('cx.ordered') : `~${Math.max(1, Math.round(x.turnaround / 60))}m`}</span>
+                </motion.button>
+              );
+            })}
+          </AnimatePresence>
         </div>
       </div>
-      <div className="overflow-y-auto pr-1 space-y-2">
+      <div className="overflow-y-auto pr-4 space-y-3 custom-scrollbar border-l-4 border-pixel-ink pl-6">
         <H3>{t('cx.results')}</H3>
-        {sim.orders.length === 0 && <p className="text-lg text-pixel-text-muted">{t('cx.no_orders')}</p>}
-        {sim.orders.slice().reverse().map((o) => <ResultBlock key={o.name} o={o} c={c} now={sim.t} />)}
+        {sim.orders.length === 0 && <p className="text-lg text-[#6d82a3] italic">{t('cx.no_orders')}</p>}
+        <AnimatePresence initial={false}>
+          {sim.orders.slice().reverse().map((o) => (
+            <motion.div key={o.name} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} layout>
+              <ResultBlock o={o} c={c} now={sim.t} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );
@@ -245,32 +267,38 @@ export function TreatmentPanel({ c, sim, onChoose }: { c: ClinicalCase; sim: Sim
     .slice().sort((a, b) => a.name.localeCompare(b.name));
   const given = sim.given.slice().reverse();
   return (
-    <div className="grid grid-cols-[180px_1fr_220px] gap-3 h-full min-h-0">
-      <div className="overflow-y-auto space-y-1">
+    <div className="grid grid-cols-[200px_1fr_240px] gap-6 h-full min-h-0 px-2">
+      <div className="overflow-y-auto space-y-2 custom-scrollbar pr-2 border-r-4 border-pixel-ink">
         {ACTION_CATEGORIES.map((k) => (
-          <button key={k.id} onClick={() => { setQ(''); setCat(k.id); }} className={`w-full text-left px-2 py-1 text-base border-4 leading-tight ${!q && cat === k.id ? 'border-[#ffd866] bg-[#1e3a66] text-white' : 'border-[#2c4a73] text-pixel-text-muted hover:text-white'}`}>
+          <motion.button whileHover={{ scale: 1.02, x: 2 }} whileTap={{ scale: 0.98 }} key={k.id} onClick={() => { setQ(''); setCat(k.id); }} className={`w-full text-left px-3 py-2 text-base border-4 leading-tight shadow-sm transition-colors ${!q && cat === k.id ? 'border-[#ffd866] bg-[#1e3a66] text-white' : 'border-[#2c4a73] text-[#a9bfd9] hover:bg-[#16263f] hover:text-white'}`}>
             {lang === 'th' ? k.th : k.id}
-          </button>
+          </motion.button>
         ))}
       </div>
-      <div className="flex flex-col min-h-0">
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('cx.search')} className="bg-pixel-ink border-4 border-[#2c4a73] px-2 py-1 text-lg mb-2 outline-none focus:border-[#41a6f6] select-text" />
-        <div className="overflow-y-auto pr-1 grid grid-cols-2 gap-1 content-start">
-          {list.map((a) => (
-            <button key={a.name} onClick={() => onChoose(a)} className="text-left px-2 py-1 text-lg border-4 border-[#3f7fc0] bg-[#16263f] hover:bg-[#1e3a66] leading-tight">
-              {a.name}{doseOptionsFor(c, a).length ? <span className="text-sm text-[#ffcd75]"> ▾dose</span> : null}
-            </button>
-          ))}
+      <div className="flex flex-col min-h-0 pr-2">
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('cx.search')} className="bg-pixel-ink border-4 border-[#2c4a73] px-3 py-2 text-lg mb-3 outline-none focus:border-[#41a6f6] select-text transition-colors shadow-sm" />
+        <div className="overflow-y-auto pr-2 grid grid-cols-2 gap-2 content-start custom-scrollbar">
+          <AnimatePresence mode="popLayout">
+            {list.map((a) => (
+              <motion.button layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.95 }} key={a.name} onClick={() => onChoose(a)} className="text-left px-3 py-2 text-lg border-4 border-[#3f7fc0] bg-[#16263f] hover:bg-[#1e3a66] hover:border-[#41a6f6] leading-tight shadow-sm transition-colors flex justify-between items-center">
+                <span>{a.name}</span>
+                {doseOptionsFor(c, a).length ? <span className="text-sm px-1 bg-pixel-ink border-2 border-[#2c4a73] text-[#ffcd75]">▾</span> : null}
+              </motion.button>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
-      <div className="overflow-y-auto space-y-1">
+      <div className="overflow-y-auto space-y-2 pl-4 border-l-4 border-pixel-ink custom-scrollbar pr-2">
         <H3>{t('cx.given')}</H3>
-        {given.length === 0 && <p className="text-base text-pixel-text-muted">{t('cx.nothing_given')}</p>}
-        {given.map((g, i) => (
-          <div key={i} className="text-base border-l-4 border-[#6d82a3] pl-2 leading-tight">
-            <span className="text-[#6d82a3]">T+{simClock(g.t)}</span> {g.name}{g.dose ? ` (${g.dose})` : ''}
-          </div>
-        ))}
+        {given.length === 0 && <p className="text-base text-[#6d82a3] italic">{t('cx.nothing_given')}</p>}
+        <AnimatePresence initial={false}>
+          {given.map((g, i) => (
+            <motion.div layout initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} key={i} className="text-base border-l-4 border-[#38b764] pl-3 py-1 bg-[#10301c]/50 leading-tight shadow-sm mb-2">
+              <div className="text-sm text-[#99e550]">T+{simClock(g.t)}</div>
+              <div className="text-white">{g.name}{g.dose ? ` (${g.dose})` : ''}</div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );

@@ -132,15 +132,17 @@ function partialVitals(raw: any): Partial<Vitals> {
   (Object.keys(full) as (keyof Vitals)[]).forEach((k) => { if (Number.isFinite(full[k])) out[k] = full[k]; });
   return out;
 }
-export function severityOf(v: Vitals): number {
-  let s = 0;
+export function severityOf(v: Vitals, ageYears?: number): number {
   if (v.hr === 0) return 7;
-  if (v.hr > 120 || v.hr < 50) s++;
-  if (v.sbp < 90) s += 2;
-  if (v.rr > 24 || v.rr < 8) s++;
-  if (v.spo2 < 92) s++;
-  if (v.gcs < 13) s++;
-  if (v.temp > 38.5 || v.temp < 35) s++;
+  const child = ageYears !== undefined && ageYears < 12;
+  const hrHi = child ? 160 : 120;
+  let s = 0;
+  if (v.hr > hrHi + 20 || v.hr < 40) s += 2; else if (v.hr > hrHi || v.hr < 50) s += 1;
+  if (v.sbp < (child ? 70 : 80)) s += 2; else if (v.sbp < (child ? 80 : 90)) s += 1;
+  if (v.spo2 <= 88) s += 2; else if (v.spo2 < 92) s += 1;
+  if (v.rr > 30 || v.rr < 8) s += 2; else if (v.rr > 24) s += 1;
+  if (v.gcs <= 8) s += 2; else if (v.gcs < 13) s += 1;
+  if (v.temp > 38.5 || v.temp < 35) s += 1;
   return Math.min(7, s);
 }
 
@@ -405,7 +407,7 @@ export function buildClinicalCase(id: string, raw: any): ClinicalCase {
   return {
     id, title: raw.title || id, age: String(raw.age ?? ''), sex: String(raw.sex ?? ''), weightKg: num(raw.weightKg),
     chiefComplaint: raw.chiefComplaint || '', background: raw.background || '', diagnoses,
-    baseline, severity: severityOf(baseline),
+    baseline, severity: severityOf(baseline, parseFloat(String(raw.age ?? '')) || undefined),
     history: buildHistory(raw), exam: buildExam(raw.exam), investigations,
     ...graph, satisfiers, negated: Array.from(new Set(negated)), tests, actions,
     appearance: raw.patientAppearance,

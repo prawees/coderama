@@ -2,13 +2,14 @@ import { ButtonHTMLAttributes } from "react";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { Capacitor } from "@capacitor/core";
 import { audio } from "@/lib/audio";
+import { motion, HTMLMotionProps } from "framer-motion";
 
-interface PixelButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface PixelButtonProps extends Omit<HTMLMotionProps<"button">, "ref"> {
   variant?: 'primary' | 'alert' | 'success' | 'gold' | 'secondary' | 'wood';
   size?: 'sm' | 'md' | 'lg';
 }
 
-/** Chunky Stardew-style button: 4px ink outline, flat fill, hard bevel, 4px press travel. */
+/** Chunky Stardew-style button: 4px ink outline, flat fill, hard bevel, 4px press travel + Framer Motion juice. */
 export function PixelButton({ children, variant = 'primary', size = 'md', className = "", ...props }: PixelButtonProps) {
   const base = "pixel-btn font-pixel uppercase cursor-pointer select-none inline-flex items-center justify-center gap-2 leading-none";
   const sizes = { sm: "px-3 py-2 text-base", md: "px-4 py-3 text-xl", lg: "px-6 py-4 text-2xl" };
@@ -28,8 +29,15 @@ export function PixelButton({ children, variant = 'primary', size = 'md', classN
   };
 
   return (
-    <button className={`${base} ${sizes[size]} ${variants[variant]} ${className}`} {...props} onClick={handleClick}>
+    <motion.button 
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      className={`${base} ${sizes[size]} ${variants[variant]} ${className}`} 
+      {...props} 
+      onClick={handleClick}
+    >
       {children}
-    </button>
+    </motion.button>
   );
 }

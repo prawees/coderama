@@ -7,6 +7,7 @@ import { useERStore } from "@/lib/erStore";
 import { useT } from "@/lib/i18n/useT";
 import { useTransition } from "@/lib/transition";
 import { PixelButton } from "@/components/ui/PixelButton";
+import { motion, AnimatePresence } from "framer-motion";
 import { MinigameOverlay } from "@/components/game/MinigameOverlay";
 import { buildClinicalCase, ClinicalCase } from "@/lib/clinical/model";
 import { loadBuiltinCase, withDistractors } from "@/lib/clinical/registry";
@@ -97,7 +98,10 @@ function ClinicalRun({ c, instanceId, fromLibrary }: { c: ClinicalCase; instance
   ];
 
   return (
-    <div className="absolute inset-0 bg-pixel-bg text-white font-pixel flex flex-col overflow-hidden select-none">
+    <motion.div className="absolute inset-0 bg-pixel-bg text-white font-pixel flex flex-col overflow-hidden select-none">
+      {/* Pixel scanlines (hard 2px steps, no smooth gradient) */}
+      <div className="absolute inset-0 z-[100] pointer-events-none opacity-30 scanlines" />
+
       {minigame && (
         <MinigameOverlay
           interventionName={minigame.action.physical === 'cpr' ? `CPR: ${minigame.action.name}` : minigame.action.name}
@@ -123,7 +127,11 @@ function ClinicalRun({ c, instanceId, fromLibrary }: { c: ClinicalCase; instance
 
         <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
           <div className="bg-pixel-ink border-4 border-[#6d82a3] px-3 py-1 font-heading text-xs text-[#99e550]">T+{simClock(sim.t)}</div>
-          <div className="border-4 border-pixel-ink px-3 py-1 text-lg text-white whitespace-nowrap" style={{ background: condColor }}>{t('cx.condition')}: {t(`cx.cond_${cond}`)}</div>
+          <motion.div className="border-4 border-pixel-ink px-3 py-1 text-lg text-white whitespace-nowrap" style={{ background: condColor }}
+            animate={cond === 'periarrest' ? { scale: [1, 1.08, 1] } : { scale: 1 }}
+            transition={cond === 'periarrest' ? { repeat: Infinity, duration: 0.8, ease: 'linear' } : {}}>
+            {t('cx.condition')}: {t(`cx.cond_${cond}`)}
+          </motion.div>
         </div>
         <div className="absolute bottom-3 left-3 z-10 flex gap-2">
           <PixelButton size="sm" variant="secondary" disabled={sim.status !== 'running'} onClick={() => dispatch({ type: 'wait', seconds: 120 })}>{t('cx.wait')}</PixelButton>
@@ -184,7 +192,7 @@ function ClinicalRun({ c, instanceId, fromLibrary }: { c: ClinicalCase; instance
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

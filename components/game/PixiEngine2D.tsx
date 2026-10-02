@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import * as PIXI from "pixi.js";
 import { audio } from "@/lib/audio";
+import { motion, AnimatePresence } from "framer-motion";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { useERStore, ActiveCase } from "@/lib/erStore";
 import { tNow } from "@/lib/i18n/useT";
@@ -208,6 +209,8 @@ export function PixiEngine2D({ onInteract, activeCases, clockMinutes = 120, npcE
 
       const p = makeActor(pTex, ER_MAP.spawn.x, ER_MAP.spawn.y);
       player.current = p;
+      // Dev-only hook for automated playtests (position, held keys, pause state).
+      if (process.env.NODE_ENV !== 'production') (window as any).__er = { player: p, keys, paused: pausedRef, npcs };
       const ann = makeActor(annTex, NPC_ROUTES.nurse_ann[0].x, NPC_ROUTES.nurse_ann[0].y);
       ann.route = NPC_ROUTES.nurse_ann; ann.routeIdx = 0; ann.wait = 1;
       ann.tag = makeTag(npcEmote ? `${tNow('npc.ann')} ${npcEmote}` : tNow('npc.ann'), 0x257179, font);
@@ -241,7 +244,14 @@ export function PixiEngine2D({ onInteract, activeCases, clockMinutes = 120, npcE
           if (!blockedAt(s.x, ny)) s.y = ny;
           setWalking(p, Math.abs(dx) > Math.abs(dy) ? (dx < 0 ? 'left' : 'right') : (dy < 0 ? 'up' : 'down'));
           if (Math.floor(t * 4) !== Math.floor((t - dt) * 4)) audio.playFootstep();
-        } else setWalking(p, null);
+          // Walk bobbing and shadow scaling
+          s.pivot.y = Math.floor(Math.abs(Math.sin(t * 18)) * 3);
+          p.shadow.scale.set(1 - (s.pivot.y * 0.05));
+        } else {
+          setWalking(p, null);
+          s.pivot.y = 0;
+          p.shadow.scale.set(1);
+        }
 
         // NPC patrol
         for (const a of Object.values(npcs.current)) {
@@ -334,8 +344,13 @@ export function PixiEngine2D({ onInteract, activeCases, clockMinutes = 120, npcE
   }, [interact]);
 
   const pad = (d: Direction, label: string) => (
-    <button className="w-14 h-14 bg-[#2c4a73] border-4 border-pixel-ink active:bg-[#6d82a3] text-white text-2xl"
-      onPointerDown={() => { keys.current[d] = true; }} onPointerUp={() => { keys.current[d] = false; }} onPointerLeave={() => { keys.current[d] = false; }}>{label}</button>
+    <motion.button 
+      whileTap={{ scale: 0.9, backgroundColor: "#3f7fc0" }}
+      className="w-16 h-16 bg-[#2c4a73]/80 border-4 border-pixel-ink/80 text-white text-3xl flex items-center justify-center backdrop-blur-sm shadow-xl touch-manipulation"
+      onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); keys.current[d] = true; }} 
+      onPointerUp={(e) => { e.currentTarget.releasePointerCapture(e.pointerId); keys.current[d] = false; }} 
+      onPointerCancel={(e) => { keys.current[d] = false; }}
+    >{label}</motion.button>
   );
 
   return (
@@ -346,18 +361,39 @@ export function PixiEngine2D({ onInteract, activeCases, clockMinutes = 120, npcE
         <span className="bg-pixel-ink/90 border-2 border-[#2c4a73] text-pixel-text-muted px-2 py-1 text-base">{tNow('engine.controls')}</span>
       </div>
 
-      {prompt && (
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-40 pointer-events-none">
-          <div className="bg-pixel-ink border-4 border-[#ffd866] text-[#ffe9c9] px-4 py-1 text-xl pixel-shadow whitespace-nowrap">{prompt}</div>
-        </div>
-      )}
+      <AnimatePresence>
+        {prompt && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
+            className="absolute bottom-[20%] left-1/2 -translate-x-1/2 z-40 pointer-events-none"
+          >
+            <div className="bg-pixel-ink border-4 border-[#ffd866] text-[#ffe9c9] px-6 py-2 text-2xl pixel-shadow whitespace-nowrap">{prompt}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Touch controls */}
-      <div className="absolute bottom-5 left-5 z-50 flex-col items-center gap-1 hidden [@media(hover:none)]:flex">
+      {/* Upgraded Mobile Touch controls */}
+      <div className="absolute bottom-8 left-8 z-50 flex flex-col items-center gap-2 hidden [@media(hover:none)]:flex">
         {pad('up', '↑')}
-        <div className="flex gap-1">{pad('left', '←')}{pad('down', '↓')}{pad('right', '→')}</div>
+        <div className="flex gap-2">
+          {pad('left', '←')}
+          <div className="w-16 h-16 bg-transparent" />
+          {pad('right', '→')}
+        </div>
+        {pad('down', '↓')}
       </div>
-      <button onClick={interact} className="absolute bottom-5 right-5 z-50 w-20 h-20 bg-[#d95763] border-4 border-pixel-ink text-white text-2xl pixel-shadow hidden [@media(hover:none)]:block">E</button>
+      
+      <div className="absolute bottom-8 right-8 z-50 hidden [@media(hover:none)]:block">
+        <motion.button 
+          whileTap={{ scale: 0.85 }}
+          animate={prompt ? { scale: [1, 1.1, 1], boxShadow: ["0 0 0px #ffd866", "0 0 20px #ffd866", "0 0 0px #ffd866"] } : {}}
+          transition={prompt ? { repeat: Infinity, duration: 1.5 } : {}}
+          onClick={interact} 
+          className={`w-24 h-24 rounded-full border-4 border-pixel-ink text-white text-3xl flex items-center justify-center font-bold shadow-2xl backdrop-blur-sm touch-manipulation ${prompt ? 'bg-[#ffd866] text-pixel-ink' : 'bg-[#d95763]/90'}`}
+        >
+          {prompt ? '!' : 'A'}
+        </motion.button>
+      </div>
     </div>
   );
 }

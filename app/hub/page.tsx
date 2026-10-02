@@ -755,7 +755,9 @@ export default function HubPage() {
             isFastForwarding={isFastForwarding}
             paused={dialogueQueue.length > 0 || isSettingsOpen || isQuestsOpen || isLeaderboardOpen || isConsultsOpen}
           />
-          {isPowerOutage && <div className="absolute inset-0 pointer-events-none z-[60] bg-pixel-ink/80 dither" />}
+          {/* Ambient Lighting & Vignette */}
+          <div className="absolute inset-0 pointer-events-none z-[55] mix-blend-multiply bg-[radial-gradient(ellipse_at_center,transparent_20%,#090916_120%)] opacity-80" />
+          {isPowerOutage && <div className="absolute inset-0 pointer-events-none z-[60] bg-[#050a14]/90 dither" />}
 
           {!onShift && (
             <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 pixel-frame-metal rivets pointer-events-none">

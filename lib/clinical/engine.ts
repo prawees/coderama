@@ -73,7 +73,7 @@ export const simClock = fmt;
 export function createSim(c: ClinicalCase): SimState {
   const s: SimState = {
     t: 0, status: 'running', vitals: { ...c.baseline }, target: { ...c.baseline },
-    stability: c.baseline.hr === 0 ? 38 : clamp(100 - c.severity * 8, 35, 100), graceUntil: 45,
+    stability: c.baseline.hr === 0 ? 30 : clamp(100 - c.severity * 10, 40, 100), graceUntil: 45,
     monitorOn: false, asked: [], examined: [], orders: [], given: [],
     currentId: c.startId, hubId: c.startId, completed: [], completedAt: {}, ethicalAvailable: [], ethicalDone: [], timers: [],
     events: [{ t: 0, kind: 'start', text: c.chiefComplaint || c.title, tone: 'info' }],
@@ -163,7 +163,7 @@ function tick(c: ClinicalCase, s0: SimState, dt: number): SimState {
   if (s0.status !== 'running' || dt <= 0) return s0;
   let s = { ...s0, t: s0.t + dt };
   if (s.t > s.graceUntil) {
-    const decayPerMin = 0.35 + 0.55 * c.severity;
+    const decayPerMin = 0.3 + 0.4 * c.severity;
     s.stability = clamp(s.stability - decayPerMin * (dt / 60), 0, 100);
   }
   const k = clamp((45 - s.stability) / 45, 0, 1) * 0.85;
