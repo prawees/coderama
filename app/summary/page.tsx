@@ -20,6 +20,7 @@ const SIGNOFF = {
   none: { en: "A quiet day, or a hiding day? Tomorrow, find me before lunch.", th: "วันนี้เงียบ หรือแอบหลบ? พรุ่งนี้มาหาก่อนเที่ยงนะ" },
   some: { en: "Steady. Not flashy. Steady is underrated.", th: "สม่ำเสมอ ไม่หวือหวา ความสม่ำเสมอถูกมองข้ามเสมอ" },
   many: { en: "That was a real shift. Go eat something warm.", th: "เวรนี้ของจริง ไปกินอะไรอุ่นๆ ซะ" },
+  fainted: { en: "We found you asleep on the supply shelf. Pace yourself. Tea from the kettle, a sit on the bench, it all adds up.", th: "เจอหลับอยู่บนชั้นวางของ ค่อยๆ ทำนะ ชาจากกาต้มน้ำ นั่งพักที่ม้านั่ง ช่วยได้ทั้งนั้น" },
 };
 
 function CountUp({ to, prefix = "", delay = 0 }: { to: number; prefix?: string; delay?: number }) {
@@ -43,6 +44,8 @@ export default function SummaryPage() {
   const { shiftStats, clockMinutes, restoreEnergy, activeQuests, completeQuest, currentDay, language } = useERStore();
   const [showNext, setShowNext] = useState(false);
   const [showNote, setShowNote] = useState(false);
+  // Read before the overnight rest refills it: an empty tank means the shift ended in a faint.
+  const [fainted] = useState(() => useERStore.getState().energy <= 0);
   const isEndOfEpisode = [6, 11, 16, 26, 31].includes(currentDay);
   const tr = (en: string, th: string) => (language === "th" ? th : en);
   const finishedDay = Math.max(1, currentDay - 1);
@@ -62,7 +65,7 @@ export default function SummaryPage() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const hours = Math.floor(clockMinutes / 60);
-  const tier = shiftStats.casesTreated === 0 ? "none" : shiftStats.casesTreated <= 2 ? "some" : "many";
+  const tier = fainted ? "fainted" : shiftStats.casesTreated === 0 ? "none" : shiftStats.casesTreated <= 2 ? "some" : "many";
 
   const rows = [
     { icon: "sun", label: tr("Hours on shift", "ชั่วโมงเข้าเวร"), value: <><CountUp to={hours} delay={300} /> {tr("h", "ชม.")}</> },

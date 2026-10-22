@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { PixelPanel } from "@/components/ui/PixelPanel";
 import { audio } from "@/lib/audio";
 import { Haptics, ImpactStyle, NotificationType } from "@capacitor/haptics";
 
@@ -89,66 +88,40 @@ export function MinigameOverlay({ interventionName, onComplete }: MinigameOverla
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [cursorPos]); // Re-bind to capture latest cursorPos on space press
 
+  const zone = feedback === "success" ? "#86c35f" : feedback === "fail" ? "#e06b72" : "#3a2a2f";
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 backdrop-blur-md">
-      <div className={`w-[90%] max-w-md transition-transform ${shake ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}>
-        <PixelPanel 
-          variant="dark" 
-          className={`flex flex-col items-center p-8 gap-6 shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 transition-colors ${
-            feedback === 'success' ? 'border-[#00ff41] shadow-[0_0_50px_rgba(0,255,65,0.3)]' :
-            feedback === 'fail' ? 'border-red-600 shadow-[0_0_50px_rgba(255,0,0,0.4)]' :
-            'border-[#6b4a3a] shadow-[0_0_50px_rgba(255,0,0,0.2)]'
-          } bg-[#0a0a0c]`}
-        >
-          
-          <div className="w-full flex justify-between items-center border-b-2 border-gray-800 pb-2">
-            <span className="text-red-500 font-bold tracking-widest text-sm animate-pulse">DEFIB / MONITOR</span>
-            <span className="text-[#00ff41] font-mono">{isCPR ? '120 BPM' : 'STABLE'}</span>
+    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-[#1c1522]/75 font-pixel">
+      <div className={`w-[90%] max-w-sm ${shake ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>
+        <div className="cozy-panel flex flex-col items-center p-4 gap-3">
+          <div className="w-full flex justify-between items-center text-[15px] leading-none text-[#6b5258]">
+            <span>{isCPR ? "CPR · 100-120/min" : "Steady hands"}</span>
+            <span className="cozy-tag px-1.5 py-0.5">{isCPR ? "♥ 110" : "OK"}</span>
           </div>
 
-          <h3 className="text-3xl text-white font-bold text-center tracking-wider drop-shadow-md">{interventionName}</h3>
-          
-          <p className={`text-sm font-mono px-4 py-1 rounded transition-colors ${
-            feedback === 'success' ? 'text-[#00ff41] bg-[#00ff41]/20 font-bold' :
-            feedback === 'fail' ? 'text-red-400 bg-red-950 font-bold' :
-            'text-[#c9b79c] bg-gray-900'
-          }`}>
-            {feedback === 'success' ? 'PERFECT TIMING!' : feedback === 'fail' ? 'MISSED TIMING!' : 'Target the Green Zone'}
+          <h3 className="text-[30px] leading-none text-center">{interventionName}</h3>
+
+          <p className={`text-[18px] leading-none px-3 py-1 rounded-[3px] border-2 border-[#3a2a2f] ${feedback === "success" ? "bg-[#c8ecb4]" : feedback === "fail" ? "bg-[#f6c3c6]" : "bg-[#fff6e3]"}`}>
+            {feedback === "success" ? "Perfect timing!" : feedback === "fail" ? "Missed it!" : "Target the Green Zone"}
           </p>
 
-          {/* The Medical Bar */}
-          <div 
-            className={`w-full h-12 bg-[#050505] border-4 rounded-lg relative cursor-pointer overflow-hidden shadow-inner flex items-center transition-colors ${
-              feedback === 'success' ? 'border-[#00ff41]' : feedback === 'fail' ? 'border-red-600' : 'border-[#6b4a3a]'
-            }`}
+          <div
+            className="w-full h-12 rounded-[4px] border-[3px] relative cursor-pointer overflow-hidden bg-[#2a3a2a]"
+            style={{ borderColor: zone }}
             onClick={handleAction}
           >
-            {/* Grid background */}
-            <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(#6b4a3a 1px, transparent 1px), linear-gradient(90deg, #6b4a3a 1px, transparent 1px)', backgroundSize: '10px 10px' }} />
-            
-            {/* Target Zone */}
-            <div 
-              className="absolute top-0 bottom-0 bg-gradient-to-r from-transparent via-[#00ff41] to-transparent opacity-80"
-              style={{ left: `${targetStart}%`, width: `${targetEnd - targetStart}%` }}
-            />
-            {/* Moving Cursor */}
-            <div 
-              className={`absolute top-0 bottom-0 w-1 shadow-[0_0_15px_#ffffff] transition-colors ${
-                feedback === 'success' ? 'bg-[#00ff41]' : feedback === 'fail' ? 'bg-red-500' : 'bg-white'
-              }`}
-              style={{ left: `calc(${cursorPos}% - 2px)` }}
-            />
-            {/* ECG trace line following cursor */}
-            <div 
-              className="absolute top-1/2 h-[2px] bg-[#00ff41] shadow-[0_0_8px_#00ff41]"
-              style={{ left: 0, width: `${cursorPos}%`, transform: 'translateY(-50%)' }}
+            <div className="absolute inset-0 opacity-25" style={{ backgroundImage: "linear-gradient(#86c35f 1px, transparent 1px), linear-gradient(90deg, #86c35f 1px, transparent 1px)", backgroundSize: "8px 8px" }} />
+            <div className="absolute top-0 bottom-0 bg-[#86c35f]/80 border-x-2 border-[#c8ecb4]" style={{ left: `${targetStart}%`, width: `${targetEnd - targetStart}%` }} />
+            <div className="absolute top-1/2 h-[3px] bg-[#c8ecb4] -translate-y-1/2" style={{ left: 0, width: `${cursorPos}%` }} />
+            <div
+              className="absolute top-0 bottom-0 w-[5px] border-x border-[#3a2a2f]"
+              style={{ left: `calc(${cursorPos}% - 2px)`, background: feedback === "success" ? "#86c35f" : feedback === "fail" ? "#e06b72" : "#ffd66b" }}
             />
           </div>
 
-          <p className="text-xs text-[#c9b79c] mt-2 animate-pulse">
-            {feedback === 'idle' ? '(Press SPACE or TAP the bar)' : 'Processing response...'}
+          <p className="text-[15px] leading-none text-[#6b5258]">
+            {feedback === "idle" ? "Tap the bar or press Space" : "..."}
           </p>
-        </PixelPanel>
+        </div>
       </div>
     </div>
   );

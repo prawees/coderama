@@ -106,11 +106,7 @@ export default function RootPage() {
 
   const handleStart = async () => {
     await Haptics.impact({ style: ImpactStyle.Heavy });
-    if (!nameInput.trim()) {
-      alert(langInput === "th" ? "กรุณาใส่ชื่อของคุณ!" : "Please enter your name!");
-      return;
-    }
-    
+    // An empty name falls back to the placeholder shown in the field rather than blocking the start.
     audio.stopMenuChiptune();
     music.stopTrack();
     setupPlayer(nameInput.trim() || (langInput === 'th' ? 'สมชาย' : 'John Doe'), genderInput, langInput, {

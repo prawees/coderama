@@ -513,6 +513,17 @@ export default function HubPage() {
     if (q.length === 0) setIsCinematic(false);
   }, []);
 
+  // A nudge before the player runs dry and faints
+  const warnedLowEnergy = useRef(false);
+  useEffect(() => {
+    if (shiftMode !== 'on-shift') { warnedLowEnergy.current = false; return; }
+    if (energy > 0 && energy <= 25 && !warnedLowEnergy.current) {
+      warnedLowEnergy.current = true;
+      worldApi.current?.emote('player', 'sweat');
+      showToast(language === 'th' ? 'เหนื่อยแล้ว ไปชงชาที่กาต้มน้ำหรือนั่งพักที่ม้านั่งก่อน' : 'Running on fumes. Tea from the kettle or a sit on the bench will help.');
+    }
+  }, [energy, shiftMode, language, showToast]);
+
   // Quest completions get a little fanfare
   useEffect(() => {
     const onQuest = (e: Event) => {

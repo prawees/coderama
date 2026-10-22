@@ -35,7 +35,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#0d1117" />
+        <meta name="theme-color" content="#2b2133" />
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className="font-pixel text-slate-100 bg-neutral-900 antialiased flex justify-center items-center min-h-screen">

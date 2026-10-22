@@ -27,10 +27,10 @@ function inventedLook(name: string): Look {
   const styles: HairStyle[] = ["short", "long", "bob", "bun", "sidepart", "curly", "ponytail"];
   const look: Look = {
     skin: SKIN_TONES[h % SKIN_TONES.length],
-    hair: [HAIR_COLORS.black, HAIR_COLORS.brown, HAIR_COLORS.chestnut][(h >> 4) % 3],
-    hairStyle: styles[(h >> 7) % styles.length],
+    hair: [HAIR_COLORS.black, HAIR_COLORS.brown, HAIR_COLORS.chestnut][(h >>> 4) % 3],
+    hairStyle: styles[(h >>> 7) % styles.length],
     outfit: "casual",
-    main: ["#d95763", "#5b7fbf", "#86c35f", "#e8b84f", "#c98ad1"][(h >> 10) % 5],
+    main: ["#d95763", "#5b7fbf", "#86c35f", "#e8b84f", "#c98ad1"][(h >>> 10) % 5],
     accent: "#fbf7ee",
   };
   if (/nurse|พยาบาล/.test(lower)) { look.outfit = "nurse"; look.cap = "nurse"; look.main = "#9fd3e6"; look.accent = "#e07aa3"; }
@@ -86,8 +86,8 @@ export function PatientPortrait({ seed, sex, ageGroup, skinTone, className = "" 
     const elderly = /elder|old|geriatric/i.test(ageGroup || "");
     const look: Look = {
       skin: skinTone && /^#[0-9a-f]{6}$/i.test(skinTone) ? skinTone : SKIN_TONES[h % SKIN_TONES.length],
-      hair: elderly ? HAIR_COLORS.grey : [HAIR_COLORS.black, HAIR_COLORS.brown][(h >> 3) % 2],
-      hairStyle: elderly ? (female ? "bun" : "receding") : female ? (["long", "bob", "bun"] as HairStyle[])[(h >> 6) % 3] : (["short", "spiky", "sidepart"] as HairStyle[])[(h >> 6) % 3],
+      hair: elderly ? HAIR_COLORS.grey : [HAIR_COLORS.black, HAIR_COLORS.brown][(h >>> 3) % 2],
+      hairStyle: elderly ? (female ? "bun" : "receding") : female ? (["long", "bob", "bun"] as HairStyle[])[(h >>> 6) % 3] : (["short", "spiky", "sidepart"] as HairStyle[])[(h >>> 6) % 3],
       outfit: "gown",
       main: "#a9cbe0",
       accent: "#7fa7c2",

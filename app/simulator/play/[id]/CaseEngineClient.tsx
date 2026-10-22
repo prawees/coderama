@@ -431,18 +431,18 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
 
   const callAttending = async () => {
     await Haptics.impact({ style: ImpactStyle.Heavy });
-    alert(language === 'th' ? "อาจารย์แพทย์เข้าช่วยดูแลเคสเรียบร้อย! คุณได้รับ XP 50%" : "Attending took over! Case resolved, but you only earned 50% XP.");
+    addFloatingText(language === 'th' ? "อาจารย์รับช่วงต่อ" : "Attending took over", "good", window.innerWidth / 2, window.innerHeight / 2);
     // addXp and addCurrency already record XP, cash and the treated case in shiftStats
     addXp(50);
     addCurrency(25);
-    deductEnergy(20);
+    deductEnergy(15);
     if (currentInstanceId) removeCase(currentInstanceId);
-    router.push('/hub');
+    setTimeout(() => router.push('/hub'), 700);
   };
 
   const requestConsult = async () => {
     if (!auth.currentUser) {
-      alert(language === 'th' ? "กรุณาเข้าสู่ระบบเพื่อขอคำปรึกษาแพทย์เฉพาะทาง!" : "You must be logged in to request a consult!");
+      setFeedback({ kind: 'bad', title: tr('The lounge is closed', 'ห้องพักแพทย์ปิดอยู่'), body: tr('Sign in from Settings to ask other doctors for a second opinion.', 'ลงชื่อเข้าใช้ในหน้าตั้งค่าเพื่อขอความเห็นจากหมอคนอื่น') });
       return;
     }
     
@@ -463,13 +463,13 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
         status: "open",
         createdAt: Date.now()
       });
-      alert(language === 'th' ? "ส่งคำปรึกษาไปยังห้องแพทย์เรียบร้อยแล้ว!" : "Consult requested! Another doctor in the lounge can help you now.");
-      deductEnergy(20);
+      addFloatingText(language === 'th' ? "ฝากคำถามไว้ที่ห้องพักแพทย์แล้ว" : "Note left in the lounge", "good", window.innerWidth / 2, window.innerHeight / 2);
+      deductEnergy(15);
       if (currentInstanceId) removeCase(currentInstanceId);
-      router.push('/hub');
+      setTimeout(() => router.push('/hub'), 700);
     } catch (e) {
       console.error("Failed to request consult", e);
-      alert(language === 'th' ? "เกิดข้อผิดพลาดในการส่งคำปรึกษา" : "Error requesting consult.");
+      setFeedback({ kind: 'bad', title: tr('The note did not go through', 'ส่งโน้ตไม่สำเร็จ'), body: tr('Check your connection and try again.', 'ตรวจสอบอินเทอร์เน็ตแล้วลองอีกครั้ง') });
     }
   };
 
@@ -494,7 +494,8 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
         shiftStats: { ...state.shiftStats, casesTreated: state.shiftStats.casesTreated + 1 }
       }));
     }
-    deductEnergy(20);
+    // A finished patient tires you out a little. Tuned so a shift fits six to eight patients.
+    deductEnergy(12);
     if (currentInstanceId) {
       removeCase(currentInstanceId);
     }
