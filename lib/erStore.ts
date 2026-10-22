@@ -453,7 +453,14 @@ export const useERStore = create<ERState>()(
         activeQuests: [],
         storyFlags: {},
         shiftMode: 'off-duty',
-        isPendingPromotion: false
+        isPendingPromotion: false,
+        hospitalUpgrades: [],
+        unlockedSkills: [],
+        maxEnergy: 100,
+        clockMinutes: 0,
+        completedQuests: [],
+        tutorialCompleted: false,
+        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 }
       }),
       resetShiftStats: () => set((state) => ({
         shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 }
@@ -543,6 +550,14 @@ export const useERStore = create<ERState>()(
         storyFlags: state.storyFlags,
         prestigeCount: state.prestigeCount,
         legacyPerks: state.legacyPerks,
+        // Purchases and progression that were previously lost on reload
+        hospitalUpgrades: state.hospitalUpgrades,
+        unlockedSkills: state.unlockedSkills,
+        maxEnergy: state.maxEnergy,
+        karma: state.karma,
+        shiftStats: state.shiftStats,
+        sfxVolume: state.sfxVolume,
+        musicVolume: state.musicVolume,
       })
     }
   )

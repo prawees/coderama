@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { VT323 } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ClientLayout } from "./ClientLayout";
 import { CloudSync } from "@/components/CloudSync";
 
-const vt323 = VT323({
+// Self-hosted so builds work offline (Electron, Capacitor, sandboxed CI).
+const vt323 = localFont({
+  src: "./fonts/VT323-Regular.woff2",
   weight: "400",
-  subsets: ["latin"],
   variable: "--font-pixel",
   display: "swap",
 });

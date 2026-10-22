@@ -5,6 +5,7 @@ import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { audio } from "@/lib/audio";
 
 import { CutsceneChoice } from "@/lib/StoryManager";
+import { PixelPortrait, hasPortrait } from "@/components/game/PixelPortrait";
 
 interface DialogueBoxProps {
   speakerName?: string;
@@ -70,19 +71,9 @@ export function DialogueBox({ speakerName, portraitUrl, text, choices, onComplet
       className="absolute bottom-4 left-4 right-4 bg-[#0d1117]/95 border-4 border-[#30363d] rounded-2xl p-4 flex gap-4 z-[100] shadow-[0_10px_30px_rgba(0,0,0,0.8)] cursor-pointer backdrop-blur-md transition-all"
       onClick={handleNext}
     >
-      {portraitUrl && (
+      {hasPortrait(speakerName) && (
         <div className="w-20 h-20 bg-gray-900 border-4 border-[#1f6feb] rounded-xl flex-shrink-0 shadow-[inset_0_0_10px_rgba(0,0,0,1)] overflow-hidden relative">
-          <img 
-            src={portraitUrl} 
-            alt={speakerName || 'Speaker'} 
-            className="absolute max-w-none pixelated" 
-            style={{ 
-              width: "300%", // 3 columns
-              height: "400%", // 4 rows
-              left: "-100%", // second column (index 1)
-              top: "0%" // first row (index 0)
-            }} 
-          />
+          <PixelPortrait speaker={speakerName} className="w-full h-full" />
         </div>
       )}
       

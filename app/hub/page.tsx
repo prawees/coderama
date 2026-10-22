@@ -16,11 +16,15 @@ import { QuestsModal } from "@/components/game/QuestsModal";
 import { LeaderboardModal } from "@/components/game/LeaderboardModal";
 import { ConsultsModal } from "@/components/game/ConsultsModal";
 import { SettingsMenu } from "@/components/game/SettingsMenu";
-import { STORY_CAMPAIGN, CutsceneNode, CutsceneChoice } from "@/lib/StoryManager";
-import { STORY_CAMPAIGN_TH } from "@/lib/StoryManagerTH";
+import { CutsceneNode, CutsceneChoice } from "@/lib/StoryManager";
+import { getDayStory, sliceFromNode, resolveRouters, visibleChoices } from "@/lib/story";
 import { audio } from "@/lib/audio";
 import { music, TrackId } from "@/lib/music";
 import { AnimatePresence } from "framer-motion";
+
+// Story choices were authored with XP in the thousands, while a perfect case pays 100.
+// Scaled down so dialogue nudges progression instead of skipping ranks on day 1.
+const STORY_XP_SCALE = 0.1;
 
 export default function HubPage() {
   const router = useRouter();
@@ -148,109 +152,37 @@ export default function HubPage() {
     }
   }, [tutorialCompleted, localizedRank, activeQuests, completedQuests, startQuest]);
 
+  // Start a scene, skipping any flag-check node it opens on
+  const playable = (scene: CutsceneNode[]) =>
+    resolveRouters(scene, getDayStory(currentDay, language), useERStore.getState().storyFlags);
+
   const handleDialogueComplete = (choice?: CutsceneChoice) => {
     // Process effects
     if (choice) {
        if (choice.karmaEffect) addKarma(choice.karmaEffect);
        if (choice.flagEffect) setStoryFlag(choice.flagEffect, true);
-       if (choice.xpEffect) addXp(choice.xpEffect);
+       if (choice.xpEffect) addXp(Math.round(choice.xpEffect * STORY_XP_SCALE));
     }
     
     // Determine next node ID
     const nextNodeId = choice?.nextId || dialogueQueue[0]?.nextId;
     
-    setDialogueQueue(prev => {
+    {
+      // Computed from the current queue, then side effects run once (not inside a state updater,
+      // which React StrictMode calls twice in development).
+      const prev = dialogueQueue;
       let next: CutsceneNode[] = [];
       
+      const story = getDayStory(currentDay, language);
+
       if (nextNodeId) {
-         // Search the campaign data to jump to nextNodeId
-         const campaignData = language === 'th' ? STORY_CAMPAIGN_TH[currentDay] : STORY_CAMPAIGN[currentDay];
-         
-         const searchAndSlice = (arr: CutsceneNode[] | undefined) => {
-             if (!arr) return null;
-             const idx = arr.findIndex(n => n.id === nextNodeId);
-             if (idx !== -1) return arr.slice(idx);
-             return null;
-         };
-         
-         let jumpedNext = searchAndSlice(campaignData?.startOfDayCutscene) || searchAndSlice(campaignData?.endOfDayCutscene);
-         if (!jumpedNext && campaignData?.midShiftEvents && campaignData.midShiftEvents.length > 0) {
-             if ('text' in campaignData.midShiftEvents[0]) {
-                 jumpedNext = searchAndSlice(campaignData.midShiftEvents as CutsceneNode[]);
-             } else {
-                 for (const event of campaignData.midShiftEvents as any[]) {
-                     jumpedNext = searchAndSlice(event.cutscene);
-                     if (jumpedNext) break;
-                 }
-             }
-         }
-         
-         if (jumpedNext) {
-             next = jumpedNext;
-         } else {
-             next = prev.slice(1);
-         }
+         next = sliceFromNode(story, nextNodeId) ?? prev.slice(1);
       } else {
          next = prev.slice(1);
       }
       
-      // Auto-resolve router nodes
-      while (next.length > 0 && next[0].speaker === 'System' && next[0].id?.endsWith('_check')) {
-          const routerNode = next[0];
-          let chosenNextId: string | undefined = undefined;
-          
-          if (routerNode.choices) {
-              const flags = useERStore.getState().storyFlags;
-              for (const c of routerNode.choices) {
-                  if (c.text.startsWith('[IF_FLAG:')) {
-                      const flagMatch = c.text.match(/\[IF_FLAG:(.*?)\]/);
-                      if (flagMatch && flags[flagMatch[1]]) {
-                          chosenNextId = c.nextId;
-                          break;
-                      }
-                  } else if (c.text.startsWith('[IF_NOT_FLAG:')) {
-                      const flagMatch = c.text.match(/\[IF_NOT_FLAG:(.*?)\]/);
-                      if (flagMatch && !flags[flagMatch[1]]) {
-                          chosenNextId = c.nextId;
-                          break;
-                      }
-                  } else if (c.text.startsWith('[ELSE]')) {
-                      chosenNextId = c.nextId;
-                      break;
-                  }
-              }
-          }
-          
-          if (chosenNextId) {
-             const campaignData = STORY_CAMPAIGN[currentDay];
-             const searchAndSlice = (arr: CutsceneNode[] | undefined) => {
-                 if (!arr) return null;
-                 const idx = arr.findIndex(n => n.id === chosenNextId);
-                 if (idx !== -1) return arr.slice(idx);
-                 return null;
-             };
-             
-             let jumpedNext = searchAndSlice(campaignData?.startOfDayCutscene) || searchAndSlice(campaignData?.endOfDayCutscene);
-             if (!jumpedNext && campaignData?.midShiftEvents && campaignData.midShiftEvents.length > 0) {
-                 if ('text' in campaignData.midShiftEvents[0]) {
-                     jumpedNext = searchAndSlice(campaignData.midShiftEvents as CutsceneNode[]);
-                 } else {
-                     for (const event of campaignData.midShiftEvents as any[]) {
-                         jumpedNext = searchAndSlice(event.cutscene);
-                         if (jumpedNext) break;
-                     }
-                 }
-             }
-             
-             if (jumpedNext) {
-                 next = jumpedNext;
-             } else {
-                 next = next.slice(1);
-             }
-          } else {
-             next = next.slice(1);
-          }
-      }
+      // Auto-resolve router nodes (flag checks), in the player's language
+      next = resolveRouters(next, story, useERStore.getState().storyFlags);
       
       if (next.length === 0) {
         if (!tutorialCompleted) {
@@ -294,8 +226,8 @@ export default function HubPage() {
            audio.playPager();
         }
       }
-      return next;
-    });
+      setDialogueQueue(next);
+    }
   };
 
 
@@ -382,9 +314,9 @@ export default function HubPage() {
             maxCases = 4; spawnChance = 0.7; possibleCases = ["case_06_trauma", "case_03_cardiac", "case_08", "case_09", "case_11"];
          }
 
-         const campaignData = STORY_CAMPAIGN[currentDay];
-         if (campaignData && campaignData.cases && campaignData.cases.length > 0) {
-            possibleCases = campaignData.cases;
+         const dayCases = getDayStory(currentDay, language).cases;
+         if (dayCases.length > 0) {
+            possibleCases = dayCases;
          }
          
          if (state.activeCases.length < maxCases && Math.random() < spawnChance) {
@@ -431,33 +363,13 @@ export default function HubPage() {
     if (shiftMode === 'off-duty' || shiftMode === 'on-call') return;
     if (dialogueQueue.length > 0) return;
 
-    const campaignData = STORY_CAMPAIGN[currentDay];
-    if (campaignData?.midShiftEvents && campaignData.midShiftEvents.length > 0) {
-       let eventNode = null;
-       let targetCutscene: CutsceneNode[] = [];
-       let targetCase: string | undefined = undefined;
-
-       if ('text' in campaignData.midShiftEvents[0]) {
-          if (clockMinutes === 240) {
-             eventNode = true;
-             targetCutscene = campaignData.midShiftEvents as CutsceneNode[];
-          }
-       } else {
-          const event = (campaignData.midShiftEvents as any[]).find(e => e.triggerMinute === clockMinutes);
-          if (event) {
-             eventNode = event;
-             targetCutscene = event.cutscene;
-             targetCase = event.injectCase;
-          }
-       }
-
-       if (eventNode && !triggeredEvents.current.has(clockMinutes)) {
-          triggeredEvents.current.add(clockMinutes);
-          setDialogueQueue(targetCutscene);
-          if (targetCase) setCaseToInject(targetCase);
-       }
+    const event = getDayStory(currentDay, language).mid.find(e => e.triggerMinute === clockMinutes);
+    if (event && !triggeredEvents.current.has(clockMinutes)) {
+       triggeredEvents.current.add(clockMinutes);
+       setDialogueQueue(playable(event.cutscene));
+       if (event.injectCase) setCaseToInject(event.injectCase);
     }
-  }, [clockMinutes, shiftMode, dialogueQueue.length, currentDay]);
+  }, [clockMinutes, shiftMode, dialogueQueue.length, currentDay, language]);
 
   // Handle End of Shift or Pass Out
   useEffect(() => {
@@ -489,9 +401,9 @@ export default function HubPage() {
            }
         } else {
            // Normal shift ended
-           const campaignData = language === 'th' ? STORY_CAMPAIGN_TH[currentDay] : STORY_CAMPAIGN[currentDay];
-           if (campaignData && campaignData.endOfDayCutscene) {
-             setDialogueQueue(campaignData.endOfDayCutscene);
+           const endScene = getDayStory(currentDay, language).end;
+           if (endScene.length > 0) {
+             setDialogueQueue(playable(endScene));
              setActionOnDialogueEnd('END_SHIFT');
              return;
            }
@@ -514,9 +426,9 @@ export default function HubPage() {
 
   const startShift = () => {
     audio.playClick();
-    const campaignData = language === 'th' ? STORY_CAMPAIGN_TH[currentDay] : STORY_CAMPAIGN[currentDay];
-    if (campaignData && campaignData.startOfDayCutscene) {
-      setDialogueQueue(campaignData.startOfDayCutscene);
+    const startScene = getDayStory(currentDay, language).start;
+    if (startScene.length > 0) {
+      setDialogueQueue(playable(startScene));
       setActionOnDialogueEnd('START_SHIFT');
     } else {
       executeStartShift();
@@ -528,6 +440,7 @@ export default function HubPage() {
     audio.playAmbientHum();
     setClock(0);
     resetShiftStats();
+    triggeredEvents.current = new Set();
     setShiftMode('on-shift');
     
     // Apply Upgrades
@@ -545,6 +458,24 @@ export default function HubPage() {
     setShiftMode('off-duty');
     incrementDay();
     router.push('/summary');
+  };
+
+  // Clocking out early still plays the end-of-day scene and advances the day.
+  // Surrendering the promotion exam returns to the summary without advancing.
+  const requestEndShift = () => {
+    audio.playClick();
+    if (shiftMode === 'boss-battle') {
+      setShiftMode('off-duty');
+      router.push('/summary');
+      return;
+    }
+    const endScene = getDayStory(currentDay, language).end;
+    if (endScene.length > 0) {
+      setDialogueQueue(playable(endScene));
+      setActionOnDialogueEnd('END_SHIFT');
+    } else {
+      executeEndShift();
+    }
   };
 
   const startBossBattle = () => {
@@ -688,7 +619,7 @@ export default function HubPage() {
               activeCases={activeCases} 
               clockMinutes={clockMinutes}
               spawnPos={spawnPos}
-              era={getEra(lifetimeXp)}
+              era={currentEra}
               npcEmote={friendships['nurse_ann'] >= 4 ? "❤️" : null}
               currentDay={currentDay}
               isFastForwarding={isFastForwarding}
@@ -715,7 +646,7 @@ export default function HubPage() {
             speakerName={dialogueQueue[0].speaker}
             text={dialogueQueue[0].text}
             portraitUrl={dialogueQueue[0].portrait}
-            choices={dialogueQueue[0].choices}
+            choices={visibleChoices(dialogueQueue[0].choices, storyFlags)}
             onComplete={handleDialogueComplete}
           />
         )}
@@ -823,7 +754,7 @@ export default function HubPage() {
                   </div>
 
                   <div className="flex gap-2 w-full">
-                    <PixelButton onClick={() => { setShiftMode('off-duty'); router.push('/summary'); }} variant="alert" className="flex-1 py-3 text-base shadow-lg">
+                    <PixelButton onClick={requestEndShift} disabled={dialogueQueue.length > 0} variant="alert" className="flex-1 py-3 text-base shadow-lg">
                       {shiftMode === 'boss-battle' ? (language === 'th' ? 'ยอมแพ้' : 'SURRENDER') : translate('end_shift', language)}
                     </PixelButton>
                     

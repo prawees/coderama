@@ -17,7 +17,8 @@ type MenuState = 'INTRO' | 'SPLASH' | 'MENU' | 'SETUP' | 'SETTINGS';
 
 export default function RootPage() {
   const router = useRouter();
-  const { setupPlayer, playerName, playerGender, language, xp } = useERStore();
+  const { setupPlayer, playerName, playerGender, language, xp, currentDay, tutorialCompleted } = useERStore();
+  const hasSave = xp > 0 || currentDay > 1 || tutorialCompleted;
 
   const [menuState, setMenuState] = useState<MenuState | 'ABOUT' | 'CREDITS'>('INTRO');
   const [wizardStep, setWizardStep] = useState(1);
@@ -76,7 +77,12 @@ export default function RootPage() {
       activeQuests: [],
       completedQuests: [],
       tutorialCompleted: false,
-      friendships: { nurse_ann: 0, dr_bob: 0 }
+      friendships: { nurse_ann: 0, dr_bob: 0 },
+      storyFlags: {},
+      karma: 0,
+      clockMinutes: 0,
+      shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 },
+      isPendingPromotion: false
     });
     
     setWizardStep(1);
@@ -162,12 +168,12 @@ export default function RootPage() {
 
         {menuState === 'MENU' && (
           <div className="w-full space-y-3 animate-slide-up flex flex-col items-center">
-            {xp > 0 && (
+            {hasSave && (
               <PixelButton onClick={handleContinue} variant="primary" className="w-64 py-2 text-2xl shadow-[0_0_15px_rgba(46,160,67,0.5)]">
                 CONTINUE
               </PixelButton>
             )}
-            <PixelButton onClick={handleNewGame} variant={xp > 0 ? "secondary" : "primary"} className="w-64 py-2 text-xl">
+            <PixelButton onClick={handleNewGame} variant={hasSave ? "secondary" : "primary"} className="w-64 py-2 text-xl">
               NEW GAME
             </PixelButton>
             <PixelButton onClick={() => setMenuState('SETTINGS')} variant="secondary" className="w-64 py-2 text-lg text-gray-400">

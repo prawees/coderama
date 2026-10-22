@@ -134,14 +134,15 @@ import { collection, addDoc } from "firebase/firestore";
 import { db, auth } from "@/lib/firebase";
 
 import { MinigameOverlay } from "@/components/game/MinigameOverlay";
+import { PatientPortrait } from "@/components/game/PixelPortrait";
 
 function CaseEngineContent({ params }: { params: { id: string } }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const instanceId = searchParams.get('instanceId');
   
-  const { activeCases, removeCase, addXp, addCurrency, xp, deductEnergy, language } = useERStore();
-  const { getRankFromXp, RANK_THRESHOLDS } = require('@/lib/erStore');
+  const { activeCases, removeCase, addXp, addCurrency, lifetimeXp, deductEnergy, language } = useERStore();
+  const { RANK_THRESHOLDS } = require('@/lib/erStore');
   
   // Resolve active case and case definition key (supports both instanceId in URL and params.id)
   const activeCase = activeCases.find(c => c.id === params.id || c.id === instanceId)
@@ -160,6 +161,13 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   const [activeTab, setActiveTab] = useState<'info' | 'exam' | 'labs' | 'action'>('action');
   const textIdCounter = useRef(0);
 
+  // Scoring: wrong choices made this case, and which wrong options were already tried at the current step
+  const [mistakes, setMistakes] = useState(0);
+  const [supervised, setSupervised] = useState(false);
+  const isAboveRank = (rank: string) => (lifetimeXp || 0) < (RANK_THRESHOLDS[rank] ?? 0);
+  const [triedWrong, setTriedWrong] = useState<Record<string, string[]>>({});
+  const [feedback, setFeedback] = useState<{ kind: 'good' | 'bad'; title: string; body?: string } | null>(null);
+
   const addFloatingText = (text: string, type: 'good' | 'bad', x: number, y: number) => {
     const id = textIdCounter.current++;
     setFloatingTexts(prev => [...prev, { id, text, type, x, y }]);
@@ -167,8 +175,6 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       setFloatingTexts(prev => prev.filter(t => t.id !== id));
     }, 1000);
   };
-
-  const currentRank = getRankFromXp(xp);
 
   const normalizeVitals = (rawVitals: any, overrideVitals?: any) => {
     let bp = "120/80";
@@ -215,6 +221,8 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
         nodesMap[n.id] = {
           vitals: normalizeVitals(caseData.vitals, n.data?.vitalChanges),
           narrative: n.data?.narrative || n.data?.label || '',
+          label: n.data?.label || '',
+          distractors: Array.isArray(n.data?.distractors) ? n.data.distractors : [],
           type: n.type || "intervention",
           outcomeType: n.data?.outcomeType,
           ethicalValue: n.data?.ethicalValue,
@@ -279,50 +287,105 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     );
   }
 
-  const handleAction = async (targetNodeId: string, requiredRank: string) => {
-    const requiredXp = RANK_THRESHOLDS[requiredRank];
-    if (xp < requiredXp) {
-       await Haptics.vibrate();
-       alert(`You must be at least ${requiredRank} to perform this intervention! Use 'Call Attending' or gain more XP.`);
-       return;
+  type Choice = {
+    key: string;
+    text: string;
+    kind: 'edge' | 'wrong';
+    targetNode?: string;
+    requiredRank: string;
+    feedback?: string;
+  };
+
+  // Deterministic shuffle so the correct answer is not always first, and the order is stable across renders
+  const seededOrder = (seed: string) => {
+    let h = 2166136261;
+    for (let i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  };
+
+  // Each outgoing edge is a correct option. If its target step has authored distractors,
+  // those become wrong options shown alongside it, so the player has to pick the right step.
+  const buildChoices = (nodeId: string, node: any): { choices: Choice[]; isDecision: boolean } => {
+    if (!node?.options) return { choices: [], isDecision: false };
+    const tried = triedWrong[nodeId] || [];
+    const choices: Choice[] = [];
+    let isDecision = false;
+    for (const o of node.options) {
+      choices.push({ key: `edge:${o.id ?? o.targetNode}`, text: o.text, kind: 'edge', targetNode: o.targetNode, requiredRank: o.requiredRank || 'MS5' });
+      const target = nodesMap[o.targetNode];
+      (target?.distractors || []).forEach((d: any, i: number) => {
+        if (!d?.label) return;
+        isDecision = true;
+        const key = `wrong:${o.targetNode}:${i}`;
+        if (tried.includes(key)) return;
+        choices.push({ key, text: d.label, kind: 'wrong', requiredRank: 'MS5', feedback: d.feedback });
+      });
     }
-    await Haptics.impact({ style: ImpactStyle.Light });
-    
-    // Determine if it's a physical intervention (e.g. IV bolus)
-    const option = currentNode.options.find((o: any) => o.targetNode === targetNodeId);
-    
-    // Check if wrong answer (degrading vitals or "bad" node)
-    const nextNode = nodesMap[targetNodeId];
-    if (nextNode) {
-       const currentSystolic = parseInt(currentNode.vitals.bp.split('/')[0]);
-       const nextSystolic = parseInt(nextNode.vitals.bp.split('/')[0]);
-       
-       if (nextSystolic < currentSystolic || nextNode.vitals.bp.includes('0/0')) {
-          // Bad choice! Shake!
-          setIsShaking(true);
-          await Haptics.vibrate();
-          setTimeout(() => setIsShaking(false), 500); // 0.5s duration
-       } else if (nextSystolic > currentSystolic) {
-          // Good choice!
-          addFloatingText("+15 XP", "good", window.innerWidth / 2, window.innerHeight / 2);
-          addXp(15);
-       }
+    if (isDecision) choices.sort((x, y) => seededOrder(nodeId + x.key) - seededOrder(nodeId + y.key));
+    return { choices, isDecision };
+  };
+
+  const handleAction = async (choice: Choice) => {
+    // Above-rank interventions are allowed under supervision, which lowers the case reward.
+    // (Hard locks left first-day students with nothing to press.)
+    if (isAboveRank(choice.requiredRank)) setSupervised(true);
+
+    const { isDecision } = buildChoices(effectiveNodeId, currentNode);
+
+    if (choice.kind === 'wrong') {
+      setMistakes(m => m + 1);
+      setTriedWrong(prev => ({ ...prev, [effectiveNodeId]: [...(prev[effectiveNodeId] || []), choice.key] }));
+      deductEnergy(5);
+      setIsShaking(true);
+      setTimeout(() => setIsShaking(false), 500);
+      addFloatingText("-5 EN", "bad", window.innerWidth / 2, window.innerHeight / 2);
+      setFeedback({ kind: 'bad', title: choice.text, body: choice.feedback });
+      await Haptics.vibrate();
+      return;
     }
 
-    // Check for ethical choices
+    await Haptics.impact({ style: ImpactStyle.Light });
+    const targetNodeId = choice.targetNode!;
+    const nextNode = nodesMap[targetNodeId];
+    if (!nextNode) return;
+
+    if (isDecision) {
+      const firstTry = !(triedWrong[effectiveNodeId]?.length);
+      if (firstTry) {
+        addFloatingText("+15 XP", "good", window.innerWidth / 2, window.innerHeight / 2);
+        addXp(15);
+      }
+      const actions = (caseData.managementGraph?.nodes || []).find?.((n: any) => n.id === targetNodeId)?.data?.actions;
+      setFeedback({ kind: 'good', title: choice.text, body: Array.isArray(actions) && actions.length ? actions.join(', ') : undefined });
+    } else {
+      setFeedback(null);
+      // Legacy branching cases: judge the choice by whether blood pressure improves
+      const currentSystolic = parseInt(currentNode.vitals.bp.split('/')[0]);
+      const nextSystolic = parseInt(nextNode.vitals.bp.split('/')[0]);
+      if (nextSystolic < currentSystolic || nextNode.vitals.bp.includes('0/0')) {
+          setIsShaking(true);
+          await Haptics.vibrate();
+          setTimeout(() => setIsShaking(false), 500);
+      } else if (nextSystolic > currentSystolic) {
+          addFloatingText("+15 XP", "good", window.innerWidth / 2, window.innerHeight / 2);
+          addXp(15);
+      }
+    }
+
+    // Ethical choices shift karma
     if (nextNode.type === 'ethicalChoice' || nextNode.ethicalValue !== undefined) {
       const karmaChange = nextNode.ethicalValue || 0;
       if (karmaChange > 0) {
-        addFloatingText("The Hospital Board will remember that.", "good", window.innerWidth / 2, window.innerHeight / 2);
+        addFloatingText(language === 'th' ? "คณะกรรมการโรงพยาบาลจะจำเรื่องนี้ไว้" : "The Hospital Board will remember that.", "good", window.innerWidth / 2, window.innerHeight / 2);
         useERStore.getState().addKarma(karmaChange);
       } else if (karmaChange < 0) {
-        addFloatingText("Your reputation decreased.", "bad", window.innerWidth / 2, window.innerHeight / 2);
+        addFloatingText(language === 'th' ? "ชื่อเสียงของคุณลดลง" : "Your reputation decreased.", "bad", window.innerWidth / 2, window.innerHeight / 2);
         useERStore.getState().addKarma(karmaChange);
       }
     }
 
-    if (option && (option.text.includes("IV") || option.text.includes("CPR") || option.text.includes("Push"))) {
-       setActiveMinigame({ name: option.text, targetNodeId });
+    if (choice.text.includes("IV") || choice.text.includes("CPR") || choice.text.includes("Push")) {
+       setActiveMinigame({ name: choice.text, targetNodeId });
     } else {
        setCurrentNodeId(targetNodeId);
     }
@@ -349,17 +412,27 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     return false;
   };
 
+  // Outcome grade combines where the graph ended with how many wrong steps were taken on the way
+  type Grade = 'clean' | 'minor' | 'poor' | 'critical';
+  const gradeOutcome = (reachedGoodEnding: boolean): Grade => {
+    if (!reachedGoodEnding) return 'critical';
+    if (mistakes === 0) return 'clean';
+    if (mistakes === 1) return 'minor';
+    return 'poor';
+  };
+  const GRADE_REWARDS: Record<Grade, { xp: number; cash: number }> = {
+    clean: { xp: 100, cash: 50 },
+    minor: { xp: 70, cash: 40 },
+    poor: { xp: 30, cash: 10 },
+    critical: { xp: 0, cash: 0 },
+  };
+
   const callAttending = async () => {
     await Haptics.impact({ style: ImpactStyle.Heavy });
     alert(language === 'th' ? "อาจารย์แพทย์เข้าช่วยดูแลเคสเรียบร้อย! คุณได้รับ XP 50%" : "Attending took over! Case resolved, but you only earned 50% XP.");
+    // addXp and addCurrency already record XP, cash and the treated case in shiftStats
     addXp(50);
-    useERStore.setState(state => ({
-      shiftStats: {
-        casesTreated: state.shiftStats.casesTreated + 1,
-        xpEarned: state.shiftStats.xpEarned + 50,
-        cashEarned: state.shiftStats.cashEarned + 25,
-      }
-    }));
+    addCurrency(25);
     deductEnergy(20);
     if (currentInstanceId) removeCase(currentInstanceId);
     router.push('/hub');
@@ -380,10 +453,10 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
         currentNodeId: effectiveNodeId,
         vitals: currentNode.vitals.bp + " HR:" + currentNode.vitals.hr,
         narrative: currentNode.narrative,
-        options: (currentNode.options || []).map((opt: any) => ({
+        options: buildChoices(effectiveNodeId, currentNode).choices.map((opt) => ({
           text: opt.text,
-          targetNode: opt.targetNode,
-          isCorrect: !nodesMap[opt.targetNode]?.vitals?.bp?.includes('0/0')
+          targetNode: opt.targetNode ?? null,
+          isCorrect: opt.kind === 'edge' && !nodesMap[opt.targetNode!]?.vitals?.bp?.includes('0/0')
         })),
         status: "open",
         createdAt: Date.now()
@@ -398,20 +471,26 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     }
   };
 
-  const finishCase = async (isSuccess: boolean) => {
-    if (isSuccess) {
+  const rewardFor = (grade: Grade) => {
+    const r = GRADE_REWARDS[grade];
+    return supervised ? { xp: Math.round(r.xp * 0.6), cash: Math.round(r.cash * 0.6) } : r;
+  };
+
+  const finishCase = async (grade: Grade) => {
+    const reward = rewardFor(grade);
+    if (grade !== 'critical') {
       await Haptics.impact({ style: ImpactStyle.Heavy });
-      addXp(100);
-      addCurrency(50);
-      useERStore.setState(state => ({
-        shiftStats: {
-          casesTreated: state.shiftStats.casesTreated + 1,
-          xpEarned: state.shiftStats.xpEarned + 100,
-          cashEarned: state.shiftStats.cashEarned + 50,
-        }
-      }));
     } else {
       await Haptics.vibrate();
+    }
+    // addXp and addCurrency already update shiftStats (XP, cash, and casesTreated for positive cash)
+    if (reward.xp > 0) addXp(reward.xp);
+    if (reward.cash > 0) {
+      addCurrency(reward.cash);
+    } else {
+      useERStore.setState(state => ({
+        shiftStats: { ...state.shiftStats, casesTreated: state.shiftStats.casesTreated + 1 }
+      }));
     }
     deductEnergy(20);
     if (currentInstanceId) {
@@ -421,6 +500,32 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   };
 
   if (!currentNode) return null;
+
+  // Each wrong step visibly worsens the patient
+  const shownVitals = (() => {
+    const v = currentNode.vitals || { bp: "120/80", hr: 80, o2: "98%" };
+    if (mistakes === 0 || String(v.bp).includes('0/0')) return v;
+    const [sys, dia] = String(v.bp).split('/').map((x: string) => parseInt(x));
+    const o2 = parseInt(String(v.o2));
+    return {
+      bp: `${Math.max(50, sys - 6 * mistakes)}/${Math.max(30, (dia || 80) - 4 * mistakes)}`,
+      hr: (typeof v.hr === 'number' ? v.hr : 80) + 8 * mistakes,
+      o2: isNaN(o2) ? v.o2 : `${Math.max(70, o2 - mistakes)}%`,
+    };
+  })();
+  const shownSystolic = parseInt(String(shownVitals.bp).split('/')[0]);
+
+  const { choices } = buildChoices(effectiveNodeId, currentNode);
+
+  const promptText = (() => {
+    if (currentNode.type === 'start' && (!currentNode.narrative || currentNode.narrative === 'Start')) {
+      return language === 'th' ? 'จะทำอะไรเป็นอย่างแรก?' : 'What do you do first?';
+    }
+    if (currentNode.type === 'required') {
+      return language === 'th' ? 'ขั้นตอนต่อไปคืออะไร?' : 'What is your next step?';
+    }
+    return currentNode.narrative;
+  })();
 
   return (
     <>
@@ -440,7 +545,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
           }}
         />
       )}
-      <div className={`min-h-screen bg-[#0d1117] text-white font-pixel flex p-2 gap-2 relative ${isShaking ? 'animate-shake bg-red-950/20' : ''}`}>
+      <div className={`h-[100dvh] sm:h-full bg-[#0d1117] text-white font-pixel flex flex-col p-2 gap-2 relative ${isShaking ? 'animate-shake bg-red-950/20' : ''}`}>
         
         {/* FLOATING TEXTS */}
         <AnimatePresence>
@@ -459,61 +564,42 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
           ))}
         </AnimatePresence>
 
-        {/* LEFT PANEL: Portrait and Vitals */}
-        <div className="w-[45%] flex flex-col gap-2">
-          {/* Vitals Bar (ECG style) */}
-          <div className="bg-[#161b22] border-2 border-[#30363d] rounded p-3 flex justify-between shadow-inner text-sm shadow-[inset_0_0_10px_rgba(0,0,0,0.8)]">
-             <div className="flex flex-col items-center">
-               <span className="text-[#1f6feb] uppercase text-xs">HR</span>
-               <span className={`text-xl ${currentNode.vitals.hr > 110 || currentNode.vitals.hr < 40 ? 'text-[#f87171] animate-pulse' : 'text-[#a3e635]'}`}>{currentNode.vitals.hr}</span>
-             </div>
-             <div className="flex flex-col items-center">
-               <span className="text-[#1f6feb] uppercase text-xs">BP</span>
-               <span className={`text-xl ${currentNode.vitals.bp.includes('0/0') || currentNode.vitals.bp.includes('70/40') ? 'text-[#f87171] animate-pulse' : 'text-[#a3e635]'}`}>{currentNode.vitals.bp}</span>
-             </div>
-             <div className="flex flex-col items-center">
-               <span className="text-[#1f6feb] uppercase text-xs">RR</span>
-               <span className="text-xl text-[#a3e635]">{caseData.vitals?.rr?.value || 16}</span>
-             </div>
-             <div className="flex flex-col items-center">
-               <span className="text-[#1f6feb] uppercase text-xs">SpO2</span>
-               <span className="text-xl text-[#a3e635]">{currentNode.vitals.o2}</span>
-             </div>
-             <div className="flex flex-col items-center">
-               <span className="text-[#1f6feb] uppercase text-xs">Temp</span>
-               <span className="text-xl text-gray-300">{caseData.vitals?.temp?.value || 37.0} C</span>
-             </div>
+        {/* HEADER: patient and monitor */}
+        <div className="flex gap-2 flex-shrink-0">
+          <div className="w-16 h-16 flex-shrink-0 border-2 border-[#30363d] rounded overflow-hidden bg-black">
+            <PatientPortrait seed={caseKey} sex={caseData.sex} ageGroup={caseData.patientAppearance?.ageGroup} skinTone={caseData.patientAppearance?.skinTone} className="w-full h-full" />
           </div>
-          
-          {/* Portrait */}
-          <div className="flex-1 bg-black border-2 border-[#30363d] rounded flex flex-col overflow-hidden relative shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
-            <div className="flex-1 w-full bg-[#161b22] flex items-center justify-center relative overflow-hidden group">
-               {/* Use the default assets for now depending on age/sex or just a generic one */}
-               {caseData.patientAppearance?.ageGroup === 'child' ? (
-                 <img src="/assets/patient.jpg" className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform" />
-               ) : (
-                 <div className="text-[120px]">👤</div>
-               )}
-               
-               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
-            </div>
-            
-            <div className="bg-[#0d1117] p-3 border-t-2 border-[#30363d] grid grid-cols-2 gap-2 text-sm">
-               <div className="col-span-2">
-                 <span className="text-gray-400">Name:</span> <span className="text-white">{caseData.title}</span>
-               </div>
-               <div>
-                 <span className="text-gray-400">Sex:</span> <span className="text-white">{caseData.sex}</span>
-               </div>
-               <div>
-                 <span className="text-gray-400">Age:</span> <span className="text-white">{caseData.age}</span>
-               </div>
-            </div>
+          <div className="flex-1 min-w-0 flex flex-col justify-center">
+            <p className="text-white text-base leading-tight truncate">{caseData.title}</p>
+            <p className="text-gray-400 text-xs leading-tight mt-1 line-clamp-2">{caseData.chiefComplaint}</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-5 bg-[#161b22] border-2 border-[#30363d] rounded px-1 py-2 text-center shadow-[inset_0_0_10px_rgba(0,0,0,0.8)] flex-shrink-0">
+          <div className="flex flex-col items-center min-w-0">
+            <span className="text-[#1f6feb] uppercase text-[10px]">HR</span>
+            <span className={`text-lg leading-none tabular-nums ${shownVitals.hr > 110 || shownVitals.hr < 40 ? 'text-[#f87171] animate-pulse' : 'text-[#a3e635]'}`}>{shownVitals.hr}</span>
+          </div>
+          <div className="flex flex-col items-center min-w-0">
+            <span className="text-[#1f6feb] uppercase text-[10px]">BP</span>
+            <span className={`text-lg leading-none tabular-nums ${String(shownVitals.bp).includes('0/0') || shownSystolic < 90 ? 'text-[#f87171] animate-pulse' : 'text-[#a3e635]'}`}>{shownVitals.bp}</span>
+          </div>
+          <div className="flex flex-col items-center min-w-0">
+            <span className="text-[#1f6feb] uppercase text-[10px]">RR</span>
+            <span className="text-lg leading-none tabular-nums text-[#a3e635]">{caseData.vitals?.rr?.value || 16}</span>
+          </div>
+          <div className="flex flex-col items-center min-w-0">
+            <span className="text-[#1f6feb] uppercase text-[10px]">SpO2</span>
+            <span className={`text-lg leading-none tabular-nums ${parseInt(String(shownVitals.o2)) < 92 ? 'text-[#f87171] animate-pulse' : 'text-[#a3e635]'}`}>{shownVitals.o2}</span>
+          </div>
+          <div className="flex flex-col items-center min-w-0">
+            <span className="text-[#1f6feb] uppercase text-[10px]">Temp</span>
+            <span className="text-lg leading-none tabular-nums text-gray-300">{caseData.vitals?.temp?.value || 37.0}</span>
           </div>
         </div>
 
         {/* RIGHT PANEL: Tabs & Content */}
-        <div className="w-[55%] flex flex-col bg-[#161b22] border-2 border-[#30363d] rounded shadow-lg overflow-hidden">
+        <div className="flex-1 min-h-0 flex flex-col bg-[#161b22] border-2 border-[#30363d] rounded shadow-lg overflow-hidden">
           {/* Tabs */}
           <div className="flex bg-[#0d1117] border-b-2 border-[#30363d] text-sm md:text-base">
              <button onClick={() => setActiveTab('info')} className={`px-2 md:px-4 py-3 flex-1 border-r border-[#30363d] transition-colors ${activeTab === 'info' ? 'bg-[#1f6feb] font-bold text-white shadow-[inset_0_4px_0_rgba(255,255,255,0.2)]' : 'text-gray-400 hover:bg-[#21262d]'}`}>👤 Info</button>
@@ -523,7 +609,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
           </div>
           
           {/* Content Area */}
-          <div className="flex-1 p-5 overflow-y-auto bg-[#0d1117] shadow-[inset_0_10px_20px_rgba(0,0,0,0.5)] relative">
+          <div className="flex-1 p-3 overflow-y-auto bg-[#0d1117] shadow-[inset_0_10px_20px_rgba(0,0,0,0.5)] relative">
              {activeTab === 'info' && (
                 <div className="animate-in fade-in duration-200">
                   <h3 className="text-[#58a6ff] mb-2 font-bold border-b border-[#30363d] pb-1 uppercase tracking-widest text-sm">Complaint</h3>
@@ -560,24 +646,38 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
              
              {activeTab === 'action' && (
                 <div className="flex flex-col h-full animate-in fade-in duration-200">
-                  <div className="bg-black/60 p-4 border-2 border-[#30363d] rounded-lg mb-4 min-h-[5rem] shadow-inner flex items-center justify-center">
-                    <p className="text-lg text-center text-pixel-gold leading-relaxed">{currentNode.narrative}</p>
+                  {feedback && (
+                    <div className={`mb-3 p-3 rounded border-2 text-sm leading-relaxed ${feedback.kind === 'good' ? 'bg-[#14532d]/40 border-[#a3e635]/70' : 'bg-[#450a0a]/50 border-[#f87171]/80'}`}>
+                      <p className={`font-bold mb-1 ${feedback.kind === 'good' ? 'text-[#a3e635]' : 'text-[#f87171]'}`}>
+                        {feedback.kind === 'good' ? '✓ ' : '✗ '}{feedback.title}
+                      </p>
+                      {feedback.body && <p className="text-gray-200">{feedback.body}</p>}
+                    </div>
+                  )}
+
+                  <div className="bg-black/60 p-3 border-2 border-[#30363d] rounded-lg mb-3 min-h-[3.5rem] shadow-inner flex items-center justify-center">
+                    <p className="text-lg text-center text-pixel-gold leading-relaxed">{promptText}</p>
                   </div>
+
+                  {mistakes > 0 && (
+                    <p className="text-xs text-[#f87171] mb-2 text-right">
+                      {language === 'th' ? `ผิดพลาด ${mistakes} ครั้ง` : `${mistakes} error${mistakes > 1 ? 's' : ''} this case`}
+                    </p>
+                  )}
                   
-                  <div className="flex flex-col gap-3 flex-1 justify-end">
-                    {currentNode.options ? (
+                  <div className="flex flex-col gap-2 flex-1 justify-end">
+                    {choices.length > 0 ? (
                       <>
-                        {currentNode.options.map((opt: any) => {
-                          const isLocked = xp < RANK_THRESHOLDS[opt.requiredRank];
+                        {choices.map((opt) => {
+                          const needsSupervision = isAboveRank(opt.requiredRank);
                           return (
                             <button 
-                              key={opt.id} 
-                              onClick={() => handleAction(opt.targetNode, opt.requiredRank)}
-                              disabled={isLocked}
-                              className={`w-full py-4 px-4 text-left text-sm md:text-base font-bold rounded shadow-md border-2 transition-transform active:scale-95 flex justify-between items-center ${isLocked ? 'bg-[#21262d] border-[#30363d] text-gray-500 cursor-not-allowed' : 'bg-[#161b22] border-[#1f6feb] text-white hover:bg-[#1f6feb]'}`}
+                              key={opt.key} 
+                              onClick={() => handleAction(opt)}
+                              className="w-full py-3 px-3 text-left text-sm font-bold rounded shadow-md border-2 transition-transform active:scale-95 flex justify-between items-center gap-2 bg-[#161b22] border-[#1f6feb] text-white hover:bg-[#1f6feb]"
                             >
                               <span>{opt.text}</span>
-                              {isLocked && <span className="text-xs border border-gray-600 px-2 py-1 rounded bg-black/50 text-gray-400 uppercase">Req: {opt.requiredRank}</span>}
+                              {needsSupervision && <span className="flex-shrink-0 text-[10px] border border-[#d29922] px-1.5 py-0.5 rounded bg-black/50 text-[#d29922] uppercase">{language === 'th' ? 'ต้องมีอาจารย์กำกับ' : 'Supervised'}</span>}
                             </button>
                           );
                         })}
@@ -594,15 +694,22 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                         )}
                       </>
                     ) : (() => {
-                      const success = isNodeSuccessful(effectiveNodeId, currentNode);
+                      const grade = gradeOutcome(isNodeSuccessful(effectiveNodeId, currentNode));
+                      const reward = rewardFor(grade);
+                      const LABELS: Record<Grade, { en: string; th: string }> = {
+                        clean: { en: '✓ CASE RESOLVED: PATIENT STABILIZED', th: '✓ ผู้ป่วยปลอดภัย (บันทึกผล)' },
+                        minor: { en: '✓ PATIENT STABILIZED, ONE ERROR', th: '✓ ผู้ป่วยปลอดภัย ผิดพลาด 1 ครั้ง' },
+                        poor: { en: '△ PATIENT SURVIVED, CARE BELOW STANDARD', th: '△ ผู้ป่วยรอด แต่การดูแลต่ำกว่ามาตรฐาน' },
+                        critical: { en: '✗ CASE CLOSED: PATIENT CRITICAL', th: '✗ ผู้ป่วยวิกฤต (ส่งต่อ / บันทึกผล)' },
+                      };
+                      const good = grade === 'clean' || grade === 'minor';
                       return (
                         <button 
-                          onClick={() => finishCase(success)}
-                          className={`w-full py-5 font-bold uppercase tracking-widest rounded shadow-lg border-2 transition-transform active:scale-95 ${success ? 'bg-[#14532d] border-[#a3e635] text-white hover:bg-[#15803d]' : 'bg-[#7f1d1d] border-[#f87171] text-white hover:bg-[#991b1b]'}`}
+                          onClick={() => finishCase(grade)}
+                          className={`w-full py-5 font-bold uppercase tracking-widest rounded shadow-lg border-2 transition-transform active:scale-95 ${good ? 'bg-[#14532d] border-[#a3e635] text-white hover:bg-[#15803d]' : 'bg-[#7f1d1d] border-[#f87171] text-white hover:bg-[#991b1b]'}`}
                         >
-                          {success 
-                            ? (language === 'th' ? '✓ ผู้ป่วยปลอดภัย (บันทึกผล / ออกเวร)' : '✓ CASE RESOLVED: PATIENT STABILIZED')
-                            : (language === 'th' ? '✗ ผู้ป่วยวิกฤต (ส่งต่อ / บันทึกผล)' : '✗ CASE CLOSED: PATIENT CRITICAL')}
+                          <span className="block">{language === 'th' ? LABELS[grade].th : LABELS[grade].en}</span>
+                          <span className="block text-xs mt-1 opacity-80 normal-case tracking-normal">+{reward.xp} XP · +${reward.cash}{supervised ? (language === 'th' ? ' (มีอาจารย์กำกับ)' : ' (supervised)') : ''}</span>
                         </button>
                       );
                     })()}
