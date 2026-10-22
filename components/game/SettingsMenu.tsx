@@ -72,15 +72,15 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
             initial={{ scale: 0.9, y: 20 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.9, y: 20 }}
-            className="bg-[#161b22] border-4 border-[#30363d] rounded-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.8)] min-w-[300px] text-white font-pixel"
+            className="bg-[#3a2c3d] border-4 border-[#6b4a3a] rounded-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.8)] min-w-[300px] text-white font-pixel"
             onClick={e => e.stopPropagation()}
           >
-            <h2 className="text-2xl text-center text-[#58a6ff] mb-6 drop-shadow-md">SETTINGS</h2>
+            <h2 className="text-2xl text-center text-[#7fc8d8] mb-6 drop-shadow-md">SETTINGS</h2>
             
             <div className="flex flex-col gap-4">
               <button 
                 onClick={toggleMute}
-                className="pixel-border px-4 py-3 bg-[#21262d] border-[#0d1117] hover:bg-[#30363d] rounded-lg transition-colors flex justify-between items-center"
+                className="pixel-border px-4 py-3 bg-[#4a3848] border-[#2b2133] hover:bg-[#6b4a3a] rounded-lg transition-colors flex justify-between items-center"
               >
                 <span>MUTE ALL</span>
                 <span className={isMuted ? 'text-red-400' : 'text-green-400'}>
@@ -88,37 +88,37 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
                 </span>
               </button>
 
-              <div className="bg-[#21262d] rounded-lg p-4 border border-[#30363d]">
+              <div className="bg-[#4a3848] rounded-lg p-4 border border-[#6b4a3a]">
                 <label className="text-gray-400 text-sm mb-2 block">SFX VOLUME</label>
                 <input 
                   type="range" 
                   min="0" max="1" step="0.05"
                   value={sfxVolume}
                   onChange={(e) => setSfxVolume(parseFloat(e.target.value))}
-                  className="w-full accent-[#58a6ff]"
+                  className="w-full accent-[#7fc8d8]"
                 />
               </div>
 
-              <div className="bg-[#21262d] rounded-lg p-4 border border-[#30363d]">
+              <div className="bg-[#4a3848] rounded-lg p-4 border border-[#6b4a3a]">
                 <label className="text-gray-400 text-sm mb-2 block">MUSIC VOLUME</label>
                 <input 
                   type="range" 
                   min="0" max="1" step="0.05"
                   value={musicVolume}
                   onChange={(e) => setMusicVolume(parseFloat(e.target.value))}
-                  className="w-full accent-[#58a6ff]"
+                  className="w-full accent-[#7fc8d8]"
                 />
               </div>
               <div className="flex gap-2">
                 <button 
                   onClick={exportSave}
-                  className="flex-1 pixel-border px-2 py-2 bg-[#1f6feb] hover:bg-[#388bfd] rounded text-white text-xs text-center transition-colors"
+                  className="flex-1 pixel-border px-2 py-2 bg-[#4f8fb0] hover:bg-[#6aa8c4] rounded text-white text-xs text-center transition-colors"
                 >
                   EXPORT SAVE
                 </button>
                 <button 
                   onClick={() => fileInputRef.current?.click()}
-                  className="flex-1 pixel-border px-2 py-2 bg-[#2ea043] hover:bg-[#3fb950] rounded text-white text-xs text-center transition-colors"
+                  className="flex-1 pixel-border px-2 py-2 bg-[#5fae5a] hover:bg-[#86c35f] rounded text-white text-xs text-center transition-colors"
                 >
                   IMPORT SAVE
                 </button>
@@ -133,7 +133,7 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
               
               <button 
                 onClick={hardReset}
-                className="pixel-border px-4 py-3 bg-[#da3633] border-[#8e1519] hover:bg-[#f85149] rounded-lg transition-colors text-white"
+                className="pixel-border px-4 py-3 bg-[#d95763] border-[#8e1519] hover:bg-[#e06b72] rounded-lg transition-colors text-white"
               >
                 HARD RESET SAVE
               </button>

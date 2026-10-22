@@ -63,7 +63,7 @@ export default function SkillsPage() {
             return (
               <PixelPanel 
                 key={skill.id} 
-                className={`flex flex-col gap-4 ${isUnlocked ? 'border-pixel-gold opacity-80 bg-black' : 'border-gray-600 bg-[#161b22]'}`}
+                className={`flex flex-col gap-4 ${isUnlocked ? 'border-pixel-gold opacity-80 bg-black' : 'border-gray-600 bg-[#3a2c3d]'}`}
                 variant="dark"
               >
                 <div className="flex justify-between items-start">

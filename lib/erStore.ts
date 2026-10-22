@@ -1,15 +1,21 @@
+import { useEffect as _useEffect, useState as _useState } from 'react';
 import { create } from 'zustand';
 import { persist, StateStorage, createJSONStorage } from 'zustand/middleware';
 import { Preferences } from '@capacitor/preferences';
 import { QUEST_DATABASE } from './quests';
 
-// Custom Capacitor Storage Engine for Zustand Persist
+// Custom Capacitor Storage Engine for Zustand Persist.
+// Writes are ignored until the saved game has been read back: Capacitor storage is async,
+// and any state change before that (cloud sync reporting "signed out", a quest starting)
+// would otherwise overwrite the player's save with the default state.
+let saveLoaded = false;
 const capacitorStorage: StateStorage = {
   getItem: async (name: string): Promise<string | null> => {
     const { value } = await Preferences.get({ key: name });
     return value || null;
   },
   setItem: async (name: string, value: string): Promise<void> => {
+    if (!saveLoaded) return;
     await Preferences.set({ key: name, value });
   },
   removeItem: async (name: string): Promise<void> => {
@@ -162,6 +168,13 @@ interface ERState {
   prestigeCount: number;
   legacyPerks: string[];
 
+  // Social: gifts and friendships
+  gifts: Record<string, number>; // gift id -> count owned
+  npcDaily: Record<string, { talkDay?: number; giftDay?: number }>;
+  knownTastes: Record<string, Record<string, string>>; // npc -> gift -> taste discovered by giving it
+  heartEventsSeen: string[];
+  propDaily: Record<string, number>; // prop or activity -> day last used
+
   // Actions
   setShiftMode: (mode: ShiftMode) => void;
   addCase: (newCase: ActiveCase) => void;
@@ -197,6 +210,12 @@ interface ERState {
   setMusicVolume: (vol: number) => void;
   setPlayerName: (name: string) => void;
   prestige: (perk: string) => void;
+  buyGift: (giftId: string, cost: number) => boolean;
+  useGift: (giftId: string) => boolean;
+  markNpc: (npcId: string, field: 'talkDay' | 'giftDay', day: number) => void;
+  learnTaste: (npcId: string, giftId: string, taste: string) => void;
+  markHeartEvent: (key: string) => void;
+  useProp: (key: string, day: number) => void;
 }
 
 export const useERStore = create<ERState>()(
@@ -214,11 +233,13 @@ export const useERStore = create<ERState>()(
       isPendingPromotion: false,
       prestigeCount: 0,
       legacyPerks: [],
+      gifts: {},
+      npcDaily: {},
+      knownTastes: {},
+      heartEventsSeen: [],
+      propDaily: {},
 
-      friendships: {
-        nurse_ann: 0,
-        dr_bob: 0
-      },
+      friendships: {},
       karma: 0,
       activeQuests: [],
       completedQuests: [],
@@ -460,7 +481,12 @@ export const useERStore = create<ERState>()(
         clockMinutes: 0,
         completedQuests: [],
         tutorialCompleted: false,
-        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 }
+        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 },
+        gifts: {},
+        npcDaily: {},
+        knownTastes: {},
+        heartEventsSeen: [],
+        propDaily: {}
       }),
       resetShiftStats: () => set((state) => ({
         shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 }
@@ -488,6 +514,7 @@ export const useERStore = create<ERState>()(
           activeQuests: state.activeQuests.filter(q => q !== questId),
           completedQuests: [...state.completedQuests, questId]
         }));
+        if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('questComplete', { detail: questId }));
       },
       completeTutorial: () => set({ tutorialCompleted: true }),
       setSyncEnabled: (sync: boolean) => set({ syncEnabled: sync }),
@@ -508,6 +535,27 @@ export const useERStore = create<ERState>()(
           window.dispatchEvent(new CustomEvent('volumeChanged', { detail: { sfxVolume: get().sfxVolume, musicVolume: vol } }));
         }
       },
+      buyGift: (giftId, cost) => {
+        const { currency } = get();
+        if (currency < cost) return false;
+        set((state) => ({ currency: state.currency - cost, gifts: { ...state.gifts, [giftId]: (state.gifts[giftId] || 0) + 1 } }));
+        if (get().activeQuests.includes('q_gear_up')) get().completeQuest('q_gear_up');
+        return true;
+      },
+      useGift: (giftId) => {
+        const n = get().gifts[giftId] || 0;
+        if (n <= 0) return false;
+        set((state) => ({ gifts: { ...state.gifts, [giftId]: n - 1 } }));
+        return true;
+      },
+      markNpc: (npcId, field, day) => set((state) => ({
+        npcDaily: { ...state.npcDaily, [npcId]: { ...state.npcDaily[npcId], [field]: day } }
+      })),
+      learnTaste: (npcId, giftId, taste) => set((state) => ({
+        knownTastes: { ...state.knownTastes, [npcId]: { ...state.knownTastes[npcId], [giftId]: taste } }
+      })),
+      markHeartEvent: (key) => set((state) => ({ heartEventsSeen: [...state.heartEventsSeen, key] })),
+      useProp: (key, day) => set((state) => ({ propDaily: { ...state.propDaily, [key]: day } })),
       prestige: (perk) => set(state => ({
          prestigeCount: state.prestigeCount + 1,
          legacyPerks: [...state.legacyPerks, perk],
@@ -526,6 +574,13 @@ export const useERStore = create<ERState>()(
     {
       name: 'code-rama-storage',
       storage: createJSONStorage(() => capacitorStorage),
+      onRehydrateStorage: () => (_state, error) => {
+        if (error || typeof window === 'undefined') return;
+        saveLoaded = true;
+        // persist what we have now that the save is merged in
+        const s = useERStore.getState();
+        useERStore.setState({ lastSaved: s.lastSaved });
+      },
       partialize: (state) => ({
         shiftMode: state.shiftMode,
         activeCases: state.activeCases,
@@ -558,7 +613,22 @@ export const useERStore = create<ERState>()(
         shiftStats: state.shiftStats,
         sfxVolume: state.sfxVolume,
         musicVolume: state.musicVolume,
+        gifts: state.gifts,
+        npcDaily: state.npcDaily,
+        knownTastes: state.knownTastes,
+        heartEventsSeen: state.heartEventsSeen,
+        propDaily: state.propDaily,
       })
     }
   )
 );
+
+/** True once the saved game has been loaded from storage (Capacitor storage is async) */
+export function useHydrated(): boolean {
+  const [hydrated, setHydrated] = _useState(() => useERStore.persist.hasHydrated());
+  _useEffect(() => {
+    if (useERStore.persist.hasHydrated()) setHydrated(true);
+    return useERStore.persist.onFinishHydration(() => setHydrated(true));
+  }, []);
+  return hydrated;
+}

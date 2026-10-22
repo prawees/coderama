@@ -21,7 +21,7 @@ export default function ProfessorPortal() {
   const selectedCase = selectedCaseId ? ALL_CASES[selectedCaseId] : null;
 
   return (
-    <div className="min-h-screen bg-[#0d1117] text-white p-6 font-mono flex flex-col h-screen">
+    <div className="min-h-screen bg-[#2b2133] text-white p-6 font-mono flex flex-col h-screen">
       <div className="flex justify-between items-center mb-6 border-b border-gray-700 pb-4">
         <div>
           <h1 className="text-2xl font-bold text-blue-400">Toxico Learning - Professor Portal</h1>
@@ -34,7 +34,7 @@ export default function ProfessorPortal() {
 
       <div className="flex flex-1 gap-6 overflow-hidden">
         {/* Left Sidebar: Case List */}
-        <div className="w-1/4 bg-[#161b22] border border-gray-700 rounded-lg p-4 overflow-y-auto">
+        <div className="w-1/4 bg-[#3a2c3d] border border-gray-700 rounded-lg p-4 overflow-y-auto">
           <h2 className="text-lg font-bold mb-4 text-gray-300 border-b border-gray-700 pb-2">Available Cases</h2>
           <div className="flex flex-col gap-2">
             {Object.keys(ALL_CASES).map(caseId => (
@@ -50,7 +50,7 @@ export default function ProfessorPortal() {
         </div>
 
         {/* Right Area: Case Viewer */}
-        <div className="flex-1 bg-[#161b22] border border-gray-700 rounded-lg p-6 overflow-y-auto">
+        <div className="flex-1 bg-[#3a2c3d] border border-gray-700 rounded-lg p-6 overflow-y-auto">
           {!selectedCase ? (
             <div className="h-full flex items-center justify-center text-gray-500">
               Select a case from the sidebar to review its logic.
@@ -88,7 +88,7 @@ export default function ProfessorPortal() {
                         <h4 className="text-xs font-bold text-gray-500 mb-2 uppercase">Decisions</h4>
                         <div className="flex flex-col gap-2">
                           {nodeData.options.map((opt: any, idx: number) => (
-                            <div key={idx} className="flex justify-between items-center bg-[#21262d] p-2 rounded text-sm border-l-4 border-blue-500">
+                            <div key={idx} className="flex justify-between items-center bg-[#4a3848] p-2 rounded text-sm border-l-4 border-blue-500">
                               <span>{opt.text}</span>
                               <div className="flex gap-4">
                                 <span className="text-xs text-gray-400">Req: <span className="text-yellow-400">{opt.requiredRank}</span></span>

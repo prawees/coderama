@@ -97,7 +97,7 @@ export function MinigameOverlay({ interventionName, onComplete }: MinigameOverla
           className={`flex flex-col items-center p-8 gap-6 shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 transition-colors ${
             feedback === 'success' ? 'border-[#00ff41] shadow-[0_0_50px_rgba(0,255,65,0.3)]' :
             feedback === 'fail' ? 'border-red-600 shadow-[0_0_50px_rgba(255,0,0,0.4)]' :
-            'border-[#30363d] shadow-[0_0_50px_rgba(255,0,0,0.2)]'
+            'border-[#6b4a3a] shadow-[0_0_50px_rgba(255,0,0,0.2)]'
           } bg-[#0a0a0c]`}
         >
           
@@ -111,7 +111,7 @@ export function MinigameOverlay({ interventionName, onComplete }: MinigameOverla
           <p className={`text-sm font-mono px-4 py-1 rounded transition-colors ${
             feedback === 'success' ? 'text-[#00ff41] bg-[#00ff41]/20 font-bold' :
             feedback === 'fail' ? 'text-red-400 bg-red-950 font-bold' :
-            'text-[#8b949e] bg-gray-900'
+            'text-[#c9b79c] bg-gray-900'
           }`}>
             {feedback === 'success' ? 'PERFECT TIMING!' : feedback === 'fail' ? 'MISSED TIMING!' : 'Target the Green Zone'}
           </p>
@@ -119,12 +119,12 @@ export function MinigameOverlay({ interventionName, onComplete }: MinigameOverla
           {/* The Medical Bar */}
           <div 
             className={`w-full h-12 bg-[#050505] border-4 rounded-lg relative cursor-pointer overflow-hidden shadow-inner flex items-center transition-colors ${
-              feedback === 'success' ? 'border-[#00ff41]' : feedback === 'fail' ? 'border-red-600' : 'border-[#30363d]'
+              feedback === 'success' ? 'border-[#00ff41]' : feedback === 'fail' ? 'border-red-600' : 'border-[#6b4a3a]'
             }`}
             onClick={handleAction}
           >
             {/* Grid background */}
-            <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(#30363d 1px, transparent 1px), linear-gradient(90deg, #30363d 1px, transparent 1px)', backgroundSize: '10px 10px' }} />
+            <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(#6b4a3a 1px, transparent 1px), linear-gradient(90deg, #6b4a3a 1px, transparent 1px)', backgroundSize: '10px 10px' }} />
             
             {/* Target Zone */}
             <div 
@@ -145,7 +145,7 @@ export function MinigameOverlay({ interventionName, onComplete }: MinigameOverla
             />
           </div>
 
-          <p className="text-xs text-[#8b949e] mt-2 animate-pulse">
+          <p className="text-xs text-[#c9b79c] mt-2 animate-pulse">
             {feedback === 'idle' ? '(Press SPACE or TAP the bar)' : 'Processing response...'}
           </p>
         </PixelPanel>

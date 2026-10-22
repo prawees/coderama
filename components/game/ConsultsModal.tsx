@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { collection, query, where, getDocs, doc, updateDoc } from "firebase/firestore";
 import { db, auth } from "@/lib/firebase";
-import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
+import { PixelIcon } from "@/components/ui/PixelIcon";
 import { useERStore } from "@/lib/erStore";
 
 interface ConsultsModalProps {
@@ -12,19 +12,22 @@ interface ConsultsModalProps {
 export function ConsultsModal({ onClose }: ConsultsModalProps) {
   const [consults, setConsults] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const { addXp, addCurrency } = useERStore();
+  const [failed, setFailed] = useState(false);
+  const [note, setNote] = useState<string | null>(null);
+  const { addXp, addCurrency, language } = useERStore();
+  const tr = (en: string, th: string) => (language === "th" ? th : en);
 
   const fetchConsults = async () => {
     setLoading(true);
+    setFailed(false);
     try {
       const q = query(collection(db, "consults"), where("status", "==", "open"));
-      const querySnapshot = await getDocs(q);
-      const fetched: any[] = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      // Filter out our own consults
-      const othersConsults = fetched.filter((c: any) => c.requesterId !== auth.currentUser?.uid);
-      setConsults(othersConsults);
+      const snap = await getDocs(q);
+      const fetched: any[] = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      setConsults(fetched.filter((c: any) => c.requesterId !== auth.currentUser?.uid));
     } catch (e) {
-      console.error("Failed to fetch consults", e);
+      console.warn("Consults unavailable", e);
+      setFailed(true);
     } finally {
       setLoading(false);
     }
@@ -32,89 +35,74 @@ export function ConsultsModal({ onClose }: ConsultsModalProps) {
 
   useEffect(() => {
     fetchConsults();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleProvideConsult = async (consultId: string, isCorrect: boolean) => {
     try {
-      const consultRef = doc(db, "consults", consultId);
-      await updateDoc(consultRef, {
+      await updateDoc(doc(db, "consults", consultId), {
         status: "resolved",
         resolverId: auth.currentUser?.uid,
         resolvedAt: Date.now(),
-        resolverWasCorrect: isCorrect
+        resolverWasCorrect: isCorrect,
       });
-      
       if (isCorrect) {
         addXp(50);
         addCurrency(100);
-        alert("Consult provided! You earned 50 XP and $100!");
+        setNote(tr("Good call. +50 XP, +100 coins.", "แนะนำได้ดี +50 XP +100 เหรียญ"));
       } else {
-        alert("Your consult was sent, but it might not have been the best advice...");
+        setNote(tr("Sent. You have a nagging feeling about that one.", "ส่งแล้ว แต่รู้สึกแปลกๆ กับคำแนะนำนี้"));
       }
-      
-      fetchConsults(); // Refresh list
+      fetchConsults();
     } catch (e) {
-      console.error("Failed to update consult", e);
-      alert("Error sending consult.");
+      console.warn("Failed to update consult", e);
+      setNote(tr("The message did not go through.", "ส่งข้อความไม่สำเร็จ"));
     }
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-      <PixelPanel className="w-full max-w-2xl max-h-[90vh] flex flex-col" variant="dark">
-        <h2 className="text-3xl text-pixel-primary font-bold text-center mb-2 uppercase">Doctors Lounge</h2>
-        <p className="text-center text-gray-400 text-sm mb-4">Provide consults to other doctors to earn rewards!</p>
-        
-        <div className="flex-1 overflow-y-auto pr-2 space-y-4">
-          {loading ? (
-            <div className="text-center text-gray-400 py-8 animate-pulse">Checking the pager for consult requests...</div>
-          ) : (
-            consults.map((consult) => (
-              <div key={consult.id} className="bg-gray-900 border-2 border-gray-700 p-4 rounded flex flex-col gap-3">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <div className="text-white font-bold">{consult.requesterName} requested a consult!</div>
-                    <div className="text-xs text-gray-400">Case: {consult.caseId} | Node: {consult.currentNodeId}</div>
-                  </div>
-                  <div className="text-xs text-pixel-gold bg-black px-2 py-1 rounded">Reward: 50 XP</div>
-                </div>
-                
-                <div className="bg-black p-3 rounded text-sm text-gray-300 border border-gray-800">
-                  <span className="text-pixel-accent">Vitals:</span> {consult.vitals} <br/>
-                  <span className="text-pixel-accent">Situation:</span> {consult.narrative}
-                </div>
+    <div className="fixed inset-0 bg-[#1c1522]/70 z-[150] flex items-center justify-center p-4 font-pixel" onClick={onClose}>
+      <div className="cozy-panel w-full max-w-sm max-h-[85vh] flex flex-col p-3" onClick={(e) => e.stopPropagation()} data-testid="consults">
+        <div className="flex items-center justify-between">
+          <h2 className="text-[26px] leading-none flex items-center gap-2"><PixelIcon name="friends" size={20} />{tr("Doctors' lounge", "ห้องพักแพทย์")}</h2>
+          <button className="cozy-btn px-2 py-0.5 text-lg leading-none" onClick={onClose}>✕</button>
+        </div>
+        <p className="text-[16px] leading-snug mt-1 mb-2 text-[#6b5258]">{tr("Other doctors leave questions here. Help one out for a little thank-you.", "หมอคนอื่นฝากคำถามไว้ที่นี่ ช่วยตอบแล้วจะมีของตอบแทนนิดหน่อย")}</p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-                  {consult.options.map((opt: any, idx: number) => (
-                    <PixelButton 
-                      key={idx}
-                      variant="secondary"
-                      className="text-xs py-2 whitespace-normal h-auto"
-                      onClick={() => handleProvideConsult(consult.id, opt.isCorrect)}
-                    >
-                      Recommend: {opt.text}
+        {note && <p className="cozy-tag px-2 py-1 mb-2 text-[16px] text-center" data-testid="consult-note">{note}</p>}
+
+        <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-2">
+          {loading ? (
+            <p className="text-center text-[18px] text-[#6b5258] py-8 animate-pulse">{tr("Checking the pigeonholes...", "กำลังดูช่องฝากข้อความ...")}</p>
+          ) : failed ? (
+            <p className="text-center text-[18px] text-[#6b5258] py-8">{tr("The lounge is closed while you are offline.", "ห้องพักปิดอยู่ระหว่างออฟไลน์")}</p>
+          ) : consults.length === 0 ? (
+            <p className="text-center text-[18px] text-[#6b5258] py-8">{tr("No notes today. Put the kettle on.", "วันนี้ไม่มีโน้ต ไปต้มน้ำชงชาเถอะ")}</p>
+          ) : (
+            consults.map((c) => (
+              <div key={c.id} className="bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] p-2 flex flex-col gap-1.5">
+                <div className="flex justify-between items-start gap-2">
+                  <p className="text-[18px] leading-tight">{tr(`${c.requesterName} needs a second opinion`, `${c.requesterName} ขอความเห็นที่สอง`)}</p>
+                  <span className="cozy-tag px-1.5 py-0.5 text-[13px] leading-none whitespace-nowrap">+50 XP</span>
+                </div>
+                <p className="text-[15px] leading-snug text-[#6b5258]">{tr("Vitals", "สัญญาณชีพ")}: {c.vitals}</p>
+                <p className="text-[16px] leading-snug">{c.narrative}</p>
+                <div className="flex flex-col gap-1.5 mt-1">
+                  {(c.options || []).map((opt: any, idx: number) => (
+                    <PixelButton key={idx} variant="secondary" className="text-[16px] py-1 whitespace-normal h-auto text-left" onClick={() => handleProvideConsult(c.id, opt.isCorrect)}>
+                      {opt.text}
                     </PixelButton>
                   ))}
                 </div>
               </div>
             ))
           )}
-          {!loading && consults.length === 0 && (
-            <div className="text-center text-gray-400 py-8">
-              No open consults. Enjoy your coffee! ☕
-            </div>
-          )}
         </div>
 
-        <div className="mt-4 pt-4 border-t-2 border-gray-800 flex justify-between">
-          <PixelButton onClick={fetchConsults} variant="secondary">
-            Refresh
-          </PixelButton>
-          <PixelButton onClick={onClose} variant="primary">
-            Back to Shift
-          </PixelButton>
+        <div className="mt-2 flex gap-2">
+          <PixelButton onClick={fetchConsults} variant="sky" className="flex-1 py-1 text-[18px]">{tr("Refresh", "รีเฟรช")}</PixelButton>
+          <PixelButton onClick={onClose} variant="primary" className="flex-1 py-1 text-[18px]">{tr("Back", "กลับ")}</PixelButton>
         </div>
-      </PixelPanel>
+      </div>
     </div>
   );
 }

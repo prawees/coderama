@@ -31,6 +31,8 @@ export interface CutsceneChoice {
   karmaEffect?: number;
   flagEffect?: string;
   xpEffect?: number;
+  /** hub-only: run this instead of following nextId (used by world chats and gifting) */
+  onPick?: () => void;
 }
 
 export interface CutsceneNode {
@@ -42,6 +44,8 @@ export interface CutsceneNode {
   nextId?: string;
   flagEffect?: string;
   xpEffect?: number;
+  /** dialogue blip pitch */
+  voice?: number;
 }
 
 export const STORY_CAMPAIGN: Record<number, {

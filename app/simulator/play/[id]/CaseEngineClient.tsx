@@ -134,6 +134,8 @@ import { collection, addDoc } from "firebase/firestore";
 import { db, auth } from "@/lib/firebase";
 
 import { MinigameOverlay } from "@/components/game/MinigameOverlay";
+import { PixelIcon } from "@/components/ui/PixelIcon";
+import { audio } from "@/lib/audio";
 import { PatientPortrait } from "@/components/game/PixelPortrait";
 
 function CaseEngineContent({ params }: { params: { id: string } }) {
@@ -527,11 +529,20 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     return currentNode.narrative;
   })();
 
+  const tr = (en: string, th: string) => (language === 'th' ? th : en);
+  const vitalClass = (bad: boolean) => (bad ? 'text-[#ff8a8a] animate-pulse' : 'text-[#9be38a]');
+  const tabs: { key: 'info' | 'exam' | 'labs' | 'action'; label: string; icon: string }[] = [
+    { key: 'info', label: tr('Story', 'ประวัติ'), icon: 'log' },
+    { key: 'exam', label: tr('Exam', 'ตรวจ'), icon: 'badge' },
+    { key: 'labs', label: tr('Labs', 'แล็บ'), icon: 'quest' },
+    { key: 'action', label: tr('Treat', 'รักษา'), icon: 'heart' },
+  ];
+
   return (
     <>
       {activeMinigame && (
-        <MinigameOverlay 
-          interventionName={activeMinigame.name} 
+        <MinigameOverlay
+          interventionName={activeMinigame.name}
           onComplete={async (success) => {
             setActiveMinigame(null);
             if (success) {
@@ -539,15 +550,13 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
               setCurrentNodeId(activeMinigame.targetNodeId);
             } else {
               await Haptics.vibrate();
-              alert("Intervention failed! You missed the green zone. You lost 10 Energy.");
+              setFeedback({ kind: 'bad', title: tr('Missed the timing', 'จังหวะพลาด'), body: tr('You lost 10 energy. Try the intervention again.', 'เสียพลังงาน 10 หน่วย ลองทำหัตถการอีกครั้ง') });
               deductEnergy(10);
             }
           }}
         />
       )}
-      <div className={`h-[100dvh] sm:h-full bg-[#0d1117] text-white font-pixel flex flex-col p-2 gap-2 relative ${isShaking ? 'animate-shake bg-red-950/20' : ''}`}>
-        
-        {/* FLOATING TEXTS */}
+      <div className={`h-[100dvh] sm:h-full cozy-night text-pixel-text font-pixel flex flex-col p-2 gap-2 relative ${isShaking ? 'animate-shake' : ''}`}>
         <AnimatePresence>
           {floatingTexts.map(ft => (
             <motion.div
@@ -556,7 +565,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
               animate={{ opacity: 0, y: ft.y - 50 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1 }}
-              className={`absolute z-[100] font-bold text-2xl drop-shadow-md ${ft.type === 'good' ? 'text-[#a3e635]' : 'text-[#f87171]'}`}
+              className={`absolute z-[100] text-3xl cozy-tag px-2 ${ft.type === 'good' ? '!bg-[#c8ecb4]' : '!bg-[#f6c3c6]'}`}
               style={{ pointerEvents: 'none', transform: 'translate(-50%, -50%)' }}
             >
               {ft.text}
@@ -564,158 +573,157 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
           ))}
         </AnimatePresence>
 
-        {/* HEADER: patient and monitor */}
-        <div className="flex gap-2 flex-shrink-0">
-          <div className="w-16 h-16 flex-shrink-0 border-2 border-[#30363d] rounded overflow-hidden bg-black">
+        {/* Patient card */}
+        <div className="cozy-panel flex gap-2.5 p-2 flex-shrink-0 items-center">
+          <div className="w-14 h-14 flex-shrink-0 rounded-[3px] overflow-hidden border-2 border-[#3a2a2f]">
             <PatientPortrait seed={caseKey} sex={caseData.sex} ageGroup={caseData.patientAppearance?.ageGroup} skinTone={caseData.patientAppearance?.skinTone} className="w-full h-full" />
           </div>
-          <div className="flex-1 min-w-0 flex flex-col justify-center">
-            <p className="text-white text-base leading-tight truncate">{caseData.title}</p>
-            <p className="text-gray-400 text-xs leading-tight mt-1 line-clamp-2">{caseData.chiefComplaint}</p>
+          <div className="flex-1 min-w-0">
+            <p className="text-[19px] leading-none truncate">{caseData.title}</p>
+            <p className="text-[15px] leading-tight mt-1 text-[#6b5258] line-clamp-2">{caseData.chiefComplaint}</p>
+          </div>
+          <button onClick={() => router.push('/hub')} className="cozy-btn px-2 py-0.5 text-[15px] leading-none self-start" aria-label="back">✕</button>
+        </div>
+
+        {/* Bedside monitor */}
+        <div className="flex-shrink-0 rounded-[6px] border-[3px] border-[#3a2a2f] p-1 cozy-wood-dark">
+          <div className="grid grid-cols-5 bg-[#1b2320] rounded-[3px] px-1 py-1.5 text-center shadow-[inset_0_0_10px_rgba(0,0,0,0.8)]" data-testid="vitals">
+            {[
+              { k: 'HR', v: shownVitals.hr, bad: shownVitals.hr > 110 || shownVitals.hr < 40 },
+              { k: 'BP', v: shownVitals.bp, bad: String(shownVitals.bp).includes('0/0') || shownSystolic < 90 },
+              { k: 'RR', v: caseData.vitals?.rr?.value || 16, bad: (caseData.vitals?.rr?.value || 16) > 24 },
+              { k: 'SpO2', v: shownVitals.o2, bad: parseInt(String(shownVitals.o2)) < 92 },
+              { k: 'T', v: caseData.vitals?.temp?.value || 37.0, bad: (caseData.vitals?.temp?.value || 37) >= 38.5 },
+            ].map((x) => (
+              <div key={x.k} className="flex flex-col items-center min-w-0">
+                <span className="text-[#7fc8d8] text-[12px] leading-none">{x.k}</span>
+                <span className={`text-[19px] leading-none mt-0.5 tabular-nums ${vitalClass(x.bad)}`}>{x.v}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-5 bg-[#161b22] border-2 border-[#30363d] rounded px-1 py-2 text-center shadow-[inset_0_0_10px_rgba(0,0,0,0.8)] flex-shrink-0">
-          <div className="flex flex-col items-center min-w-0">
-            <span className="text-[#1f6feb] uppercase text-[10px]">HR</span>
-            <span className={`text-lg leading-none tabular-nums ${shownVitals.hr > 110 || shownVitals.hr < 40 ? 'text-[#f87171] animate-pulse' : 'text-[#a3e635]'}`}>{shownVitals.hr}</span>
+        {/* Clipboard */}
+        <div className="flex-1 min-h-0 flex flex-col relative">
+          <div className="flex gap-1 px-1 relative z-10">
+            {tabs.map((tb) => (
+              <button
+                key={tb.key}
+                onClick={() => { audio.playClick(); setActiveTab(tb.key); }}
+                className={`flex-1 flex items-center justify-center gap-1 py-1 text-[16px] leading-none rounded-t-[5px] border-[3px] border-b-0 border-[#3a2a2f] ${activeTab === tb.key ? 'bg-[#f8ecd0] text-[#3a2a2f] -mb-[3px] pb-[7px]' : 'bg-[#c48a52] text-[#fff3df]'}`}
+              >
+                <PixelIcon name={tb.icon} size={13} />{tb.label}
+              </button>
+            ))}
           </div>
-          <div className="flex flex-col items-center min-w-0">
-            <span className="text-[#1f6feb] uppercase text-[10px]">BP</span>
-            <span className={`text-lg leading-none tabular-nums ${String(shownVitals.bp).includes('0/0') || shownSystolic < 90 ? 'text-[#f87171] animate-pulse' : 'text-[#a3e635]'}`}>{shownVitals.bp}</span>
-          </div>
-          <div className="flex flex-col items-center min-w-0">
-            <span className="text-[#1f6feb] uppercase text-[10px]">RR</span>
-            <span className="text-lg leading-none tabular-nums text-[#a3e635]">{caseData.vitals?.rr?.value || 16}</span>
-          </div>
-          <div className="flex flex-col items-center min-w-0">
-            <span className="text-[#1f6feb] uppercase text-[10px]">SpO2</span>
-            <span className={`text-lg leading-none tabular-nums ${parseInt(String(shownVitals.o2)) < 92 ? 'text-[#f87171] animate-pulse' : 'text-[#a3e635]'}`}>{shownVitals.o2}</span>
-          </div>
-          <div className="flex flex-col items-center min-w-0">
-            <span className="text-[#1f6feb] uppercase text-[10px]">Temp</span>
-            <span className="text-lg leading-none tabular-nums text-gray-300">{caseData.vitals?.temp?.value || 37.0}</span>
-          </div>
-        </div>
+          <div className="flex-1 min-h-0 cozy-panel p-3 overflow-y-auto">
+            {activeTab === 'info' && (
+              <div className="space-y-3 text-[17px] leading-snug">
+                <div>
+                  <h3 className="text-[15px] leading-none text-[#86522e] mb-1">{tr('Chief complaint', 'อาการสำคัญ')}</h3>
+                  <p>{caseData.chiefComplaint || tr('No complaint recorded.', 'ไม่มีข้อมูล')}</p>
+                </div>
+                <div>
+                  <h3 className="text-[15px] leading-none text-[#86522e] mb-1">{tr('History', 'ประวัติปัจจุบัน')}</h3>
+                  <p>{caseData.background || tr('No background provided.', 'ไม่มีข้อมูล')}</p>
+                </div>
+                <p className="text-[#6b5258]">{tr('Sex', 'เพศ')} {caseData.sex}, {tr('age', 'อายุ')} {caseData.age}</p>
+              </div>
+            )}
 
-        {/* RIGHT PANEL: Tabs & Content */}
-        <div className="flex-1 min-h-0 flex flex-col bg-[#161b22] border-2 border-[#30363d] rounded shadow-lg overflow-hidden">
-          {/* Tabs */}
-          <div className="flex bg-[#0d1117] border-b-2 border-[#30363d] text-sm md:text-base">
-             <button onClick={() => setActiveTab('info')} className={`px-2 md:px-4 py-3 flex-1 border-r border-[#30363d] transition-colors ${activeTab === 'info' ? 'bg-[#1f6feb] font-bold text-white shadow-[inset_0_4px_0_rgba(255,255,255,0.2)]' : 'text-gray-400 hover:bg-[#21262d]'}`}>👤 Info</button>
-             <button onClick={() => setActiveTab('exam')} className={`px-2 md:px-4 py-3 flex-1 border-r border-[#30363d] transition-colors ${activeTab === 'exam' ? 'bg-[#1f6feb] font-bold text-white shadow-[inset_0_4px_0_rgba(255,255,255,0.2)]' : 'text-gray-400 hover:bg-[#21262d]'}`}>🩺 Exam</button>
-             <button onClick={() => setActiveTab('labs')} className={`px-2 md:px-4 py-3 flex-1 border-r border-[#30363d] transition-colors ${activeTab === 'labs' ? 'bg-[#1f6feb] font-bold text-white shadow-[inset_0_4px_0_rgba(255,255,255,0.2)]' : 'text-gray-400 hover:bg-[#21262d]'}`}>🔬 Labs</button>
-             <button onClick={() => setActiveTab('action')} className={`px-2 md:px-4 py-3 flex-1 transition-colors ${activeTab === 'action' ? 'bg-[#a3e635] text-black font-bold shadow-[inset_0_4px_0_rgba(255,255,255,0.4)]' : 'text-gray-400 hover:bg-[#21262d]'}`}>💉 Action</button>
-          </div>
-          
-          {/* Content Area */}
-          <div className="flex-1 p-3 overflow-y-auto bg-[#0d1117] shadow-[inset_0_10px_20px_rgba(0,0,0,0.5)] relative">
-             {activeTab === 'info' && (
-                <div className="animate-in fade-in duration-200">
-                  <h3 className="text-[#58a6ff] mb-2 font-bold border-b border-[#30363d] pb-1 uppercase tracking-widest text-sm">Complaint</h3>
-                  <p className="mb-6 text-gray-200 leading-relaxed bg-[#161b22] p-3 rounded border border-[#21262d]">{caseData.chiefComplaint || 'No complaint recorded.'}</p>
-                  
-                  <h3 className="text-[#58a6ff] mb-2 font-bold border-b border-[#30363d] pb-1 uppercase tracking-widest text-sm">History of Present Illness</h3>
-                  <p className="mb-6 text-gray-200 leading-relaxed bg-[#161b22] p-3 rounded border border-[#21262d]">{caseData.background || 'No background provided.'}</p>
-                </div>
-             )}
-             
-             {activeTab === 'exam' && (
-                <div className="animate-in fade-in duration-200 space-y-3">
-                  <h3 className="text-[#58a6ff] mb-4 font-bold border-b border-[#30363d] pb-1 uppercase tracking-widest text-sm">Physical Examination</h3>
-                  {caseData.exam ? caseData.exam.map((e: any) => (
-                    <div key={e.id} className={`p-3 rounded border ${e.abnormal ? 'bg-[#450a0a]/30 border-[#f87171]/50' : 'bg-[#161b22] border-[#21262d]'}`}>
-                       <h4 className={`text-sm uppercase tracking-wide mb-1 ${e.abnormal ? 'text-[#f87171]' : 'text-[#a3e635]'}`}>{e.system}</h4>
-                       <p className="text-gray-200">{e.finding}</p>
-                    </div>
-                  )) : <p className="text-gray-500">No examination data available.</p>}
-                </div>
-             )}
-             
-             {activeTab === 'labs' && (
-                <div className="animate-in fade-in duration-200 space-y-3">
-                  <h3 className="text-[#58a6ff] mb-4 font-bold border-b border-[#30363d] pb-1 uppercase tracking-widest text-sm">Investigations</h3>
-                  {caseData.investigations ? caseData.investigations.map((l: any) => (
-                    <div key={l.id} className={`p-3 rounded border ${l.abnormal ? 'bg-[#422006]/30 border-[#facc15]/50' : 'bg-[#161b22] border-[#21262d]'}`}>
-                       <h4 className={`text-sm uppercase tracking-wide mb-1 ${l.abnormal ? 'text-[#facc15]' : 'text-[#58a6ff]'}`}>{l.name}</h4>
-                       <p className="text-gray-200">{l.report || `${l.value} ${l.unit}`}</p>
-                    </div>
-                  )) : <p className="text-gray-500">No lab results available.</p>}
-                </div>
-             )}
-             
-             {activeTab === 'action' && (
-                <div className="flex flex-col h-full animate-in fade-in duration-200">
-                  {feedback && (
-                    <div className={`mb-3 p-3 rounded border-2 text-sm leading-relaxed ${feedback.kind === 'good' ? 'bg-[#14532d]/40 border-[#a3e635]/70' : 'bg-[#450a0a]/50 border-[#f87171]/80'}`}>
-                      <p className={`font-bold mb-1 ${feedback.kind === 'good' ? 'text-[#a3e635]' : 'text-[#f87171]'}`}>
-                        {feedback.kind === 'good' ? '✓ ' : '✗ '}{feedback.title}
-                      </p>
-                      {feedback.body && <p className="text-gray-200">{feedback.body}</p>}
-                    </div>
-                  )}
-
-                  <div className="bg-black/60 p-3 border-2 border-[#30363d] rounded-lg mb-3 min-h-[3.5rem] shadow-inner flex items-center justify-center">
-                    <p className="text-lg text-center text-pixel-gold leading-relaxed">{promptText}</p>
+            {activeTab === 'exam' && (
+              <div className="space-y-2">
+                {caseData.exam ? caseData.exam.map((e: any) => (
+                  <div key={e.id} className={`p-2 rounded-[4px] border-2 ${e.abnormal ? 'bg-[#fbe1dc] border-[#d95763]' : 'bg-[#fff6e3] border-[#e7d3a8]'}`}>
+                    <h4 className={`text-[15px] leading-none mb-1 ${e.abnormal ? 'text-[#a93c4b]' : 'text-[#3f8a48]'}`}>{e.system}</h4>
+                    <p className="text-[17px] leading-snug">{e.finding}</p>
                   </div>
+                )) : <p className="text-[#6b5258]">{tr('No examination data available.', 'ไม่มีข้อมูลการตรวจร่างกาย')}</p>}
+              </div>
+            )}
 
-                  {mistakes > 0 && (
-                    <p className="text-xs text-[#f87171] mb-2 text-right">
-                      {language === 'th' ? `ผิดพลาด ${mistakes} ครั้ง` : `${mistakes} error${mistakes > 1 ? 's' : ''} this case`}
+            {activeTab === 'labs' && (
+              <div className="space-y-2">
+                {caseData.investigations ? caseData.investigations.map((lab: any) => (
+                  <div key={lab.id} className={`p-2 rounded-[4px] border-2 ${lab.abnormal ? 'bg-[#fdf0c8] border-[#e8b84f]' : 'bg-[#fff6e3] border-[#e7d3a8]'}`}>
+                    <h4 className={`text-[15px] leading-none mb-1 ${lab.abnormal ? 'text-[#9a6a10]' : 'text-[#3f6f80]'}`}>{lab.name}</h4>
+                    <p className="text-[17px] leading-snug">{lab.report || `${lab.value} ${lab.unit}`}</p>
+                  </div>
+                )) : <p className="text-[#6b5258]">{tr('No lab results available.', 'ไม่มีผลแล็บ')}</p>}
+              </div>
+            )}
+
+            {activeTab === 'action' && (
+              <div className="flex flex-col min-h-full" data-testid="action-tab">
+                {feedback && (
+                  <div className={`mb-2 p-2 rounded-[4px] border-2 text-[16px] leading-snug ${feedback.kind === 'good' ? 'bg-[#dff3d2] border-[#5fae5a]' : 'bg-[#fbe1dc] border-[#d95763]'}`}>
+                    <p className={feedback.kind === 'good' ? 'text-[#3f8a48]' : 'text-[#a93c4b]'}>
+                      {feedback.kind === 'good' ? '✓ ' : '✗ '}{feedback.title}
                     </p>
-                  )}
-                  
-                  <div className="flex flex-col gap-2 flex-1 justify-end">
-                    {choices.length > 0 ? (
-                      <>
-                        {choices.map((opt) => {
-                          const needsSupervision = isAboveRank(opt.requiredRank);
-                          return (
-                            <button 
-                              key={opt.key} 
-                              onClick={() => handleAction(opt)}
-                              className="w-full py-3 px-3 text-left text-sm font-bold rounded shadow-md border-2 transition-transform active:scale-95 flex justify-between items-center gap-2 bg-[#161b22] border-[#1f6feb] text-white hover:bg-[#1f6feb]"
-                            >
-                              <span>{opt.text}</span>
-                              {needsSupervision && <span className="flex-shrink-0 text-[10px] border border-[#d29922] px-1.5 py-0.5 rounded bg-black/50 text-[#d29922] uppercase">{language === 'th' ? 'ต้องมีอาจารย์กำกับ' : 'Supervised'}</span>}
-                            </button>
-                          );
-                        })}
-                        
-                        {effectiveNodeId === startNodeId && (
-                          <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-[#30363d]">
-                            <button className="bg-[#450a0a] hover:bg-[#7f1d1d] border-2 border-[#f87171] text-white py-3 px-2 text-xs rounded transition-colors uppercase tracking-wider font-bold" onClick={callAttending}>
-                              {language === 'th' ? 'เรียกอาจารย์แพทย์ (-50% XP)' : 'Call Attending (-50% XP)'}
-                            </button>
-                            <button className="bg-[#172554] hover:bg-[#1e3a8a] border-2 border-[#60a5fa] text-white py-3 px-2 text-xs rounded transition-colors uppercase tracking-wider font-bold" onClick={requestConsult}>
-                              {language === 'th' ? 'ปรึกษาแพทย์เวร (Consult)' : 'Ask Colleague (Consult)'}
-                            </button>
-                          </div>
-                        )}
-                      </>
-                    ) : (() => {
-                      const grade = gradeOutcome(isNodeSuccessful(effectiveNodeId, currentNode));
-                      const reward = rewardFor(grade);
-                      const LABELS: Record<Grade, { en: string; th: string }> = {
-                        clean: { en: '✓ CASE RESOLVED: PATIENT STABILIZED', th: '✓ ผู้ป่วยปลอดภัย (บันทึกผล)' },
-                        minor: { en: '✓ PATIENT STABILIZED, ONE ERROR', th: '✓ ผู้ป่วยปลอดภัย ผิดพลาด 1 ครั้ง' },
-                        poor: { en: '△ PATIENT SURVIVED, CARE BELOW STANDARD', th: '△ ผู้ป่วยรอด แต่การดูแลต่ำกว่ามาตรฐาน' },
-                        critical: { en: '✗ CASE CLOSED: PATIENT CRITICAL', th: '✗ ผู้ป่วยวิกฤต (ส่งต่อ / บันทึกผล)' },
-                      };
-                      const good = grade === 'clean' || grade === 'minor';
-                      return (
-                        <button 
-                          onClick={() => finishCase(grade)}
-                          className={`w-full py-5 font-bold uppercase tracking-widest rounded shadow-lg border-2 transition-transform active:scale-95 ${good ? 'bg-[#14532d] border-[#a3e635] text-white hover:bg-[#15803d]' : 'bg-[#7f1d1d] border-[#f87171] text-white hover:bg-[#991b1b]'}`}
-                        >
-                          <span className="block">{language === 'th' ? LABELS[grade].th : LABELS[grade].en}</span>
-                          <span className="block text-xs mt-1 opacity-80 normal-case tracking-normal">+{reward.xp} XP · +${reward.cash}{supervised ? (language === 'th' ? ' (มีอาจารย์กำกับ)' : ' (supervised)') : ''}</span>
-                        </button>
-                      );
-                    })()}
+                    {feedback.body && <p className="mt-0.5">{feedback.body}</p>}
                   </div>
+                )}
+
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <p className="text-[20px] leading-tight">{promptText}</p>
+                  {mistakes > 0 && (
+                    <span className="shrink-0 cozy-tag !bg-[#f6c3c6] px-1.5 py-0.5 text-[14px] leading-none">
+                      {tr(`${mistakes} error${mistakes > 1 ? 's' : ''}`, `ผิด ${mistakes}`)}
+                    </span>
+                  )}
                 </div>
-             )}
+
+                <div className="flex flex-col gap-2 mt-auto">
+                  {choices.length > 0 ? (
+                    <>
+                      {choices.map((opt) => {
+                        const needsSupervision = isAboveRank(opt.requiredRank);
+                        return (
+                          <button
+                            key={opt.key}
+                            onClick={() => handleAction(opt)}
+                            className="cozy-btn w-full py-2 px-2.5 text-left text-[17px] leading-tight flex justify-between items-center gap-2"
+                          >
+                            <span>{opt.text}</span>
+                            {needsSupervision && <span className="shrink-0 cozy-tag !bg-[#ffd66b] px-1 py-0.5 text-[12px] leading-none">{tr('supervised', 'มีอาจารย์กำกับ')}</span>}
+                          </button>
+                        );
+                      })}
+
+                      {effectiveNodeId === startNodeId && (
+                        <div className="grid grid-cols-2 gap-2 mt-1 pt-2 border-t-2 border-dashed border-[#e7d3a8]">
+                          <button className="cozy-btn cozy-btn-berry py-1.5 px-1 text-[15px] leading-tight" onClick={callAttending}>
+                            {tr('Call attending (-50% XP)', 'เรียกอาจารย์แพทย์ (-50% XP)')}
+                          </button>
+                          <button className="cozy-btn cozy-btn-sky py-1.5 px-1 text-[15px] leading-tight" onClick={requestConsult}>
+                            {tr('Ask a colleague', 'ปรึกษาแพทย์เวร')}
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  ) : (() => {
+                    const grade = gradeOutcome(isNodeSuccessful(effectiveNodeId, currentNode));
+                    const reward = rewardFor(grade);
+                    const LABELS: Record<Grade, { en: string; th: string }> = {
+                      clean: { en: '✓ Patient stabilized', th: '✓ ผู้ป่วยปลอดภัย' },
+                      minor: { en: '✓ Stabilized, one error', th: '✓ ปลอดภัย ผิดพลาด 1 ครั้ง' },
+                      poor: { en: '△ Survived, care below standard', th: '△ รอด แต่การดูแลต่ำกว่ามาตรฐาน' },
+                      critical: { en: '✗ Patient critical', th: '✗ ผู้ป่วยวิกฤต' },
+                    };
+                    const good = grade === 'clean' || grade === 'minor';
+                    return (
+                      <button
+                        onClick={() => finishCase(grade)}
+                        className={`cozy-btn w-full py-3 ${good ? 'cozy-btn-leaf' : 'cozy-btn-berry'}`}
+                      >
+                        <span className="block text-[21px] leading-none">{language === 'th' ? LABELS[grade].th : LABELS[grade].en}</span>
+                        <span className="block text-[15px] leading-none mt-1.5 opacity-90">+{reward.xp} XP · +${reward.cash}{supervised ? tr(' (supervised)', ' (มีอาจารย์กำกับ)') : ''}</span>
+                      </button>
+                    );
+                  })()}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

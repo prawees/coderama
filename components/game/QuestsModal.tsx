@@ -1,78 +1,53 @@
 import { useERStore } from "@/lib/erStore";
 import { QUEST_DATABASE } from "@/lib/quests";
-import { PixelButton } from "../ui/PixelButton";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { audio } from "@/lib/audio";
+import { PixelIcon } from "@/components/ui/PixelIcon";
 
 interface QuestsModalProps {
   onClose: () => void;
 }
 
+/** Quest log on a parchment scroll */
 export function QuestsModal({ onClose }: QuestsModalProps) {
-  const { activeQuests, completedQuests } = useERStore();
+  const { activeQuests, completedQuests, language } = useERStore();
+  const tr = (en: string, th: string) => (language === "th" ? th : en);
+  const title = (id: string) => (language === "th" ? QUEST_DATABASE[id]?.title_th : QUEST_DATABASE[id]?.title);
+  const desc = (id: string) => (language === "th" ? QUEST_DATABASE[id]?.description_th : QUEST_DATABASE[id]?.description);
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <motion.div 
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        className="w-full max-w-md bg-[#2a1708] border-4 border-[#54341b] rounded-xl shadow-2xl overflow-hidden flex flex-col font-pixel"
-        style={{ maxHeight: '80vh' }}
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 z-[150] flex items-center justify-center bg-[#1c1522]/70 p-3" onClick={onClose}>
+      <motion.div
+        initial={{ y: 20, scale: 0.97 }} animate={{ y: 0, scale: 1 }} exit={{ y: 20 }}
+        className="cozy-panel w-full max-w-sm max-h-[82%] flex flex-col p-3 font-pixel"
+        onClick={(e) => e.stopPropagation()}
+        data-testid="quests-modal"
       >
-        <div className="bg-[#1a0f05] border-b-4 border-[#54341b] p-4 flex justify-between items-center">
-          <h2 className="text-xl text-pixel-gold font-bold">QUEST LOG</h2>
-          <button 
-            onClick={() => { audio.playClick(); onClose(); }}
-            className="w-8 h-8 flex items-center justify-center bg-red-600 border-2 border-red-800 rounded active:bg-red-400 text-white font-bold"
-          >
-            X
-          </button>
+        <div className="flex justify-between items-center mb-2">
+          <h2 className="text-[26px] leading-none flex items-center gap-2"><PixelIcon name="quest" size={18} />{tr("Quest log", "สมุดภารกิจ")}</h2>
+          <button onClick={() => { audio.playClick(); onClose(); }} className="cozy-btn px-2 py-0.5 text-lg leading-none" aria-label="close">✕</button>
         </div>
-
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          <h3 className="text-lg text-white border-b-2 border-gray-700 pb-1">Active Quests ({activeQuests.length})</h3>
-          
-          {activeQuests.length === 0 ? (
-            <p className="text-sm text-gray-400 italic">No active quests right now.</p>
-          ) : (
-            activeQuests.map(id => {
-              const quest = QUEST_DATABASE[id];
-              if (!quest) return null;
-              return (
-                <div key={id} className="bg-[#161b22] border-2 border-blue-500 rounded p-3 relative">
-                  <div className="absolute -top-3 -right-2 bg-blue-600 text-white text-[10px] px-2 py-1 rounded-full border border-white">
-                    IN PROGRESS
-                  </div>
-                  <h4 className="text-sm font-bold text-white mb-1">{quest.title}</h4>
-                  <p className="text-xs text-gray-300 mb-2">{quest.description}</p>
-                  <p className="text-xs font-bold text-pixel-success">Rewards: {quest.rewardText}</p>
+        <div className="flex-1 overflow-y-auto flex flex-col gap-2 pr-1">
+          {activeQuests.length === 0 && <p className="text-[16px] text-[#6b5258] italic">{tr("No quests right now. Enjoy the quiet.", "ตอนนี้ไม่มีภารกิจ เพลินกับความเงียบไปก่อน")}</p>}
+          {activeQuests.map((id) => QUEST_DATABASE[id] && (
+            <div key={id} className="bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] p-2">
+              <p className="text-[19px] leading-none">{title(id)}</p>
+              <p className="text-[16px] leading-snug mt-1 text-[#5b4148]">{desc(id)}</p>
+              <p className="text-[14px] leading-none mt-1.5 text-[#3f8a48] flex items-center gap-1"><PixelIcon name="coin" size={11} />{QUEST_DATABASE[id].rewardText}</p>
+            </div>
+          ))}
+          {completedQuests.length > 0 && (
+            <>
+              <p className="text-[15px] leading-none text-[#86522e] mt-2">{tr("Done", "สำเร็จแล้ว")}</p>
+              {completedQuests.map((id) => QUEST_DATABASE[id] && (
+                <div key={id} className="flex items-center gap-2 text-[16px] text-[#6b5258]">
+                  <span className="text-[#3f8a48]">✓</span><span className="line-through">{title(id)}</span>
                 </div>
-              );
-            })
-          )}
-
-          <h3 className="text-lg text-white border-b-2 border-gray-700 pb-1 mt-6">Completed ({completedQuests.length})</h3>
-          
-          {completedQuests.length === 0 ? (
-            <p className="text-sm text-gray-400 italic">You haven't completed any quests yet.</p>
-          ) : (
-            completedQuests.map(id => {
-              const quest = QUEST_DATABASE[id];
-              if (!quest) return null;
-              return (
-                <div key={id} className="bg-[#161b22] opacity-60 border-2 border-gray-600 rounded p-3 relative">
-                  <div className="absolute -top-3 -right-2 bg-gray-600 text-white text-[10px] px-2 py-1 rounded-full border border-gray-400">
-                    DONE
-                  </div>
-                  <h4 className="text-sm font-bold text-gray-300 mb-1 line-through">{quest.title}</h4>
-                  <p className="text-xs text-gray-400">{quest.description}</p>
-                </div>
-              );
-            })
+              ))}
+            </>
           )}
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
