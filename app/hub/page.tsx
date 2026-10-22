@@ -17,14 +17,15 @@ import { LeaderboardModal } from "@/components/game/LeaderboardModal";
 import { ConsultsModal } from "@/components/game/ConsultsModal";
 import { SettingsMenu } from "@/components/game/SettingsMenu";
 import { CutsceneNode, CutsceneChoice } from "@/lib/StoryManager";
-import { getDayStory, sliceFromNode, resolveRouters, visibleChoices } from "@/lib/story";
+import { getDayStory, advanceQueue, resolveRouters, visibleChoices } from "@/lib/story";
 import { audio } from "@/lib/audio";
 import { music, TrackId } from "@/lib/music";
 import { AnimatePresence } from "framer-motion";
 
-// Story choices were authored with XP in the thousands, while a perfect case pays 100.
-// Scaled down so dialogue nudges progression instead of skipping ranks on day 1.
-const STORY_XP_SCALE = 0.1;
+// Story choices were authored with XP in the thousands (about 637,000 across the campaign),
+// while a perfect case pays 100 (about 12,000 across 31 days). At 2% the story and the
+// cases contribute roughly equally, so dialogue nudges progression instead of skipping ranks.
+const STORY_XP_SCALE = 0.02;
 
 export default function HubPage() {
   const router = useRouter();
@@ -175,11 +176,7 @@ export default function HubPage() {
       
       const story = getDayStory(currentDay, language);
 
-      if (nextNodeId) {
-         next = sliceFromNode(story, nextNodeId) ?? prev.slice(1);
-      } else {
-         next = prev.slice(1);
-      }
+      next = advanceQueue(prev, story, nextNodeId);
       
       // Auto-resolve router nodes (flag checks), in the player's language
       next = resolveRouters(next, story, useERStore.getState().storyFlags);

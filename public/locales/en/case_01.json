@@ -33,7 +33,7 @@
     "nodes": [
       { "id": "start1", "type": "start", "position": { "x": 0, "y": 0 }, "data": { "label": "Start" } },
       { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 100, "y": 100 }, "data": { "label": "Call family for history (Empathy)", "ethicalValue": 10, "narrative": "The family appreciates the call and provides a detailed medical history. Your reputation increases." } },
-      { "id": "req1", "type": "required", "position": { "x": 200, "y": 0 }, "data": { "label": "Give Atropine", "actions": ["Atropine IV"], "doseMap": { "Atropine IV": "1 mg" } } },
+      { "id": "req1", "type": "required", "position": { "x": 200, "y": 0 }, "data": { "distractors": [{"label": "Give IV calcium gluconate for the potassium of 6.2", "feedback": "Hyperkalaemia here is a marker of digoxin poisoning, not the primary problem. Calcium is traditionally avoided in digoxin toxicity, and the bradycardia with hypotension needs treating first."}, {"label": "Give IV metoprolol to control the atrial fibrillation", "feedback": "He is bradycardic at 35 with a systolic of 80. A beta blocker would deepen the block and the shock."}], "label": "Give Atropine", "actions": ["Atropine IV"], "doseMap": { "Atropine IV": "1 mg" } } },
       { "id": "out1", "type": "outcome", "position": { "x": 400, "y": 0 }, "data": { "label": "Outcome", "outcomeType": "improved", "narrative": "Heart rate slightly improved.", "vitalChanges": { "hr": 45, "sbp": 90 } } }
     ],
     "edges": [

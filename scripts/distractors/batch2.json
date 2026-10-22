@@ -1,0 +1,762 @@
+{
+  "case_21": {
+    "req1": [
+      [
+        "CT brain first to exclude a stroke",
+        "Every minute above 40 C increases organ damage. Cooling starts before imaging, and the core temperature tells you what this is."
+      ],
+      [
+        "Use a tympanic thermometer to check the temperature",
+        "Tympanic and oral readings underestimate core temperature. Use a rectal or oesophageal probe."
+      ]
+    ],
+    "req2": [
+      [
+        "Paracetamol and a fan, then reassess in an hour",
+        "Antipyretics do not work in heat stroke because the hypothalamic set point is normal. Cool actively and fast."
+      ],
+      [
+        "Keep cooling until the temperature reaches 36 C",
+        "Overshoot causes hypothermia. Stop active cooling at about 38.5 C."
+      ]
+    ],
+    "req3": [
+      [
+        "Chlorpromazine for shivering",
+        "Antipsychotics lower the seizure threshold and impair thermoregulation. Use a benzodiazepine."
+      ],
+      [
+        "Skip glucose, he is not diabetic",
+        "Hypoglycaemia occurs in heat stroke and causes seizures and confusion. Check it."
+      ]
+    ],
+    "req4": [
+      [
+        "Restrict fluids because of his hypertension",
+        "Rhabdomyolysis needs high volume fluid to protect the kidneys. Monitor urine output closely."
+      ],
+      [
+        "Give potassium chloride for the weakness",
+        "Rhabdomyolysis causes hyperkalaemia. Adding potassium can be fatal."
+      ]
+    ],
+    "req5": [
+      [
+        "Discharge after cooling if he wakes up",
+        "Heat stroke causes delayed liver failure, coagulopathy and kidney injury. He needs ICU monitoring."
+      ],
+      [
+        "Give paracetamol regularly for comfort",
+        "Liver injury is common after heat stroke. Avoid hepatotoxic drugs."
+      ]
+    ]
+  },
+  "case_22": {
+    "req1": [
+      [
+        "Treat the haemoptysis as tuberculosis and isolate",
+        "The exposure history points to leptospirosis with pulmonary haemorrhage. Oxygen and early recognition come first."
+      ],
+      [
+        "Give oxygen only if saturation falls below 85%",
+        "Pulmonary haemorrhage deteriorates fast. Give high flow oxygen now and prepare for escalation."
+      ]
+    ],
+    "req2": [
+      [
+        "Wait for leptospira serology to confirm before antibiotics",
+        "Serology takes days and is often negative early. Start antibiotics on clinical suspicion."
+      ],
+      [
+        "Oral amoxicillin as an outpatient",
+        "Severe leptospirosis with jaundice and haemoptysis needs IV ceftriaxone or penicillin and admission."
+      ]
+    ],
+    "req3": [
+      [
+        "Large fluid boluses to flush the kidneys",
+        "Fluid overload worsens pulmonary haemorrhage. Give careful boluses with reassessment."
+      ],
+      [
+        "Hold potassium, the kidneys are failing",
+        "Leptospirosis often causes a non-oliguric hypokalaemic kidney injury. Check and replace potassium."
+      ]
+    ],
+    "req4": [
+      [
+        "Admit to the general ward and recheck in the morning",
+        "He is deteriorating with respiratory failure and kidney injury. He needs ICU and renal replacement."
+      ],
+      [
+        "High dose steroids as primary treatment",
+        "Steroids are not proven for leptospirosis pulmonary haemorrhage. Supportive ICU care and dialysis are the mainstays."
+      ]
+    ],
+    "req5": [
+      [
+        "Treat the patient and leave public health to others",
+        "Leptospirosis is notifiable and others in the village share the exposure. Notify and advise."
+      ],
+      [
+        "Give every villager doxycycline for a month",
+        "Prophylaxis is for high risk exposed workers, not everyone. Notify and target advice."
+      ]
+    ]
+  },
+  "case_23": {
+    "req1": [
+      [
+        "Reassure her without examining the lump",
+        "Reassurance without examination is not credible and may miss pathology. Examine properly."
+      ],
+      [
+        "Order an urgent CT neck tonight",
+        "She already has imaging. Examine for red flags and review the existing scan."
+      ]
+    ],
+    "req2": [
+      [
+        "Book the PET-CT to put her mind at rest",
+        "Imaging without indication rarely reassures and can reveal incidental findings that cause more harm."
+      ],
+      [
+        "Refer for an excisional biopsy",
+        "A small mobile node without red flags does not justify biopsy. Explain the reasoning instead."
+      ]
+    ],
+    "req3": [
+      [
+        "Tell her to come back to the emergency department if she is worried",
+        "That reinforces emergency visits. Give a defined outpatient plan with an endpoint."
+      ],
+      [
+        "Arrange ultrasound every week to monitor the node",
+        "Repeated imaging fuels checking. A single repeat at 6 weeks if it persists is enough."
+      ]
+    ],
+    "req4": [
+      [
+        "Prescribe diazepam for the anxiety",
+        "Benzodiazepines from the emergency department risk dependence and do not treat health anxiety."
+      ],
+      [
+        "Ignore the anxiety, it is not an emergency problem",
+        "Health anxiety drives repeat attendance. Offering help addresses the real problem."
+      ]
+    ]
+  },
+  "case_24": {
+    "req1": [
+      [
+        "Keep the compression garment on to tamponade the bleeding",
+        "The garment hides the swelling and can impair perfusion. Remove it and examine."
+      ],
+      [
+        "Phone the clinic for advice before examining",
+        "She is faint after surgery. Examine now, then coordinate with the surgeons."
+      ]
+    ],
+    "req2": [
+      [
+        "One IV line and an oral fluid challenge",
+        "Suspected post-operative haemorrhage needs two large bore lines and bloods."
+      ],
+      [
+        "Send her to CT before taking bloods",
+        "Bedside ultrasound in resus is faster and safer in an unstable patient."
+      ]
+    ],
+    "req3": [
+      [
+        "Run 3 litres of crystalloid to correct the pressure",
+        "Crystalloid dilutes clotting factors. Give blood products and tranexamic acid."
+      ],
+      [
+        "Give enoxaparin for VTE prophylaxis now",
+        "Anticoagulation with active bleeding is dangerous. Delay prophylaxis until haemostasis."
+      ]
+    ],
+    "req4": [
+      [
+        "Aspirate the haematoma at the bedside and send her home",
+        "An expanding haematoma with shock needs theatre for evacuation and haemostasis."
+      ],
+      [
+        "Observe overnight and transfuse as needed",
+        "She is a transient responder. She needs definitive surgical haemostasis."
+      ]
+    ],
+    "req5": [
+      [
+        "Start full dose anticoagulation immediately after theatre",
+        "Bleeding risk is high in the early post-operative period. Delay prophylaxis until haemostasis is secure."
+      ],
+      [
+        "Do not report the incident, it might upset the clinic",
+        "Same-day discharge, drain removal and telephone advice contributed to harm. Formal reporting improves safety."
+      ]
+    ]
+  },
+  "case_25": {
+    "req1": [
+      [
+        "Nasal cannula at 2 L/min to avoid hyperoxia",
+        "She is breathless and confused. Give high flow oxygen and look for the classic signs."
+      ],
+      [
+        "Lumbar puncture for the confusion",
+        "The triad of hypoxia, confusion and petechiae after liposuction points to fat embolism. LP is not the first step."
+      ]
+    ],
+    "req2": [
+      [
+        "Diagnose fat embolism and skip further tests",
+        "Fat embolism is a diagnosis of exclusion. PE, local anaesthetic toxicity and sepsis are treatable mimics."
+      ],
+      [
+        "Start thrombolysis empirically for presumed PE",
+        "Thrombolysis without confirmation carries major bleeding risk. Exclude the mimics first."
+      ]
+    ],
+    "req3": [
+      [
+        "High dose methylprednisolone as treatment",
+        "Steroids are not proven as treatment for established fat embolism. Management is supportive."
+      ],
+      [
+        "Full dose heparin for the embolism",
+        "Heparin does not treat fat emboli and increases bleeding risk. Management is supportive."
+      ]
+    ],
+    "req4": [
+      [
+        "Ventilate with high tidal volumes to recruit the lungs",
+        "High tidal volumes cause lung injury. Use 6 mL/kg predicted body weight."
+      ],
+      [
+        "Admit to the general ward on oxygen",
+        "Progressive hypoxaemia needs ICU with lung protective ventilation."
+      ]
+    ],
+    "req5": [
+      [
+        "Report nothing, this was a known complication",
+        "Large volume aspirate in one session and early discharge are modifiable risks. Report and recommend changes."
+      ],
+      [
+        "Recommend banning liposuction entirely",
+        "The evidence supports staged procedures above about 4 litres and overnight observation, not a ban."
+      ]
+    ]
+  },
+  "case_26": {
+    "req1": [
+      [
+        "Finish the VIP admission paperwork first",
+        "Chest pain needs an ECG within 10 minutes wherever the patient is. Paperwork can wait."
+      ],
+      [
+        "Wait for the private cardiologist to arrive",
+        "Delay costs myocardium. Get the ECG now."
+      ]
+    ],
+    "req2": [
+      [
+        "Wait for the troponin before calling the cath lab",
+        "ST elevation on ECG is enough. Troponin rises later and should never delay activation."
+      ],
+      [
+        "Give thrombolysis even though PCI is available within 90 minutes",
+        "Primary PCI is preferred when it can be done promptly. Activate the cath lab."
+      ]
+    ],
+    "req3": [
+      [
+        "Sublingual nitroglycerin for the chest pain",
+        "In right ventricular infarction, nitrates drop preload and can cause profound hypotension."
+      ],
+      [
+        "Morphine 10 mg IV for the pain",
+        "Morphine causes venodilation and hypotension in a preload dependent right ventricle."
+      ]
+    ],
+    "req4": [
+      [
+        "Admit to CCU and do PCI tomorrow morning",
+        "This is a STEMI. Primary PCI should happen now, with door to balloon under 90 minutes."
+      ],
+      [
+        "Treat medically, he is too important to risk the procedure",
+        "Status does not change indications. Primary PCI saves myocardium and life."
+      ]
+    ],
+    "req5": [
+      [
+        "Discharge on aspirin alone",
+        "Post-PCI care needs dual antiplatelet therapy, statin and secondary prevention."
+      ],
+      [
+        "Skip the incident report, nobody was harmed",
+        "The VIP pathway delayed the ECG. Reporting system failures prevents future harm."
+      ]
+    ]
+  },
+  "case_27": {
+    "req1": [
+      [
+        "Book the MRI first, then take the history",
+        "A proper history and examination come first and often answer the question."
+      ],
+      [
+        "Refuse to see him because it is not an emergency",
+        "He still deserves an assessment for red flags before redirection."
+      ]
+    ],
+    "req2": [
+      [
+        "Order the whole-body MRI because he is paying",
+        "Unindicated screening finds incidental findings that lead to harmful cascades. Payment does not change that."
+      ],
+      [
+        "Order CA 19-9 as a compromise",
+        "Tumour markers are not screening tests and have many false positives. Explain why instead."
+      ]
+    ],
+    "req3": [
+      [
+        "Prescribe sleeping tablets for the poor sleep",
+        "Hypnotics carry risks. Address reflux, meal timing and alcohol first."
+      ],
+      [
+        "Ignore his symptoms, they are just anxiety",
+        "He has real reflux symptoms that deserve treatment."
+      ]
+    ],
+    "req4": [
+      [
+        "Tell him to return to the emergency department next week for a repeat check",
+        "Screening belongs in primary care or a screening clinic, not the emergency department."
+      ],
+      [
+        "Offer pancreatic cancer screening by ultrasound",
+        "There is no evidence for population pancreatic screening. Offer evidence based screening like colorectal."
+      ]
+    ]
+  },
+  "case_28": {
+    "req1": [
+      [
+        "Examine him repeatedly to monitor the spasms",
+        "Touch, light and noise trigger spasms. Minimise stimulation and cluster care."
+      ],
+      [
+        "Keep him in the main resuscitation bay for observation",
+        "The noisy resus bay triggers spasms. Move him to a dark, quiet room."
+      ]
+    ],
+    "req2": [
+      [
+        "Wait until he needs intubation",
+        "Laryngospasm can be sudden and fatal. Secure the airway early and electively."
+      ],
+      [
+        "Attempt awake fibreoptic intubation",
+        "Airway manipulation in an awake tetanus patient triggers laryngospasm. Intubate under anaesthesia."
+      ]
+    ],
+    "req3": [
+      [
+        "Tetanus toxoid only",
+        "Toxoid does not neutralise circulating toxin. Give human tetanus immunoglobulin too."
+      ],
+      [
+        "Skip antibiotics, the toxin is already circulating",
+        "Antibiotics eradicate the organism that keeps producing toxin in the wound. Give metronidazole alongside immunoglobulin and debridement."
+      ]
+    ],
+    "req4": [
+      [
+        "Low dose diazepam as needed",
+        "Generalised tetanus usually needs high dose continuous benzodiazepines plus magnesium."
+      ],
+      [
+        "Suxamethonium infusion for spasm control",
+        "Suxamethonium can cause hyperkalaemia. Use benzodiazepines, magnesium and non-depolarising blockers."
+      ]
+    ],
+    "req5": [
+      [
+        "Treat hypertension with high dose labetalol infusion",
+        "Autonomic instability swings rapidly. Long acting agents can cause profound hypotension. Use magnesium and short acting drugs."
+      ],
+      [
+        "Plan discharge in a week once spasms settle",
+        "Tetanus has a long course with autonomic storms. He needs prolonged ICU care."
+      ]
+    ]
+  },
+  "case_29": {
+    "req1": [
+      [
+        "Treat it as a hangover with IV fluids and antiemetics",
+        "Visual loss with a severe anion gap acidosis after home spirits is methanol poisoning until proven otherwise."
+      ],
+      [
+        "Wait for a serum methanol level",
+        "Methanol levels are rarely available quickly. Diagnose on anion gap, osmolar gap and visual signs."
+      ]
+    ],
+    "req2": [
+      [
+        "Wait for confirmation before blocking alcohol dehydrogenase",
+        "Formic acid causes the blindness and acidosis. Block alcohol dehydrogenase immediately."
+      ],
+      [
+        "Give activated charcoal",
+        "Charcoal does not bind alcohols. Use fomepizole or ethanol."
+      ]
+    ],
+    "req3": [
+      [
+        "Withhold bicarbonate to avoid fluid overload",
+        "Correcting acidosis reduces formic acid entry into tissues and the brain. Give bicarbonate."
+      ],
+      [
+        "Give thiamine only",
+        "Folinic acid helps metabolise formic acid in methanol poisoning. Give it alongside bicarbonate."
+      ]
+    ],
+    "req4": [
+      [
+        "Stop fomepizole once dialysis starts",
+        "Methanol keeps being metabolised. Continue the alcohol dehydrogenase blocker during dialysis."
+      ],
+      [
+        "Observe and repeat the gas in 6 hours",
+        "Visual loss and severe acidosis are indications for urgent haemodialysis."
+      ]
+    ],
+    "req5": [
+      [
+        "Treat him and say nothing about the source",
+        "Others may have drunk the same batch. Notify the district health office."
+      ],
+      [
+        "Stop dialysis once he can see a little",
+        "Continue dialysis until the anion gap normalises."
+      ]
+    ]
+  },
+  "case_30": {
+    "req1": [
+      [
+        "Assume it is glyphosate and reassure the family",
+        "Blue-green unlabelled herbicide needs identification. The urine dithionite test confirms paraquat quickly."
+      ],
+      [
+        "Wait for a lab paraquat level before acting",
+        "The bedside dithionite test gives a quick answer and guides prognosis now."
+      ]
+    ],
+    "req2": [
+      [
+        "High flow oxygen to protect her lungs",
+        "Oxygen accelerates paraquat lung injury through free radicals. Withhold unless saturations fall below 90%."
+      ],
+      [
+        "Intubate early for airway protection",
+        "She is protecting her own airway. Early intubation adds oxygen exposure without benefit."
+      ]
+    ],
+    "req3": [
+      [
+        "Induce vomiting with ipecac",
+        "Induced vomiting adds oesophageal injury and aspiration risk without benefit."
+      ],
+      [
+        "Withhold analgesia so she can report symptoms",
+        "Oropharyngeal burns are very painful. Analgesia is part of supportive care."
+      ]
+    ],
+    "req4": [
+      [
+        "Delay psychiatry until she is medically stable",
+        "She may lose capacity as she deteriorates. Involve psychiatry and palliative care early while she can participate."
+      ],
+      [
+        "Refer to psychiatry only, palliative care is premature",
+        "The prognosis is grave. Early palliative care improves symptom control alongside full care."
+      ]
+    ],
+    "req5": [
+      [
+        "Give high flow oxygen for the breathlessness",
+        "Oxygen accelerates lung fibrosis. Use opioids and anxiolytics for dyspnoea and discuss goals of care."
+      ],
+      [
+        "Escalate to ECMO and lung transplant listing",
+        "Paraquat lung fibrosis rarely responds to such escalation. Discuss a ceiling of treatment with her and the family."
+      ]
+    ]
+  },
+  "case_31": {
+    "req1": [
+      [
+        "Abdominal ultrasound before anything else",
+        "He is lethargic and shocked. Resuscitation and glucose come first."
+      ],
+      [
+        "Oral rehydration solution by bottle",
+        "He is lethargic and may need theatre. IV or IO access and nil by mouth."
+      ]
+    ],
+    "req2": [
+      [
+        "Attempt the air enema immediately to save time",
+        "Reduction in a shocked child risks perforation and collapse. Resuscitate first."
+      ],
+      [
+        "Fluid restrict to 1/2 maintenance",
+        "He is in shock and needs bolus resuscitation."
+      ]
+    ],
+    "req3": [
+      [
+        "CT abdomen to confirm intussusception",
+        "Ultrasound is the diagnostic test of choice and avoids radiation."
+      ],
+      [
+        "Skip imaging and go straight to air enema",
+        "Confirm with ultrasound and exclude perforation with a plain film first."
+      ]
+    ],
+    "req4": [
+      [
+        "Barium enema without a surgeon present",
+        "Air enema is preferred, and a surgical team should be present in case of perforation."
+      ],
+      [
+        "Laparotomy as the first approach",
+        "Radiological reduction succeeds in most cases. Surgery is for failure or perforation."
+      ]
+    ],
+    "req5": [
+      [
+        "Discharge 2 hours after successful reduction",
+        "Recurrence is commonest in the first 24 hours. Admit for observation."
+      ],
+      [
+        "Keep nil by mouth for 3 days",
+        "Feeding can resume gradually after successful reduction."
+      ]
+    ]
+  },
+  "case_32": {
+    "req1": [
+      [
+        "Deep nasopharyngeal suction every hour",
+        "Aggressive deep suction causes oedema and trauma. Use gentle nasal suction."
+      ],
+      [
+        "Oxygen to target 100% saturation",
+        "Targets of 92% or above are enough. Higher targets prolong admission."
+      ]
+    ],
+    "req2": [
+      [
+        "Wait and see if he improves overnight",
+        "Apnoea and exhaustion are indications to escalate support now."
+      ],
+      [
+        "Intubate immediately",
+        "High flow nasal cannula, then CPAP, often avoids intubation. Escalate stepwise."
+      ]
+    ],
+    "req3": [
+      [
+        "Hypotonic IV fluid at full maintenance",
+        "Bronchiolitis causes ADH excess. Hypotonic fluid at full rate risks hyponatraemia. Use isotonic at two thirds."
+      ],
+      [
+        "Continue bottle feeds despite his breathing",
+        "He is working hard and has apnoea. Oral feeding risks aspiration. Use nasogastric or IV."
+      ]
+    ],
+    "req4": [
+      [
+        "Nebulised salbutamol every 4 hours",
+        "Bronchodilators do not improve outcomes in bronchiolitis."
+      ],
+      [
+        "Oral prednisolone for 3 days",
+        "Steroids do not help bronchiolitis."
+      ]
+    ],
+    "req5": [
+      [
+        "Discharge home on oxygen",
+        "He has had apnoeas and needs high flow. Admit with clear escalation criteria."
+      ],
+      [
+        "Admit without isolation",
+        "RSV spreads easily. Use contact and droplet precautions."
+      ]
+    ]
+  },
+  "case_33": {
+    "req1": [
+      [
+        "Wait for blood test results to confirm infection",
+        "Neonatal sepsis is treated on suspicion. Delay increases mortality."
+      ],
+      [
+        "Lumbar puncture before glucose or access",
+        "Glucose and access come first. LP can wait until he is stable."
+      ]
+    ],
+    "req2": [
+      [
+        "50% dextrose bolus",
+        "50% dextrose is too concentrated for neonates and damages veins. Use 10% dextrose."
+      ],
+      [
+        "Oral sugar water",
+        "He is floppy and not feeding. Hypoglycaemia needs IV dextrose."
+      ]
+    ],
+    "req3": [
+      [
+        "Ceftriaxone alone",
+        "Ceftriaxone displaces bilirubin and interacts with calcium in neonates, and lacks Listeria cover. Use ampicillin plus cefotaxime."
+      ],
+      [
+        "Oral amoxicillin and outpatient review",
+        "A septic neonate needs IV antibiotics at meningitic doses."
+      ]
+    ],
+    "req4": [
+      [
+        "Give 60 mL/kg of fluid without reassessing",
+        "Neonates overload quickly. Reassess after every bolus for hepatomegaly and crackles."
+      ],
+      [
+        "Withhold inotropes until a central line is in",
+        "Inotropes can start peripherally or by IO while central access is obtained."
+      ]
+    ],
+    "req5": [
+      [
+        "Stop antibiotics at 48 hours if cultures are negative",
+        "With meningitis, GBS needs 14 to 21 days of IV antibiotics."
+      ],
+      [
+        "Discharge after 7 days of oral antibiotics",
+        "GBS meningitis needs extended IV therapy and neurodevelopmental follow-up."
+      ]
+    ]
+  },
+  "case_34": {
+    "req1": [
+      [
+        "Restrain her firmly to stop the seizure",
+        "Restraint causes injury. Use left lateral tilt, protect from harm and secure the airway."
+      ],
+      [
+        "Lay her flat on her back",
+        "Supine position compresses the vena cava. Use left lateral tilt."
+      ]
+    ],
+    "req2": [
+      [
+        "Diazepam IV for the seizure",
+        "Magnesium sulphate is superior to diazepam for preventing recurrent eclamptic seizures."
+      ],
+      [
+        "Phenytoin loading dose",
+        "Magnesium sulphate is the drug of choice in eclampsia, not phenytoin."
+      ]
+    ],
+    "req3": [
+      [
+        "Drop the blood pressure to 110/70 quickly",
+        "Rapid lowering reduces placental perfusion and harms the fetus. Target a gradual reduction."
+      ],
+      [
+        "Sublingual nifedipine capsule bitten",
+        "Biting the capsule causes unpredictable rapid falls in pressure. Use labetalol, hydralazine or oral nifedipine."
+      ]
+    ],
+    "req4": [
+      [
+        "Generous IV fluids to improve placental flow",
+        "Pre-eclampsia has leaky capillaries. Excess fluid causes pulmonary oedema. Restrict to 80 mL/h."
+      ],
+      [
+        "Skip steroids because delivery is imminent",
+        "At 34 weeks, steroids improve neonatal lung maturity. Give them if time allows."
+      ]
+    ],
+    "req5": [
+      [
+        "Continue the pregnancy to 37 weeks with monitoring",
+        "Eclampsia is an indication for delivery once the mother is stabilised."
+      ],
+      [
+        "Stop magnesium right after delivery",
+        "Seizure risk continues postpartum. Continue magnesium for 24 hours."
+      ]
+    ]
+  },
+  "case_35": {
+    "req1": [
+      [
+        "Continue the oxytocin infusion",
+        "She is collapsing. Call the emergency teams, tilt left and support the airway."
+      ],
+      [
+        "Lay her flat for CPR now",
+        "She still has output. Displace the uterus to the left to relieve caval compression."
+      ]
+    ],
+    "req2": [
+      [
+        "Prepare to transfer to theatre for caesarean if she arrests",
+        "Perimortem caesarean happens where she arrests, within 4 minutes. Have a scalpel at the bedside."
+      ],
+      [
+        "Wait 15 minutes of CPR before delivery",
+        "Delivery within 4 to 5 minutes of arrest improves maternal and fetal survival."
+      ]
+    ],
+    "req3": [
+      [
+        "2 litres of fluid rapidly for hypotension",
+        "The right ventricle is failing. Fluid overload worsens it. Use vasopressors and inotropes."
+      ],
+      [
+        "Give heparin for presumed pulmonary embolism",
+        "This is amniotic fluid embolism with DIC risk. Heparin will worsen bleeding."
+      ]
+    ],
+    "req4": [
+      [
+        "Red cells only",
+        "Amniotic fluid embolism causes DIC with fibrinogen consumption. Give cryoprecipitate or fibrinogen early."
+      ],
+      [
+        "Wait for coagulation results before blood products",
+        "DIC develops fast. Activate massive transfusion now."
+      ]
+    ],
+    "req5": [
+      [
+        "Transfer to the general ward after delivery",
+        "She survived arrest with ongoing bleeding. She needs ICU and haemostasis."
+      ],
+      [
+        "Stop transfusion once she is in ICU",
+        "Continue product guided transfusion while bleeding persists."
+      ]
+    ]
+  }
+}

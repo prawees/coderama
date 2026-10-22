@@ -1,0 +1,334 @@
+{
+  "case_01": {
+    "req1": [
+      ["Give IV calcium gluconate for the potassium of 6.2", "Hyperkalaemia here is a marker of digoxin poisoning, not the primary problem. Calcium is traditionally avoided in digoxin toxicity, and the bradycardia with hypotension needs treating first."],
+      ["Give IV metoprolol to control the atrial fibrillation", "He is bradycardic at 35 with a systolic of 80. A beta blocker would deepen the block and the shock."]
+    ]
+  },
+  "case_07_vip": {
+    "req1": [
+      ["Give streptokinase now, he is a VIP and we cannot take risks", "There is no ST elevation, so thrombolysis carries bleeding risk with no benefit. Status does not change the indication."],
+      ["Discharge with reassurance because the first troponin is normal", "A single early troponin cannot exclude an acute coronary syndrome. He needs serial troponins and a repeat ECG."]
+    ]
+  },
+  "case_07": {
+    "req1": [
+      ["IV chlorpheniramine and hydrocortisone first", "Antihistamines and steroids do not reverse airway oedema or shock. IM adrenaline is first line and must not be delayed."],
+      ["IV adrenaline 1 mg bolus", "1 mg IV is the cardiac arrest dose and can cause arrhythmia or myocardial ischaemia in a patient with a pulse. Give 0.5 mg IM into the thigh."]
+    ],
+    "req2": [
+      ["Sit her upright and walk her to the bathroom to vomit", "Standing or sitting up a hypotensive anaphylaxis patient can precipitate cardiac arrest from empty ventricle. Keep her supine with legs raised."],
+      ["Nasal cannula at 2 L/min to avoid oxygen toxicity", "She has throat tightness and hypotension. Give high flow oxygen by non-rebreather mask."]
+    ],
+    "req3": [
+      ["One small IV line and maintenance fluid at 80 mL/h", "Anaphylactic shock involves massive vasodilation and capillary leak. She needs two large bore lines and a rapid crystalloid bolus."],
+      ["Hold fluids to avoid pulmonary oedema", "Her problem is distributive shock, not fluid overload. Withholding fluid worsens hypotension."]
+    ],
+    "req4": [
+      ["Wait 30 minutes for the antihistamine to work", "Persistent hypotension after one dose of adrenaline needs a repeat IM dose at 5 minutes, not waiting on adjuncts."],
+      ["Start a dopamine infusion instead of more adrenaline", "Adrenaline is the drug of choice and a second IM dose comes first. Refractory cases get an adrenaline infusion."]
+    ],
+    "req5": [
+      ["IV aminophylline bolus for the wheeze", "Aminophylline is not first line and adds arrhythmia risk on top of adrenaline. Use nebulised salbutamol."],
+      ["Ignore the wheeze, it will settle with the antihistamine", "Antihistamines do not treat bronchospasm. Ongoing wheeze after adrenaline needs a nebulised bronchodilator."]
+    ],
+    "req6": [
+      ["Stop the adrenaline now that steroids have been given", "Steroids act over hours and do not replace adrenaline. Adjuncts are add-ons only."],
+      ["Skip all adjuncts, they are never useful", "Antihistamines help skin symptoms and are reasonable after adrenaline. Steroids are commonly given. They are adjuncts, not nothing."]
+    ],
+    "req7": [
+      ["Discharge home now since she looks well", "Biphasic reactions can occur hours later, especially after hypotension and two doses of adrenaline. Observe for 6 to 12 hours."],
+      ["Discharge with oral antihistamine only, no autoinjector", "She has had life threatening anaphylaxis. She needs adrenaline autoinjectors, an action plan and allergy referral."]
+    ]
+  },
+  "case_08": {
+    "req1": [
+      ["Send him straight to CT to define the injuries", "An unstable patient must not leave the resuscitation room. Primary survey and oxygen come first."],
+      ["Remove the collar so you can examine the neck fully", "With a high energy mechanism, maintain cervical spine control during the primary survey."]
+    ],
+    "req2": [
+      ["Portable chest X-ray first to confirm the diagnosis", "Tension pneumothorax is a clinical diagnosis. Waiting for an X-ray can cost his life. Decompress now."],
+      ["Intubate and ventilate before anything else", "Positive pressure ventilation worsens a tension pneumothorax and can cause arrest. Decompress first."]
+    ],
+    "req3": [
+      ["Leave the needle in and transfer to the ward", "A needle is a temporising measure that kinks and blocks. He needs a definitive chest drain."],
+      ["Insert the chest drain at the 2nd intercostal space, mid-clavicular line", "Chest drains go in the 5th intercostal space, anterior to the mid-axillary line, within the safe triangle."]
+    ],
+    "req4": [
+      ["IM pethidine for pain and skip IV access", "A trauma patient needs IV access. Titrated IV opioid gives controllable analgesia."],
+      ["No analgesia until the surgeon has examined him", "Analgesia does not mask surgical signs meaningfully. Withholding it is outdated and inhumane."]
+    ],
+    "req5": [
+      ["Discharge after the chest drain if the X-ray improves", "A high energy mechanism needs a full secondary survey and trauma imaging for occult injuries."],
+      ["Image only the chest, the rest of the exam is normal", "Distracting injuries hide others. Image head to pelvis per the mechanism."]
+    ]
+  },
+  "case_09": {
+    "req1": [
+      ["Start insulin immediately based on the glucometer reading", "Insulin before fluids and before a potassium result risks fatal hypokalaemia and cardiovascular collapse."],
+      ["Send her for an abdominal CT for the pain first", "Abdominal pain is common in DKA and usually resolves with treatment. Bedside gas, glucose, ketones and potassium come first."]
+    ],
+    "req2": [
+      ["Give 10 units of insulin IV as a bolus now", "Fluids come first. A bolus is not recommended, and insulin before volume restoration worsens hypotension."],
+      ["Give sodium bicarbonate for the acidosis", "Bicarbonate is not indicated unless pH is below about 6.9. It worsens hypokalaemia and can cause cerebral oedema."]
+    ],
+    "req3": [
+      ["Start insulin and check the potassium later", "Insulin drives potassium into cells. Starting it before knowing the level can cause cardiac arrest."],
+      ["Withhold potassium because the result is normal", "Total body potassium is depleted in DKA even when serum is normal. Add replacement once urine output is confirmed."]
+    ],
+    "req4": [
+      ["Subcutaneous insulin every 4 hours", "Subcutaneous absorption is unreliable in a shocked, acidotic patient. Use a fixed rate IV infusion."],
+      ["Insulin bolus 0.3 units/kg then double the infusion", "Large boluses drop glucose and potassium too fast. A fixed rate infusion of about 0.1 units/kg/h is standard."]
+    ],
+    "req5": [
+      ["Stop the insulin infusion once glucose is below 250 mg/dL", "Insulin is needed to clear ketones. Add dextrose and continue insulin until ketoacidosis resolves."],
+      ["Check glucose and potassium every 6 hours", "Glucose and potassium can shift quickly. Monitor glucose hourly and potassium and gas every 2 hours."]
+    ],
+    "req6": [
+      ["Stop the infusion and give subcutaneous insulin at the same time", "Without a 1 to 2 hour overlap, ketoacidosis can rebound. Overlap before stopping the infusion."],
+      ["Switch to oral metformin since she is eating", "This is new type 1 diabetes. She needs insulin for life, not metformin."]
+    ]
+  },
+  "case_10": {
+    "req1": [
+      ["Give naloxone 2 mg IV before touching the airway", "Hypoxia is what kills him. Open the airway and ventilate first. Large naloxone doses cause violent withdrawal and vomiting."],
+      ["Place him in recovery position and wait", "He is hypoventilating with low saturations. He needs active airway support and bag-mask ventilation."]
+    ],
+    "req2": [
+      ["Skip the glucose, the cause is obviously opioids", "Hypoglycaemia mimics or coexists with overdose and is quick to exclude. Always check glucose."],
+      ["CT brain before any further treatment", "There is a clear toxidrome. Monitoring, glucose and access come first, and imaging can wait."]
+    ],
+    "req3": [
+      ["Naloxone until he is fully awake and talking", "The goal is adequate breathing, not full arousal. Titrating to consciousness precipitates severe withdrawal."],
+      ["Flumazenil in case benzodiazepines are involved", "Flumazenil can trigger seizures in mixed overdoses or chronic benzodiazepine users. It is not routine."]
+    ],
+    "req4": [
+      ["Discharge as soon as he is awake after naloxone", "Naloxone wears off before many opioids do. Observe for re-sedation for at least 4 to 6 hours."],
+      ["Ignore the CK, he is young and fit", "A long down time causes rhabdomyolysis. Check CK and give IV fluids to protect the kidneys."]
+    ],
+    "req5": [
+      ["Discharge with a lecture about drug use and no follow-up", "Recent rehab discharge means lost tolerance and very high overdose risk. Give take-home naloxone and treatment linkage."],
+      ["Call the police before discharge", "Clinical care does not require police notification for drug use. It damages trust and deters future help seeking."]
+    ]
+  },
+  "case_11": {
+    "req1": [
+      ["Send her to the ultrasound department for a formal scan", "An unstable patient must not leave resus. Pregnancy test, IV access and crossmatch come first."],
+      ["Wait for the serum beta-hCG before doing anything else", "A urine test gives the answer in minutes. Serum levels take hours and change nothing now."]
+    ],
+    "req2": [
+      ["Formal CT abdomen to look for appendicitis", "A shocked woman of childbearing age with a positive test needs bedside ultrasound in resus, not a CT trip."],
+      ["Skip imaging and admit to gynaecology ward", "Bedside FAST quickly confirms haemoperitoneum and speeds the decision for theatre."]
+    ],
+    "req3": [
+      ["Give 3 litres of normal saline until the pressure is normal", "Large crystalloid volumes dilute clotting factors and worsen bleeding. Give blood products early."],
+      ["Wait for crossmatched blood before transfusing", "Crossmatch takes too long in haemorrhagic shock. Use emergency O negative and activate massive transfusion."]
+    ],
+    "req4": [
+      ["Admit to the ward for methotrexate", "Methotrexate is for stable, unruptured ectopics. She has a ruptured ectopic in shock and needs surgery."],
+      ["Observe in the emergency department until she stabilises", "She is a transient responder. Definitive haemorrhage control is in theatre."]
+    ],
+    "req5": [
+      ["Discharge without anti-D because the pregnancy is over", "She is Rh negative. Anti-D is needed to prevent sensitisation that would affect future pregnancies."],
+      ["Give anti-D only if she wants more children", "Sensitisation affects future pregnancies and transfusions. Anti-D is offered to all Rh negative women after an ectopic treated surgically."]
+    ]
+  },
+  "case_12": {
+    "req1": [
+      ["The fever has gone, so tell the family he is recovering", "Defervescence marks the start of the critical phase in dengue, when plasma leak and shock occur."],
+      ["Wait for the dengue IgM result before deciding on treatment", "Management is clinical. A baseline haematocrit and shock assessment guide fluids now."]
+    ],
+    "req2": [
+      ["Give platelets because the count is low", "Prophylactic platelets do not prevent bleeding or shock in dengue. The shock is from plasma leak and needs crystalloid."],
+      ["Hold all fluids because he may get pulmonary oedema", "He is in compensated shock now. He needs an isotonic bolus, then careful titration."]
+    ],
+    "req3": [
+      ["Continue the NSAID for the myalgia and fever", "NSAIDs increase bleeding risk and gastritis in dengue. Use paracetamol only."],
+      ["IM diclofenac for the pain", "IM injections cause haematomas in dengue, and NSAIDs worsen bleeding. Avoid both."]
+    ],
+    "req4": [
+      ["Keep running 20 mL/kg/h until the blood pressure is normal", "Over-resuscitation causes fluid overload and pulmonary oedema as plasma leak ends. Step fluids down and titrate to urine output and haematocrit."],
+      ["Stop all IV fluids now that he has responded", "The leak continues for 24 to 48 hours. Abrupt cessation risks recurrent shock. Taper the rate."]
+    ],
+    "req5": [
+      ["Discharge home with paracetamol now that he has responded", "He is still within the critical phase. Admit for monitoring until the leak resolves."],
+      ["Admit without observations to let him sleep", "The critical phase needs close monitoring for shock, bleeding and fluid overload."]
+    ]
+  },
+  "case_13": {
+    "req1": [
+      ["Intubate first, decontaminate afterwards", "Contaminated clothing and skin keep poisoning him and can poison staff. Protect yourself and decontaminate first."],
+      ["Gastric lavage immediately", "Lavage has no proven benefit and risks aspiration. Decontaminate skin and secure the airway."]
+    ],
+    "req2": [
+      ["Wait for the atropine to dry the secretions before supporting ventilation", "Bronchorrhoea and weakness kill quickly. Suction and ventilate while atropine is given."],
+      ["Use suxamethonium for intubation", "Organophosphates inhibit cholinesterase, which also breaks down suxamethonium, causing prolonged paralysis. Use a non-depolarising agent."]
+    ],
+    "req3": [
+      ["Atropine 0.5 mg every 30 minutes", "That is far too slow. Organophosphate poisoning needs rapid escalation, doubling every 5 minutes until the chest is clear."],
+      ["Titrate atropine to pupil size", "Pupils are an unreliable endpoint. Titrate to a dry chest, heart rate above 80 and systolic above 80."]
+    ],
+    "req4": [
+      ["Pralidoxime instead of atropine", "Pralidoxime does not treat muscarinic secretions. It is an adjunct to atropine, never a replacement."],
+      ["Physostigmine to reverse the poisoning", "Physostigmine is a cholinesterase inhibitor and would worsen cholinergic toxicity."]
+    ],
+    "req5": [
+      ["Discharge after 24 hours once secretions are dry", "The intermediate syndrome can cause respiratory failure at 24 to 96 hours. He needs ICU monitoring."],
+      ["Daily gastric lavage on the ward", "Repeated lavage has no benefit. Monitor neck flexion and respiratory muscle strength instead."]
+    ]
+  },
+  "case_14": {
+    "req1": [
+      ["Apply the pelvic binder at the level of the iliac crests", "A binder at the iliac crests does not close the pelvic ring and can widen it. It goes over the greater trochanters."],
+      ["Spring the pelvis to confirm instability first", "Pelvic springing dislodges clot and worsens bleeding. Apply the binder on mechanism and shock."]
+    ],
+    "req2": [
+      ["Leave the scalp laceration, it is minor", "Scalp wounds bleed briskly and can contribute significantly to shock. Control it with pressure or staples."],
+      ["Insert a central line first for access", "Two large bore peripheral or intraosseous lines are faster and allow higher flow rates."]
+    ],
+    "req3": [
+      ["Another 2 litres of warmed saline before blood", "Crystalloid dilutes clotting factors and worsens the lethal triad. Give blood and plasma, plus tranexamic acid."],
+      ["Wait for a haemoglobin result before transfusing", "Haemoglobin lags in acute haemorrhage. Transfuse on clinical shock."]
+    ],
+    "req4": [
+      ["Let him stay cool to reduce metabolic demand", "Hypothermia worsens coagulopathy. Active rewarming is part of damage control resuscitation."],
+      ["Warm only after he returns from angiography", "Hypothermia worsens bleeding now. Start warming immediately and continue throughout."]
+    ],
+    "req5": [
+      ["Open laparotomy to control the pelvic bleeding", "Pelvic bleeding is retroperitoneal. Laparotomy releases tamponade. Use angioembolisation or preperitoneal packing."],
+      ["Keep transfusing and observe in the emergency department", "He is a transient responder. He needs definitive haemorrhage control."]
+    ],
+    "req6": [
+      ["Insert a Foley catheter to monitor urine output", "Pelvic fracture with possible urethral injury contraindicates blind urethral catheterisation. Image first or use suprapubic drainage."],
+      ["Withhold any bladder drainage", "He needs urine output monitoring. A suprapubic catheter achieves this safely."]
+    ]
+  },
+  "case_15": {
+    "req1": [
+      ["Order a chest X-ray and full blood count before talking to her", "Investigations without indication waste resources. A focused history and exam are enough to exclude red flags."],
+      ["Send her away without examining her", "Every patient deserves a focused assessment to exclude red flags before reassurance."]
+    ],
+    "req2": [
+      ["Give her the IV drip to keep her happy", "IV fluids carry risks and cost, and she is drinking normally. Explain why it is not needed."],
+      ["Prescribe amoxicillin just in case", "This is a viral illness. Antibiotics add side effects and resistance without benefit."]
+    ],
+    "req3": [
+      ["Prescribe codeine cough syrup", "Codeine has little benefit for acute cough and carries risks. Simple measures are enough."],
+      ["Prescribe an oral steroid to settle the symptoms", "Steroids are not indicated for a simple viral URI and carry side effects."]
+    ],
+    "req4": [
+      ["Tell her to come back to the emergency department tomorrow for review", "She does not need emergency follow-up. Redirect to outpatient or primary care."],
+      ["Admit her overnight to be safe", "She has no emergency pathology. Admission wastes a bed and exposes her to hospital risk."]
+    ]
+  },
+  "case_16": {
+    "req1": [
+      ["Leave the tourniquet on to stop venom spreading", "Tourniquets cause ischaemia and do not reliably stop venom spread. Remove carefully with monitoring."],
+      ["Incise and suck the wound to remove venom", "Incision and suction cause tissue damage and infection without removing meaningful venom."]
+    ],
+    "req2": [
+      ["Give antivenom to everyone bitten without testing", "Antivenom carries reaction risk. Give it for systemic envenomation, confirmed with the 20 minute clotting test."],
+      ["Wait for formal coagulation studies from the lab", "The bedside 20 minute whole blood clotting test is fast and reliable in this setting."]
+    ],
+    "req3": [
+      ["Give fresh frozen plasma first to correct the clotting", "Plasma is consumed while venom is active. Neutralise the venom with antivenom first."],
+      ["Give cobra antivenom because it is in stock", "Antivenom is species specific. Russell's viper needs its own monovalent antivenom."]
+    ],
+    "req4": [
+      ["Repeat the clotting test after 24 hours", "Clotting should be retested at 6 hours to decide on further antivenom."],
+      ["Give platelets because the gums are still bleeding", "Products before venom is neutralised are consumed. Retest at 6 hours and repeat antivenom if non-clotting."]
+    ],
+    "req5": [
+      ["Restrict fluids to protect the kidneys", "Russell's viper bites commonly cause acute kidney injury. Adequate fluid and urine output monitoring help."],
+      ["Discharge once clotting returns to normal", "AKI can develop over days. Monitor urine output and creatinine."]
+    ]
+  },
+  "case_17": {
+    "req1": [
+      ["CT brain before checking glucose", "Hypoglycaemia is common in severe malaria and is quickly treatable. Check glucose first."],
+      ["Lumbar puncture before any treatment", "Glucose and antimalarial treatment come first. Delay for LP risks death."]
+    ],
+    "req2": [
+      ["Wait for the smear result before starting treatment", "Severe malaria is a medical emergency. Take the smear but do not delay artesunate."],
+      ["Discharge if the rapid test is negative", "A negative rapid test does not exclude malaria in a febrile migrant with confusion. Repeat smears."]
+    ],
+    "req3": [
+      ["Oral chloroquine", "Falciparum malaria on the Thai-Myanmar border is resistant to chloroquine, and severe malaria needs IV treatment."],
+      ["IV quinine as first line", "IV artesunate has lower mortality than quinine and is first line for severe malaria."]
+    ],
+    "req4": [
+      ["Large fluid boluses of 40 mL/kg", "Aggressive fluid loading in severe malaria increases pulmonary oedema and mortality. Use cautious fluids."],
+      ["Withhold antibiotics because malaria explains everything", "Bacterial co-infection is common in severe malaria. Give empirical antibiotics."]
+    ],
+    "req5": [
+      ["Admit to the general ward without monitoring", "He has cerebral malaria and severe anaemia. He needs ICU or high dependency care."],
+      ["Switch to oral treatment after the first IV dose", "Continue IV artesunate for at least 24 hours and until he can take oral therapy."]
+    ]
+  },
+  "case_18": {
+    "req1": [
+      ["Estimate the blood loss visually and wait", "Visual estimation underestimates loss. Weigh swabs, call for help and secure access."],
+      ["Start a single IV line and observe", "Postpartum haemorrhage needs two large bore lines and crossmatch from the start."]
+    ],
+    "req2": [
+      ["Wait for the oxytocin to work before touching the uterus", "Uterine massage and bimanual compression buy time while drugs are drawn up."],
+      ["Pack the vagina tightly", "Vaginal packing does not control uterine atony and can conceal ongoing bleeding."]
+    ],
+    "req3": [
+      ["Ergometrine IV push first", "Ergometrine is given IM or slow IV and is contraindicated in hypertension. Oxytocin is first line."],
+      ["Skip tranexamic acid, it is only for trauma", "Tranexamic acid reduces death from postpartum haemorrhage when given early. Give it."]
+    ],
+    "req4": [
+      ["Give red cells only, no plasma or cryoprecipitate", "Fibrinogen falls early in postpartum haemorrhage. Replace it guided by levels."],
+      ["Wait for the coagulation results before any blood", "She is bleeding now. Start blood products while results are pending."]
+    ],
+    "req5": [
+      ["Hysterectomy as first surgical step", "Exam under anaesthesia, removing retained products and repairing tears come first. Hysterectomy is a last resort."],
+      ["Keep giving uterotonics and observe", "She has a partial response and possible retained products. Theatre is needed."]
+    ]
+  },
+  "case_19": {
+    "req1": [
+      ["Perform abdominal thrusts to drain the water from the lungs", "Abdominal thrusts delay ventilation and cause aspiration. Drowning is hypoxic, so ventilate."],
+      ["Compressions only, no rescue breaths", "Drowning is a hypoxic arrest. Ventilation with oxygen is the priority."]
+    ],
+    "req2": [
+      ["Keep bagging without intubating", "He has persistent hypoxaemia. Intubate with lung protective ventilation and PEEP."],
+      ["Low PEEP of 0 to 2 cmH2O", "Drowning lungs need PEEP to recruit flooded alveoli. Use 8 to 10 cmH2O."]
+    ],
+    "req3": [
+      ["Large fluid boluses of 60 mL/kg", "Aggressive fluids worsen pulmonary oedema in drowning. Use cautious boluses and inotropes."],
+      ["Skip the glucose, he is too young for diabetes", "Hypoglycaemia is common in stressed children. Check and correct it."]
+    ],
+    "req4": [
+      ["Rapid active rewarming to 38 C", "Hyperthermia worsens neurological outcome after hypoxic injury. Rewarm passively to 34 to 36 C only."],
+      ["Ignore the temperature", "Temperature control matters for brain recovery. Monitor and avoid hyperthermia."]
+    ],
+    "req5": [
+      ["Prophylactic antibiotics and steroids", "Neither is proven in drowning. Give antibiotics only for evidence of infection."],
+      ["Discharge home after he stabilises", "He needs PICU care and a safeguarding assessment for the unsupervised drowning."]
+    ]
+  },
+  "case_20": {
+    "req1": [
+      ["Clamp the bleeding vessels with artery forceps", "Blind clamping damages nerves and vessels needed for replantation. Use direct pressure."],
+      ["Apply a tourniquet straight away", "Tourniquets are for when direct pressure fails. Pressure and elevation usually control hand bleeding."]
+    ],
+    "req2": [
+      ["Put the amputated part directly on ice", "Direct contact with ice causes frostbite and destroys tissue. Wrap in moist gauze, seal in a bag, then place on ice water."],
+      ["Submerge the part in saline", "Submersion causes tissue maceration. Keep it in moist gauze inside a sealed bag."]
+    ],
+    "req3": [
+      ["Skip the tetanus, he had one at school", "This is a contaminated agricultural wound. He needs tetanus toxoid and immunoglobulin."],
+      ["Oral paracetamol only for pain", "A traumatic amputation is severe pain. Titrated IV morphine is appropriate."]
+    ],
+    "req4": [
+      ["Wait for transfer to the replantation centre before fasciotomy", "Compartment syndrome needs a fasciotomy now. Waiting causes irreversible muscle death."],
+      ["Elevate the forearm and repeat the check in 4 hours", "Worsening compartment syndrome needs urgent surgical decompression, not observation."]
+    ],
+    "req5": [
+      ["Restrict fluids now that he is out of theatre", "Muscle injury causes rhabdomyolysis. He needs IV fluids targeting good urine output."],
+      ["Discharge without rehabilitation follow-up", "Hand therapy and occupational support are central to recovery after amputation."]
+    ]
+  }
+}

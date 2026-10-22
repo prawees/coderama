@@ -183,6 +183,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Send him straight to CT to define the injuries",
+              "feedback": "An unstable patient must not leave the resuscitation room. Primary survey and oxygen come first."
+            },
+            {
+              "label": "Remove the collar so you can examine the neck fully",
+              "feedback": "With a high energy mechanism, maintain cervical spine control during the primary survey."
+            }
+          ],
           "label": "Primary survey with high flow oxygen and cervical spine control",
           "actions": [
             "Oxygen via non-rebreather mask",
@@ -215,6 +225,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Portable chest X-ray first to confirm the diagnosis",
+              "feedback": "Tension pneumothorax is a clinical diagnosis. Waiting for an X-ray can cost his life. Decompress now."
+            },
+            {
+              "label": "Intubate and ventilate before anything else",
+              "feedback": "Positive pressure ventilation worsens a tension pneumothorax and can cause arrest. Decompress first."
+            }
+          ],
           "label": "Immediate needle or finger decompression, do not wait for the X-ray",
           "actions": [
             "Needle thoracostomy, 5th intercostal space anterior axillary line, left"
@@ -253,6 +273,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Leave the needle in and transfer to the ward",
+              "feedback": "A needle is a temporising measure that kinks and blocks. He needs a definitive chest drain."
+            },
+            {
+              "label": "Insert the chest drain at the 2nd intercostal space, mid-clavicular line",
+              "feedback": "Chest drains go in the 5th intercostal space, anterior to the mid-axillary line, within the safe triangle."
+            }
+          ],
           "label": "Definitive left chest drain",
           "actions": [
             "Tube thoracostomy, left, 5th intercostal space",
@@ -272,6 +302,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "IM pethidine for pain and skip IV access",
+              "feedback": "A trauma patient needs IV access. Titrated IV opioid gives controllable analgesia."
+            },
+            {
+              "label": "No analgesia until the surgeon has examined him",
+              "feedback": "Analgesia does not mask surgical signs meaningfully. Withholding it is outdated and inhumane."
+            }
+          ],
           "label": "IV access, analgesia and confirmatory chest X-ray",
           "actions": [
             "IV access 16G x2",
@@ -312,6 +352,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Discharge after the chest drain if the X-ray improves",
+              "feedback": "A high energy mechanism needs a full secondary survey and trauma imaging for occult injuries."
+            },
+            {
+              "label": "Image only the chest, the rest of the exam is normal",
+              "feedback": "Distracting injuries hide others. Image head to pelvis per the mechanism."
+            }
+          ],
           "label": "Complete secondary survey and trauma imaging",
           "actions": [
             "Head to pelvis secondary survey",

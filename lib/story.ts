@@ -60,9 +60,11 @@ export function sliceFromNode(story: DayStory, nodeId: string): CutsceneNode[] |
 }
 
 /**
- * Skip over flag-check router nodes ("System" speaker, id ending in _check) and jump to
- * the branch the flags select. Must run whenever a scene starts, not only on advance,
- * because some days open on a router node.
+ * Prepare the head of a dialogue queue before it is shown:
+ * - flag-check router nodes ("System" speaker, id ending in _check) jump to the branch the flags select;
+ * - lines tagged "[IF_FLAG:X]" / "[IF_NOT_FLAG:X]" play only when the condition holds. Text before the
+ *   tag always plays; text after it plays only when the condition holds.
+ * Runs whenever a scene starts and after every advance, because some days open on a router node.
  */
 export function resolveRouters(
   queue: CutsceneNode[],
@@ -71,21 +73,52 @@ export function resolveRouters(
 ): CutsceneNode[] {
   let next = queue;
   let guard = 0;
-  while (next.length > 0 && next[0].speaker === "System" && next[0].id?.endsWith("_check") && guard++ < 50) {
-    let chosenNextId: string | undefined;
-    for (const c of next[0].choices || []) {
-      const flagMatch = c.text.match(/^\[IF_(NOT_)?FLAG:(.*?)\]/);
-      if (flagMatch) {
-        const isSet = Boolean(flags[flagMatch[2]]);
-        if (flagMatch[1] ? !isSet : isSet) { chosenNextId = c.nextId; break; }
-      } else if (c.text.startsWith("[ELSE]")) {
-        chosenNextId = c.nextId;
-        break;
+  const holds = (negated: string | undefined, flag: string) => (negated ? !flags[flag] : Boolean(flags[flag]));
+  // Skipping a line follows its nextId; a story line with no nextId ends the scene (see advanceQueue)
+  const skip = (node: CutsceneNode, rest: CutsceneNode[]) =>
+    node.nextId ? sliceFromNode(story, node.nextId) ?? rest : node.id ? [] : rest;
+
+  while (next.length > 0 && guard++ < 100) {
+    const head = next[0];
+
+    if (head.speaker === "System" && head.id?.endsWith("_check")) {
+      let chosenNextId: string | undefined;
+      for (const c of head.choices || []) {
+        const m = c.text.match(/^\[IF_(NOT_)?FLAG:(.*?)\]/);
+        if (m) {
+          if (holds(m[1], m[2])) { chosenNextId = c.nextId; break; }
+        } else if (c.text.startsWith("[ELSE]")) {
+          chosenNextId = c.nextId;
+          break;
+        }
       }
+      next = (chosenNextId && sliceFromNode(story, chosenNextId)) || next.slice(1);
+      continue;
     }
-    next = (chosenNextId && sliceFromNode(story, chosenNextId)) || next.slice(1);
+
+    const m = head.text?.match(/\[IF_(NOT_)?FLAG:(.*?)\]\s*/);
+    if (m && m.index !== undefined) {
+      const before = head.text.slice(0, m.index).trim();
+      const after = head.text.slice(m.index + m[0].length).trim();
+      const text = holds(m[1], m[2]) ? [before, after].filter(Boolean).join(" ") : before;
+      next = text ? [{ ...head, text }, ...next.slice(1)] : skip(head, next.slice(1));
+      continue;
+    }
+    break;
   }
   return next;
+}
+
+/**
+ * Advance past the current line. A line with an id but no nextId is the end of its branch,
+ * so the scene ends there instead of falling into the next array entry (often a sibling branch).
+ * Lines without ids (built inline in the hub) play in array order.
+ */
+export function advanceQueue(queue: CutsceneNode[], story: DayStory, nextNodeId?: string): CutsceneNode[] {
+  if (nextNodeId) return sliceFromNode(story, nextNodeId) ?? queue.slice(1);
+  const current = queue[0];
+  if (current?.id && !(current.choices && current.choices.length)) return [];
+  return queue.slice(1);
 }
 
 /**

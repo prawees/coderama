@@ -197,6 +197,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Give naloxone 2 mg IV before touching the airway",
+              "feedback": "Hypoxia is what kills him. Open the airway and ventilate first. Large naloxone doses cause violent withdrawal and vomiting."
+            },
+            {
+              "label": "Place him in recovery position and wait",
+              "feedback": "He is hypoventilating with low saturations. He needs active airway support and bag-mask ventilation."
+            }
+          ],
           "label": "Airway first: suction, jaw thrust and bag-mask ventilation with oxygen",
           "actions": [
             "Suction airway",
@@ -216,6 +226,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Skip the glucose, the cause is obviously opioids",
+              "feedback": "Hypoglycaemia mimics or coexists with overdose and is quick to exclude. Always check glucose."
+            },
+            {
+              "label": "CT brain before any further treatment",
+              "feedback": "There is a clear toxidrome. Monitoring, glucose and access come first, and imaging can wait."
+            }
+          ],
           "label": "Check glucose and attach monitoring",
           "actions": [
             "Capillary glucose",
@@ -233,6 +253,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Naloxone until he is fully awake and talking",
+              "feedback": "The goal is adequate breathing, not full arousal. Titrating to consciousness precipitates severe withdrawal."
+            },
+            {
+              "label": "Flumazenil in case benzodiazepines are involved",
+              "feedback": "Flumazenil can trigger seizures in mixed overdoses or chronic benzodiazepine users. It is not routine."
+            }
+          ],
           "label": "Titrated naloxone to restore ventilation, not consciousness",
           "actions": [
             "Naloxone IV"
@@ -284,6 +314,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Discharge as soon as he is awake after naloxone",
+              "feedback": "Naloxone wears off before many opioids do. Observe for re-sedation for at least 4 to 6 hours."
+            },
+            {
+              "label": "Ignore the CK, he is young and fit",
+              "feedback": "A long down time causes rhabdomyolysis. Check CK and give IV fluids to protect the kidneys."
+            }
+          ],
           "label": "Observe for re-sedation and treat rhabdomyolysis",
           "actions": [
             "Monitored observation at least 4-6 hours after the last naloxone dose",
@@ -326,6 +366,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Discharge with a lecture about drug use and no follow-up",
+              "feedback": "Recent rehab discharge means lost tolerance and very high overdose risk. Give take-home naloxone and treatment linkage."
+            },
+            {
+              "label": "Call the police before discharge",
+              "feedback": "Clinical care does not require police notification for drug use. It damages trust and deters future help seeking."
+            }
+          ],
           "label": "Discharge planning with take-home naloxone and treatment linkage",
           "actions": [
             "Take-home naloxone kit with training for patient and brother",
