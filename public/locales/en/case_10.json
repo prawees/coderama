@@ -368,26 +368,27 @@
           "y": 200
         },
         "data": {
-          "choice": "Take-home naloxone and addiction referral",
+          "choice": "Methadone clinic referral and an overdose plan",
           "distractors": [
             {
               "label": "Discharge with a lecture about drug use and no follow-up",
-              "feedback": "Recent rehab discharge means lost tolerance and very high overdose risk. Give take-home naloxone and treatment linkage."
+              "feedback": "Recent rehab discharge means lost tolerance and very high overdose risk. Link him to a methadone clinic and give an overdose plan."
             },
             {
               "label": "Call the police before discharge",
               "feedback": "Clinical care does not require police notification for drug use. It damages trust and deters future help seeking."
             }
           ],
-          "label": "Discharge planning with take-home naloxone and treatment linkage",
+          "label": "Discharge planning with treatment linkage and an overdose plan",
           "actions": [
-            "Take-home naloxone kit with training for patient and brother",
-            "Buprenorphine initiation or addiction service referral",
+            "Methadone maintenance clinic referral",
+            "Naloxone through a harm reduction programme",
             "Hepatitis C and HIV screening offer",
-            "Written overdose prevention advice"
+            "Written overdose advice for him and his brother"
           ],
           "doseMap": {
-            "Buprenorphine initiation or addiction service referral": "Start when the Clinical Opiate Withdrawal Scale is above 12 to avoid precipitated withdrawal"
+            "Methadone maintenance clinic referral": "Many Thai government hospitals run methadone maintenance clinics. Buprenorphine programmes are not generally available in Thailand.",
+            "Naloxone through a harm reduction programme": "Take-home naloxone is not routine in Thai hospitals, but outreach programmes for people who inject drugs carry it."
           }
         }
       },
@@ -401,7 +402,7 @@
         "data": {
           "label": "Disposition",
           "outcomeType": "resolved",
-          "narrative": "After 12 hours he is off the infusion, ventilating normally, and creatine kinase is falling on fluids. He leaves with a naloxone kit, his brother has been trained to use it, and he has an appointment with the addiction service in two days.",
+          "narrative": "After 12 hours he is off the infusion, breathing normally, and his creatine kinase is falling on fluids. He leaves with a methadone clinic appointment in two days. His brother knows the recovery position and has the number of the outreach team, who carry naloxone.",
           "vitalChanges": {
             "hr": 76,
             "sbp": 116,

@@ -137,6 +137,7 @@ import { MinigameOverlay } from "@/components/game/MinigameOverlay";
 import { PixelIcon } from "@/components/ui/PixelIcon";
 import { audio } from "@/lib/audio";
 import { PatientPortrait } from "@/components/game/PixelPortrait";
+import { patientFor } from "@/lib/patients";
 
 function CaseEngineContent({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -154,6 +155,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
 
   // Dynamically load case data based on selected language
   const caseData = CASES[language]?.[caseKey] || CASES['en']?.[caseKey];
+  const patient = patientFor(caseKey);
 
   const [currentNodeId, setCurrentNodeId] = useState<string | null>(null);
   const [activeMinigame, setActiveMinigame] = useState<{name: string, targetNodeId: string} | null>(null);
@@ -501,6 +503,8 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
         shiftStats: { ...state.shiftStats, casesTreated: state.shiftStats.casesTreated + 1 }
       }));
     }
+    // Remember them. A good outcome brings a letter the next morning.
+    useERStore.getState().recordPatient(caseKey, grade !== 'critical');
     // A finished patient tires you out a little. Tuned so a shift fits six to eight patients.
     deductEnergy(12);
     if (currentInstanceId) {
@@ -581,14 +585,23 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
           ))}
         </AnimatePresence>
 
-        {/* Patient card */}
-        <div className="cozy-panel flex gap-2.5 p-2 flex-shrink-0 items-center">
+        {/* Patient card: a person first, the diagnosis comes at the end */}
+        <div className="cozy-panel flex gap-2.5 p-2 flex-shrink-0 items-start" data-testid="patient-card">
           <div className="w-14 h-14 flex-shrink-0 rounded-[3px] overflow-hidden border-2 border-[#3a2a2f]">
-            <PatientPortrait seed={caseKey} sex={caseData.sex} ageGroup={caseData.patientAppearance?.ageGroup} skinTone={caseData.patientAppearance?.skinTone} className="w-full h-full" />
+            <PatientPortrait seed={caseKey} sex={caseData.sex} ageGroup={caseData.patientAppearance?.ageGroup} skinTone={caseData.patientAppearance?.skinTone} age={parseFloat(caseData.age)} className="w-full h-full" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[19px] leading-none truncate">{caseData.title}</p>
-            <p className="text-[15px] leading-tight mt-1 text-[#6b5258] line-clamp-2">{caseData.chiefComplaint}</p>
+            <p className="text-[20px] leading-none truncate" data-testid="patient-name">
+              {patient ? `${patient.name[language]}, ${patient.age[language]}` : caseData.title}
+            </p>
+            {patient ? (
+              <div className="relative mt-1.5 bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[6px] px-2 py-1 text-[15px] leading-snug text-[#3a2a2f]">
+                <span className="absolute -left-[7px] top-2 w-0 h-0 border-y-[5px] border-y-transparent border-r-[6px] border-r-[#e7d3a8]" />
+                <span className="text-[#86522e]">{patient.by[language]}: </span>&ldquo;{patient.quote[language]}&rdquo;
+              </div>
+            ) : (
+              <p className="text-[15px] leading-tight mt-1 line-clamp-2">{caseData.chiefComplaint}</p>
+            )}
           </div>
           <button onClick={() => router.push('/hub')} className="cozy-btn px-2 py-0.5 text-[15px] leading-none self-start" aria-label="back">✕</button>
         </div>
@@ -627,15 +640,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
           <div className="flex-1 min-h-0 cozy-panel p-3 overflow-y-auto">
             {activeTab === 'info' && (
               <div className="space-y-3 text-[17px] leading-snug">
-                <div>
-                  <h3 className="text-[15px] leading-none text-[#86522e] mb-1">{tr('Chief complaint', 'อาการสำคัญ')}</h3>
-                  <p>{caseData.chiefComplaint || tr('No complaint recorded.', 'ไม่มีข้อมูล')}</p>
-                </div>
-                <div>
-                  <h3 className="text-[15px] leading-none text-[#86522e] mb-1">{tr('History', 'ประวัติปัจจุบัน')}</h3>
-                  <p>{caseData.background || tr('No background provided.', 'ไม่มีข้อมูล')}</p>
-                </div>
-                <p className="text-[#6b5258]">{tr('Sex', 'เพศ')} {caseData.sex}, {tr('age', 'อายุ')} {caseData.age}</p>
+                <p>{caseData.background || tr('Nobody has written anything down yet.', 'ยังไม่มีใครจดอะไรไว้เลย')}</p>
               </div>
             )}
 
@@ -646,7 +651,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                     <h4 className={`text-[15px] leading-none mb-1 ${e.abnormal ? 'text-[#a93c4b]' : 'text-[#3f8a48]'}`}>{e.system}</h4>
                     <p className="text-[17px] leading-snug">{e.finding}</p>
                   </div>
-                )) : <p className="text-[#6b5258]">{tr('No examination data available.', 'ไม่มีข้อมูลการตรวจร่างกาย')}</p>}
+                )) : <p>{tr('Nothing examined yet.', 'ยังไม่ได้ตรวจร่างกาย')}</p>}
               </div>
             )}
 
@@ -657,7 +662,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                     <h4 className={`text-[15px] leading-none mb-1 ${lab.abnormal ? 'text-[#9a6a10]' : 'text-[#3f6f80]'}`}>{lab.name}</h4>
                     <p className="text-[17px] leading-snug">{lab.report || `${lab.value} ${lab.unit}`}</p>
                   </div>
-                )) : <p className="text-[#6b5258]">{tr('No lab results available.', 'ไม่มีผลแล็บ')}</p>}
+                )) : <p>{tr('No results back yet.', 'ผลตรวจยังไม่ออก')}</p>}
               </div>
             )}
 
@@ -713,20 +718,36 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                     const grade = gradeOutcome(isNodeSuccessful(effectiveNodeId, currentNode));
                     const reward = rewardFor(grade);
                     const LABELS: Record<Grade, { en: string; th: string }> = {
-                      clean: { en: '✓ Patient stabilized', th: '✓ ผู้ป่วยปลอดภัย' },
-                      minor: { en: '✓ Stabilized, one error', th: '✓ ปลอดภัย ผิดพลาด 1 ครั้ง' },
-                      poor: { en: '△ Survived, care below standard', th: '△ รอด แต่การดูแลต่ำกว่ามาตรฐาน' },
-                      critical: { en: '✗ Patient critical', th: '✗ ผู้ป่วยวิกฤต' },
+                      clean: { en: '✓ Every step right', th: '✓ ทำถูกทุกขั้นตอน' },
+                      minor: { en: '✓ Stable, with one slip', th: '✓ ปลอดภัย พลาดไปหนึ่งครั้ง' },
+                      poor: { en: '△ They made it, roughly', th: '△ รอด แต่การดูแลยังไม่ดีพอ' },
+                      critical: { en: '✗ They did not do well', th: '✗ ผู้ป่วยอาการวิกฤต' },
                     };
                     const good = grade === 'clean' || grade === 'minor';
+                    const coins = language === 'th' ? `${reward.cash} เหรียญ` : `${reward.cash} coins`;
                     return (
-                      <button
-                        onClick={() => finishCase(grade)}
-                        className={`cozy-btn w-full py-3 ${good ? 'cozy-btn-leaf' : 'cozy-btn-berry'}`}
-                      >
-                        <span className="block text-[21px] leading-none">{language === 'th' ? LABELS[grade].th : LABELS[grade].en}</span>
-                        <span className="block text-[15px] leading-none mt-1.5 opacity-90">+{reward.xp} XP · +${reward.cash}{supervised ? tr(' (supervised)', ' (มีอาจารย์กำกับ)') : ''}</span>
-                      </button>
+                      <>
+                        {patient && (
+                          <div className="mb-1 rounded-[4px] border-2 border-[#e7d3a8] bg-[#fff6e3] px-2.5 py-2 text-center" data-testid="diagnosis">
+                            <p className="text-[19px] leading-tight">{patient.dx[language]}</p>
+                            {grade !== 'critical' && patient.letter && (
+                              <p className="text-[15px] leading-snug mt-1 text-[#86522e]">
+                                {tr(`${patient.name.en} might write to you once they are home.`, `${patient.name.th} อาจเขียนจดหมายมาหาคุณเมื่อกลับถึงบ้าน`)}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                        <button
+                          onClick={() => finishCase(grade)}
+                          className={`cozy-btn w-full py-3 ${good ? 'cozy-btn-leaf' : 'cozy-btn-berry'}`}
+                          data-testid="finish-case"
+                        >
+                          <span className="block text-[21px] leading-none">{language === 'th' ? LABELS[grade].th : LABELS[grade].en}</span>
+                          <span className="block text-[15px] leading-none mt-1.5 opacity-90">
+                            {tr(`+${reward.xp} XP and ${coins}`, `+${reward.xp} XP และ ${coins}`)}{supervised ? tr(', with your attending watching', ' โดยมีอาจารย์ดูแล') : ''}
+                          </span>
+                        </button>
+                      </>
                     );
                   })()}
                 </div>

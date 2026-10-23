@@ -85,6 +85,7 @@ export default function RootPage() {
       knownTastes: {},
       heartEventsSeen: [],
       propDaily: {},
+      patientLog: {},
       storyFlags: {},
       karma: 0,
       clockMinutes: 0,

@@ -23,3 +23,4 @@ export const GIFTS: Record<string, Gift> = {
 export type Taste = "love" | "like" | "neutral" | "hate";
 
 export const TASTE_POINTS: Record<Taste, number> = { love: 16, like: 8, neutral: 4, hate: -8 };
+export type GiftId = string;

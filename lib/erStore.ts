@@ -133,6 +133,13 @@ export interface PlayerAppearance {
   topStyle: string;
 }
 
+export interface PatientRecord {
+  /** Day of the first recorded outcome */
+  day: number;
+  good: boolean;
+  letterRead: boolean;
+}
+
 interface ERState {
   shiftMode: ShiftMode;
   activeCases: ActiveCase[];
@@ -193,6 +200,8 @@ interface ERState {
   knownTastes: Record<string, Record<string, string>>; // npc -> gift -> taste discovered by giving it
   heartEventsSeen: string[];
   propDaily: Record<string, number>; // prop or activity -> day last used
+  /** Patients you have treated, first good or bad outcome per case, and whether their letter was read */
+  patientLog: Record<string, PatientRecord>;
 
   // Actions
   setShiftMode: (mode: ShiftMode) => void;
@@ -230,6 +239,8 @@ interface ERState {
   setPlayerName: (name: string) => void;
   prestige: (perk: string) => void;
   buyGift: (giftId: string, cost: number) => boolean;
+  recordPatient: (caseId: string, good: boolean) => void;
+  readLetter: (caseId: string) => void;
   useGift: (giftId: string) => boolean;
   markNpc: (npcId: string, field: 'talkDay' | 'giftDay', day: number) => void;
   learnTaste: (npcId: string, giftId: string, taste: string) => void;
@@ -257,6 +268,7 @@ export const useERStore = create<ERState>()(
       knownTastes: {},
       heartEventsSeen: [],
       propDaily: {},
+      patientLog: {},
 
       friendships: {},
       karma: 0,
@@ -517,7 +529,8 @@ export const useERStore = create<ERState>()(
         npcDaily: {},
         knownTastes: {},
         heartEventsSeen: [],
-        propDaily: {}
+        propDaily: {},
+        patientLog: {}
       }),
       resetShiftStats: () => set((state) => ({
         shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 }
@@ -590,6 +603,17 @@ export const useERStore = create<ERState>()(
       learnTaste: (npcId, giftId, taste) => set((state) => ({
         knownTastes: { ...state.knownTastes, [npcId]: { ...state.knownTastes[npcId], [giftId]: taste } }
       })),
+      recordPatient: (caseId, good) => set((state) => {
+        const prev = state.patientLog[caseId];
+        // Keep the first good outcome. A later good result can replace an earlier bad one.
+        if (prev && (prev.good || !good)) return {};
+        return { patientLog: { ...state.patientLog, [caseId]: { day: state.currentDay, good, letterRead: false } } };
+      }),
+      readLetter: (caseId) => set((state) => {
+        const rec = state.patientLog[caseId];
+        if (!rec || rec.letterRead) return {};
+        return { patientLog: { ...state.patientLog, [caseId]: { ...rec, letterRead: true } } };
+      }),
       markHeartEvent: (key) => set((state) => ({ heartEventsSeen: [...state.heartEventsSeen, key] })),
       useProp: (key, day) => set((state) => ({ propDaily: { ...state.propDaily, [key]: day } })),
       prestige: (perk) => set(state => ({
@@ -654,6 +678,7 @@ export const useERStore = create<ERState>()(
         knownTastes: state.knownTastes,
         heartEventsSeen: state.heartEventsSeen,
         propDaily: state.propDaily,
+        patientLog: state.patientLog,
       })
     }
   )

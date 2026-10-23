@@ -430,3 +430,67 @@ export function drawPatientInBed(skin: string, hair: string, quilt: string): Pix
   g.hline(1, 14, 6, mix(quilt, "#ffffff", 0.6)); // folded edge
   return g;
 }
+
+/* ---------------- little patients ---------------- */
+
+/**
+ * A swaddled baby for the patient card, 16x16. Newborns wear a hood and sleep;
+ * older babies show their hair and a sleepy face.
+ */
+export function drawInfantBust(skin: string, hair: string, blanket: string, newborn: boolean): PixelGrid {
+  const g = new PixelGrid(16, 16);
+  const blanketShade = cozyShadow(blanket, 0.86);
+  const skinShade = cozyShadow(skin, 0.88);
+  // body bundle
+  g.rect(2, 11, 13, 15, blanket);
+  for (let x = 3; x <= 12; x += 3) g.set(x, 13, blanketShade);
+  for (let x = 4; x <= 13; x += 3) g.set(x, 15, blanketShade);
+  if (newborn) {
+    // hood
+    g.rect(3, 2, 12, 12, blanket);
+    g.set(3, 2, null); g.set(12, 2, null);
+    g.hline(4, 11, 2, blanketShade);
+  }
+  // face
+  g.rect(5, 4, 10, 10, skin);
+  g.set(5, 4, null); g.set(10, 4, null); g.set(5, 10, null); g.set(10, 10, null);
+  g.hline(6, 9, 10, skinShade);
+  if (!newborn) {
+    // tuft of hair and little ears
+    g.hline(6, 9, 3, hair); g.set(7, 2, hair); g.set(5, 5, hair); g.set(10, 5, hair);
+    g.set(4, 7, skin); g.set(11, 7, skin);
+  }
+  // closed, sleepy eyes: a short curve on each side
+  g.set(6, 7, EYE); g.set(9, 7, EYE);
+  g.set(5, 6, skinShade); g.set(10, 6, skinShade);
+  g.set(5, 8, BLUSH); g.set(10, 8, BLUSH);
+  g.set(7, 9, "#c46a6a"); g.set(8, 9, "#c46a6a");
+  g.outline(C.ink);
+  return g;
+}
+
+/** A small child in a hospital gown for the patient card, 16x16 */
+export function drawChildBust(skin: string, hair: string, gown: string): PixelGrid {
+  const g = new PixelGrid(16, 16);
+  const skinShade = cozyShadow(skin, 0.88);
+  // gown with a little neckline
+  g.rect(3, 12, 12, 15, gown);
+  g.hline(6, 9, 12, skin); g.set(7, 13, skin); g.set(8, 13, skin);
+  for (let x = 4; x <= 11; x += 3) g.set(x, 14, cozyShadow(gown, 0.86));
+  // a big round head
+  g.rect(4, 3, 11, 11, skin);
+  g.set(4, 3, null); g.set(11, 3, null); g.set(4, 11, null); g.set(11, 11, null);
+  g.hline(5, 10, 11, skinShade);
+  // hair with a fringe
+  g.hline(4, 11, 2, hair); g.hline(4, 11, 3, hair); g.set(3, 4, hair); g.set(12, 4, hair);
+  g.set(5, 4, hair); g.set(6, 4, hair); g.set(9, 4, hair); g.set(10, 4, hair); g.set(11, 4, hair); g.set(4, 4, hair);
+  g.set(5, 1, null);
+  g.hline(6, 9, 1, hair);
+  // big eyes with a highlight
+  g.rect(5, 6, 6, 7, EYE); g.rect(9, 6, 10, 7, EYE);
+  g.set(5, 6, "#ffffff"); g.set(9, 6, "#ffffff");
+  g.set(4, 8, BLUSH); g.set(11, 8, BLUSH);
+  g.set(7, 9, "#c46a6a"); g.set(8, 9, "#c46a6a");
+  g.outline(C.ink);
+  return g;
+}

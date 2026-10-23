@@ -11,6 +11,8 @@ import { ClinicWorld, WorldApi } from "@/components/game/ClinicWorld";
 import { phaseForDay, LOCATION_NAMES, MapId } from "@/lib/world/maps";
 import { playerLookFrom } from "@/lib/playerLook";
 import { useWorldSocial } from "./useWorldSocial";
+import { patientFor } from "@/lib/patients";
+import { PATIENT_SKIN } from "@/lib/patientSkin";
 import { STARTER_QUESTS, QUEST_DATABASE } from "@/lib/quests";
 import { PixelIcon } from "@/components/ui/PixelIcon";
 import { FriendsModal } from "@/components/game/FriendsModal";
@@ -234,16 +236,15 @@ export default function HubPage() {
         setIsCinematic(false);
         
         if (caseToInject) {
-           const skinTones = ["#ffc0cb", "#8d5524", "#c68642", "#e0ac69", "#f1c27d", "#ffdbac"];
-           const shirtColors = ["#1f6feb", "#f87171", "#a3e635", "#facc15", "#c084fc"];
            addCase({
              id: `case_${Date.now()}`,
              caseDataId: caseToInject,
-             skinTone: skinTones[Math.floor(Math.random() * skinTones.length)],
-             shirtColor: shirtColors[Math.floor(Math.random() * shirtColors.length)],
+             skinTone: PATIENT_SKIN[caseToInject],
              receivedAt: Date.now(),
              expiresAt: Date.now() + 5 * 60 * 1000,
            });
+           const who = patientFor(caseToInject);
+           if (who) setPagerMessage(`${who.name[language]}, ${who.age[language]}\n${who.pager[language]}`);
            setCaseToInject(null);
            audio.playPager();
         }
@@ -346,27 +347,13 @@ export default function HubPage() {
             addLog("Triage: New patient arrived at ER!");
             const selectedCase = possibleCases[Math.floor(Math.random() * possibleCases.length)];
             
-            if (selectedCase === "case_01") setPagerMessage("*BEEP BEEP*\n28yo M - Toxicology");
-            else if (selectedCase === "case_02_fluids") setPagerMessage("*BEEP BEEP*\n45yo F - Hypovolemic Shock");
-            else if (selectedCase === "case_03_cardiac") setPagerMessage("*BEEP BEEP*\n55yo M - Cardiac Arrest");
-            else if (selectedCase === "case_04_svt") setPagerMessage("*BEEP BEEP*\n35yo F - Palpitations");
-            else if (selectedCase === "case_05_asthma") setPagerMessage("*BEEP BEEP*\n6yo M - Severe Wheezing");
-            else if (selectedCase === "case_06_trauma") setPagerMessage("*BEEP BEEP*\n22yo M - Motorcycle Crash");
-            else if (selectedCase === "case_07" || selectedCase === "case_07_vip") setPagerMessage("*BEEP BEEP*\n55yo M - Chest Pain (VIP)");
-            else if (selectedCase === "case_08") setPagerMessage("*BEEP BEEP*\n19yo F - DKA");
-            else if (selectedCase === "case_09") setPagerMessage("*BEEP BEEP*\nAnaphylaxis");
-            else if (selectedCase === "case_10") setPagerMessage("*BEEP BEEP*\nSepsis Protocol");
-            else if (selectedCase === "case_11") setPagerMessage("*BEEP BEEP*\nComplex Trauma");
-            else setPagerMessage(`*BEEP BEEP*\nNew Patient (${selectedCase})`);
-
-            const skinTones = ["#ffc0cb", "#8d5524", "#c68642", "#e0ac69", "#f1c27d", "#ffdbac"];
-            const shirtColors = ["#1f6feb", "#f87171", "#a3e635", "#facc15", "#c084fc"];
+            const who = patientFor(selectedCase);
+            setPagerMessage(who ? `${who.name[language]}, ${who.age[language]}\n${who.pager[language]}` : (language === 'th' ? 'ผู้ป่วยใหม่มาถึงแล้ว' : 'A new patient is here'));
 
             addCase({
               id: `case_${Date.now()}`,
               caseDataId: selectedCase,
-              skinTone: skinTones[Math.floor(Math.random() * skinTones.length)],
-              shirtColor: shirtColors[Math.floor(Math.random() * shirtColors.length)],
+              skinTone: PATIENT_SKIN[selectedCase],
               receivedAt: Date.now(),
               expiresAt: Date.now() + 5 * 60 * 1000, 
             });
@@ -693,7 +680,7 @@ export default function HubPage() {
                     className={`cozy-btn py-1.5 px-1 flex flex-col items-center leading-none ${c ? 'cozy-btn-berry animate-[cozyWiggle_1.2s_ease-in-out_infinite]' : 'opacity-70'}`}
                   >
                     <span className="flex items-center gap-1 text-[16px]"><PixelIcon name="bed" size={16} />{bedIdx + 1}</span>
-                    <span className="text-[14px] mt-1">{c ? tr('TREAT', 'รักษา') : tr('empty', 'ว่าง')}</span>
+                    <span className="text-[14px] mt-1 max-w-full truncate px-0.5">{c ? (patientFor(c.caseDataId)?.name[language] ?? tr('Patient', 'ผู้ป่วย')) : tr('free', 'ว่าง')}</span>
                   </button>
                 );
               })}

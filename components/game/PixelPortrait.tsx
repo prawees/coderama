@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { useERStore, getRankFromXp } from "@/lib/erStore";
-import { drawCharacter, Look, HairStyle } from "@/lib/pixel/characters";
+import { drawCharacter, drawInfantBust, drawChildBust, Look, HairStyle } from "@/lib/pixel/characters";
 import { PixelGrid, hashString } from "@/lib/pixel/grid";
 import { SKIN_TONES, HAIR_COLORS } from "@/lib/pixel/palette";
 import { NPCS, EXTRA_LOOKS, npcIdForSpeaker } from "@/lib/npcs";
@@ -78,23 +78,30 @@ export function PixelPortrait({ speaker, className = "" }: { speaker?: string; c
   return <Pixels grid={grid} background={bg(look)} className={className} label={speaker} />;
 }
 
-/** Patient bust in a hospital gown, skin tone from the case file */
-export function PatientPortrait({ seed, sex, ageGroup, skinTone, className = "" }: { seed: string; sex?: string; ageGroup?: string; skinTone?: string; className?: string }) {
+/** Patient bust: a swaddled baby, a small child, or an adult in a hospital gown */
+export function PatientPortrait({ seed, sex, ageGroup, skinTone, age, className = "" }: { seed: string; sex?: string; ageGroup?: string; skinTone?: string; age?: number; className?: string }) {
   const grid = useMemo(() => {
     const h = hashString(seed || "patient");
     const female = /^f/i.test(sex || "");
     const elderly = /elder|old|geriatric/i.test(ageGroup || "");
+    const skin = skinTone && /^#[0-9a-f]{6}$/i.test(skinTone) ? skinTone : SKIN_TONES[h % SKIN_TONES.length];
+    const hair = elderly ? HAIR_COLORS.grey : [HAIR_COLORS.black, HAIR_COLORS.brown][(h >>> 3) % 2];
+    if (age !== undefined && age < 2) {
+      const blanket = ["#f4c7d8", "#9fd3e6", "#c8ecb4", "#ffe3a3"][(h >>> 5) % 4];
+      return drawInfantBust(skin, HAIR_COLORS.black, blanket, age < 0.1);
+    }
+    if (age !== undefined && age < 13) return drawChildBust(skin, HAIR_COLORS.black, "#a9cbe0");
     const look: Look = {
-      skin: skinTone && /^#[0-9a-f]{6}$/i.test(skinTone) ? skinTone : SKIN_TONES[h % SKIN_TONES.length],
-      hair: elderly ? HAIR_COLORS.grey : [HAIR_COLORS.black, HAIR_COLORS.brown][(h >>> 3) % 2],
+      skin,
+      hair,
       hairStyle: elderly ? (female ? "bun" : "receding") : female ? (["long", "bob", "bun"] as HairStyle[])[(h >>> 6) % 3] : (["short", "spiky", "sidepart"] as HairStyle[])[(h >>> 6) % 3],
       outfit: "gown",
       main: "#a9cbe0",
       accent: "#7fa7c2",
     };
     return bust(look);
-  }, [seed, sex, ageGroup, skinTone]);
-  return <Pixels grid={grid} background="#2a3440" className={className} label="Patient" />;
+  }, [seed, sex, ageGroup, skinTone, age]);
+  return <Pixels grid={grid} background="#d9eedf" className={className} label="Patient" />;
 }
 
 /** Whether a speaker gets a portrait at all (System lines do not). */

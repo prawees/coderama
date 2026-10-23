@@ -77,3 +77,5 @@ dist-desktop/
 scratch/
 tsconfig.tsbuildinfo
 *.tsbuildinfo
+
+__pycache__/
