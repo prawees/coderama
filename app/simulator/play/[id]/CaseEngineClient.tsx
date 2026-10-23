@@ -3,129 +3,7 @@
 import { useEffect, useState, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useERStore } from "@/lib/erStore";
-import case01_en from "../../../../public/locales/en/case_01.json";
-import case02_en from "../../../../public/locales/en/case_02_fluids.json";
-import case03_en from "../../../../public/locales/en/case_03_cardiac.json";
-import case07_en from "../../../../public/locales/en/case_07.json";
-import case08_en from "../../../../public/locales/en/case_08.json";
-import case09_en from "../../../../public/locales/en/case_09.json";
-import case10_en from "../../../../public/locales/en/case_10.json";
-import case11_en from "../../../../public/locales/en/case_11.json";
-import case12_en from "../../../../public/locales/en/case_12.json";
-import case13_en from "../../../../public/locales/en/case_13.json";
-import case14_en from "../../../../public/locales/en/case_14.json";
-import case15_en from "../../../../public/locales/en/case_15.json";
-import case16_en from "../../../../public/locales/en/case_16.json";
-import case17_en from "../../../../public/locales/en/case_17.json";
-import case18_en from "../../../../public/locales/en/case_18.json";
-import case19_en from "../../../../public/locales/en/case_19.json";
-import case20_en from "../../../../public/locales/en/case_20.json";
-import case21_en from "../../../../public/locales/en/case_21.json";
-import case22_en from "../../../../public/locales/en/case_22.json";
-import case23_en from "../../../../public/locales/en/case_23.json";
-import case24_en from "../../../../public/locales/en/case_24.json";
-import case25_en from "../../../../public/locales/en/case_25.json";
-import case26_en from "../../../../public/locales/en/case_26.json";
-import case27_en from "../../../../public/locales/en/case_27.json";
-import case28_en from "../../../../public/locales/en/case_28.json";
-import case29_en from "../../../../public/locales/en/case_29.json";
-import case30_en from "../../../../public/locales/en/case_30.json";
-import case31_en from "../../../../public/locales/en/case_31.json";
-import case32_en from "../../../../public/locales/en/case_32.json";
-import case33_en from "../../../../public/locales/en/case_33.json";
-import case34_en from "../../../../public/locales/en/case_34.json";
-import case35_en from "../../../../public/locales/en/case_35.json";
-import case36_en from "../../../../public/locales/en/case_36.json";
-import case37_en from "../../../../public/locales/en/case_37.json";
-import case38_en from "../../../../public/locales/en/case_38.json";
-import case39_en from "../../../../public/locales/en/case_39.json";
-import case40_en from "../../../../public/locales/en/case_40.json";
-import case41_en from "../../../../public/locales/en/case_41.json";
-import case42_en from "../../../../public/locales/en/case_42.json";
-import case43_en from "../../../../public/locales/en/case_43.json";
-import case44_en from "../../../../public/locales/en/case_44.json";
-import case45_en from "../../../../public/locales/en/case_45.json";
-import case46_en from "../../../../public/locales/en/case_46.json";
-import case47_en from "../../../../public/locales/en/case_47.json";
-import case48_en from "../../../../public/locales/en/case_48.json";
-import case49_en from "../../../../public/locales/en/case_49.json";
-import case50_en from "../../../../public/locales/en/case_50.json";
-import case01_th from "../../../../public/locales/th/case_01.json";
-import case02_th from "../../../../public/locales/th/case_02_fluids.json";
-import case03_th from "../../../../public/locales/th/case_03_cardiac.json";
-import case04_en from "../../../../public/locales/en/case_04_svt.json";
-import case05_en from "../../../../public/locales/en/case_05_asthma.json";
-import case06_en from "../../../../public/locales/en/case_06_trauma.json";
-import case07_vip_en from "../../../../public/locales/en/case_07_vip.json";
-import case04_th from "../../../../public/locales/th/case_04_svt.json";
-import case05_th from "../../../../public/locales/th/case_05_asthma.json";
-import case06_th from "../../../../public/locales/th/case_06_trauma.json";
-
-const CASES: Record<string, Record<string, any>> = {
-  "en": {
-    "case_01": case01_en,
-    "case_02_fluids": case02_en,
-    "case_03_cardiac": case03_en,
-    "case_04_svt": case04_en,
-    "case_05_asthma": case05_en,
-    "case_06_trauma": case06_en,
-    "case_07": case07_en,
-    "case_07_vip": case07_vip_en,
-    "case_08": case08_en,
-    "case_09": case09_en,
-    "case_10": case10_en,
-    "case_11": case11_en,
-    "case_12": case12_en,
-    "case_13": case13_en,
-    "case_14": case14_en,
-    "case_15": case15_en,
-    "case_16": case16_en,
-    "case_17": case17_en,
-    "case_18": case18_en,
-    "case_19": case19_en,
-    "case_20": case20_en,
-    "case_21": case21_en,
-    "case_22": case22_en,
-    "case_23": case23_en,
-    "case_24": case24_en,
-    "case_25": case25_en,
-    "case_26": case26_en,
-    "case_27": case27_en,
-    "case_28": case28_en,
-    "case_29": case29_en,
-    "case_30": case30_en,
-    "case_31": case31_en,
-    "case_32": case32_en,
-    "case_33": case33_en,
-    "case_34": case34_en,
-    "case_35": case35_en,
-    "case_36": case36_en,
-    "case_37": case37_en,
-    "case_38": case38_en,
-    "case_39": case39_en,
-    "case_40": case40_en,
-    "case_41": case41_en,
-    "case_42": case42_en,
-    "case_43": case43_en,
-    "case_44": case44_en,
-    "case_45": case45_en,
-    "case_46": case46_en,
-    "case_47": case47_en,
-    "case_48": case48_en,
-    "case_49": case49_en,
-    "case_50": case50_en
-  },
-  "th": {
-    "case_01": case01_th,
-    "case_02_fluids": case02_th,
-    "case_03_cardiac": case03_th,
-    "case_04_svt": case04_th,
-    "case_05_asthma": case05_th,
-    "case_06_trauma": case06_th,
-    "case_07": case07_en,
-    "case_07_vip": case07_vip_en,
-  }
-};
+import { CASE_DATA } from "@/lib/caseIndex";
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { motion, AnimatePresence } from "framer-motion";
@@ -154,7 +32,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   const caseKey = activeCase ? activeCase.caseDataId : params.id;
 
   // Dynamically load case data based on selected language
-  const caseData = CASES[language]?.[caseKey] || CASES['en']?.[caseKey];
+  const caseData = CASE_DATA[caseKey];
   const patient = patientFor(caseKey);
 
   const [currentNodeId, setCurrentNodeId] = useState<string | null>(null);
@@ -288,8 +166,8 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   if (!caseData) {
     return (
       <div className="p-8 text-center text-white font-pixel">
-        <p className="text-xl text-yellow-400 mb-4">{language === 'th' ? 'ไม่พบข้อมูลเคสผู้ป่วย' : `Case ${params.id} not found!`}</p>
-        <PixelButton onClick={() => router.push('/hub')}>{language === 'th' ? 'กลับสู่ห้องฉุกเฉิน' : 'Back to Hub'}</PixelButton>
+        <p className="text-xl text-yellow-400 mb-4">หาเคสนี้ไม่เจอ</p>
+        <PixelButton onClick={() => router.push('/hub')}>กลับ ER</PixelButton>
       </div>
     );
   }
@@ -345,7 +223,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       deductEnergy(5);
       setIsShaking(true);
       setTimeout(() => setIsShaking(false), 500);
-      addFloatingText("-5 EN", "bad", window.innerWidth / 2, window.innerHeight / 2);
+      addFloatingText("-5 พลังงาน", "bad", window.innerWidth / 2, window.innerHeight / 2);
       setFeedback({ kind: 'bad', title: choice.text, body: choice.feedback });
       await Haptics.vibrate();
       return;
@@ -365,8 +243,11 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
         addFloatingText("+15 XP", "good", window.innerWidth / 2, window.innerHeight / 2);
         addXp(15);
       }
-      const actions = (caseData.managementGraph?.nodes || []).find?.((n: any) => n.id === targetNodeId)?.data?.actions;
-      setFeedback({ kind: 'good', title: choice.label || choice.text, body: Array.isArray(actions) && actions.length ? actions.join(', ') : undefined });
+      // Orders for the step, with the dose note where the case has one
+      const nd = (caseData.managementGraph?.nodes || []).find?.((n: any) => n.id === targetNodeId)?.data;
+      const actions: string[] = Array.isArray(nd?.actions) ? nd.actions : [];
+      const orders = actions.map((a) => (nd?.doseMap?.[a] ? `${a}: ${nd.doseMap[a]}` : a));
+      setFeedback({ kind: 'good', title: choice.label || choice.text, body: orders.length ? orders.map((o) => `• ${o}`).join('\n') : undefined });
     } else {
       setFeedback(null);
       // Legacy branching cases: judge the choice by whether blood pressure improves
@@ -440,7 +321,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
 
   const callAttending = async () => {
     await Haptics.impact({ style: ImpactStyle.Heavy });
-    addFloatingText(language === 'th' ? "อาจารย์รับช่วงต่อ" : "Attending took over", "good", window.innerWidth / 2, window.innerHeight / 2);
+    addFloatingText("อาจารย์มารับเคสต่อแล้ว", "good", window.innerWidth / 2, window.innerHeight / 2);
     // addXp and addCurrency already record XP, cash and the treated case in shiftStats
     addXp(50);
     addCurrency(25);
@@ -451,7 +332,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
 
   const requestConsult = async () => {
     if (!auth.currentUser) {
-      setFeedback({ kind: 'bad', title: tr('The lounge is closed', 'ห้องพักแพทย์ปิดอยู่'), body: tr('Sign in from Settings to ask other doctors for a second opinion.', 'ลงชื่อเข้าใช้ในหน้าตั้งค่าเพื่อขอความเห็นจากหมอคนอื่น') });
+      setFeedback({ kind: 'bad', title: 'ห้องพักแพทย์ปิดอยู่', body: 'ต้อง login ก่อน ถึงจะฝากเคสให้เพื่อนหมอช่วยดูได้' });
       return;
     }
     
@@ -478,7 +359,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       setTimeout(() => router.push('/hub'), 700);
     } catch (e) {
       console.error("Failed to request consult", e);
-      setFeedback({ kind: 'bad', title: tr('The note did not go through', 'ส่งโน้ตไม่สำเร็จ'), body: tr('Check your connection and try again.', 'ตรวจสอบอินเทอร์เน็ตแล้วลองอีกครั้ง') });
+      setFeedback({ kind: 'bad', title: 'ส่งไม่สำเร็จ', body: 'เช็คเน็ตแล้วลองใหม่นะ' });
     }
   };
 
@@ -533,10 +414,10 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
 
   const promptText = (() => {
     if (currentNode.type === 'start' && (!currentNode.narrative || currentNode.narrative === 'Start')) {
-      return language === 'th' ? 'จะทำอะไรเป็นอย่างแรก?' : 'What do you do first?';
+      return 'ทำอะไรก่อนดี';
     }
     if (currentNode.type === 'required') {
-      return language === 'th' ? 'ขั้นตอนต่อไปคืออะไร?' : 'What is your next step?';
+      return 'แล้วต่อไปทำอะไร';
     }
     return currentNode.narrative;
   })();
@@ -544,10 +425,10 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   const tr = (en: string, th: string) => (language === 'th' ? th : en);
   const vitalClass = (bad: boolean) => (bad ? 'text-[#ff8a8a] animate-pulse' : 'text-[#9be38a]');
   const tabs: { key: 'info' | 'exam' | 'labs' | 'action'; label: string; icon: string }[] = [
-    { key: 'info', label: tr('Story', 'ประวัติ'), icon: 'log' },
-    { key: 'exam', label: tr('Exam', 'ตรวจ'), icon: 'badge' },
-    { key: 'labs', label: tr('Labs', 'แล็บ'), icon: 'quest' },
-    { key: 'action', label: tr('Treat', 'รักษา'), icon: 'heart' },
+    { key: 'info', label: 'ประวัติ', icon: 'log' },
+    { key: 'exam', label: 'PE', icon: 'badge' },
+    { key: 'labs', label: 'แล็บ', icon: 'quest' },
+    { key: 'action', label: 'รักษา', icon: 'heart' },
   ];
 
   return (
@@ -562,7 +443,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
               setCurrentNodeId(activeMinigame.targetNodeId);
             } else {
               await Haptics.vibrate();
-              setFeedback({ kind: 'bad', title: tr('Missed the timing', 'จังหวะพลาด'), body: tr('You lost 10 energy. Try the intervention again.', 'เสียพลังงาน 10 หน่วย ลองทำหัตถการอีกครั้ง') });
+              setFeedback({ kind: 'bad', title: 'จังหวะพลาด', body: 'เสียพลังงาน 10 ลองใหม่อีกที' });
               deductEnergy(10);
             }
           }}
@@ -592,12 +473,12 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-[20px] leading-none truncate" data-testid="patient-name">
-              {patient ? `${patient.name[language]}, ${patient.age[language]}` : caseData.title}
+              {patient ? `${patient.name.th} ${patient.age.th}` : caseData.title}
             </p>
             {patient ? (
               <div className="relative mt-1.5 bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[6px] px-2 py-1 text-[15px] leading-snug text-[#3a2a2f]">
                 <span className="absolute -left-[7px] top-2 w-0 h-0 border-y-[5px] border-y-transparent border-r-[6px] border-r-[#e7d3a8]" />
-                <span className="text-[#86522e]">{patient.by[language]}: </span>&ldquo;{patient.quote[language]}&rdquo;
+                <span className="text-[#86522e]">{patient.by.th}: </span>&ldquo;{patient.quote.th}&rdquo;
               </div>
             ) : (
               <p className="text-[15px] leading-tight mt-1 line-clamp-2">{caseData.chiefComplaint}</p>
@@ -640,7 +521,8 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
           <div className="flex-1 min-h-0 cozy-panel p-3 overflow-y-auto">
             {activeTab === 'info' && (
               <div className="space-y-3 text-[17px] leading-snug">
-                <p>{caseData.background || tr('Nobody has written anything down yet.', 'ยังไม่มีใครจดอะไรไว้เลย')}</p>
+                {caseData.chiefComplaint && <p><span className="text-[#86522e]">CC </span>{caseData.chiefComplaint}</p>}
+                <p>{caseData.background || 'ยังไม่มีใครจดอะไรไว้เลย'}</p>
               </div>
             )}
 
@@ -651,7 +533,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                     <h4 className={`text-[15px] leading-none mb-1 ${e.abnormal ? 'text-[#a93c4b]' : 'text-[#3f8a48]'}`}>{e.system}</h4>
                     <p className="text-[17px] leading-snug">{e.finding}</p>
                   </div>
-                )) : <p>{tr('Nothing examined yet.', 'ยังไม่ได้ตรวจร่างกาย')}</p>}
+                )) : <p>{'ยังไม่ได้ตรวจร่างกาย'}</p>}
               </div>
             )}
 
@@ -662,7 +544,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                     <h4 className={`text-[15px] leading-none mb-1 ${lab.abnormal ? 'text-[#9a6a10]' : 'text-[#3f6f80]'}`}>{lab.name}</h4>
                     <p className="text-[17px] leading-snug">{lab.report || `${lab.value} ${lab.unit}`}</p>
                   </div>
-                )) : <p>{tr('No results back yet.', 'ผลตรวจยังไม่ออก')}</p>}
+                )) : <p>{'ผลแล็บยังไม่ออก'}</p>}
               </div>
             )}
 
@@ -673,7 +555,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                     <p className={feedback.kind === 'good' ? 'text-[#3f8a48]' : 'text-[#a93c4b]'}>
                       {feedback.kind === 'good' ? '✓ ' : '✗ '}{feedback.title}
                     </p>
-                    {feedback.body && <p className="mt-0.5">{feedback.body}</p>}
+                    {feedback.body && <p className="mt-0.5 whitespace-pre-line text-[15px]">{feedback.body}</p>}
                   </div>
                 )}
 
@@ -681,7 +563,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                   <p className="text-[20px] leading-tight">{promptText}</p>
                   {mistakes > 0 && (
                     <span className="shrink-0 cozy-tag !bg-[#f6c3c6] px-1.5 py-0.5 text-[14px] leading-none">
-                      {tr(`${mistakes} error${mistakes > 1 ? 's' : ''}`, `ผิด ${mistakes}`)}
+                      {`พลาด ${mistakes}`}
                     </span>
                   )}
                 </div>
@@ -698,7 +580,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                             className="cozy-btn w-full py-2 px-2.5 text-left text-[17px] leading-tight flex justify-between items-center gap-2"
                           >
                             <span>{opt.text}</span>
-                            {needsSupervision && <span className="shrink-0 cozy-tag !bg-[#ffd66b] px-1 py-0.5 text-[12px] leading-none">{tr('supervised', 'มีอาจารย์กำกับ')}</span>}
+                            {needsSupervision && <span className="shrink-0 cozy-tag !bg-[#ffd66b] px-1 py-0.5 text-[12px] leading-none">{'อาจารย์คุม'}</span>}
                           </button>
                         );
                       })}
@@ -706,10 +588,10 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                       {effectiveNodeId === startNodeId && (
                         <div className="grid grid-cols-2 gap-2 mt-1 pt-2 border-t-2 border-dashed border-[#e7d3a8]">
                           <button className="cozy-btn cozy-btn-berry py-1.5 px-1 text-[15px] leading-tight" onClick={callAttending}>
-                            {tr('Call attending (-50% XP)', 'เรียกอาจารย์แพทย์ (-50% XP)')}
+                            {'ตามอาจารย์มาช่วย (XP ครึ่งเดียว)'}
                           </button>
                           <button className="cozy-btn cozy-btn-sky py-1.5 px-1 text-[15px] leading-tight" onClick={requestConsult}>
-                            {tr('Ask a colleague', 'ปรึกษาแพทย์เวร')}
+                            {'ฝากเคสถามเพื่อนหมอ'}
                           </button>
                         </div>
                       )}
@@ -718,21 +600,21 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                     const grade = gradeOutcome(isNodeSuccessful(effectiveNodeId, currentNode));
                     const reward = rewardFor(grade);
                     const LABELS: Record<Grade, { en: string; th: string }> = {
-                      clean: { en: '✓ Every step right', th: '✓ ทำถูกทุกขั้นตอน' },
-                      minor: { en: '✓ Stable, with one slip', th: '✓ ปลอดภัย พลาดไปหนึ่งครั้ง' },
-                      poor: { en: '△ They made it, roughly', th: '△ รอด แต่การดูแลยังไม่ดีพอ' },
-                      critical: { en: '✗ They did not do well', th: '✗ ผู้ป่วยอาการวิกฤต' },
+                      clean: { en: '✓ Every step right', th: '✓ ถูกทุกขั้น' },
+                      minor: { en: '✓ Stable, with one slip', th: '✓ ปลอดภัยดี พลาดไป 1 ครั้ง' },
+                      poor: { en: '△ They made it, roughly', th: '△ รอด แต่ดูแลได้ดีกว่านี้' },
+                      critical: { en: '✗ They did not do well', th: '✗ คนไข้อาการแย่ลง' },
                     };
                     const good = grade === 'clean' || grade === 'minor';
-                    const coins = language === 'th' ? `${reward.cash} เหรียญ` : `${reward.cash} coins`;
+                    const coins = `${reward.cash} เหรียญ`;
                     return (
                       <>
                         {patient && (
                           <div className="mb-1 rounded-[4px] border-2 border-[#e7d3a8] bg-[#fff6e3] px-2.5 py-2 text-center" data-testid="diagnosis">
-                            <p className="text-[19px] leading-tight">{patient.dx[language]}</p>
+                            <p className="text-[19px] leading-tight"><span className="text-[#86522e]">Dx </span>{patient.dx.th}</p>
                             {grade !== 'critical' && patient.letter && (
                               <p className="text-[15px] leading-snug mt-1 text-[#86522e]">
-                                {tr(`${patient.name.en} might write to you once they are home.`, `${patient.name.th} อาจเขียนจดหมายมาหาคุณเมื่อกลับถึงบ้าน`)}
+                                {`${patient.name.th} อาจเขียนจดหมายมาหาหมอตอนกลับถึงบ้าน`}
                               </p>
                             )}
                           </div>
@@ -742,9 +624,9 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                           className={`cozy-btn w-full py-3 ${good ? 'cozy-btn-leaf' : 'cozy-btn-berry'}`}
                           data-testid="finish-case"
                         >
-                          <span className="block text-[21px] leading-none">{language === 'th' ? LABELS[grade].th : LABELS[grade].en}</span>
+                          <span className="block text-[21px] leading-none">{LABELS[grade].th}</span>
                           <span className="block text-[15px] leading-none mt-1.5 opacity-90">
-                            {tr(`+${reward.xp} XP and ${coins}`, `+${reward.xp} XP และ ${coins}`)}{supervised ? tr(', with your attending watching', ' โดยมีอาจารย์ดูแล') : ''}
+                            {`+${reward.xp} XP และ ${coins}`}{supervised ? ' (อาจารย์คุม)' : ''}
                           </span>
                         </button>
                       </>
@@ -762,7 +644,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
 
 export function CaseEngineClient({ params }: { params: { id: string } }) {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-pixel-bg text-pixel-text flex items-center justify-center font-pixel">LOADING...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-pixel-bg text-pixel-text flex items-center justify-center font-pixel">กำลังโหลด...</div>}>
       <CaseEngineContent params={params} />
     </Suspense>
   );

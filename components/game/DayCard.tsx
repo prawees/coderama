@@ -28,13 +28,13 @@ export function DayCard({ day, phase, language, onDone }: { day: number; phase: 
   return (
     <div className="absolute inset-0 z-[120] flex items-center justify-center pointer-events-none" data-testid="day-card">
       <div className="cozy-panel px-6 py-4 text-center animate-[cozyDayCard_2.6s_ease-in-out_forwards]">
-        <div className="flex items-center justify-center gap-2 text-[15px] leading-none text-[#6b5258]">
+        <div className="flex items-center justify-center gap-2 text-[15px] leading-none text-[#86522e]">
           <PixelIcon name="sun" size={14} />
           {WEEKDAYS[lang][(day - 1) % 7]}
         </div>
         <div className="text-[44px] leading-none mt-1">{lang === "th" ? `วันที่ ${day}` : `Day ${day}`}</div>
         <div className="text-[17px] leading-none mt-1.5">{LOCATION_NAMES[phase][lang]}</div>
-        <div className="text-[14px] leading-none mt-2 text-[#6b5258]">{MOODS[lang][(day * 3) % MOODS[lang].length]}</div>
+        <div className="text-[14px] leading-none mt-2 text-[#86522e]">{MOODS[lang][(day * 3) % MOODS[lang].length]}</div>
       </div>
     </div>
   );

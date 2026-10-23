@@ -50,7 +50,7 @@ export default function ShopPage() {
       </div>
       <div className="flex-1 min-w-0">
         <p className="text-[18px] leading-none">{title}</p>
-        <p className="text-[14px] leading-tight mt-1 text-[#6b5258]">{sub}</p>
+        <p className="text-[14px] leading-tight mt-1 text-[#86522e]">{sub}</p>
       </div>
       <div className="shrink-0 flex flex-col items-end gap-1">
         {price !== undefined && (

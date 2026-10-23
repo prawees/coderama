@@ -28,7 +28,7 @@ export function QuestsModal({ onClose }: QuestsModalProps) {
           <button onClick={() => { audio.playClick(); onClose(); }} className="cozy-btn px-2 py-0.5 text-lg leading-none" aria-label="close">✕</button>
         </div>
         <div className="flex-1 overflow-y-auto flex flex-col gap-2 pr-1">
-          {activeQuests.length === 0 && <p className="text-[16px] text-[#6b5258] italic">{tr("No quests right now. Enjoy the quiet.", "ตอนนี้ไม่มีภารกิจ เพลินกับความเงียบไปก่อน")}</p>}
+          {activeQuests.length === 0 && <p className="text-[16px] text-[#86522e] italic">{tr("No quests right now. Enjoy the quiet.", "ตอนนี้ไม่มีภารกิจ เพลินกับความเงียบไปก่อน")}</p>}
           {activeQuests.map((id) => QUEST_DATABASE[id] && (
             <div key={id} className="bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] p-2">
               <p className="text-[19px] leading-none">{title(id)}</p>
@@ -40,7 +40,7 @@ export function QuestsModal({ onClose }: QuestsModalProps) {
             <>
               <p className="text-[15px] leading-none text-[#86522e] mt-2">{tr("Done", "สำเร็จแล้ว")}</p>
               {completedQuests.map((id) => QUEST_DATABASE[id] && (
-                <div key={id} className="flex items-center gap-2 text-[16px] text-[#6b5258]">
+                <div key={id} className="flex items-center gap-2 text-[16px] text-[#86522e]">
                   <span className="text-[#3f8a48]">✓</span><span className="line-through">{title(id)}</span>
                 </div>
               ))}

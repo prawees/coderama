@@ -445,10 +445,10 @@ export const useERStore = create<ERState>()(
           shiftStats: { ...state.shiftStats, cashEarned: amount > 0 ? state.shiftStats.cashEarned + earned : state.shiftStats.cashEarned, casesTreated: amount > 0 ? state.shiftStats.casesTreated + 1 : state.shiftStats.casesTreated }
         };
       }),
-      setupPlayer: (name, gender, language, appearance, university) => set({ 
+      setupPlayer: (name, gender, _language, appearance, university) => set({ 
         playerName: name, 
         playerGender: gender,
-        language,
+        language: 'th',
         appearance,
         university
       }),
@@ -634,6 +634,9 @@ export const useERStore = create<ERState>()(
     {
       name: 'code-rama-storage',
       storage: createJSONStorage(() => capacitorStorage),
+      // The game speaks one language now: Thai the way it is spoken on the ward.
+      // Older saves that picked English are moved over when they load.
+      merge: (persisted, current) => ({ ...current, ...(persisted as object), language: 'th' }),
       onRehydrateStorage: () => (_state, error) => {
         if (error || typeof window === 'undefined') return;
         saveLoaded = true;

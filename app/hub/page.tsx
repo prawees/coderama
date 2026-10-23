@@ -71,7 +71,7 @@ export default function HubPage() {
   const prevThreshold = [...thresholds].reverse().find(t => t <= (lifetimeXp || 0)) || 0;
   const progressPercent = Math.min(100, Math.max(0, ((lifetimeXp || 0) - prevThreshold) / (nextThreshold === Infinity ? prevThreshold : nextThreshold - prevThreshold) * 100));
   
-  const [logs, setLogs] = useState<string[]>(['System: ER Dashboard initialized.']);
+  const [logs, setLogs] = useState<string[]>(['เปิดสมุดบันทึกเวรแล้ว']);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [isConsultsOpen, setIsConsultsOpen] = useState(false);
   const logEndRef = useRef<HTMLDivElement>(null);
@@ -160,12 +160,12 @@ export default function HubPage() {
     if (!tutorialCompleted) {
       audio.playPAChime();
       setDialogueQueue([
-        { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `ยินดีต้อนรับสู่ Code Rama ER, ${localizedRank}.` : `Welcome to Code Rama ER, ${localizedRank}.` },
-        { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `เตรียมตัวพบกับ 'เวรเยิน' ของจริง คืนนี้คุณต้องเข้าเวร 36 ชั่วโมงต่อเนื่อง แถมเครื่องชงกาแฟก็เพิ่งพัง` : `Get ready for a real 'Ward Wen Yern' (brutal shift). You're on a 36-hour call and the coffee machine is broken.` },
-        { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `เคสที่คุณจะเจออ้างอิงตามเกณฑ์สอบใบประกอบวิชาชีพ (NL) ทุกเคส เพราะฉะนั้นตั้งใจรักษาล่ะ!` : `Every case you see here is mapped to the National License (NL) exam blueprints. So pay attention!` },
-        { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `เมื่อเพจเจอร์ดัง แตะที่เตียงหรือเดินไปแล้วกด 'A' เพื่อรักษา อย่าปล่อยให้คนไข้รอนาน` : `When the pager beeps, tap the bed, or walk over and press 'A', to treat. Don't keep them waiting.` },
-        { speaker: "Nurse Ann", text: language === 'th' ? `แล้วก็ แวะคุยกับพวกเราบ้างนะ ทุกคนมีของโปรด ลองดูที่บอร์ดประกาศสิ` : `And come say hello now and then. Everyone here has a favourite treat. The notice board knows things.` },
-        { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `ขอให้โชคดีนะ... คุณต้องใช้มันแน่` : `Good luck... you'll need it.` }
+        { speaker: "Prof. Somchai", text: `ยินดีต้อนรับสู่ ER นะ น้อง${playerName}` },
+        { speaker: "Prof. Somchai", text: `วันแรกก็เจอเวรเยินเลย คนไข้ล้น แอร์ไม่เย็น เครื่องชงกาแฟก็เพิ่งพัง` },
+        { speaker: "Prof. Somchai", text: `เคสที่นี่ออกสอบ NL ทั้งนั้น ดูให้ดีล่ะ` },
+        { speaker: "Prof. Somchai", text: `เพจเจอร์ดังเมื่อไหร่ แตะที่เตียง หรือเดินไปกด A เพื่อดูคนไข้ อย่าปล่อยให้เขารอนาน` },
+        { speaker: "Nurse Ann", text: `ว่างๆ ก็แวะมาคุยกับพวกพี่บ้างนะหมอ ทุกคนมีของโปรด แอบดูได้ที่บอร์ดหน้าห้อง` },
+        { speaker: "Prof. Somchai", text: `โชคดีนะ น้องต้องใช้แน่` }
       ]);
     }
     
@@ -244,7 +244,7 @@ export default function HubPage() {
              expiresAt: Date.now() + 5 * 60 * 1000,
            });
            const who = patientFor(caseToInject);
-           if (who) setPagerMessage(`${who.name[language]}, ${who.age[language]}\n${who.pager[language]}`);
+           if (who) setPagerMessage(`${who.name.th} ${who.age.th}\n${who.pager.th}`);
            setCaseToInject(null);
            audio.playPager();
         }
@@ -287,12 +287,12 @@ export default function HubPage() {
       if (state.clockMinutes === 200 && Math.random() < 0.3 && !isPowerOutage) {
          setIsPowerOutage(true);
          audio.playBump();
-         addLog("WARNING: POWER OUTAGE DETECTED! Emergency generators kicking in.");
+         addLog("ไฟดับ! เครื่องปั่นไฟสำรองติดแล้ว");
       }
       if (state.clockMinutes === 260 && isPowerOutage) {
          setIsPowerOutage(false);
          audio.playShiftStart();
-         addLog("Power restored.");
+         addLog("ไฟมาแล้ว");
       }
       
     }, tickRate);
@@ -303,7 +303,7 @@ export default function HubPage() {
          // BOSS BATTLE SCRIPT
          if (state.activeCases.length === 0 && state.clockMinutes < 300) {
             audio.playPager();
-            addLog("BOSS BATTLE: INCOMING MASS CASUALTY!");
+            addLog("สอบเลื่อนขั้น: mass casualty กำลังมา!");
             
             addCase({
               id: `boss_asthma_${Date.now()}`,
@@ -344,11 +344,11 @@ export default function HubPage() {
          
          if (state.activeCases.length < maxCases && Math.random() < spawnChance) {
             audio.playPager();
-            addLog("Triage: New patient arrived at ER!");
+            addLog("คนไข้ใหม่เข้า ER");
             const selectedCase = possibleCases[Math.floor(Math.random() * possibleCases.length)];
             
             const who = patientFor(selectedCase);
-            setPagerMessage(who ? `${who.name[language]}, ${who.age[language]}\n${who.pager[language]}` : (language === 'th' ? 'ผู้ป่วยใหม่มาถึงแล้ว' : 'A new patient is here'));
+            setPagerMessage(who ? `${who.name.th} ${who.age.th}\n${who.pager.th}` : 'มีคนไข้ใหม่ค่ะหมอ');
 
             addCase({
               id: `case_${Date.now()}`,
@@ -393,19 +393,19 @@ export default function HubPage() {
            
            if (getRankFromXp(lifetimeXp) === 'Prof') {
              setDialogueQueue([
-               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: "You have reached the pinnacle of medicine. You are now the Chief of Medicine!" },
-               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: "Will you retire and start a new legacy, passing on your knowledge to the next generation?", choices: [
-                  { text: "Legacy of Wealth (Start with 5000 Cash)", nextId: "legacy_wealth", flagEffect: "prestige_wealth" },
-                  { text: "Legacy of Knowledge (Start with 5000 XP)", nextId: "legacy_knowledge", flagEffect: "prestige_knowledge" }
+               { speaker: "Prof. Somchai", text: "ขึ้นมาถึงจุดสูงสุดแล้วนะ ตอนนี้เป็นหัวหน้าภาควิชาเต็มตัว" },
+               { speaker: "Prof. Somchai", text: "จะเกษียณแล้วส่งต่อให้รุ่นน้องไหม เริ่มใหม่อีกรอบ แต่มีของติดตัวไปด้วย", choices: [
+                  { text: "ส่งต่อทรัพย์ (เริ่มใหม่พร้อม 5000 เหรียญ)", nextId: "legacy_wealth", flagEffect: "prestige_wealth" },
+                  { text: "ส่งต่อความรู้ (เริ่มใหม่พร้อม 5000 XP)", nextId: "legacy_knowledge", flagEffect: "prestige_knowledge" }
                ]}
              ]);
              setActionOnDialogueEnd('PRESTIGE');
            } else {
-             addLog(language === 'th' ? "เอาชนะบอสได้แล้ว! ปลดล็อกการเลื่อนขั้น!" : "BOSS DEFEATED! PROMOTION UNLOCKED!");
+             addLog("ผ่านสอบเลื่อนขั้นแล้ว!");
              setDialogueQueue([
-               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `ยอดเยี่ยมมากวันนี้ คุณรับมือกับเหตุการณ์ผู้ป่วยจำนวนมากได้อย่างไร้ที่ติ` : `Incredible work today. You handled that mass casualty event flawlessly.` },
-               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `ผมขออนุมัติการเลื่อนขั้นของคุณอย่างเป็นทางการ` : `I am officially authorizing your promotion.` },
-               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `ขอแสดงความยินดีกับตำแหน่งใหม่ของคุณ!` : `Congratulations on your new rank!` },
+               { speaker: "Prof. Somchai", text: `วันนี้เยี่ยมมาก mass casualty แบบนี้คุมอยู่ทั้ง ER` },
+               { speaker: "Prof. Somchai", text: `ผมเซ็นเลื่อนขั้นให้แล้ว` },
+               { speaker: "Prof. Somchai", text: `ยินดีด้วยกับตำแหน่งใหม่นะ` },
              ]);
            }
         } else {
@@ -456,9 +456,9 @@ export default function HubPage() {
     // Apply Upgrades
     if (hospitalUpgrades.includes('upg_espresso')) {
       restoreEnergy(10);
-      addLog(`${localizedRank} clocked in for Day ${currentDay}. (Espresso: +10 Energy)`);
+      addLog(`${localizedRank} เข้าเวรวันที่ ${currentDay} (เครื่องชงกาแฟใหม่ +10 พลังงาน)`);
     } else {
-      addLog(`${localizedRank} clocked in for Day ${currentDay}.`);
+      addLog(`${localizedRank} เข้าเวรวันที่ ${currentDay}`);
     }
   };
 
@@ -494,7 +494,7 @@ export default function HubPage() {
     setClock(0);
     resetShiftStats();
     setShiftMode('boss-battle');
-    addLog(`PROMOTION EXAM STARTED! Good luck, ${localizedRank}.`);
+    addLog(`เริ่มสอบเลื่อนขั้น โชคดีนะ ${localizedRank}`);
   };
 
   const phase = phaseForDay(currentDay);
@@ -514,7 +514,7 @@ export default function HubPage() {
     if (energy > 0 && energy <= 25 && !warnedLowEnergy.current) {
       warnedLowEnergy.current = true;
       worldApi.current?.emote('player', 'sweat');
-      showToast(language === 'th' ? 'เหนื่อยแล้ว ไปชงชาที่กาต้มน้ำหรือนั่งพักที่ม้านั่งก่อน' : 'Running on fumes. Tea from the kettle or a sit on the bench will help.');
+      showToast('เริ่มหมดแรงแล้ว แวะชงชาที่มุมกาต้มน้ำ หรือออกไปนั่งพักที่ม้านั่งก่อนนะ');
     }
   }, [energy, shiftMode, language, showToast]);
 
@@ -596,9 +596,9 @@ export default function HubPage() {
           <div className="flex items-center gap-1.5 text-[18px] leading-none">
             <PixelIcon name={!onShift || clockMinutes < 450 ? 'sun' : 'moon'} size={15} />
             <span>{tr('Day', 'วันที่')} {currentDay}</span>
-            <span className="tabular-nums text-[#6b5258]">{formatTime(clockMinutes)}</span>
+            <span className="tabular-nums text-[#86522e]">{formatTime(clockMinutes)}</span>
           </div>
-          <div className="text-[13px] leading-none mt-1 text-[#6b5258] max-w-[11rem] truncate">
+          <div className="text-[13px] leading-none mt-1 text-[#86522e] max-w-[11rem] truncate">
             {currentMap === 'AMBULANCE_BAY' ? tr('Courtyard', 'ลานหน้าตึก') : LOCATION_NAMES[phase][language]}
           </div>
         </div>
@@ -652,12 +652,12 @@ export default function HubPage() {
           <div className="flex-1 min-w-0">
             <div className="flex items-baseline justify-between gap-2">
               <span className="text-[18px] leading-none truncate">{localizedRank}</span>
-              <span className="text-[15px] leading-none text-[#6b5258] tabular-nums">XP {Math.round(xp)}</span>
+              <span className="text-[15px] leading-none text-[#86522e] tabular-nums">XP {Math.round(xp)}</span>
             </div>
             {isReadyForPromotion ? (
-              <p className="text-[15px] leading-none mt-1.5 text-[#a93c4b] animate-pulse">{tr('Promotion exam ready!', 'พร้อมสอบเลื่อนขั้นแล้ว!')}</p>
+              <p className="text-[15px] leading-none mt-1.5 text-[#a93c4b] animate-pulse">{'พร้อมสอบเลื่อนขั้นแล้ว!'}</p>
             ) : chapterCapped ? (
-              <p className="text-[15px] leading-none mt-1.5 text-[#4f7a3a]" data-testid="chapter-capped">{tr('Ready for what comes next. XP still counts toward skills.', 'พร้อมสำหรับบทต่อไปแล้ว XP ยังใช้อัปสกิลได้')}</p>
+              <p className="text-[15px] leading-none mt-1.5 text-[#4f7a3a]" data-testid="chapter-capped">{'XP เต็มบทนี้แล้ว ที่ได้เพิ่มเอาไปอัปสกิลได้'}</p>
             ) : (
               <div className="cozy-bar h-3 mt-1.5"><span style={{ width: `${progressPercent}%`, background: '#7fc8d8' }} /></div>
             )}
@@ -680,7 +680,7 @@ export default function HubPage() {
                     className={`cozy-btn py-1.5 px-1 flex flex-col items-center leading-none ${c ? 'cozy-btn-berry animate-[cozyWiggle_1.2s_ease-in-out_infinite]' : 'opacity-70'}`}
                   >
                     <span className="flex items-center gap-1 text-[16px]"><PixelIcon name="bed" size={16} />{bedIdx + 1}</span>
-                    <span className="text-[14px] mt-1 max-w-full truncate px-0.5">{c ? (patientFor(c.caseDataId)?.name[language] ?? tr('Patient', 'ผู้ป่วย')) : tr('free', 'ว่าง')}</span>
+                    <span className="text-[14px] mt-1 max-w-full truncate px-0.5">{c ? (patientFor(c.caseDataId)?.name.th ?? 'คนไข้') : tr('free', 'ว่าง')}</span>
                   </button>
                 );
               })}
@@ -691,7 +691,7 @@ export default function HubPage() {
               </PixelButton>
               {activeCases.length === 0 && (
                 <PixelButton onClick={() => { setIsFastForwarding(true); fastForwardTarget.current = clockMinutes + 60; }} variant="gold" className="flex-1 py-2 text-[19px] flex items-center justify-center gap-1.5">
-                  <PixelIcon name="fastforward" size={16} />+60m
+                  <PixelIcon name="fastforward" size={16} />+1 ชม.
                 </PixelButton>
               )}
             </div>
@@ -699,7 +699,7 @@ export default function HubPage() {
         ) : (
           <div className="flex flex-col gap-2">
             {isReadyForPromotion && (
-              <PixelButton onClick={() => { audio.playShiftStart(); setClock(0); resetShiftStats(); setShiftMode('boss-battle'); addLog(tr(`END OF YEAR TEST STARTED! Good luck, ${localizedRank}.`, `เริ่มสอบเลื่อนขั้น! โชคดีนะ ${localizedRank}`)); }} variant="alert" className="w-full py-2 text-[19px] animate-pulse">
+              <PixelButton onClick={() => { audio.playShiftStart(); setClock(0); resetShiftStats(); setShiftMode('boss-battle'); addLog(`เริ่มสอบเลื่อนขั้น โชคดีนะ ${localizedRank}`); }} variant="alert" className="w-full py-2 text-[19px] animate-pulse">
                 {tr('End of year exam', 'สอบเลื่อนขั้นประจำปี')}
               </PixelButton>
             )}
@@ -739,12 +739,12 @@ export default function HubPage() {
             </div>
             <div className="overflow-y-auto text-[16px] leading-snug flex flex-col gap-1">
               {logs.map((log, i) => (
-                <div key={i} className={log.includes('Triage') || log.includes('BOSS') ? 'text-[#a93c4b]' : ''}>{log}</div>
+                <div key={i} className={log.includes('คนไข้ใหม่') || log.includes('สอบเลื่อนขั้น') ? 'text-[#a93c4b]' : ''}>{log}</div>
               ))}
               <div ref={logEndRef} />
             </div>
             <button onClick={toggleOnCall} className="cozy-btn cozy-btn-sky mt-3 py-1 text-[17px]" disabled={shiftMode !== 'off-duty' && shiftMode !== 'on-call'}>
-              {shiftMode === 'on-call' ? tr('Turn pager off', 'ปิดเพจเจอร์') : tr('Turn pager on (on-call)', 'เปิดเพจเจอร์ (เวรออนคอล)')}
+              {shiftMode === 'on-call' ? tr('Turn pager off', 'ปิดเพจเจอร์') : 'เปิดเพจเจอร์ (on call)'}
             </button>
           </div>
         </div>

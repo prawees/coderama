@@ -66,17 +66,17 @@ export function ConsultsModal({ onClose }: ConsultsModalProps) {
           <h2 className="text-[26px] leading-none flex items-center gap-2"><PixelIcon name="friends" size={20} />{tr("Doctors' lounge", "ห้องพักแพทย์")}</h2>
           <button className="cozy-btn px-2 py-0.5 text-lg leading-none" onClick={onClose}>✕</button>
         </div>
-        <p className="text-[16px] leading-snug mt-1 mb-2 text-[#6b5258]">{tr("Other doctors leave questions here. Help one out for a little thank-you.", "หมอคนอื่นฝากคำถามไว้ที่นี่ ช่วยตอบแล้วจะมีของตอบแทนนิดหน่อย")}</p>
+        <p className="text-[16px] leading-snug mt-1 mb-2 text-[#86522e]">{tr("Other doctors leave questions here. Help one out for a little thank-you.", "หมอคนอื่นฝากคำถามไว้ที่นี่ ช่วยตอบแล้วจะมีของตอบแทนนิดหน่อย")}</p>
 
         {note && <p className="cozy-tag px-2 py-1 mb-2 text-[16px] text-center" data-testid="consult-note">{note}</p>}
 
         <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-2">
           {loading ? (
-            <p className="text-center text-[18px] text-[#6b5258] py-8 animate-pulse">{tr("Checking the pigeonholes...", "กำลังดูช่องฝากข้อความ...")}</p>
+            <p className="text-center text-[18px] text-[#86522e] py-8 animate-pulse">{tr("Checking the pigeonholes...", "กำลังดูช่องฝากข้อความ...")}</p>
           ) : failed ? (
-            <p className="text-center text-[18px] text-[#6b5258] py-8">{tr("The lounge is closed while you are offline.", "ห้องพักปิดอยู่ระหว่างออฟไลน์")}</p>
+            <p className="text-center text-[18px] text-[#86522e] py-8">{tr("The lounge is closed while you are offline.", "ห้องพักปิดอยู่ระหว่างออฟไลน์")}</p>
           ) : consults.length === 0 ? (
-            <p className="text-center text-[18px] text-[#6b5258] py-8">{tr("No notes today. Put the kettle on.", "วันนี้ไม่มีโน้ต ไปต้มน้ำชงชาเถอะ")}</p>
+            <p className="text-center text-[18px] text-[#86522e] py-8">{tr("No notes today. Put the kettle on.", "วันนี้ไม่มีโน้ต ไปต้มน้ำชงชาเถอะ")}</p>
           ) : (
             consults.map((c) => (
               <div key={c.id} className="bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] p-2 flex flex-col gap-1.5">
@@ -84,7 +84,7 @@ export function ConsultsModal({ onClose }: ConsultsModalProps) {
                   <p className="text-[18px] leading-tight">{tr(`${c.requesterName} needs a second opinion`, `${c.requesterName} ขอความเห็นที่สอง`)}</p>
                   <span className="cozy-tag px-1.5 py-0.5 text-[13px] leading-none whitespace-nowrap">+50 XP</span>
                 </div>
-                <p className="text-[15px] leading-snug text-[#6b5258]">{tr("Vitals", "สัญญาณชีพ")}: {c.vitals}</p>
+                <p className="text-[15px] leading-snug text-[#86522e]">{tr("Vitals", "สัญญาณชีพ")}: {c.vitals}</p>
                 <p className="text-[16px] leading-snug">{c.narrative}</p>
                 <div className="flex flex-col gap-1.5 mt-1">
                   {(c.options || []).map((opt: any, idx: number) => (

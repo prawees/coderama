@@ -55,11 +55,11 @@ export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
       </span>
       <div className="flex-1 min-w-0">
         <p className="text-[18px] leading-none truncate">{name}</p>
-        {sub && <p className="text-[14px] leading-none mt-1 text-[#6b5258] truncate">{sub}</p>}
+        {sub && <p className="text-[14px] leading-none mt-1 text-[#86522e] truncate">{sub}</p>}
       </div>
       <div className="text-right">
         <p className="text-[17px] leading-none tabular-nums">{right}</p>
-        {right2 && <p className="text-[13px] leading-none mt-1 text-[#6b5258]">{right2}</p>}
+        {right2 && <p className="text-[13px] leading-none mt-1 text-[#86522e]">{right2}</p>}
       </div>
     </div>
   );
@@ -83,9 +83,9 @@ export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
 
         <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-1.5">
           {loading ? (
-            <p className="text-center text-[18px] text-[#6b5258] py-8 animate-pulse">{tr("Dusting off the plaques...", "กำลังเช็ดป้ายรายชื่อ...")}</p>
+            <p className="text-center text-[18px] text-[#86522e] py-8 animate-pulse">{tr("Dusting off the plaques...", "กำลังเช็ดป้ายรายชื่อ...")}</p>
           ) : failed || leaders.length === 0 ? (
-            <p className="text-center text-[18px] text-[#6b5258] py-8">
+            <p className="text-center text-[18px] text-[#86522e] py-8">
               {failed ? tr("The board is offline. Sign in from Settings to post your name.", "บอร์ดออฟไลน์อยู่ ลงชื่อเข้าใช้ในหน้าตั้งค่าเพื่อขึ้นป้าย") : tr("No names yet. Yours could be first.", "ยังไม่มีใครเลย ชื่อหนูอาจเป็นชื่อแรก")}
             </p>
           ) : tab === "individual" ? (

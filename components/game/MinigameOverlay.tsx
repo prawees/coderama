@@ -93,7 +93,7 @@ export function MinigameOverlay({ interventionName, onComplete }: MinigameOverla
     <div className="fixed inset-0 z-[200] flex items-center justify-center bg-[#1c1522]/75 font-pixel">
       <div className={`w-[90%] max-w-sm ${shake ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>
         <div className="cozy-panel flex flex-col items-center p-4 gap-3">
-          <div className="w-full flex justify-between items-center text-[15px] leading-none text-[#6b5258]">
+          <div className="w-full flex justify-between items-center text-[15px] leading-none text-[#86522e]">
             <span>{isCPR ? "CPR · 100-120/min" : "Steady hands"}</span>
             <span className="cozy-tag px-1.5 py-0.5">{isCPR ? "♥ 110" : "OK"}</span>
           </div>
@@ -118,7 +118,7 @@ export function MinigameOverlay({ interventionName, onComplete }: MinigameOverla
             />
           </div>
 
-          <p className="text-[15px] leading-none text-[#6b5258]">
+          <p className="text-[15px] leading-none text-[#86522e]">
             {feedback === "idle" ? "Tap the bar or press Space" : "..."}
           </p>
         </div>

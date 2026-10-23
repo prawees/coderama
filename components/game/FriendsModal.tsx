@@ -41,14 +41,14 @@ export function FriendsModal({ phase, onClose }: { phase: Phase; onClose: () => 
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-2">
             <span className="text-[19px] leading-none">{name}</span>
-            <span className="flex gap-1 text-[13px] leading-none text-[#6b5258]">
+            <span className="flex gap-1 text-[13px] leading-none text-[#86522e]">
               <span className={daily.talkDay === currentDay ? "text-[#3f8a48]" : ""}>{daily.talkDay === currentDay ? tr("chatted", "คุยแล้ว") : tr("not yet", "ยังไม่คุย")}</span>
               {daily.giftDay === currentDay && <span className="text-[#a93c4b]">{tr("+ gift", "+ ของขวัญ")}</span>}
             </span>
           </div>
           <div className="mt-1"><Hearts points={points} /></div>
           {known.length > 0 && (
-            <div className="mt-1.5 flex flex-wrap gap-x-2 gap-y-1 text-[13px] leading-none text-[#6b5258]">
+            <div className="mt-1.5 flex flex-wrap gap-x-2 gap-y-1 text-[13px] leading-none text-[#86522e]">
               {known.map(([gift, taste]) => (
                 <span key={gift} className="flex items-center gap-1">
                   <PixelIcon name={GIFT_ICON[GIFTS[gift]?.icon] ?? "heart"} size={12} />
@@ -78,7 +78,7 @@ export function FriendsModal({ phase, onClose }: { phase: Phase; onClose: () => 
           <h2 className="text-[26px] leading-none flex items-center gap-2"><PixelIcon name="friends" size={20} />{tr("Friends", "เพื่อนร่วมงาน")}</h2>
           <button className="cozy-btn px-2 py-0.5 text-lg leading-none" onClick={onClose} aria-label="close">✕</button>
         </div>
-        <p className="text-[14px] leading-tight text-[#6b5258] mb-1">
+        <p className="text-[14px] leading-tight text-[#86522e] mb-1">
           {tr("Chat once a day. Gifts they love go a long way. Hearts unlock little scenes.", "คุยกันวันละครั้ง ของขวัญที่ถูกใจช่วยได้มาก หัวใจปลดล็อกฉากพิเศษ")}
         </p>
         <div className="overflow-y-auto pr-1">

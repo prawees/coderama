@@ -15,7 +15,7 @@ export default function ErrorPage({ error, reset }: { error: Error & { digest?: 
         <p className="text-[34px] leading-none">Oops</p>
         <p className="text-[18px] leading-snug mt-2">
           Kanom knocked something off the desk. Your save is safe.
-          <span className="block mt-1 text-[#6b5258]">ขนมทำของตกจากโต๊ะ เซฟของหนูยังอยู่ครบ</span>
+          <span className="block mt-1 text-[#86522e]">ขนมทำของตกจากโต๊ะ เซฟของหนูยังอยู่ครบ</span>
         </p>
         <div className="mt-4 flex gap-2">
           <button className="cozy-btn cozy-btn-sky flex-1 py-1.5 text-[19px]" onClick={() => reset()}>Try again</button>

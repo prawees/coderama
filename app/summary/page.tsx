@@ -78,7 +78,7 @@ export default function SummaryPage() {
     <PageTransition>
       <div className="w-full h-[100dvh] cozy-night text-pixel-text font-pixel flex flex-col items-center justify-center p-5 relative" data-testid="summary">
         <motion.div initial={{ scale: 0.92, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.35 }} className="cozy-panel w-full max-w-sm p-4">
-          <p className="text-center text-[16px] leading-none text-[#6b5258]">{tr(`Day ${finishedDay} complete`, `จบวันที่ ${finishedDay}`)}</p>
+          <p className="text-center text-[16px] leading-none text-[#86522e]">{tr(`Day ${finishedDay} complete`, `จบวันที่ ${finishedDay}`)}</p>
           <h1 className="text-center text-[38px] leading-none mt-1">{tr("Shift ledger", "บัญชีประจำวัน")}</h1>
 
           <div className="mt-4 flex flex-col">

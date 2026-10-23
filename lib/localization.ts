@@ -22,12 +22,12 @@ export const getLocalizedRankTitle = (
   }
 
   // Thai Logic
-  const titlePrefix = gender === 'F' ? 'พญ.' : 'นพ.';
+  const titlePrefix = gender === 'F' ? 'พญ.' : gender === 'M' ? 'นพ.' : '';
 
   switch (rank) {
     case 'MS5': return `นศพ. ${name} ปี 5`;
-    case 'MS6': return `Ext. ${name}`;
-    case 'Intern': return `Int. ${name}`;
+    case 'MS6': return `extern ${name}`;
+    case 'Intern': return `intern ${name}`;
     case 'R1': return `R1 ${name}`;
     case 'R2': return `R2 ${name}`;
     case 'R3': return `R3 ${name}`;

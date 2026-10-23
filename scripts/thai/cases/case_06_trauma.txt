@@ -1,0 +1,19 @@
+cc: มอเตอร์ไซค์ชนเสาไฟความเร็วสูง กู้ภัยนำส่ง
+bg: ขับมอเตอร์ไซค์ชนเสาไฟความเร็วสูง ไม่ใส่หมวก กู้ภัยบอกว่ากลิ่นเหล้าแรงมาก ต้นขาขวาผิดรูปชัดเจน
+i.fast1: ไม่มี pericardial effusion ไม่มี free fluid ในช่องท้อง lung sliding มีทั้งสองข้าง
+start.n: Major trauma มาถึง shock อยู่ (HR 135, BP 85/40) และ GCS 8 ตาม ATLS ต้องทำอะไรเป็นอย่างแรก
+start.o0: A: Airway ใส่ ET tube เลย (GCS ≤ 8)
+start.o1: ส่ง CT brain ทันที
+start.o2: Splint femur ขวาที่ผิดรูปก่อน
+start.o3: C: Circulation เปิด massive transfusion protocol
+correct_airway.n: ใส่ ET tube ได้แล้ว (protect C-spine) SpO2 ขึ้นเป็น 100% แต่ยัง hypovolemic shock อยู่ primary survey ต่อไปคืออะไร
+correct_airway.o0: B/C: pelvic binder, splint femur และเปิด MTP
+correct_airway.o1: Load NSS 2 ลิตรเร็วๆ
+wrong_ct.n: ห้ามส่งคนไข้ unstable ที่ airway ยังไม่ secure ไป CT เด็ดขาด คนไข้ aspirate ในห้อง CT และเสียชีวิตจาก hypoxia
+wrong_splint.n: กระดูก femur หักก็จริง แต่ ATLS ให้ A กับ B มาก่อน C ระหว่างที่มัวสนใจขา airway ของคนไข้ก็แย่ลง
+wrong_splint.o0: กลับไปที่ airway: intubate
+wrong_mtp_first.n: เลือดเริ่มให้แล้ว แต่ GCS 8 แปลว่า protect airway เองไม่ได้ คนไข้เริ่ม aspirate อาเจียนของตัวเอง
+wrong_mtp_first.o0: กลับไปที่ airway: intubate
+wrong_fluids.n: ATLS ปัจจุบันไม่แนะนำ crystalloid ปริมาณมาก (เจือจาง clotting factor และทำให้ตัวเย็น) hemorrhagic shock ต้องได้ blood products สัดส่วน 1:1:1
+wrong_fluids.o0: เปิด massive transfusion protocol
+correct_circulation.n: ใส่ traction splint ที่ femur ลดเลือดออก เปิด MTP แล้ว BP เริ่มนิ่ง ตอนนี้พอจะไป CT pan-scan และ consult ortho ได้แล้ว

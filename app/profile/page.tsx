@@ -39,7 +39,7 @@ export default function ProfilePage() {
 
   const swatches = (label: string, key: keyof PlayerAppearance, options: string[]) => (
     <div className="flex flex-col gap-1">
-      <span className="text-[15px] leading-none text-[#6b5258]">{label}</span>
+      <span className="text-[15px] leading-none text-[#86522e]">{label}</span>
       <div className="flex gap-1 flex-wrap">
         {options.map((c) => (
           <button
@@ -66,7 +66,7 @@ export default function ProfilePage() {
         <div className="relative mx-auto w-full max-w-sm">
           <div className="absolute left-1/2 -top-3 -translate-x-1/2 w-10 h-4 rounded-t-[4px] bg-[#6b4f78] border-[3px] border-b-0 border-[#3a2a2f]" />
           <div className="cozy-panel p-3">
-            <div className="flex items-center justify-between text-[14px] leading-none text-[#6b5258] border-b-2 border-dashed border-[#e7d3a8] pb-1.5">
+            <div className="flex items-center justify-between text-[14px] leading-none text-[#86522e] border-b-2 border-dashed border-[#e7d3a8] pb-1.5">
               <span>{place}</span>
               <span>{tr(`Day ${currentDay}`, `วันที่ ${currentDay}`)}</span>
             </div>
@@ -77,7 +77,7 @@ export default function ProfilePage() {
               <div className="flex-1 min-w-0 flex flex-col">
                 <p className="text-[26px] leading-none truncate">{playerName}</p>
                 <p className="text-[17px] leading-none mt-1 text-[#86522e]">{getLocalizedRankTitle(rank, playerName, playerGender, language)}</p>
-                {university && university !== "Unknown" && <p className="text-[14px] leading-none mt-1.5 text-[#6b5258] truncate">{university}</p>}
+                {university && university !== "Unknown" && <p className="text-[14px] leading-none mt-1.5 text-[#86522e] truncate">{university}</p>}
                 <div className="mt-auto flex flex-col gap-1 text-[15px] leading-none">
                   <span className="flex items-center gap-1.5"><PixelIcon name="quest" size={13} />{tr(`${(completedQuests || []).length} favours done`, `ช่วยงานสำเร็จ ${(completedQuests || []).length} ครั้ง`)}</span>
                   <span className="flex items-center gap-1.5"><PixelIcon name="heart" size={13} />{tr(`${friends.length} friends at work`, `เพื่อนที่ทำงาน ${friends.length} คน`)}</span>
@@ -106,7 +106,7 @@ export default function ProfilePage() {
           {swatches(tr("Skin", "สีผิว"), "skinColor", SKIN)}
           {swatches(tr("Hair", "สีผม"), "hairColor", HAIR)}
           <div className="flex flex-col gap-1">
-            <span className="text-[15px] leading-none text-[#6b5258]">{tr("Hair style", "ทรงผม")}</span>
+            <span className="text-[15px] leading-none text-[#86522e]">{tr("Hair style", "ทรงผม")}</span>
             <div className="flex gap-1">
               {[["hair_1", tr("Short", "สั้น")], ["hair_2", tr("Long", "ยาว")]].map(([v, lbl]) => (
                 <button key={v} onClick={() => set("hairStyle", v)} className={`cozy-btn flex-1 py-1 text-[17px] ${appearance?.hairStyle === v ? "cozy-btn-sky" : ""}`}>{lbl}</button>
@@ -115,7 +115,7 @@ export default function ProfilePage() {
           </div>
           {swatches(tr("Shirt", "เสื้อ"), "topColor", TOP)}
           {swatches(tr("Pants", "กางเกง"), "bottomColor", BOTTOM)}
-          <p className="text-[14px] leading-snug text-[#6b5258]">{tr("From intern year on, the white coat goes over whatever you wear.", "ตั้งแต่เป็นอินเทิร์น เสื้อกาวน์จะคลุมทับชุดที่ใส่")}</p>
+          <p className="text-[14px] leading-snug text-[#86522e]">{tr("From intern year on, the white coat goes over whatever you wear.", "ตั้งแต่เป็นอินเทิร์น เสื้อกาวน์จะคลุมทับชุดที่ใส่")}</p>
         </div>
       </div>
     </PageTransition>

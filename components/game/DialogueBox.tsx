@@ -5,7 +5,9 @@ import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { audio } from "@/lib/audio";
 import { CutsceneChoice } from "@/lib/StoryManager";
 import { PixelPortrait, hasPortrait } from "@/components/game/PixelPortrait";
-import { NPCS, npcIdForSpeaker } from "@/lib/npcs";
+import { NPCS, npcIdForSpeaker, speakerLabel } from "@/lib/npcs";
+import { useERStore } from "@/lib/erStore";
+import { inVoice } from "@/lib/voice";
 
 interface DialogueBoxProps {
   speakerName?: string;
@@ -17,7 +19,10 @@ interface DialogueBoxProps {
 }
 
 /** Parchment dialogue card with a wooden portrait frame and a name ribbon. Text types out with a per-character voice. */
-export function DialogueBox({ speakerName, text, choices, voice, onComplete }: DialogueBoxProps) {
+export function DialogueBox({ speakerName, text: rawText, choices, voice, onComplete }: DialogueBoxProps) {
+  const { playerName, playerGender, currentDay } = useERStore();
+  const text = inVoice(rawText, playerGender, currentDay);
+  const label = speakerLabel(speakerName, playerName);
   const [shown, setShown] = useState(0);
   const finished = shown >= text.length;
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -50,7 +55,7 @@ export function DialogueBox({ speakerName, text, choices, voice, onComplete }: D
     }
   };
 
-  const isNarration = !speakerName || speakerName === "System" || speakerName === "Narrator";
+  const isNarration = !label;
 
   return (
     <div
@@ -60,10 +65,10 @@ export function DialogueBox({ speakerName, text, choices, voice, onComplete }: D
     >
       {!isNarration && (
         <div className="absolute -top-4 left-[5.5rem] z-10 cozy-tag px-2 py-0.5 text-base leading-none !bg-[#ffd66b]" data-testid="dialogue-speaker">
-          {speakerName}
+          {label}
         </div>
       )}
-      <div className={`cozy-panel flex gap-3 p-3 ${isNarration ? "italic" : ""}`}>
+      <div className="cozy-panel flex gap-3 p-3">
         {hasPortrait(speakerName) && (
           <div className="w-[4.5rem] h-[4.5rem] shrink-0 rounded-[4px] overflow-hidden border-[3px] border-[#3a2a2f] shadow-[inset_0_0_0_2px_#b47640]">
             <PixelPortrait speaker={speakerName} className="w-full h-full" />
@@ -84,7 +89,7 @@ export function DialogueBox({ speakerName, text, choices, voice, onComplete }: D
                   onClick={(e) => { e.stopPropagation(); Haptics.impact({ style: ImpactStyle.Heavy }).catch(() => {}); audio.playClick(); onComplete(c); }}
                   className="cozy-btn cozy-btn-sun text-left px-3 py-1.5 text-[17px] leading-tight"
                 >
-                  <span className="text-[#d95763] mr-1">▸</span>{c.text}
+                  <span className="text-[#d95763] mr-1">▸</span>{inVoice(c.text, playerGender, currentDay)}
                 </button>
               ))}
             </div>

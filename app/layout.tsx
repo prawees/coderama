@@ -9,7 +9,7 @@ import { withBase } from "@/lib/basePath";
 const vt323 = localFont({
   src: "./fonts/VT323-Regular.woff2",
   weight: "400",
-  variable: "--font-pixel",
+  variable: "--font-vt",
   display: "swap",
 });
 
@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={vt323.variable}>
+    <html lang="th" className={vt323.variable}>
       <head>
         <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="mobile-web-app-capable" content="yes" />

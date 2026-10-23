@@ -2,12 +2,12 @@
   "title": "72yo M Toxicology",
   "age": "72",
   "sex": "M",
-  "chiefComplaint": "Altered Mental Status",
+  "chiefComplaint": "ซึม เรียกไม่ค่อยตอบ เพื่อนบ้านพบที่บ้าน",
   "diagnoses": [
     "Digoxin Toxicity",
     "Beta Blocker Overdose"
   ],
-  "background": "ผู้ป่วยถูกพบหมดสติที่บ้าน มีขวดยาเปล่าวางอยู่ใกล้ตัว มีประวัติหัวใจเต้นผิดจังหวะชนิด AF และความดันโลหิตสูง ขวดยาบนโต๊ะในครัวคือยาดิจอกซินของเขาที่รับมาเมื่อแปดวันก่อน",
+  "background": "เพื่อนบ้านพบลุงนอนหมดสติอยู่ที่บ้าน มีขวดยาเปล่าวางอยู่ข้างตัว U/D AF กับ HT ขวดบนโต๊ะในครัวคือ digoxin ของลุงเอง เพิ่งรับยามาเมื่อ 8 วันก่อน",
   "patientAppearance": {
     "skinTone": "#d4a373",
     "bmiFactor": 0.8,
@@ -75,7 +75,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "12-Lead ECG",
-      "report": "AF ที่มี ventricular response ช้า 35 ครั้งต่อนาที ST depression แบบ scooped (reverse tick) และ ventricular ectopic บ่อย เข้าได้กับพิษดิจอกซิน",
+      "report": "AF with slow ventricular response 35/min, scooped ST depression (reverse tick) และ PVC บ่อย เข้าได้กับ digoxin toxicity",
       "imageUrl": "",
       "abnormal": true
     },
@@ -94,12 +94,12 @@
       "id": "dig1",
       "kind": "lab",
       "category": "Toxicology",
-      "name": "ระดับดิจอกซินในเลือด",
+      "name": "Serum digoxin",
       "value": "4.8",
       "unit": "ng/mL",
       "normalRange": "0.5-2.0",
       "abnormal": true,
-      "report": "อยู่ในระดับเป็นพิษ ระดับที่เจาะหลังให้ Fab จะเชื่อถือไม่ได้ ค่านี้จึงสำคัญ"
+      "report": "อยู่ในระดับ toxic ระดับยาที่เจาะหลังให้ Fab แล้วเชื่อไม่ได้ ค่านี้เลยสำคัญ"
     }
   ],
   "managementGraph": {
@@ -123,9 +123,9 @@
           "y": 100
         },
         "data": {
-          "label": "โทรหาญาติเพื่อซักประวัติ (Empathy)",
+          "label": "โทรหาญาติเพื่อซักประวัติเพิ่ม",
           "ethicalValue": 10,
-          "narrative": "ญาติขอบคุณที่โทรมาและให้ประวัติที่เป็นประโยชน์ ชื่อเสียงของคุณเพิ่มขึ้น"
+          "narrative": "ญาติขอบคุณมากที่โทรไป ได้ประวัติละเอียดขึ้นเยอะ คนในวอร์ดเริ่มพูดถึงหมอในทางที่ดี"
         }
       },
       {
@@ -138,20 +138,20 @@
         "data": {
           "distractors": [
             {
-              "label": "ให้แคลเซียมกลูโคเนตทางหลอดเลือดดำเพื่อแก้โพแทสเซียม 6.2",
-              "feedback": "โพแทสเซียมสูงในผู้ป่วยรายนี้เป็นผลจากพิษดิจอกซิน ไม่ใช่ปัญหาหลัก ตามหลักแล้วควรเลี่ยงแคลเซียมในพิษดิจอกซิน และต้องแก้หัวใจเต้นช้ากับความดันต่ำก่อน"
+              "label": "ให้ calcium gluconate IV แก้ K 6.2",
+              "feedback": "K สูงในเคสนี้เป็นผลของ digoxin toxicity ไม่ใช่ปัญหาหลัก ตามตำราเลี่ยง calcium ใน dig toxicity และต้องแก้ brady กับ hypotension ก่อน"
             },
             {
-              "label": "ให้ metoprolol ทางหลอดเลือดดำเพื่อคุมอัตราการเต้นของ AF",
-              "feedback": "ผู้ป่วยหัวใจเต้นช้า 35 ครั้งต่อนาที ความดันตัวบน 80 ยากลุ่มเบต้าบล็อกเกอร์จะทำให้ภาวะบล็อกและช็อกแย่ลง"
+              "label": "ให้ metoprolol IV คุม rate ของ AF",
+              "feedback": "HR 35 SBP 80 อยู่แล้ว ให้ beta-blocker จะยิ่ง block หนักขึ้นและช็อกมากขึ้น"
             }
           ],
-          "label": "ให้ Atropine",
+          "label": "ให้ atropine ประคองไว้ก่อน",
           "actions": [
             "Atropine IV"
           ],
           "doseMap": {
-            "Atropine IV": "1 mg"
+            "Atropine IV": "1 mg IV"
           }
         }
       },
@@ -163,9 +163,9 @@
           "y": 0
         },
         "data": {
-          "label": "ประคองไว้ชั่วคราว",
+          "label": "ประคองได้ชั่วคราว",
           "outcomeType": "improved",
-          "narrative": "ชีพจรขึ้นเป็น 45 หลังให้ atropine แต่นี่เป็นแค่การประคอง ดิจอกซินยังจับอยู่กับ sodium pump ในหัวใจ",
+          "narrative": "HR ขึ้นเป็น 45 หลังให้ atropine แต่แค่ซื้อเวลา digoxin ยังจับ Na-K pump ในหัวใจอยู่",
           "vitalChanges": {
             "hr": 45,
             "sbp": 90
@@ -180,23 +180,23 @@
           "y": 200
         },
         "data": {
-          "label": "ให้ยาต้านพิษ Digoxin-specific antibody fragments",
+          "label": "ให้ digoxin-specific antibody fragments (DigiFab)",
           "actions": [
             "Digoxin immune Fab IV",
-            "ตรวจโพแทสเซียมซ้ำใน 1 ชั่วโมง",
-            "ติดมอนิเตอร์หัวใจต่อเนื่อง"
+            "Recheck potassium in 1 hour",
+            "Continuous cardiac monitoring"
           ],
           "doseMap": {
-            "Digoxin immune Fab IV": "พิษรุนแรงที่ไม่ทราบขนาดยาที่กิน ให้ 10 ไวแอล IV ใน 30 นาที ให้ซ้ำถ้าไม่ตอบสนอง โพแทสเซียมจะลดลงเมื่อ Fab ออกฤทธิ์ ระวังโพแทสเซียมต่ำ Digoxin Fab อยู่ในรายการยาต้านพิษของศูนย์พิษวิทยารามาธิบดี โทร 1367 เพื่อหาโรงพยาบาลที่มียาใกล้ที่สุด"
+            "Digoxin immune Fab IV": "Life-threatening และไม่รู้ขนาดที่กิน: 10 vials IV ใน 30 นาที ไม่ดีขึ้นให้ซ้ำได้ K จะลดลงเมื่อ Fab ออกฤทธิ์ ระวัง hypokalemia ตามมา DigiFab อยู่ในรายการ antidote ของศูนย์พิษวิทยารามาธิบดี โทร 1367 ถามได้ว่ามียาที่ไหนใกล้สุด"
           },
           "distractors": [
             {
-              "label": "ฟอกเลือดเพื่อเอาดิจอกซินออก",
-              "feedback": "ดิจอกซินกระจายในร่างกายกว้างมาก การฟอกเลือดแทบเอาออกไม่ได้ ยาต้านพิษคือ Fab"
+              "label": "ส่ง HD เอา digoxin ออก",
+              "feedback": "Digoxin มี volume of distribution กว้างมาก HD แทบเอาออกไม่ได้ antidote คือ Fab"
             },
             {
-              "label": "รอผลระดับดิจอกซินซ้ำก่อนให้ยาต้านพิษ",
-              "feedback": "หัวใจเต้นช้าร่วมกับช็อกและโพแทสเซียมเกิน 5 คือพิษที่คุกคามชีวิต ให้ Fab ทันที"
+              "label": "รอเจาะ digoxin level ซ้ำก่อนค่อยให้ antidote",
+              "feedback": "Brady + shock + K > 5 คือ life-threatening toxicity แล้ว ให้ Fab เลย"
             }
           ]
         }
@@ -209,9 +209,9 @@
           "y": 200
         },
         "data": {
-          "label": "จังหวะหัวใจกลับมา",
+          "label": "Rhythm กลับมา",
           "outcomeType": "resolved",
-          "narrative": "ภายใน 40 นาที ชีพจร 72 ความดัน 118/70 โพแทสเซียมลดเหลือ 4.4 โดยไม่ต้องรักษาอื่น เขาตื่นขึ้นมาถามว่าทำไมทุกคนมายืนล้อมเตียง",
+          "narrative": "ภายใน 40 นาที HR 72 BP 118/70 K ลงเหลือ 4.4 เองโดยไม่ต้องให้อะไรเพิ่ม ลุงตื่นขึ้นมาถามว่าทำไมทุกคนมายืนล้อมเตียง",
           "vitalChanges": {
             "hr": 72,
             "sbp": 118,

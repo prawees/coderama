@@ -502,9 +502,73 @@ export function signpost(): PixelGrid {
   return g;
 }
 
+/** A red Thai post box by the door. Letters from patients arrive here. */
+export function postbox(): PixelGrid {
+  const g = new PixelGrid(16, 27);
+  const red = "#d9504a", light = "#ef7b68", dark = "#a8343a";
+  // domed cap
+  g.rect(5, 1, 10, 1, red); g.rect(4, 2, 11, 3, red); g.rect(3, 4, 12, 5, red);
+  g.hline(6, 8, 2, light); g.hline(5, 6, 3, light);
+  g.hline(2, 13, 6, dark);
+  // pillar
+  g.rect(3, 7, 12, 22, red);
+  g.vline(4, 7, 21, light);
+  g.vline(11, 7, 22, dark); g.vline(12, 7, 22, dark);
+  // letter slot with a little lip
+  g.rect(5, 9, 10, 10, C.ink); g.hline(5, 10, 11, dark);
+  // a little envelope badge
+  g.rect(5, 14, 10, 18, C.white);
+  g.stamp(5, 14, ["X    X", " X  X ", "  XX  "], { X: C.inkSoft });
+  // plinth
+  g.rect(2, 23, 13, 25, "#6b5f6f"); g.hline(2, 13, 23, "#8a7f8e");
+  g.outline(C.ink);
+  return g;
+}
+
+/** Floating paper krathong for Loy Krathong night: banana leaf, marigold, candle */
+export function krathong(): PixelGrid {
+  const g = new PixelGrid(12, 11);
+  g.rect(1, 7, 10, 8, C.leafDark); g.rect(2, 6, 9, 6, C.leaf); g.set(1, 6, C.leafLight); g.set(10, 6, C.leafLight);
+  g.rect(3, 4, 8, 5, "#f3a63b"); g.set(4, 4, C.sun); g.set(7, 4, C.sun);
+  g.vline(5, 1, 3, C.cream); g.vline(6, 2, 3, C.cream);
+  g.set(5, 0, "#ffd66b"); g.set(6, 1, "#fff1b8");
+  g.outline(C.ink);
+  return g;
+}
+
+/** Paper sky lantern drifting up on festival nights */
+export function skyLantern(): PixelGrid {
+  const g = new PixelGrid(7, 9);
+  g.rect(1, 1, 5, 6, "#ffb45c"); g.rect(2, 0, 4, 0, "#ffb45c");
+  g.rect(2, 2, 4, 5, "#ffe08a"); g.set(3, 3, "#fff6d0");
+  g.hline(2, 4, 7, "#c96d2c");
+  g.set(3, 8, "#ffd66b");
+  return g;
+}
+
+/** One bulb of a string of fairy lights */
+export function fairyBulb(color: string): PixelGrid {
+  const g = new PixelGrid(3, 4);
+  g.set(1, 0, "#4b4655");
+  g.rect(0, 1, 2, 2, color); g.set(1, 3, color); g.set(0, 1, mix(color, "#ffffff", 0.5));
+  return g;
+}
+
+export function raindrop(): PixelGrid {
+  const g = new PixelGrid(1, 4);
+  g.set(0, 0, "#cfe8f6"); g.set(0, 1, "#b5dcf0"); g.set(0, 2, "#9ccbe6"); g.set(0, 3, "#9ccbe6");
+  return g;
+}
+
+export function splash(): PixelGrid {
+  const g = new PixelGrid(5, 2);
+  g.set(0, 1, "#b5dcf0"); g.set(4, 1, "#b5dcf0"); g.set(1, 0, "#cfe8f6"); g.set(3, 0, "#cfe8f6");
+  return g;
+}
+
 /* ---------------- UI-in-world bits ---------------- */
 
-export type Emote = "heart" | "note" | "dots" | "alert" | "sleep" | "sweat" | "star" | "angry";
+export type Emote = "heart" | "note" | "dots" | "alert" | "sleep" | "sweat" | "star" | "angry" | "mail";
 
 export function emoteBubble(kind: Emote): PixelGrid {
   const g = new PixelGrid(12, 12);
@@ -524,6 +588,11 @@ export function emoteBubble(kind: Emote): PixelGrid {
     case "sweat": g.set(7, 3, "#7cc6df"); g.rect(6, 4, 8, 6, "#7cc6df"); g.set(7, 7, "#7cc6df"); break;
     case "star": g.stamp(2, 2, ["   X   ", "  XXX  ", "XXXXXXX", " XXXXX ", " X   X "], { X: C.gold }); break;
     case "angry": g.stamp(3, 2, ["X   X", " X X ", "     ", " X X ", "X   X"], { X: red }); break;
+    case "mail":
+      g.rect(2, 2, 9, 7, C.paper);
+      g.stamp(2, 2, ["XXXXXXXX", "XX    XX", "X X  X X", "X  XX  X", "X      X", "XXXXXXXX"], { X: C.woodDark });
+      g.set(5, 5, red); g.set(6, 5, red);
+      break;
   }
   g.outline(C.ink);
   return g;

@@ -112,7 +112,7 @@ export default function YearEndPage() {
         ))}
 
         <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5 }} className="cozy-panel w-full max-w-sm p-5 text-center relative">
-          <p className="text-[15px] leading-none text-[#6b5258] flex items-center justify-center gap-1.5">
+          <p className="text-[15px] leading-none text-[#86522e] flex items-center justify-center gap-1.5">
             <PixelIcon name="moon" size={13} />
             {language === "th" ? "จบบท" : "Chapter complete"}
           </p>
@@ -128,7 +128,7 @@ export default function YearEndPage() {
             {step >= 1 && (
               <motion.p key="line" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="text-[18px] leading-snug mt-4 text-left">
                 {ch.line[language]}
-                {coda && <span className="block mt-2 text-[#6b5258]">{coda}</span>}
+                {coda && <span className="block mt-2 text-[#86522e]">{coda}</span>}
               </motion.p>
             )}
           </AnimatePresence>

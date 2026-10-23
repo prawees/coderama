@@ -1,0 +1,17 @@
+cc: หอบเหนื่อย หายใจมีเสียงวี้ด
+bg: พ่อแม่พาลูกชาย 6 ขวบมา ER ช่วงฝุ่น PM 2.5 หนัก เป็น asthma อยู่เดิม พ่น salbutamol ที่บ้านแล้วไม่ดีขึ้น
+i.cxr1: Hyperinflation, flattened diaphragm ไม่มี consolidation หรือ pneumothorax
+start.n: Severe asthma exacerbation: SpO2 88% มี retraction พูดได้ทีละคำ ต้องทำอะไรทันที
+start.o0: O2 mask + NB salbutamol/ipratropium
+start.o1: Intubate ทันที
+start.o2: ให้ midazolam IV แก้กังวล
+start.o3: จ่าย amoxicillin กิน แล้ว D/C
+correct_o2_neb.n: ให้ O2 แล้ว SpO2 ขึ้นเป็น 94% NB ช่วยเปิดหลอดลม แต่ยังมี wheeze กับ retraction อยู่ ต่อไปต้องทำอะไร
+correct_o2_neb.o0: ให้ systemic steroid (dexamethasone หรือ hydrocortisone IV)
+correct_o2_neb.o1: ให้ MgSO4 IV
+wrong_intubate.n: Intubate คนไข้ severe asthma เสี่ยงมาก (bronchospasm, barotrauma) ใช้เป็นทางสุดท้าย ต้อง maximize medical treatment ก่อน เด็ก desat ลงเร็ว
+wrong_sedate.n: Sedate คนไข้ asthma กด respiratory drive เด็กหายใจไม่พอจนเกิด respiratory arrest
+wrong_discharge.n: นี่คือ severe life-threatening exacerbation ส่งกลับบ้านโดยไม่รักษาและไม่ observe เลยไม่ได้
+correct_steroids.n: Systemic steroid ลด airway inflammation ผ่านไป 1 ชม. retraction หาย wheeze ลดลง พูดได้เป็นประโยค admit ward เด็ก
+magnesium_early.n: MgSO4 IV เป็น adjunct ที่ดีใน severe asthma แต่ steroid คือแกนหลักในการรักษา inflammation และกันกำเริบซ้ำ ยังต้องให้ steroid
+magnesium_early.o0: ให้ systemic steroid

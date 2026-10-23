@@ -1,13 +1,13 @@
 {
-  "title": "\u0e0a\u0e32\u0e22 55 \u0e1b\u0e35 Code Blue (V-Fib)",
+  "title": "55yo M - Code Blue (V-Fib)",
   "age": "55",
   "sex": "M",
-  "chiefComplaint": "\u0e40\u0e08\u0e47\u0e1a\u0e41\u0e19\u0e48\u0e19\u0e2b\u0e19\u0e49\u0e32\u0e2d\u0e01 \u0e2b\u0e21\u0e14\u0e2a\u0e15\u0e34",
+  "chiefComplaint": "เจ็บหน้าอก แล้วหมดสติในห้องรอตรวจ",
   "diagnoses": [
     "Acute Myocardial Infarction",
     "Ventricular Fibrillation"
   ],
-  "background": "\u0e1c\u0e39\u0e49\u0e1b\u0e48\u0e27\u0e22\u0e01\u0e38\u0e21\u0e2b\u0e19\u0e49\u0e32\u0e2d\u0e01\u0e43\u0e19\u0e2b\u0e49\u0e2d\u0e07\u0e23\u0e2d\u0e15\u0e23\u0e27\u0e08\u0e41\u0e25\u0e49\u0e27\u0e25\u0e49\u0e21\u0e25\u0e07 \u0e04\u0e25\u0e33\u0e0a\u0e35\u0e1e\u0e08\u0e23\u0e44\u0e21\u0e48\u0e44\u0e14\u0e49 \u0e40\u0e27\u0e25\u0e32\u0e04\u0e37\u0e2d\u0e01\u0e25\u0e49\u0e32\u0e21\u0e40\u0e19\u0e37\u0e49\u0e2d\u0e2b\u0e31\u0e27\u0e43\u0e08",
+  "background": "คนไข้กุมหน้าอกแล้วล้มลงในห้องรอตรวจ คลำ pulse ไม่ได้ ทุกนาทีที่เสียไปคือกล้ามเนื้อหัวใจที่เสียไป",
   "patientAppearance": {
     "skinTone": "#ffc0cb",
     "bmiFactor": 1.2,
@@ -75,7 +75,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "Rhythm Strip",
-      "report": "Chaotic, irregular deflections of varying amplitude. No identifiable P waves, QRS complexes, or T waves.",
+      "report": "Chaotic irregular deflections ขนาดไม่เท่ากัน ไม่เห็น P wave, QRS หรือ T wave",
       "imageUrl": "",
       "abnormal": true
     }
@@ -88,29 +88,29 @@
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "\u0e1c\u0e39\u0e49\u0e1b\u0e48\u0e27\u0e22\u0e44\u0e21\u0e48\u0e21\u0e35\u0e0a\u0e35\u0e1e\u0e08\u0e23\u0e41\u0e25\u0e30\u0e44\u0e21\u0e48\u0e2b\u0e32\u0e22\u0e43\u0e08 \u0e21\u0e2d\u0e19\u0e34\u0e40\u0e15\u0e2d\u0e23\u0e4c\u0e41\u0e2a\u0e14\u0e07 Ventricular Fibrillation",
+        "narrative": "คนไข้ pulseless, apnea monitor ขึ้น VF",
         "options": [
           {
             "id": "opt1",
-            "text": "\u0e40\u0e23\u0e34\u0e48\u0e21 CPR \u0e41\u0e25\u0e30\u0e0a\u0e47\u0e2d\u0e01\u0e44\u0e1f\u0e1f\u0e49\u0e32 (200J)",
+            "text": "เริ่ม CPR และ defib 200 J",
             "targetNode": "cpr_shock",
             "requiredRank": "Intern"
           },
           {
             "id": "opt2",
-            "text": "\u0e09\u0e35\u0e14 Epinephrine 1mg IV",
+            "text": "Push adrenaline 1 mg IV",
             "targetNode": "epi_early",
             "requiredRank": "R1"
           },
           {
             "id": "opt3",
-            "text": "\u0e09\u0e35\u0e14 Amiodarone 300mg IV",
+            "text": "Push amiodarone 300 mg IV",
             "targetNode": "amio_early",
             "requiredRank": "R3"
           },
           {
             "id": "opt4",
-            "text": "\u0e43\u0e2a\u0e48\u0e17\u0e48\u0e2d\u0e0a\u0e48\u0e27\u0e22\u0e2b\u0e32\u0e22\u0e43\u0e08\u0e17\u0e31\u0e19\u0e17\u0e35",
+            "text": "Intubate ทันที",
             "targetNode": "intubate_early",
             "requiredRank": "R2"
           }
@@ -122,17 +122,17 @@
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "\u0e40\u0e23\u0e34\u0e48\u0e21 CPR \u0e41\u0e25\u0e30\u0e0a\u0e47\u0e2d\u0e01\u0e44\u0e1b\u0e2b\u0e19\u0e36\u0e48\u0e07\u0e04\u0e23\u0e31\u0e49\u0e07 \u0e2b\u0e25\u0e31\u0e07\u0e01\u0e14\u0e2b\u0e19\u0e49\u0e32\u0e2d\u0e01 2 \u0e19\u0e32\u0e17\u0e35 \u0e15\u0e23\u0e27\u0e08\u0e08\u0e31\u0e07\u0e2b\u0e27\u0e30\u0e22\u0e31\u0e07\u0e40\u0e1b\u0e47\u0e19 VF",
+        "narrative": "เริ่ม CPR และ shock ไป 1 ครั้ง กดหน้าอกครบ 2 นาที rhythm check ยังเป็น VF",
         "options": [
           {
             "id": "opt1",
-            "text": "\u0e0a\u0e47\u0e2d\u0e01\u0e2d\u0e35\u0e01\u0e04\u0e23\u0e31\u0e49\u0e07 (200 J) \u0e01\u0e14\u0e2b\u0e19\u0e49\u0e32\u0e2d\u0e01\u0e15\u0e48\u0e2d\u0e17\u0e31\u0e19\u0e17\u0e35 \u0e41\u0e25\u0e49\u0e27\u0e43\u0e2b\u0e49 adrenaline 1 mg IV",
+            "text": "Shock อีกครั้ง 200 J กดต่อทันที แล้วให้ adrenaline 1 mg IV",
             "targetNode": "correct_epi",
             "requiredRank": "Intern"
           },
           {
             "id": "opt2",
-            "text": "\u0e0a\u0e47\u0e2d\u0e01\u0e0b\u0e49\u0e2d\u0e19\u0e2d\u0e35\u0e01\u0e2a\u0e2d\u0e07\u0e04\u0e23\u0e31\u0e49\u0e07\u0e42\u0e14\u0e22\u0e44\u0e21\u0e48\u0e01\u0e14\u0e2b\u0e19\u0e49\u0e32\u0e2d\u0e01\u0e04\u0e31\u0e48\u0e19",
+            "text": "Shock ติดกันอีก 2 ครั้งโดยไม่กดหน้าอกคั่น",
             "targetNode": "shock_again",
             "requiredRank": "Intern"
           }
@@ -144,7 +144,7 @@
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "\u0e43\u0e2b\u0e49 epinephrine \u0e41\u0e25\u0e49\u0e27 \u0e41\u0e15\u0e48\u0e16\u0e49\u0e32\u0e44\u0e21\u0e48\u0e21\u0e35 CPR \u0e04\u0e38\u0e13\u0e20\u0e32\u0e1e\u0e14\u0e35\u0e41\u0e25\u0e30\u0e01\u0e32\u0e23\u0e0a\u0e47\u0e2d\u0e01\u0e44\u0e1f\u0e1f\u0e49\u0e32 \u0e22\u0e32\u0e40\u0e1e\u0e35\u0e22\u0e07\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e40\u0e14\u0e35\u0e22\u0e27\u0e44\u0e21\u0e48\u0e40\u0e1b\u0e25\u0e35\u0e48\u0e22\u0e19\u0e08\u0e31\u0e07\u0e2b\u0e27\u0e30\u0e2b\u0e31\u0e27\u0e43\u0e08",
+        "narrative": "ให้ adrenaline ไปแล้ว แต่ถ้าไม่มี high-quality CPR กับ defib ก็ไม่ convert rhythm",
         "options": null
       },
       "amio_early": {
@@ -153,7 +153,7 @@
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "Amiodarone \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e2a\u0e34\u0e48\u0e07\u0e41\u0e23\u0e01\u0e17\u0e35\u0e48\u0e15\u0e49\u0e2d\u0e07\u0e17\u0e33\u0e43\u0e19 VF \u0e01\u0e48\u0e2d\u0e19\u0e01\u0e32\u0e23\u0e0a\u0e47\u0e2d\u0e01 \u0e1c\u0e39\u0e49\u0e1b\u0e48\u0e27\u0e22\u0e22\u0e31\u0e07\u0e40\u0e1b\u0e47\u0e19 VF",
+        "narrative": "Amiodarone ไม่ใช่สิ่งแรกที่ทำใน VF ก่อน shock คนไข้ยังเป็น VF อยู่",
         "options": null
       },
       "intubate_early": {
@@ -162,7 +162,7 @@
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "\u0e01\u0e32\u0e23\u0e43\u0e2a\u0e48\u0e17\u0e48\u0e2d\u0e0a\u0e48\u0e27\u0e22\u0e2b\u0e32\u0e22\u0e43\u0e08\u0e17\u0e33\u0e43\u0e2b\u0e49 CPR \u0e41\u0e25\u0e30\u0e01\u0e32\u0e23\u0e0a\u0e47\u0e2d\u0e01\u0e25\u0e48\u0e32\u0e0a\u0e49\u0e32 \u0e0b\u0e36\u0e48\u0e07\u0e2a\u0e2d\u0e07\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e19\u0e35\u0e49\u0e2a\u0e33\u0e04\u0e31\u0e0d\u0e17\u0e35\u0e48\u0e2a\u0e38\u0e14\u0e43\u0e19\u0e0a\u0e48\u0e27\u0e07\u0e41\u0e23\u0e01\u0e02\u0e2d\u0e07 VF",
+        "narrative": "Intubate ตอนนี้ทำให้ CPR กับ defib ช้าลง ซึ่งสองอย่างนี้สำคัญที่สุดในช่วงแรกของ VF",
         "options": null
       },
       "correct_epi": {
@@ -171,17 +171,17 @@
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "\u0e0a\u0e47\u0e2d\u0e01\u0e04\u0e23\u0e31\u0e49\u0e07\u0e17\u0e35\u0e48\u0e2a\u0e2d\u0e07 \u0e01\u0e14\u0e2b\u0e19\u0e49\u0e32\u0e2d\u0e01\u0e15\u0e48\u0e2d\u0e17\u0e31\u0e19\u0e17\u0e35 \u0e43\u0e2b\u0e49 adrenaline 1 mg \u0e23\u0e30\u0e2b\u0e27\u0e48\u0e32\u0e07\u0e23\u0e2d\u0e1a \u0e15\u0e23\u0e27\u0e08\u0e08\u0e31\u0e07\u0e2b\u0e27\u0e30\u0e17\u0e35\u0e48 2 \u0e19\u0e32\u0e17\u0e35 \u0e22\u0e31\u0e07\u0e40\u0e1b\u0e47\u0e19 VF",
+        "narrative": "Shock ครั้งที่สอง กดต่อทันที ให้ adrenaline 1 mg ระหว่างรอบ rhythm check ที่ 2 นาที ยัง VF",
         "options": [
           {
             "id": "opt1",
-            "text": "\u0e0a\u0e47\u0e2d\u0e01\u0e2d\u0e35\u0e01\u0e04\u0e23\u0e31\u0e49\u0e07 \u0e01\u0e14\u0e2b\u0e19\u0e49\u0e32\u0e2d\u0e01\u0e15\u0e48\u0e2d \u0e41\u0e25\u0e49\u0e27\u0e43\u0e2b\u0e49 amiodarone 300 mg IV",
+            "text": "Shock อีกครั้ง กด CPR ต่อ แล้วให้ amiodarone 300 mg IV",
             "targetNode": "correct_amio",
             "requiredRank": "R1"
           },
           {
             "id": "opt2",
-            "text": "\u0e09\u0e35\u0e14 Atropine 1mg IV",
+            "text": "Push atropine 1 mg IV",
             "targetNode": "wrong_atropine",
             "requiredRank": "Intern"
           }
@@ -193,7 +193,7 @@
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "\u0e01\u0e32\u0e23\u0e0a\u0e47\u0e2d\u0e01\u0e0b\u0e49\u0e2d\u0e19\u0e42\u0e14\u0e22\u0e44\u0e21\u0e48\u0e01\u0e14\u0e2b\u0e19\u0e49\u0e32\u0e2d\u0e01\u0e04\u0e31\u0e48\u0e19 \u0e17\u0e33\u0e43\u0e2b\u0e49\u0e01\u0e25\u0e49\u0e32\u0e21\u0e40\u0e19\u0e37\u0e49\u0e2d\u0e2b\u0e31\u0e27\u0e43\u0e08\u0e44\u0e21\u0e48\u0e44\u0e14\u0e49\u0e40\u0e25\u0e37\u0e2d\u0e14\u0e23\u0e30\u0e2b\u0e27\u0e48\u0e32\u0e07\u0e0a\u0e47\u0e2d\u0e01 \u0e08\u0e31\u0e07\u0e2b\u0e27\u0e30\u0e2b\u0e31\u0e27\u0e43\u0e08\u0e40\u0e2a\u0e37\u0e48\u0e2d\u0e21\u0e25\u0e07\u0e40\u0e1b\u0e47\u0e19 asystole",
+        "narrative": "Shock ติดกันโดยไม่กดหน้าอก กล้ามเนื้อหัวใจไม่มีเลือดไปเลี้ยงระหว่างนั้น rhythm กลายเป็น asystole",
         "options": null
       },
       "correct_amio": {
@@ -202,7 +202,7 @@
           "hr": 85,
           "o2": "96%"
         },
-        "narrative": "\u0e0a\u0e47\u0e2d\u0e01\u0e04\u0e23\u0e31\u0e49\u0e07\u0e17\u0e35\u0e48\u0e2a\u0e32\u0e21 \u0e41\u0e25\u0e49\u0e27\u0e43\u0e2b\u0e49 amiodarone 300 mg \u0e43\u0e19\u0e23\u0e2d\u0e1a\u0e16\u0e31\u0e14\u0e44\u0e1b \u0e15\u0e23\u0e27\u0e08\u0e08\u0e31\u0e07\u0e2b\u0e27\u0e30\u0e1e\u0e1a\u0e08\u0e31\u0e07\u0e2b\u0e27\u0e30\u0e17\u0e35\u0e48\u0e40\u0e1b\u0e47\u0e19\u0e23\u0e30\u0e40\u0e1a\u0e35\u0e22\u0e1a\u0e41\u0e25\u0e30\u0e04\u0e25\u0e33\u0e0a\u0e35\u0e1e\u0e08\u0e23\u0e17\u0e35\u0e48\u0e04\u0e2d\u0e44\u0e14\u0e49 ROSC \u0e40\u0e15\u0e23\u0e35\u0e22\u0e21\u0e14\u0e39\u0e41\u0e25\u0e2b\u0e25\u0e31\u0e07\u0e2b\u0e31\u0e27\u0e43\u0e08\u0e2b\u0e22\u0e38\u0e14\u0e40\u0e15\u0e49\u0e19\u0e41\u0e25\u0e30\u0e17\u0e33 ECG 12 \u0e25\u0e35\u0e14",
+        "narrative": "Shock ครั้งที่สาม แล้วให้ amiodarone 300 mg ในรอบถัดไป rhythm check เห็น organized rhythm คลำ carotid ได้ ROSC แล้ว เตรียม post-cardiac arrest care และทำ EKG 12 leads",
         "options": null
       },
       "wrong_atropine": {
@@ -211,7 +211,7 @@
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "Atropine \u0e44\u0e21\u0e48\u0e21\u0e35\u0e02\u0e49\u0e2d\u0e1a\u0e48\u0e07\u0e0a\u0e35\u0e49\u0e43\u0e19 VF \u0e1c\u0e39\u0e49\u0e1b\u0e48\u0e27\u0e22\u0e41\u0e22\u0e48\u0e25\u0e07\u0e40\u0e1b\u0e47\u0e19 asystole",
+        "narrative": "Atropine ไม่มีที่ใช้ใน VF คนไข้แย่ลงเป็น asystole",
         "options": null
       }
     }

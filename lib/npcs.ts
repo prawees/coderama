@@ -27,7 +27,7 @@ export interface NpcDef {
 export const NPCS: Record<string, NpcDef> = {
   ann: {
     id: "ann",
-    name: l("Nurse Ann", "พยาบาลแอนน์"),
+    name: l("Nurse Ann", "พี่แอน"),
     look: { skin: "#f4c7a1", hair: "#2c2328", hairStyle: "long", outfit: "nurse", main: "#9fd3e6", accent: "#e07aa3", cap: "nurse" },
     voice: 1150,
     loves: ["thai_tea", "khanom_krok"], likes: ["coffee", "garland", "mango_sticky_rice"], hates: ["durian", "energy_drink"],
@@ -62,7 +62,7 @@ export const NPCS: Record<string, NpcDef> = {
   },
   bob: {
     id: "bob",
-    name: l("Dr. Bob", "หมอบ๊อบ"),
+    name: l("Dr. Bob", "พี่บ๊อบ"),
     look: { skin: "#e8b089", hair: "#5a3a2a", hairStyle: "spiky", outfit: "coat", main: "#ffffff", accent: "#5f9e8e", beard: true, stethoscope: true },
     voice: 520,
     loves: ["coffee", "durian"], likes: ["energy_drink", "khanom_krok"], hates: ["garland", "orchid"],
@@ -91,7 +91,7 @@ export const NPCS: Record<string, NpcDef> = {
   },
   somchai: {
     id: "somchai",
-    name: l("Prof. Somchai", "ศ.สมชาย"),
+    name: l("Prof. Somchai", "อ.สมชาย"),
     look: { skin: "#e8b089", hair: "#b8b2ad", hairStyle: "receding", outfit: "coat", main: "#ffffff", accent: "#7a2f3a", glasses: true, mustache: true, stethoscope: false },
     voice: 440,
     loves: ["orchid", "handbook"], likes: ["coffee", "garland"], hates: ["energy_drink", "khanom_krok", "durian"],
@@ -216,7 +216,7 @@ export const NPCS: Record<string, NpcDef> = {
   },
   kit: {
     id: "kit",
-    name: l("Ajarn Kit", "อาจารย์กิต"),
+    name: l("Ajarn Kit", "อ.กิต"),
     look: { skin: "#e8b089", hair: "#e9e4dc", hairStyle: "sidepart", outfit: "coat", main: "#ffffff", accent: "#3f4a6b", glasses: true },
     voice: 480,
     loves: ["orchid", "coffee"], likes: ["handbook", "garland"], hates: ["energy_drink", "durian"],
@@ -345,7 +345,7 @@ export const NPCS: Record<string, NpcDef> = {
   },
   wan: {
     id: "wan",
-    name: l("Nong Wan", "น้องหวาน"),
+    name: l("Nong Wan", "น้องวัน"),
     look: { skin: "#d19a6e", hair: "#2c2328", hairStyle: "curly", outfit: "casual", main: "#f6e3b0", accent: "#5fae5a", pants: "#3f4a6b" },
     voice: 1350,
     loves: ["mango_sticky_rice", "energy_drink"], likes: ["khanom_krok", "thai_tea"], hates: ["handbook"],
@@ -456,3 +456,27 @@ export const EXTRA_LOOKS: Record<string, Look> = {
   anuwat: { skin: "#e8b089", hair: "#2c2328", hairStyle: "sidepart", outfit: "suit", main: "#2f3550", accent: "#e8b84f", glasses: false, blush: false },
   director: { skin: "#d19a6e", hair: "#b8b2ad", hairStyle: "receding", outfit: "suit", main: "#24262e", accent: "#8a6d1f", glasses: true },
 };
+
+/** Thai names for story speakers who are not part of the walking cast */
+const OTHER_SPEAKERS: Record<string, string> = {
+  "khun anuwat (vip)": "คุณอนุวัฒน์",
+  "new extern": "extern ใหม่",
+  "eldest son": "ลูกชายคนโต",
+  "dr. tawan": "หมอตะวัน",
+  "lung suk (ambulance)": "ลุงสุข (กู้ภัย)",
+};
+
+/**
+ * The name shown on the dialogue ribbon. Story files keep English speaker ids so faces
+ * and voices stay matched; players see the name the ward would use. Null means narration.
+ */
+export function speakerLabel(speaker: string | undefined, playerName: string): string | null {
+  if (!speaker || speaker === "System" || speaker === "Narrator") return null;
+  if (speaker === "You") return playerName || "คุณ";
+  const lower = speaker.toLowerCase();
+  if (OTHER_SPEAKERS[lower]) return OTHER_SPEAKERS[lower];
+  const phone = /\(phone\)/i.test(speaker) ? " (โทรศัพท์)" : "";
+  const id = npcIdForSpeaker(speaker.replace(/\s*\(phone\)/i, ""));
+  if (id && NPCS[id]) return NPCS[id].name.th + phone;
+  return speaker;
+}
