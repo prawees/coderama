@@ -4,6 +4,7 @@ import { db } from "@/lib/firebase";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { PixelIcon } from "@/components/ui/PixelIcon";
 import { getRankFromXp, useERStore } from "@/lib/erStore";
+import { RANK_SHORT_TH } from "@/lib/localization";
 
 interface LeaderboardModalProps {
   onClose: () => void;
@@ -37,7 +38,7 @@ export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
   }, []);
 
   const universityScores = leaders.reduce((acc, curr) => {
-    const uni = curr.university || "Unknown";
+    const uni = curr.university || "ไม่ระบุ";
     acc[uni] = (acc[uni] || 0) + (curr.xp || 0);
     return acc;
   }, {} as Record<string, number>);
@@ -86,7 +87,7 @@ export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
             <p className="text-center text-[18px] text-[#86522e] py-8 animate-pulse">{tr("Dusting off the plaques...", "กำลังเช็ดป้ายรายชื่อ...")}</p>
           ) : failed || leaders.length === 0 ? (
             <p className="text-center text-[18px] text-[#86522e] py-8">
-              {failed ? tr("The board is offline. Sign in from Settings to post your name.", "บอร์ดออฟไลน์อยู่ ลงชื่อเข้าใช้ในหน้าตั้งค่าเพื่อขึ้นป้าย") : tr("No names yet. Yours could be first.", "ยังไม่มีใครเลย ชื่อหนูอาจเป็นชื่อแรก")}
+              {failed ? tr("The board is offline. Sign in from Settings to post your name.", "บอร์ดออฟไลน์อยู่ ลงชื่อเข้าใช้ในหน้าตั้งค่าเพื่อขึ้นป้าย") : tr("No names yet. Yours could be first.", "ยังไม่มีใครเลย ชื่อแรกอาจเป็นของหมอ")}
             </p>
           ) : tab === "individual" ? (
             leaders.slice(0, 10).map((l, i) => (
@@ -94,7 +95,7 @@ export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
                 key={l.id}
                 i={i}
                 name={l.displayName || tr("Mystery doctor", "หมอนิรนาม")}
-                sub={`${l.university && l.university !== "Unknown" ? `${l.university} · ` : ""}${getRankFromXp(l.xp || 0)}`}
+                sub={`${l.university && l.university !== "Unknown" ? `${l.university}, ` : ""}${RANK_SHORT_TH[getRankFromXp(l.xp || 0)] ?? getRankFromXp(l.xp || 0)}`}
                 right={`${l.xp || 0} XP`}
                 right2={tr(`Day ${l.day || 1}`, `วันที่ ${l.day || 1}`)}
               />

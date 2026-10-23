@@ -103,10 +103,10 @@ export interface GearItem {
 }
 
 export const GEAR_DATABASE: Record<string, GearItem> = {
-  'littmann_classic': { id: 'littmann_classic', name: 'Littmann Classic', type: 'stethoscope', statBonus: 'XP_BOOST', bonusValue: 1.1, cost: 500 },
-  'neon_scrubs': { id: 'neon_scrubs', name: 'Neon Scrubs', type: 'scrubs', statBonus: 'CASH_BOOST', bonusValue: 1.2, cost: 800 },
-  'running_shoes': { id: 'running_shoes', name: 'Running Shoes', type: 'shoes', statBonus: 'TIME_EXTENSION', bonusValue: 60, cost: 300 }, // +60 seconds to shift
-  'special_coffee': { id: 'special_coffee', name: 'Specialty Coffee', type: 'shoes', statBonus: 'TIME_EXTENSION', bonusValue: 0, cost: 50 }, // Used as a gift
+  'littmann_classic': { id: 'littmann_classic', name: 'หูฟัง Littmann Classic', type: 'stethoscope', statBonus: 'XP_BOOST', bonusValue: 1.1, cost: 500 },
+  'neon_scrubs': { id: 'neon_scrubs', name: 'ชุดสครับสีนีออน', type: 'scrubs', statBonus: 'CASH_BOOST', bonusValue: 1.2, cost: 800 },
+  'running_shoes': { id: 'running_shoes', name: 'รองเท้าวิ่ง', type: 'shoes', statBonus: 'TIME_EXTENSION', bonusValue: 60, cost: 300 }, // +60 seconds to shift
+  'special_coffee': { id: 'special_coffee', name: 'กาแฟพิเศษ', type: 'shoes', statBonus: 'TIME_EXTENSION', bonusValue: 0, cost: 50 }, // Used as a gift
 };
 
 export interface UpgradeItem {
@@ -118,9 +118,9 @@ export interface UpgradeItem {
 }
 
 export const UPGRADES_DATABASE: Record<string, UpgradeItem> = {
-  'upg_espresso': { id: 'upg_espresso', name: 'Espresso Machine', description: 'Restores 10 Energy at the start of every shift.', cost: 800, icon: 'coffee' },
-  'upg_pager': { id: 'upg_pager', name: 'Premium Pager', description: 'Earn 10% more Cash from all cases.', cost: 1500, icon: 'zap' },
-  'upg_lounge': { id: 'upg_lounge', name: 'Staff Lounge Sofa', description: 'Sleeping restores an extra 20 Energy.', cost: 1200, icon: 'sofa' },
+  'upg_espresso': { id: 'upg_espresso', name: 'เครื่องชงเอสเพรสโซ่', description: 'เริ่มเวรทุกครั้งได้พลังงานคืน 10', cost: 800, icon: 'coffee' },
+  'upg_pager': { id: 'upg_pager', name: 'เพจเจอร์รุ่นพรีเมียม', description: 'ได้เงินจากทุกเคสเพิ่ม 10%', cost: 1500, icon: 'zap' },
+  'upg_lounge': { id: 'upg_lounge', name: 'โซฟาห้องพักเจ้าหน้าที่', description: 'นอนแล้วได้พลังงานคืนเพิ่มอีก 20', cost: 1200, icon: 'sofa' },
 };
 
 export interface PlayerAppearance {

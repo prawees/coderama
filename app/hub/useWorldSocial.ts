@@ -13,14 +13,14 @@ type Lang = "en" | "th";
 const t = (lang: Lang, en: string, th: string) => (lang === "th" ? th : en);
 
 const PEARLS: { en: string; th: string }[] = [
-  { en: "In anaphylaxis, IM adrenaline into the thigh comes before everything else.", th: "ในภาวะแพ้รุนแรง ฉีดอะดรีนาลีนเข้ากล้ามที่ต้นขาก่อนทุกอย่าง" },
+  { en: "In anaphylaxis, IM adrenaline into the thigh comes before everything else.", th: "Anaphylaxis ให้ adrenaline IM ที่ต้นขาก่อนอย่างอื่น" },
   { en: "Dengue is most dangerous just after the fever breaks.", th: "ไข้เลือดออกอันตรายที่สุดช่วงหลังไข้ลง" },
-  { en: "Tension pneumothorax is a clinical diagnosis. Don't wait for the X-ray.", th: "ภาวะลมรั่วในช่องอกแบบมีแรงดันวินิจฉัยทางคลินิก อย่ารอเอกซเรย์" },
-  { en: "Check glucose in every confused patient. Every one.", th: "เจาะน้ำตาลในผู้ป่วยสับสนทุกราย ทุกรายจริงๆ" },
-  { en: "In DKA, fluids first, potassium checked, then insulin.", th: "ใน DKA ให้สารน้ำก่อน เช็กโพแทสเซียม แล้วค่อยให้อินซูลิน" },
-  { en: "Magnesium, not diazepam, for eclamptic seizures.", th: "ชักจากครรภ์เป็นพิษ ใช้แมกนีเซียม ไม่ใช่ไดอะซีแพม" },
-  { en: "Pain out of proportion to the exam: think necrotising fasciitis.", th: "ปวดมากเกินกว่าที่ตรวจพบ ให้นึกถึงเนื้อเน่า" },
-  { en: "In paraquat poisoning, withhold oxygen unless saturations fall.", th: "พิษพาราควอต อย่าให้ออกซิเจนเว้นแต่ค่าออกซิเจนต่ำ" },
+  { en: "Tension pneumothorax is a clinical diagnosis. Don't wait for the X-ray.", th: "Tension pneumothorax วินิจฉัยทาง clinical อย่ารอ film" },
+  { en: "Check glucose in every confused patient. Every one.", th: "คนไข้สับสนทุกคนต้องเจาะ DTX ทุกคนจริงๆ" },
+  { en: "In DKA, fluids first, potassium checked, then insulin.", th: "DKA ให้ fluid ก่อน ดู K แล้วค่อยให้ insulin" },
+  { en: "Magnesium, not diazepam, for eclamptic seizures.", th: "Eclampsia ชักให้ MgSO4 ไม่ใช่ diazepam" },
+  { en: "Pain out of proportion to the exam: think necrotising fasciitis.", th: "ปวดเกินสัดส่วนกับที่ตรวจเจอ คิดถึง necrotizing fasciitis" },
+  { en: "In paraquat poisoning, withhold oxygen unless saturations fall.", th: "Paraquat อย่าให้ O2 ยกเว้น SpO2 ตก" },
 ];
 
 const NOTICES: { en: string; th: string }[] = [
@@ -248,7 +248,7 @@ export function useWorldSocial(opts: {
       case "cat": return t(lang, "Pet Kanom", "ลูบหัวขนม");
       case "bed": {
         const has = useERStore.getState().activeCases.some((c) => c.bedIndex === target.bedIndex);
-        return has ? t(lang, `Treat patient (bed ${target.bedIndex + 1})`, `รักษาผู้ป่วย (เตียง ${target.bedIndex + 1})`) : t(lang, `Bed ${target.bedIndex + 1}`, `เตียง ${target.bedIndex + 1}`);
+        return has ? t(lang, `Treat patient (bed ${target.bedIndex + 1})`, `ดูคนไข้ (เตียง ${target.bedIndex + 1})`) : t(lang, `Bed ${target.bedIndex + 1}`, `เตียง ${target.bedIndex + 1}`);
       }
       case "prop": {
         const labels: Record<string, [string, string]> = {

@@ -38,6 +38,11 @@ export const getLocalizedRankTitle = (
   }
 };
 
+/** Rank as a ward would say it, without a name: "R1", "intern", "ผศ." */
+export const RANK_SHORT_TH: Record<string, string> = {
+  MS5: "นศพ. ปี 5", MS6: "extern", Intern: "intern", "Asst. Prof": "ผศ.", "Assoc. Prof": "รศ.", Prof: "ศ.",
+};
+
 export const translate = (key: string, lang: 'en' | 'th'): string => {
   const dict: Record<string, { en: string, th: string }> = {
     'hub_title': { en: 'ER CENTRAL COMMAND', th: 'ศูนย์ควบคุมฉุกเฉิน' },

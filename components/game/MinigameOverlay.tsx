@@ -94,14 +94,14 @@ export function MinigameOverlay({ interventionName, onComplete }: MinigameOverla
       <div className={`w-[90%] max-w-sm ${shake ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>
         <div className="cozy-panel flex flex-col items-center p-4 gap-3">
           <div className="w-full flex justify-between items-center text-[15px] leading-none text-[#86522e]">
-            <span>{isCPR ? "CPR · 100-120/min" : "Steady hands"}</span>
+            <span>{isCPR ? "CPR 100 ถึง 120 ครั้ง/นาที" : "มือนิ่งๆ"}</span>
             <span className="cozy-tag px-1.5 py-0.5">{isCPR ? "♥ 110" : "OK"}</span>
           </div>
 
           <h3 className="text-[30px] leading-none text-center">{interventionName}</h3>
 
           <p className={`text-[18px] leading-none px-3 py-1 rounded-[3px] border-2 border-[#3a2a2f] ${feedback === "success" ? "bg-[#c8ecb4]" : feedback === "fail" ? "bg-[#f6c3c6]" : "bg-[#fff6e3]"}`}>
-            {feedback === "success" ? "Perfect timing!" : feedback === "fail" ? "Missed it!" : "Target the Green Zone"}
+            {feedback === "success" ? "จังหวะพอดี" : feedback === "fail" ? "พลาดไปนิด" : "กดให้ตรงช่องสีเขียว"}
           </p>
 
           <div
@@ -119,7 +119,7 @@ export function MinigameOverlay({ interventionName, onComplete }: MinigameOverla
           </div>
 
           <p className="text-[15px] leading-none text-[#86522e]">
-            {feedback === "idle" ? "Tap the bar or press Space" : "..."}
+            {feedback === "idle" ? "แตะที่แถบ หรือกด Space" : "..."}
           </p>
         </div>
       </div>
