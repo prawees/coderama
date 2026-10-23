@@ -12,6 +12,7 @@ import { phaseForDay, LOCATION_NAMES, MapId } from "@/lib/world/maps";
 import { playerLookFrom } from "@/lib/playerLook";
 import { useWorldSocial } from "./useWorldSocial";
 import { patientFor } from "@/lib/patients";
+import { pickCase } from "@/lib/schedule";
 import { PATIENT_SKIN } from "@/lib/patientSkin";
 import { STARTER_QUESTS, QUEST_DATABASE } from "@/lib/quests";
 import { PixelIcon } from "@/components/ui/PixelIcon";
@@ -26,7 +27,7 @@ import { LeaderboardModal } from "@/components/game/LeaderboardModal";
 import { ConsultsModal } from "@/components/game/ConsultsModal";
 import { SettingsMenu } from "@/components/game/SettingsMenu";
 import { CutsceneNode, CutsceneChoice } from "@/lib/StoryManager";
-import { getDayStory, advanceQueue, resolveRouters, visibleChoices } from "@/lib/story";
+import { getDayStory, advanceQueue, resolveRouters, visibleChoices, shiftStartMinutes, worldLightMinutes } from "@/lib/story";
 import { audio } from "@/lib/audio";
 import { music, TrackId } from "@/lib/music";
 import { AnimatePresence } from "framer-motion";
@@ -45,7 +46,7 @@ export default function HubPage() {
     tutorialCompleted, completeTutorial, updateFriendship, friendships,
     activeQuests, completedQuests, startQuest, completeQuest, restoreEnergy,
     currentDay, incrementDay, inventory, removeFromInventory, setStoryFlag, addKarma, addXp, forcePromote, storyFlags,
-    hospitalUpgrades
+    hospitalUpgrades, shiftStats
   } = useERStore();
   
   const hydrated = useHydrated();
@@ -163,13 +164,13 @@ export default function HubPage() {
     if (!hydrated) return;
     if (!tutorialCompleted) {
       audio.playPAChime();
+      // Read the saved name at this moment; never greet anyone by the store's placeholder
+      const saved = useERStore.getState().playerName;
+      const name = saved && saved !== 'Doctor' ? saved : '';
       setDialogueQueue([
-        { speaker: "Prof. Somchai", text: `ยินดีต้อนรับสู่ ER นะ น้อง${playerName}` },
-        { speaker: "Prof. Somchai", text: `วันแรกก็เจอเวรเยินเลย คนไข้ล้น แอร์ไม่เย็น เครื่องชงกาแฟก็เพิ่งพัง` },
-        { speaker: "Prof. Somchai", text: `เคสที่นี่ออกสอบ NL ทั้งนั้น ดูให้ดีล่ะ` },
-        { speaker: "Prof. Somchai", text: `เพจเจอร์ดังเมื่อไหร่ แตะที่เตียง หรือเดินไปกด A เพื่อดูคนไข้ อย่าปล่อยให้เขารอนาน` },
-        { speaker: "Nurse Ann", text: `ว่างๆ ก็แวะมาคุยกับพวกพี่บ้างนะหมอ ทุกคนมีของโปรด แอบดูได้ที่บอร์ดหน้าห้อง` },
-        { speaker: "Prof. Somchai", text: `โชคดีนะ น้องต้องใช้แน่` }
+        { speaker: "Prof. Somchai", text: `ยินดีต้อนรับสู่ ER นะ น้อง${name} เคสที่นี่ออกสอบ NL ทั้งนั้น ดูให้ดีล่ะ` },
+        { speaker: "Nurse Ann", text: `เพจเจอร์ดังเมื่อไหร่ แตะที่เตียงด้านล่างได้เลยค่ะหมอ ว่างๆ แวะมาคุยกับพวกพี่ด้วยนะ ทุกคนมีของโปรด` },
+        { speaker: "Prof. Somchai", text: `กดเริ่มเวรได้เลย โชคดีนะ` }
       ]);
     }
     
@@ -182,6 +183,22 @@ export default function HubPage() {
   // Start a scene, skipping any flag-check node it opens on
   const playable = (scene: CutsceneNode[]) =>
     resolveRouters(scene, getDayStory(currentDay, language), useERStore.getState().storyFlags);
+
+  /** Skip to the next decision, or to the scene's last line, so the end-of-scene logic still runs on the next tap */
+  const skipScene = () => {
+    const story = getDayStory(currentDay, language);
+    const flags = useERStore.getState().storyFlags;
+    let q = dialogueQueue;
+    for (let guard = 0; q.length && guard < 300; guard++) {
+      const head = q[0];
+      if ((visibleChoices(head.choices, flags) ?? []).length) break;
+      const nq = resolveRouters(advanceQueue(q, story, head.nextId), story, flags);
+      if (!nq.length) break;
+      q = nq;
+    }
+    if (q !== dialogueQueue) setDialogueQueue(q);
+  };
+  const canSkip = dialogueQueue.length > 1 || Boolean(dialogueQueue[0]?.nextId);
 
   const handleDialogueComplete = (choice?: CutsceneChoice) => {
     // World chats and gifting run their own action instead of following nextId
@@ -247,6 +264,7 @@ export default function HubPage() {
              receivedAt: Date.now(),
              expiresAt: Date.now() + 5 * 60 * 1000,
            });
+           useERStore.getState().markSpawned(caseToInject);
            const who = patientFor(caseToInject);
            if (who) setPagerMessage(`${who.name.th} ${who.age.th}\n${who.pager.th}`);
            setCaseToInject(null);
@@ -301,7 +319,7 @@ export default function HubPage() {
       
     }, tickRate);
 
-    const spawner = setInterval(() => {
+    const spawnTick = () => {
       const state = useERStore.getState();
       if (shiftMode === 'boss-battle') {
          // BOSS BATTLE SCRIPT
@@ -345,11 +363,20 @@ export default function HubPage() {
          if (dayCases.length > 0) {
             possibleCases = dayCases;
          }
-         
-         if (state.activeCases.length < maxCases && Math.random() < spawnChance) {
+         const earlierCases = Array.from({ length: Math.max(0, currentDay - 1) }, (_, i) => getDayStory(i + 1, language).cases).flat();
+         const selectedCase = pickCase({
+            today: possibleCases,
+            earlier: earlierCases,
+            excluded: [...state.activeCases.map((c) => c.caseDataId), ...(state.shiftStats.spawned ?? [])],
+            met: Object.keys(state.patientLog),
+         });
+
+         // An empty ER fills at once, so nobody waits around for their first patient
+         const chance = state.activeCases.length === 0 ? 1 : spawnChance;
+         if (selectedCase && state.activeCases.length < maxCases && Math.random() < chance) {
             audio.playPager();
             addLog("คนไข้ใหม่เข้า ER");
-            const selectedCase = possibleCases[Math.floor(Math.random() * possibleCases.length)];
+            state.markSpawned(selectedCase);
             
             const who = patientFor(selectedCase);
             setPagerMessage(who ? `${who.name.th} ${who.age.th}\n${who.pager.th}` : 'มีคนไข้ใหม่ค่ะหมอ');
@@ -363,11 +390,14 @@ export default function HubPage() {
             });
          }
       }
-    }, spawnRate);
+    };
+    const spawner = setInterval(spawnTick, spawnRate);
+    const firstSpawn = activeCases.length === 0 ? setTimeout(spawnTick, 1500) : undefined;
 
     return () => {
       clearInterval(timer);
       clearInterval(spawner);
+      clearTimeout(firstSpawn);
     };
   }, [shiftMode, activeCases.length, currentEra, currentDay, isFastForwarding, dialogueQueue.length]);
 
@@ -476,8 +506,26 @@ export default function HubPage() {
 
   // Clocking out early still plays the end-of-day scene and advances the day.
   // Surrendering the promotion exam returns to the summary without advancing.
+  // The story is the reward for the shift, so a shift has to have patients in it.
+  // Two taps to clock out, so a thumb aimed at a bed never ends the day.
+  const MIN_PATIENTS = 2;
+  const [endArmed, setEndArmed] = useState(false);
+  const patientsSeen = shiftStats.casesTreated;
+  const canClockOut = shiftMode === 'boss-battle' || patientsSeen >= MIN_PATIENTS || clockMinutes >= 540;
+  useEffect(() => {
+    if (!endArmed) return;
+    const t = setTimeout(() => setEndArmed(false), 3000);
+    return () => clearTimeout(t);
+  }, [endArmed]);
+
   const requestEndShift = () => {
     audio.playClick();
+    if (!canClockOut) {
+      showToast(`ดูคนไข้อีก ${MIN_PATIENTS - patientsSeen} คนก่อนออกเวรนะ`);
+      return;
+    }
+    if (!endArmed) { setEndArmed(true); return; }
+    setEndArmed(false);
     if (shiftMode === 'boss-battle') {
       setShiftMode('off-duty');
       router.push('/summary');
@@ -561,9 +609,13 @@ export default function HubPage() {
     setCurrentMap(target);
   };
 
+  // The clock starts when the day's story says the shift starts, and the light follows real time of day
+  const shiftStart = useMemo(() => shiftStartMinutes(getDayStory(currentDay, language)), [currentDay, language]);
+  const timeOfDay = (shiftStart + clockMinutes) % 1440;
   const formatTime = (mins: number) => {
-    const hours = Math.floor(mins / 60) + 8;
-    const m = mins % 60;
+    const t = (shiftStart + mins) % 1440;
+    const hours = Math.floor(t / 60);
+    const m = t % 60;
     return `${hours.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
   };
 
@@ -586,7 +638,7 @@ export default function HubPage() {
           playerLook={playerLook}
           activeCases={activeCases}
           mail={hasMail}
-          clockMinutes={clockMinutes}
+          clockMinutes={onShift ? worldLightMinutes(timeOfDay) : clockMinutes}
           onShift={onShift}
           paused={dialogueQueue.length > 0 || anyModal || dayCard !== null}
           fastForward={isFastForwarding}
@@ -601,7 +653,7 @@ export default function HubPage() {
         {/* Day and time plaque */}
         <div className="absolute top-2 left-2 z-40 cozy-tag px-2 py-1 pointer-events-none" data-testid="hud-day">
           <div className="flex items-center gap-1.5 text-[18px] leading-none">
-            <PixelIcon name={!onShift || clockMinutes < 450 ? 'sun' : 'moon'} size={15} />
+            <PixelIcon name={timeOfDay >= 360 && timeOfDay < 1110 ? 'sun' : 'moon'} size={15} />
             <span>{tr('Day', 'วันที่')} {currentDay}</span>
             <span className="tabular-nums text-[#86522e]">{formatTime(clockMinutes)}</span>
           </div>
@@ -647,6 +699,7 @@ export default function HubPage() {
             choices={visibleChoices(dialogueQueue[0].choices, storyFlags)}
             voice={dialogueQueue[0].voice}
             onComplete={handleDialogueComplete}
+            onSkip={canSkip ? skipScene : undefined}
           />
         )}
 
@@ -693,8 +746,11 @@ export default function HubPage() {
               })}
             </div>
             <div className="flex gap-2">
-              <PixelButton onClick={requestEndShift} disabled={dialogueQueue.length > 0} variant="alert" className="flex-1 py-2 text-[19px]">
-                {shiftMode === 'boss-battle' ? tr('Surrender', 'ยอมแพ้') : tr('End shift', 'ออกเวร')}
+              <PixelButton onClick={requestEndShift} disabled={dialogueQueue.length > 0} variant={endArmed ? 'alert' : 'wood'} className="flex-1 py-1.5 text-[17px]" data-testid="end-shift">
+                {endArmed
+                  ? (activeCases.length ? `ยังมีคนไข้รอ ${activeCases.length} คน แตะอีกครั้ง` : 'แตะอีกครั้งเพื่อออกเวร')
+                  : shiftMode === 'boss-battle' ? 'ยอมแพ้'
+                  : canClockOut ? 'ออกเวร' : `ออกเวร (ดูอีก ${MIN_PATIENTS - patientsSeen} คน)`}
               </PixelButton>
               {activeCases.length === 0 && (
                 <PixelButton onClick={() => { setIsFastForwarding(true); fastForwardTarget.current = clockMinutes + 60; }} variant="gold" className="flex-1 py-2 text-[19px] flex items-center justify-center gap-1.5">

@@ -93,10 +93,11 @@
   "investigations": [
     {
       "id": "prev1",
+      "onFile": true,
       "kind": "lab",
       "category": "Records",
-      "name": "Executive health package, 11 weeks ago",
-      "value": "All within normal limits",
+      "name": "ผลตรวจสุขภาพผู้บริหาร เมื่อ 11 สัปดาห์ก่อน",
+      "value": "ปกติทั้งหมด",
       "unit": "-",
       "normalRange": "-",
       "abnormal": false,
@@ -106,7 +107,7 @@
       "id": "lft1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Liver function tests (if ordered)",
+      "name": "LFT",
       "value": "Bilirubin 0.8, ALP 78, AST 26, ALT 31",
       "unit": "-",
       "normalRange": "ALT <41 U/L",
@@ -115,9 +116,10 @@
     },
     {
       "id": "ca199",
+      "indicated": false,
       "kind": "lab",
       "category": "Tumour markers",
-      "name": "CA 19-9 (requested by patient)",
+      "name": "CA 19-9 (คนไข้ขอ)",
       "value": "Not performed",
       "unit": "U/mL",
       "normalRange": "<37",
@@ -126,18 +128,20 @@
     },
     {
       "id": "mri1",
+      "indicated": false,
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Whole-body MRI (requested by patient)",
+      "name": "Whole-body MRI (คนไข้ขอ)",
       "report": "ไม่ได้ทำ ผู้ใหญ่ไม่มีอาการราว 30 ถึง 40% มี incidental finding อย่างน้อยหนึ่งอย่างใน MRI ทั้งตัว ส่วนใหญ่ไม่ร้าย แต่การตรวจต่อเป็นทอดๆ ที่ตามมามีความเสี่ยงทางกายที่วัดได้ และไม่มีหลักฐานว่าลด mortality ในผู้ใหญ่ไม่มีอาการที่ความเสี่ยงปกติ",
       "imageUrl": "",
       "abnormal": false
     },
     {
       "id": "ct1",
+      "indicated": false,
       "kind": "imaging",
       "category": "Imaging",
-      "name": "CT abdomen (requested by patient)",
+      "name": "CT abdomen (คนไข้ขอ)",
       "report": "ไม่ได้ทำ effective dose ราว 8 mSv ไม่มี indication คัดกรอง ไม่มีอาการให้สืบค้น",
       "imageUrl": "",
       "abnormal": false
@@ -177,13 +181,13 @@
           ],
           "label": "ซักประวัติและตรวจร่างกายให้ดี อย่าข้ามไปต่อรองเลย",
           "actions": [
-            "Full history including family history and risk factors",
-            "Complete abdominal examination",
-            "Review the executive package from 11 weeks ago",
-            "Screen for genuine red flags"
+            "ซักประวัติให้ครบ รวมประวัติครอบครัวและปัจจัยเสี่ยง",
+            "ตรวจท้องให้ครบ",
+            "ดูผลตรวจสุขภาพผู้บริหารเมื่อ 11 สัปดาห์ก่อน",
+            "Screen red flag ที่มีจริง"
           ],
           "doseMap": {
-            "Screen for genuine red flags": "ตัวเหลืองแบบไม่ปวด น้ำหนักลดไม่ทราบสาเหตุ เบาหวานเพิ่งเป็นหลังอายุ 50 ถ่ายเป็นมัน ปวดหลังไม่หาย เขาไม่มีเลย ถ้ามีญาติสายตรงเป็นจะเปลี่ยนการคำนวณ แต่ก็ไม่มี"
+            "Screen red flag ที่มีจริง": "ตัวเหลืองแบบไม่ปวด น้ำหนักลดไม่ทราบสาเหตุ เบาหวานเพิ่งเป็นหลังอายุ 50 ถ่ายเป็นมัน ปวดหลังไม่หาย เขาไม่มีเลย ถ้ามีญาติสายตรงเป็นจะเปลี่ยนการคำนวณ แต่ก็ไม่มี"
           }
         }
       },
@@ -195,6 +199,7 @@
           "y": 200
         },
         "data": {
+          "choice": "สรุปว่าไม่มี red flag แล้วคุยเรื่องที่เขากังวล",
           "label": "ไม่มี indication ทำ imaging ฉุกเฉิน",
           "outcomeType": "improved",
           "narrative": "ไม่มีอาการนอกจากกรดไหลย้อนหลังอาหาร ตรวจร่างกายปกติ ผลตรวจครบเมื่อ 11 สัปดาห์ก่อนปกติ ไม่มีประวัติครอบครัว ไม่มี red flag ไม่มีคำถามฉุกเฉินให้ตอบที่นี่",
@@ -234,13 +239,13 @@
           ],
           "label": "ปฏิเสธ imaging และ marker ที่ไม่มี indication",
           "actions": [
-            "No whole-body MRI",
-            "No CT abdomen",
-            "No CA 19-9 or tumour marker panel",
-            "Document the discussion and the reasoning"
+            "ไม่ทำ MRI ทั้งตัว",
+            "ไม่ทำ CT ท้อง",
+            "ไม่ส่ง CA 19-9 หรือ tumour marker",
+            "บันทึกการคุยและเหตุผล"
           ],
           "doseMap": {
-            "Document the discussion and the reasoning": "บันทึกว่าขออะไร ปฏิเสธอะไร ทำไม และคนไข้เข้าใจ ป้องกันเขาจากหมอคนถัดไปที่จะตอบตกลง และป้องกันตัวหมอเอง"
+            "บันทึกการคุยและเหตุผล": "บันทึกว่าขออะไร ปฏิเสธอะไร ทำไม และคนไข้เข้าใจ ป้องกันเขาจากหมอคนถัดไปที่จะตอบตกลง และป้องกันตัวหมอเอง"
           }
         }
       },
@@ -264,12 +269,12 @@
           ],
           "label": "ดูแลอาการที่เขามีจริง",
           "actions": [
-            "Trial of a proton pump inhibitor for reflux",
-            "Advice on late meals and alcohol",
-            "Blood pressure recheck out of hours in a calm setting"
+            "ลองให้ PPI สำหรับกรดไหลย้อน",
+            "แนะนำเรื่องกินมื้อดึกและแอลกอฮอล์",
+            "วัด BP ซ้ำนอกเวลาในที่ที่สงบ"
           ],
           "doseMap": {
-            "Trial of a proton pump inhibitor for reflux": "Omeprazole 20 mg วันละครั้ง 4 สัปดาห์แล้วนัดดู ถ้าไม่หายหรือมี alarm feature ค่อยทำ endoscopy ตาม indication จริง"
+            "ลองให้ PPI สำหรับกรดไหลย้อน": "Omeprazole 20 mg วันละครั้ง 4 สัปดาห์แล้วนัดดู ถ้าไม่หายหรือมี alarm feature ค่อยทำ endoscopy ตาม indication จริง"
           }
         }
       },
@@ -293,13 +298,13 @@
           ],
           "label": "ชี้ทางไปการคัดกรองที่มีหลักฐาน ในที่ที่ถูกต้อง",
           "actions": [
-            "Refer to primary care or the health screening clinic, not the emergency department",
-            "Offer colorectal cancer screening, which is age appropriate and evidence based",
-            "Cardiovascular risk assessment",
-            "Written red flag advice"
+            "ส่งต่อแพทย์ปฐมภูมิหรือคลินิกตรวจสุขภาพ ไม่ใช่ ER",
+            "เสนอคัดกรองมะเร็งลำไส้ใหญ่ ซึ่งเหมาะกับอายุและมีหลักฐาน",
+            "ประเมินความเสี่ยงโรคหัวใจและหลอดเลือด",
+            "คำแนะนำ red flag เป็นลายลักษณ์อักษร"
           ],
           "doseMap": {
-            "Offer colorectal cancer screening, which is age appropriate and evidence based": "อายุ 51 การคัดกรองนี้ลด mortality ได้จริง ต่างจากทุกอย่างที่เขาขอ เปลี่ยนทิศแรงกระตุ้นได้ผลกว่าปฏิเสธมัน"
+            "เสนอคัดกรองมะเร็งลำไส้ใหญ่ ซึ่งเหมาะกับอายุและมีหลักฐาน": "อายุ 51 การคัดกรองนี้ลด mortality ได้จริง ต่างจากทุกอย่างที่เขาขอ เปลี่ยนทิศแรงกระตุ้นได้ผลกว่าปฏิเสธมัน"
           }
         }
       },
@@ -325,6 +330,7 @@
           "y": 340
         },
         "data": {
+          "choice": "สั่ง MRI ทั้งตัวและ tumour marker ตามที่เขาจ่ายเงินมา",
           "label": "เส้นทางตามใจลูกค้า",
           "outcomeType": "worsened",
           "narrative": "ถ้าสั่งตามที่ขอ MRI ทั้งตัวเจอ adrenal adenoma 12 mm กับ renal cyst 7 mm CA 19-9 ได้ 44 U/mL ต่อด้วย consult endocrine, dexamethasone suppression test, imaging ซ้ำตามนัด, EUS ที่เห็นตับอ่อนปกติ และเลือดออกเล็กน้อยตอน biopsy ต้อง admit 18 เดือนต่อมาทุกอย่างยืนยันว่าไม่ร้าย รายได้แผนกครั้งนี้ 142,000 บาท คุณมาลีส่งข้อความแสดงความยินดี",

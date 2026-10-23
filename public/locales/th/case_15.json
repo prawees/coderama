@@ -94,7 +94,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Tympanic temperature (repeat)",
+      "name": "อุณหภูมิทางหู (ซ้ำ)",
       "value": "37.2",
       "unit": "C",
       "normalRange": "36.5-37.5",
@@ -103,9 +103,10 @@
     },
     {
       "id": "cbc1",
+      "indicated": false,
       "kind": "lab",
       "category": "CBC",
-      "name": "Complete blood count (if ordered)",
+      "name": "CBC",
       "value": "WBC 7.4, neutrophils 58%",
       "unit": "x10^9/L",
       "normalRange": "4.0-11.0",
@@ -114,18 +115,20 @@
     },
     {
       "id": "cxr1",
+      "indicated": false,
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Chest X-ray (if ordered)",
+      "name": "CXR",
       "report": "ปอดปกติ หัวใจขนาดปกติ ไม่มี consolidation ไม่มี indication ไม่มีไข้ ไม่หอบเร็ว ไม่ desat ตรวจปอดไม่มี focal sign โอกาสเป็น pneumonia ต่ำกว่า 1% รังสีกับค่าใช้จ่ายเสียเปล่า",
       "imageUrl": "",
       "abnormal": false
     },
     {
       "id": "strep1",
+      "indicated": false,
       "kind": "lab",
       "category": "Micro",
-      "name": "Rapid streptococcal antigen (if ordered)",
+      "name": "Rapid strep test",
       "value": "Negative",
       "unit": "-",
       "normalRange": "Negative",
@@ -136,7 +139,7 @@
       "id": "sat1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Pulse oximetry on room air",
+      "name": "SpO2 ที่ room air",
       "value": "99",
       "unit": "%",
       "normalRange": "95-100",
@@ -177,9 +180,9 @@
           ],
           "label": "ซักประวัติ ตรวจร่างกายแบบ focused หา red flag",
           "actions": [
-            "Full vital signs",
-            "HENT and chest examination",
-            "Screen for red flags: dyspnoea, chest pain, stridor, dehydration, immunosuppression, neck stiffness"
+            "V/S ครบ",
+            "ตรวจหู คอ จมูก และปอด",
+            "Screen red flag: หอบ เจ็บหน้าอก stridor ขาดน้ำ ภูมิต่ำ คอแข็ง"
           ],
           "doseMap": {}
         }
@@ -192,6 +195,7 @@
           "y": 200
         },
         "data": {
+          "choice": "สรุปว่าไม่มี red flag แล้วคุยเรื่องที่เธอกังวล",
           "label": "ไม่มีภาวะฉุกเฉิน",
           "outcomeType": "improved",
           "narrative": "V/S ปกติ ปอดใส Centor 0 ไม่มี red flag เป็น viral illness ที่หายเองได้ วันที่ 3 ของโรคที่ปกติเป็น 7 ถึง 10 วัน ไม่มีอะไรที่ต้องใช้ ER",
@@ -232,13 +236,13 @@
           ],
           "label": "ปฏิเสธสิ่งที่ไม่มี indication และบอกเหตุผล",
           "actions": [
-            "No IV fluids: she is drinking normally",
-            "No antibiotics: viral illness, Centor 0",
-            "No routine bloods or chest X-ray",
-            "Address the underlying concern about the flight"
+            "ไม่ให้น้ำเกลือ เธอดื่มน้ำได้ปกติ",
+            "ไม่ให้ antibiotic เป็นไวรัส Centor 0",
+            "ไม่เจาะเลือดหรือ CXR แบบ routine",
+            "คุยเรื่องที่เธอกังวลจริงๆ คือเที่ยวบิน"
           ],
           "doseMap": {
-            "No antibiotics: viral illness, Centor 0": "บอกผลเสียให้เป็นรูปธรรม เชื้อดื้อยา ท้องเสียราว 1 ใน 10 และมีโอกาสแพ้ยาทางผิวหนังรุนแรงเล็กน้อย ปฏิเสธลอยๆ คนไข้จะไปหาหมอคนใหม่ บอกเหตุผลชัดๆ จะไม่ไป"
+            "ไม่ให้ antibiotic เป็นไวรัส Centor 0": "บอกผลเสียให้เป็นรูปธรรม เชื้อดื้อยา ท้องเสียราว 1 ใน 10 และมีโอกาสแพ้ยาทางผิวหนังรุนแรงเล็กน้อย ปฏิเสธลอยๆ คนไข้จะไปหาหมอคนใหม่ บอกเหตุผลชัดๆ จะไม่ไป"
           }
         }
       },
@@ -263,8 +267,8 @@
           "label": "รักษาตามอาการด้วยยาที่ซื้อเองได้",
           "actions": [
             "Paracetamol",
-            "Saline nasal irrigation",
-            "Fluids and rest advice"
+            "ล้างจมูกด้วย NSS",
+            "แนะนำดื่มน้ำและพักผ่อน"
           ],
           "doseMap": {
             "Paracetamol": "500 ถึง 1000 mg กินทุก 6 ชม. เวลามีอาการ ไม่เกิน 4 g/วัน"
@@ -291,12 +295,12 @@
           ],
           "label": "ส่งไปถูกที่ และให้คำแนะนำอาการที่ต้องกลับมาเป็นลายลักษณ์อักษร",
           "actions": [
-            "Refer to outpatient department or the primary care unit for routine follow up",
-            "Written return advice",
-            "Medical certificate only if genuinely indicated"
+            "นัด OPD หรือ รพ.สต. ตามปกติ",
+            "คำแนะนำว่าเมื่อไรต้องกลับมา เป็นลายลักษณ์อักษร",
+            "ใบรับรองแพทย์เฉพาะเมื่อมีข้อบ่งชี้จริง"
           ],
           "doseMap": {
-            "Written return advice": "กลับมาถ้าหอบเหนื่อย เจ็บหน้าอก ไข้เกิน 38.5 C นานกว่า 3 วัน กลืนน้ำไม่ได้ หรืออาการแย่ลงหลังวันที่ 10"
+            "คำแนะนำว่าเมื่อไรต้องกลับมา เป็นลายลักษณ์อักษร": "กลับมาถ้าหอบเหนื่อย เจ็บหน้าอก ไข้เกิน 38.5 C นานกว่า 3 วัน กลืนน้ำไม่ได้ หรืออาการแย่ลงหลังวันที่ 10"
           }
         }
       },
@@ -322,6 +326,7 @@
           "y": 340
         },
         "data": {
+          "choice": "ให้น้ำเกลือ ฉีดยาฆ่าเชื้อ และส่ง CXR ตามที่เธอขอ",
           "label": "เส้นทางที่เปลืองทรัพยากร",
           "outcomeType": "worsened",
           "narrative": "ถ้าให้น้ำเกลือ ฉีดยาฆ่าเชื้อ และส่ง CXR คนไข้จะอยู่บนเตียง monitor 90 นาที พยาบาลหนึ่งคนไม่ว่างตอน trauma รายแรกมาถึงพร้อม cardiac arrest อีก 4 วันคนไข้กลับมาด้วยท้องเสียจากยาฆ่าเชื้อ ไม่มีอะไรที่หมอทำเปลี่ยนตัวโรคเลย อันตรายบางแบบมาในรูปความสุภาพและความหวังดี",

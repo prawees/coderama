@@ -95,7 +95,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas",
+      "name": "ABG",
       "value": "pH 6.98 / pCO2 62 / pO2 46 / HCO3 14 / lactate 11",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -106,7 +106,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Capillary glucose",
+      "name": "DTX",
       "value": "58",
       "unit": "mg/dL",
       "normalRange": "70-140",
@@ -117,7 +117,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Portable Chest X-ray",
+      "name": "CXR portable",
       "report": "Diffuse perihilar และ basal airspace opacity ทั้งสองข้าง เข้าได้กับ aspiration และ pulmonary edema, ET tube อยู่เหนือ carina 1 cm ต้องดึงออก 1.5 cm มี gastric distension ไม่มี pneumothorax ไม่มี rib fracture",
       "imageUrl": "",
       "abnormal": true
@@ -126,7 +126,7 @@
       "id": "temp1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Core (oesophageal) temperature",
+      "name": "Core temperature ทางหลอดอาหาร",
       "value": "33.8",
       "unit": "C",
       "normalRange": "36.5-37.5",
@@ -137,7 +137,7 @@
       "id": "k1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Potassium and sodium",
+      "name": "K, Na",
       "value": "K 3.2 / Na 138 mmol/L",
       "unit": "mmol/L",
       "normalRange": "K 3.5-5.0",
@@ -148,7 +148,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus tachycardia 166/min, QTc ยาว 480 ms มี Osborn J wave ที่ inferior และ lateral leads เข้าได้กับ hypothermia หัวใจที่เย็นไวต่อการกระตุ้น จับและเคลื่อนย้ายเด็กเบาๆ",
       "imageUrl": "",
       "abnormal": true
@@ -187,12 +187,12 @@
           ],
           "label": "จมน้ำ: airway, suction และ oxygenation มาก่อน",
           "actions": [
-            "Suction the oropharynx",
-            "Bag-valve-mask with 15 L/min oxygen and PEEP",
-            "Cervical spine precautions"
+            "Suction oropharynx",
+            "Bag-valve-mask กับ O2 15 L/min และ PEEP",
+            "ระวัง C-spine"
           ],
           "doseMap": {
-            "Bag-valve-mask with 15 L/min oxygen and PEEP": "จมน้ำเป็น hypoxic arrest การช่วยหายใจจึงสำคัญที่สุด ลำดับคือ airway ก่อน ต่างจาก cardiac arrest ในผู้ใหญ่ อย่ากดท้องเอาน้ำออก จะทำให้ aspirate"
+            "Bag-valve-mask กับ O2 15 L/min และ PEEP": "จมน้ำเป็น hypoxic arrest การช่วยหายใจจึงสำคัญที่สุด ลำดับคือ airway ก่อน ต่างจาก cardiac arrest ในผู้ใหญ่ อย่ากดท้องเอาน้ำออก จะทำให้ aspirate"
           }
         }
       },
@@ -218,13 +218,13 @@
           "label": "RSI แล้วตั้ง ventilator แบบ lung protective",
           "actions": [
             "Rapid sequence intubation",
-            "Ketamine and rocuronium",
-            "PEEP 8-10 cmH2O",
-            "Nasogastric tube to decompress the stomach"
+            "Ketamine และ rocuronium",
+            "PEEP 8 ถึง 10 cmH2O",
+            "ใส่ NG tube ระบายลมในกระเพาะ"
           ],
           "doseMap": {
-            "Ketamine and rocuronium": "Ketamine 2 mg/kg (32 mg) และ rocuronium 1.2 mg/kg (19 mg) ketamine ช่วยพยุง BP ในเด็กที่ช็อก",
-            "PEEP 8-10 cmH2O": "Tidal volume 6 ถึง 8 mL/kg surfactant ถูกล้างออก ปอดเลยเป็นเหมือน ARDS"
+            "Ketamine และ rocuronium": "Ketamine 2 mg/kg (32 mg) และ rocuronium 1.2 mg/kg (19 mg) ketamine ช่วยพยุง BP ในเด็กที่ช็อก",
+            "PEEP 8 ถึง 10 cmH2O": "Tidal volume 6 ถึง 8 mL/kg surfactant ถูกล้างออก ปอดเลยเป็นเหมือน ARDS"
           }
         }
       },
@@ -248,14 +248,14 @@
           ],
           "label": "แก้น้ำตาล และพยุง circulation",
           "actions": [
-            "IV or intraosseous access",
+            "เปิดเส้น IV หรือ IO",
             "Dextrose bolus",
-            "Cautious isotonic fluid bolus",
-            "Adrenaline infusion if fluid unresponsive"
+            "Isotonic fluid bolus อย่างระมัดระวัง",
+            "Adrenaline drip ถ้าไม่ตอบสนองต่อ fluid"
           ],
           "doseMap": {
             "Dextrose bolus": "10% dextrose 2 mL/kg (32 mL) เจาะซ้ำใน 30 นาที",
-            "Cautious isotonic fluid bolus": "10 mL/kg (160 mL) แล้วประเมินซ้ำ ปริมาณมากทำให้ pulmonary edema แย่ลงในเด็กจมน้ำ"
+            "Isotonic fluid bolus อย่างระมัดระวัง": "10 mL/kg (160 mL) แล้วประเมินซ้ำ ปริมาณมากทำให้ pulmonary edema แย่ลงในเด็กจมน้ำ"
           }
         }
       },
@@ -314,13 +314,13 @@
           ],
           "label": "TTM ไม่ rewarm แรง",
           "actions": [
-            "Passive rewarming only, then hold at 36-37.5 C",
-            "Continuous core temperature monitoring",
-            "Avoid hyperthermia",
-            "Treat seizures aggressively"
+            "Rewarm แบบ passive อย่างเดียว แล้วคุมไว้ที่ 36 ถึง 37.5 C",
+            "วัด core temperature ต่อเนื่อง",
+            "หลีกเลี่ยงไข้สูง",
+            "รักษาอาการชักอย่างเต็มที่"
           ],
           "doseMap": {
-            "Passive rewarming only, then hold at 36-37.5 C": "อย่าให้เกิน 37.5 C ไข้หลัง hypoxic brain injury ทำให้ outcome แย่ลง และเป็นสิ่งเดียวที่หมอคุมได้แน่ๆ"
+            "Rewarm แบบ passive อย่างเดียว แล้วคุมไว้ที่ 36 ถึง 37.5 C": "อย่าให้เกิน 37.5 C ไข้หลัง hypoxic brain injury ทำให้ outcome แย่ลง และเป็นสิ่งเดียวที่หมอคุมได้แน่ๆ"
           }
         }
       },
@@ -345,13 +345,13 @@
           ],
           "label": "ส่ง PICU และประเมินเรื่องการคุ้มครองเด็ก",
           "actions": [
-            "PICU transfer",
-            "No prophylactic antibiotics or steroids",
-            "Child protection and supervision assessment",
-            "Family support and debriefing"
+            "ย้าย PICU",
+            "ไม่ให้ antibiotic หรือ steroid แบบ prophylactic",
+            "ประเมินการคุ้มครองเด็กและการดูแล",
+            "ดูแลและ debrief ครอบครัว"
           ],
           "doseMap": {
-            "No prophylactic antibiotics or steroids": "ทั้งคู่ไม่ได้ทำให้ outcome ดีขึ้นในเด็กจมน้ำ รักษาการติดเชื้อเมื่อพิสูจน์ได้ ตามผล culture น้ำคลองสกปรกก็จริง แต่ prophylaxis ก็ยังไม่ได้ผล"
+            "ไม่ให้ antibiotic หรือ steroid แบบ prophylactic": "ทั้งคู่ไม่ได้ทำให้ outcome ดีขึ้นในเด็กจมน้ำ รักษาการติดเชื้อเมื่อพิสูจน์ได้ ตามผล culture น้ำคลองสกปรกก็จริง แต่ prophylaxis ก็ยังไม่ได้ผล"
           }
         }
       },

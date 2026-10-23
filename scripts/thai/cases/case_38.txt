@@ -12,6 +12,9 @@ req1.f0: นอนราบร่วมกับ sedation เสี่ยงส�
 req1.d1: ใส่ NG tube ล้างเลือดออก
 req1.f1: การล้างไม่ช่วยและเสี่ยงทำให้ varices บาดเจ็บ protect airway
 req1.m0: GCS 12 มี encephalopathy และอาเจียนเป็นเลือดไม่หยุด aspiration pneumonia เป็นสาเหตุการเสียชีวิตหลักใน variceal bleeding การ intubate ก่อนส่องกล้องมักเป็นการตัดสินใจที่ถูก
+req1.a0: นั่งตัวตรง เตรียม suction ไว้
+req1.a1: พิจารณา intubate เร็วเพื่อป้องกัน airway
+req1.a2: High flow O2
 req2.l: ให้เลือดแบบจำกัด เป้า Hb 7 ถึง 8 g/dL
 req2.c: ให้เลือดถึง Hb 7 ถึง 8 g/dL
 req2.d0: ให้เลือดจนถึง Hb 12 g/dL
@@ -19,6 +22,10 @@ req2.f0: ให้เลือดเยอะเพิ่ม portal pressure เ
 req2.d1: ให้ NSS 4 ลิตรแก้ BP
 req2.f1: Crystalloid ปริมาณมากเพิ่ม portal pressure และทำให้เลือดออกมากขึ้น ให้เลือดแบบจำกัด
 req2.m0: Restrictive strategy เพิ่มอัตรารอดเทียบกับเป้า 9 g/dL ใน variceal bleeding ให้เลือดจน Hb ปกติเพิ่ม portal pressure และกระตุ้นเลือดออกซ้ำ เป็นตัวอย่างที่ชัดที่สุดตัวอย่างหนึ่งที่รักษามากขึ้นแล้วตายมากขึ้น
+req2.a0: เปิดเส้นใหญ่ 2 เส้น
+req2.a1: G/M 6 unit
+req2.a2: PRC เป้า Hb 7 ถึง 8 g/dL
+req2.a3: จำกัด crystalloid
 req3.l: ให้ vasoactive drug และ antibiotic ก่อนส่องกล้อง
 req3.d0: ให้ propranolol IV รักษา varices
 req3.f0: Beta-blocker ใช้ป้องกันซ้ำ ไม่ใช่ตอนเลือดออกเฉียบพลัน และทำให้ BP ต่ำลงอีก ใช้ terlipressin หรือ octreotide
@@ -26,6 +33,9 @@ req3.d1: ไม่ต้องให้ antibiotic ไม่มี sign ติ�
 req3.f1: Prophylactic antibiotic ลดการติดเชื้อ เลือดออกซ้ำ และการเสียชีวิตใน cirrhosis ที่มี GI bleeding
 req3.m0: Terlipressin 2 mg IV แล้ว 1 ถึง 2 mg ทุก 4 ถึง 6 ชม. เริ่มก่อนส่องกล้อง ลดเลือดออกและเพิ่มอัตรารอด
 req3.m1: 1 g IV วันละครั้ง 7 วัน antibiotic prophylaxis ใน cirrhosis ที่มี GI bleeding ลด mortality และเป็นหนึ่งในสิ่งที่ได้ผลคุ้มที่สุดแต่ถูกลืมบ่อยที่สุดในคนไข้กลุ่มนี้
+req3.a0: Terlipressin หรือ octreotide IV
+req3.a1: Ceftriaxone IV แบบ prophylactic
+req3.a2: PPI drip จนกว่าจะยืนยันว่าเป็น varices
 out1.l: Stable บางส่วน
 out1.n: หลังได้ PRC 3 unit กับ terlipressin SBP ขึ้นถึง 98 อาเจียนเป็นเลือดช้าลง Hb 7.4 หยุดให้เลือด ไม่ให้ต่อจนถึงตัวเลขที่สบายใจ intubate เพื่อส่องกล้อง
 ethical_1.l: ถามว่าทำไมหยุด propranolol โดยไม่เทศนาเรื่องเหล้า (Empathy)
@@ -36,6 +46,9 @@ req4.f0: Variceal bleeding ต้องส่องกล้องภายใ�
 req4.d1: ใส่ Sengstaken tube เป็นการรักษาหลักตัวแรก
 req4.f1: Balloon tamponade เป็นแค่สะพานชั่วคราวเมื่อส่องกล้องไม่สำเร็จ ไม่ใช่ definitive therapy
 req4.m0: Sengstaken-Blakemore tube ใส่ได้ไม่เกิน 24 ชม. และเฉพาะคนไข้ที่ intubate แล้ว complication สูงรวมถึงหลอดอาหารแตก เป็นสะพานไปสู่การรักษาจริง ไม่ใช่การรักษา
+req4.a0: Endoscopic variceal band ligation
+req4.a1: Balloon tamponade เป็นสะพานเฉพาะเมื่อส่องกล้องไม่สำเร็จ
+req4.a2: พิจารณา TIPS ถ้าคุมไม่ได้หรือเลือดออกซ้ำเร็ว
 req5.l: รักษา encephalopathy และ peritonitis
 req5.d0: ให้ benzodiazepine sedate แก้สับสน
 req5.f0: Benzodiazepine ทำให้ hepatic encephalopathy แย่ลง ใช้ lactulose
@@ -43,6 +56,10 @@ req5.d1: ไม่ปวดท้องก็ไม่ต้องเจาะ�
 req5.f1: SBP มักไม่มีอาการ แนะนำให้เจาะ diagnostic tap ทุกครั้งที่คนไข้ cirrhosis admit
 req5.m0: 25 mL ทุก 12 ชม. titrate ให้ถ่ายนิ่ม 2 ถึง 3 ครั้งต่อวัน
 req5.m1: 1.5 g/kg วันที่ 1 และ 1 g/kg วันที่ 3 สำหรับ SBP ลด hepatorenal syndrome และ mortality
+req5.a0: Lactulose ทาง NG tube
+req5.a1: ขยาย antibiotic ครอบคลุม SBP
+req5.a2: Albumin IV
+req5.a3: เจาะท้องส่งตรวจทุกครั้งที่ cirrhosis admit
 out2.l: ระหว่าง admit
 out2.n: ไม่มีเลือดออกซ้ำหลัง banding extubate วันที่ 2 encephalopathy หายด้วย lactulose neutrophil ในน้ำในท้องกลับมาปกติวันที่ 5 Cr ดีขึ้นด้วย albumin ไม่เกิด hepatorenal syndrome mortality 6 สัปดาห์หลัง variceal bleeding ใน Child-Pugh C ราว 30% และเขาอยู่ฝั่งที่รอด
 out3.l: Disposition

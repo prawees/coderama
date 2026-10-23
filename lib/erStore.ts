@@ -37,6 +37,8 @@ export const getEra = (day: number): Era => {
   return 'PROFESSOR';
 };
 
+export interface ShiftPatient { caseId: string; grade: string; mistakes: number }
+
 export type Rank = 'MS5' | 'MS6' | 'Intern' | 'R1' | 'R2' | 'R3' | 'Asst. Prof' | 'Assoc. Prof' | 'Prof';
 
 export const RANK_THRESHOLDS: Record<Rank, number> = {
@@ -174,6 +176,10 @@ interface ERState {
     casesTreated: number;
     xpEarned: number;
     cashEarned: number;
+    /** Patients finished this shift, for the end-of-day wrap-up */
+    patients?: ShiftPatient[];
+    /** Cases brought in this shift, so nobody arrives twice */
+    spawned?: string[];
   };
 
   // RPG State
@@ -225,6 +231,8 @@ interface ERState {
   setPendingPromotion: (status: boolean) => void;
   resetGame: () => void;
   resetShiftStats: () => void;
+  logShiftPatient: (p: ShiftPatient) => void;
+  markSpawned: (caseId: string) => void;
   updateFriendship: (npcId: string, amount: number) => void;
   addKarma: (amount: number) => void;
   startQuest: (questId: string) => void;
@@ -310,6 +318,8 @@ export const useERStore = create<ERState>()(
         casesTreated: 0,
         xpEarned: 0,
         cashEarned: 0,
+        patients: [],
+        spawned: [],
       },
 
       setPlayerName: (name) => set({ playerName: name }),
@@ -526,7 +536,7 @@ export const useERStore = create<ERState>()(
         clockMinutes: 0,
         completedQuests: [],
         tutorialCompleted: false,
-        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 },
+        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [] },
         gifts: {},
         npcDaily: {},
         knownTastes: {},
@@ -535,7 +545,13 @@ export const useERStore = create<ERState>()(
         patientLog: {}
       }),
       resetShiftStats: () => set((state) => ({
-        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 }
+        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [] }
+      })),
+      markSpawned: (caseId) => set((state) => ({
+        shiftStats: { ...state.shiftStats, spawned: [...(state.shiftStats.spawned ?? []), caseId] }
+      })),
+      logShiftPatient: (p) => set((state) => ({
+        shiftStats: { ...state.shiftStats, patients: [...(state.shiftStats.patients ?? []), p] }
       })),
       updateFriendship: (npcId, amount) => set((state) => ({
         friendships: { ...state.friendships, [npcId]: (state.friendships[npcId] || 0) + amount }

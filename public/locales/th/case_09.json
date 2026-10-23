@@ -95,7 +95,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Capillary glucose",
+      "name": "DTX",
       "value": "512",
       "unit": "mg/dL",
       "normalRange": "70-140",
@@ -106,7 +106,7 @@
       "id": "vbg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Venous blood gas",
+      "name": "VBG",
       "value": "pH 7.08 / pCO2 18 / HCO3 6",
       "unit": "-",
       "normalRange": "pH 7.32-7.42",
@@ -128,7 +128,7 @@
       "id": "k1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Potassium",
+      "name": "K",
       "value": "5.4",
       "unit": "mmol/L",
       "normalRange": "3.5-5.0",
@@ -139,7 +139,7 @@
       "id": "na1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Sodium",
+      "name": "Na",
       "value": "129",
       "unit": "mmol/L",
       "normalRange": "135-145",
@@ -150,7 +150,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine",
+      "name": "Cr",
       "value": "1.4",
       "unit": "mg/dL",
       "normalRange": "0.5-1.0",
@@ -161,7 +161,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus tachycardia 122/min peaked T สูงที่ V2 ถึง V4 เข้าได้กับ hyperkalemia QRS ปกติ ไม่มี ischemic change",
       "imageUrl": "",
       "abnormal": true
@@ -170,7 +170,7 @@
       "id": "ua1",
       "kind": "lab",
       "category": "Urine",
-      "name": "Urinalysis",
+      "name": "UA",
       "value": "Ketones 4+, glucose 4+, nitrite negative, leucocyte esterase negative",
       "unit": "-",
       "normalRange": "Negative",
@@ -181,7 +181,7 @@
       "id": "cbc2",
       "kind": "lab",
       "category": "CBC",
-      "name": "White cell count",
+      "name": "WBC",
       "value": "16.2",
       "unit": "x10^9/L",
       "normalRange": "4.0-11.0",
@@ -234,9 +234,9 @@
           ],
           "label": "เปิด IV เจาะ DTX ketone และ venous gas พร้อม K",
           "actions": [
-            "IV access 18G x2",
-            "Capillary glucose",
-            "Venous blood gas with electrolytes",
+            "เปิดเส้น 18G 2 เส้น",
+            "DTX",
+            "VBG และ electrolyte",
             "Beta-hydroxybutyrate"
           ],
           "doseMap": {}
@@ -262,10 +262,10 @@
           ],
           "label": "Fluid resuscitation ก่อน insulin",
           "actions": [
-            "Normal saline bolus"
+            "NSS bolus"
           ],
           "doseMap": {
-            "Normal saline bolus": "15 ถึง 20 mL/kg (ราว 1000 mL) ในชั่วโมงแรก แล้ว 250 ถึง 500 mL/h ตาม perfusion"
+            "NSS bolus": "15 ถึง 20 mL/kg (ราว 1000 mL) ในชั่วโมงแรก แล้ว 250 ถึง 500 mL/h ตาม perfusion"
           }
         }
       },
@@ -322,11 +322,11 @@
           ],
           "label": "ดู K ก่อนเริ่ม insulin และให้ทดแทนตามต้องการ",
           "actions": [
-            "Serum potassium",
-            "Potassium chloride in maintenance fluid"
+            "เจาะ K",
+            "เติม KCl ใน maintenance fluid"
           ],
           "doseMap": {
-            "Potassium chloride in maintenance fluid": "K 3.3 ถึง 5.3 mmol/L เติม 20 ถึง 30 mmol/L ใน fluid ถ้า K ต่ำกว่า 3.3 hold insulin และให้ K ก่อน ถ้าเกิน 5.3 ไม่ต้องให้ เจาะซ้ำใน 2 ชม."
+            "เติม KCl ใน maintenance fluid": "K 3.3 ถึง 5.3 mmol/L เติม 20 ถึง 30 mmol/L ใน fluid ถ้า K ต่ำกว่า 3.3 hold insulin และให้ K ก่อน ถ้าเกิน 5.3 ไม่ต้องให้ เจาะซ้ำใน 2 ชม."
           }
         }
       },
@@ -350,10 +350,10 @@
           ],
           "label": "Insulin drip rate คงที่ ไม่ bolus",
           "actions": [
-            "Regular insulin IV infusion"
+            "RI IV drip"
           ],
           "doseMap": {
-            "Regular insulin IV infusion": "0.1 unit/kg/h ต่อเนื่อง (ราว 5 unit/h) bolus ไม่มีประโยชน์เพิ่ม และเพิ่มความเสี่ยง hypokalemia กับ cerebral edema"
+            "RI IV drip": "0.1 unit/kg/h ต่อเนื่อง (ราว 5 unit/h) bolus ไม่มีประโยชน์เพิ่ม และเพิ่มความเสี่ยง hypokalemia กับ cerebral edema"
           }
         }
       },
@@ -378,13 +378,13 @@
           ],
           "label": "Monitor ทุกชั่วโมง เติม dextrose เมื่อน้ำตาลต่ำกว่า 250 mg/dL",
           "actions": [
-            "Hourly capillary glucose",
-            "2 hourly potassium and venous gas",
-            "5% or 10% dextrose co-infusion",
-            "Hourly urine output"
+            "DTX ทุกชั่วโมง",
+            "K และ VBG ทุก 2 ชม.",
+            "ให้ 5% หรือ 10% dextrose ควบคู่",
+            "Urine output ทุกชั่วโมง"
           ],
           "doseMap": {
-            "5% or 10% dextrose co-infusion": "เริ่มเมื่อน้ำตาลต่ำกว่า 250 mg/dL ให้ insulin ต่อเพื่อกำจัด ketone เป้าน้ำตาลลด 50 ถึง 75 mg/dL ต่อชั่วโมง"
+            "ให้ 5% หรือ 10% dextrose ควบคู่": "เริ่มเมื่อน้ำตาลต่ำกว่า 250 mg/dL ให้ insulin ต่อเพื่อกำจัด ketone เป้าน้ำตาลลด 50 ถึง 75 mg/dL ต่อชั่วโมง"
           }
         }
       },
@@ -429,12 +429,12 @@
           ],
           "label": "เปลี่ยนเป็น insulin SC เมื่อเข้าเกณฑ์หายแล้วเท่านั้น",
           "actions": [
-            "Long acting subcutaneous insulin",
-            "Overlap 1-2 hours before stopping the infusion",
-            "Endocrinology and diabetes educator referral"
+            "Insulin ออกฤทธิ์ยาวใต้ผิวหนัง",
+            "ให้ซ้อนกัน 1 ถึง 2 ชม. ก่อนหยุด drip",
+            "ส่งต่อ endocrine และพยาบาลให้ความรู้เบาหวาน"
           ],
           "doseMap": {
-            "Long acting subcutaneous insulin": "ให้ 1 ถึง 2 ชม. ก่อนหยุด drip เกณฑ์หายคือ anion gap ต่ำกว่า 12 HCO3 อย่างน้อย 15 และ beta-hydroxybutyrate ต่ำกว่า 0.6 โดยคนไข้กินอาหารได้"
+            "Insulin ออกฤทธิ์ยาวใต้ผิวหนัง": "ให้ 1 ถึง 2 ชม. ก่อนหยุด drip เกณฑ์หายคือ anion gap ต่ำกว่า 12 HCO3 อย่างน้อย 15 และ beta-hydroxybutyrate ต่ำกว่า 0.6 โดยคนไข้กินอาหารได้"
           }
         }
       },

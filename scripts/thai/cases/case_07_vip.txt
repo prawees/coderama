@@ -11,5 +11,7 @@ req1.d1: Troponin แรกปกติ บอกว่าไม่เป็น�
 req1.f1: Troponin ครั้งเดียวช่วงแรกตัด ACS ไม่ได้ ต้องเจาะ troponin ซ้ำและทำ EKG ซ้ำ
 req1.m0: 324 mg
 req1.m1: 0.4 mg
+req1.a0: Aspirin กิน
+req1.a1: NTG อมใต้ลิ้น
 out1.l: ผลลัพธ์
 out1.n: เจ็บหน้าอกหาย คนไข้ VIP พอใจมาก

@@ -10,7 +10,7 @@
     "Haemorrhagic shock",
     "Tetanus-prone wound"
   ],
-  "background": "คนตัดอ้อย บาดเจ็บเมื่อ 90 นาทีก่อน ล้วงมือเข้าไปในโม่ตัดที่ติดขัดโดยไม่ได้ดับเครื่อง เพื่อนร่วมงานเอาเสื้อพันตอแขนไว้แล้วขับรถพ่วงรถไถพามา ชิ้นส่วนที่ขาดเก็บมาได้ อยู่ในถุงพลาสติกที่ใส่น้ำแข็งกับน้ำ ชิ้นส่วนแช่น้ำแข็งตรงๆ ซึ่งเป็นวิธีขนส่งที่ผิด ถนัดขวา และนี่คือมือขวา ไม่มีสัญญาจ้างและไม่มีประกันเงินทดแทน",
+  "background": "คนตัดอ้อย บาดเจ็บเมื่อ 90 นาทีก่อน ล้วงมือเข้าไปในโม่ตัดที่ติดขัดโดยไม่ได้ดับเครื่อง เพื่อนร่วมงานเอาเสื้อพันตอแขนไว้แล้วขับรถพ่วงรถไถพามา ชิ้นส่วนที่ขาดเก็บมาได้ อยู่ในถุงพลาสติกที่ใส่น้ำแข็งกับน้ำ ชิ้นส่วนแช่อยู่ในน้ำแข็งตรงๆ ถนัดขวา มือที่บาดเจ็บคือมือขวา ไม่มีสัญญาจ้างและไม่มีประกันเงินทดแทน",
   "patientAppearance": {
     "skinTone": "#a9713f",
     "bmiFactor": 0.95,
@@ -95,7 +95,7 @@
       "id": "hb1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haemoglobin",
+      "name": "Hb",
       "value": "9.8",
       "unit": "g/dL",
       "normalRange": "13.5-17.5",
@@ -106,7 +106,7 @@
       "id": "xr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "X-ray right hand and forearm",
+      "name": "Film มือและปลายแขนขวา",
       "report": "Transmetacarpal amputation ผ่าน shaft ของ metacarpal 2 ถึง 5 แบบ comminuted, radius กับ ulna ปกติ มี radio-opaque debris ใน soft tissue การแตกละเอียดเป็นช่วงยาวคือ finding ที่ทำนายว่า replantation จะไม่สำเร็จ",
       "imageUrl": "",
       "abnormal": true
@@ -115,7 +115,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase",
+      "name": "CK",
       "value": "3600",
       "unit": "U/L",
       "normalRange": "30-200",
@@ -126,7 +126,7 @@
       "id": "coag1",
       "kind": "lab",
       "category": "Coagulation",
-      "name": "INR and platelets",
+      "name": "INR, platelet",
       "value": "INR 1.2 / platelets 210 x10^9/L",
       "unit": "-",
       "normalRange": "INR 0.9-1.2",
@@ -137,7 +137,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine and potassium",
+      "name": "Cr, K",
       "value": "Creatinine 1.2 mg/dL / K 4.6 mmol/L",
       "unit": "-",
       "normalRange": "Creatinine 0.7-1.3 mg/dL",
@@ -178,12 +178,12 @@
           ],
           "label": "กดห้ามเลือดและยกสูง ไม่ clamp แบบไม่เห็น",
           "actions": [
-            "Direct pressure with a bulky dressing",
-            "Elevate the limb",
-            "Tourniquet only if pressure fails"
+            "กดห้ามเลือดด้วยผ้าก๊อซหนาๆ",
+            "ยกแขนสูง",
+            "Tourniquet เฉพาะเมื่อกดแล้วไม่หยุด"
           ],
           "doseMap": {
-            "Tourniquet only if pressure fails": "Windlass tourniquet เหนือข้อศอก เขียนเวลาที่รัดไว้บนผิว clamp แบบไม่เห็นในแผลที่เลือดท่วมทำลายเส้นเลือดและเส้นประสาทที่ศัลยแพทย์ต้องใช้ซ่อม"
+            "Tourniquet เฉพาะเมื่อกดแล้วไม่หยุด": "Windlass tourniquet เหนือข้อศอก เขียนเวลาที่รัดไว้บนผิว clamp แบบไม่เห็นในแผลที่เลือดท่วมทำลายเส้นเลือดและเส้นประสาทที่ศัลยแพทย์ต้องใช้ซ่อม"
           }
         }
       },
@@ -207,12 +207,12 @@
           ],
           "label": "เก็บชิ้นส่วนที่ขาดให้ถูกวิธี",
           "actions": [
-            "Wrap the part in saline-moistened gauze",
-            "Seal in a plastic bag",
-            "Place the bag on ice water, never the tissue directly on ice"
+            "ห่อชิ้นส่วนด้วยก๊อซชุบ NSS หมาดๆ",
+            "ใส่ถุงพลาสติกปิดสนิท",
+            "วางถุงบนน้ำผสมน้ำแข็ง ห้ามให้เนื้อเยื่อสัมผัสน้ำแข็งโดยตรง"
           ],
           "doseMap": {
-            "Place the bag on ice water, never the tissue directly on ice": "น้ำแข็งสัมผัสตรงทำให้ frostbite และหมดโอกาส replant เป้า 4 C warm ischemia ทนได้ราว 6 ชม. cold ischemia ราว 12 ชม."
+            "วางถุงบนน้ำผสมน้ำแข็ง ห้ามให้เนื้อเยื่อสัมผัสน้ำแข็งโดยตรง": "น้ำแข็งสัมผัสตรงทำให้ frostbite และหมดโอกาส replant เป้า 4 C warm ischemia ทนได้ราว 6 ชม. cold ischemia ราว 12 ชม."
           }
         }
       },
@@ -237,15 +237,15 @@
           ],
           "label": "ยาแก้ปวด fluid tetanus และ antibiotic",
           "actions": [
-            "Morphine IV titrated",
-            "IV crystalloid",
-            "Tetanus toxoid and immunoglobulin",
-            "IV antibiotics"
+            "Morphine IV titrate",
+            "Crystalloid IV",
+            "Tetanus toxoid และ immunoglobulin",
+            "Antibiotic IV"
           ],
           "doseMap": {
-            "Morphine IV titrated": "2 ถึง 4 mg IV ทุก 5 นาทีจนได้ผล",
-            "Tetanus toxoid and immunoglobulin": "แผลปนเปื้อนหนักจากงานเกษตร ถ้าไม่รู้ประวัติวัคซีนให้ทั้งคู่",
-            "IV antibiotics": "Cefazolin 2 g IV ร่วมกับ gentamicin เพิ่ม penicillin เพราะปนเปื้อนดินและเสี่ยง clostridium"
+            "Morphine IV titrate": "2 ถึง 4 mg IV ทุก 5 นาทีจนได้ผล",
+            "Tetanus toxoid และ immunoglobulin": "แผลปนเปื้อนหนักจากงานเกษตร ถ้าไม่รู้ประวัติวัคซีนให้ทั้งคู่",
+            "Antibiotic IV": "Cefazolin 2 g IV ร่วมกับ gentamicin เพิ่ม penicillin เพราะปนเปื้อนดินและเสี่ยง clostridium"
           }
         }
       },
@@ -301,12 +301,12 @@
           ],
           "label": "Fasciotomy ด่วนและเข้าห้องผ่าตัด ไม่ต้องรอ refer",
           "actions": [
-            "Emergency forearm fasciotomy",
-            "Orthopaedic and plastic surgery consult",
-            "Transfer discussion with the replantation centre"
+            "Fasciotomy ปลายแขนด่วน",
+            "ปรึกษา ortho และ plastic",
+            "คุยเรื่องส่งต่อกับศูนย์ต่อนิ้ว"
           ],
           "doseMap": {
-            "Emergency forearm fasciotomy": "วินิจฉัยทาง clinical กรีดทั้ง volar และ dorsal ทำ fasciotomy โดยไม่จำเป็นเสียแค่แผลเป็น ทำช้าเสียทั้งแขน"
+            "Fasciotomy ปลายแขนด่วน": "วินิจฉัยทาง clinical กรีดทั้ง volar และ dorsal ทำ fasciotomy โดยไม่จำเป็นเสียแค่แผลเป็น ทำช้าเสียทั้งแขน"
           }
         }
       },
@@ -350,10 +350,10 @@
           ],
           "label": "ป้องกัน rhabdomyolysis และวางแผนฟื้นฟู",
           "actions": [
-            "IV fluids targeting urine output 1-2 mL/kg/h",
-            "Daily creatine kinase and renal function",
-            "Hand therapy referral",
-            "Occupational compensation claim and social work"
+            "IV fluid เป้า urine output 1 ถึง 2 mL/kg/h",
+            "CK และ renal function ทุกวัน",
+            "ส่งต่อกายภาพมือ",
+            "เรื่องเงินทดแทนจากการทำงานและนักสังคมสงเคราะห์"
           ],
           "doseMap": {}
         }

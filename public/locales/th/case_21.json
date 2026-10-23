@@ -10,7 +10,7 @@
     "Anticholinergic toxidrome",
     "Thyroid storm"
   ],
-  "background": "ทำนากลางแจ้งตั้งแต่ 6 โมงเช้า อุณหภูมิ 41 C ความชื้น 70% ไม่มีร่มเงา ใส่เสื้อแขนยาวกับหมวก ราวบ่ายสองครึ่งคนเห็นว่าเรียกไม่ตอบ ชักเกร็งทั้งตัวครู่หนึ่ง กิน hydrochlorothiazide รักษา HT ซึ่งทำให้ทนร้อนได้น้อยลง ญาติเอาน้ำเย็นราดตัวแล้วขับรถพามา ซึ่งเป็นสิ่งที่มีประโยชน์ที่สุดที่ใครทำวันนี้",
+  "background": "ทำนากลางแจ้งตั้งแต่ 6 โมงเช้า อุณหภูมิ 41 C ความชื้น 70% ไม่มีร่มเงา ใส่เสื้อแขนยาวกับหมวก ราวบ่ายสองครึ่งคนเห็นว่าเรียกไม่ตอบ ชักเกร็งทั้งตัวครู่หนึ่ง กิน hydrochlorothiazide รักษา HT ญาติเอาน้ำเย็นราดตัวแล้วขับรถพามา",
   "patientAppearance": {
     "skinTone": "#a06a3a",
     "bmiFactor": 0.95,
@@ -95,7 +95,7 @@
       "id": "temp1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Rectal core temperature",
+      "name": "อุณหภูมิทางทวาร",
       "value": "41.6",
       "unit": "C",
       "normalRange": "36.5-37.5",
@@ -106,7 +106,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase",
+      "name": "CK",
       "value": "18400",
       "unit": "U/L",
       "normalRange": "30-200",
@@ -117,7 +117,7 @@
       "id": "lft1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "AST, ALT and INR",
+      "name": "AST, ALT, INR",
       "value": "AST 620 / ALT 410 / INR 2.1",
       "unit": "-",
       "normalRange": "AST <40 U/L",
@@ -128,7 +128,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine, potassium and sodium",
+      "name": "Cr, K, Na",
       "value": "Creatinine 2.6 mg/dL / K 5.8 / Na 149 mmol/L",
       "unit": "-",
       "normalRange": "Creatinine 0.7-1.3 mg/dL",
@@ -139,7 +139,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas and lactate",
+      "name": "ABG, lactate",
       "value": "pH 7.24 / lactate 6.8 / HCO3 15",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -150,7 +150,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Capillary glucose",
+      "name": "DTX",
       "value": "62",
       "unit": "mg/dL",
       "normalRange": "70-140",
@@ -161,7 +161,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus tachycardia 146/min, peaked T ที่ V2 ถึง V4 จาก hyperkalemia ไม่มี ischemic ST elevation, QTc 420 ms",
       "imageUrl": "",
       "abnormal": true
@@ -201,12 +201,12 @@
           ],
           "label": "วัด core temperature จริง และเริ่มลดอุณหภูมิในนาทีแรกๆ",
           "actions": [
-            "Rectal or oesophageal temperature probe",
-            "Remove all clothing",
-            "Begin cooling immediately, before imaging or lines"
+            "ใส่ probe วัดอุณหภูมิทางทวารหรือหลอดอาหาร",
+            "ถอดเสื้อผ้าทั้งหมด",
+            "เริ่ม cooling ทันที ก่อน imaging หรือเปิดเส้น"
           ],
           "doseMap": {
-            "Begin cooling immediately, before imaging or lines": "เวลาที่อยู่เกิน 40 C กำหนดความเสียหายต่ออวัยวะ เริ่ม cooling ใน 30 นาที mortality แทบเป็นศูนย์ ช้าเกิน 2 ชม. ราว 30%"
+            "เริ่ม cooling ทันที ก่อน imaging หรือเปิดเส้น": "เวลาที่อยู่เกิน 40 C กำหนดความเสียหายต่ออวัยวะ เริ่ม cooling ใน 30 นาที mortality แทบเป็นศูนย์ ช้าเกิน 2 ชม. ราว 30%"
           }
         }
       },
@@ -230,16 +230,16 @@
           ],
           "label": "Active cooling หยุดที่ราว 38 C",
           "actions": [
-            "Evaporative cooling: strip, mist and fan",
-            "Cold water immersion if a tub is ready",
-            "Ice packs to neck, axillae and groin",
-            "Cold IV fluids"
+            "Evaporative cooling: ถอดเสื้อ พ่นละอองน้ำ เป่าพัดลม",
+            "แช่น้ำเย็นถ้ามีอ่างพร้อม",
+            "ประคบน้ำแข็งที่คอ รักแร้ และขาหนีบ",
+            "IV fluid เย็น"
           ],
           "doseMap": {
-            "Evaporative cooling: strip, mist and fan": "วิธีแรกในแนวทาง cooling ของรามาธิบดี พ่นละอองน้ำราว 15 C ให้ทั่วผิว และให้ลมพัดผ่านตลอด",
-            "Cold water immersion if a tub is ready": "เร็วที่สุดสำหรับ exertional heat stroke ราว 0.2 C ต่อนาที น้ำต่ำกว่า 14 C ติด monitor และมี defibrillator อยู่ใกล้มือ",
-            "Ice packs to neck, axillae and groin": "หยุด active cooling ทั้งหมดเมื่อ rectal temperature ถึงราว 38 C จะได้ไม่ลดเกินจน hypothermia",
-            "Cold IV fluids": "NSS เย็น 4 C 20 mL/kg ห้ามให้ยาลดไข้ paracetamol กับ NSAID ไม่ได้ผลใน heat stroke เพราะ set point ปกติ และทั้งคู่ทำให้ตับกับไตบาดเจ็บมากขึ้น"
+            "Evaporative cooling: ถอดเสื้อ พ่นละอองน้ำ เป่าพัดลม": "วิธีแรกในแนวทาง cooling ของรามาธิบดี พ่นละอองน้ำราว 15 C ให้ทั่วผิว และให้ลมพัดผ่านตลอด",
+            "แช่น้ำเย็นถ้ามีอ่างพร้อม": "เร็วที่สุดสำหรับ exertional heat stroke ราว 0.2 C ต่อนาที น้ำต่ำกว่า 14 C ติด monitor และมี defibrillator อยู่ใกล้มือ",
+            "ประคบน้ำแข็งที่คอ รักแร้ และขาหนีบ": "หยุด active cooling ทั้งหมดเมื่อ rectal temperature ถึงราว 38 C จะได้ไม่ลดเกินจน hypothermia",
+            "IV fluid เย็น": "NSS เย็น 4 C 20 mL/kg ห้ามให้ยาลดไข้ paracetamol กับ NSAID ไม่ได้ผลใน heat stroke เพราะ set point ปกติ และทั้งคู่ทำให้ตับกับไตบาดเจ็บมากขึ้น"
           }
         }
       },
@@ -264,12 +264,12 @@
           ],
           "label": "Airway น้ำตาล และ benzodiazepine แก้หนาวสั่นหรือชัก",
           "actions": [
-            "Oxygen and airway support",
-            "Dextrose for hypoglycaemia",
-            "Diazepam or midazolam for shivering"
+            "O2 และดูแล airway",
+            "Dextrose แก้ hypoglycemia",
+            "Diazepam หรือ midazolam แก้อาการสั่น"
           ],
           "doseMap": {
-            "Diazepam or midazolam for shivering": "หนาวสั่นสร้างความร้อนและทำให้ cooling ไม่ได้ผล midazolam 2 ถึง 5 mg IV titrate"
+            "Diazepam หรือ midazolam แก้อาการสั่น": "หนาวสั่นสร้างความร้อนและทำให้ cooling ไม่ได้ผล midazolam 2 ถึง 5 mg IV titrate"
           }
         }
       },
@@ -314,14 +314,14 @@
           ],
           "label": "รักษา rhabdomyolysis และ hyperkalemia",
           "actions": [
-            "High volume IV crystalloid",
-            "Calcium gluconate for ECG changes",
-            "Insulin and dextrose",
-            "Hourly urine output"
+            "Crystalloid IV ปริมาณมาก",
+            "Calcium gluconate ถ้า EKG เปลี่ยน",
+            "Insulin กับ dextrose",
+            "Urine output ทุกชั่วโมง"
           ],
           "doseMap": {
-            "High volume IV crystalloid": "เป้า urine output 2 mL/kg/h เป็นการรักษาเดียวที่มีหลักฐานดีว่าป้องกันไตวายจาก myoglobin ได้",
-            "Calcium gluconate for ECG changes": "10% 10 mL IV ใน 3 นาที ซ้ำได้ตามต้องการ"
+            "Crystalloid IV ปริมาณมาก": "เป้า urine output 2 mL/kg/h เป็นการรักษาเดียวที่มีหลักฐานดีว่าป้องกันไตวายจาก myoglobin ได้",
+            "Calcium gluconate ถ้า EKG เปลี่ยน": "10% 10 mL IV ใน 3 นาที ซ้ำได้ตามต้องการ"
           }
         }
       },
@@ -358,13 +358,13 @@
           ],
           "label": "Admit ICU และประคับประคองอวัยวะ",
           "actions": [
-            "ICU admission",
-            "Serial liver function and coagulation",
-            "Nephrology referral for possible dialysis",
-            "Avoid nephrotoxic and hepatotoxic drugs"
+            "Admit ICU",
+            "LFT และ coag เป็นระยะ",
+            "ส่งต่อ nephro อาจต้อง dialysis",
+            "หลีกเลี่ยงยาที่เป็นพิษต่อไตและตับ"
           ],
           "doseMap": {
-            "Avoid nephrotoxic and hepatotoxic drugs": "ไม่ให้ paracetamol ไม่ให้ NSAID ไม่ให้ aminoglycoside ถ้ายังมีทางเลือกอื่น"
+            "หลีกเลี่ยงยาที่เป็นพิษต่อไตและตับ": "ไม่ให้ paracetamol ไม่ให้ NSAID ไม่ให้ aminoglycoside ถ้ายังมีทางเลือกอื่น"
           }
         }
       },

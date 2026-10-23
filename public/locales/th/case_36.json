@@ -95,7 +95,7 @@
       "id": "echo1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Bedside echocardiogram",
+      "name": "Echo ข้างเตียง",
       "report": "RV โตมาก RV/LV ratio เกิน 1.2 septum แบนทั้ง systole และ diastole (D-shaped LV) มี McConnell's sign คือ mid free wall akinesia แต่ apex ยังบีบดี IVC โตไม่ collapse ไม่มี pericardial effusion ในคนไข้ที่ unstable เกินจะไป CT ข้อมูลเท่านี้พอให้ thrombolysis ได้",
       "imageUrl": "",
       "abnormal": true
@@ -104,7 +104,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus tachycardia 134/min มี S1Q3T3, incomplete RBBB และ T inversion V1 ถึง V4 เป็น right heart strain sensitivity ต่ำ EKG ปกติก็ตัดโรคนี้ไม่ได้",
       "imageUrl": "",
       "abnormal": true
@@ -113,7 +113,7 @@
       "id": "ctpa1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "CT pulmonary angiogram",
+      "name": "CTPA",
       "report": "Saddle embolus ก้อนใหญ่ที่ bifurcation ของ pulmonary artery มี filling defect ทั้ง central และ lobar ทั้งสองข้าง RV/LV ratio 1.6 และ contrast ไหลย้อนเข้า IVC บ่งชี้ right heart strain ทำหลัง stabilize แล้วเท่านั้น",
       "imageUrl": "",
       "abnormal": true
@@ -122,7 +122,7 @@
       "id": "trop1",
       "kind": "lab",
       "category": "Cardiac",
-      "name": "High sensitivity troponin T and NT-proBNP",
+      "name": "hs-TnT, NT-proBNP",
       "value": "Troponin 186 ng/L / NT-proBNP 4200 pg/mL",
       "unit": "-",
       "normalRange": "Troponin <14 ng/L",
@@ -133,7 +133,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas",
+      "name": "ABG",
       "value": "pH 7.28 / pCO2 26 / pO2 46 / lactate 6.2",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -144,7 +144,7 @@
       "id": "us2",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Compression ultrasound of the right leg",
+      "name": "Compression US ขาขวา",
       "report": "Right femoral และ popliteal vein กดไม่ยุบ มี echogenic thrombus ยืนยันต้นเหตุ ทำข้างเตียงได้ใน 2 นาที และช่วยสนับสนุนการวินิจฉัยตอนคนไข้ unstable เกินจะเคลื่อนย้าย",
       "imageUrl": "",
       "abnormal": true
@@ -184,13 +184,13 @@
           ],
           "label": "O2, monitor และ echo ข้างเตียง ไม่ใช่พาไปห้อง CT",
           "actions": [
-            "High flow oxygen 15 L/min",
-            "Continuous monitoring and arterial line",
-            "Bedside echocardiogram",
-            "Leg compression ultrasound"
+            "High flow O2 15 L/min",
+            "Monitor ต่อเนื่องและใส่ arterial line",
+            "Echo ข้างเตียง",
+            "Compression US ที่ขา"
           ],
           "doseMap": {
-            "Bedside echocardiogram": "คนไข้ช็อกที่ถูกส่งไป CT อาจ arrest ในห้อง CT ที่ไม่มีใครช่วยได้ echo ตอบคำถามที่สำคัญคือ RV กำลังล้มเหลวหรือเปล่า"
+            "Echo ข้างเตียง": "คนไข้ช็อกที่ถูกส่งไป CT อาจ arrest ในห้อง CT ที่ไม่มีใครช่วยได้ echo ตอบคำถามที่สำคัญคือ RV กำลังล้มเหลวหรือเปล่า"
           }
         }
       },
@@ -214,13 +214,13 @@
           ],
           "label": "Fluid อย่างระวัง และให้ vasopressor เร็ว",
           "actions": [
-            "Small fluid bolus 250-500 mL",
-            "Noradrenaline infusion early",
-            "Avoid large volume loading"
+            "Fluid bolus เล็กๆ 250 ถึง 500 mL",
+            "Norepinephrine drip ให้เร็ว",
+            "หลีกเลี่ยงการให้ fluid ปริมาณมาก"
           ],
           "doseMap": {
-            "Avoid large volume loading": "RV ที่ล้มเหลวและได้น้ำเกินจะดัน septum เข้าไปใน LV ทำให้ cardiac output ลดลงอีก ให้เกินราว 500 mL ใน high-risk PE ทำให้ arrest ได้",
-            "Noradrenaline infusion early": "รักษา coronary perfusion ของ RV ที่ strain อยู่ เริ่มเลยดีกว่าให้ fluid ต่อ"
+            "หลีกเลี่ยงการให้ fluid ปริมาณมาก": "RV ที่ล้มเหลวและได้น้ำเกินจะดัน septum เข้าไปใน LV ทำให้ cardiac output ลดลงอีก ให้เกินราว 500 mL ใน high-risk PE ทำให้ arrest ได้",
+            "Norepinephrine drip ให้เร็ว": "รักษา coronary perfusion ของ RV ที่ strain อยู่ เริ่มเลยดีกว่าให้ fluid ต่อ"
           }
         }
       },
@@ -244,10 +244,10 @@
           ],
           "label": "ให้ anticoagulant ทันที",
           "actions": [
-            "Unfractionated heparin IV bolus and infusion"
+            "UFH IV bolus และ drip"
           ],
           "doseMap": {
-            "Unfractionated heparin IV bolus and infusion": "Bolus 80 unit/kg แล้ว 18 unit/kg/h ในเคสนี้ UFH ดีกว่า LMWH เพราะออกฤทธิ์สั้นและ reverse ได้ สำคัญถ้าต้อง thrombolysis หรือ embolectomy ต่อ"
+            "UFH IV bolus และ drip": "Bolus 80 unit/kg แล้ว 18 unit/kg/h ในเคสนี้ UFH ดีกว่า LMWH เพราะออกฤทธิ์สั้นและ reverse ได้ สำคัญถ้าต้อง thrombolysis หรือ embolectomy ต่อ"
           }
         }
       },
@@ -307,12 +307,12 @@
           "label": "Systemic thrombolysis เพราะ hemodynamic ไม่ stable",
           "actions": [
             "Alteplase IV",
-            "Stop the heparin infusion during the bolus regimen",
-            "Cross-match and have blood available"
+            "หยุด heparin drip ระหว่างให้ bolus regimen",
+            "G/M และเตรียมเลือดไว้"
           ],
           "doseMap": {
             "Alteplase IV": "100 mg ใน 2 ชม. หรือแบบเร่ง 0.6 mg/kg ใน 15 นาที (ไม่เกิน 50 mg) ถ้าใกล้ arrest การผ่าตัดใหญ่เมื่อเร็วๆ นี้เป็น relative contraindication ไม่ใช่ absolute เมื่อทางเลือกอื่นคือเสียชีวิตจาก obstructive shock",
-            "Stop the heparin infusion during the bolus regimen": "เริ่มใหม่โดยไม่ต้อง bolus เมื่อ APTT ต่ำกว่า 2 เท่าของปกติ"
+            "หยุด heparin drip ระหว่างให้ bolus regimen": "เริ่มใหม่โดยไม่ต้อง bolus เมื่อ APTT ต่ำกว่า 2 เท่าของปกติ"
           }
         }
       },
@@ -358,13 +358,13 @@
           ],
           "label": "ดูแลใน ICU และวางแผน anticoagulant ระยะยาว",
           "actions": [
-            "ICU admission with neurological observations",
-            "Transition to oral anticoagulation once stable",
-            "Thrombophilia and malignancy screen",
-            "Explore why prophylaxis was stopped"
+            "Admit ICU ดู neuro sign",
+            "เปลี่ยนเป็น anticoagulant กินเมื่อ stable",
+            "Screen thrombophilia และมะเร็ง",
+            "ถามว่าทำไมหยุดยาป้องกัน"
           ],
           "doseMap": {
-            "Explore why prophylaxis was stopped": "เธอหยุดยาเพราะฉีดแล้วแสบ และไม่มีใครอธิบายว่ายากันอะไร นั่นคือความล้มเหลวในการสื่อสารที่มีอัตราตาย และแก้ได้"
+            "ถามว่าทำไมหยุดยาป้องกัน": "เธอหยุดยาเพราะฉีดแล้วแสบ และไม่มีใครอธิบายว่ายากันอะไร นั่นคือความล้มเหลวในการสื่อสารที่มีอัตราตาย และแก้ได้"
           }
         }
       },

@@ -95,7 +95,7 @@
       "id": "hb1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haemoglobin",
+      "name": "Hb",
       "value": "6.1",
       "unit": "g/dL",
       "normalRange": "12.0-15.5",
@@ -117,7 +117,7 @@
       "id": "coag2",
       "kind": "lab",
       "category": "Coagulation",
-      "name": "INR and platelets",
+      "name": "INR, platelet",
       "value": "INR 1.5 / platelets 88 x10^9/L",
       "unit": "-",
       "normalRange": "INR 0.9-1.2",
@@ -128,7 +128,7 @@
       "id": "bg1",
       "kind": "lab",
       "category": "Blood bank",
-      "name": "Blood group and crossmatch",
+      "name": "G/M",
       "value": "B Rh positive",
       "unit": "-",
       "normalRange": "-",
@@ -139,7 +139,7 @@
       "id": "us1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Bedside pelvic ultrasound",
+      "name": "US pelvis ข้างเตียง",
       "report": "โพรงมดลูกขยาย มี echogenic material 3 cm เข้าได้กับรกค้างหรือ clot มี free fluid ใน pouch of Douglas ไม่เห็น uterine rupture หรือ inversion",
       "imageUrl": "",
       "abnormal": true
@@ -190,13 +190,13 @@
           ],
           "label": "ตามคนช่วย เปิด 2 เส้น และวัดปริมาณเลือดที่เสีย",
           "actions": [
-            "Obstetric emergency call",
-            "IV access 16G x2",
-            "Weigh swabs and pads rather than eyeballing loss",
-            "Group and crossmatch 4 units, coagulation, fibrinogen"
+            "เรียกทีมฉุกเฉินสูติฯ",
+            "เปิดเส้น 16G 2 เส้น",
+            "ชั่งผ้าซับและผ้าอนามัยแทนการกะด้วยตา",
+            "G/M 4 unit, coag, fibrinogen"
           ],
           "doseMap": {
-            "Weigh swabs and pads rather than eyeballing loss": "กะด้วยตาได้น้อยกว่าจริง 30 ถึง 50% เป็นเหตุผลที่พบบ่อยที่สุดที่ PPH ถูกจับได้ช้า"
+            "ชั่งผ้าซับและผ้าอนามัยแทนการกะด้วยตา": "กะด้วยตาได้น้อยกว่าจริง 30 ถึง 50% เป็นเหตุผลที่พบบ่อยที่สุดที่ PPH ถูกจับได้ช้า"
           }
         }
       },
@@ -222,8 +222,8 @@
           "label": "คลึงมดลูกและทำ bimanual compression ระหว่างเตรียมยา",
           "actions": [
             "Bimanual uterine compression",
-            "Empty the bladder with a catheter",
-            "Rub up a contraction"
+            "สวนปัสสาวะให้กระเพาะว่าง",
+            "คลึงมดลูกให้หดตัว"
           ],
           "doseMap": {
             "Bimanual uterine compression": "การห้ามเลือดด้วยมือซื้อเวลา 3 ถึง 5 นาทีที่ยาต้องใช้ กระเพาะปัสสาวะเต็มทำให้มดลูกหดตัวไม่ได้"
@@ -250,16 +250,16 @@
           ],
           "label": "ให้ uterotonic ตามลำดับ และ TXA",
           "actions": [
-            "Oxytocin infusion",
+            "Oxytocin drip",
             "Methylergonovine",
             "Misoprostol",
-            "Tranexamic acid IV"
+            "TXA IV"
           ],
           "doseMap": {
-            "Oxytocin infusion": "10 ถึง 40 unit ใน 500 ถึง 1000 mL drip ต่อเนื่อง (แนวทาง PPH รามาธิบดี)",
+            "Oxytocin drip": "10 ถึง 40 unit ใน 500 ถึง 1000 mL drip ต่อเนื่อง (แนวทาง PPH รามาธิบดี)",
             "Methylergonovine": "0.2 mg IM หรือ IV ช้าๆ ซ้ำทุก 15 นาทีได้ถึง 5 dose ห้ามให้ถ้ามี HT หรือ pre-eclampsia",
             "Misoprostol": "800 mcg อมใต้ลิ้นหรือเหน็บทวาร",
-            "Tranexamic acid IV": "1 g ให้ช้าๆ 1 mL/นาที ภายใน 3 ชม. หลังคลอด ถ้ายังเลือดออกให้ซ้ำได้อีกครั้งหลัง 30 นาที"
+            "TXA IV": "1 g ให้ช้าๆ 1 mL/นาที ภายใน 3 ชม. หลังคลอด ถ้ายังเลือดออกให้ซ้ำได้อีกครั้งหลัง 30 นาที"
           }
         }
       },
@@ -283,13 +283,13 @@
           ],
           "label": "ให้ blood product เร็ว ใช้ fibrinogen นำทาง",
           "actions": [
-            "Emergency O negative or group specific red cells",
-            "Fresh frozen plasma",
-            "Cryoprecipitate for fibrinogen below 2 g/L",
-            "Active warming"
+            "PRC O negative หรือ group specific ฉุกเฉิน",
+            "FFP",
+            "Cryoprecipitate ถ้า fibrinogen ต่ำกว่า 2 g/L",
+            "Warm แบบ active"
           ],
           "doseMap": {
-            "Cryoprecipitate for fibrinogen below 2 g/L": "หรือ fibrinogen concentrate ถ้ามี การแก้ fibrinogen เร็วเปลี่ยนทิศทางของเคสนี้ได้"
+            "Cryoprecipitate ถ้า fibrinogen ต่ำกว่า 2 g/L": "หรือ fibrinogen concentrate ถ้ามี การแก้ fibrinogen เร็วเปลี่ยนทิศทางของเคสนี้ได้"
           }
         }
       },
@@ -347,14 +347,14 @@
           ],
           "label": "เข้าห้องผ่าตัด ตรวจภายใต้ยาสลบและ evacuate",
           "actions": [
-            "Examination under anaesthesia",
-            "Manual removal of retained products",
-            "Inspect cervix and vagina for tears",
-            "Intrauterine balloon tamponade if atony persists"
+            "ตรวจภายใต้ยาระงับความรู้สึก",
+            "ล้วงเศษรกที่ค้าง",
+            "ตรวจหาแผลฉีกขาดที่ปากมดลูกและช่องคลอด",
+            "ใส่ intrauterine balloon tamponade ถ้ามดลูกยังไม่หดตัว"
           ],
           "doseMap": {
-            "Intrauterine balloon tamponade if atony persists": "ใส่ NSS อุ่น 300 ถึง 500 mL ถ้า tamponade test ผ่าน ส่วนใหญ่เลี่ยงการเปิดท้องได้",
-            "Examination under anaesthesia": "แนวทางรามาธิบดีให้เข้าห้องผ่าตัดเมื่อมดลูกไม่ตอบสนองใน 15 นาที หรือ vital signs ยังผิดปกติ"
+            "ใส่ intrauterine balloon tamponade ถ้ามดลูกยังไม่หดตัว": "ใส่ NSS อุ่น 300 ถึง 500 mL ถ้า tamponade test ผ่าน ส่วนใหญ่เลี่ยงการเปิดท้องได้",
+            "ตรวจภายใต้ยาระงับความรู้สึก": "แนวทางรามาธิบดีให้เข้าห้องผ่าตัดเมื่อมดลูกไม่ตอบสนองใน 15 นาที หรือ vital signs ยังผิดปกติ"
           }
         }
       },

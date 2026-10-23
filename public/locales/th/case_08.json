@@ -94,7 +94,7 @@
       "id": "us1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "eFAST (bedside ultrasound)",
+      "name": "eFAST",
       "report": "Left anterior chest: ไม่มี lung sliding ไม่มี B-lines, barcode sign บน M-mode เจอ lung point ด้านข้าง ไม่มี pericardial effusion ไม่มี free fluid ใน Morison's pouch, splenorenal recess หรือ pelvis ทำข้างเตียง 90 วินาทีโดยไม่ทำให้ decompress ช้า",
       "imageUrl": "",
       "abnormal": true
@@ -103,7 +103,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Portable Chest X-ray (post decompression)",
+      "name": "CXR portable (หลัง decompress)",
       "report": "Left ICD tip ชี้ขึ้น apex ยังเหลือ apical pneumothorax ซ้าย 10% rib 5 และ 6 ซ้ายหัก mediastinum อยู่กลาง ไม่มี hemothorax ปอดส่วนอื่นใส",
       "imageUrl": "",
       "abnormal": true
@@ -112,7 +112,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas (on 15 L/min)",
+      "name": "ABG (O2 15 L/min)",
       "value": "pH 7.22 / pCO2 52 / pO2 51 / HCO3 18",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -134,7 +134,7 @@
       "id": "hb1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haemoglobin",
+      "name": "Hb",
       "value": "13.4",
       "unit": "g/dL",
       "normalRange": "13.5-17.5",
@@ -145,7 +145,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus tachycardia 132/min, low voltage ที่ left precordial leads ไม่มี electrical alternans ไม่มี ischemic change",
       "imageUrl": "",
       "abnormal": true
@@ -154,7 +154,7 @@
       "id": "tns1",
       "kind": "lab",
       "category": "Blood bank",
-      "name": "Group and crossmatch",
+      "name": "G/M",
       "value": "O Rh positive",
       "unit": "-",
       "normalRange": "-",
@@ -196,12 +196,12 @@
           ],
           "label": "Primary survey ให้ O2 high flow และ protect C-spine",
           "actions": [
-            "Oxygen via non-rebreather mask",
-            "Manual in-line stabilisation and collar",
-            "Cardiac and SpO2 monitoring"
+            "O2 ทาง non-rebreather mask",
+            "Manual in-line stabilisation และใส่ collar",
+            "ติด monitor หัวใจและ SpO2"
           ],
           "doseMap": {
-            "Oxygen via non-rebreather mask": "15 L/min"
+            "O2 ทาง non-rebreather mask": "15 L/min"
           }
         }
       },
@@ -239,10 +239,10 @@
           ],
           "label": "Needle หรือ finger decompression ทันที ไม่ต้องรอ film",
           "actions": [
-            "Needle thoracostomy, 5th intercostal space anterior axillary line, left"
+            "Needle thoracostomy ซ้าย ICS 5 แนว anterior axillary line"
           ],
           "doseMap": {
-            "Needle thoracostomy, 5th intercostal space anterior axillary line, left": "Cannula 14G ยาวอย่างน้อย 5 cm หรือทำ finger thoracostomy ถ้าผนังอกหนา"
+            "Needle thoracostomy ซ้าย ICS 5 แนว anterior axillary line": "Cannula 14G ยาวอย่างน้อย 5 cm หรือทำ finger thoracostomy ถ้าผนังอกหนา"
           }
         }
       },
@@ -287,12 +287,12 @@
           ],
           "label": "ใส่ ICD ข้างซ้ายเป็น definitive",
           "actions": [
-            "Tube thoracostomy, left, 5th intercostal space",
-            "Local anaesthetic infiltration"
+            "ใส่ ICD ซ้าย ICS 5",
+            "ฉีดยาชาเฉพาะที่"
           ],
           "doseMap": {
-            "Tube thoracostomy, left, 5th intercostal space": "ICD 28 Fr ต่อ underwater seal ห้าม clamp",
-            "Local anaesthetic infiltration": "1% lidocaine 10 ถึง 20 mL"
+            "ใส่ ICD ซ้าย ICS 5": "ICD 28 Fr ต่อ underwater seal ห้าม clamp",
+            "ฉีดยาชาเฉพาะที่": "1% lidocaine 10 ถึง 20 mL"
           }
         }
       },
@@ -316,12 +316,12 @@
           ],
           "label": "เปิด IV ให้ยาแก้ปวด และถ่าย CXR ยืนยัน",
           "actions": [
-            "IV access 16G x2",
-            "Fentanyl IV titrated",
-            "Portable chest X-ray"
+            "เปิดเส้น 16G 2 เส้น",
+            "Fentanyl IV titrate",
+            "CXR portable"
           ],
           "doseMap": {
-            "Fentanyl IV titrated": "25 ถึง 50 mcg IV ทุก 5 นาทีจนได้ผล monitor RR"
+            "Fentanyl IV titrate": "25 ถึง 50 mcg IV ทุก 5 นาทีจนได้ผล monitor RR"
           }
         }
       },
@@ -366,9 +366,9 @@
           ],
           "label": "ทำ secondary survey ให้ครบ และส่ง trauma imaging",
           "actions": [
-            "Head to pelvis secondary survey",
-            "CT chest, abdomen and pelvis with contrast",
-            "Trauma surgery admission"
+            "Secondary survey ตั้งแต่หัวถึง pelvis",
+            "CT chest, abdomen และ pelvis ฉีดสี",
+            "Admit ศัลย์ trauma"
           ],
           "doseMap": {}
         }

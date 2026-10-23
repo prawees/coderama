@@ -10,7 +10,7 @@
     "SIADH",
     "Heart failure decompensation"
   ],
-  "background": "U/D HFrEF กิน furosemide กับ HCTZ อยู่ 3 วันก่อนมารพ. อาเจียน ถ่ายเป็นน้ำ ดื่มแต่น้ำเปล่า วันนี้เริ่มสับสน มีกระตุกแป๊บหนึ่งบนแท็กซี่ Thiazide + GI loss + กินแต่น้ำเปล่า คือสูตรคลาสสิกของ severe hyponatremia แล้วพอมี HF อยู่ด้วย ทุกลิตรที่ให้ต้องคิดให้ดี",
+  "background": "U/D HFrEF กิน furosemide กับ HCTZ อยู่ 3 วันก่อนมารพ. อาเจียน ถ่ายเป็นน้ำ ดื่มแต่น้ำเปล่า วันนี้เริ่มสับสน มีกระตุกแป๊บหนึ่งบนแท็กซี่",
   "patientAppearance": {
     "skinTone": "#e2b88b",
     "bmiFactor": 1.1,
@@ -77,7 +77,7 @@
       "id": "chem1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Sodium",
+      "name": "Na",
       "value": "118",
       "unit": "mmol/L",
       "normalRange": "135-145",
@@ -88,7 +88,7 @@
       "id": "chem2",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Potassium",
+      "name": "K",
       "value": "3.1",
       "unit": "mmol/L",
       "normalRange": "3.5-5.0",
@@ -110,7 +110,7 @@
       "id": "osm2",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Urine sodium",
+      "name": "Urine Na",
       "value": "12",
       "unit": "mmol/L",
       "normalRange": "-",
@@ -152,12 +152,12 @@
         "data": {
           "label": "ให้ 3% NaCl bolus เพราะอาการรุนแรง",
           "actions": [
-            "3% saline 150 mL IV over 20 minutes",
-            "Recheck sodium after the bolus",
-            "Repeat once if symptoms persist"
+            "3% NaCl 150 mL IV ใน 20 นาที",
+            "เจาะ Na ซ้ำหลัง bolus",
+            "ให้ซ้ำอีกครั้งถ้ายังมีอาการ"
           ],
           "doseMap": {
-            "3% saline 150 mL IV over 20 minutes": "เป้าคือ Na ขึ้น 4 ถึง 6 mmol/L ในชั่วโมงแรกๆ แค่นี้ก็พอแก้ cerebral edema แล้ว จากนั้นหยุด 3% NaCl"
+            "3% NaCl 150 mL IV ใน 20 นาที": "เป้าคือ Na ขึ้น 4 ถึง 6 mmol/L ในชั่วโมงแรกๆ แค่นี้ก็พอแก้ cerebral edema แล้ว จากนั้นหยุด 3% NaCl"
           },
           "distractors": [
             {
@@ -215,14 +215,14 @@
           "choice": "NSS ทีละ 250 mL แล้ว reassess ทุกรอบ",
           "label": "ให้ isotonic bolus ทีละน้อย แก้ hypovolemia แล้ว reassess ทุกครั้ง",
           "actions": [
-            "Normal saline 250 mL aliquots",
-            "Lung ultrasound and auscultation after each aliquot",
-            "Hold furosemide and the thiazide",
-            "Replace potassium"
+            "NSS ทีละ 250 mL",
+            "Lung US และฟังปอดหลังให้ทุกครั้ง",
+            "หยุด furosemide และ thiazide",
+            "ให้ K ทดแทน"
           ],
           "doseMap": {
-            "Normal saline 250 mL aliquots": "Reassess ทุก bolus หยุดเมื่อ perfusion ดีขึ้นหรือเริ่มเห็น B-lines HF ทำให้ margin แคบลง แต่ไม่ได้แปลว่าให้น้ำไม่ได้",
-            "Replace potassium": "KCl 10 mmol/h IV และ K ก็ดัน serum Na ขึ้นด้วย ต้องนับรวมใน correction budget"
+            "NSS ทีละ 250 mL": "Reassess ทุก bolus หยุดเมื่อ perfusion ดีขึ้นหรือเริ่มเห็น B-lines HF ทำให้ margin แคบลง แต่ไม่ได้แปลว่าให้น้ำไม่ได้",
+            "ให้ K ทดแทน": "KCl 10 mmol/h IV และ K ก็ดัน serum Na ขึ้นด้วย ต้องนับรวมใน correction budget"
           },
           "distractors": [
             {
@@ -266,14 +266,14 @@
           "choice": "เจาะ Na ทุก 2-4 ชม. ขึ้นไม่เกิน 8 ใน 24 ชม.",
           "label": "เฝ้าระวัง overcorrection แล้วหยุดไว้ก่อนถึง limit",
           "actions": [
-            "Sodium every 2 to 4 hours",
-            "Hourly urine output",
-            "Limit the rise to 8 mmol/L in 24 hours",
-            "Desmopressin with D5W if the limit is approached"
+            "เจาะ Na ทุก 2 ถึง 4 ชม.",
+            "Urine output ทุกชั่วโมง",
+            "ให้ Na ขึ้นไม่เกิน 8 mmol/L ใน 24 ชม.",
+            "Desmopressin กับ D5W ถ้าใกล้ถึงเพดาน"
           ],
           "doseMap": {
-            "Limit the rise to 8 mmol/L in 24 hours": "คนไข้มี risk ของ osmotic demyelination 3 ข้อ: Na < 120, K ต่ำ และเป็นมาหลายวัน",
-            "Desmopressin with D5W if the limit is approached": "Desmopressin 2 mcg IV หยุด water diuresis ได้ ถ้า Na ขึ้นเร็วเกินไปแล้วให้ D5W 3 mL/kg/h ดึงกลับลงมา"
+            "ให้ Na ขึ้นไม่เกิน 8 mmol/L ใน 24 ชม.": "คนไข้มี risk ของ osmotic demyelination 3 ข้อ: Na < 120, K ต่ำ และเป็นมาหลายวัน",
+            "Desmopressin กับ D5W ถ้าใกล้ถึงเพดาน": "Desmopressin 2 mcg IV หยุด water diuresis ได้ ถ้า Na ขึ้นเร็วเกินไปแล้วให้ D5W 3 mL/kg/h ดึงกลับลงมา"
           },
           "distractors": [
             {

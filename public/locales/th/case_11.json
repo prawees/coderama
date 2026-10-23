@@ -112,7 +112,7 @@
       "id": "us1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Bedside FAST and transvaginal ultrasound",
+      "name": "FAST ข้างเตียง และ transvaginal US",
       "report": "Free fluid ใน Morison's pouch และ pelvis มี echogenic material หมุนวนบ่งว่าเป็นก้อนเลือด มดลูกว่าง endometrium บาง มีห่วงอยู่ในโพรง มี heterogeneous mass ที่ right adnexa 34 mm แยกจากรังไข่ มี fluid รอบๆ ไม่มี intrauterine gestational sac",
       "imageUrl": "",
       "abnormal": true
@@ -121,7 +121,7 @@
       "id": "hb1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haemoglobin",
+      "name": "Hb",
       "value": "7.8",
       "unit": "g/dL",
       "normalRange": "12.0-15.5",
@@ -143,7 +143,7 @@
       "id": "bg1",
       "kind": "lab",
       "category": "Blood bank",
-      "name": "Blood group and crossmatch",
+      "name": "G/M",
       "value": "O Rh negative",
       "unit": "-",
       "normalRange": "-",
@@ -165,7 +165,7 @@
       "id": "coag1",
       "kind": "lab",
       "category": "Coagulation",
-      "name": "INR and fibrinogen",
+      "name": "INR, fibrinogen",
       "value": "INR 1.3 / fibrinogen 1.8 g/L",
       "unit": "-",
       "normalRange": "INR 0.9-1.2 / fibrinogen 2.0-4.0 g/L",
@@ -207,8 +207,8 @@
           "label": "ตรวจ UPT เปิด IV เบอร์ใหญ่ 2 เส้น เจาะเลือด",
           "actions": [
             "Urine beta-hCG",
-            "IV access 16G x2",
-            "CBC, coagulation, lactate, group and crossmatch 4 units"
+            "เปิดเส้น 16G 2 เส้น",
+            "CBC, coag, lactate, G/M 4 unit"
           ],
           "doseMap": {}
         }
@@ -234,8 +234,8 @@
           ],
           "label": "FAST ข้างเตียงและ transvaginal U/S โดยไม่ออกจากห้อง resus",
           "actions": [
-            "Bedside FAST",
-            "Transvaginal ultrasound"
+            "FAST ข้างเตียง",
+            "Transvaginal US"
           ],
           "doseMap": {}
         }
@@ -261,16 +261,16 @@
           ],
           "label": "เปิด MTP และให้เลือด ไม่ใช่ crystalloid หลายลิตร",
           "actions": [
-            "Emergency O negative red cells",
-            "Activate massive transfusion protocol",
-            "Tranexamic acid IV",
-            "Limited crystalloid"
+            "PRC O negative ฉุกเฉิน",
+            "เปิด massive transfusion protocol",
+            "TXA IV",
+            "จำกัด crystalloid"
           ],
           "doseMap": {
-            "Emergency O negative red cells": "2 unit ทันทีระหว่างรอเลือด crossmatch",
-            "Activate massive transfusion protocol": "PRC : FFP : platelet 1:1:1",
-            "Tranexamic acid IV": "1 g ใน 10 นาที",
-            "Limited crystalloid": "ไม่เกิน 1000 mL ใช้ permissive hypotension จนกว่าจะหยุดเลือดได้"
+            "PRC O negative ฉุกเฉิน": "2 unit ทันทีระหว่างรอเลือด crossmatch",
+            "เปิด massive transfusion protocol": "PRC : FFP : platelet 1:1:1",
+            "TXA IV": "1 g ใน 10 นาที",
+            "จำกัด crystalloid": "ไม่เกิน 1000 mL ใช้ permissive hypotension จนกว่าจะหยุดเลือดได้"
           }
         }
       },
@@ -327,9 +327,9 @@
           ],
           "label": "Consult สูติ-นรีเวชเข้าห้องผ่าตัดทันที",
           "actions": [
-            "Emergency gynaecology consult",
-            "Nil by mouth and anaesthetic review",
-            "Consent for laparoscopy or laparotomy, possible salpingectomy"
+            "ปรึกษาสูติฯ ด่วน",
+            "NPO และให้วิสัญญีประเมิน",
+            "Consent ทำ laparoscopy หรือ laparotomy อาจตัดท่อนำไข่"
           ],
           "doseMap": {}
         }
@@ -376,9 +376,9 @@
           "label": "ดูแลหลังผ่าตัด รวมถึง anti-D เพราะ Rh negative",
           "actions": [
             "Anti-D immunoglobulin",
-            "Repeat haemoglobin and coagulation",
-            "Analgesia and thromboprophylaxis",
-            "Early pregnancy unit follow up and counselling"
+            "Hb และ coag ซ้ำ",
+            "ยาแก้ปวดและป้องกัน VTE",
+            "นัดคลินิกฝากครรภ์ระยะแรกและให้คำปรึกษา"
           ],
           "doseMap": {
             "Anti-D immunoglobulin": "250 IU (50 mcg) IM ภายใน 72 ชม."

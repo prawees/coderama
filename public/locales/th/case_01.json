@@ -74,7 +74,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "AF with slow ventricular response 35/min, scooped ST depression (reverse tick) และ PVC บ่อย เข้าได้กับ digoxin toxicity",
       "imageUrl": "",
       "abnormal": true
@@ -83,7 +83,7 @@
       "id": "chem1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Potassium",
+      "name": "K",
       "value": "6.2",
       "unit": "mmol/L",
       "normalRange": "3.5-5.0",
@@ -183,8 +183,8 @@
           "label": "ให้ digoxin-specific antibody fragments (DigiFab)",
           "actions": [
             "Digoxin immune Fab IV",
-            "Recheck potassium in 1 hour",
-            "Continuous cardiac monitoring"
+            "เจาะ K ซ้ำใน 1 ชม.",
+            "ติด monitor หัวใจต่อเนื่อง"
           ],
           "doseMap": {
             "Digoxin immune Fab IV": "Life-threatening และไม่รู้ขนาดที่กิน: 10 vials IV ใน 30 นาที ไม่ดีขึ้นให้ซ้ำได้ K จะลดลงเมื่อ Fab ออกฤทธิ์ ระวัง hypokalemia ตามมา DigiFab อยู่ในรายการ antidote ของศูนย์พิษวิทยารามาธิบดี โทร 1367 ถามได้ว่ามียาที่ไหนใกล้สุด"

@@ -96,7 +96,7 @@
       "id": "coag1",
       "kind": "lab",
       "category": "Coagulation",
-      "name": "Fibrinogen, INR and platelets",
+      "name": "Fibrinogen, INR, platelet",
       "value": "Fibrinogen <0.5 g/L / INR 3.8 / platelets 42 x10^9/L",
       "unit": "-",
       "normalRange": "Fibrinogen 4.0-6.0 in pregnancy",
@@ -107,7 +107,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas",
+      "name": "ABG",
       "value": "pH 6.98 / pCO2 62 / pO2 38 / lactate 12.4",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -118,7 +118,7 @@
       "id": "echo1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Bedside transthoracic echocardiogram",
+      "name": "Echo ข้างเตียง",
       "report": "RV โตมาก บีบตัวแย่ septum โป่งเข้า LV LV เล็กและเลือดเข้าไม่พอ ไม่มี pericardial effusion รูปแบบ RV failure นี้นำการรักษา ต้องใช้ vasopressor และ pulmonary vasodilator และแปลว่าการ load fluid หนักจะทำให้แย่ลง",
       "imageUrl": "",
       "abnormal": true
@@ -127,8 +127,8 @@
       "id": "hb1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haemoglobin (serial)",
-      "value": "10.4 then 6.2 g/dL over 25 minutes",
+      "name": "Hb (เป็นระยะ)",
+      "value": "10.4 แล้วลดเหลือ 6.2 g/dL ใน 25 นาที",
       "unit": "g/dL",
       "normalRange": "11.0-14.0 in pregnancy",
       "abnormal": true,
@@ -138,7 +138,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus tachycardia 146/min, right axis deviation, S1Q3T3 และ T inversion V1 ถึง V4 acute right heart strain ดูจาก EKG อย่างเดียวแยกจาก massive PE ไม่ได้",
       "imageUrl": "",
       "abnormal": true
@@ -147,7 +147,7 @@
       "id": "ca1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Ionised calcium",
+      "name": "iCa",
       "value": "0.82",
       "unit": "mmol/L",
       "normalRange": "1.15-1.30",
@@ -189,13 +189,13 @@
           ],
           "label": "ประกาศ obstetric emergency ดันมดลูกไปทางซ้าย airway และ O2",
           "actions": [
-            "Activate obstetric and neonatal emergency teams",
-            "Manual left uterine displacement",
-            "100% oxygen and prepare for intubation",
-            "Two large bore IV lines"
+            "เรียกทีมฉุกเฉินสูติฯ และทีมทารกแรกเกิด",
+            "ดันมดลูกไปทางซ้ายด้วยมือ",
+            "O2 100% และเตรียม intubate",
+            "เปิดเส้นใหญ่ 2 เส้น"
           ],
           "doseMap": {
-            "Manual left uterine displacement": "ดีกว่าเอียงเตียง เพราะการกดหน้าอกที่ได้ผลต้องทำบนพื้นราบ มดลูกครบกำหนดกด aorta และ vena cava จน cardiac output ระหว่าง CPR ลดลงครึ่งหนึ่งได้"
+            "ดันมดลูกไปทางซ้ายด้วยมือ": "ดีกว่าเอียงเตียง เพราะการกดหน้าอกที่ได้ผลต้องทำบนพื้นราบ มดลูกครบกำหนดกด aorta และ vena cava จน cardiac output ระหว่าง CPR ลดลงครึ่งหนึ่งได้"
           }
         }
       },
@@ -220,12 +220,12 @@
           ],
           "label": "เตรียม perimortem C/S ภายใน 4 นาทีถ้า arrest",
           "actions": [
-            "Scalpel at the bedside",
-            "Assign a timekeeper who announces elapsed minutes aloud",
-            "Neonatal team ready"
+            "มีดผ่าตัดอยู่ข้างเตียง",
+            "มอบคนจับเวลาและประกาศนาทีที่ผ่านไปดังๆ",
+            "ทีมทารกแรกเกิดพร้อม"
           ],
           "doseMap": {
-            "Scalpel at the bedside": "ถ้า arrest ที่อายุครรภ์เกิน 20 สัปดาห์ ต้องเริ่มคลอดภายใน 4 นาทีและเสร็จภายใน 5 นาที ทำข้างเตียง ไม่ใช่ในห้องผ่าตัด และทำเพื่อช่วย resuscitate แม่เป็นหลัก โดยลดการกด aorta และ vena cava"
+            "มีดผ่าตัดอยู่ข้างเตียง": "ถ้า arrest ที่อายุครรภ์เกิน 20 สัปดาห์ ต้องเริ่มคลอดภายใน 4 นาทีและเสร็จภายใน 5 นาที ทำข้างเตียง ไม่ใช่ในห้องผ่าตัด และทำเพื่อช่วย resuscitate แม่เป็นหลัก โดยลดการกด aorta และ vena cava"
           }
         }
       },
@@ -249,15 +249,15 @@
           ],
           "label": "พยุง RV อย่าท่วมมัน",
           "actions": [
-            "Noradrenaline infusion",
-            "Inotrope for right ventricular support",
-            "Cautious fluid only",
-            "Bedside echocardiogram to guide"
+            "Norepinephrine drip",
+            "Inotrope ช่วย RV",
+            "Fluid อย่างระวังเท่านั้น",
+            "Echo ข้างเตียงช่วยตัดสินใจ"
           ],
           "doseMap": {
-            "Noradrenaline infusion": "เริ่มเร็วสำหรับ vasoplegia",
-            "Inotrope for right ventricular support": "Dobutamine หรือ milrinone พิจารณา inhaled nitric oxide หรือ pulmonary vasodilator ถ้ามี",
-            "Cautious fluid only": "RV ที่ล้มเหลวและโตจะแย่ลงเมื่อได้ volume นี่ตรงข้ามกับปฏิกิริยาอัตโนมัติเมื่อคนไข้สูติล้มพร้อมเลือดออก และเป็นเหตุผลที่ echo สำคัญ"
+            "Norepinephrine drip": "เริ่มเร็วสำหรับ vasoplegia",
+            "Inotrope ช่วย RV": "Dobutamine หรือ milrinone พิจารณา inhaled nitric oxide หรือ pulmonary vasodilator ถ้ามี",
+            "Fluid อย่างระวังเท่านั้น": "RV ที่ล้มเหลวและโตจะแย่ลงเมื่อได้ volume นี่ตรงข้ามกับปฏิกิริยาอัตโนมัติเมื่อคนไข้สูติล้มพร้อมเลือดออก และเป็นเหตุผลที่ echo สำคัญ"
           }
         }
       },
@@ -281,14 +281,14 @@
           ],
           "label": "Massive transfusion โดยเล็งที่ fibrinogen",
           "actions": [
-            "Activate massive transfusion protocol",
-            "Cryoprecipitate or fibrinogen concentrate early",
-            "Tranexamic acid IV",
-            "Calcium replacement"
+            "เปิด massive transfusion protocol",
+            "Cryoprecipitate หรือ fibrinogen concentrate ให้เร็ว",
+            "TXA IV",
+            "ให้ calcium ทดแทน"
           ],
           "doseMap": {
-            "Cryoprecipitate or fibrinogen concentrate early": "เป้า fibrinogen เกิน 2 g/L ใน AFE coagulopathy มักฆ่าเร็วกว่าเหตุการณ์ทางหัวใจ และไม่ตอบสนองต่อ PRC อย่างเดียว",
-            "Calcium replacement": "10% calcium chloride 10 mL ซ้ำได้ ตามระดับ ionized calcium"
+            "Cryoprecipitate หรือ fibrinogen concentrate ให้เร็ว": "เป้า fibrinogen เกิน 2 g/L ใน AFE coagulopathy มักฆ่าเร็วกว่าเหตุการณ์ทางหัวใจ และไม่ตอบสนองต่อ PRC อย่างเดียว",
+            "ให้ calcium ทดแทน": "10% calcium chloride 10 mL ซ้ำได้ ตามระดับ ionized calcium"
           }
         }
       },
@@ -346,13 +346,13 @@
           ],
           "label": "ดูแลหลัง arrest ใน ICU และหยุดเลือด",
           "actions": [
-            "ICU admission with targeted temperature management",
-            "Uterine haemostasis: balloon tamponade or B-Lynch suture",
-            "Continue product-guided transfusion",
-            "Consider ECMO referral if refractory"
+            "Admit ICU ทำ targeted temperature management",
+            "ห้ามเลือดที่มดลูก: balloon tamponade หรือเย็บ B-Lynch",
+            "ให้เลือดตามผล product ต่อ",
+            "พิจารณาส่งต่อ ECMO ถ้าไม่ตอบสนอง"
           ],
           "doseMap": {
-            "Uterine haemostasis: balloon tamponade or B-Lynch suture": "ตัดมดลูกถ้าคุมเลือดไม่ได้ แต่ต้องแก้ fibrinogen ก่อน ผ่าตัดเข้าไปใน coagulopathy ที่ยังไม่แก้ทำให้เลือดออกมากขึ้น"
+            "ห้ามเลือดที่มดลูก: balloon tamponade หรือเย็บ B-Lynch": "ตัดมดลูกถ้าคุมเลือดไม่ได้ แต่ต้องแก้ fibrinogen ก่อน ผ่าตัดเข้าไปใน coagulopathy ที่ยังไม่แก้ทำให้เลือดออกมากขึ้น"
           }
         }
       },

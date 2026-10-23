@@ -10,7 +10,7 @@
     "Neuroleptic malignant syndrome",
     "Serotonin syndrome"
   ],
-  "background": "U/D Graves disease วินิจฉัยเมื่อ 2 ปีก่อน หยุด methimazole เองเมื่อ 4 เดือนก่อนตอนรู้ว่าตั้งครรภ์ เพราะอ่านในเน็ตว่ายาทำอันตรายต่อทารก และไม่ได้บอกใคร ตอนนี้ตั้งครรภ์ 22 สัปดาห์ เป็น UTI มา 4 วัน ซึ่งเป็นตัวกระตุ้น 36 ชม. ที่ผ่านมามีไข้ กระสับกระส่าย สับสน ญาติพามาตอนเริ่มพูดไม่รู้เรื่อง thyroid storm ที่ไม่ได้รักษามี mortality 10 ถึง 30%",
+  "background": "U/D Graves disease วินิจฉัยเมื่อ 2 ปีก่อน หยุด methimazole เองเมื่อ 4 เดือนก่อนตอนรู้ว่าตั้งครรภ์ เพราะอ่านในเน็ตว่ายาทำอันตรายต่อทารก และไม่ได้บอกใคร ตอนนี้ตั้งครรภ์ 22 สัปดาห์ เป็น UTI มา 4 วัน 36 ชม. ที่ผ่านมามีไข้ กระสับกระส่าย สับสน ญาติพามาตอนเริ่มพูดไม่รู้เรื่อง",
   "patientAppearance": {
     "skinTone": "#eec39d",
     "bmiFactor": 0.85,
@@ -95,7 +95,7 @@
       "id": "tft1",
       "kind": "lab",
       "category": "Endocrine",
-      "name": "Thyroid function",
+      "name": "TFT",
       "value": "TSH <0.01 mIU/L / free T4 68 pmol/L / free T3 24 pmol/L",
       "unit": "-",
       "normalRange": "Free T4 12-22 pmol/L",
@@ -117,7 +117,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "AF with rapid ventricular response 168/min ไม่มี ischemic ST change, AF เจอใน thyrotoxicosis 10 ถึง 35% และเป็นอาการนำที่พบบ่อยในวัยนี้",
       "imageUrl": "",
       "abnormal": true
@@ -137,7 +137,7 @@
       "id": "ua1",
       "kind": "lab",
       "category": "Micro",
-      "name": "Urinalysis and culture",
+      "name": "UA, culture",
       "value": "Nitrite positive, leucocytes 3+, E. coli on culture",
       "unit": "-",
       "normalRange": "Negative",
@@ -148,7 +148,7 @@
       "id": "gluc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Glucose and calcium",
+      "name": "Glucose, calcium",
       "value": "Glucose 168 mg/dL / corrected calcium 11.2 mg/dL",
       "unit": "-",
       "normalRange": "Calcium 8.5-10.2 mg/dL",
@@ -190,13 +190,13 @@
           ],
           "label": "รักษาตาม clinical ไม่ต้องรอผล TFT",
           "actions": [
-            "Calculate Burch-Wartofsky score",
-            "Continuous cardiac monitoring",
-            "IV access and bloods including TFTs",
-            "Active cooling with paracetamol, never aspirin"
+            "คำนวณ Burch-Wartofsky score",
+            "ติด monitor หัวใจต่อเนื่อง",
+            "เปิดเส้นและเจาะเลือดรวม TFT",
+            "Cooling แบบ active กับ paracetamol ห้าม aspirin"
           ],
           "doseMap": {
-            "Active cooling with paracetamol, never aspirin": "Aspirin แทนที่ thyroid hormone จาก TBG ทำให้ free hormone สูงขึ้นและ storm แย่ลง เป็นความผิดพลาดเฉพาะที่เกิดบ่อย"
+            "Cooling แบบ active กับ paracetamol ห้าม aspirin": "Aspirin แทนที่ thyroid hormone จาก TBG ทำให้ free hormone สูงขึ้นและ storm แย่ลง เป็นความผิดพลาดเฉพาะที่เกิดบ่อย"
           }
         }
       },
@@ -220,13 +220,13 @@
           ],
           "label": "Beta-blocker ก่อน คุม adrenergic storm",
           "actions": [
-            "Propranolol IV or oral",
-            "Esmolol infusion if titration is needed",
-            "Cautious use given the cardiac failure"
+            "Propranolol IV หรือกิน",
+            "Esmolol drip ถ้าต้อง titrate",
+            "ให้อย่างระวังเพราะมีหัวใจวาย"
           ],
           "doseMap": {
-            "Propranolol IV or oral": "1 mg IV ช้าๆ ซ้ำได้ หรือ 60 ถึง 80 mg กินทุก 4 ถึง 6 ชม. เลือก propranolol เพราะขนาดสูงยัง block การเปลี่ยน T4 เป็น T3 ที่ส่วนปลายด้วย",
-            "Cautious use given the cardiac failure": "เป็น high output failure ไม่ใช่ pump failure ยังมี indication ให้ beta-blocker แต่ titrate ด้วย esmolol drip จะได้หยุดทันถ้า output ตก"
+            "Propranolol IV หรือกิน": "1 mg IV ช้าๆ ซ้ำได้ หรือ 60 ถึง 80 mg กินทุก 4 ถึง 6 ชม. เลือก propranolol เพราะขนาดสูงยัง block การเปลี่ยน T4 เป็น T3 ที่ส่วนปลายด้วย",
+            "ให้อย่างระวังเพราะมีหัวใจวาย": "เป็น high output failure ไม่ใช่ pump failure ยังมี indication ให้ beta-blocker แต่ titrate ด้วย esmolol drip จะได้หยุดทันถ้า output ตก"
           }
         }
       },
@@ -251,13 +251,13 @@
           ],
           "label": "Thionamide ก่อน iodine ลำดับสำคัญ",
           "actions": [
-            "Propylthiouracil (preferred here)",
-            "Then iodine at least one hour later",
+            "PTU (เลือกตัวนี้ในเคสนี้)",
+            "ตามด้วย iodine หลังอย่างน้อย 1 ชม.",
             "Hydrocortisone IV"
           ],
           "doseMap": {
-            "Propylthiouracil (preferred here)": "Loading 600 mg แล้ว 200 ถึง 250 mg ทุก 4 ชม. ใน storm ดีกว่า methimazole เพราะ block การเปลี่ยน T4 เป็น T3 ที่ส่วนปลายด้วย และเลือกใช้ในไตรมาสแรก แม้ตอนนี้จะ 22 สัปดาห์แล้ว",
-            "Then iodine at least one hour later": "Lugol's iodine หรือ potassium iodide อย่างน้อย 1 ชม. หลัง thionamide ให้ iodine ก่อนเท่ากับให้วัตถุดิบสร้างฮอร์โมนใหม่และทำให้ storm แย่ลง ลำดับนี้คือบทเรียนที่คุ้มที่สุดของเคส",
+            "PTU (เลือกตัวนี้ในเคสนี้)": "Loading 600 mg แล้ว 200 ถึง 250 mg ทุก 4 ชม. ใน storm ดีกว่า methimazole เพราะ block การเปลี่ยน T4 เป็น T3 ที่ส่วนปลายด้วย และเลือกใช้ในไตรมาสแรก แม้ตอนนี้จะ 22 สัปดาห์แล้ว",
+            "ตามด้วย iodine หลังอย่างน้อย 1 ชม.": "Lugol's iodine หรือ potassium iodide อย่างน้อย 1 ชม. หลัง thionamide ให้ iodine ก่อนเท่ากับให้วัตถุดิบสร้างฮอร์โมนใหม่และทำให้ storm แย่ลง ลำดับนี้คือบทเรียนที่คุ้มที่สุดของเคส",
             "Hydrocortisone IV": "100 mg IV ทุก 8 ชม. block การเปลี่ยนที่ส่วนปลายและรักษา relative adrenal insufficiency ใน storm"
           }
         }
@@ -282,13 +282,13 @@
           ],
           "label": "รักษาตัวกระตุ้น และประคับประคอง",
           "actions": [
-            "Antibiotics for the urinary tract infection",
-            "IV fluids with dextrose",
-            "Cooling measures",
-            "Fetal monitoring and obstetric involvement"
+            "Antibiotic รักษา UTI",
+            "IV fluid ที่มี dextrose",
+            "ลดอุณหภูมิ",
+            "Monitor ทารกในครรภ์และให้สูติฯ ร่วมดูแล"
           ],
           "doseMap": {
-            "IV fluids with dextrose": "Metabolic rate สูงทำให้ glycogen หมด ต้องการ fluid มากจากไข้ เหงื่อ และท้องเสีย"
+            "IV fluid ที่มี dextrose": "Metabolic rate สูงทำให้ glycogen หมด ต้องการ fluid มากจากไข้ เหงื่อ และท้องเสีย"
           }
         }
       },
@@ -346,13 +346,13 @@
           ],
           "label": "Admit ICU และวางแผนการรักษาระยะยาว",
           "actions": [
-            "ICU or high dependency admission",
-            "Continue the four drug regimen with tapering",
-            "Cholestyramine if hormone levels remain very high",
-            "Endocrinology and obstetric joint care"
+            "Admit ICU หรือ high dependency",
+            "ให้ยาสี่ตัวต่อแล้วค่อยๆ ลด",
+            "Cholestyramine ถ้าระดับฮอร์โมนยังสูงมาก",
+            "Endocrine และสูติฯ ดูแลร่วมกัน"
           ],
           "doseMap": {
-            "Cholestyramine if hormone levels remain very high": "4 g วันละ 4 ครั้ง ตัด enterohepatic recirculation ของ thyroid hormone มีประโยชน์ถ้าตอบสนองช้า"
+            "Cholestyramine ถ้าระดับฮอร์โมนยังสูงมาก": "4 g วันละ 4 ครั้ง ตัด enterohepatic recirculation ของ thyroid hormone มีประโยชน์ถ้าตอบสนองช้า"
           }
         }
       },

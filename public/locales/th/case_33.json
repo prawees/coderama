@@ -95,7 +95,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Capillary glucose",
+      "name": "DTX",
       "value": "32",
       "unit": "mg/dL",
       "normalRange": "45-100 (neonate)",
@@ -106,7 +106,7 @@
       "id": "lp1",
       "kind": "lab",
       "category": "Micro",
-      "name": "Lumbar puncture (CSF)",
+      "name": "LP (CSF)",
       "value": "WBC 1240/mm3 (92% neutrophils), protein 220 mg/dL, glucose 12 mg/dL, Gram positive cocci in chains",
       "unit": "-",
       "normalRange": "WBC <20/mm3 in neonates",
@@ -117,8 +117,8 @@
       "id": "bc1",
       "kind": "lab",
       "category": "Micro",
-      "name": "Blood culture",
-      "value": "Streptococcus agalactiae (group B) at 14 hours",
+      "name": "H/C",
+      "value": "Streptococcus agalactiae (group B) ขึ้นที่ 14 ชม.",
       "unit": "-",
       "normalRange": "No growth",
       "abnormal": true,
@@ -128,7 +128,7 @@
       "id": "gas1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Blood gas and lactate",
+      "name": "Blood gas, lactate",
       "value": "pH 7.14 / pCO2 38 / HCO3 12 / lactate 8.4",
       "unit": "-",
       "normalRange": "pH 7.32-7.42",
@@ -139,7 +139,7 @@
       "id": "cbc1",
       "kind": "lab",
       "category": "CBC",
-      "name": "White cells and platelets",
+      "name": "WBC, platelet",
       "value": "WBC 2.8 x10^9/L with a left shift / platelets 74 x10^9/L",
       "unit": "-",
       "normalRange": "WBC 5.0-21.0",
@@ -192,13 +192,13 @@
           ],
           "label": "รักษาเป็น sepsis จากความสงสัยอย่างเดียว เจาะน้ำตาลทันที",
           "actions": [
-            "Capillary glucose",
-            "IV or intraosseous access within 5 minutes",
-            "Blood culture if it costs no delay",
-            "Thermal support and warming"
+            "DTX",
+            "เปิดเส้น IV หรือ IO ภายใน 5 นาที",
+            "H/C ถ้าไม่ทำให้ช้า",
+            "ให้ความอบอุ่นและ warm"
           ],
           "doseMap": {
-            "IV or intraosseous access within 5 minutes": "ทารกช็อกให้ใส่ IO เร็ว การเปิดเส้นไม่ได้ซ้ำหลายรอบคือสาเหตุที่พบบ่อยที่สุดที่ทำให้ antibiotic ช้า"
+            "เปิดเส้น IV หรือ IO ภายใน 5 นาที": "ทารกช็อกให้ใส่ IO เร็ว การเปิดเส้นไม่ได้ซ้ำหลายรอบคือสาเหตุที่พบบ่อยที่สุดที่ทำให้ antibiotic ช้า"
           }
         }
       },
@@ -223,12 +223,12 @@
           ],
           "label": "แก้ hypoglycemia",
           "actions": [
-            "Dextrose 10% bolus",
-            "Dextrose infusion"
+            "10% dextrose bolus",
+            "Dextrose drip"
           ],
           "doseMap": {
-            "Dextrose 10% bolus": "10% dextrose 2 mL/kg (6 mL) เจาะซ้ำใน 30 นาที",
-            "Dextrose infusion": "GIR 6 ถึง 8 mg/kg/min คุมน้ำตาลให้เกิน 45 mg/dL"
+            "10% dextrose bolus": "10% dextrose 2 mL/kg (6 mL) เจาะซ้ำใน 30 นาที",
+            "Dextrose drip": "GIR 6 ถึง 8 mg/kg/min คุมน้ำตาลให้เกิน 45 mg/dL"
           }
         }
       },
@@ -255,12 +255,12 @@
           "actions": [
             "Ampicillin IV",
             "Cefotaxime IV",
-            "Add aciclovir if there are seizures, vesicles or hepatitis"
+            "เพิ่ม acyclovir ถ้ามีชัก ตุ่มน้ำ หรือตับอักเสบ"
           ],
           "doseMap": {
             "Ampicillin IV": "100 mg/kg (290 mg) IV ครอบคลุม GBS และ Listeria",
             "Cefotaxime IV": "50 mg/kg (145 mg) IV ในทารกใช้ cefotaxime แทน ceftriaxone เพราะ ceftriaxone แทนที่ bilirubin และตกตะกอนกับสารน้ำที่มี calcium",
-            "Add aciclovir if there are seizures, vesicles or hepatitis": "20 mg/kg IV ทุก 8 ชม. neonatal HSV แยกจาก bacterial sepsis ไม่ได้ และมักพลาดจนสายเกินไป"
+            "เพิ่ม acyclovir ถ้ามีชัก ตุ่มน้ำ หรือตับอักเสบ": "20 mg/kg IV ทุก 8 ชม. neonatal HSV แยกจาก bacterial sepsis ไม่ได้ และมักพลาดจนสายเกินไป"
           }
         }
       },
@@ -286,12 +286,12 @@
           "label": "Fluid resuscitation และ inotrope ถ้าช็อกไม่ตอบสนองต่อ fluid",
           "actions": [
             "Isotonic crystalloid bolus",
-            "Reassess after every bolus for hepatomegaly and crackles",
-            "Adrenaline or dopamine infusion if shock persists"
+            "ประเมินตับโตและ crepitation หลังทุก bolus",
+            "Adrenaline หรือ dopamine drip ถ้ายังช็อก"
           ],
           "doseMap": {
             "Isotonic crystalloid bolus": "ครั้งละ 10 mL/kg (29 mL) ไม่ใช่ 20 mL/kg กล้ามเนื้อหัวใจทารกรับ volume ได้ไม่ดี fluid overload เกิดง่าย",
-            "Adrenaline or dopamine infusion if shock persists": "เริ่มหลัง bolus 2 ถึง 3 ครั้ง แทนการให้ volume ต่อ"
+            "Adrenaline หรือ dopamine drip ถ้ายังช็อก": "เริ่มหลัง bolus 2 ถึง 3 ครั้ง แทนการให้ volume ต่อ"
           }
         }
       },
@@ -350,13 +350,13 @@
           ],
           "label": "Antibiotic คอร์สยาว และดูแลใน NICU",
           "actions": [
-            "NICU admission",
-            "Extend to 14-21 days of IV antibiotics for GBS meningitis",
-            "Cranial ultrasound and repeat lumbar puncture at 24-48 hours",
-            "Hearing screen and neurodevelopmental follow-up"
+            "Admit NICU",
+            "ขยาย antibiotic IV เป็น 14 ถึง 21 วันสำหรับ GBS meningitis",
+            "US สมองและ LP ซ้ำที่ 24 ถึง 48 ชม.",
+            "ตรวจการได้ยินและติดตามพัฒนาการ"
           ],
           "doseMap": {
-            "Extend to 14-21 days of IV antibiotics for GBS meningitis": "อย่างน้อย 14 วันสำหรับ GBS meningitis และ 21 วันถ้ามี complication คอร์ส 7 วันสำหรับ bacteremia ไม่พอเมื่อยืนยัน meningitis แล้ว"
+            "ขยาย antibiotic IV เป็น 14 ถึง 21 วันสำหรับ GBS meningitis": "อย่างน้อย 14 วันสำหรับ GBS meningitis และ 21 วันถ้ามี complication คอร์ส 7 วันสำหรับ bacteremia ไม่พอเมื่อยืนยัน meningitis แล้ว"
           }
         }
       },

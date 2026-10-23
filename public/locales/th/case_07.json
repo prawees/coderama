@@ -94,7 +94,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus tachycardia 126/min ไม่มี ischemic ST change QTc ปกติ",
       "imageUrl": "",
       "abnormal": true
@@ -103,7 +103,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Portable Chest X-ray",
+      "name": "CXR portable",
       "report": "Hyperinflation กะบังลมแบน ไม่มี consolidation, effusion หรือ pneumothorax หัวใจขนาดปกติ",
       "imageUrl": "",
       "abnormal": true
@@ -112,7 +112,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Capillary glucose",
+      "name": "DTX",
       "value": "104",
       "unit": "mg/dL",
       "normalRange": "70-140",
@@ -123,7 +123,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas (room air)",
+      "name": "ABG (room air)",
       "value": "pH 7.31 / pCO2 32 / pO2 58 / HCO3 16",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -145,7 +145,7 @@
       "id": "tryp1",
       "kind": "lab",
       "category": "Immunology",
-      "name": "Serum tryptase (acute)",
+      "name": "Serum tryptase (ระยะเฉียบพลัน)",
       "value": "42",
       "unit": "ng/mL",
       "normalRange": "<11.4",
@@ -156,7 +156,7 @@
       "id": "cbc1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haematocrit",
+      "name": "Hct",
       "value": "47",
       "unit": "%",
       "normalRange": "36-46",
@@ -210,10 +210,10 @@
           ],
           "label": "Adrenaline IM ที่ต้นขาด้านหน้าข้าง",
           "actions": [
-            "Adrenaline (epinephrine) 1 mg/mL IM"
+            "Adrenaline 1 mg/mL IM"
           ],
           "doseMap": {
-            "Adrenaline (epinephrine) 1 mg/mL IM": "0.5 mg (1:1000 0.5 mL) IM กลางต้นขาด้านหน้าข้าง ซ้ำได้ทุก 5 นาที"
+            "Adrenaline 1 mg/mL IM": "0.5 mg (1:1000 0.5 mL) IM กลางต้นขาด้านหน้าข้าง ซ้ำได้ทุก 5 นาที"
           }
         }
       },
@@ -237,11 +237,11 @@
           ],
           "label": "O2 high flow จัดท่านอนหงายยกขาสูง",
           "actions": [
-            "Oxygen via non-rebreather mask",
-            "Supine with legs elevated"
+            "O2 ทาง non-rebreather mask",
+            "นอนหงาย ยกขาสูง"
           ],
           "doseMap": {
-            "Oxygen via non-rebreather mask": "15 L/min เป้า SpO2 94 ถึง 98%"
+            "O2 ทาง non-rebreather mask": "15 L/min เป้า SpO2 94 ถึง 98%"
           }
         }
       },
@@ -265,11 +265,11 @@
           ],
           "label": "เปิด IV เบอร์ใหญ่ 2 เส้น load crystalloid เร็ว",
           "actions": [
-            "IV access 18G x2",
-            "Normal saline bolus"
+            "เปิดเส้น 18G 2 เส้น",
+            "NSS bolus"
           ],
           "doseMap": {
-            "Normal saline bolus": "20 mL/kg (ราว 1000 mL) ใน 10 ถึง 15 นาที ประเมินซ้ำหลังทุก bolus"
+            "NSS bolus": "20 mL/kg (ราว 1000 mL) ใน 10 ถึง 15 นาที ประเมินซ้ำหลังทุก bolus"
           }
         }
       },
@@ -315,10 +315,10 @@
           ],
           "label": "Adrenaline IM dose ที่สองที่ 5 นาทีเพราะ BP ยังต่ำ",
           "actions": [
-            "Adrenaline (epinephrine) 1 mg/mL IM (repeat)"
+            "Adrenaline 1 mg/mL IM (ซ้ำ)"
           ],
           "doseMap": {
-            "Adrenaline (epinephrine) 1 mg/mL IM (repeat)": "0.5 mg IM ถ้าต้องให้ dose ที่สามให้เริ่ม IV drip"
+            "Adrenaline 1 mg/mL IM (ซ้ำ)": "0.5 mg IM ถ้าต้องให้ dose ที่สามให้เริ่ม IV drip"
           }
         }
       },
@@ -342,10 +342,10 @@
           ],
           "label": "พ่นยาขยายหลอดลมสำหรับ wheeze ที่ยังอยู่",
           "actions": [
-            "Salbutamol nebuliser"
+            "พ่น salbutamol"
           ],
           "doseMap": {
-            "Salbutamol nebuliser": "2.5 mg ใน NSS 3 mL พ่นด้วย O2 ซ้ำได้ตามต้องการ"
+            "พ่น salbutamol": "2.5 mg ใน NSS 3 mL พ่นด้วย O2 ซ้ำได้ตามต้องการ"
           }
         }
       },
@@ -369,11 +369,11 @@
           ],
           "label": "ยาเสริมให้หลัง adrenaline ไม่เคยให้แทน",
           "actions": [
-            "Chlorpheniramine IV",
+            "CPM IV",
             "Hydrocortisone IV"
           ],
           "doseMap": {
-            "Chlorpheniramine IV": "10 mg IV ช้าๆ",
+            "CPM IV": "10 mg IV ช้าๆ",
             "Hydrocortisone IV": "200 mg IV"
           }
         }
@@ -419,13 +419,13 @@
           ],
           "label": "Admit observe และวางแผน D/C ให้ปลอดภัย",
           "actions": [
-            "Monitored observation 6-12 hours",
-            "Prescribe 2 adrenaline autoinjectors",
-            "Written anaphylaxis action plan",
-            "Allergy clinic referral and 24h baseline tryptase"
+            "Observe พร้อม monitor 6 ถึง 12 ชม.",
+            "จ่าย adrenaline autoinjector 2 อัน",
+            "แผนปฏิบัติตัวเมื่อเกิด anaphylaxis เป็นลายลักษณ์อักษร",
+            "ส่งคลินิกภูมิแพ้ และเจาะ tryptase baseline ที่ 24 ชม."
           ],
           "doseMap": {
-            "Prescribe 2 adrenaline autoinjectors": "Autoinjector 0.3 mg สาธิตวิธีใช้ก่อน D/C"
+            "จ่าย adrenaline autoinjector 2 อัน": "Autoinjector 0.3 mg สาธิตวิธีใช้ก่อน D/C"
           }
         }
       },

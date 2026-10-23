@@ -46,6 +46,7 @@
         "options": null
       },
       "wrong_adenosine": {
+        "slip": true,
         "vitals": { "bp": "70/40", "hr": 185, "o2": "95%" },
         "narrative": "Adenosine can be tried in an unstable regular narrow-complex tachycardia only while cardioversion is being set up, never instead of it. Here it delayed the shock, and she loses consciousness.",
         "options": [
@@ -53,11 +54,13 @@
         ]
       },
       "wrong_defib": {
+        "slip": true,
         "vitals": { "bp": "0/0", "hr": 0, "o2": "0%" },
         "narrative": "FATAL ERROR! You delivered an unsynchronized shock (Defibrillation) during the relative refractory period (R-on-T phenomenon), sending the patient into Ventricular Fibrillation! Cardiac Arrest!",
         "options": null
       },
       "wrong_vagal": {
+        "slip": true,
         "vitals": { "bp": "75/45", "hr": 185, "o2": "95%" },
         "narrative": "Vagal maneuvers take time and are ineffective for a hemodynamically UNSTABLE patient. The patient continues to deteriorate.",
         "options": [

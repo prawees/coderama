@@ -93,18 +93,20 @@
   "investigations": [
     {
       "id": "prev1",
+      "onFile": true,
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Previous neck ultrasounds (2, from other hospitals)",
+      "name": "U/S คอเดิม 2 ครั้ง จาก รพ. อื่น",
       "report": "ทั้งสองรายงานเห็น right posterior cervical node 9 mm มี fatty hilum รูปร่างรีปกติ vascular pattern ปกติ ลักษณะ benign reactive ไม่มี node ผิดปกติอื่น hilum ยังอยู่ร่วมกับรูปรีเป็นลักษณะที่น่าวางใจ และตรงกับที่ตรวจข้างเตียง",
       "imageUrl": "",
       "abnormal": false
     },
     {
       "id": "cbc1",
+      "indicated": false,
       "kind": "lab",
       "category": "CBC",
-      "name": "Complete blood count with differential (if ordered)",
+      "name": "CBC with diff",
       "value": "WBC 6.8, Hb 13.1, platelets 264, normal differential, no blasts",
       "unit": "-",
       "normalRange": "WBC 4.0-11.0",
@@ -113,9 +115,10 @@
     },
     {
       "id": "ldh1",
+      "indicated": false,
       "kind": "lab",
       "category": "Chemistry",
-      "name": "LDH (if ordered)",
+      "name": "LDH",
       "value": "182",
       "unit": "U/L",
       "normalRange": "140-280",
@@ -124,18 +127,20 @@
     },
     {
       "id": "cxr1",
+      "indicated": false,
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Chest X-ray (if ordered)",
+      "name": "CXR",
       "report": "Mediastinum ปกติ ไม่มี hilar หรือ mediastinal lymphadenopathy ปอดใส ไม่มี indication ทำใน ER ตอน 3 ทุ่มไม่ได้เปลี่ยนอะไรที่ F/U ที่ OPD จัดการได้ดีกว่า",
       "imageUrl": "",
       "abnormal": false
     },
     {
       "id": "petct1",
+      "indicated": false,
       "kind": "imaging",
       "category": "Imaging",
-      "name": "PET-CT (requested by patient)",
+      "name": "PET-CT (คนไข้ขอ)",
       "report": "ไม่ได้ทำและไม่มี indication effective dose ราว 15 mSv ค่าใช้จ่ายราว 60,000 บาท ในคนอายุ 29 ที่มี reactive node 9 mm ลักษณะไม่ร้าย โอกาสได้ผลบวกลวงที่ต้องตามด้วยหัตถการมีมากกว่าโอกาสเจอโรคหลายเท่า",
       "imageUrl": "",
       "abnormal": false
@@ -175,13 +180,13 @@
           ],
           "label": "ให้ความสำคัญกับก้อน และตรวจหา red flag ให้ดี",
           "actions": [
-            "Full lymph node survey including supraclavicular, axillary and inguinal",
-            "Assess node size, mobility, consistency and fixation",
-            "Screen for true B symptoms: documented weight loss, drenching night sweats, unexplained fever",
-            "Review the previous imaging rather than repeating it"
+            "คลำต่อมน้ำเหลืองทุกกลุ่ม รวม supraclavicular, axillary และ inguinal",
+            "ประเมินขนาด การขยับ ความแข็ง และการยึดติด",
+            "Screen B symptom จริง: น้ำหนักลดที่มีหลักฐาน เหงื่อออกกลางคืนจนชุ่ม ไข้ไม่ทราบสาเหตุ",
+            "ดูผล imaging เก่าแทนการทำซ้ำ"
           ],
           "doseMap": {
-            "Screen for true B symptoms: documented weight loss, drenching night sweats, unexplained fever": "ถามหาหลักฐานที่วัดได้ น้ำหนักจากตาชั่ง เหงื่อที่ชุ่มที่นอนจนต้องเปลี่ยนเสื้อ อาการที่เธอเล่าไม่เข้าทั้งสองนิยาม"
+            "Screen B symptom จริง: น้ำหนักลดที่มีหลักฐาน เหงื่อออกกลางคืนจนชุ่ม ไข้ไม่ทราบสาเหตุ": "ถามหาหลักฐานที่วัดได้ น้ำหนักจากตาชั่ง เหงื่อที่ชุ่มที่นอนจนต้องเปลี่ยนเสื้อ อาการที่เธอเล่าไม่เข้าทั้งสองนิยาม"
           }
         }
       },
@@ -193,6 +198,7 @@
           "y": 200
         },
         "data": {
+          "choice": "สรุปว่าไม่มี red flag แล้วคุยเรื่องที่เธอกังวล",
           "label": "ไม่มี red flag",
           "outcomeType": "improved",
           "narrative": "Posterior cervical node 9 mm นุ่ม ขยับได้ ในผู้ใหญ่อายุน้อยที่แข็งแรง U/S ปกติสองครั้งเห็น hilum ปกติ ไม่มี B symptoms จริง เป็น benign reactive node และไม่ใช่เรื่องฉุกเฉิน ไม่เคยเป็นมาตั้งแต่แรก",
@@ -233,13 +239,13 @@
           ],
           "label": "ไม่ทำ PET-CT และ biopsy อธิบายเหตุผลให้เป็นรูปธรรม",
           "actions": [
-            "No PET-CT",
-            "No excisional biopsy",
-            "No repeat ultrasound within the same month",
-            "Explain false positive risk in concrete numbers"
+            "ไม่ทำ PET-CT",
+            "ไม่ทำ excisional biopsy",
+            "ไม่ทำ US ซ้ำภายในเดือนเดียวกัน",
+            "อธิบายความเสี่ยง false positive เป็นตัวเลขที่จับต้องได้"
           ],
           "doseMap": {
-            "Explain false positive risk in concrete numbers": "ปฏิเสธลอยๆ เธอจะไป รพ. แห่งที่สี่ ตัวเลขชัดๆ ปริมาณรังสี และเส้นทางที่ผลบวกลวงจะพาไปสู่การผ่าตัดที่ไม่จำเป็น ทำให้เธอมีอะไรไว้ใช้คิด"
+            "อธิบายความเสี่ยง false positive เป็นตัวเลขที่จับต้องได้": "ปฏิเสธลอยๆ เธอจะไป รพ. แห่งที่สี่ ตัวเลขชัดๆ ปริมาณรังสี และเส้นทางที่ผลบวกลวงจะพาไปสู่การผ่าตัดที่ไม่จำเป็น ทำให้เธอมีอะไรไว้ใช้คิด"
           }
         }
       },
@@ -263,13 +269,13 @@
           ],
           "label": "วางแผน F/U ที่ชัดเจน มีจุดสิ้นสุด",
           "actions": [
-            "Outpatient general medicine or ENT review in 4 weeks",
-            "Single repeat ultrasound at 6 weeks if the node persists",
-            "Written red flag list",
-            "Advise stopping self-palpation, which keeps the node inflamed"
+            "นัด OPD อายุรกรรมหรือ ENT ใน 4 สัปดาห์",
+            "US ซ้ำครั้งเดียวที่ 6 สัปดาห์ถ้าก้อนยังอยู่",
+            "รายการ red flag เป็นลายลักษณ์อักษร",
+            "แนะนำให้เลิกคลำก้อนเอง เพราะทำให้ก้อนอักเสบต่อ"
           ],
           "doseMap": {
-            "Written red flag list": "Node เกิน 2 cm, แข็งหรือติดแน่น, อยู่ที่ supraclavicular, น้ำหนักลดเกิน 10% ใน 6 เดือนโดยชั่งจริง, เหงื่อออกกลางคืนจนชุ่ม หรือมี node ใหม่ที่อื่น"
+            "รายการ red flag เป็นลายลักษณ์อักษร": "Node เกิน 2 cm, แข็งหรือติดแน่น, อยู่ที่ supraclavicular, น้ำหนักลดเกิน 10% ใน 6 เดือนโดยชั่งจริง, เหงื่อออกกลางคืนจนชุ่ม หรือมี node ใหม่ที่อื่น"
           }
         }
       },
@@ -293,12 +299,12 @@
           ],
           "label": "เสนอความช่วยเหลือเรื่องความกังวลโดยตรง",
           "actions": [
-            "Offer referral to psychological services for health anxiety",
-            "Discuss with her GP or primary care physician",
-            "Do not prescribe benzodiazepines from the emergency department"
+            "เสนอส่งต่อจิตแพทย์หรือนักจิตวิทยาเรื่องความกังวลด้านสุขภาพ",
+            "คุยกับแพทย์ประจำตัวหรือแพทย์ปฐมภูมิของเธอ",
+            "ไม่จ่าย benzodiazepine จาก ER"
           ],
           "doseMap": {
-            "Offer referral to psychological services for health anxiety": "CBT มีหลักฐานดีใน health anxiety เสนอ ไม่บังคับ และยอมรับถ้าคืนนี้เธอยังไม่พร้อม"
+            "เสนอส่งต่อจิตแพทย์หรือนักจิตวิทยาเรื่องความกังวลด้านสุขภาพ": "CBT มีหลักฐานดีใน health anxiety เสนอ ไม่บังคับ และยอมรับถ้าคืนนี้เธอยังไม่พร้อม"
           }
         }
       },
@@ -324,6 +330,7 @@
           "y": 340
         },
         "data": {
+          "choice": "สั่ง PET-CT คืนนี้ให้เธอสบายใจ",
           "label": "เส้นทางตรวจต่อเป็นทอดๆ",
           "outcomeType": "worsened",
           "narrative": "ถ้าสั่ง PET-CT จะเห็น uptake เล็กน้อยที่ node (SUV 2.1 เข้าได้กับ reactive change ทั้งหมด) และเจอ lung nodule 6 mm โดยบังเอิญ ตามด้วย CT chest, ส่งต่อ chest, scan ติดตามสองปี และ excisional biopsy ของ node ที่ไม่ร้าย จบแล้วเธอกลัวมากกว่าตอนเริ่ม ไม่มีอะไรที่เกิดขึ้นเป็นความประมาท และทั้งหมดคือผลเสีย",

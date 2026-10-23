@@ -95,7 +95,7 @@
       "id": "hct1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haematocrit",
+      "name": "Hct",
       "value": "54",
       "unit": "%",
       "normalRange": "40-50",
@@ -106,7 +106,7 @@
       "id": "plt1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Platelet count",
+      "name": "Platelet",
       "value": "18",
       "unit": "x10^9/L",
       "normalRange": "150-400",
@@ -117,7 +117,7 @@
       "id": "ns1",
       "kind": "lab",
       "category": "Serology",
-      "name": "Dengue NS1 antigen and IgM",
+      "name": "Dengue NS1 Ag, IgM",
       "value": "NS1 positive, IgM positive",
       "unit": "-",
       "normalRange": "Negative",
@@ -128,7 +128,7 @@
       "id": "lft1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "AST and ALT",
+      "name": "AST, ALT",
       "value": "AST 480 / ALT 310",
       "unit": "U/L",
       "normalRange": "<40",
@@ -139,7 +139,7 @@
       "id": "us1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Bedside ultrasound",
+      "name": "US ข้างเตียง",
       "report": "Right pleural effusion, GB wall หนา 8 mm, ascites เล็กน้อย, IVC collapse มี plasma leak และ intravascular depletion",
       "imageUrl": "",
       "abnormal": true
@@ -200,10 +200,10 @@
           ],
           "label": "รู้ว่าเข้า critical phase แล้ว เจาะ Hct baseline",
           "actions": [
-            "Haematocrit",
-            "Platelet count",
-            "Dengue NS1 and IgM",
-            "Bedside ultrasound for effusion and ascites"
+            "Hct",
+            "Platelet",
+            "Dengue NS1 และ IgM",
+            "US ข้างเตียงหา effusion และ ascites"
           ],
           "doseMap": {}
         }
@@ -229,7 +229,7 @@
           "label": "Bolus isotonic ที่มี dextrose สำหรับ compensated shock",
           "actions": [
             "5%D/NSS bolus",
-            "Haematocrit before and after"
+            "Hct ก่อนและหลัง"
           ],
           "doseMap": {
             "5%D/NSS bolus": "ผู้ใหญ่ 500 mL ใน 1 ถึง 2 ชม. เด็ก 10 mL/kg ตามแนวทาง dengue ของกรมการแพทย์ วอร์ดไทยใช้ isotonic ที่มี dextrose อย่าง 5%D/NSS ให้เสร็จแล้วประเมิน Hct, pulse pressure และ urine output ซ้ำ"
@@ -258,12 +258,12 @@
           ],
           "label": "หยุด NSAID และงดฉีดยาเข้ากล้าม",
           "actions": [
-            "Discontinue NSAID",
-            "Paracetamol for fever",
-            "No IM injections, no aspirin"
+            "หยุด NSAID",
+            "Paracetamol ลดไข้",
+            "ห้ามฉีดยาเข้ากล้าม ห้าม aspirin"
           ],
           "doseMap": {
-            "Paracetamol for fever": "500 mg กินทุก 6 ชม. ไม่เกิน 2 g/วัน เพราะมี transaminitis"
+            "Paracetamol ลดไข้": "500 mg กินทุก 6 ชม. ไม่เกิน 2 g/วัน เพราะมี transaminitis"
           }
         }
       },
@@ -321,14 +321,14 @@
           ],
           "label": "Titrate ตาม urine output กับ Hct ไม่ใช่ BP อย่างเดียว",
           "actions": [
-            "Step down 250, 150, 100, 80, then 40 mL/h",
-            "Hourly urine output",
-            "Haematocrit every 4 to 6 hours",
-            "Strict fluid balance chart"
+            "ลด rate เป็น 250, 150, 100, 80 แล้ว 40 mL/h",
+            "Urine output ทุกชั่วโมง",
+            "Hct ทุก 4 ถึง 6 ชม.",
+            "บันทึก I/O เคร่งครัด"
           ],
           "doseMap": {
-            "Step down 250, 150, 100, 80, then 40 mL/h": "ลด rate แบบผู้ใหญ่ตามแนวทางไทย ทีละขั้นตาม vital signs กับ Hct เป้า urine output 0.5 mL/kg/h ตลอดช่วง leak 24 ถึง 48 ชม. รวมแล้วไม่ควรเกิน M+5% ที่วอร์ดไทยสอนกันมา",
-            "Haematocrit every 4 to 6 hours": "ความถี่ในการเจาะ Hct ช่วง critical phase ตามแนวทางไทย Hct ขึ้นแปลว่า leak เพิ่ม Hct ลงแต่ vital signs ไม่นิ่งให้คิดถึงเลือดออกภายใน"
+            "ลด rate เป็น 250, 150, 100, 80 แล้ว 40 mL/h": "ลด rate แบบผู้ใหญ่ตามแนวทางไทย ทีละขั้นตาม vital signs กับ Hct เป้า urine output 0.5 mL/kg/h ตลอดช่วง leak 24 ถึง 48 ชม. รวมแล้วไม่ควรเกิน M+5% ที่วอร์ดไทยสอนกันมา",
+            "Hct ทุก 4 ถึง 6 ชม.": "ความถี่ในการเจาะ Hct ช่วง critical phase ตามแนวทางไทย Hct ขึ้นแปลว่า leak เพิ่ม Hct ลงแต่ vital signs ไม่นิ่งให้คิดถึงเลือดออกภายใน"
           }
         }
       },
@@ -372,9 +372,9 @@
           ],
           "label": "Admit observe ใกล้ชิดตลอด critical phase",
           "actions": [
-            "Ward admission with 4 hourly observations",
-            "Watch for fluid overload and pulmonary oedema",
-            "Bleeding precautions"
+            "Admit วอร์ด V/S ทุก 4 ชม.",
+            "เฝ้าระวัง fluid overload และ pulmonary edema",
+            "Bleeding precaution"
           ],
           "doseMap": {}
         }

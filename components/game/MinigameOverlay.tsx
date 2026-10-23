@@ -1,126 +1,120 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { audio } from "@/lib/audio";
 import { Haptics, ImpactStyle, NotificationType } from "@capacitor/haptics";
 
 interface MinigameOverlayProps {
   interventionName: string;
-  onComplete: (success: boolean) => void;
+  /** rate is the average compressions per minute the player kept */
+  onComplete: (success: boolean, rate: number) => void;
 }
 
+/** Compressions to deliver, and how many at the start are warm-up and not scored */
+const TOTAL = 15;
+const WARMUP = 2;
+const LOW = 100;
+const HIGH = 120;
+
+/** Where a rate sits on the gauge, 60 to 160 per minute */
+const gaugePct = (rate: number) => Math.max(0, Math.min(100, ((rate - 60) / 100) * 100));
+
+/**
+ * CPR at the right rate. The player compresses with taps (or Space), and the game measures
+ * the rate from the gaps between them. Pass is an average of 100 to 120 per minute with most
+ * compressions inside that window, the number every ACLS course drills.
+ */
 export function MinigameOverlay({ interventionName, onComplete }: MinigameOverlayProps) {
-  const [cursorPos, setCursorPos] = useState(0); // 0 to 100
-  const [shake, setShake] = useState(false);
-  const [feedback, setFeedback] = useState<"idle" | "success" | "fail">("idle");
-  const directionRef = useRef(1); // 1 = right, -1 = left
-  const lastTimeRef = useRef<number | null>(null);
-  const isResolvedRef = useRef(false);
-  
-  // Speed in percentage units per second (framerate independent)
-  const isCPR = interventionName.toLowerCase().includes('cpr');
-  const speed = isCPR ? 180 : 120; // 180%/s for CPR (~0.55s traversal), 120%/s for standard (~0.83s traversal)
-  
-  const targetStart = isCPR ? 45 : 40; 
-  const targetEnd = isCPR ? 55 : 60;   
+  const [taps, setTaps] = useState<number[]>([]);
+  const [press, setPress] = useState(false);
+  const [result, setResult] = useState<{ ok: boolean; rate: number } | null>(null);
+  const done = useRef(false);
 
-  useEffect(() => {
-    let animationFrameId: number;
-    
-    const loop = (timestamp: number) => {
-      if (isResolvedRef.current) return;
+  const intervals = taps.slice(1).map((t, i) => t - taps[i]);
+  const recent = intervals.slice(-4);
+  const liveRate = recent.length ? Math.round(60000 / (recent.reduce((a, b) => a + b, 0) / recent.length)) : 0;
 
-      if (lastTimeRef.current === null) {
-        lastTimeRef.current = timestamp;
+  const compress = () => {
+    if (done.current) return;
+    setPress(true);
+    setTimeout(() => setPress(false), 90);
+    audio.playClick();
+    Haptics.impact({ style: ImpactStyle.Light }).catch(() => {});
+    setTaps((prev) => {
+      const next = [...prev, performance.now()];
+      if (next.length >= TOTAL && !done.current) {
+        done.current = true;
+        const scored = next.slice(WARMUP).slice(1).map((t, i) => t - next.slice(WARMUP)[i]);
+        const avg = scored.reduce((a, b) => a + b, 0) / scored.length;
+        const rate = Math.round(60000 / avg);
+        const inWindow = scored.filter((ms) => { const r = 60000 / ms; return r >= LOW - 5 && r <= HIGH + 5; }).length;
+        const ok = rate >= LOW && rate <= HIGH && inWindow >= Math.ceil(scored.length * 0.7);
+        setResult({ ok, rate });
+        if (ok) Haptics.impact({ style: ImpactStyle.Heavy }).catch(() => {});
+        else Haptics.notification({ type: NotificationType.Error }).catch(() => {});
+        setTimeout(() => onComplete(ok, rate), 1100);
       }
-      const deltaSeconds = Math.min((timestamp - lastTimeRef.current) / 1000, 0.1);
-      lastTimeRef.current = timestamp;
-
-      setCursorPos((prev) => {
-        let nextPos = prev + directionRef.current * speed * deltaSeconds;
-        if (nextPos >= 100) {
-          nextPos = 100;
-          directionRef.current = -1;
-        } else if (nextPos <= 0) {
-          nextPos = 0;
-          directionRef.current = 1;
-        }
-        return nextPos;
-      });
-
-      animationFrameId = requestAnimationFrame(loop);
-    };
-
-    animationFrameId = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [speed]);
-
-  const handleAction = () => {
-    if (isResolvedRef.current) return;
-    isResolvedRef.current = true;
-
-    if (cursorPos >= targetStart && cursorPos <= targetEnd) {
-      setFeedback("success");
-      Haptics.impact({ style: ImpactStyle.Heavy }).catch(() => {});
-      audio.playClick();
-      setTimeout(() => {
-        onComplete(true);
-      }, 400);
-    } else {
-      setFeedback("fail");
-      Haptics.notification({ type: NotificationType.Error }).catch(() => {});
-      setShake(true);
-      setTimeout(() => {
-        setShake(false);
-        onComplete(false);
-      }, 600);
-    }
+      return next;
+    });
   };
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === "Space") {
-        e.preventDefault();
-        handleAction();
-      }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.code === "Space" || e.code === "Enter") { e.preventDefault(); if (!e.repeat) compress(); }
     };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [cursorPos]); // Re-bind to capture latest cursorPos on space press
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const zone = feedback === "success" ? "#86c35f" : feedback === "fail" ? "#e06b72" : "#3a2a2f";
+  const shownRate = result ? result.rate : liveRate;
+  const inZone = shownRate >= LOW && shownRate <= HIGH;
+  const count = Math.min(taps.length, TOTAL);
+
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-[#1c1522]/75 font-pixel">
-      <div className={`w-[90%] max-w-sm ${shake ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>
+    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-[#1c1522]/75 font-pixel" data-testid="cpr-minigame">
+      <div className="w-[90%] max-w-sm">
         <div className="cozy-panel flex flex-col items-center p-4 gap-3">
           <div className="w-full flex justify-between items-center text-[15px] leading-none text-[#86522e]">
-            <span>{isCPR ? "CPR 100 ถึง 120 ครั้ง/นาที" : "มือนิ่งๆ"}</span>
-            <span className="cozy-tag px-1.5 py-0.5">{isCPR ? "♥ 110" : "OK"}</span>
+            <span>CPR เป้า 100 ถึง 120 ครั้ง/นาที</span>
+            <span className="cozy-tag px-1.5 py-0.5 tabular-nums">{count}/{TOTAL}</span>
           </div>
 
-          <h3 className="text-[30px] leading-none text-center">{interventionName}</h3>
-
-          <p className={`text-[18px] leading-none px-3 py-1 rounded-[3px] border-2 border-[#3a2a2f] ${feedback === "success" ? "bg-[#c8ecb4]" : feedback === "fail" ? "bg-[#f6c3c6]" : "bg-[#fff6e3]"}`}>
-            {feedback === "success" ? "จังหวะพอดี" : feedback === "fail" ? "พลาดไปนิด" : "กดให้ตรงช่องสีเขียว"}
+          <h3 className="text-[22px] leading-tight text-center">{interventionName}</h3>
+          <p className="text-[15px] leading-snug text-center text-[#5b4148]">
+            กดตามจังหวะที่คิดว่าใช่ นับในใจ "หนึ่งและสองและ" หรือจังหวะเพลง Stayin&apos; Alive ลึก 5 ถึง 6 cm แล้วปล่อยให้หน้าอกคืนตัวเต็มที่
           </p>
 
-          <div
-            className="w-full h-12 rounded-[4px] border-[3px] relative cursor-pointer overflow-hidden bg-[#2a3a2a]"
-            style={{ borderColor: zone }}
-            onClick={handleAction}
-          >
-            <div className="absolute inset-0 opacity-25" style={{ backgroundImage: "linear-gradient(#86c35f 1px, transparent 1px), linear-gradient(90deg, #86c35f 1px, transparent 1px)", backgroundSize: "8px 8px" }} />
-            <div className="absolute top-0 bottom-0 bg-[#86c35f]/80 border-x-2 border-[#c8ecb4]" style={{ left: `${targetStart}%`, width: `${targetEnd - targetStart}%` }} />
-            <div className="absolute top-1/2 h-[3px] bg-[#c8ecb4] -translate-y-1/2" style={{ left: 0, width: `${cursorPos}%` }} />
-            <div
-              className="absolute top-0 bottom-0 w-[5px] border-x border-[#3a2a2f]"
-              style={{ left: `calc(${cursorPos}% - 2px)`, background: feedback === "success" ? "#86c35f" : feedback === "fail" ? "#e06b72" : "#ffd66b" }}
-            />
+          {/* Rate gauge: 60 to 160 per minute, the green band is the target */}
+          <div className="w-full">
+            <div className="relative w-full h-6 rounded-[4px] border-[3px] border-[#3a2a2f] bg-[#f6c3c6] overflow-hidden">
+              <div className="absolute top-0 bottom-0 bg-[#86c35f]" style={{ left: `${gaugePct(LOW)}%`, width: `${gaugePct(HIGH) - gaugePct(LOW)}%` }} />
+              {shownRate > 0 && (
+                <div className="absolute top-0 bottom-0 w-[4px] bg-[#3a2a2f] transition-[left] duration-150" style={{ left: `calc(${gaugePct(shownRate)}% - 2px)` }} />
+              )}
+            </div>
+            <div className="flex justify-between text-[12px] leading-none mt-1 text-[#86522e] tabular-nums">
+              <span>60</span><span>100</span><span>120</span><span>160</span>
+            </div>
           </div>
 
-          <p className="text-[15px] leading-none text-[#86522e]">
-            {feedback === "idle" ? "แตะที่แถบ หรือกด Space" : "..."}
+          <p className={`text-[26px] leading-none tabular-nums ${shownRate ? (inZone ? "text-[#3f8a48]" : "text-[#a93c4b]") : "text-[#86522e]"}`} data-testid="cpr-rate">
+            {shownRate ? `${shownRate} /นาที` : "เริ่มกดได้เลย"}
           </p>
+
+          {result ? (
+            <p className={`text-[18px] leading-none px-3 py-1 rounded-[3px] border-2 border-[#3a2a2f] ${result.ok ? "bg-[#c8ecb4]" : "bg-[#f6c3c6]"}`}>
+              {result.ok ? "จังหวะได้ เลือดไปเลี้ยงหัวใจและสมอง" : result.rate > HIGH ? "เร็วเกินไป" : "ช้าเกินไป"}
+            </p>
+          ) : (
+            <button
+              onPointerDown={(e) => { e.preventDefault(); compress(); }}
+              className={`w-full h-24 rounded-[6px] border-[3px] border-[#3a2a2f] bg-[#ef7b68] text-[#fff6e3] text-[30px] leading-none select-none touch-none transition-transform ${press ? "scale-95 bg-[#d9504a]" : ""}`}
+              data-testid="cpr-press"
+            >
+              กดหน้าอก
+            </button>
+          )}
+          <p className="text-[13px] leading-none text-[#86522e]">แตะปุ่ม หรือกด Space</p>
         </div>
       </div>
     </div>

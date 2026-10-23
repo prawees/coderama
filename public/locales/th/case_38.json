@@ -95,7 +95,7 @@
       "id": "hb1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haemoglobin and platelets",
+      "name": "Hb, platelet",
       "value": "Hb 5.8 g/dL / platelets 48 x10^9/L",
       "unit": "-",
       "normalRange": "Hb 13.5-17.5 g/dL",
@@ -106,7 +106,7 @@
       "id": "coag1",
       "kind": "lab",
       "category": "Coagulation",
-      "name": "INR and fibrinogen",
+      "name": "INR, fibrinogen",
       "value": "INR 2.4 / fibrinogen 1.1 g/L",
       "unit": "-",
       "normalRange": "INR 0.9-1.2",
@@ -117,7 +117,7 @@
       "id": "lft1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Bilirubin, albumin and creatinine",
+      "name": "Bilirubin, albumin, Cr",
       "value": "Bilirubin 4.8 mg/dL / albumin 24 g/L / creatinine 1.9 mg/dL",
       "unit": "-",
       "normalRange": "Albumin 35-50 g/L",
@@ -128,7 +128,7 @@
       "id": "endo1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Upper GI endoscopy",
+      "name": "ส่องกล้อง upper GI",
       "report": "Grade 3 esophageal varices 3 column มี active spurting จากเส้นหนึ่งที่ 38 cm และมี red wale sign ที่เส้นอื่น มี portal hypertensive gastropathy ไม่มี peptic ulcer ทำ band ligation ได้ 4 เส้น หยุดเลือดได้",
       "imageUrl": "",
       "abnormal": true
@@ -137,7 +137,7 @@
       "id": "lac1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Lactate and ammonia",
+      "name": "Lactate, ammonia",
       "value": "Lactate 5.4 mmol/L / ammonia 118 mcmol/L",
       "unit": "-",
       "normalRange": "Lactate 0.5-2.0 mmol/L",
@@ -148,7 +148,7 @@
       "id": "asc1",
       "kind": "lab",
       "category": "Micro",
-      "name": "Diagnostic ascitic tap",
+      "name": "เจาะท้องส่งตรวจ",
       "value": "Neutrophils 380/mm3",
       "unit": "-",
       "normalRange": "<250/mm3",
@@ -189,12 +189,12 @@
           ],
           "label": "Airway ก่อน คนไข้รายนี้จะ aspirate",
           "actions": [
-            "Sit upright, suction available",
-            "Consider early intubation for airway protection",
-            "High flow oxygen"
+            "นั่งตัวตรง เตรียม suction ไว้",
+            "พิจารณา intubate เร็วเพื่อป้องกัน airway",
+            "High flow O2"
           ],
           "doseMap": {
-            "Consider early intubation for airway protection": "GCS 12 มี encephalopathy และอาเจียนเป็นเลือดไม่หยุด aspiration pneumonia เป็นสาเหตุการเสียชีวิตหลักใน variceal bleeding การ intubate ก่อนส่องกล้องมักเป็นการตัดสินใจที่ถูก"
+            "พิจารณา intubate เร็วเพื่อป้องกัน airway": "GCS 12 มี encephalopathy และอาเจียนเป็นเลือดไม่หยุด aspiration pneumonia เป็นสาเหตุการเสียชีวิตหลักใน variceal bleeding การ intubate ก่อนส่องกล้องมักเป็นการตัดสินใจที่ถูก"
           }
         }
       },
@@ -219,13 +219,13 @@
           ],
           "label": "ให้เลือดแบบจำกัด เป้า Hb 7 ถึง 8 g/dL",
           "actions": [
-            "Two large bore IV lines",
-            "Cross-match 6 units",
-            "Packed red cells to a target of 7-8 g/dL",
-            "Restrictive crystalloid"
+            "เปิดเส้นใหญ่ 2 เส้น",
+            "G/M 6 unit",
+            "PRC เป้า Hb 7 ถึง 8 g/dL",
+            "จำกัด crystalloid"
           ],
           "doseMap": {
-            "Packed red cells to a target of 7-8 g/dL": "Restrictive strategy เพิ่มอัตรารอดเทียบกับเป้า 9 g/dL ใน variceal bleeding ให้เลือดจน Hb ปกติเพิ่ม portal pressure และกระตุ้นเลือดออกซ้ำ เป็นตัวอย่างที่ชัดที่สุดตัวอย่างหนึ่งที่รักษามากขึ้นแล้วตายมากขึ้น"
+            "PRC เป้า Hb 7 ถึง 8 g/dL": "Restrictive strategy เพิ่มอัตรารอดเทียบกับเป้า 9 g/dL ใน variceal bleeding ให้เลือดจน Hb ปกติเพิ่ม portal pressure และกระตุ้นเลือดออกซ้ำ เป็นตัวอย่างที่ชัดที่สุดตัวอย่างหนึ่งที่รักษามากขึ้นแล้วตายมากขึ้น"
           }
         }
       },
@@ -249,13 +249,13 @@
           ],
           "label": "ให้ vasoactive drug และ antibiotic ก่อนส่องกล้อง",
           "actions": [
-            "Terlipressin or octreotide IV",
-            "Prophylactic ceftriaxone IV",
-            "Proton pump infusion until varices are confirmed"
+            "Terlipressin หรือ octreotide IV",
+            "Ceftriaxone IV แบบ prophylactic",
+            "PPI drip จนกว่าจะยืนยันว่าเป็น varices"
           ],
           "doseMap": {
-            "Terlipressin or octreotide IV": "Terlipressin 2 mg IV แล้ว 1 ถึง 2 mg ทุก 4 ถึง 6 ชม. เริ่มก่อนส่องกล้อง ลดเลือดออกและเพิ่มอัตรารอด",
-            "Prophylactic ceftriaxone IV": "1 g IV วันละครั้ง 7 วัน antibiotic prophylaxis ใน cirrhosis ที่มี GI bleeding ลด mortality และเป็นหนึ่งในสิ่งที่ได้ผลคุ้มที่สุดแต่ถูกลืมบ่อยที่สุดในคนไข้กลุ่มนี้"
+            "Terlipressin หรือ octreotide IV": "Terlipressin 2 mg IV แล้ว 1 ถึง 2 mg ทุก 4 ถึง 6 ชม. เริ่มก่อนส่องกล้อง ลดเลือดออกและเพิ่มอัตรารอด",
+            "Ceftriaxone IV แบบ prophylactic": "1 g IV วันละครั้ง 7 วัน antibiotic prophylaxis ใน cirrhosis ที่มี GI bleeding ลด mortality และเป็นหนึ่งในสิ่งที่ได้ผลคุ้มที่สุดแต่ถูกลืมบ่อยที่สุดในคนไข้กลุ่มนี้"
           }
         }
       },
@@ -314,11 +314,11 @@
           "label": "ส่องกล้องด่วนทำ band ligation ภายใน 12 ชม.",
           "actions": [
             "Endoscopic variceal band ligation",
-            "Balloon tamponade only as a bridge if endoscopy fails",
-            "Consider TIPS for uncontrolled or early rebleeding"
+            "Balloon tamponade เป็นสะพานเฉพาะเมื่อส่องกล้องไม่สำเร็จ",
+            "พิจารณา TIPS ถ้าคุมไม่ได้หรือเลือดออกซ้ำเร็ว"
           ],
           "doseMap": {
-            "Balloon tamponade only as a bridge if endoscopy fails": "Sengstaken-Blakemore tube ใส่ได้ไม่เกิน 24 ชม. และเฉพาะคนไข้ที่ intubate แล้ว complication สูงรวมถึงหลอดอาหารแตก เป็นสะพานไปสู่การรักษาจริง ไม่ใช่การรักษา"
+            "Balloon tamponade เป็นสะพานเฉพาะเมื่อส่องกล้องไม่สำเร็จ": "Sengstaken-Blakemore tube ใส่ได้ไม่เกิน 24 ชม. และเฉพาะคนไข้ที่ intubate แล้ว complication สูงรวมถึงหลอดอาหารแตก เป็นสะพานไปสู่การรักษาจริง ไม่ใช่การรักษา"
           }
         }
       },
@@ -342,14 +342,14 @@
           ],
           "label": "รักษา encephalopathy และ peritonitis",
           "actions": [
-            "Lactulose via nasogastric tube",
-            "Extend antibiotics for spontaneous bacterial peritonitis",
-            "IV albumin",
-            "Diagnostic ascitic tap in every cirrhotic admission"
+            "Lactulose ทาง NG tube",
+            "ขยาย antibiotic ครอบคลุม SBP",
+            "Albumin IV",
+            "เจาะท้องส่งตรวจทุกครั้งที่ cirrhosis admit"
           ],
           "doseMap": {
-            "Lactulose via nasogastric tube": "25 mL ทุก 12 ชม. titrate ให้ถ่ายนิ่ม 2 ถึง 3 ครั้งต่อวัน",
-            "IV albumin": "1.5 g/kg วันที่ 1 และ 1 g/kg วันที่ 3 สำหรับ SBP ลด hepatorenal syndrome และ mortality"
+            "Lactulose ทาง NG tube": "25 mL ทุก 12 ชม. titrate ให้ถ่ายนิ่ม 2 ถึง 3 ครั้งต่อวัน",
+            "Albumin IV": "1.5 g/kg วันที่ 1 และ 1 g/kg วันที่ 3 สำหรับ SBP ลด hepatorenal syndrome และ mortality"
           }
         }
       },

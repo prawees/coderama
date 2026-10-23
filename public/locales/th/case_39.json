@@ -10,7 +10,7 @@
     "Gout",
     "Compartment syndrome"
   ],
-  "background": "พ่อค้าส่งอาหารทะเลที่ตลาดปลา เมื่อวานเช้าโดนลังหอยนางรมบาดหน้าแข้งขวา ล้างแผลด้วยน้ำทะเล 20 ชม. ต่อมาปวดขาทรมานมาก หนาวสั่น อาเจียน เป็น cirrhosis จาก chronic hepatitis B ไม่มียาประจำ โรคตับเรื้อรังและธาตุเหล็กเกินเพิ่มความเสี่ยงติดเชื้อ Vibrio vulnificus แบบรุนแรงราว 80 เท่า ประวัตินี้ร่วมกับอาการที่ลุกลามเร็วคือรูปแบบของโรคนี้",
+  "background": "พ่อค้าส่งอาหารทะเลที่ตลาดปลา เมื่อวานเช้าโดนลังหอยนางรมบาดหน้าแข้งขวา ล้างแผลด้วยน้ำทะเล 20 ชม. ต่อมาปวดขาทรมานมาก หนาวสั่น อาเจียน เป็น cirrhosis จาก chronic hepatitis B ไม่มียาประจำ",
   "patientAppearance": {
     "skinTone": "#cfa261",
     "bmiFactor": 1.0,
@@ -95,7 +95,7 @@
       "id": "lric1",
       "kind": "lab",
       "category": "Scoring",
-      "name": "LRINEC score components",
+      "name": "ค่าที่ใช้คิด LRINEC score",
       "value": "CRP 340, WBC 22.4, Hb 10.8, Na 128, creatinine 2.4, glucose 210. Score 11",
       "unit": "-",
       "normalRange": "Score <6 low risk",
@@ -117,7 +117,7 @@
       "id": "ct1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "CT of the leg with contrast",
+      "name": "CT ขาฉีดสี",
       "report": "มี gas ตาม deep fascial plane ของ anterior และ lateral compartment, fascia หนาและไม่ enhance, มี fat stranding สนับสนุน necrotizing fasciitis imaging มีประโยชน์เฉพาะเมื่อไม่ทำให้ผ่าตัดช้า และ scan ปกติก็ไม่ได้ตัดการวินิจฉัย",
       "imageUrl": "",
       "abnormal": true
@@ -126,8 +126,8 @@
       "id": "bc1",
       "kind": "lab",
       "category": "Micro",
-      "name": "Blood culture and wound Gram stain",
-      "value": "Curved Gram negative rods, later confirmed as Vibrio vulnificus",
+      "name": "H/C, wound Gram stain",
+      "value": "Curved Gram negative rods ต่อมายืนยันเป็น Vibrio vulnificus",
       "unit": "-",
       "normalRange": "No growth",
       "abnormal": true,
@@ -137,7 +137,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase",
+      "name": "CK",
       "value": "6200",
       "unit": "U/L",
       "normalRange": "30-200",
@@ -148,7 +148,7 @@
       "id": "coag1",
       "kind": "lab",
       "category": "Coagulation",
-      "name": "INR and platelets",
+      "name": "INR, platelet",
       "value": "INR 2.0 / platelets 62 x10^9/L",
       "unit": "-",
       "normalRange": "INR 0.9-1.2",
@@ -190,13 +190,13 @@
           ],
           "label": "จับได้ว่าปวดเกินสัดส่วน และตามศัลย์ทันที",
           "actions": [
-            "Mark the skin border with a pen and time it",
-            "Test for cutaneous anaesthesia",
-            "Immediate surgical consult",
-            "Do not wait for imaging or scores"
+            "ขีดขอบผิวหนังด้วยปากกาและเขียนเวลา",
+            "ทดสอบว่าผิวหนังชาไหม",
+            "ปรึกษาศัลย์ทันที",
+            "ไม่ต้องรอ imaging หรือ score"
           ],
           "doseMap": {
-            "Mark the skin border with a pen and time it": "ลามหลาย cm ต่อชั่วโมง แยกจาก cellulitis ได้ใน 30 นาที และไม่เสียเงินเลย"
+            "ขีดขอบผิวหนังด้วยปากกาและเขียนเวลา": "ลามหลาย cm ต่อชั่วโมง แยกจาก cellulitis ได้ใน 30 นาที และไม่เสียเงินเลย"
           }
         }
       },
@@ -221,9 +221,9 @@
           "label": "Resuscitate ด้วย fluid เต็มที่ และเก็บ culture",
           "actions": [
             "Balanced crystalloid 30 mL/kg",
-            "Blood cultures and wound Gram stain",
+            "H/C และย้อม Gram จากแผล",
             "Lactate",
-            "Noradrenaline if fluid unresponsive"
+            "Norepinephrine ถ้าไม่ตอบสนองต่อ fluid"
           ],
           "doseMap": {
             "Balanced crystalloid 30 mL/kg": "ราว 2 ลิตร แล้วประเมินซ้ำ ถ้าเปิดเส้นยากอย่ารอเก็บ culture จนให้ antibiotic ช้า"
@@ -317,13 +317,13 @@
           ],
           "label": "ผ่าตัด debride ด่วน นี่คือการรักษา definitive อย่างเดียว",
           "actions": [
-            "Immediate theatre for radical debridement",
-            "Excise to bleeding viable tissue",
-            "Plan re-look at 24 hours",
-            "Amputation if the infection cannot be controlled"
+            "เข้าห้องผ่าตัดทันทีเพื่อ radical debridement",
+            "ตัดจนถึงเนื้อดีที่มีเลือดออก",
+            "วางแผน re-look ที่ 24 ชม.",
+            "ตัดขาถ้าคุมการติดเชื้อไม่ได้"
           ],
           "doseMap": {
-            "Immediate theatre for radical debridement": "ทุกชั่วโมงที่ debride ครั้งแรกช้า mortality เพิ่มขึ้นอย่างวัดได้ ต้อง debride ถึงเนื้อดีที่เลือดออก debride ครั้งแรกไม่พอคือความผิดพลาดทางศัลยกรรมที่พบบ่อยที่สุด"
+            "เข้าห้องผ่าตัดทันทีเพื่อ radical debridement": "ทุกชั่วโมงที่ debride ครั้งแรกช้า mortality เพิ่มขึ้นอย่างวัดได้ ต้อง debride ถึงเนื้อดีที่เลือดออก debride ครั้งแรกไม่พอคือความผิดพลาดทางศัลยกรรมที่พบบ่อยที่สุด"
           }
         }
       },
@@ -368,11 +368,11 @@
           ],
           "label": "ดูแลใน ICU และวางแผน reconstruction",
           "actions": [
-            "ICU with vasopressor support",
-            "Serial debridement until clean",
+            "ICU พร้อม vasopressor",
+            "Debride ซ้ำจนแผลสะอาด",
             "Negative pressure wound therapy",
-            "Plastic surgery for later grafting",
-            "Nutrition support"
+            "Plastic ทำ graft ภายหลัง",
+            "ดูแลโภชนาการ"
           ],
           "doseMap": {}
         }

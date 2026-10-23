@@ -106,7 +106,7 @@
       "id": "coag1",
       "kind": "lab",
       "category": "Coagulation",
-      "name": "INR, fibrinogen and platelets",
+      "name": "INR, fibrinogen, platelet",
       "value": "INR 2.2 / fibrinogen 0.9 g/L / platelets 48 x10^9/L",
       "unit": "-",
       "normalRange": "INR 0.9-1.2",
@@ -117,8 +117,8 @@
       "id": "bc1",
       "kind": "lab",
       "category": "Micro",
-      "name": "Blood culture and meningococcal PCR",
-      "value": "Gram negative diplococci on the film at 6 hours; Neisseria meningitidis group B by PCR",
+      "name": "H/C, meningococcal PCR",
+      "value": "Gram negative diplococci ใน film ที่ 6 ชม. PCR เป็น Neisseria meningitidis group B",
       "unit": "-",
       "normalRange": "No growth",
       "abnormal": true,
@@ -128,7 +128,7 @@
       "id": "gluc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Glucose, sodium and calcium",
+      "name": "Glucose, Na, calcium",
       "value": "Glucose 58 mg/dL / Na 128 mmol/L / ionised Ca 0.88 mmol/L",
       "unit": "-",
       "normalRange": "Glucose 70-140 mg/dL",
@@ -139,8 +139,8 @@
       "id": "cbc1",
       "kind": "lab",
       "category": "CBC",
-      "name": "White cell count and CRP",
-      "value": "WBC 2.4 x10^9/L with a marked left shift / CRP 210 mg/L",
+      "name": "WBC, CRP",
+      "value": "WBC 2.4 x10^9/L left shift มาก / CRP 210 mg/L",
       "unit": "-",
       "normalRange": "WBC 4.0-11.0",
       "abnormal": true,
@@ -192,12 +192,12 @@
           ],
           "label": "Antibiotic ในนาทีแรกๆ ก่อนจัดการเรื่องอื่น",
           "actions": [
-            "Ceftriaxone IV immediately",
-            "Blood cultures only if they cost no delay",
-            "Oxygen and monitoring"
+            "Ceftriaxone IV ทันที",
+            "H/C เฉพาะเมื่อไม่ทำให้ช้า",
+            "O2 และ monitor"
           ],
           "doseMap": {
-            "Ceftriaxone IV immediately": "2 g IV ทุกชั่วโมงที่ช้า mortality เพิ่มขึ้นมาก ถ้าเปิดเส้นเกินไม่กี่นาที ให้ทาง IO หรือ IM แทนการรอ ความผิดพลาดที่ถึงตายบ่อยที่สุดในโรคนี้คือเลื่อน antibiotic เพื่อรอ imaging รอ LP หรือรอ staff"
+            "Ceftriaxone IV ทันที": "2 g IV ทุกชั่วโมงที่ช้า mortality เพิ่มขึ้นมาก ถ้าเปิดเส้นเกินไม่กี่นาที ให้ทาง IO หรือ IM แทนการรอ ความผิดพลาดที่ถึงตายบ่อยที่สุดในโรคนี้คือเลื่อน antibiotic เพื่อรอ imaging รอ LP หรือรอ staff"
           }
         }
       },
@@ -222,12 +222,12 @@
           ],
           "label": "Fluid resuscitation เต็มที่สำหรับ capillary leak",
           "actions": [
-            "Balanced crystalloid boluses",
-            "Reassess perfusion after each bolus",
-            "Correct glucose, sodium and calcium"
+            "Balanced crystalloid bolus",
+            "ประเมิน perfusion ซ้ำหลังทุก bolus",
+            "แก้น้ำตาล Na และ calcium"
           ],
           "doseMap": {
-            "Balanced crystalloid boluses": "20 mL/kg (ราว 1200 mL) เร็วๆ ซ้ำได้ meningococcal septicemia ต้องการ fluid มหาศาลเพราะ capillary leak บ่อยครั้ง 60 ถึง 100 mL/kg ในชั่วโมงแรกๆ ตรงนี้ให้น้อยไปพบบ่อยกว่าให้มากไปมาก"
+            "Balanced crystalloid bolus": "20 mL/kg (ราว 1200 mL) เร็วๆ ซ้ำได้ meningococcal septicemia ต้องการ fluid มหาศาลเพราะ capillary leak บ่อยครั้ง 60 ถึง 100 mL/kg ในชั่วโมงแรกๆ ตรงนี้ให้น้อยไปพบบ่อยกว่าให้มากไปมาก"
           }
         }
       },
@@ -251,13 +251,13 @@
           ],
           "label": "เริ่ม vasoactive เร็ว อย่าให้ fluid อย่างเดียวต่อไป",
           "actions": [
-            "Adrenaline or noradrenaline infusion after 40-60 mL/kg",
-            "Peripheral or intraosseous infusion until central access is available",
-            "Hydrocortisone for catecholamine-resistant shock"
+            "Adrenaline หรือ norepinephrine drip หลังให้ fluid 40 ถึง 60 mL/kg",
+            "ให้ทางเส้นส่วนปลายหรือ IO จนกว่าจะมี central line",
+            "Hydrocortisone สำหรับ catecholamine-resistant shock"
           ],
           "doseMap": {
-            "Adrenaline or noradrenaline infusion after 40-60 mL/kg": "Cold shock ที่ capillary refill นานเหมาะกับ adrenaline อย่ารอ central line ให้แบบเจือจางทาง peripheral ปลอดภัยกว่าปล่อยช็อกไว้หนึ่งชั่วโมง",
-            "Hydrocortisone for catecholamine-resistant shock": "50 mg IV ทุก 6 ชม. เพราะ cortisol ต่ำและอาจมี adrenal hemorrhage"
+            "Adrenaline หรือ norepinephrine drip หลังให้ fluid 40 ถึง 60 mL/kg": "Cold shock ที่ capillary refill นานเหมาะกับ adrenaline อย่ารอ central line ให้แบบเจือจางทาง peripheral ปลอดภัยกว่าปล่อยช็อกไว้หนึ่งชั่วโมง",
+            "Hydrocortisone สำหรับ catecholamine-resistant shock": "50 mg IV ทุก 6 ชม. เพราะ cortisol ต่ำและอาจมี adrenal hemorrhage"
           }
         }
       },
@@ -282,12 +282,12 @@
           ],
           "label": "ไม่ทำ LP และไม่เลื่อนการรักษาเพื่อรอ imaging",
           "actions": [
-            "Defer lumbar puncture",
-            "Meningococcal PCR on blood instead",
-            "Dexamethasone is not indicated in meningococcal septicaemia"
+            "เลื่อน LP ไปก่อน",
+            "ส่ง meningococcal PCR จากเลือดแทน",
+            "ไม่มีข้อบ่งชี้ให้ dexamethasone ใน meningococcal septicemia"
           ],
           "doseMap": {
-            "Defer lumbar puncture": "ห้ามทำในเคสนี้เพราะช็อก coagulopathy fibrinogen 0.9 platelet 48 และความรู้สึกตัวลดลง PCR จากเลือดได้เชื้อโดยไม่มีความเสี่ยง LP ในคนไข้รายนี้ทำให้ coning หรือ epidural hematoma ได้ และไม่ได้เปลี่ยนการรักษาคืนนี้เลย"
+            "เลื่อน LP ไปก่อน": "ห้ามทำในเคสนี้เพราะช็อก coagulopathy fibrinogen 0.9 platelet 48 และความรู้สึกตัวลดลง PCR จากเลือดได้เชื้อโดยไม่มีความเสี่ยง LP ในคนไข้รายนี้ทำให้ coning หรือ epidural hematoma ได้ และไม่ได้เปลี่ยนการรักษาคืนนี้เลย"
           }
         }
       },
@@ -346,13 +346,13 @@
           ],
           "label": "ดูแลใน ICU จัดการ coagulopathy และแขนขาขาดเลือด",
           "actions": [
-            "ICU admission with invasive monitoring",
-            "Blood products guided by fibrinogen and bleeding, not by numbers alone",
-            "Plastic and vascular surgical review of the ischaemic digits",
-            "Notify public health and arrange contact prophylaxis"
+            "Admit ICU พร้อม invasive monitoring",
+            "ให้ blood product ตาม fibrinogen และเลือดที่ออก ไม่ใช่ตามตัวเลขอย่างเดียว",
+            "ให้ plastic และ vascular ดูนิ้วที่ขาดเลือด",
+            "แจ้งสาธารณสุขและจัดยาป้องกันให้ผู้สัมผัส"
           ],
           "doseMap": {
-            "Blood products guided by fibrinogen and bleeding, not by numbers alone": "Cryoprecipitate เมื่อ fibrinogen ต่ำกว่า 1.5 g/L ไม่ต้องแก้ platelet แบบป้องกันถ้าไม่มีเลือดออกหรือไม่ได้จะทำหัตถการ"
+            "ให้ blood product ตาม fibrinogen และเลือดที่ออก ไม่ใช่ตามตัวเลขอย่างเดียว": "Cryoprecipitate เมื่อ fibrinogen ต่ำกว่า 1.5 g/L ไม่ต้องแก้ platelet แบบป้องกันถ้าไม่มีเลือดออกหรือไม่ได้จะทำหัตถการ"
           }
         }
       },

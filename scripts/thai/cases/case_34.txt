@@ -14,6 +14,10 @@ req1.f0: การมัดทำให้บาดเจ็บ จัด left l
 req1.d1: จับนอนหงายราบ
 req1.f1: นอนหงายทำให้มดลูกกด vena cava ใช้ left lateral tilt
 req1.m0: ลดการกด aorta และ vena cava จากมดลูก นอนหงายอย่างเดียวทำให้ BP ตกรุนแรงและเลือดไปเลี้ยงทารกแย่ลงได้
+req1.a0: นอนตะแคงซ้าย
+req1.a1: O2 15 L/min
+req1.a2: Suction และป้องกัน airway
+req1.a3: บุราวเตียง ไม่ผูกมัด
 req2.l: MgSO4 ไม่ใช่ diazepam สำหรับการชักจาก eclampsia
 req2.c: MgSO4 4 g IV
 req2.d0: Diazepam IV หยุดชัก
@@ -23,6 +27,9 @@ req2.f1: ยาที่เลือกใน eclampsia คือ MgSO4 ไม�
 req2.m0: 4 g IV ใน 5 ถึง 15 นาที magnesium ดีกว่า diazepam และ phenytoin ทั้งรักษาและกันชักจาก eclampsia เป็นหนึ่งในหลักฐานที่แน่นที่สุดของสูติศาสตร์
 req2.m1: 1 g/h อย่างน้อย 24 ชม. หลังชักครั้งสุดท้ายหรือหลังคลอด แล้วแต่อันไหนช้ากว่า
 req2.m2: Patellar reflex หายเป็น sign แรกของ toxicity ตามด้วยการหายใจถูกกด antidote คือ calcium gluconate 1 g IV ควรอยู่ข้างเตียง
+req2.a0: MgSO4 IV loading dose
+req2.a1: MgSO4 maintenance drip
+req2.a2: ดู reflex, RR และ urine output
 req3.l: คุม BP โดยไม่ลดเร็วเกิน
 req3.c: Labetalol IV เป้า SBP 140 ถึง 150
 req3.d0: ลด BP ลงถึง 110/70 เร็วๆ
@@ -31,6 +38,9 @@ req3.d1: กัดแคปซูล nifedipine อมใต้ลิ้น
 req3.f1: กัดแคปซูลทำให้ BP ตกเร็วแบบคาดเดาไม่ได้ ใช้ labetalol, hydralazine หรือ nifedipine กิน
 req3.m0: 20 mg IV เพิ่มเท่าตัวทุก 10 นาที รวมไม่เกิน 300 mg เป้า SBP 140 ถึง 150 DBP 90 ถึง 100
 req3.m1: 5 mg IV ทุก 20 นาที ทำให้แม่ BP ตกและ fetal distress มากกว่า labetalol อย่าลด BP แบบทันที เพราะเลือดไปรกไม่มี autoregulation ลดเร็วทำให้ทารกแย่
+req3.a0: Labetalol IV
+req3.a1: หรือ hydralazine IV
+req3.a2: หรือ nifedipine กิน
 req4.l: จำกัด fluid และให้ antenatal corticosteroid
 req4.c: Fluid 80 mL/h และ betamethasone
 req4.d0: ให้ IV fluid เยอะๆ เพิ่มเลือดไปรก
@@ -39,6 +49,9 @@ req4.d1: ไม่ต้องให้ steroid เพราะจะคลอ�
 req4.f1: ที่ 34 สัปดาห์ steroid ช่วยให้ปอดทารกพร้อมขึ้น ให้ถ้ามีเวลา
 req4.m0: Fluid overload จนเกิด pulmonary edema เป็นสาเหตุการเสียชีวิตของแม่ที่สำคัญใน pre-eclampsia อดใจอย่า bolus เพราะปัสสาวะน้อย
 req4.m1: 12 mg IM สอง dose ห่างกัน 24 ชม. ให้ dose แรกตอนนี้ แต่อย่าเลื่อนการคลอดเพื่อรอ dose ที่สองถ้าแม่แย่ลง
+req4.a0: จำกัด IV fluid รวม 80 mL/h
+req4.a1: บันทึก I/O เคร่งครัด urine output ทุกชั่วโมง
+req4.a2: Betamethasone IM กระตุ้นปอดทารก
 out1.l: แม่ stable
 out1.n: ไม่ชักอีกหลังได้ magnesium BP ลดลงเป็น 152/96 ใน 40 นาทีด้วย labetalol GCS ดีขึ้นเป็น 14 FHR variability ดีขึ้นเมื่อแม่ stable ซึ่งแสดงหลักการ stabilize แม่ แล้วลูกมักตามมา
 ethical_1.l: อธิบายการตัดสินใจเรื่องคลอดกับคนไข้โดยตรง และไม่โทษ รพ.สต. ต่อหน้าเธอ (Empathy)
@@ -49,6 +62,10 @@ req5.f0: Eclampsia เป็น indication ให้คลอดเมื่อ�
 req5.d1: หยุด magnesium ทันทีหลังคลอด
 req5.f1: ความเสี่ยงชักยังมีหลังคลอด ให้ magnesium ต่อ 24 ชม.
 req5.m0: Stabilize ก่อนแล้วค่อยคลอด การคลอดตอนแม่ยังชักและ BP สูงมากเพิ่มการเสียชีวิตของแม่ ที่ 34 สัปดาห์ร่วมกับ HELLP และ fetal compromise การรอคลอดไม่ใช่ทางเลือก
+req5.a0: เรียกทีมสูติฯ และทีมทารกแรกเกิดด่วน
+req5.a1: คลอดเมื่อแม่ stable แล้ว
+req5.a2: ให้ Mg ต่อระหว่างและหลังคลอด
+req5.a3: ให้วิสัญญีประเมิน platelet ต่ำจำกัดทางเลือก neuraxial
 out2.l: คลอดและช่วงหลังคลอดทันที
 out2.n: C/S ภายใต้ GA เพราะ platelet ต่ำ ทารกชายมีชีพ 1980 g Apgar 6 และ 9 admit NICU platelet ต่ำสุด 42 วันที่ 2 แล้วกลับขึ้น ให้ magnesium ต่อ 24 ชม. หลังคลอด ซึ่งเป็นช่วงที่การชักจาก eclampsia เกิดจริงราวหนึ่งในสาม
 out3.l: Disposition

@@ -13,6 +13,10 @@ req1.d1: ให้ O2 เป้า SpO2 100%
 req1.f1: เป้า 92% ขึ้นไปก็พอ เป้าสูงกว่าทำให้นอน รพ. นานขึ้น
 req1.m0: ถูก ได้ผลทันที และถูกลืมซ้ำแล้วซ้ำเล่า เด็กเล็กหายใจทางจมูกเป็นหลัก แค่ทำให้จมูกโล่งก็ลด RR ได้มาก
 req1.m1: อย่าไล่ให้ถึง 100% เป้าสูงกว่าทำให้นอน รพ. นานขึ้นโดยไม่มีประโยชน์
+req1.a0: Suction จมูกเบาๆ
+req1.a1: O2 เป้า SpO2 92% ขึ้นไป
+req1.a2: จับต้องตัวให้น้อยที่สุด
+req1.a3: Monitor SpO2 และ apnea ต่อเนื่อง
 req2.l: เพิ่มการช่วยหายใจเพราะมี apnea และหมดแรง
 req2.c: High flow nasal cannula 2 L/kg/min
 req2.d0: รอดูว่าคืนนี้จะดีขึ้นไหม
@@ -20,6 +24,9 @@ req2.f0: Apnea และหมดแรงเป็น indication ให้เ�
 req2.d1: Intubate ทันที
 req2.f1: High flow nasal cannula แล้ว CPAP มักเลี่ยงการ intubate ได้ เพิ่มทีละขั้น
 req2.m0: 2 L/kg/min (ราว 12 L/min สำหรับ 5.8 kg) อุ่นและชื้น ประเมินซ้ำที่ 60 ถึง 90 นาที ถ้าไม่ดีขึ้นทำนายว่าจะต้อง CPAP หรือ intubate
+req2.a0: High flow nasal cannula
+req2.a1: เตรียม CPAP ถ้าไม่ดีขึ้น
+req2.a2: ให้กุมารแพทย์อาวุโสประเมิน
 req3.l: ให้น้ำด้วยทางที่รุกล้ำน้อยที่สุดที่ได้ผล
 req3.c: IV isotonic fluid สองในสามของ maintenance
 req3.d0: IV hypotonic fluid เต็ม maintenance
@@ -28,6 +35,9 @@ req3.d1: ให้ดูดขวดต่อทั้งที่หายใ�
 req3.f1: เด็กหายใจแรงและมี apnea กินทางปากเสี่ยงสำลัก ใช้ NG หรือ IV
 req3.m0: ถ้า RR พอไหว NG feeding ดีกว่า เพราะรักษาการทำงานของลำไส้และไม่ต้องเปิดเส้น ที่ RR 72 เสี่ยงสำลักมาก คืนนี้ IV ปลอดภัยกว่า
 req3.m1: เต็ม maintenance ราว 23 mL/h สำหรับ 5.8 kg (4 mL/kg/h) จึงให้ราว 15 mL/h จำกัด fluid เพราะเสี่ยง SIADH
+req3.a0: ให้นมทาง NG tube หรือ IV fluid
+req3.a1: จำกัดที่สองในสามของ maintenance ด้วย isotonic fluid
+req3.a2: บันทึก I/O เคร่งครัด เจาะ Na ทุกวัน
 req4.l: งดการรักษาที่ไม่ได้ผล
 req4.c: ไม่ให้ salbutamol, steroid หรือ antibiotic
 req4.d0: พ่น salbutamol ทุก 4 ชม.
@@ -35,6 +45,11 @@ req4.f0: Bronchodilator ไม่ได้ทำให้ outcome ใน bronchi
 req4.d1: ให้ prednisolone กิน 3 วัน
 req4.f1: Steroid ไม่ช่วย bronchiolitis
 req4.m0: หลาย trial ไม่พบประโยชน์ใน bronchiolitis อายุต่ำกว่า 12 เดือน wheeze ดีขึ้นชั่วคราวไม่เหมือนกับนอน รพ. สั้นลงหรือใช้ O2 น้อยลง การสั่งยานี้คือความผิดพลาดที่พบบ่อยที่สุดของโรคนี้
+req4.a0: ไม่ให้ salbutamol
+req4.a1: ไม่พ่น adrenaline แบบ routine
+req4.a2: ไม่ให้ steroid
+req4.a3: ไม่ให้ antibiotic ถ้าไม่มีหลักฐานติดเชื้อแบคทีเรีย
+req4.a4: ไม่ทำกายภาพทรวงอก
 out1.l: ตอบสนองต่อ high flow
 out1.n: 90 นาทีบน high flow RR ลดลงเป็น 54 retraction น้อยลง SpO2 94% apnea หยุด gas ซ้ำ pCO2 52 pH 7.32 ไม่ต้อง intubate
 ethical_1.l: อธิบายว่าทำไมตั้งใจไม่จ่ายยาอะไร และหมายความตามนั้นจริงๆ (Empathy)
@@ -45,6 +60,10 @@ req5.d0: D/C กลับบ้านพร้อม O2
 req5.f0: มี apnea และต้องใช้ high flow admit พร้อมเกณฑ์ escalate ที่ชัดเจน
 req5.d1: Admit ไม่ต้องแยกห้อง
 req5.f1: RSV แพร่ง่าย ใช้ contact และ droplet precaution
+req5.a0: Admit วอร์ดเด็กหรือ HDU
+req5.a1: ค่อยๆ wean high flow ตามที่ทนได้
+req5.a2: Contact และ droplet precaution
+req5.a3: เกณฑ์ D/C: SpO2 ปกติใน room air และกินได้เกิน 75% ของปกติ
 out2.l: ระหว่าง admit
 out2.n: อาการหนักสุดที่วันที่ 5 ของโรค ตามแบบฉบับ wean high flow ได้วันที่ 3 ของการ admit off O2 วันที่ 4 กินนมได้เต็มที่วันที่ 5
 out3.l: Disposition

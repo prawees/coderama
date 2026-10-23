@@ -95,7 +95,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "ST elevation 3 mm ใน II, III, aVF โดย III สูงกว่า II มี reciprocal ST depression ใน I กับ aVL, sinus bradycardia 46/min ร่วมกับ 2nd degree AV block Mobitz I เป็น inferior STEMI น่าจะ RCA อุดตัน",
       "imageUrl": "",
       "abnormal": true
@@ -104,7 +104,7 @@
       "id": "ecg2",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Right-sided ECG (V4R)",
+      "name": "Right-sided EKG (V4R)",
       "report": "ST elevation 1.5 mm ใน V4R ยืนยัน RV infarction tracing เพิ่มอันเดียวใช้เวลา 90 วินาทีแต่เปลี่ยนการรักษา คนไข้รายนี้ preload dependent nitrate กับ morphine ทำให้ BP ตกรุนแรงได้",
       "imageUrl": "",
       "abnormal": true
@@ -113,7 +113,7 @@
       "id": "trop1",
       "kind": "lab",
       "category": "Cardiac",
-      "name": "High sensitivity troponin T",
+      "name": "hs-TnT",
       "value": "48",
       "unit": "ng/L",
       "normalRange": "<14",
@@ -124,7 +124,7 @@
       "id": "echo1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Bedside echocardiogram",
+      "name": "Echo ข้างเตียง",
       "report": "RV โตและบีบตัวน้อย inferior wall akinesia ไม่มี pericardial effusion ไม่มี aortic root dilatation ไม่เห็น intimal flap, LVEF ราว 45%",
       "imageUrl": "",
       "abnormal": true
@@ -133,7 +133,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine and potassium",
+      "name": "Cr, K",
       "value": "Creatinine 1.4 mg/dL / K 4.2 mmol/L",
       "unit": "-",
       "normalRange": "Creatinine 0.7-1.3 mg/dL",
@@ -144,7 +144,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Portable Chest X-ray",
+      "name": "CXR portable",
       "report": "Mediastinum กว้างปกติ aorta ไม่กว้าง ปอดใส ไม่มี pulmonary edema ช่วยตัด dissection ได้ แต่ห้ามทำให้ reperfusion ช้า",
       "imageUrl": "",
       "abnormal": false
@@ -184,13 +184,13 @@
           ],
           "label": "EKG ภายใน 10 นาทีหลัง first medical contact ไม่ว่าคนไข้จะอยู่ตรงไหนของตึก",
           "actions": [
-            "12-lead ECG immediately",
-            "Right-sided leads V4R",
-            "Continuous cardiac monitoring",
-            "Defibrillator pads applied"
+            "EKG 12 lead ทันที",
+            "Right-sided lead V4R",
+            "ติด monitor หัวใจต่อเนื่อง",
+            "ติด pad defibrillator"
           ],
           "doseMap": {
-            "12-lead ECG immediately": "เป้าคือ 10 นาทีจาก first contact คนไข้รายนี้ได้ที่ 34 นาที เพราะเส้นทาง VIP พาเขาเลี่ยงผ่านแผนกที่รับผิดชอบเป้านี้"
+            "EKG 12 lead ทันที": "เป้าคือ 10 นาทีจาก first contact คนไข้รายนี้ได้ที่ 34 นาที เพราะเส้นทาง VIP พาเขาเลี่ยงผ่านแผนกที่รับผิดชอบเป้านี้"
           }
         }
       },
@@ -214,14 +214,14 @@
           ],
           "label": "เปิด cath lab ก่อนอย่างอื่น",
           "actions": [
-            "Cath lab activation",
+            "Activate cath lab",
             "Aspirin",
-            "Ticagrelor or clopidogrel loading dose",
-            "Do not wait for troponin"
+            "Ticagrelor หรือ clopidogrel loading dose",
+            "ไม่ต้องรอ troponin"
           ],
           "doseMap": {
             "Aspirin": "300 mg เคี้ยว",
-            "Ticagrelor or clopidogrel loading dose": "Ticagrelor 180 mg กิน ตาม protocol ของ รพ."
+            "Ticagrelor หรือ clopidogrel loading dose": "Ticagrelor 180 mg กิน ตาม protocol ของ รพ."
           }
         }
       },
@@ -246,15 +246,15 @@
           ],
           "label": "งด nitrate และ morphine นี่คือ RV ที่ preload dependent",
           "actions": [
-            "No nitroglycerin",
-            "No morphine",
-            "Cautious fluid bolus",
-            "Atropine for symptomatic bradycardia"
+            "ห้าม NTG",
+            "ห้าม morphine",
+            "Fluid bolus อย่างระวัง",
+            "Atropine ถ้า bradycardia มีอาการ"
           ],
           "doseMap": {
-            "No nitroglycerin": "ห้ามเด็ดขาดในเคสนี้ RV infarction บวกกิน sildenafil ใน 24 ชม. แต่ละอย่างทำให้ BP ตกรุนแรงได้อยู่แล้ว รวมกันทำให้ arrest ได้",
-            "Cautious fluid bolus": "NSS ครั้งละ 250 mL แล้วประเมินซ้ำ เป้า SBP เกิน 90 ถ้าเริ่มมี crepitation ให้หยุด",
-            "Atropine for symptomatic bradycardia": "1 mg IV ทุก 3 ถึง 5 นาที รวมไม่เกิน 3 mg"
+            "ห้าม NTG": "ห้ามเด็ดขาดในเคสนี้ RV infarction บวกกิน sildenafil ใน 24 ชม. แต่ละอย่างทำให้ BP ตกรุนแรงได้อยู่แล้ว รวมกันทำให้ arrest ได้",
+            "Fluid bolus อย่างระวัง": "NSS ครั้งละ 250 mL แล้วประเมินซ้ำ เป้า SBP เกิน 90 ถ้าเริ่มมี crepitation ให้หยุด",
+            "Atropine ถ้า bradycardia มีอาการ": "1 mg IV ทุก 3 ถึง 5 นาที รวมไม่เกิน 3 mg"
           }
         }
       },
@@ -311,12 +311,12 @@
           ],
           "label": "Primary PCI เป้า door to balloon ไม่เกิน 90 นาที",
           "actions": [
-            "Transfer to catheterisation laboratory",
-            "Anticoagulation per cath lab protocol",
-            "Prepare for transient bradycardia and hypotension during reperfusion"
+            "ย้ายเข้า cath lab",
+            "Anticoagulant ตาม protocol ของ cath lab",
+            "เตรียมรับ bradycardia และ hypotension ชั่วคราวช่วง reperfusion"
           ],
           "doseMap": {
-            "Prepare for transient bradycardia and hypotension during reperfusion": "Bezold-Jarisch reflex เจอบ่อยตอน reperfuse RCA เตรียม atropine และ pacing ไว้"
+            "เตรียมรับ bradycardia และ hypotension ชั่วคราวช่วง reperfusion": "Bezold-Jarisch reflex เจอบ่อยตอน reperfuse RCA เตรียม atropine และ pacing ไว้"
           }
         }
       },
@@ -360,10 +360,10 @@
           ],
           "label": "ดูแลหลัง PCI และรายงานอุบัติการณ์ของระบบ",
           "actions": [
-            "Coronary care unit admission",
-            "Dual antiplatelet therapy, statin, beta blocker once haemodynamically stable",
-            "Smoking cessation and diabetes review",
-            "File a formal incident report on the VIP entry pathway"
+            "Admit CCU",
+            "DAPT, statin, beta blocker เมื่อ hemodynamic stable",
+            "เลิกบุหรี่และทบทวนการคุมเบาหวาน",
+            "เขียนรายงานอุบัติการณ์เรื่องเส้นทาง VIP"
           ],
           "doseMap": {
             "Beta blocker once haemodynamically stable": "ยังไม่ให้ในระยะเฉียบพลันตอนที่ยัง brady และ preload dependent เริ่มเมื่อ stable"

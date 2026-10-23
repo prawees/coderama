@@ -95,7 +95,7 @@
       "id": "us1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Abdominal ultrasound",
+      "name": "US ท้อง",
       "report": "Target sign ที่ RUQ เส้นผ่านศูนย์กลาง 3.2 cm ลำไส้ซ้อนในลำไส้ มี pseudokidney sign ในแนวยาว ไม่มี free fluid ไม่เห็น pathological lead point Doppler ยังมี flow ใน intussusceptum บ่งว่าลำไส้น่าจะยังไม่ตาย U/S มี sensitivity และ specificity เกือบ 100% ในมือคนที่ฝึกมา และเป็น investigation ที่เลือก",
       "imageUrl": "",
       "abnormal": true
@@ -104,7 +104,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Capillary glucose",
+      "name": "DTX",
       "value": "54",
       "unit": "mg/dL",
       "normalRange": "70-140",
@@ -115,7 +115,7 @@
       "id": "gas1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Venous blood gas",
+      "name": "VBG",
       "value": "pH 7.24 / HCO3 14 / lactate 4.6 / base deficit -11",
       "unit": "-",
       "normalRange": "pH 7.32-7.42",
@@ -126,7 +126,7 @@
       "id": "na1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Sodium and potassium",
+      "name": "Na, K",
       "value": "Na 133 / K 3.2 mmol/L",
       "unit": "mmol/L",
       "normalRange": "Na 135-145",
@@ -137,7 +137,7 @@
       "id": "cbc1",
       "kind": "lab",
       "category": "CBC",
-      "name": "White cell count and haemoglobin",
+      "name": "WBC, Hb",
       "value": "WBC 19.8 / Hb 10.2 g/dL",
       "unit": "-",
       "normalRange": "WBC 6.0-17.0",
@@ -148,7 +148,7 @@
       "id": "axr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Abdominal X-ray",
+      "name": "Film ท้อง",
       "report": "ลมในลำไส้น้อยที่ RUQ มี soft tissue mass effect ไม่มี free air ใต้กะบังลม ตัดลำไส้ทะลุออกได้ ทำ reduction ต่อได้ film ท้องปกติไม่เคยตัด intussusception จึงใช้ตัดลำไส้ทะลุ ไม่ใช่ใช้วินิจฉัย",
       "imageUrl": "",
       "abnormal": true
@@ -187,10 +187,10 @@
           ],
           "label": "จับได้ว่าช็อก และแก้น้ำตาล",
           "actions": [
-            "Capillary glucose",
-            "IV or intraosseous access",
+            "DTX",
+            "เปิดเส้น IV หรือ IO",
             "Dextrose bolus",
-            "Full septic screen consideration"
+            "พิจารณา septic workup ให้ครบ"
           ],
           "doseMap": {
             "Dextrose bolus": "10% dextrose 2 mL/kg (17 mL) เจาะซ้ำที่ 30 นาที"
@@ -218,9 +218,9 @@
           "label": "Fluid resuscitation ก่อนพยายาม reduce",
           "actions": [
             "Isotonic crystalloid bolus",
-            "Nasogastric tube for decompression",
-            "Nil by mouth",
-            "Reassess perfusion after each bolus"
+            "ใส่ NG tube ระบาย",
+            "NPO",
+            "ประเมิน perfusion ซ้ำหลังทุก bolus"
           ],
           "doseMap": {
             "Isotonic crystalloid bolus": "NSS 10 ถึง 20 mL/kg (85 ถึง 170 mL) ซ้ำได้ตามต้องการ เด็กช็อกห้ามไปห้องรังสีเพื่อ reduce เพราะลำไส้ทะลุระหว่าง reduce ในเด็กที่ยังไม่ได้ resuscitate คือหายนะ"
@@ -248,12 +248,12 @@
           ],
           "label": "U/S ยืนยัน และ film ท้องตัดลำไส้ทะลุ",
           "actions": [
-            "Abdominal ultrasound",
-            "Abdominal X-ray for free air",
-            "Paediatric surgical consult before reduction"
+            "US ท้อง",
+            "Film ท้องหา free air",
+            "ปรึกษาศัลย์เด็กก่อน reduction"
           ],
           "doseMap": {
-            "Paediatric surgical consult before reduction": "ศัลย์ต้องรู้และพร้อมก่อนพยายาม reduce ทุกครั้ง เพราะลำไส้ทะลุเกิดราว 1% ของการทำ"
+            "ปรึกษาศัลย์เด็กก่อน reduction": "ศัลย์ต้องรู้และพร้อมก่อนพยายาม reduce ทุกครั้ง เพราะลำไส้ทะลุเกิดราว 1% ของการทำ"
           }
         }
       },
@@ -312,12 +312,12 @@
           "label": "Air enema reduction ภายใต้การนำทางทางรังสี",
           "actions": [
             "Pneumatic (air) enema reduction",
-            "Antibiotics before the attempt",
-            "Surgical team present"
+            "Antibiotic ก่อนทำ",
+            "ทีมศัลย์อยู่ด้วย"
           ],
           "doseMap": {
             "Pneumatic (air) enema reduction": "จำกัดความดันที่ 120 mmHg สำเร็จ 80 ถึง 90% ในเด็กที่ resuscitate แล้ว ลมดีกว่า barium ทะลุน้อยกว่าและถ้าทะลุก็ปนเปื้อนช่องท้องน้อยกว่า",
-            "Antibiotics before the attempt": "Broad spectrum ขนาดตามน้ำหนัก เพราะอาจมีลำไส้ทะลุหรือขาดเลือด"
+            "Antibiotic ก่อนทำ": "Broad spectrum ขนาดตามน้ำหนัก เพราะอาจมีลำไส้ทะลุหรือขาดเลือด"
           }
         }
       },
@@ -363,13 +363,13 @@
           ],
           "label": "Observe การเป็นซ้ำ และให้คำแนะนำก่อน D/C",
           "actions": [
-            "Admit for at least 24 hours of observation",
-            "Resume feeding gradually",
-            "Written recurrence advice for the parents",
-            "Consider lead point investigation if recurrent or if over 2 years old"
+            "Admit observe อย่างน้อย 24 ชม.",
+            "ค่อยๆ เริ่มนม",
+            "คำแนะนำเรื่องการกลับเป็นซ้ำให้พ่อแม่ เป็นลายลักษณ์อักษร",
+            "พิจารณาหา lead point ถ้าเป็นซ้ำหรืออายุเกิน 2 ปี"
           ],
           "doseMap": {
-            "Written recurrence advice for the parents": "กลับมาทันทีถ้าร้องกรีดเป็นพักๆ ตัวซีด อาเจียน หรือซึมแบบเดิม เป็นซ้ำได้บ่อย และมาเร็วแปลว่าทำ enema อีกครั้งแทนการผ่าตัด"
+            "คำแนะนำเรื่องการกลับเป็นซ้ำให้พ่อแม่ เป็นลายลักษณ์อักษร": "กลับมาทันทีถ้าร้องกรีดเป็นพักๆ ตัวซีด อาเจียน หรือซึมแบบเดิม เป็นซ้ำได้บ่อย และมาเร็วแปลว่าทำ enema อีกครั้งแทนการผ่าตัด"
           }
         }
       },

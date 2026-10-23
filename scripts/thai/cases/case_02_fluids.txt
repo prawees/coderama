@@ -1,5 +1,5 @@
 cc: อาเจียน ถ่ายเหลว 3 วัน วันนี้สับสน
-bg: U/D HFrEF กิน furosemide กับ HCTZ อยู่ 3 วันก่อนมารพ. อาเจียน ถ่ายเป็นน้ำ ดื่มแต่น้ำเปล่า วันนี้เริ่มสับสน มีกระตุกแป๊บหนึ่งบนแท็กซี่ Thiazide + GI loss + กินแต่น้ำเปล่า คือสูตรคลาสสิกของ severe hyponatremia แล้วพอมี HF อยู่ด้วย ทุกลิตรที่ให้ต้องคิดให้ดี
+bg: U/D HFrEF กิน furosemide กับ HCTZ อยู่ 3 วันก่อนมารพ. อาเจียน ถ่ายเป็นน้ำ ดื่มแต่น้ำเปล่า วันนี้เริ่มสับสน มีกระตุกแป๊บหนึ่งบนแท็กซี่
 i.chem1: Severe hyponatremia
 i.chem2: Hypokalemia
 i.osm1: Hypotonic แปลว่าเป็น true hyponatremia ไม่ใช่ pseudohyponatremia
@@ -11,6 +11,9 @@ req1.f0: พอ volume กลับมา ADH ปิด คนไข้จะฉ
 req1.d1: Fluid restriction 1 ลิตรต่อวัน แล้วเจาะซ้ำพรุ่งนี้
 req1.f1: Fluid restriction ใช้กับ euvolemic SIADH เคสนี้สับสน มีอาการคล้ายชัก แล้วก็ dry อาการรุนแรงแบบนี้ต้องให้ hypertonic saline เลย
 req1.m0: เป้าคือ Na ขึ้น 4 ถึง 6 mmol/L ในชั่วโมงแรกๆ แค่นี้ก็พอแก้ cerebral edema แล้ว จากนั้นหยุด 3% NaCl
+req1.a0: 3% NaCl 150 mL IV ใน 20 นาที
+req1.a1: เจาะ Na ซ้ำหลัง bolus
+req1.a2: ให้ซ้ำอีกครั้งถ้ายังมีอาการ
 out1.l: อาการทางสมองดีขึ้น
 out1.n: Na ขึ้นจาก 118 เป็น 122 หลัง bolus เดียว หยุดกระตุก ตอบคำถามได้ 3% NaCl มีไว้แค่ 4 mmol/L นี้เท่านั้น
 ethical_1.l: อธิบายลูกสาวว่าทำไมตั้งใจแก้ Na ช้าๆ
@@ -23,6 +26,10 @@ req2.d1: ให้ furosemide กันน้ำเกิน
 req2.f1: คนไข้ volume depleted อยู่ และ diuretic คือต้นเหตุ ให้ furosemide ยิ่ง shock หนัก หยุด diuretic ทั้งสองตัว
 req2.m0: Reassess ทุก bolus หยุดเมื่อ perfusion ดีขึ้นหรือเริ่มเห็น B-lines HF ทำให้ margin แคบลง แต่ไม่ได้แปลว่าให้น้ำไม่ได้
 req2.m1: KCl 10 mmol/h IV และ K ก็ดัน serum Na ขึ้นด้วย ต้องนับรวมใน correction budget
+req2.a0: NSS ทีละ 250 mL
+req2.a1: Lung US และฟังปอดหลังให้ทุกครั้ง
+req2.a2: หยุด furosemide และ thiazide
+req2.a3: ให้ K ทดแทน
 out2.l: Perfusion กลับมา แล้วตามด้วย water diuresis
 out2.n: หลังให้ไป 750 mL BP 104/62 แล้ว urine ก็พุ่ง ฉี่ใสๆ 250 mL ในชั่วโมงเดียว ADH ปิดแล้ว Na จะขึ้นเองต่อจากนี้
 req3.l: เฝ้าระวัง overcorrection แล้วหยุดไว้ก่อนถึง limit
@@ -33,5 +40,9 @@ req3.d1: เจาะ Na ซ้ำพรุ่งนี้เช้า
 req3.f1: Water diuresis ดัน Na ขึ้นได้ชั่วโมงละ 2 mmol/L ต้องเจาะทุก 2 ถึง 4 ชม. ถึงจะจับ overcorrection ได้ทัน
 req3.m0: คนไข้มี risk ของ osmotic demyelination 3 ข้อ: Na < 120, K ต่ำ และเป็นมาหลายวัน
 req3.m1: Desmopressin 2 mcg IV หยุด water diuresis ได้ ถ้า Na ขึ้นเร็วเกินไปแล้วให้ D5W 3 mL/kg/h ดึงกลับลงมา
+req3.a0: เจาะ Na ทุก 2 ถึง 4 ชม.
+req3.a1: Urine output ทุกชั่วโมง
+req3.a2: ให้ Na ขึ้นไม่เกิน 8 mmol/L ใน 24 ชม.
+req3.a3: Desmopressin กับ D5W ถ้าใกล้ถึงเพดาน
 out3.l: แก้ Na ได้อย่างปลอดภัย
 out3.n: Na 125 ที่ 24 ชม. และ 131 ที่ 48 ชม. ให้ desmopressin หยุด water diuresis ไปตอนชั่วโมงที่ 10 ไม่มี neuro deficit หยุด thiazide ถาวร และส่งเรื่องให้คลินิก HF รู้เหตุผลด้วย

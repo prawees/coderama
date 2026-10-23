@@ -8,7 +8,7 @@ import { SpritePreview } from "@/components/game/SpritePreview";
 import { PixelPortrait } from "@/components/game/PixelPortrait";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { playerLookFrom } from "@/lib/playerLook";
-import { getLocalizedRankTitle } from "@/lib/localization";
+import { getLocalizedRankTitle, universityTh } from "@/lib/localization";
 import { NPCS, heartsFor } from "@/lib/npcs";
 import { LOCATION_NAMES, phaseForDay } from "@/lib/world/maps";
 import { audio } from "@/lib/audio";
@@ -77,7 +77,7 @@ export default function ProfilePage() {
               <div className="flex-1 min-w-0 flex flex-col">
                 <p className="text-[26px] leading-none truncate">{playerName}</p>
                 <p className="text-[17px] leading-none mt-1 text-[#86522e]">{getLocalizedRankTitle(rank, playerName, playerGender, language)}</p>
-                {university && university !== "Unknown" && <p className="text-[14px] leading-none mt-1.5 text-[#86522e] truncate">{university}</p>}
+                {university && university !== "Unknown" && <p className="text-[14px] leading-none mt-1.5 text-[#86522e] truncate">{universityTh(university)}</p>}
                 <div className="mt-auto flex flex-col gap-1 text-[15px] leading-none">
                   <span className="flex items-center gap-1.5"><PixelIcon name="quest" size={13} />{tr(`${(completedQuests || []).length} favours done`, `ช่วยงานสำเร็จ ${(completedQuests || []).length} ครั้ง`)}</span>
                   <span className="flex items-center gap-1.5"><PixelIcon name="heart" size={13} />{tr(`${friends.length} friends at work`, `เพื่อนที่ทำงาน ${friends.length} คน`)}</span>

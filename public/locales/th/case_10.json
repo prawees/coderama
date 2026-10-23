@@ -95,7 +95,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Capillary glucose",
+      "name": "DTX",
       "value": "96",
       "unit": "mg/dL",
       "normalRange": "70-140",
@@ -106,7 +106,7 @@
       "id": "vbg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Venous blood gas",
+      "name": "VBG",
       "value": "pH 7.16 / pCO2 74 / HCO3 24",
       "unit": "-",
       "normalRange": "pH 7.32-7.42",
@@ -117,7 +117,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase",
+      "name": "CK",
       "value": "4280",
       "unit": "U/L",
       "normalRange": "30-200",
@@ -128,7 +128,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine",
+      "name": "Cr",
       "value": "1.6",
       "unit": "mg/dL",
       "normalRange": "0.7-1.3",
@@ -161,7 +161,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus bradycardia 50/min, QRS 92 ms, QTc 430 ms ไม่มี Brugada pattern ไม่มี terminal R ใน aVR ไม่สนับสนุนว่ากินยาที่ block sodium channel ร่วมด้วย",
       "imageUrl": "",
       "abnormal": true
@@ -170,7 +170,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Portable Chest X-ray",
+      "name": "CXR portable",
       "report": "Patchy airspace opacity ที่ฐานปอดทั้งสองข้าง เข้าได้กับ aspiration หรือ non-cardiogenic pulmonary edema จาก naloxone หัวใจขนาดปกติ ไม่มี pneumothorax",
       "imageUrl": "",
       "abnormal": true
@@ -211,11 +211,11 @@
           "label": "Airway ก่อน suction, jaw thrust และ bag-mask พร้อม O2",
           "actions": [
             "Suction airway",
-            "Jaw thrust and oropharyngeal airway",
-            "Bag-valve-mask ventilation with 15 L/min oxygen"
+            "Jaw thrust และใส่ oropharyngeal airway",
+            "Bag-valve-mask กับ O2 15 L/min"
           ],
           "doseMap": {
-            "Bag-valve-mask ventilation with 15 L/min oxygen": "10 ถึง 12 ครั้ง/นาที จนหายใจเองได้"
+            "Bag-valve-mask กับ O2 15 L/min": "10 ถึง 12 ครั้ง/นาที จนหายใจเองได้"
           }
         }
       },
@@ -239,9 +239,9 @@
           ],
           "label": "เจาะ DTX และติด monitor",
           "actions": [
-            "Capillary glucose",
-            "Cardiac monitor, SpO2 and end-tidal CO2",
-            "IV access"
+            "DTX",
+            "ติด monitor หัวใจ SpO2 และ EtCO2",
+            "เปิดเส้น"
           ],
           "doseMap": {}
         }
@@ -328,14 +328,14 @@
           ],
           "label": "Observe re-sedation และรักษา rhabdomyolysis",
           "actions": [
-            "Monitored observation at least 4-6 hours after the last naloxone dose",
-            "Naloxone infusion if repeated dosing is needed",
-            "IV crystalloid for rhabdomyolysis",
-            "Repeat venous gas"
+            "Observe พร้อม monitor อย่างน้อย 4 ถึง 6 ชม. หลัง naloxone ครั้งสุดท้าย",
+            "Naloxone drip ถ้าต้องให้ซ้ำหลายครั้ง",
+            "Crystalloid IV สำหรับ rhabdomyolysis",
+            "VBG ซ้ำ"
           ],
           "doseMap": {
-            "Naloxone infusion if repeated dosing is needed": "ให้ 2 ใน 3 ของ bolus ที่ได้ผลต่อชั่วโมง แล้ว titrate",
-            "IV crystalloid for rhabdomyolysis": "NSS ให้ urine output 1 ถึง 2 mL/kg/h"
+            "Naloxone drip ถ้าต้องให้ซ้ำหลายครั้ง": "ให้ 2 ใน 3 ของ bolus ที่ได้ผลต่อชั่วโมง แล้ว titrate",
+            "Crystalloid IV สำหรับ rhabdomyolysis": "NSS ให้ urine output 1 ถึง 2 mL/kg/h"
           }
         }
       },
@@ -381,14 +381,14 @@
           ],
           "label": "วางแผน D/C เชื่อมกับการบำบัด และมีแผนรับมือ overdose",
           "actions": [
-            "Methadone maintenance clinic referral",
-            "Naloxone through a harm reduction programme",
-            "Hepatitis C and HIV screening offer",
-            "Written overdose advice for him and his brother"
+            "ส่งต่อคลินิก methadone",
+            "Naloxone ผ่านโครงการ harm reduction",
+            "เสนอตรวจ HCV และ HIV",
+            "คำแนะนำเรื่อง overdose เป็นลายลักษณ์อักษรให้เขาและน้องชาย"
           ],
           "doseMap": {
-            "Methadone maintenance clinic referral": "รพ. รัฐหลายแห่งในไทยมีคลินิก methadone maintenance ส่วน buprenorphine ยังไม่มีให้ทั่วไปในไทย",
-            "Naloxone through a harm reduction programme": "Naloxone กลับบ้านยังไม่ใช่ routine ใน รพ. ไทย แต่โครงการ outreach สำหรับผู้ใช้ยาด้วยการฉีดมีติดตัวไว้"
+            "ส่งต่อคลินิก methadone": "รพ. รัฐหลายแห่งในไทยมีคลินิก methadone maintenance ส่วน buprenorphine ยังไม่มีให้ทั่วไปในไทย",
+            "Naloxone ผ่านโครงการ harm reduction": "Naloxone กลับบ้านยังไม่ใช่ routine ใน รพ. ไทย แต่โครงการ outreach สำหรับผู้ใช้ยาด้วยการฉีดมีติดตัวไว้"
           }
         }
       },

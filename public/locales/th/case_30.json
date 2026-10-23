@@ -105,7 +105,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine (serial)",
+      "name": "Cr (เป็นระยะ)",
       "value": "1.1 mg/dL at 3h, 2.4 at 12h, 4.1 at 24h",
       "unit": "-",
       "normalRange": "0.5-1.0 mg/dL",
@@ -116,7 +116,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas on room air",
+      "name": "ABG (room air)",
       "value": "pH 7.36 / pO2 92 / HCO3 22",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -138,7 +138,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Chest X-ray (baseline)",
+      "name": "CXR (baseline)",
       "report": "ปอดใส หัวใจขนาดปกติ เป็น film baseline ไว้เปรียบเทียบ opacity แบบ reticular แล้วรวมเป็นปื้นมักเริ่มเห็นตั้งแต่วันที่ 5",
       "imageUrl": "",
       "abnormal": false
@@ -147,7 +147,7 @@
       "id": "endo1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Upper GI endoscopy assessment",
+      "name": "ประเมินการส่องกล้อง upper GI",
       "report": "เลื่อนไปในช่วงเฉียบพลัน คาดว่ามีแผลในปากคอและหลอดอาหารกว้าง ส่องกล้องเร็วเพิ่มความเสี่ยงทะลุและไม่เปลี่ยนการรักษา",
       "imageUrl": "",
       "abnormal": true
@@ -187,12 +187,12 @@
           "label": "ยืนยันชนิดสาร และทำ urine dithionite test",
           "actions": [
             "Urine dithionite test",
-            "Identify the container and concentration if possible",
-            "Baseline bloods and room air blood gas",
-            "Contact the poisons centre"
+            "หาขวดและความเข้มข้นถ้าทำได้",
+            "เจาะเลือด baseline และ blood gas ที่ room air",
+            "โทรปรึกษาศูนย์พิษวิทยา"
           ],
           "doseMap": {
-            "Contact the poisons centre": "ศูนย์พิษวิทยารามาธิบดี 1367 โทรเร็ว ไม่ใช่รอตอนคนไข้แย่ลง"
+            "โทรปรึกษาศูนย์พิษวิทยา": "ศูนย์พิษวิทยารามาธิบดี 1367 โทรเร็ว ไม่ใช่รอตอนคนไข้แย่ลง"
           }
         }
       },
@@ -217,12 +217,12 @@
           ],
           "label": "งด O2 ยกเว้น SpO2 ต่ำกว่า 90%",
           "actions": [
-            "No supplemental oxygen",
-            "Room air monitoring",
-            "Document the reason prominently at the bedside and in the notes"
+            "ไม่ให้ O2 เสริม",
+            "Monitor ที่ room air",
+            "เขียนเหตุผลให้เห็นชัดที่ข้างเตียงและในแฟ้ม"
           ],
           "doseMap": {
-            "No supplemental oxygen": "Paraquat ทำลายเนื้อปอดผ่าน redox cycling ที่ต้องใช้ O2 การให้ O2 เร่ง pulmonary fibrosis อย่างวัดได้ นี่คือคำสั่งที่ขัดสัญชาตญาณที่สุดในพิษวิทยา และจะถูกคนหวังดีแก้กลับถ้าไม่เขียนไว้ตัวโตๆ"
+            "ไม่ให้ O2 เสริม": "Paraquat ทำลายเนื้อปอดผ่าน redox cycling ที่ต้องใช้ O2 การให้ O2 เร่ง pulmonary fibrosis อย่างวัดได้ นี่คือคำสั่งที่ขัดสัญชาตญาณที่สุดในพิษวิทยา และจะถูกคนหวังดีแก้กลับถ้าไม่เขียนไว้ตัวโตๆ"
           }
         }
       },
@@ -246,19 +246,19 @@
           ],
           "label": "Decontamination และสูตรของศูนย์พิษ",
           "actions": [
-            "Fuller's earth or activated charcoal",
-            "Charcoal haemoperfusion within 4 hours",
-            "Cyclophosphamide and dexamethasone",
-            "Vitamin C and vitamin E",
-            "Analgesia for the oropharyngeal burns",
-            "Antiemetic"
+            "Fuller's earth หรือ activated charcoal",
+            "Charcoal hemoperfusion ภายใน 4 ชม.",
+            "Cyclophosphamide และ dexamethasone",
+            "Vitamin C และ vitamin E",
+            "ยาแก้ปวดสำหรับแผลไหม้ในปากและคอ",
+            "ยาแก้อาเจียน"
           ],
           "doseMap": {
-            "Fuller's earth or activated charcoal": "15% Fuller's earth 1000 mL หรือ activated charcoal 100 g ถ้า airway ปลอดภัย อาเจียนออกให้ซ้ำ (แนวทางศูนย์พิษวิทยารามาธิบดี)",
-            "Charcoal haemoperfusion within 4 hours": "ทำ 6 ถึง 8 ชม. มาถึงที่ 3 ชม. window ยังเปิดอยู่แต่กำลังจะปิด",
-            "Cyclophosphamide and dexamethasone": "Cyclophosphamide 5 mg/kg/วัน IV แบ่งให้ ร่วมกับ dexamethasone 10 mg IV ทุก 8 ชม. หลักฐานว่าได้ประโยชน์มีจำกัด และเธอควรได้ยินเรื่องนี้ตามจริง",
-            "Vitamin C and vitamin E": "Vitamin C 6 g IV ใน 24 ชม. vitamin E 800 IU วันละ 4 ครั้ง",
-            "Analgesia for the oropharyngeal burns": "Opioid แบบ titrate แผลปวดรุนแรงมาก และให้ยาแก้ปวดไม่พอเป็นเรื่องที่พบบ่อย"
+            "Fuller's earth หรือ activated charcoal": "15% Fuller's earth 1000 mL หรือ activated charcoal 100 g ถ้า airway ปลอดภัย อาเจียนออกให้ซ้ำ (แนวทางศูนย์พิษวิทยารามาธิบดี)",
+            "Charcoal hemoperfusion ภายใน 4 ชม.": "ทำ 6 ถึง 8 ชม. มาถึงที่ 3 ชม. window ยังเปิดอยู่แต่กำลังจะปิด",
+            "Cyclophosphamide และ dexamethasone": "Cyclophosphamide 5 mg/kg/วัน IV แบ่งให้ ร่วมกับ dexamethasone 10 mg IV ทุก 8 ชม. หลักฐานว่าได้ประโยชน์มีจำกัด และเธอควรได้ยินเรื่องนี้ตามจริง",
+            "Vitamin C และ vitamin E": "Vitamin C 6 g IV ใน 24 ชม. vitamin E 800 IU วันละ 4 ครั้ง",
+            "ยาแก้ปวดสำหรับแผลไหม้ในปากและคอ": "Opioid แบบ titrate แผลปวดรุนแรงมาก และให้ยาแก้ปวดไม่พอเป็นเรื่องที่พบบ่อย"
           },
           "choice": "Fuller's earth, hemoperfusion, สูตรรามาฯ"
         }
@@ -316,13 +316,13 @@
           ],
           "label": "ให้จิตเวชและ palliative care เข้ามาพร้อมกันตั้งแต่เนิ่นๆ",
           "actions": [
-            "Urgent psychiatric assessment while she is able to participate",
-            "Palliative care referral for symptom control",
-            "Family support and interpreter if needed",
-            "Continue full supportive care"
+            "ให้จิตแพทย์ประเมินด่วนขณะที่เธอยังร่วมได้",
+            "ส่งต่อ palliative care ดูแลอาการ",
+            "ดูแลครอบครัว และล่ามถ้าจำเป็น",
+            "Supportive care เต็มที่ต่อไป"
           ],
           "doseMap": {
-            "Urgent psychiatric assessment while she is able to participate": "ตอนนี้เธอยังตัดสินใจเองได้ การประเมินและที่สำคัญกว่าคือการดูแลใจต้องเกิดขึ้นตอนที่ยังเป็นแบบนี้ อย่าคิดว่าจิตเวชมีไว้สำหรับคนที่รอดเท่านั้น"
+            "ให้จิตแพทย์ประเมินด่วนขณะที่เธอยังร่วมได้": "ตอนนี้เธอยังตัดสินใจเองได้ การประเมินและที่สำคัญกว่าคือการดูแลใจต้องเกิดขึ้นตอนที่ยังเป็นแบบนี้ อย่าคิดว่าจิตเวชมีไว้สำหรับคนที่รอดเท่านั้น"
           }
         }
       },
@@ -347,13 +347,13 @@
           ],
           "label": "คุมอาการ และเลี่ยงการรักษาที่ไร้ประโยชน์",
           "actions": [
-            "Opioid and anxiolytic titration for dyspnoea",
-            "Continue room air unless hypoxaemia is symptomatic",
-            "Discuss ceiling of treatment with patient and family",
-            "Renal support if it improves comfort or buys meaningful time"
+            "Titrate opioid และยาคลายกังวลสำหรับอาการหอบ",
+            "อยู่ room air ต่อ เว้นแต่ hypoxemia ทำให้ทรมาน",
+            "คุยเรื่องขอบเขตการรักษากับคนไข้และครอบครัว",
+            "Renal support ถ้าช่วยให้สบายขึ้นหรือได้เวลาที่มีความหมาย"
           ],
           "doseMap": {
-            "Discuss ceiling of treatment with patient and family": "Intubate และใช้ ventilator ใน paraquat lung fibrosis ที่เกิดแล้ว ยืดการตายโดยไม่เปลี่ยนผล นี่คือการคุยกับเธอ ไม่ใช่คุยเรื่องเธอ"
+            "คุยเรื่องขอบเขตการรักษากับคนไข้และครอบครัว": "Intubate และใช้ ventilator ใน paraquat lung fibrosis ที่เกิดแล้ว ยืดการตายโดยไม่เปลี่ยนผล นี่คือการคุยกับเธอ ไม่ใช่คุยเรื่องเธอ"
           }
         }
       },

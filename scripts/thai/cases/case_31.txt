@@ -12,12 +12,20 @@ req1.f0: เด็กซึมและช็อก resuscitate กับแก�
 req1.d1: ให้ ORS ดูดขวด
 req1.f1: เด็กซึมและอาจต้องผ่าตัด เปิด IV หรือ IO และงดน้ำงดอาหาร
 req1.m0: 10% dextrose 2 mL/kg (17 mL) เจาะซ้ำที่ 30 นาที
+req1.a0: DTX
+req1.a1: เปิดเส้น IV หรือ IO
+req1.a2: Dextrose bolus
+req1.a3: พิจารณา septic workup ให้ครบ
 req2.l: Fluid resuscitation ก่อนพยายาม reduce
 req2.d0: ทำ air enema ทันทีจะได้ไม่เสียเวลา
 req2.f0: Reduce ตอนเด็กช็อกเสี่ยงลำไส้ทะลุและทรุด resuscitate ก่อน
 req2.d1: จำกัด fluid ครึ่งหนึ่งของ maintenance
 req2.f1: เด็กช็อกอยู่ ต้องได้ bolus
 req2.m0: NSS 10 ถึง 20 mL/kg (85 ถึง 170 mL) ซ้ำได้ตามต้องการ เด็กช็อกห้ามไปห้องรังสีเพื่อ reduce เพราะลำไส้ทะลุระหว่าง reduce ในเด็กที่ยังไม่ได้ resuscitate คือหายนะ
+req2.a0: Isotonic crystalloid bolus
+req2.a1: ใส่ NG tube ระบาย
+req2.a2: NPO
+req2.a3: ประเมิน perfusion ซ้ำหลังทุก bolus
 req3.l: U/S ยืนยัน และ film ท้องตัดลำไส้ทะลุ
 req3.c: U/S ท้องและ film ท้อง
 req3.d0: CT ท้องยืนยัน intussusception
@@ -25,6 +33,9 @@ req3.f0: U/S คือ test ที่เลือกสำหรับวิน�
 req3.d1: ไม่ต้องทำ imaging ไป air enema เลย
 req3.f1: ยืนยันด้วย U/S และตัดลำไส้ทะลุด้วย film ก่อน
 req3.m0: ศัลย์ต้องรู้และพร้อมก่อนพยายาม reduce ทุกครั้ง เพราะลำไส้ทะลุเกิดราว 1% ของการทำ
+req3.a0: US ท้อง
+req3.a1: Film ท้องหา free air
+req3.a2: ปรึกษาศัลย์เด็กก่อน reduction
 out1.l: Resuscitate แล้ว ยืนยันการวินิจฉัย
 out1.n: หลังได้ NSS 340 mL กับ dextrose perfusion ดีขึ้น capillary refill 2 วินาที ตื่นดีขึ้นระหว่างพัก U/S ยืนยัน ileocolic intussusception Doppler ยังมี flow ไม่มี free air ตอนนี้ปลอดภัยพอจะลอง reduce
 ethical_1.l: บอกแม่ชัดๆ ว่าการมาช้าไม่ใช่ความผิดของแม่ (Empathy)
@@ -37,6 +48,9 @@ req4.d1: Explore lap เป็นวิธีแรก
 req4.f1: Reduce ทางรังสีสำเร็จในเคสส่วนใหญ่ ผ่าตัดสำหรับกรณีไม่สำเร็จหรือทะลุ
 req4.m0: จำกัดความดันที่ 120 mmHg สำเร็จ 80 ถึง 90% ในเด็กที่ resuscitate แล้ว ลมดีกว่า barium ทะลุน้อยกว่าและถ้าทะลุก็ปนเปื้อนช่องท้องน้อยกว่า
 req4.m1: Broad spectrum ขนาดตามน้ำหนัก เพราะอาจมีลำไส้ทะลุหรือขาดเลือด
+req4.a0: Pneumatic (air) enema reduction
+req4.a1: Antibiotic ก่อนทำ
+req4.a2: ทีมศัลย์อยู่ด้วย
 out2.l: Reduce สำเร็จ
 out2.n: Reduce ได้ในครั้งที่สอง ลมไหลย้อนเข้า terminal ileum ได้อิสระ สงบลงใน 20 นาที กินนมได้ที่ 4 ชม. ดูเป็นเด็กอีกคน เป็นซ้ำได้ราว 10% ส่วนใหญ่ใน 48 ชม. แรก
 req5.l: Observe การเป็นซ้ำ และให้คำแนะนำก่อน D/C
@@ -46,5 +60,9 @@ req5.f0: เป็นซ้ำบ่อยที่สุดใน 24 ชม. �
 req5.d1: งดน้ำงดอาหาร 3 วัน
 req5.f1: กลับมากินได้ทีละน้อยหลัง reduce สำเร็จ
 req5.m0: กลับมาทันทีถ้าร้องกรีดเป็นพักๆ ตัวซีด อาเจียน หรือซึมแบบเดิม เป็นซ้ำได้บ่อย และมาเร็วแปลว่าทำ enema อีกครั้งแทนการผ่าตัด
+req5.a0: Admit observe อย่างน้อย 24 ชม.
+req5.a1: ค่อยๆ เริ่มนม
+req5.a2: คำแนะนำเรื่องการกลับเป็นซ้ำให้พ่อแม่ เป็นลายลักษณ์อักษร
+req5.a3: พิจารณาหา lead point ถ้าเป็นซ้ำหรืออายุเกิน 2 ปี
 out3.l: Disposition
 out3.n: D/C ที่ 30 ชม. กินนมได้ปกติ ไม่ต้องผ่าตัด ไม่ต้องตัดลำไส้ ไม่มี stoma ความต่างระหว่างเคสนี้กับการเปิดท้องตัดลำไส้คือ resuscitate ก่อน และทำ U/S แทนการคิดว่าร้องเป็นพักๆ 18 ชม. คือโคลิก

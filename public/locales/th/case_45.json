@@ -10,7 +10,7 @@
     "Blast injury",
     "Circumferential chest burn with restrictive ventilation"
   ],
-  "background": "ถังแก๊ส LPG ระเบิดในครัวร้านอาหารที่ปิดทึบเมื่อ 40 นาทีก่อน ติดอยู่ในห้องหลายนาทีก่อนถูกดึงออกมา เพื่อนร่วมงานเอาน้ำมันพืชราดแผล ซึ่งทำกันบ่อยในพื้นที่ แต่กักความร้อนไว้และทำให้ประเมินแผลยาก น้ำหนัก 70 kg เฟอร์นิเจอร์ครัววัสดุสังเคราะห์ไหม้ในพื้นที่ปิด ให้ถือว่าได้รับทั้ง carbon monoxide และ cyanide ไว้ก่อน ไม่ต้องรอตรวจ",
+  "background": "ถังแก๊ส LPG ระเบิดในครัวร้านอาหารที่ปิดทึบเมื่อ 40 นาทีก่อน ติดอยู่ในห้องหลายนาทีก่อนถูกดึงออกมา เพื่อนร่วมงานเอาน้ำมันพืชราดแผล น้ำหนัก 70 kg เฟอร์นิเจอร์ครัววัสดุสังเคราะห์ไหม้ในพื้นที่ปิด",
   "patientAppearance": {
     "skinTone": "#c98d5f",
     "bmiFactor": 1.0,
@@ -95,7 +95,7 @@
       "id": "co1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Co-oximetry (carboxyhaemoglobin)",
+      "name": "Co-oximetry (COHb)",
       "value": "COHb 28%",
       "unit": "%",
       "normalRange": "<3% non-smoker",
@@ -117,7 +117,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas",
+      "name": "ABG",
       "value": "pH 7.18 / pCO2 44 / pO2 96 / HCO3 14",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -128,7 +128,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Chest X-ray",
+      "name": "CXR",
       "report": "ปอดใสในช่วงแรก CXR มักปกติใน 24 ชม. แรกของ inhalation injury film ปกติจึงไม่ได้ทำให้วางใจได้เลย",
       "imageUrl": "",
       "abnormal": false
@@ -137,7 +137,7 @@
       "id": "hb1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haemoglobin and haematocrit",
+      "name": "Hb, Hct",
       "value": "Hb 17.8 g/dL / Hct 54%",
       "unit": "-",
       "normalRange": "Hb 13.5-17.5 g/dL",
@@ -148,7 +148,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase and creatinine",
+      "name": "CK, Cr",
       "value": "CK 8400 U/L / creatinine 1.6 mg/dL",
       "unit": "-",
       "normalRange": "CK 30-200 U/L",
@@ -189,13 +189,13 @@
           ],
           "label": "Intubate เร็วก่อน airway จะปิด",
           "actions": [
-            "Immediate rapid sequence intubation",
-            "Use the largest tube available",
-            "Do not cut the tube, and secure with ties rather than tape"
+            "Rapid sequence intubation ทันที",
+            "ใช้ tube ใหญ่ที่สุดที่มี",
+            "ไม่ตัด tube และยึดด้วยเชือกแทนเทป"
           ],
           "doseMap": {
-            "Immediate rapid sequence intubation": "เสียงแหบ มีเขม่าใน oropharynx และหน้าไหม้ แปลว่า airway จะบวมปิดในไม่กี่ชั่วโมง intubate ตอนนี้ที่ยังง่าย รอ stridor แปลว่าต้องทำ surgical airway ผ่านเนื้อที่ไหม้",
-            "Do not cut the tube, and secure with ties rather than tape": "หน้าบวมจะดัน tube ที่ตัดสั้นให้เลื่อน และเทปไม่ติดบนผิวที่ไหม้"
+            "Rapid sequence intubation ทันที": "เสียงแหบ มีเขม่าใน oropharynx และหน้าไหม้ แปลว่า airway จะบวมปิดในไม่กี่ชั่วโมง intubate ตอนนี้ที่ยังง่าย รอ stridor แปลว่าต้องทำ surgical airway ผ่านเนื้อที่ไหม้",
+            "ไม่ตัด tube และยึดด้วยเชือกแทนเทป": "หน้าบวมจะดัน tube ที่ตัดสั้นให้เลื่อน และเทปไม่ติดบนผิวที่ไหม้"
           }
         }
       },
@@ -219,12 +219,12 @@
           ],
           "label": "O2 100% และให้ยาแก้ cyanide แบบ empirical",
           "actions": [
-            "100% oxygen via the ventilator",
+            "O2 100% ทาง ventilator",
             "Hydroxocobalamin IV",
-            "Co-oximetry, not pulse oximetry"
+            "วัดด้วย co-oximetry ไม่ใช่ pulse oximetry"
           ],
           "doseMap": {
-            "100% oxygen via the ventilator": "ลด half life ของ carboxyhemoglobin จากราว 4 ชม. ใน room air เหลือต่ำกว่า 1 ชม.",
+            "O2 100% ทาง ventilator": "ลด half life ของ carboxyhemoglobin จากราว 4 ชม. ใน room air เหลือต่ำกว่า 1 ชม.",
             "Hydroxocobalamin IV": "5 g IV ใน 15 นาที ให้แบบ empirical ในไฟไหม้พื้นที่ปิดที่ lactate เกิน 8 และความรู้สึกตัวเปลี่ยน ปลอดภัยแม้ไม่มี cyanide ต่างจากชุดยา nitrite ที่ทำให้ methemoglobinemia และอันตรายเมื่อมี CO ร่วม"
           }
         }
@@ -250,14 +250,14 @@
           ],
           "label": "คำนวณพื้นที่แผลไหม้และเริ่ม fluid resuscitation",
           "actions": [
-            "Rule of Nines assessment excluding erythema",
-            "Remove the cooking oil and cool the wounds",
-            "Modified Parkland fluid regimen",
-            "Urinary catheter with hourly output"
+            "ประเมินด้วย rule of nines ไม่นับรอยแดง",
+            "ล้างน้ำมันออกและทำแผลให้เย็น",
+            "Modified Parkland",
+            "ใส่สายสวนปัสสาวะ วัด output ทุกชั่วโมง"
           ],
           "doseMap": {
-            "Modified Parkland fluid regimen": "Ringer's lactate 2 ถึง 4 mL x kg x %TBSA ใน 24 ชม. (2 x 70 x 45 = 6300 mL) ครึ่งแรกใน 8 ชม. นับจากเวลาบาดเจ็บ ไม่ใช่เวลามาถึง titrate ให้ urine output 0.5 mL/kg/h และเลิกไล่ตามสูตรเมื่อปัสสาวะออกพอแล้ว",
-            "Remove the cooking oil and cool the wounds": "น้ำไหลเย็น 20 นาทีถ้ายังไม่เกิน 3 ชม. แล้ว warm คนไข้แบบ active ทำแผลให้เย็นและทำตัวคนไข้ให้อุ่นพร้อมกันคือจุดสมดุล"
+            "Modified Parkland": "Ringer's lactate 2 ถึง 4 mL x kg x %TBSA ใน 24 ชม. (2 x 70 x 45 = 6300 mL) ครึ่งแรกใน 8 ชม. นับจากเวลาบาดเจ็บ ไม่ใช่เวลามาถึง titrate ให้ urine output 0.5 mL/kg/h และเลิกไล่ตามสูตรเมื่อปัสสาวะออกพอแล้ว",
+            "ล้างน้ำมันออกและทำแผลให้เย็น": "น้ำไหลเย็น 20 นาทีถ้ายังไม่เกิน 3 ชม. แล้ว warm คนไข้แบบ active ทำแผลให้เย็นและทำตัวคนไข้ให้อุ่นพร้อมกันคือจุดสมดุล"
           }
         }
       },
@@ -282,13 +282,13 @@
           ],
           "label": "Escharotomy ที่หน้าอกและแขนขาที่ไหม้รอบวง",
           "actions": [
-            "Chest wall escharotomy",
-            "Bilateral upper limb escharotomy",
-            "Analgesia, though full thickness eschar is insensate"
+            "Escharotomy หน้าอก",
+            "Escharotomy แขนสองข้าง",
+            "ให้ยาแก้ปวด แม้ eschar full thickness จะไม่มีความรู้สึก"
           ],
           "doseMap": {
-            "Chest wall escharotomy": "แผลไหม้ full thickness รอบหน้าอกทำให้อกขยายไม่ได้ เกิด ventilatory failure ที่ตั้ง ventilator ยังไงก็แก้ไม่ได้ กรีดตาม anterior axillary line ทั้งสองข้างและขวางตาม costal margin",
-            "Bilateral upper limb escharotomy": "กรีดตรงกลางด้าน medial และ lateral ชีพจรหายเป็น sign ช่วงหลัง ลงมือเมื่อ eschar ตึงและ compartment pressure เพิ่ม"
+            "Escharotomy หน้าอก": "แผลไหม้ full thickness รอบหน้าอกทำให้อกขยายไม่ได้ เกิด ventilatory failure ที่ตั้ง ventilator ยังไงก็แก้ไม่ได้ กรีดตาม anterior axillary line ทั้งสองข้างและขวางตาม costal margin",
+            "Escharotomy แขนสองข้าง": "กรีดตรงกลางด้าน medial และ lateral ชีพจรหายเป็น sign ช่วงหลัง ลงมือเมื่อ eschar ตึงและ compartment pressure เพิ่ม"
           }
         }
       },
@@ -346,15 +346,15 @@
           ],
           "label": "ส่งต่อศูนย์แผลไหม้พร้อมเตรียมตัวคนไข้ให้ถูก",
           "actions": [
-            "Referral to a specialist burns centre",
-            "Cling film dressings, not wet dressings",
-            "Active warming during transport",
-            "Nasogastric tube and early enteral feeding",
-            "Tetanus prophylaxis, no prophylactic antibiotics"
+            "ส่งต่อศูนย์แผลไหม้",
+            "ปิดแผลด้วยแผ่นฟิล์มห่ออาหาร ไม่ใช่ผ้าเปียก",
+            "Warm แบบ active ระหว่างส่งตัว",
+            "ใส่ NG tube และเริ่มให้อาหารทางสายเร็ว",
+            "ป้องกันบาดทะยัก ไม่ให้ antibiotic แบบ prophylactic"
           ],
           "doseMap": {
-            "Cling film dressings, not wet dressings": "ผ้าเปียกบนแผลไหม้ขนาดใหญ่ทำให้ hypothermia รุนแรงระหว่างส่งตัว 2 ชม.",
-            "Tetanus prophylaxis, no prophylactic antibiotics": "Prophylactic systemic antibiotic คัดเลือกเชื้อดื้อยาโดยไม่ได้ลด burn wound sepsis"
+            "ปิดแผลด้วยแผ่นฟิล์มห่ออาหาร ไม่ใช่ผ้าเปียก": "ผ้าเปียกบนแผลไหม้ขนาดใหญ่ทำให้ hypothermia รุนแรงระหว่างส่งตัว 2 ชม.",
+            "ป้องกันบาดทะยัก ไม่ให้ antibiotic แบบ prophylactic": "Prophylactic systemic antibiotic คัดเลือกเชื้อดื้อยาโดยไม่ได้ลด burn wound sepsis"
           }
         }
       },

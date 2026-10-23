@@ -11,6 +11,7 @@ req1.f0: K สูงในเคสนี้เป็นผลของ digoxin 
 req1.d1: ให้ metoprolol IV คุม rate ของ AF
 req1.f1: HR 35 SBP 80 อยู่แล้ว ให้ beta-blocker จะยิ่ง block หนักขึ้นและช็อกมากขึ้น
 req1.m0: 1 mg IV
+req1.a0: Atropine IV
 out1.l: ประคองได้ชั่วคราว
 out1.n: HR ขึ้นเป็น 45 หลังให้ atropine แต่แค่ซื้อเวลา digoxin ยังจับ Na-K pump ในหัวใจอยู่
 req2.l: ให้ digoxin-specific antibody fragments (DigiFab)
@@ -19,5 +20,8 @@ req2.f0: Digoxin มี volume of distribution กว้างมาก HD แ�
 req2.d1: รอเจาะ digoxin level ซ้ำก่อนค่อยให้ antidote
 req2.f1: Brady + shock + K > 5 คือ life-threatening toxicity แล้ว ให้ Fab เลย
 req2.m0: Life-threatening และไม่รู้ขนาดที่กิน: 10 vials IV ใน 30 นาที ไม่ดีขึ้นให้ซ้ำได้ K จะลดลงเมื่อ Fab ออกฤทธิ์ ระวัง hypokalemia ตามมา DigiFab อยู่ในรายการ antidote ของศูนย์พิษวิทยารามาธิบดี โทร 1367 ถามได้ว่ามียาที่ไหนใกล้สุด
+req2.a0: Digoxin immune Fab IV
+req2.a1: เจาะ K ซ้ำใน 1 ชม.
+req2.a2: ติด monitor หัวใจต่อเนื่อง
 out2.l: Rhythm กลับมา
 out2.n: ภายใน 40 นาที HR 72 BP 118/70 K ลงเหลือ 4.4 เองโดยไม่ต้องให้อะไรเพิ่ม ลุงตื่นขึ้นมาถามว่าทำไมทุกคนมายืนล้อมเตียง

@@ -16,10 +16,12 @@ interface DialogueBoxProps {
   choices?: CutsceneChoice[];
   voice?: number;
   onComplete: (choice?: CutsceneChoice) => void;
+  /** Jump ahead to the next decision. Shown only when there is something to skip. */
+  onSkip?: () => void;
 }
 
 /** Parchment dialogue card with a wooden portrait frame and a name ribbon. Text types out with a per-character voice. */
-export function DialogueBox({ speakerName, text: rawText, choices, voice, onComplete }: DialogueBoxProps) {
+export function DialogueBox({ speakerName, text: rawText, choices, voice, onComplete, onSkip }: DialogueBoxProps) {
   const { playerName, playerGender, currentDay } = useERStore();
   const text = inVoice(rawText, playerGender, currentDay);
   const label = speakerLabel(speakerName, playerName);
@@ -67,6 +69,15 @@ export function DialogueBox({ speakerName, text: rawText, choices, voice, onComp
         <div className="absolute -top-4 left-[5.5rem] z-10 cozy-tag px-2 py-0.5 text-base leading-none !bg-[#ffd66b]" data-testid="dialogue-speaker">
           {label}
         </div>
+      )}
+      {onSkip && !(choices && choices.length) && (
+        <button
+          onClick={(e) => { e.stopPropagation(); audio.playClick(); onSkip(); }}
+          className="absolute -top-4 right-2 z-10 cozy-tag px-2 py-0.5 text-[15px] leading-none"
+          data-testid="dialogue-skip"
+        >
+          ข้าม ▸▸
+        </button>
       )}
       <div className="cozy-panel flex gap-3 p-3">
         {hasPortrait(speakerName) && (

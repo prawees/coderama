@@ -106,7 +106,7 @@
       "id": "coag1",
       "kind": "lab",
       "category": "Coagulation",
-      "name": "INR and fibrinogen",
+      "name": "INR, fibrinogen",
       "value": "INR >8 (unmeasurable) / fibrinogen <0.5 g/L",
       "unit": "-",
       "normalRange": "INR 0.9-1.2",
@@ -117,7 +117,7 @@
       "id": "plt1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Platelet count",
+      "name": "Platelet",
       "value": "62",
       "unit": "x10^9/L",
       "normalRange": "150-400",
@@ -128,7 +128,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine and potassium",
+      "name": "Cr, K",
       "value": "Creatinine 1.9 mg/dL / K 5.1 mmol/L",
       "unit": "-",
       "normalRange": "Creatinine 0.5-1.0 mg/dL",
@@ -139,7 +139,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase",
+      "name": "CK",
       "value": "2100",
       "unit": "U/L",
       "normalRange": "30-200",
@@ -150,8 +150,8 @@
       "id": "ua1",
       "kind": "lab",
       "category": "Urine",
-      "name": "Urinalysis",
-      "value": "Blood 3+, protein 2+, no red cells on microscopy",
+      "name": "UA",
+      "value": "Blood 3+, protein 2+ ไม่มี RBC ใน microscopy",
       "unit": "-",
       "normalRange": "Negative",
       "abnormal": true,
@@ -192,13 +192,13 @@
           ],
           "label": "คลายผ้าที่รัดออกอย่างระวัง และ immobilize ขา",
           "actions": [
-            "Slow removal of the constricting band with monitoring",
-            "Splint the limb at heart level",
-            "Remove the herbal paste and clean the wound",
-            "Do not incise, suck or apply ice"
+            "ค่อยๆ คลายเชือกที่รัดไว้พร้อม monitor",
+            "ใส่ splint ให้แขนขาอยู่ระดับหัวใจ",
+            "ล้างยาสมุนไพรออกและทำความสะอาดแผล",
+            "ห้ามกรีด ห้ามดูด ห้ามประคบน้ำแข็ง"
           ],
           "doseMap": {
-            "Slow removal of the constricting band with monitoring": "คลายตอนที่มียา resus พร้อมอยู่ข้างมือ คลายทันทีอาจปล่อยพิษก้อนใหญ่เข้ากระแสเลือด"
+            "ค่อยๆ คลายเชือกที่รัดไว้พร้อม monitor": "คลายตอนที่มียา resus พร้อมอยู่ข้างมือ คลายทันทีอาจปล่อยพิษก้อนใหญ่เข้ากระแสเลือด"
           }
         }
       },
@@ -224,8 +224,8 @@
           "label": "ทำ 20 minute whole blood clotting test และระบุชนิดงู",
           "actions": [
             "20 minute whole blood clotting test",
-            "Ask about the snake's appearance",
-            "Examine for neurotoxic signs: ptosis, single breath count"
+            "ถามลักษณะงู",
+            "ตรวจหา neurotoxic sign: ptosis, single breath count"
           ],
           "doseMap": {}
         }
@@ -250,12 +250,12 @@
           ],
           "label": "ให้เซรุ่มจำเพาะสำหรับ systemic envenomation",
           "actions": [
-            "Russell's viper monovalent antivenom IV",
-            "Adrenaline drawn up at the bedside before infusion"
+            "Antivenom งูแมวเซา monovalent IV",
+            "ดูด adrenaline เตรียมไว้ข้างเตียงก่อนให้"
           ],
           "doseMap": {
-            "Russell's viper monovalent antivenom IV": "3 vial ละลายใน NSS 100 mL ให้ใน 30 ถึง 60 นาที ถ้า clotting test ยังไม่แข็งตัวที่ 6 ชม. ให้ซ้ำ",
-            "Adrenaline drawn up at the bedside before infusion": "0.5 mg 1:1000 IM เตรียมไว้สำหรับ anaphylactoid reaction ซึ่งเกิดได้ถึง 20% ของการให้"
+            "Antivenom งูแมวเซา monovalent IV": "3 vial ละลายใน NSS 100 mL ให้ใน 30 ถึง 60 นาที ถ้า clotting test ยังไม่แข็งตัวที่ 6 ชม. ให้ซ้ำ",
+            "ดูด adrenaline เตรียมไว้ข้างเตียงก่อนให้": "0.5 mg 1:1000 IM เตรียมไว้สำหรับ anaphylactoid reaction ซึ่งเกิดได้ถึง 20% ของการให้"
           }
         }
       },
@@ -313,12 +313,12 @@
           ],
           "label": "ทำ clotting test ซ้ำที่ 6 ชม. ถ้ายังไม่แข็งตัวให้เซรุ่มเพิ่ม",
           "actions": [
-            "Repeat 20 minute whole blood clotting test at 6 hours",
-            "Further antivenom if non-clotting",
-            "Do not give FFP or platelets before antivenom"
+            "20 minute WBCT ซ้ำที่ 6 ชม.",
+            "ให้ antivenom เพิ่มถ้าเลือดยังไม่แข็งตัว",
+            "ห้ามให้ FFP หรือ platelet ก่อน antivenom"
           ],
           "doseMap": {
-            "Further antivenom if non-clotting": "อีก 3 vial ในตู้เย็นเหลือแค่ 2 vial ติดต่อคลังยาเขตกับ รพ. ที่รับ refer เดี๋ยวนี้เลย ไม่ใช่รอ 6 โมงเช้า"
+            "ให้ antivenom เพิ่มถ้าเลือดยังไม่แข็งตัว": "อีก 3 vial ในตู้เย็นเหลือแค่ 2 vial ติดต่อคลังยาเขตกับ รพ. ที่รับ refer เดี๋ยวนี้เลย ไม่ใช่รอ 6 โมงเช้า"
           }
         }
       },
@@ -342,13 +342,13 @@
           ],
           "label": "ให้ fluid และ monitor AKI",
           "actions": [
-            "IV crystalloid targeting urine output 1-2 mL/kg/h",
-            "Hourly urine output and daily creatinine",
-            "Nephrology referral for dialysis planning",
-            "Tetanus prophylaxis"
+            "Crystalloid IV เป้า urine output 1 ถึง 2 mL/kg/h",
+            "Urine output ทุกชั่วโมง Cr ทุกวัน",
+            "ส่งต่อ nephro วางแผน dialysis",
+            "ป้องกันบาดทะยัก"
           ],
           "doseMap": {
-            "Tetanus prophylaxis": "ให้หลัง coagulopathy หายแล้ว ห้ามฉีดเข้ากล้ามตอนที่ยังเลือดออก"
+            "ป้องกันบาดทะยัก": "ให้หลัง coagulopathy หายแล้ว ห้ามฉีดเข้ากล้ามตอนที่ยังเลือดออก"
           }
         }
       },

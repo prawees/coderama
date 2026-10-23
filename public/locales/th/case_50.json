@@ -10,7 +10,7 @@
     "Secondary triage error",
     "Departmental surge failure"
   ],
-  "background": "รถบัสนำเที่ยวชนรถบรรทุกน้ำมันบนทางด่วนยกระดับตอน 21:40 น. รายงานผู้บาดเจ็บ 34 คน วิกฤตอย่างน้อย 8 คน มีไฟไหม้ที่จุดเกิดเหตุ แผนกมี resus bay 4 เตียง เตียง monitor 18 เตียง ศัลยแพทย์ทั่วไปอยู่เวร 2 คน ห้องผ่าตัดว่าง 1 ห้อง และเลือด O negative ในตู้เย็น 6 unit มีอีกสอง รพ. รับผู้บาดเจ็บ หมอคือแพทย์ฉุกเฉินที่อาวุโสที่สุดในตึก staff trauma อยู่ห่างไป 30 นาที V/S ที่เห็นเป็นของคนไข้รายแรกที่บรรยายข้างล่าง ซึ่งเป็นคนแรกที่ผ่านประตูมา และเป็นการ triage ครั้งแรกที่หมอจะถูกตัดสิน",
+  "background": "รถบัสนำเที่ยวชนรถบรรทุกน้ำมันบนทางด่วนยกระดับตอน 21:40 น. รายงานผู้บาดเจ็บ 34 คน วิกฤตอย่างน้อย 8 คน มีไฟไหม้ที่จุดเกิดเหตุ แผนกมี resus bay 4 เตียง เตียง monitor 18 เตียง ศัลยแพทย์ทั่วไปอยู่เวร 2 คน ห้องผ่าตัดว่าง 1 ห้อง และเลือด O negative ในตู้เย็น 6 unit มีอีกสอง รพ. รับผู้บาดเจ็บ หมอคือแพทย์ฉุกเฉินที่อาวุโสที่สุดในตึก staff trauma อยู่ห่างไป 30 นาที V/S ที่เห็นเป็นของคนไข้รายแรกที่ผ่านประตูมา",
   "patientAppearance": {
     "skinTone": "#c99a68",
     "bmiFactor": 1.0,
@@ -95,8 +95,8 @@
       "id": "capacity1",
       "kind": "lab",
       "category": "Logistics",
-      "name": "Departmental capacity audit",
-      "value": "4 resus bays / 18 cubicles / 1 theatre / 6 units O negative / 4 ventilators",
+      "name": "ทรัพยากรของแผนกตอนนี้",
+      "value": "resus 4 เตียง / เตียง monitor 18 / ห้องผ่าตัด 1 / O negative 6 unit / ventilator 4 เครื่อง",
       "unit": "-",
       "normalRange": "-",
       "abnormal": true,
@@ -106,8 +106,8 @@
       "id": "triage1",
       "kind": "lab",
       "category": "Scoring",
-      "name": "START triage distribution at 40 minutes",
-      "value": "Red 8, Yellow 11, Green 13, Black 2",
+      "name": "ผล START triage ที่ 40 นาที",
+      "value": "แดง 8 เหลือง 11 เขียว 13 ดำ 2",
       "unit": "-",
       "normalRange": "-",
       "abnormal": true,
@@ -117,7 +117,7 @@
       "id": "fast1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "eFAST (index patient)",
+      "name": "eFAST (คนไข้รายแรก)",
       "report": "Free fluid ใน Morison's pouch และ pelvis ไม่มี lung sliding ข้างซ้าย เจอ lung point ยืนยันทั้ง hemoperitoneum และ left pneumothorax ใน mass casualty incident eFAST คือเครื่องมือ triage ที่ตัดสินว่าใครได้ห้องผ่าตัด เพราะใช้ 90 วินาที ส่วน CT ไม่ใช่",
       "imageUrl": "",
       "abnormal": true
@@ -126,8 +126,8 @@
       "id": "blood1",
       "kind": "lab",
       "category": "Blood bank",
-      "name": "Blood bank status",
-      "value": "6 units O negative on site, 20 more units 45 minutes away",
+      "name": "เลือดในคลัง",
+      "value": "O negative ใน รพ. 6 unit อีก 20 unit อยู่ห่างไป 45 นาที",
       "unit": "-",
       "normalRange": "-",
       "abnormal": true,
@@ -137,7 +137,7 @@
       "id": "gas1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Blood gas and lactate (index patient)",
+      "name": "Blood gas, lactate (คนไข้รายแรก)",
       "value": "pH 7.09 / base deficit -16 / lactate 9.2 / COHb 14%",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -148,7 +148,7 @@
       "id": "xr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Portable chest and pelvis X-ray",
+      "name": "CXR และ film pelvis portable",
       "report": "Left pneumothorax decompress แล้ว มี ICD อยู่ mediastinum ไม่กว้าง pelvis ปกติ left femoral shaft fracture ถ่าย portable อย่างเดียว ระลอกแรกไม่มีใครไป CT เพราะทางเดินห้อง CT จะกลายเป็นคิว และคิวจะกลายเป็นคอขวด",
       "imageUrl": "",
       "abnormal": true
@@ -188,13 +188,13 @@
           ],
           "label": "ประกาศเหตุการณ์ และรับบทบาท ไม่ใช่รับคนไข้",
           "actions": [
-            "Declare a major incident and activate the hospital plan",
-            "Appoint yourself or a named colleague as medical commander",
-            "Appoint a separate triage officer at the door",
-            "Clear the department: discharge or move every patient who can be moved"
+            "ประกาศ major incident และเปิดแผนของโรงพยาบาล",
+            "แต่งตั้งตัวเองหรือเพื่อนที่ระบุชื่อเป็นผู้สั่งการทางการแพทย์",
+            "แต่งตั้งเจ้าหน้าที่ triage อีกคนประจำที่ประตู",
+            "เคลียร์แผนก: D/C หรือย้ายคนไข้ทุกคนที่ย้ายได้"
           ],
           "doseMap": {
-            "Appoint yourself or a named colleague as medical commander": "ผู้สั่งการไม่รักษาคนไข้ ความล้มเหลวที่พบบ่อยที่สุดใน mass casualty incident คือหมอที่ประสบการณ์มากที่สุดไปรับคนไข้วิกฤตรายแรก และแผนกเสียคนเดียวที่เห็นภาพรวมไป"
+            "แต่งตั้งตัวเองหรือเพื่อนที่ระบุชื่อเป็นผู้สั่งการทางการแพทย์": "ผู้สั่งการไม่รักษาคนไข้ ความล้มเหลวที่พบบ่อยที่สุดใน mass casualty incident คือหมอที่ประสบการณ์มากที่สุดไปรับคนไข้วิกฤตรายแรก และแผนกเสียคนเดียวที่เห็นภาพรวมไป"
           }
         }
       },
@@ -219,13 +219,13 @@
           ],
           "label": "Triage ที่ประตูด้วยระบบที่กำหนด ทำแค่หัตถการ 60 วินาที",
           "actions": [
-            "START or equivalent triage at the entrance",
-            "Open the airway and decompress a tension pneumothorax, nothing more",
-            "Apply tourniquets to catastrophic haemorrhage",
-            "Tag every patient and record the time"
+            "START triage หรือระบบเทียบเท่าที่ทางเข้า",
+            "เปิด airway และ decompress tension pneumothorax ไม่ทำมากกว่านั้น",
+            "ใส่ tourniquet ในรายที่เลือดออกรุนแรง",
+            "ติดป้ายทุกรายและจดเวลา"
           ],
           "doseMap": {
-            "Open the airway and decompress a tension pneumothorax, nothing more": "ที่จุด triage ทำได้แค่หัตถการที่ใช้ไม่ถึงนาทีและช่วยชีวิตได้ เริ่ม resuscitate เต็มที่ที่จุด triage คือหยุด triage และคิวข้างหลังจะเสียคนมากกว่าที่ช่วยได้"
+            "เปิด airway และ decompress tension pneumothorax ไม่ทำมากกว่านั้น": "ที่จุด triage ทำได้แค่หัตถการที่ใช้ไม่ถึงนาทีและช่วยชีวิตได้ เริ่ม resuscitate เต็มที่ที่จุด triage คือหยุด triage และคิวข้างหลังจะเสียคนมากกว่าที่ช่วยได้"
           }
         }
       },
@@ -250,13 +250,13 @@
           ],
           "label": "จัดสรรทรัพยากรที่ขาดแคลนอย่างชัดเจน และเขียนการจัดสรรไว้",
           "actions": [
-            "Assign the operating theatre by expected survival benefit",
-            "Assign the 6 units of O negative",
-            "Assign the 4 ventilators",
-            "Activate regional blood transport and mutual aid immediately"
+            "จัดห้องผ่าตัดตามประโยชน์ต่อการรอดชีวิตที่คาดไว้",
+            "จัดสรร O negative 6 unit",
+            "จัดสรร ventilator 4 เครื่อง",
+            "เรียกระบบขนส่งเลือดของเขตและความช่วยเหลือจาก รพ. อื่นทันที"
           ],
           "doseMap": {
-            "Assign the operating theatre by expected survival benefit": "ประโยชน์สูงสุดต่อคนจำนวนมากที่สุด non-responder ที่ยังช่วยได้และจะตายถ้าไม่ผ่าตัดไปก่อน responder รอได้ ส่วนที่ช่วยไม่ได้จัดเป็น expectant นี่คือการกลับหัวทางจริยธรรมจากงานปกติ และต้องเป็นการตัดสินใจที่ประกาศชัดและมีชื่อคนรับผิดชอบ"
+            "จัดห้องผ่าตัดตามประโยชน์ต่อการรอดชีวิตที่คาดไว้": "ประโยชน์สูงสุดต่อคนจำนวนมากที่สุด non-responder ที่ยังช่วยได้และจะตายถ้าไม่ผ่าตัดไปก่อน responder รอได้ ส่วนที่ช่วยไม่ได้จัดเป็น expectant นี่คือการกลับหัวทางจริยธรรมจากงานปกติ และต้องเป็นการตัดสินใจที่ประกาศชัดและมีชื่อคนรับผิดชอบ"
           }
         }
       },
@@ -315,13 +315,13 @@
           ],
           "label": "Re-triage ทุก 15 นาที และคุมระลอกที่สอง",
           "actions": [
-            "Formal retriage of all yellow and green patients every 15 minutes",
-            "Designate a separate area for walking wounded away from the resuscitation area",
-            "Assign a scribe to maintain a single casualty board",
-            "Refuse further ambulances once capacity is reached"
+            "Re-triage คนไข้เหลืองและเขียวทุกราย ทุก 15 นาที",
+            "กำหนดพื้นที่แยกสำหรับผู้บาดเจ็บที่เดินได้ ห่างจาก resus",
+            "มอบคนจดบันทึกดูแลกระดานผู้บาดเจ็บกระดานเดียว",
+            "ปฏิเสธรถพยาบาลคันต่อไปเมื่อเต็มแล้ว"
           ],
           "doseMap": {
-            "Refuse further ambulances once capacity is reached": "การเบี่ยงไปอีกสอง รพ. ที่รับผู้บาดเจ็บเป็นการตัดสินใจทาง clinical ไม่ใช่งานธุรการ รับคนไข้ที่รักษาไม่ไหวเท่ากับทำให้แผนกที่ล้นหนึ่งแห่งกลายเป็นสองแห่ง"
+            "ปฏิเสธรถพยาบาลคันต่อไปเมื่อเต็มแล้ว": "การเบี่ยงไปอีกสอง รพ. ที่รับผู้บาดเจ็บเป็นการตัดสินใจทาง clinical ไม่ใช่งานธุรการ รับคนไข้ที่รักษาไม่ไหวเท่ากับทำให้แผนกที่ล้นหนึ่งแห่งกลายเป็นสองแห่ง"
           }
         }
       },
@@ -345,13 +345,13 @@
           ],
           "label": "Damage control surgery แล้วค่อยรักษา definitive เป็นขั้นๆ",
           "actions": [
-            "Damage control laparotomy rather than definitive repair",
-            "Pack, close and return to ICU",
-            "Stage all orthopaedic fixation",
-            "Reassess burns and inhalational injuries as the second priority wave"
+            "Damage control laparotomy แทนการซ่อมแบบ definitive",
+            "Pack ปิดแผล แล้วกลับ ICU",
+            "แบ่ง fixation ทาง ortho เป็นขั้นทั้งหมด",
+            "ประเมินแผลไหม้และ inhalation injury เป็นลำดับความสำคัญระลอกที่สอง"
           ],
           "doseMap": {
-            "Damage control laparotomy rather than definitive repair": "40 นาทีต่อราย แทน 3 ชม. ห้องผ่าตัดเดียวกับคนไข้แดง 8 คน วินัยในการผ่าตัดคือเครื่องมือ triage"
+            "Damage control laparotomy แทนการซ่อมแบบ definitive": "40 นาทีต่อราย แทน 3 ชม. ห้องผ่าตัดเดียวกับคนไข้แดง 8 คน วินัยในการผ่าตัดคือเครื่องมือ triage"
           }
         }
       },
@@ -398,13 +398,13 @@
           ],
           "label": "Debrief แผนกก่อนใครกลับบ้าน",
           "actions": [
-            "Structured hot debrief within 2 hours",
-            "Identify the specific system failures, not the individuals",
-            "Arrange psychological support for staff and for the expectant patients' families",
-            "Formal review within 2 weeks"
+            "Hot debrief ที่มีโครงสร้างภายใน 2 ชม.",
+            "หาจุดบกพร่องของระบบ ไม่ใช่ตัวบุคคล",
+            "จัดการดูแลจิตใจให้ทีม และครอบครัวของคนไข้ expectant",
+            "ทบทวนอย่างเป็นทางการภายใน 2 สัปดาห์"
           ],
           "doseMap": {
-            "Structured hot debrief within 2 hours": "น้องๆ ที่ติดป้าย expectant ต้องการสิ่งนี้มากกว่า staff และเป็นกลุ่มที่มักถูกส่งกลับบ้านก่อน"
+            "Hot debrief ที่มีโครงสร้างภายใน 2 ชม.": "น้องๆ ที่ติดป้าย expectant ต้องการสิ่งนี้มากกว่า staff และเป็นกลุ่มที่มักถูกส่งกลับบ้านก่อน"
           }
         }
       },

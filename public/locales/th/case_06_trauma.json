@@ -75,7 +75,7 @@
       "id": "fast1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "eFAST Ultrasound",
+      "name": "eFAST",
       "report": "ไม่มี pericardial effusion ไม่มี free fluid ในช่องท้อง lung sliding มีทั้งสองข้าง",
       "imageUrl": "",
       "abnormal": false
@@ -140,6 +140,7 @@
         ]
       },
       "wrong_ct": {
+        "slip": true,
         "vitals": {
           "bp": "70/30",
           "hr": 150,
@@ -149,6 +150,7 @@
         "options": null
       },
       "wrong_splint": {
+        "slip": true,
         "vitals": {
           "bp": "75/35",
           "hr": 140,
@@ -165,6 +167,7 @@
         ]
       },
       "wrong_mtp_first": {
+        "slip": true,
         "vitals": {
           "bp": "95/50",
           "hr": 120,
@@ -181,6 +184,7 @@
         ]
       },
       "wrong_fluids": {
+        "slip": true,
         "vitals": {
           "bp": "85/40",
           "hr": 135,

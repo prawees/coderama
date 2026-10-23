@@ -95,7 +95,7 @@
       "id": "plt1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Platelet count",
+      "name": "Platelet",
       "value": "68",
       "unit": "x10^9/L",
       "normalRange": "150-400",
@@ -106,7 +106,7 @@
       "id": "lft1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "AST, ALT and LDH",
+      "name": "AST, ALT, LDH",
       "value": "AST 340 / ALT 290 / LDH 820",
       "unit": "U/L",
       "normalRange": "AST <40",
@@ -117,7 +117,7 @@
       "id": "ua1",
       "kind": "lab",
       "category": "Urine",
-      "name": "Urine protein-creatinine ratio",
+      "name": "UPCR",
       "value": "480",
       "unit": "mg/mmol",
       "normalRange": "<30",
@@ -128,7 +128,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine and uric acid",
+      "name": "Cr, uric acid",
       "value": "Creatinine 1.3 mg/dL / uric acid 8.4 mg/dL",
       "unit": "-",
       "normalRange": "Creatinine 0.5-1.0 mg/dL in pregnancy",
@@ -148,7 +148,7 @@
       "id": "ct1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "CT brain (non-contrast)",
+      "name": "CT brain ไม่ฉีดสี",
       "report": "ไม่มีเลือดออกในสมอง ไม่มี mass ไม่มี infarct มี low attenuation ที่ posterior white matter เข้าได้กับ PRES ทำ imaging ในเคสนี้เพราะคำบอกเล่าว่าชักแบบ focal onset และซึมนาน ไม่ใช่ routine ใน eclampsia ทั่วไป",
       "imageUrl": "",
       "abnormal": true
@@ -157,7 +157,7 @@
       "id": "coag1",
       "kind": "lab",
       "category": "Coagulation",
-      "name": "Fibrinogen and INR",
+      "name": "Fibrinogen, INR",
       "value": "Fibrinogen 2.2 g/L / INR 1.2",
       "unit": "-",
       "normalRange": "Fibrinogen 4.0-6.0 in pregnancy",
@@ -199,13 +199,13 @@
           ],
           "label": "จัดท่าตะแคงซ้าย airway, O2 และกันไม่ให้บาดเจ็บ",
           "actions": [
-            "Left lateral tilt",
-            "Oxygen 15 L/min",
-            "Suction and airway protection",
-            "Padded rails, do not restrain"
+            "นอนตะแคงซ้าย",
+            "O2 15 L/min",
+            "Suction และป้องกัน airway",
+            "บุราวเตียง ไม่ผูกมัด"
           ],
           "doseMap": {
-            "Left lateral tilt": "ลดการกด aorta และ vena cava จากมดลูก นอนหงายอย่างเดียวทำให้ BP ตกรุนแรงและเลือดไปเลี้ยงทารกแย่ลงได้"
+            "นอนตะแคงซ้าย": "ลดการกด aorta และ vena cava จากมดลูก นอนหงายอย่างเดียวทำให้ BP ตกรุนแรงและเลือดไปเลี้ยงทารกแย่ลงได้"
           }
         }
       },
@@ -230,14 +230,14 @@
           ],
           "label": "MgSO4 ไม่ใช่ diazepam สำหรับการชักจาก eclampsia",
           "actions": [
-            "Magnesium sulphate IV loading dose",
-            "Magnesium sulphate maintenance infusion",
-            "Monitor reflexes, respiratory rate and urine output"
+            "MgSO4 IV loading dose",
+            "MgSO4 maintenance drip",
+            "ดู reflex, RR และ urine output"
           ],
           "doseMap": {
-            "Magnesium sulphate IV loading dose": "4 g IV ใน 5 ถึง 15 นาที magnesium ดีกว่า diazepam และ phenytoin ทั้งรักษาและกันชักจาก eclampsia เป็นหนึ่งในหลักฐานที่แน่นที่สุดของสูติศาสตร์",
-            "Magnesium sulphate maintenance infusion": "1 g/h อย่างน้อย 24 ชม. หลังชักครั้งสุดท้ายหรือหลังคลอด แล้วแต่อันไหนช้ากว่า",
-            "Monitor reflexes, respiratory rate and urine output": "Patellar reflex หายเป็น sign แรกของ toxicity ตามด้วยการหายใจถูกกด antidote คือ calcium gluconate 1 g IV ควรอยู่ข้างเตียง"
+            "MgSO4 IV loading dose": "4 g IV ใน 5 ถึง 15 นาที magnesium ดีกว่า diazepam และ phenytoin ทั้งรักษาและกันชักจาก eclampsia เป็นหนึ่งในหลักฐานที่แน่นที่สุดของสูติศาสตร์",
+            "MgSO4 maintenance drip": "1 g/h อย่างน้อย 24 ชม. หลังชักครั้งสุดท้ายหรือหลังคลอด แล้วแต่อันไหนช้ากว่า",
+            "ดู reflex, RR และ urine output": "Patellar reflex หายเป็น sign แรกของ toxicity ตามด้วยการหายใจถูกกด antidote คือ calcium gluconate 1 g IV ควรอยู่ข้างเตียง"
           }
         }
       },
@@ -263,12 +263,12 @@
           "label": "คุม BP โดยไม่ลดเร็วเกิน",
           "actions": [
             "Labetalol IV",
-            "Or hydralazine IV",
-            "Or oral nifedipine"
+            "หรือ hydralazine IV",
+            "หรือ nifedipine กิน"
           ],
           "doseMap": {
             "Labetalol IV": "20 mg IV เพิ่มเท่าตัวทุก 10 นาที รวมไม่เกิน 300 mg เป้า SBP 140 ถึง 150 DBP 90 ถึง 100",
-            "Or hydralazine IV": "5 mg IV ทุก 20 นาที ทำให้แม่ BP ตกและ fetal distress มากกว่า labetalol อย่าลด BP แบบทันที เพราะเลือดไปรกไม่มี autoregulation ลดเร็วทำให้ทารกแย่"
+            "หรือ hydralazine IV": "5 mg IV ทุก 20 นาที ทำให้แม่ BP ตกและ fetal distress มากกว่า labetalol อย่าลด BP แบบทันที เพราะเลือดไปรกไม่มี autoregulation ลดเร็วทำให้ทารกแย่"
           }
         }
       },
@@ -293,13 +293,13 @@
           ],
           "label": "จำกัด fluid และให้ antenatal corticosteroid",
           "actions": [
-            "Restrict IV fluid to 80 mL/h total",
-            "Strict fluid balance and hourly urine output",
-            "Betamethasone IM for fetal lung maturity"
+            "จำกัด IV fluid รวม 80 mL/h",
+            "บันทึก I/O เคร่งครัด urine output ทุกชั่วโมง",
+            "Betamethasone IM กระตุ้นปอดทารก"
           ],
           "doseMap": {
-            "Restrict IV fluid to 80 mL/h total": "Fluid overload จนเกิด pulmonary edema เป็นสาเหตุการเสียชีวิตของแม่ที่สำคัญใน pre-eclampsia อดใจอย่า bolus เพราะปัสสาวะน้อย",
-            "Betamethasone IM for fetal lung maturity": "12 mg IM สอง dose ห่างกัน 24 ชม. ให้ dose แรกตอนนี้ แต่อย่าเลื่อนการคลอดเพื่อรอ dose ที่สองถ้าแม่แย่ลง"
+            "จำกัด IV fluid รวม 80 mL/h": "Fluid overload จนเกิด pulmonary edema เป็นสาเหตุการเสียชีวิตของแม่ที่สำคัญใน pre-eclampsia อดใจอย่า bolus เพราะปัสสาวะน้อย",
+            "Betamethasone IM กระตุ้นปอดทารก": "12 mg IM สอง dose ห่างกัน 24 ชม. ให้ dose แรกตอนนี้ แต่อย่าเลื่อนการคลอดเพื่อรอ dose ที่สองถ้าแม่แย่ลง"
           }
         }
       },
@@ -357,13 +357,13 @@
           ],
           "label": "คลอด การรักษา definitive อย่างเดียว",
           "actions": [
-            "Urgent obstetric and neonatal team involvement",
-            "Delivery once the mother is stabilised",
-            "Continue magnesium through and after delivery",
-            "Anaesthetic review, platelet count limits neuraxial options"
+            "เรียกทีมสูติฯ และทีมทารกแรกเกิดด่วน",
+            "คลอดเมื่อแม่ stable แล้ว",
+            "ให้ Mg ต่อระหว่างและหลังคลอด",
+            "ให้วิสัญญีประเมิน platelet ต่ำจำกัดทางเลือก neuraxial"
           ],
           "doseMap": {
-            "Delivery once the mother is stabilised": "Stabilize ก่อนแล้วค่อยคลอด การคลอดตอนแม่ยังชักและ BP สูงมากเพิ่มการเสียชีวิตของแม่ ที่ 34 สัปดาห์ร่วมกับ HELLP และ fetal compromise การรอคลอดไม่ใช่ทางเลือก"
+            "คลอดเมื่อแม่ stable แล้ว": "Stabilize ก่อนแล้วค่อยคลอด การคลอดตอนแม่ยังชักและ BP สูงมากเพิ่มการเสียชีวิตของแม่ ที่ 34 สัปดาห์ร่วมกับ HELLP และ fetal compromise การรอคลอดไม่ใช่ทางเลือก"
           }
         }
       },

@@ -12,6 +12,9 @@ req1.f0: กดท้องทำให้ช่วยหายใจช้า�
 req1.d1: กดหน้าอกอย่างเดียว ไม่ต้องช่วยหายใจ
 req1.f1: จมน้ำเป็น hypoxic arrest การช่วยหายใจด้วย O2 สำคัญที่สุด
 req1.m0: จมน้ำเป็น hypoxic arrest การช่วยหายใจจึงสำคัญที่สุด ลำดับคือ airway ก่อน ต่างจาก cardiac arrest ในผู้ใหญ่ อย่ากดท้องเอาน้ำออก จะทำให้ aspirate
+req1.a0: Suction oropharynx
+req1.a1: Bag-valve-mask กับ O2 15 L/min และ PEEP
+req1.a2: ระวัง C-spine
 req2.l: RSI แล้วตั้ง ventilator แบบ lung protective
 req2.c: RSI แล้วตั้ง PEEP 8 ถึง 10 กับ 6 ถึง 8 mL/kg
 req2.d0: Bag ต่อไปโดยไม่ intubate
@@ -20,6 +23,10 @@ req2.d1: PEEP ต่ำ 0 ถึง 2 cmH2O
 req2.f1: ปอดจมน้ำต้องใช้ PEEP เปิด alveoli ที่มีน้ำท่วม ใช้ 8 ถึง 10 cmH2O
 req2.m0: Ketamine 2 mg/kg (32 mg) และ rocuronium 1.2 mg/kg (19 mg) ketamine ช่วยพยุง BP ในเด็กที่ช็อก
 req2.m1: Tidal volume 6 ถึง 8 mL/kg surfactant ถูกล้างออก ปอดเลยเป็นเหมือน ARDS
+req2.a0: Rapid sequence intubation
+req2.a1: Ketamine และ rocuronium
+req2.a2: PEEP 8 ถึง 10 cmH2O
+req2.a3: ใส่ NG tube ระบายลมในกระเพาะ
 req3.l: แก้น้ำตาล และพยุง circulation
 req3.d0: Bolus fluid ปริมาณมาก 60 mL/kg
 req3.f0: ให้ fluid มากทำให้ pulmonary edema แย่ลงในเด็กจมน้ำ bolus อย่างระวังและใช้ inotrope
@@ -27,6 +34,10 @@ req3.d1: ไม่ต้องเจาะน้ำตาล เด็กยั�
 req3.f1: Hypoglycemia เจอบ่อยในเด็กที่เครียดจากโรค เจาะดูแล้วแก้
 req3.m0: 10% dextrose 2 mL/kg (32 mL) เจาะซ้ำใน 30 นาที
 req3.m1: 10 mL/kg (160 mL) แล้วประเมินซ้ำ ปริมาณมากทำให้ pulmonary edema แย่ลงในเด็กจมน้ำ
+req3.a0: เปิดเส้น IV หรือ IO
+req3.a1: Dextrose bolus
+req3.a2: Isotonic fluid bolus อย่างระมัดระวัง
+req3.a3: Adrenaline drip ถ้าไม่ตอบสนองต่อ fluid
 out1.l: Oxygenation ดีขึ้น
 out1.n: ได้ PEEP กับ O2 100% SpO2 ขึ้นเป็น 94% ใน 10 นาที perfusion ดีขึ้นหลังได้ fluid bolus กับ dextrose ยังไม่รู้สึกตัวลึก ซึ่งตอนนี้ยังบอกอะไรเรื่อง outcome ไม่ได้เลย
 ethical_1.l: ไปคุยกับพี่สาว 11 ขวบที่ดึงน้องขึ้นมา (Empathy)
@@ -38,6 +49,10 @@ req4.f0: ไข้ทำให้ neurological outcome แย่ลงหลั�
 req4.d1: ไม่ต้องสนใจอุณหภูมิ
 req4.f1: การคุมอุณหภูมิสำคัญต่อการฟื้นของสมอง monitor และอย่าให้มีไข้
 req4.m0: อย่าให้เกิน 37.5 C ไข้หลัง hypoxic brain injury ทำให้ outcome แย่ลง และเป็นสิ่งเดียวที่หมอคุมได้แน่ๆ
+req4.a0: Rewarm แบบ passive อย่างเดียว แล้วคุมไว้ที่ 36 ถึง 37.5 C
+req4.a1: วัด core temperature ต่อเนื่อง
+req4.a2: หลีกเลี่ยงไข้สูง
+req4.a3: รักษาอาการชักอย่างเต็มที่
 req5.l: ส่ง PICU และประเมินเรื่องการคุ้มครองเด็ก
 req5.c: ส่ง PICU และส่งต่อทีมคุ้มครองเด็ก
 req5.d0: ให้ prophylactic antibiotic กับ steroid
@@ -45,6 +60,10 @@ req5.f0: ทั้งคู่ไม่มีหลักฐานในเด�
 req5.d1: Stable แล้ว D/C กลับบ้าน
 req5.f1: ต้องดูแลใน PICU และประเมินเรื่องคุ้มครองเด็กเพราะจมน้ำตอนไม่มีผู้ใหญ่ดูแล
 req5.m0: ทั้งคู่ไม่ได้ทำให้ outcome ดีขึ้นในเด็กจมน้ำ รักษาการติดเชื้อเมื่อพิสูจน์ได้ ตามผล culture น้ำคลองสกปรกก็จริง แต่ prophylaxis ก็ยังไม่ได้ผล
+req5.a0: ย้าย PICU
+req5.a1: ไม่ให้ antibiotic หรือ steroid แบบ prophylactic
+req5.a2: ประเมินการคุ้มครองเด็กและการดูแล
+req5.a3: ดูแลและ debrief ครอบครัว
 out2.l: 48 ชม. ถัดมา
 out2.n: Extubate วันที่ 4 ทำตามสั่งได้วันที่ 5 มี left hemiparesis เล็กน้อยกับพูดลำบาก neuro คาดว่าจะฟื้นได้มากแต่ไม่ครบใน 6 เดือน ตอนนี้สิ่งที่กำหนดผลคือ 8 นาทีใต้น้ำ ไม่ใช่สิ่งที่เกิดขึ้นใน ER
 out3.l: Disposition

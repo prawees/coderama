@@ -1,9 +1,10 @@
 cc: ขาสองข้างถูกแผ่นคอนกรีตทับนาน 6 ชม.
-bg: คนงานก่อสร้าง ติดอยู่ในตึกที่ถล่มบางส่วนระหว่างรื้อถอน รู้สึกตัวและคุยกับทีมกู้ภัยตลอด ขาทั้งสองข้างใต้เข่าถูกแผ่นคอนกรีตทับราว 6 ชม. น้ำหนัก 78 kg ทีมรถพยาบาลเปิดเส้นให้ NSS 1 ลิตรตั้งแต่ยังติดอยู่ ซึ่งเป็นการตัดสินใจที่สำคัญที่สุดของวันนี้ ยกออกมาได้เมื่อ 25 นาทีก่อน ดูภายนอกดีจนหลอกตา
+bg: คนงานก่อสร้าง ติดอยู่ในตึกที่ถล่มบางส่วนระหว่างรื้อถอน รู้สึกตัวและคุยกับทีมกู้ภัยตลอด ขาทั้งสองข้างใต้เข่าถูกแผ่นคอนกรีตทับราว 6 ชม. น้ำหนัก 78 kg ทีมรถพยาบาลเปิดเส้นให้ NSS 1 ลิตรตั้งแต่ยังติดอยู่ ยกออกมาได้เมื่อ 25 นาทีก่อน ดูภายนอกปกติดี
 i.k1: Hyperkalemia ที่คุกคามชีวิตจาก reperfusion ของกล้ามเนื้อที่ถูกบด นี่คือตัวเลขที่ฆ่าคนไข้ crush และมักพุ่งสูงสุดในไม่กี่นาทีถึงชั่วโมงหลังยกของหนักออก ไม่ใช่ตอนที่ยังติดอยู่
 i.ecg1: Peaked tented T ที่ V2 ถึง V5 P wave แบน QRS 132 ms เปลี่ยนเป็น sine wave แล้ว arrest ได้ในไม่กี่นาที ต้องติด monitor ก่อนยกออก ไม่ใช่หลัง
 i.ck1: Massive rhabdomyolysis ค่าเกิน 5000 ทำนาย AKI เกิน 75000 ทำนายว่ามีโอกาสสูงต้อง dialysis
 i.ua1: Myoglobinuria myoglobin เป็นพิษต่อไตในปัสสาวะที่เป็นกรด จึงเป็นเหตุผลของการทำให้ปัสสาวะเป็นด่าง
+iv.ua1: ปัสสาวะสีน้ำตาลเข้ม dipstick blood 4+ ไม่มี RBC ใน microscopy, pH 5.2
 i.gas1: Metabolic acidosis ร่วมกับ hypocalcemia hypocalcemia ทำให้ผลต่อหัวใจของ hyperkalemia แย่ลง และ acidosis ดัน K ออกนอกเซลล์มากขึ้น
 i.cr1: AKI ร่วมกับ hyperphosphatemia และ hyperuricemia ภาพ biochemistry ครบของการสลายเซลล์จำนวนมาก
 i.ct1: Comminuted tibia และ fibula หักทั้งสองข้าง กล้ามเนื้อบวมมากทั้งสี่ compartment ของขาทั้งสองข้าง ไม่มีบาดเจ็บที่ศีรษะ C-spine อก ท้อง หรือ pelvis
@@ -14,6 +15,10 @@ req1.f0: การยกออกปล่อย K ท่วมกระแส�
 req1.d1: รอผล K จากแล็บ
 req1.f1: ผลข้างเตียงหรือ EKG ที่เปลี่ยนก็พอจะลงมือแล้ว
 req1.m0: ควรติดก่อนยกออก arrhythmia ที่ถึงตายมากับ reperfusion วินาทีที่ของหนักถูกยกออกคือวินาทีที่เสี่ยงที่สุด และไม่ควรปล่อยไว้โดยไม่มี monitor
+req1.a0: ติด monitor หัวใจต่อเนื่อง
+req1.a1: EKG 12 lead
+req1.a2: K และ blood gas ข้างเตียง
+req1.a3: ติด pad defibrillator
 req2.l: รักษา hyperkalemia ทันทีตาม EKG ไม่ต้องรอผล
 req2.c: Calcium IV, insulin กับ dextrose, bicarbonate
 req2.d0: รอผล K จากแล็บก่อนรักษา
@@ -23,6 +28,10 @@ req2.f1: จะทำให้ K สูงขึ้นอีก
 req2.m0: 10% calcium chloride 10 mL IV ใน 3 นาที ซ้ำได้ตามต้องการ stabilize กล้ามเนื้อหัวใจในไม่กี่นาที ไม่ได้ลด K ต้องตามด้วยยาที่ลด K
 req2.m1: RI 10 unit ใน 50% glucose 50 mL IV ใน 15 นาที เจาะน้ำตาลทุกชั่วโมง
 req2.m2: 1 ถึง 2 mEq/kg ดัน K เข้าเซลล์และทำให้ปัสสาวะเป็นด่าง ทำสองหน้าที่พร้อมกันในเคสนี้
+req2.a0: Calcium gluconate หรือ chloride IV
+req2.a1: Insulin กับ dextrose
+req2.a2: พ่น salbutamol
+req2.a3: NaHCO3
 req3.l: Fluid ปริมาณมากมาก และเริ่มก่อนยกออกถ้าทำได้
 req3.c: NSS 1 ถึง 1.5 L/h ปัสสาวะ 200 ถึง 300 mL/h
 req3.d0: ให้ Hartmann's rate สูง
@@ -31,6 +40,10 @@ req3.d1: จำกัด fluid จนกว่าจะยกออก
 req3.f1: ควรเริ่ม fluid ก่อนยกออก ป้องกันไตบาดเจ็บและ arrest
 req3.m0: เริ่ม 1 ถึง 1.5 ลิตรต่อชั่วโมง เป้า urine output 200 ถึง 300 mL/h ใน 24 ชม. แรกมักต้องใช้ถึง 10 ถึง 12 ลิตร นี่คือการรักษาเดียวที่ป้องกันไตวายจนต้อง dialysis
 req3.m1: ห้ามใช้ Ringer's lactate และ Hartmann's ใน crush syndrome เพราะมี K ทั้งคู่
+req3.a0: NSS rate สูง
+req3.a1: ใส่สายสวนปัสสาวะ วัด output ทุกชั่วโมง
+req3.a2: หลีกเลี่ยง fluid ที่มี K
+req3.a3: พิจารณาทำให้ปัสสาวะเป็นด่าง
 out1.l: Ventricular arrhythmia ระหว่าง reperfusion
 out1.n: 12 นาทีหลังมาถึงเกิด broad complex tachycardia QRS 160 ms SBP 70 ให้ calcium กับ bicarbonate เพิ่มกลับเป็น sinus rhythm K ซ้ำ 6.4 เขาต้องได้ calcium ก่อนที่ผลแล็บจะออกมาด้วยซ้ำ
 ethical_1.l: บอกเรื่องขาตอนที่เขายังร่วมตัดสินใจได้ (Empathy)
@@ -42,12 +55,21 @@ req4.f0: Fasciotomy ในกล้ามเนื้อที่ตายแล
 req4.d1: ปล่อยขาไว้ observe สัปดาห์หนึ่ง
 req4.f1: กล้ามเนื้อตายเป็นตัวขับ sepsis และ hyperkalemia ให้ศัลย์ประเมินเดี๋ยวนี้
 req4.m0: Fasciotomy ผ่านกล้ามเนื้อที่ตายมา 6 ชม. เปิดแผลติดเชื้อขนาดใหญ่ เพิ่ม sepsis และ mortality โดยไม่ได้ช่วยขา การตัดสินใจขึ้นกับว่ากล้ามเนื้อยังรอดไหม ซึ่งเป็นการตัดสินใจทางศัลยกรรมในห้องผ่าตัด ไม่ใช่ในห้อง resus
+req4.a0: ให้ ortho และ vascular ประเมิน
+req4.a1: Fasciotomy เมื่อกล้ามเนื้อยังรอดและมี compartment syndrome
+req4.a2: ตัดขาเลยถ้ากล้ามเนื้อตายแล้ว
+req4.a3: ป้องกันบาดทะยักและให้ antibiotic
 req5.l: Dialysis เร็วและดูแลใน ICU
 req5.d0: รอ Cr ขึ้นก่อนค่อย dialysis
 req5.f0: Hyperkalemia และ myoglobinuria อาจต้อง dialysis เร็ว
 req5.d1: K ปกติแล้วย้ายไปวอร์ด
 req5.f1: K ขึ้นซ้ำได้ ต้อง monitor ใน ICU
 req5.m0: มี indication เมื่อ hyperkalemia ดื้อการรักษา ปัสสาวะออกน้อย หรือ acidosis รุนแรง ใน crush syndrome มักต้อง dialysis เพื่อคุม K มากกว่าเพื่อ uremia และอาจต้องทำภายในไม่กี่ชั่วโมง
+req5.a0: Admit ICU
+req5.a1: Hemodialysis หรือ CRRT เร็ว
+req5.a2: เจาะ K ซ้ำทุก 1 ถึง 2 ชม. จน stable
+req5.a3: Rewarm แบบ active
+req5.a4: CK และ calcium เป็นระยะ
 out2.l: ระหว่าง admit
 out2.n: ในห้องผ่าตัด anterior และ deep posterior compartment ของขาทั้งสองข้างมีกล้ามเนื้อตายชัดเจน ไม่หดตัว ตัดขาซ้ายใต้เข่า ขาขวาทำ fasciotomy และเก็บไว้ได้ CK สูงสุด 210000 วันที่ 2 ต้อง dialysis 9 ครั้งใน 3 สัปดาห์ก่อนไตจะเริ่มฟื้น
 out3.l: Disposition

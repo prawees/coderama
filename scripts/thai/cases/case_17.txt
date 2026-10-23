@@ -14,6 +14,8 @@ req1.f0: Hypoglycemia พบบ่อยใน severe malaria และแก้
 req1.d1: ทำ LP ก่อนรักษาอะไร
 req1.f1: น้ำตาลกับยารักษามาลาเรียมาก่อน รอ LP เสี่ยงเสียชีวิต
 req1.m0: 50% glucose 50 mL IV ตามด้วย 10% dextrose drip เจาะซ้ำทุกชั่วโมง hypoglycemia กลับมาได้ โดยเฉพาะถ้าได้ quinine
+req1.a0: DTX
+req1.a1: Dextrose IV bolus
 out1.l: ระดับความรู้สึกตัวดีขึ้นบางส่วน
 out1.n: GCS ขึ้นจาก 9 เป็น 12 ใน 10 นาทีหลังได้ dextrose ที่เหลือคือ cerebral malaria จริงๆ แต่ตอนนี้รู้แล้วว่าส่วนไหนเป็นแค่น้ำตาลต่ำที่แก้ได้
 req2.l: ทำ thick และ thin smear กับ rapid test โดยไม่เลื่อนการรักษา
@@ -22,6 +24,10 @@ req2.d0: รอผล smear ก่อนค่อยเริ่มรักษ�
 req2.f0: Severe malaria เป็นภาวะฉุกเฉิน ทำ smear ได้แต่อย่าเลื่อน artesunate
 req2.d1: Rapid test negative ก็ D/C ได้
 req2.f1: Rapid test negative ไม่ได้ตัดมาลาเรียในแรงงานข้ามชาติที่มีไข้และสับสน ทำ smear ซ้ำ
+req2.a0: Thick และ thin blood smear
+req2.a1: Rapid diagnostic test
+req2.a2: H/C
+req2.a3: ประเมิน severity criteria ให้ครบ
 req3.l: Artesunate IV ยาตัวแรกที่ถูกต้องตัวเดียวสำหรับ severe malaria
 req3.c: Artesunate IV 2.4 mg/kg
 req3.d0: Chloroquine กิน
@@ -29,6 +35,7 @@ req3.f0: Falciparum ที่ชายแดนไทยพม่าดื้อ
 req3.d1: Quinine IV เป็นตัวแรก
 req3.f1: Artesunate IV มี mortality ต่ำกว่า quinine และเป็นยาตัวแรกสำหรับ severe malaria
 req3.m0: 2.4 mg/kg IV ที่ 0, 12 และ 24 ชม. แล้ววันละครั้ง artesunate ลด mortality ได้ราวหนึ่งในสามเทียบกับ quinine อย่าให้ยากินกับคนไข้ที่กลืนไม่ได้ และถ้าสงสัยมากอย่ารอผล smear
+req3.a0: Artesunate IV
 req4.l: ให้ empirical antibiotic และ fluid อย่างระวัง
 req4.d0: Bolus fluid ปริมาณมาก 40 mL/kg
 req4.f0: ให้ fluid หนักใน severe malaria เพิ่ม pulmonary edema และ mortality ให้อย่างระวัง
@@ -36,6 +43,9 @@ req4.d1: ไม่ต้องให้ antibiotic มาลาเรียอ�
 req4.f1: การติดเชื้อแบคทีเรียร่วมพบบ่อยใน severe malaria ให้ empirical antibiotic
 req4.m0: Ceftriaxone 2 g IV วันละครั้ง จนกว่า H/C จะตัด bacteremia ร่วมออก
 req4.m1: ให้ทีละน้อยแล้วประเมินซ้ำ ให้ fluid หนักใน severe malaria เพิ่ม pulmonary edema และ mortality
+req4.a0: Antibiotic IV ครอบคลุมกว้าง
+req4.a1: Crystalloid อย่างระมัดระวัง
+req4.a2: หลีกเลี่ยงการให้ fluid แบบรุนแรง
 ethical_1.l: หาล่ามที่ดีจริงๆ และรักษาก่อน เรื่องค่าใช้จ่ายค่อยว่ากัน (Empathy)
 ethical_1.n: เพื่อนร่วมงานที่แปลให้กลัวและแปลทุกอย่างให้เบาลง หมอไปหาแม่บ้านที่พูดพม่าได้ ทำงานที่นี่มา 9 ปี ให้ช่วยแปลจริงจัง consent ให้เลือดจะได้เป็น consent จริง ไม่ใช่แค่พยักหน้า หมอบอกเพื่อนร่วมงานด้วยว่าคืนนี้ไม่ต้องกังวลเรื่องเงิน เพราะการรักษาฉุกเฉินของแรงงานข้ามชาติที่ไม่มีสิทธิมีกองทุนรองรับที่คนส่วนใหญ่ไม่รู้ และคนที่ parasitemia 14% ไม่ควรต้องมาตัดสินใจเรื่องเงิน
 req5.l: ให้เลือด monitor และ admit ICU
@@ -44,6 +54,10 @@ req5.f0: เป็น cerebral malaria และ severe anemia ต้องด�
 req5.d1: เปลี่ยนเป็นยากินหลัง IV dose แรก
 req5.f1: ให้ artesunate IV ต่ออย่างน้อย 24 ชม. และจนกว่าจะกินยาได้
 req5.m0: Hb ต่ำกว่า 7 g/dL ใน severe malaria ให้ช้าๆ ระวัง fluid overload
+req5.a0: ให้ PRC
+req5.a1: Admit ICU หรือ high dependency
+req5.a2: นับ parasite ทุก 12 ชม.
+req5.a3: DTX และ neuro sign ทุกชั่วโมง
 out2.l: อาการดีขึ้น
 out2.n: Parasitemia ลงเป็น 4% ที่ 24 ชม. และ 0.2% ที่ 48 ชม. GCS 15 วันที่ 3 acidosis หายโดยไม่ต้อง dialysis ระวัง delayed hemolysis หลัง artesunate ที่ 7 ถึง 21 วัน ถ้าไม่มีใครเตือนคนไข้จะกลับมาด้วยเรื่องนี้
 out3.l: Disposition

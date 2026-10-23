@@ -1,5 +1,5 @@
 cc: เจ็บหน้าอก แล้วหมดสติในห้องรอตรวจ
-bg: คนไข้กุมหน้าอกแล้วล้มลงในห้องรอตรวจ คลำ pulse ไม่ได้ ทุกนาทีที่เสียไปคือกล้ามเนื้อหัวใจที่เสียไป
+bg: คนไข้กุมหน้าอกแล้วล้มลงในห้องรอตรวจ คลำ pulse ไม่ได้
 i.ecg1: Chaotic irregular deflections ขนาดไม่เท่ากัน ไม่เห็น P wave, QRS หรือ T wave
 start.n: คนไข้ pulseless, apnea monitor ขึ้น VF
 start.o0: เริ่ม CPR และ defib 200 J

@@ -428,7 +428,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 1 COMPLETE.",
       },
     ],
-    cases: ['case_01', 'case_02_fluids', 'case_05_asthma'],
+    cases: ['case_01', 'case_02_fluids', 'case_05_asthma', 'case_07'],
   },
 
   /* ----------------------------------------------------------------------
@@ -878,7 +878,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 2 COMPLETE.",
       },
     ],
-    cases: ['case_03_cardiac', 'case_01', 'case_02_fluids'],
+    cases: ['case_03_cardiac', 'case_01', 'case_02_fluids', 'case_09', 'case_15'],
   },
 
   /* ----------------------------------------------------------------------
@@ -1218,7 +1218,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 3 COMPLETE.",
       },
     ],
-    cases: ['case_04_svt', 'case_05_asthma', 'case_01'],
+    cases: ['case_04_svt', 'case_05_asthma', 'case_01', 'case_08', 'case_10'],
   },
 
   /* ----------------------------------------------------------------------
@@ -1559,7 +1559,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 4 COMPLETE.",
       },
     ],
-    cases: ['case_03_cardiac', 'case_06_trauma', 'case_02_fluids'],
+    cases: ['case_03_cardiac', 'case_06_trauma', 'case_02_fluids', 'case_11'],
   },
 
   /* ----------------------------------------------------------------------
@@ -1922,7 +1922,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "TWELVE MONTHS PASS.",
       },
     ],
-    cases: ['case_06_trauma', 'case_03_cardiac', 'case_01', 'case_06_trauma'],
+    cases: ['case_06_trauma', 'case_03_cardiac', 'case_01', 'case_42'],
   },
 
   /* =======================================================================
@@ -2184,7 +2184,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 6 COMPLETE.",
       },
     ],
-    cases: ['case_01', 'case_03_cardiac', 'case_05_asthma'],
+    cases: ['case_01', 'case_03_cardiac', 'case_05_asthma', 'case_46'],
   },
 
   /* ----------------------------------------------------------------------
@@ -2404,7 +2404,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 7 COMPLETE.",
       },
     ],
-    cases: ['case_04_svt', 'case_02_fluids', 'case_06_trauma'],
+    cases: ['case_04_svt', 'case_02_fluids', 'case_06_trauma', 'case_47'],
   },
 
   /* ----------------------------------------------------------------------
@@ -2654,7 +2654,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 8 COMPLETE.",
       },
     ],
-    cases: ['case_06_trauma', 'case_03_cardiac', 'case_04_svt'],
+    cases: ['case_06_trauma', 'case_03_cardiac', 'case_04_svt', 'case_37'],
   },
 
   /* ----------------------------------------------------------------------
@@ -2906,7 +2906,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 9 COMPLETE.",
       },
     ],
-    cases: ['case_02_fluids', 'case_05_asthma', 'case_01'],
+    cases: ['case_02_fluids', 'case_05_asthma', 'case_01', 'case_48'],
   },
 
   /* ----------------------------------------------------------------------
@@ -3352,7 +3352,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "YEAR 3: 'PAGE 61' ...",
       },
     ],
-    cases: ['case_06_trauma', 'case_03_cardiac', 'case_04_svt', 'case_02_fluids'],
+    cases: ['case_06_trauma', 'case_03_cardiac', 'case_04_svt', 'case_02_fluids', 'case_34'],
   },
 
   11: {

@@ -6,6 +6,7 @@ i.plt1: Thrombocytopenia ลักษณะของงูแมวเซา
 i.cr1: AKI ระยะแรก งูแมวเซาเป็นสาเหตุอันดับหนึ่งของไตวายจากงูที่ต้องทำ dialysis ในเอเชียตะวันออกเฉียงใต้
 i.ck1: Rhabdomyolysis ซ้ำเติมไต
 i.ua1: Dipstick blood บวกแต่ไม่มี RBC บอกว่ามี myoglobinuria หรือ hemoglobinuria
+iv.ua1: Blood 3+, protein 2+ ไม่มี RBC ใน microscopy
 req1.l: คลายผ้าที่รัดออกอย่างระวัง และ immobilize ขา
 req1.c: ค่อยๆ คลายผ้า splint ขา
 req1.d0: รัดไว้ต่อ กันพิษกระจาย
@@ -13,12 +14,19 @@ req1.f0: Tourniquet ทำให้ขาขาดเลือด และก�
 req1.d1: กรีดแผลแล้วดูดพิษออก
 req1.f1: กรีดและดูดทำลายเนื้อเยื่อและติดเชื้อ โดยเอาพิษออกได้แทบไม่มีเลย
 req1.m0: คลายตอนที่มียา resus พร้อมอยู่ข้างมือ คลายทันทีอาจปล่อยพิษก้อนใหญ่เข้ากระแสเลือด
+req1.a0: ค่อยๆ คลายเชือกที่รัดไว้พร้อม monitor
+req1.a1: ใส่ splint ให้แขนขาอยู่ระดับหัวใจ
+req1.a2: ล้างยาสมุนไพรออกและทำความสะอาดแผล
+req1.a3: ห้ามกรีด ห้ามดูด ห้ามประคบน้ำแข็ง
 req2.l: ทำ 20 minute whole blood clotting test และระบุชนิดงู
 req2.c: 20 minute whole blood clotting test
 req2.d0: ให้เซรุ่มทุกคนที่งูกัดโดยไม่ต้องตรวจ
 req2.f0: เซรุ่มมีโอกาสแพ้ ให้เมื่อมี systemic envenomation ยืนยันด้วย 20 minute clotting test
 req2.d1: รอ coagulation study จากแล็บ
 req2.f1: 20 minute whole blood clotting test ข้างเตียงเร็วและเชื่อถือได้ในบริบทนี้
+req2.a0: 20 minute whole blood clotting test
+req2.a1: ถามลักษณะงู
+req2.a2: ตรวจหา neurotoxic sign: ptosis, single breath count
 req3.l: ให้เซรุ่มจำเพาะสำหรับ systemic envenomation
 req3.d0: ให้ FFP แก้ clotting ก่อน
 req3.f0: Plasma ถูกกินไปหมดตอนที่พิษยังออกฤทธิ์ ต้อง neutralize พิษด้วยเซรุ่มก่อน
@@ -26,6 +34,8 @@ req3.d1: ให้เซรุ่มงูเห่าเพราะมีใ�
 req3.f1: เซรุ่มจำเพาะต่อชนิดงู งูแมวเซาต้องใช้เซรุ่ม monovalent ของงูแมวเซา
 req3.m0: 3 vial ละลายใน NSS 100 mL ให้ใน 30 ถึง 60 นาที ถ้า clotting test ยังไม่แข็งตัวที่ 6 ชม. ให้ซ้ำ
 req3.m1: 0.5 mg 1:1000 IM เตรียมไว้สำหรับ anaphylactoid reaction ซึ่งเกิดได้ถึง 20% ของการให้
+req3.a0: Antivenom งูแมวเซา monovalent IV
+req3.a1: ดูด adrenaline เตรียมไว้ข้างเตียงก่อนให้
 out1.l: Anaphylactoid reaction ระหว่างให้
 out1.n: ผ่านไป 12 นาทีมีผื่นลมพิษ wheeze และ BP ตก หยุดเซรุ่ม ให้ adrenaline IM แล้ว 20 นาทีต่อมาให้เซรุ่มต่อในอัตราช้าลงจนครบ เป็นเรื่องที่คาดไว้ได้ ไม่ใช่เหตุผลที่จะงดการรักษาเดียวที่ได้ผล
 ethical_1.l: ไม่ตำหนิญาติเรื่องผ้ารัดกับสมุนไพร (Empathy)
@@ -37,12 +47,19 @@ req4.f0: ต้องตรวจ clotting ซ้ำที่ 6 ชม. เพ�
 req4.d1: ให้ platelet เพราะเลือดยังออกตามไรฟัน
 req4.f1: ให้ blood product ก่อน neutralize พิษก็ถูกกินหมด ตรวจซ้ำที่ 6 ชม. ถ้ายังไม่แข็งตัวให้เซรุ่มซ้ำ
 req4.m0: อีก 3 vial ในตู้เย็นเหลือแค่ 2 vial ติดต่อคลังยาเขตกับ รพ. ที่รับ refer เดี๋ยวนี้เลย ไม่ใช่รอ 6 โมงเช้า
+req4.a0: 20 minute WBCT ซ้ำที่ 6 ชม.
+req4.a1: ให้ antivenom เพิ่มถ้าเลือดยังไม่แข็งตัว
+req4.a2: ห้ามให้ FFP หรือ platelet ก่อน antivenom
 req5.l: ให้ fluid และ monitor AKI
 req5.d0: จำกัด fluid ถนอมไต
 req5.f0: งูแมวเซากัดทำให้ AKI บ่อย ให้ fluid พอและ monitor urine output ช่วยได้
 req5.d1: D/C เมื่อ clotting กลับมาปกติ
 req5.f1: AKI เกิดได้ในหลายวัน ต้อง monitor urine output กับ Cr
 req5.m0: ให้หลัง coagulopathy หายแล้ว ห้ามฉีดเข้ากล้ามตอนที่ยังเลือดออก
+req5.a0: Crystalloid IV เป้า urine output 1 ถึง 2 mL/kg/h
+req5.a1: Urine output ทุกชั่วโมง Cr ทุกวัน
+req5.a2: ส่งต่อ nephro วางแผน dialysis
+req5.a3: ป้องกันบาดทะยัก
 out2.l: Coagulopathy หายแล้ว
 out2.n: Clotting กลับมาปกติที่ 14 ชม. หลังได้เซรุ่มรวม 6 vial เลือดตามไรฟันหยุด Cr ขึ้นสูงสุด 3.4 mg/dL วันที่ 3 ต้อง HD สองครั้ง แล้วไตก็ฟื้น
 out3.l: Disposition

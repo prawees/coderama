@@ -223,7 +223,7 @@ export default function RootPage() {
                     <PixelPortrait speaker="Prof. Somchai" className="w-full h-full" />
                   </div>
                   <div className="flex-1">
-                    <p className="cozy-tag inline-block px-2 py-0.5 text-base leading-none !bg-[#ffd66b]">Prof. Somchai</p>
+                    <p className="cozy-tag inline-block px-2 py-0.5 text-base leading-none !bg-[#ffd66b]">อ.สมชาย</p>
                     <p className="text-xl leading-tight mt-2">ยินดีต้อนรับสู่ ER นะ น้องชื่ออะไร</p>
                   </div>
                 </div>

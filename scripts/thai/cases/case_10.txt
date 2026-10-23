@@ -15,11 +15,17 @@ req1.f0: Hypoxia คือสิ่งที่ฆ่าคนไข้ เป�
 req1.d1: จัดท่า recovery position แล้วรอดู
 req1.f1: คนไข้หายใจไม่พอ SpO2 ต่ำ ต้องช่วย airway และ bag-mask จริงจัง
 req1.m0: 10 ถึง 12 ครั้ง/นาที จนหายใจเองได้
+req1.a0: Suction airway
+req1.a1: Jaw thrust และใส่ oropharyngeal airway
+req1.a2: Bag-valve-mask กับ O2 15 L/min
 req2.l: เจาะ DTX และติด monitor
 req2.d0: ไม่ต้องเจาะ DTX ชัดอยู่แล้วว่าเป็น opioid
 req2.f0: Hypoglycemia เลียนแบบหรือเกิดร่วมกับ overdose ได้ และตัดออกได้เร็ว เจาะ DTX ทุกครั้ง
 req2.d1: ส่ง CT brain ก่อนรักษาอะไรต่อ
 req2.f1: Toxidrome ชัดเจน monitor, DTX และเปิดเส้นมาก่อน imaging รอได้
+req2.a0: DTX
+req2.a1: ติด monitor หัวใจ SpO2 และ EtCO2
+req2.a2: เปิดเส้น
 req3.l: Titrate naloxone ให้หายใจได้ ไม่ใช่ให้ตื่น
 req3.c: Naloxone 0.04 ถึง 0.4 mg IV titrate ตามการหายใจ
 req3.d0: ให้ naloxone จนตื่นเต็มที่และพูดได้
@@ -27,6 +33,7 @@ req3.f0: เป้าหมายคือหายใจพอ ไม่ใช�
 req3.d1: ให้ flumazenil เผื่อมี benzodiazepine
 req3.f1: Flumazenil กระตุ้นชักได้ใน mixed overdose หรือคนที่ใช้ benzodiazepine ประจำ ไม่ใช่ยาที่ให้ routine
 req3.m0: 0.04 ถึง 0.4 mg IV ซ้ำทุก 2 ถึง 3 นาที รวมไม่เกิน 2 mg เป้า RR เกิน 12 ไม่ใช่ให้ตื่นเต็มที่ ถ้าไม่มี IV ให้ 0.4 ถึง 0.8 mg IM
+req3.a0: Naloxone IV
 out1.l: กลับมาหายใจได้
 out1.n: หลังได้ 0.4 mg แบ่งให้ RR ขึ้นเป็น 14 SpO2 96% ลืมตา สับสน กระสับกระส่าย ดึง mask ไม่มี withdrawal รุนแรงเพราะหมอ titrate ไม่ต้อง intubate
 ethical_1.l: คุยกับคนไข้โดยไม่ตัดสิน ถามว่าใช้อะไร และเสนอ harm reduction แทนการเทศนา (Empathy)
@@ -38,6 +45,10 @@ req4.d1: ไม่ต้องสนใจ CK ยังหนุ่มแข็�
 req4.f1: หมดสตินานทำให้ rhabdomyolysis ส่ง CK และให้ IV fluid ปกป้องไต
 req4.m0: ให้ 2 ใน 3 ของ bolus ที่ได้ผลต่อชั่วโมง แล้ว titrate
 req4.m1: NSS ให้ urine output 1 ถึง 2 mL/kg/h
+req4.a0: Observe พร้อม monitor อย่างน้อย 4 ถึง 6 ชม. หลัง naloxone ครั้งสุดท้าย
+req4.a1: Naloxone drip ถ้าต้องให้ซ้ำหลายครั้ง
+req4.a2: Crystalloid IV สำหรับ rhabdomyolysis
+req4.a3: VBG ซ้ำ
 out2.l: Re-sedation
 out2.n: นาทีที่ 70 RR ลงเหลือ 7 อีกครั้ง naloxone มี half life สั้นกว่า synthetic opioid ออกฤทธิ์นานที่คนไข้ใช้ ให้ซ้ำอีก dose แล้วเริ่ม drip
 req5.l: วางแผน D/C เชื่อมกับการบำบัด และมีแผนรับมือ overdose
@@ -48,5 +59,9 @@ req5.d1: แจ้งตำรวจก่อน D/C
 req5.f1: การดูแลทาง clinical ไม่ต้องแจ้งตำรวจเรื่องใช้ยา ทำลายความไว้ใจ และทำให้ครั้งหน้าไม่กล้ามาขอความช่วยเหลือ
 req5.m0: รพ. รัฐหลายแห่งในไทยมีคลินิก methadone maintenance ส่วน buprenorphine ยังไม่มีให้ทั่วไปในไทย
 req5.m1: Naloxone กลับบ้านยังไม่ใช่ routine ใน รพ. ไทย แต่โครงการ outreach สำหรับผู้ใช้ยาด้วยการฉีดมีติดตัวไว้
+req5.a0: ส่งต่อคลินิก methadone
+req5.a1: Naloxone ผ่านโครงการ harm reduction
+req5.a2: เสนอตรวจ HCV และ HIV
+req5.a3: คำแนะนำเรื่อง overdose เป็นลายลักษณ์อักษรให้เขาและน้องชาย
 out3.l: Disposition
 out3.n: 12 ชม. ต่อมา off drip ได้ หายใจปกติ CK ลดลงหลังได้ fluid กลับบ้านพร้อมนัดคลินิก methadone อีก 2 วัน พี่ชายรู้จักท่า recovery position แล้ว และมีเบอร์ทีม outreach ที่พก naloxone

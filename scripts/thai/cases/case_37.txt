@@ -13,6 +13,10 @@ req1.f0: ปวดแบบฉีกร้าวไปหลังชวนน�
 req1.d1: ส่งเข้า cath lab เลย
 req1.f1: CAG ใน dissection ทำให้ผ่าตัดช้าและอาจถึงตาย ยืนยันการวินิจฉัยก่อน
 req1.m0: ใช้เวลา 90 วินาที ชีพจรหรือ BP สองข้างต่างกันในคนเจ็บหน้าอกคือ finding ที่กันไม่ให้ thrombolysis คนไข้ dissection แต่การประเมินเจ็บหน้าอกส่วนใหญ่ข้ามไป
+req1.a0: วัด BP แขนสองข้าง
+req1.a1: คลำชีพจรทั้งสี่แขนขา
+req1.a2: EKG 12 lead
+req1.a3: Echo ข้างเตียง
 req2.l: หยุดและงด antiplatelet กับ anticoagulant
 req2.c: ไม่ให้ heparin ไม่ให้ antiplatelet เพิ่ม
 req2.d0: เริ่ม heparin สำหรับ ACS
@@ -20,6 +24,10 @@ req2.f0: Anticoagulant ใน aortic dissection เพิ่มเลือด�
 req2.d1: Thrombolysis เพราะมี ST change
 req2.f1: Thrombolysis ใน dissection มักถึงตาย ST change อาจมาจาก flap ลามถึง coronary ostium
 req2.m0: Thrombolysis ใน type A dissection mortality เกิน 70% คลินิกให้ DAPT ไปแล้วเพราะเห็น ST elevation ซึ่งเพิ่มความเสี่ยงเลือดออกตอนผ่าตัด และย้อนกลับไม่ได้
+req2.a0: ไม่ให้ antiplatelet เพิ่ม
+req2.a1: ไม่ให้ heparin
+req2.a2: ห้าม thrombolysis เด็ดขาด
+req2.a3: บันทึก EKG ที่เห็นและเหตุผลที่ไม่ให้ยา
 req3.l: Beta-blocker ก่อน แล้วค่อย vasodilator และคุมปวดเต็มที่
 req3.c: Esmolol แล้วค่อย nitroprusside ร่วมกับ morphine
 req3.d0: Hydralazine อย่างเดียวลด BP
@@ -29,6 +37,9 @@ req3.f1: ความปวดกระตุ้น catecholamine และ BP �
 req3.m0: เป้า HR ต่ำกว่า 60 SBP 100 ถึง 120 คุม rate ลด shear force (dP/dt) ที่ทำให้ dissection ลาม
 req3.m1: ให้หลัง beta-block พอแล้วเท่านั้น ให้ vasodilator ก่อนจะเกิด reflex tachycardia เพิ่ม shear force และ dissection ลามต่อ ลำดับของยาสองตัวนี้คือบทเรียนทั้งหมด
 req3.m2: Titrate ให้พอ ความปวดทำให้ catecholamine พุ่งและ flap ลาม ยาแก้ปวดในเคสนี้จึงเป็นการรักษา hemodynamic
+req3.a0: Esmolol หรือ labetalol IV
+req3.a1: ตามด้วย nitroprusside หรือ nicardipine
+req3.a2: Morphine IV
 out1.l: คุม hemodynamic ได้
 out1.n: HR 58 SBP 112 หลังได้ esmolol และ nitroprusside ปวดคุมได้ด้วย morphine 12 mg คลำ femoral ซ้ายได้เมื่อเลือดไหลใน true lumen ดีขึ้น CT ยืนยัน type A dissection ตาม CVT แล้ว
 ethical_1.l: บอกตัวเลข mortality กับญาติตามจริง และไม่โทษหมอคลินิกต่อหน้าญาติ (Empathy)
@@ -39,6 +50,10 @@ req4.f0: Type A dissection เป็นภาวะฉุกเฉินทา�
 req4.d1: รอฤทธิ์ DAPT หมดก่อนผ่าตัด
 req4.f1: รอแล้ว mortality เพิ่ม ผ่าตัดเดี๋ยวนี้และแก้ coagulation
 req4.m0: อาจต้องให้ platelet ระหว่างผ่าตัดเพราะได้ clopidogrel มาจากคลินิก
+req4.a0: ส่งต่อ CVT และเข้าห้องผ่าตัดทันที
+req4.a1: G/M 6 unit
+req4.a2: แก้ coagulopathy จาก antiplatelet สองตัวที่ได้ไปแล้ว
+req4.a3: Arterial line ที่แขนขวา ข้างที่ BP สูงกว่า
 out2.l: ผ่าตัดซ่อม
 out2.n: ทำ Bentall procedure เปลี่ยน aortic root และ ascending aorta พร้อมเปลี่ยนลิ้น ภายใต้ deep hypothermic circulatory arrest bypass 246 นาที เลือดออกมาก ได้ PRC 9 unit ส่วนหนึ่งเพราะ antiplatelet รอดชีวิต
 req5.l: ดูแลใน ICU และเฝ้าติดตามตลอดชีวิต
@@ -47,5 +62,9 @@ req5.f0: คุม SBP ต่ำกว่า 120 อย่างเข้มง�
 req5.d1: หลังผ่าตัดไม่ต้องทำ imaging ติดตาม
 req5.f1: Descending dissection ที่เหลือต้องทำ imaging เป็นระยะ
 req5.m0: Thoracic aortic dissection ราว 20% มีส่วนจากพันธุกรรม ลูกสองคนควรได้ทำ imaging
+req5.a0: Admit cardiac ICU
+req5.a1: คุม BP เคร่งครัด เป้า SBP ต่ำกว่า 120
+req5.a2: Imaging เป็นระยะดู dissection ที่เหลือใน descending aorta
+req5.a3: Screen aortopathy ในญาติสายตรง
 out3.l: Disposition
 out3.n: Extubate วันที่ 3 D/C วันที่ 14 ไตเสื่อมเหลือเล็กน้อย ต้องกิน beta-blocker ตลอดชีวิตและทำ CT ทุกปีติดตาม type B ส่วนที่เหลือ scan คัดกรองของลูกสาวเจอ ascending aorta 44 mm เข้าโปรแกรมติดตาม ซึ่งอาจเป็นผลลัพธ์ที่มีค่าที่สุดของการ admit ครั้งนี้

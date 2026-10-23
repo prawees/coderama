@@ -95,7 +95,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas",
+      "name": "ABG",
       "value": "pH 7.46 / pCO2 28 / pO2 48 / P/F ratio 160",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -106,7 +106,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Portable Chest X-ray",
+      "name": "CXR portable",
       "report": "Diffuse patchy alveolar infiltrate ทั้งสองข้างแบบ snowstorm หัวใจขนาดปกติ ไม่มี pleural effusion ไม่มี pneumothorax infiltrate ดูน้อยกว่าระดับ hypoxemia ซึ่งเป็นลักษณะเฉพาะ",
       "imageUrl": "",
       "abnormal": true
@@ -115,7 +115,7 @@
       "id": "ctpa1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "CT pulmonary angiogram",
+      "name": "CTPA",
       "report": "ไม่มี filling defect ใน pulmonary artery ถึงระดับ segmental ตัด thromboembolism ก้อนใหญ่ออก มี ground glass opacity กระจายทั่วร่วมกับ interlobular septal thickening สนับสนุน fat embolism มากกว่า thrombotic embolism",
       "imageUrl": "",
       "abnormal": true
@@ -124,7 +124,7 @@
       "id": "cbc1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haemoglobin and platelets",
+      "name": "Hb, platelet",
       "value": "Hb 9.2 g/dL / platelets 78 x10^9/L",
       "unit": "-",
       "normalRange": "Hb 12.0-15.5 g/dL",
@@ -135,7 +135,7 @@
       "id": "echo1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Bedside echocardiogram",
+      "name": "Echo ข้างเตียง",
       "report": "RV โตเล็กน้อย บีบตัวดี ไม่มี McConnell's sign ไม่มี thrombus in transit, LV function ปกติ ไม่สนับสนุน massive PE และไม่สนับสนุน cardiogenic pulmonary edema",
       "imageUrl": "",
       "abnormal": true
@@ -144,7 +144,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus tachycardia 126/min มี non-specific ST depression V1 ถึง V3 ไม่มี S1Q3T3, QTc 430 ms ไม่สนับสนุน lidocaine toxicity จาก tumescent solution",
       "imageUrl": "",
       "abnormal": true
@@ -184,13 +184,13 @@
           ],
           "label": "ให้ O2 high flow และเปิดดูทั้งตัวหา petechial rash",
           "actions": [
-            "High flow oxygen 15 L/min",
-            "Expose chest, axillae and neck",
+            "High flow O2 15 L/min",
+            "เปิดดูหน้าอก รักแร้ และคอ",
             "Fundoscopy",
-            "Continuous monitoring"
+            "Monitor ต่อเนื่อง"
           ],
           "doseMap": {
-            "Expose chest, axillae and neck": "Petechial rash คือ finding ที่วินิจฉัยโรคนี้ข้างเตียงได้ และจางไปใน 24 ชม. ถ้าไม่เปิดเสื้อดูในชั่วโมงแรกๆ จะไม่มีวันได้เห็น"
+            "เปิดดูหน้าอก รักแร้ และคอ": "Petechial rash คือ finding ที่วินิจฉัยโรคนี้ข้างเตียงได้ และจางไปใน 24 ชม. ถ้าไม่เปิดเสื้อดูในชั่วโมงแรกๆ จะไม่มีวันได้เห็น"
           }
         }
       },
@@ -215,13 +215,13 @@
           ],
           "label": "ตัดโรคที่รักษาได้ซึ่งคล้ายกันออกก่อนสรุปการวินิจฉัย",
           "actions": [
-            "CT pulmonary angiogram",
-            "Bedside echocardiogram",
-            "ECG and lidocaine toxicity assessment",
-            "Blood cultures and sepsis screen"
+            "CTPA",
+            "Echo ข้างเตียง",
+            "EKG และประเมินพิษ lidocaine",
+            "H/C และ sepsis screen"
           ],
           "doseMap": {
-            "ECG and lidocaine toxicity assessment": "Tumescent liposuction ใช้ lidocaine ขนาดสูงมาก ดูดซึมสูงสุดช้าที่ 12 ถึง 14 ชม. toxicity มาด้วยชารอบปาก หูอื้อ ชัก และ arrhythmia และมียาแก้จำเพาะ"
+            "EKG และประเมินพิษ lidocaine": "Tumescent liposuction ใช้ lidocaine ขนาดสูงมาก ดูดซึมสูงสุดช้าที่ 12 ถึง 14 ชม. toxicity มาด้วยชารอบปาก หูอื้อ ชัก และ arrhythmia และมียาแก้จำเพาะ"
           }
         }
       },
@@ -246,12 +246,12 @@
           ],
           "label": "ประคับประคองการหายใจ ไม่มีการรักษาจำเพาะ",
           "actions": [
-            "Non-invasive ventilation or intubation with lung protective settings",
-            "PEEP titration",
-            "No heparin, no steroids as treatment"
+            "NIV หรือ intubate ตั้ง ventilator แบบ lung protective",
+            "Titrate PEEP",
+            "ไม่ให้ heparin ไม่ให้ steroid เป็นการรักษา"
           ],
           "doseMap": {
-            "No heparin, no steroids as treatment": "ทั้งคู่ไม่มีหลักฐานใน fat embolism syndrome ที่เกิดแล้ว และ heparin อาจทำให้แผลผ่าตัดเลือดออกมากขึ้น prophylactic steroid มีหลักฐานอ่อนเฉพาะในคนไข้ ortho ความเสี่ยงสูง ซึ่งไม่ใช่สถานการณ์นี้"
+            "ไม่ให้ heparin ไม่ให้ steroid เป็นการรักษา": "ทั้งคู่ไม่มีหลักฐานใน fat embolism syndrome ที่เกิดแล้ว และ heparin อาจทำให้แผลผ่าตัดเลือดออกมากขึ้น prophylactic steroid มีหลักฐานอ่อนเฉพาะในคนไข้ ortho ความเสี่ยงสูง ซึ่งไม่ใช่สถานการณ์นี้"
           }
         }
       },
@@ -309,13 +309,13 @@
           ],
           "label": "ICU ตั้ง ventilator แบบ lung protective และ neuroprotection",
           "actions": [
-            "ICU admission",
-            "Tidal volume 6 mL/kg predicted body weight",
-            "Avoid fever and maintain normoglycaemia",
-            "Mechanical thromboprophylaxis"
+            "Admit ICU",
+            "Tidal volume 6 mL/kg ตาม predicted body weight",
+            "หลีกเลี่ยงไข้และคุมน้ำตาลให้ปกติ",
+            "ป้องกัน VTE แบบ mechanical"
           ],
           "doseMap": {
-            "Tidal volume 6 mL/kg predicted body weight": "Plateau pressure ต่ำกว่า 30 cmH2O ถ้า P/F ยังต่ำกว่า 150 พิจารณา prone"
+            "Tidal volume 6 mL/kg ตาม predicted body weight": "Plateau pressure ต่ำกว่า 30 cmH2O ถ้า P/F ยังต่ำกว่า 150 พิจารณา prone"
           }
         }
       },
@@ -361,10 +361,10 @@
           ],
           "label": "รายงานและป้องกัน",
           "actions": [
-            "Adverse event report to the medical director",
-            "Recommend staged procedures above 4 litres aspirate",
-            "Recommend overnight observation after large volume liposuction",
-            "Occupational and psychological follow up"
+            "รายงานอุบัติการณ์ถึงผู้อำนวยการฝ่ายการแพทย์",
+            "แนะนำแบ่งทำเป็นขั้นถ้าดูดไขมันเกิน 4 ลิตร",
+            "แนะนำนอนสังเกตอาการค้างคืนหลังดูดไขมันปริมาณมาก",
+            "ติดตามด้านอาชีวอนามัยและสุขภาพจิต"
           ],
           "doseMap": {}
         }

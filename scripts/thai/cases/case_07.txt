@@ -15,18 +15,23 @@ req1.f0: Antihistamine กับ steroid ไม่ได้แก้ airway บ�
 req1.d1: Adrenaline 1 mg IV push
 req1.f1: 1 mg IV คือขนาดสำหรับ cardiac arrest ในคนที่ยังมีชีพจรทำให้ arrhythmia หรือ myocardial ischemia ได้ ให้ 0.5 mg IM ที่ต้นขา
 req1.m0: 0.5 mg (1:1000 0.5 mL) IM กลางต้นขาด้านหน้าข้าง ซ้ำได้ทุก 5 นาที
+req1.a0: Adrenaline 1 mg/mL IM
 req2.l: O2 high flow จัดท่านอนหงายยกขาสูง
 req2.d0: จับนั่งแล้วพาเดินไปอาเจียนในห้องน้ำ
 req2.f0: ให้คนไข้ anaphylaxis ที่ BP ต่ำลุกยืนหรือนั่งทำให้ cardiac arrest จาก empty ventricle ได้ ให้นอนหงายยกขาสูง
 req2.d1: Cannula 2 L/min กลัว oxygen toxicity
 req2.f1: แน่นคอและ BP ต่ำ ให้ O2 high flow ทาง NRB mask
 req2.m0: 15 L/min เป้า SpO2 94 ถึง 98%
+req2.a0: O2 ทาง non-rebreather mask
+req2.a1: นอนหงาย ยกขาสูง
 req3.l: เปิด IV เบอร์ใหญ่ 2 เส้น load crystalloid เร็ว
 req3.d0: เปิดเส้นเล็กเส้นเดียว ให้ maintenance 80 mL/h
 req3.f0: Anaphylactic shock มีหลอดเลือดขยายและ capillary leak มาก ต้องเปิด 2 เส้นเบอร์ใหญ่และ load crystalloid เร็ว
 req3.d1: งด fluid กลัว pulmonary edema
 req3.f1: ปัญหาคือ distributive shock ไม่ใช่ fluid overload งด fluid ทำให้ BP ต่ำลงอีก
 req3.m0: 20 mL/kg (ราว 1000 mL) ใน 10 ถึง 15 นาที ประเมินซ้ำหลังทุก bolus
+req3.a0: เปิดเส้น 18G 2 เส้น
+req3.a1: NSS bolus
 out1.l: ตอบสนองบางส่วน
 out1.n: Stridor เบาลง ผื่นลมพิษเริ่มจาง แต่ยัง wheeze อยู่และ BP ยังต่ำหลัง fluid ลิตรแรก
 req4.l: Adrenaline IM dose ที่สองที่ 5 นาทีเพราะ BP ยังต่ำ
@@ -36,12 +41,14 @@ req4.f0: BP ยังต่ำหลัง adrenaline dose แรก ต้อ�
 req4.d1: เริ่ม dopamine drip แทน adrenaline
 req4.f1: Adrenaline คือยาที่เลือก dose IM ที่สองมาก่อน ถ้าดื้อค่อยให้ adrenaline drip
 req4.m0: 0.5 mg IM ถ้าต้องให้ dose ที่สามให้เริ่ม IV drip
+req4.a0: Adrenaline 1 mg/mL IM (ซ้ำ)
 req5.l: พ่นยาขยายหลอดลมสำหรับ wheeze ที่ยังอยู่
 req5.d0: Aminophylline IV bolus แก้ wheeze
 req5.f0: Aminophylline ไม่ใช่ first line และเพิ่มความเสี่ยง arrhythmia ซ้อนกับ adrenaline ใช้ salbutamol พ่น
 req5.d1: ไม่ต้องสนใจ wheeze เดี๋ยว antihistamine ก็ช่วย
 req5.f1: Antihistamine ไม่ได้รักษา bronchospasm wheeze ที่ยังอยู่หลัง adrenaline ต้องพ่นยาขยายหลอดลม
 req5.m0: 2.5 mg ใน NSS 3 mL พ่นด้วย O2 ซ้ำได้ตามต้องการ
+req5.a0: พ่น salbutamol
 req6.l: ยาเสริมให้หลัง adrenaline ไม่เคยให้แทน
 req6.d0: หยุด adrenaline เพราะให้ steroid แล้ว
 req6.f0: Steroid ออกฤทธิ์เป็นชั่วโมงและแทน adrenaline ไม่ได้ ยาเสริมเป็นแค่ส่วนเพิ่ม
@@ -49,6 +56,8 @@ req6.d1: ไม่ให้ยาเสริมเลย ไม่มีปร�
 req6.f1: Chlorpheniramine ช่วยคันและลมพิษเมื่อ stable แล้ว steroid ไม่ได้รักษาปฏิกิริยาเฉียบพลัน แต่แนวทางศิริราชยังให้ hydrocortisone 200 mg และเธอเป็น asthma ด้วย ให้ได้อย่างสมเหตุสมผล
 req6.m0: 10 mg IV ช้าๆ
 req6.m1: 200 mg IV
+req6.a0: CPM IV
+req6.a1: Hydrocortisone IV
 out2.l: Stable แล้ว
 out2.n: Stridor หาย wheeze เหลือแค่เสียงหวีดปลายลมหายใจออกประปราย ผื่นกำลังจาง พูดได้เป็นประโยค
 req7.l: Admit observe และวางแผน D/C ให้ปลอดภัย
@@ -57,5 +66,9 @@ req7.f0: Biphasic reaction เกิดได้หลายชั่วโม�
 req7.d1: D/C ด้วย antihistamine กินอย่างเดียว ไม่ต้องมี autoinjector
 req7.f1: เธอเพิ่งมี anaphylaxis ที่คุกคามชีวิต ต้องได้ adrenaline autoinjector แผนปฏิบัติตัว และส่งต่อคลินิกภูมิแพ้
 req7.m0: Autoinjector 0.3 mg สาธิตวิธีใช้ก่อน D/C
+req7.a0: Observe พร้อม monitor 6 ถึง 12 ชม.
+req7.a1: จ่าย adrenaline autoinjector 2 อัน
+req7.a2: แผนปฏิบัติตัวเมื่อเกิด anaphylaxis เป็นลายลักษณ์อักษร
+req7.a3: ส่งคลินิกภูมิแพ้ และเจาะ tryptase baseline ที่ 24 ชม.
 out3.l: Disposition
 out3.n: Observe 8 ชม. ไม่มี biphasic reaction กลับบ้านพร้อม autoinjector 2 อัน แผนปฏิบัติตัว และนัดคลินิกภูมิแพ้ เพื่อนถ่ายรูปป้ายร้านไว้ให้เลี่ยงครั้งหน้า

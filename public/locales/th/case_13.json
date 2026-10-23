@@ -95,7 +95,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas",
+      "name": "ABG",
       "value": "pH 7.14 / pCO2 68 / pO2 54 / HCO3 20",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -117,7 +117,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus bradycardia 42/min, 1st degree AV block, QTc 510 ms QT ยาวใน OP poisoning ทำนาย torsades ในภายหลัง ต้องให้ Mg และแก้ electrolyte",
       "imageUrl": "",
       "abnormal": true
@@ -126,7 +126,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Capillary glucose",
+      "name": "DTX",
       "value": "142",
       "unit": "mg/dL",
       "normalRange": "70-140",
@@ -137,7 +137,7 @@
       "id": "k1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Potassium and magnesium",
+      "name": "K, Mg",
       "value": "K 3.1 / Mg 0.62",
       "unit": "mmol/L",
       "normalRange": "K 3.5-5.0 / Mg 0.7-1.0",
@@ -148,7 +148,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Portable Chest X-ray",
+      "name": "CXR portable",
       "report": "Diffuse airspace opacity ทั้งสองข้าง เข้าได้กับ aspiration และ bronchorrhea, ET tube อยู่เหนือ carina 3 cm",
       "imageUrl": "",
       "abnormal": true
@@ -188,10 +188,10 @@
           ],
           "label": "ป้องกันตัวเองและ decontaminate ก่อนอย่างอื่น",
           "actions": [
-            "Double gloves, gown, eye protection",
-            "Remove and bag all clothing",
-            "Copious water irrigation of skin and hair",
-            "Ventilate the resus area"
+            "ใส่ถุงมือสองชั้น gown และแว่นป้องกัน",
+            "ถอดเสื้อผ้าทั้งหมดใส่ถุงปิด",
+            "ล้างผิวหนังและผมด้วยน้ำปริมาณมาก",
+            "เปิดระบายอากาศห้อง resus"
           ],
           "doseMap": {}
         }
@@ -216,11 +216,11 @@
           ],
           "label": "Airway, suction ตลอด และช่วยหายใจ",
           "actions": [
-            "Yankauer suction, continuous",
-            "Bag-valve-mask with 15 L/min oxygen"
+            "Yankauer suction ต่อเนื่อง",
+            "Bag-valve-mask กับ O2 15 L/min"
           ],
           "doseMap": {
-            "Bag-valve-mask with 15 L/min oxygen": "อย่าใช้ succinylcholine ตอน intubate ยาถูกสลายด้วย cholinesterase paralysis จะนานหลายชั่วโมง ถ้าต้อง paralyze ใช้ rocuronium"
+            "Bag-valve-mask กับ O2 15 L/min": "อย่าใช้ succinylcholine ตอน intubate ยาถูกสลายด้วย cholinesterase paralysis จะนานหลายชั่วโมง ถ้าต้อง paralyze ใช้ rocuronium"
           }
         }
       },
@@ -246,7 +246,7 @@
           "label": "Atropine เต็มที่ เพิ่มเท่าตัวทุก 5 นาทีจนปอดแห้ง",
           "actions": [
             "Atropine IV bolus",
-            "Double the dose every 5 minutes"
+            "เพิ่ม dose เป็นสองเท่าทุก 5 นาที"
           ],
           "doseMap": {
             "Atropine IV bolus": "1.8 ถึง 3 mg IV (0.6 mg 3 ถึง 5 amp) ประเมินซ้ำทุก 5 นาที เพิ่มเท่าตัวจนปอดใส เสมหะแห้ง HR เกิน 80 และ SBP เกิน 80 ตามแนวทางศูนย์พิษวิทยารามาธิบดี ขนาดรวมเกิน 50 mg ก็เจอบ่อย"
@@ -295,11 +295,11 @@
           "label": "ให้ pralidoxime แก้ nicotinic feature และ reactivate enzyme",
           "actions": [
             "Pralidoxime IV loading dose",
-            "Pralidoxime infusion"
+            "Pralidoxime drip"
           ],
           "doseMap": {
             "Pralidoxime IV loading dose": "ผู้ใหญ่ 1 ถึง 2 g IV ใน 30 ถึง 60 นาที เด็ก 30 mg/kg (แนวทางศูนย์พิษวิทยารามาธิบดี)",
-            "Pralidoxime infusion": "0.5 ถึง 1 g/h จน cholinergic sign สงบ"
+            "Pralidoxime drip": "0.5 ถึง 1 g/h จน cholinergic sign สงบ"
           }
         }
       },
@@ -337,13 +337,13 @@
           ],
           "label": "Admit ICU เฝ้าระวัง intermediate syndrome",
           "actions": [
-            "ICU admission with atropine infusion",
-            "Serial neck flexion and respiratory muscle strength",
-            "Magnesium and potassium replacement",
-            "No prophylactic gastric lavage"
+            "Admit ICU พร้อม atropine drip",
+            "ประเมิน neck flexion และแรงกล้ามเนื้อหายใจเป็นระยะ",
+            "ให้ Mg และ K ทดแทน",
+            "ไม่ทำ gastric lavage แบบ prophylactic"
           ],
           "doseMap": {
-            "ICU admission with atropine infusion": "เริ่มที่ 10 ถึง 20% ของ loading dose รวมต่อชั่วโมง ส่วนใหญ่ 0.5 ถึง 1.5 mg/h ประเมินทุกชั่วโมง intermediate syndrome ทำให้ respiratory failure ได้ที่ 24 ถึง 96 ชม. หลังดูเหมือนดีขึ้นแล้ว"
+            "Admit ICU พร้อม atropine drip": "เริ่มที่ 10 ถึง 20% ของ loading dose รวมต่อชั่วโมง ส่วนใหญ่ 0.5 ถึง 1.5 mg/h ประเมินทุกชั่วโมง intermediate syndrome ทำให้ respiratory failure ได้ที่ 24 ถึง 96 ชม. หลังดูเหมือนดีขึ้นแล้ว"
           }
         }
       },

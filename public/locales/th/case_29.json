@@ -10,7 +10,7 @@
     "Salicylate toxicity",
     "Uraemia"
   ],
-  "background": "ดื่มยาดองที่ต้มกลั่นเองในงานศพเมื่อราว 16 ชม. ก่อน ตื่นมาปวดหัวมาก อาเจียน ปวดท้อง แล้วตามัว บอกว่าเหมือนมองผ่านพายุหิมะ พอมาถึง รพ. เห็นแค่แสง เพื่อนผู้ชายอีก 3 คนจากงานเดียวกันได้ข่าวว่าไม่สบายอยู่บ้าน หนึ่งคนยังไม่ตื่น ช่วงล่าช้า 12 ถึง 24 ชม. ที่เป็นลักษณะเฉพาะ แปลว่า formic acid ซึ่งเป็น metabolite ที่เป็นพิษมีเวลาสะสมแล้ว",
+  "background": "ดื่มยาดองที่ต้มกลั่นเองในงานศพเมื่อราว 16 ชม. ก่อน ตื่นมาปวดหัวมาก อาเจียน ปวดท้อง แล้วตามัว บอกว่าเหมือนมองผ่านพายุหิมะ พอมาถึง รพ. เห็นแค่แสง เพื่อนผู้ชายอีก 3 คนจากงานเดียวกันได้ข่าวว่าไม่สบายอยู่บ้าน หนึ่งคนยังไม่ตื่น",
   "patientAppearance": {
     "skinTone": "#b5804f",
     "bmiFactor": 1.0,
@@ -95,7 +95,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas",
+      "name": "ABG",
       "value": "pH 6.94 / pCO2 12 / HCO3 4 / anion gap 38",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -128,7 +128,7 @@
       "id": "lac1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Lactate and ketones",
+      "name": "Lactate, ketones",
       "value": "Lactate 3.1 mmol/L / beta-hydroxybutyrate 0.4 mmol/L",
       "unit": "-",
       "normalRange": "Lactate 0.5-2.0 mmol/L",
@@ -139,7 +139,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Capillary glucose",
+      "name": "DTX",
       "value": "108",
       "unit": "mg/dL",
       "normalRange": "70-140",
@@ -150,7 +150,7 @@
       "id": "ct1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "CT brain (non-contrast)",
+      "name": "CT brain ไม่ฉีดสี",
       "report": "Low attenuation สมมาตรที่ putamen ทั้งสองข้าง มี hemorrhagic change เริ่มต้น bilateral putaminal necrosis แทบจะ pathognomonic ของ methanol poisoning และทำนาย parkinsonian syndrome ถาวร",
       "imageUrl": "",
       "abnormal": true
@@ -190,13 +190,13 @@
           ],
           "label": "จับ pattern ให้ได้ anion gap acidosis รุนแรงร่วมกับตาบอด",
           "actions": [
-            "Blood gas with anion gap",
-            "Calculate the osmolar gap",
-            "Formal visual acuity and fundoscopy",
-            "Capillary glucose and salicylate level"
+            "Blood gas และ anion gap",
+            "คำนวณ osmolar gap",
+            "วัด visual acuity และ fundoscopy",
+            "DTX และระดับ salicylate"
           ],
           "doseMap": {
-            "Calculate the osmolar gap": "Measured ลบ calculated osmolality รวมกับ anion gap ที่อธิบายไม่ได้ วินิจฉัยได้โดยไม่ต้องใช้ test พิเศษ"
+            "คำนวณ osmolar gap": "Measured ลบ calculated osmolality รวมกับ anion gap ที่อธิบายไม่ได้ วินิจฉัยได้โดยไม่ต้องใช้ test พิเศษ"
           }
         }
       },
@@ -221,12 +221,12 @@
           ],
           "label": "Block alcohol dehydrogenase ทันที ไม่ต้องรอยืนยัน",
           "actions": [
-            "Ethanol by nasogastric tube",
-            "Or fomepizole IV if available"
+            "Ethanol ทาง NG tube",
+            "หรือ fomepizole IV ถ้ามี"
           ],
           "doseMap": {
-            "Ethanol by nasogastric tube": "สูตรศูนย์พิษวิทยารามาธิบดี เหล้า 37% ผสมน้ำ 1:1 loading 800 mg/kg แล้ว 80 ถึง 130 mg/kg/h (150 ในคนดื่มประจำ) เป้า blood ethanol 100 mg/dL ผู้ชาย 60 kg คือเหล้าราว 165 mL กับน้ำ 165 mL แล้วชั่วโมงละราว 23 mL กับน้ำ 23 mL",
-            "Or fomepizole IV if available": "15 mg/kg ใน 30 นาที แล้ว 10 mg/kg ทุก 12 ชม. ไม่ทำให้ซึมและไม่ต้องเจาะระดับ แต่ไม่อยู่ในรายการ antidote ของศูนย์พิษ และ รพ. ไทยมีน้อยแห่ง"
+            "Ethanol ทาง NG tube": "สูตรศูนย์พิษวิทยารามาธิบดี เหล้า 37% ผสมน้ำ 1:1 loading 800 mg/kg แล้ว 80 ถึง 130 mg/kg/h (150 ในคนดื่มประจำ) เป้า blood ethanol 100 mg/dL ผู้ชาย 60 kg คือเหล้าราว 165 mL กับน้ำ 165 mL แล้วชั่วโมงละราว 23 mL กับน้ำ 23 mL",
+            "หรือ fomepizole IV ถ้ามี": "15 mg/kg ใน 30 นาที แล้ว 10 mg/kg ทุก 12 ชม. ไม่ทำให้ซึมและไม่ต้องเจาะระดับ แต่ไม่อยู่ในรายการ antidote ของศูนย์พิษ และ รพ. ไทยมีน้อยแห่ง"
           }
         }
       },
@@ -250,11 +250,11 @@
           ],
           "label": "Bicarbonate และ folinic acid",
           "actions": [
-            "Sodium bicarbonate IV",
+            "NaHCO3 IV",
             "Folinic acid IV"
           ],
           "doseMap": {
-            "Sodium bicarbonate IV": "Bolus 1 ถึง 2 mEq/kg เป้า pH เกิน 7.2 การแก้ acidemia ทำให้ formate อยู่ในรูป ionized ซึ่งเข้า retina และสมองได้น้อยลง เป็นไม่กี่สถานการณ์ที่ bicarbonate รักษาที่กลไกจริง",
+            "NaHCO3 IV": "Bolus 1 ถึง 2 mEq/kg เป้า pH เกิน 7.2 การแก้ acidemia ทำให้ formate อยู่ในรูป ionized ซึ่งเข้า retina และสมองได้น้อยลง เป็นไม่กี่สถานการณ์ที่ bicarbonate รักษาที่กลไกจริง",
             "Folinic acid IV": "1 mg/kg ไม่เกิน 50 mg IV ทุก 4 ชม. เร่งการสลาย formate เป็น CO2 กับน้ำ"
           }
         }
@@ -299,13 +299,13 @@
           ],
           "label": "HD ด่วน",
           "actions": [
-            "Emergency haemodialysis",
-            "Nephrology and ICU referral",
-            "Continue the alcohol dehydrogenase blocker during dialysis"
+            "Hemodialysis ฉุกเฉิน",
+            "ส่งต่อ nephro และ ICU",
+            "ให้ยายับยั้ง alcohol dehydrogenase ต่อระหว่าง dialysis"
           ],
           "doseMap": {
-            "Emergency haemodialysis": "เกณฑ์ศูนย์พิษวิทยารามาธิบดี มองเห็นผิดปกติ กินเกิน 30 mL methanol เกิน 50 mg/dL หรือ pH ต่ำกว่า 7.25 เขาเข้าสามข้อ dialysis เอาออกได้ทั้ง methanol และ formate ซึ่งไม่มีวิธีอื่นทำได้",
-            "Continue the alcohol dehydrogenase blocker during dialysis": "Dialysis ล้าง ethanol ด้วย เพิ่ม ethanol เป็น 250 ถึง 350 mg/kg/h ระหว่างทำ หรือให้ fomepizole ทุก 4 ชม."
+            "Hemodialysis ฉุกเฉิน": "เกณฑ์ศูนย์พิษวิทยารามาธิบดี มองเห็นผิดปกติ กินเกิน 30 mL methanol เกิน 50 mg/dL หรือ pH ต่ำกว่า 7.25 เขาเข้าสามข้อ dialysis เอาออกได้ทั้ง methanol และ formate ซึ่งไม่มีวิธีอื่นทำได้",
+            "ให้ยายับยั้ง alcohol dehydrogenase ต่อระหว่าง dialysis": "Dialysis ล้าง ethanol ด้วย เพิ่ม ethanol เป็น 250 ถึง 350 mg/kg/h ระหว่างทำ หรือให้ fomepizole ทุก 4 ชม."
           }
         }
       },
@@ -342,10 +342,10 @@
           ],
           "label": "ดูแลใน ICU และแจ้งสาธารณสุข",
           "actions": [
-            "ICU admission with repeat gases",
-            "Ophthalmology review",
-            "Notify the district health office and food safety authority",
-            "Continue dialysis until the anion gap normalises"
+            "Admit ICU เจาะ gas ซ้ำ",
+            "ให้จักษุแพทย์ประเมิน",
+            "แจ้งสาธารณสุขอำเภอและหน่วยงานความปลอดภัยอาหาร",
+            "Dialysis ต่อจน anion gap ปกติ"
           ],
           "doseMap": {}
         }

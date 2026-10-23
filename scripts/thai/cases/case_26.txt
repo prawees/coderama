@@ -13,6 +13,10 @@ req1.f0: เจ็บหน้าอกต้องได้ EKG ภายใน
 req1.d1: รออายุรแพทย์หัวใจส่วนตัวมาถึงก่อน
 req1.f1: ทุกนาทีที่ช้าคือกล้ามเนื้อหัวใจที่เสียไป ทำ EKG เดี๋ยวนี้
 req1.m0: เป้าคือ 10 นาทีจาก first contact คนไข้รายนี้ได้ที่ 34 นาที เพราะเส้นทาง VIP พาเขาเลี่ยงผ่านแผนกที่รับผิดชอบเป้านี้
+req1.a0: EKG 12 lead ทันที
+req1.a1: Right-sided lead V4R
+req1.a2: ติด monitor หัวใจต่อเนื่อง
+req1.a3: ติด pad defibrillator
 req2.l: เปิด cath lab ก่อนอย่างอื่น
 req2.d0: รอ troponin ก่อนโทรตาม cath lab
 req2.f0: ST elevation ใน EKG ก็พอแล้ว troponin ขึ้นทีหลัง ห้ามรอ
@@ -20,6 +24,10 @@ req2.d1: ให้ thrombolysis ทั้งที่ทำ PCI ได้ภา�
 req2.f1: ถ้าทำได้ทันเวลา primary PCI ดีกว่า เปิด cath lab
 req2.m0: 300 mg เคี้ยว
 req2.m1: Ticagrelor 180 mg กิน ตาม protocol ของ รพ.
+req2.a0: Activate cath lab
+req2.a1: Aspirin
+req2.a2: Ticagrelor หรือ clopidogrel loading dose
+req2.a3: ไม่ต้องรอ troponin
 req3.l: งด nitrate และ morphine นี่คือ RV ที่ preload dependent
 req3.c: ไม่ให้ nitrate หรือ morphine bolus fluid ทีละน้อย
 req3.d0: อม nitroglycerin แก้เจ็บหน้าอก
@@ -29,6 +37,10 @@ req3.f1: Morphine ทำให้หลอดเลือดดำขยาย�
 req3.m0: ห้ามเด็ดขาดในเคสนี้ RV infarction บวกกิน sildenafil ใน 24 ชม. แต่ละอย่างทำให้ BP ตกรุนแรงได้อยู่แล้ว รวมกันทำให้ arrest ได้
 req3.m1: NSS ครั้งละ 250 mL แล้วประเมินซ้ำ เป้า SBP เกิน 90 ถ้าเริ่มมี crepitation ให้หยุด
 req3.m2: 1 mg IV ทุก 3 ถึง 5 นาที รวมไม่เกิน 3 mg
+req3.a0: ห้าม NTG
+req3.a1: ห้าม morphine
+req3.a2: Fluid bolus อย่างระวัง
+req3.a3: Atropine ถ้า bradycardia มีอาการ
 out1.l: ตอบสนองต่อ fluid
 out1.n: หลังได้ NSS 750 mL SBP ขึ้นเป็น 104 HR ดีขึ้นเป็น 58 หลังได้ atropine ยัง preload dependent อยู่ ปอดยังใส การรักษา BP ต่ำนี้ที่ถูกคือ volume ส่วนการรักษาตามสัญชาตญาณ (nitrate แก้เจ็บหน้าอก) แทบจะถึงตาย
 ethical_1.l: ไม่ยอมรออายุรแพทย์หัวใจส่วนตัว และบันทึกความล่าช้าจากเส้นทาง VIP (Empathy)
@@ -39,6 +51,9 @@ req4.f0: นี่คือ STEMI ต้อง primary PCI ตอนนี้ do
 req4.d1: รักษาด้วยยา คนสำคัญขนาดนี้ไม่ควรเสี่ยงทำหัตถการ
 req4.f1: สถานะทางสังคมไม่ได้เปลี่ยน indication primary PCI ช่วยกล้ามเนื้อหัวใจและชีวิต
 req4.m0: Bezold-Jarisch reflex เจอบ่อยตอน reperfuse RCA เตรียม atropine และ pacing ไว้
+req4.a0: ย้ายเข้า cath lab
+req4.a1: Anticoagulant ตาม protocol ของ cath lab
+req4.a2: เตรียมรับ bradycardia และ hypotension ชั่วคราวช่วง reperfusion
 out2.l: Reperfusion
 out2.n: Proximal RCA อุดตันทั้งเส้น ใส่ stent ได้ TIMI 3 flow กลับมา door to balloon 96 นาที ในนั้น 34 นาทีหมดไปกับการถูกเชิญดื่มชาที่ชั้น 4 peak troponin 8400 ng/L
 req5.l: ดูแลหลัง PCI และรายงานอุบัติการณ์ของระบบ
@@ -47,5 +62,9 @@ req5.f0: หลัง PCI ต้องได้ DAPT, statin และ secondary
 req5.d1: ไม่ต้องเขียนรายงานอุบัติการณ์ ไม่มีใครเป็นอะไร
 req5.f1: เส้นทาง VIP ทำให้ EKG ช้า การรายงานความผิดพลาดของระบบป้องกันอันตรายครั้งหน้า
 req5.m0: ยังไม่ให้ในระยะเฉียบพลันตอนที่ยัง brady และ preload dependent เริ่มเมื่อ stable
+req5.a0: Admit CCU
+req5.a1: DAPT, statin, beta blocker เมื่อ hemodynamic stable
+req5.a2: เลิกบุหรี่และทบทวนการคุมเบาหวาน
+req5.a3: เขียนรายงานอุบัติการณ์เรื่องเส้นทาง VIP
 out3.l: Disposition
 out3.n: D/C วันที่ 4 EF 48% รายงานอุบัติการณ์ได้รับทราบ ถูกเก็บเข้าแฟ้ม และไม่มีใครทำอะไรไปอีก 11 เดือน จนกรรมการอีกคนถูกพาไปเส้นทางเดียวกันแล้วอาการแย่กว่า สัปดาห์ต่อมาเส้นทางก็ถูกแก้

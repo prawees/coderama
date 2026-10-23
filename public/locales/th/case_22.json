@@ -10,7 +10,7 @@
     "Melioidosis",
     "Acute viral hepatitis"
   ],
-  "background": "ชาวนา เดินเท้าเปล่าในนาน้ำท่วมมา 2 สัปดาห์หลังฝนหนัก มีแผลถลอกกำลังหายที่หน้าแข้งซ้าย ไข้สูงมา 6 วัน ปวดน่องและต้นขามาก ปวดหัว ตั้งแต่วันที่ 4 ปัสสาวะสีเข้ม ตาเหลือง เช้านี้ไอเป็นเลือดสดสองครั้ง รอบนามีควายหลายตัวและหนูเยอะ ฝนปีนี้หนักที่สุดในรอบ 9 ปี นี่คือระบาดวิทยาที่สำคัญ",
+  "background": "ชาวนา เดินเท้าเปล่าในนาน้ำท่วมมา 2 สัปดาห์หลังฝนหนัก มีแผลถลอกกำลังหายที่หน้าแข้งซ้าย ไข้สูงมา 6 วัน ปวดน่องและต้นขามาก ปวดหัว ตั้งแต่วันที่ 4 ปัสสาวะสีเข้ม ตาเหลือง เช้านี้ไอเป็นเลือดสดสองครั้ง รอบนามีควายหลายตัวและหนูเยอะ ฝนปีนี้หนักที่สุดในรอบ 9 ปี",
   "patientAppearance": {
     "skinTone": "#c9a55c",
     "bmiFactor": 0.9,
@@ -95,7 +95,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Portable Chest X-ray",
+      "name": "CXR portable",
       "report": "Diffuse patchy alveolar opacity ทั้งสองข้าง ชัดที่ lower และ mid zone หัวใจขนาดปกติ เป็น alveolar hemorrhage ไม่ใช่ pulmonary edema และไม่ใช่ lobar pneumonia",
       "imageUrl": "",
       "abnormal": true
@@ -104,7 +104,7 @@
       "id": "bili1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Bilirubin, AST and ALT",
+      "name": "Bilirubin, AST, ALT",
       "value": "Total bilirubin 18.4 mg/dL / AST 180 / ALT 140",
       "unit": "-",
       "normalRange": "Bilirubin <1.2 mg/dL",
@@ -115,7 +115,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine and potassium",
+      "name": "Cr, K",
       "value": "Creatinine 4.2 mg/dL / K 3.0 mmol/L",
       "unit": "-",
       "normalRange": "Creatinine 0.7-1.3 mg/dL",
@@ -126,8 +126,8 @@
       "id": "cbc1",
       "kind": "lab",
       "category": "CBC",
-      "name": "White cells and platelets",
-      "value": "WBC 18.4 with neutrophilia / platelets 42 x10^9/L",
+      "name": "WBC, platelet",
+      "value": "WBC 18.4 neutrophil เด่น / platelet 42 x10^9/L",
       "unit": "-",
       "normalRange": "WBC 4.0-11.0",
       "abnormal": true,
@@ -137,7 +137,7 @@
       "id": "sero1",
       "kind": "lab",
       "category": "Serology",
-      "name": "Leptospira IgM rapid test and PCR",
+      "name": "Leptospira IgM rapid test, PCR",
       "value": "IgM positive, blood PCR positive",
       "unit": "-",
       "normalRange": "Negative",
@@ -148,7 +148,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase",
+      "name": "CK",
       "value": "1850",
       "unit": "U/L",
       "normalRange": "30-200",
@@ -190,13 +190,13 @@
           ],
           "label": "Oxygenation และจับ alveolar hemorrhage ได้เร็ว",
           "actions": [
-            "High flow oxygen",
-            "Portable chest X-ray",
-            "Sit upright",
-            "Cross-match blood"
+            "High flow O2",
+            "CXR portable",
+            "นั่งตัวตรง",
+            "G/M เลือด"
           ],
           "doseMap": {
-            "High flow oxygen": "15 L/min ทาง NRB เตรียม intubate และตั้ง lung protective"
+            "High flow O2": "15 L/min ทาง NRB เตรียม intubate และตั้ง lung protective"
           }
         }
       },
@@ -221,11 +221,11 @@
           "label": "เริ่ม antibiotic ทันที ไม่ต้องรอ serology",
           "actions": [
             "Ceftriaxone IV",
-            "Or penicillin G IV"
+            "หรือ PGS IV"
           ],
           "doseMap": {
             "Ceftriaxone IV": "1 ถึง 2 g IV วันละครั้ง 7 วัน",
-            "Or penicillin G IV": "1.5 ล้าน unit IV ทุก 6 ชม. เตือนเรื่อง Jarisch-Herxheimer reaction ในชั่วโมงแรกๆ"
+            "หรือ PGS IV": "1.5 ล้าน unit IV ทุก 6 ชม. เตือนเรื่อง Jarisch-Herxheimer reaction ในชั่วโมงแรกๆ"
           }
         }
       },
@@ -250,12 +250,12 @@
           ],
           "label": "Fluid อย่างระวัง และให้ K ทดแทน",
           "actions": [
-            "Careful crystalloid boluses with reassessment",
-            "Potassium chloride replacement",
-            "Vasopressor if fluid unresponsive"
+            "Crystalloid bolus อย่างระวัง ประเมินซ้ำทุกครั้ง",
+            "ให้ KCl ทดแทน",
+            "Vasopressor ถ้าไม่ตอบสนองต่อ fluid"
           ],
           "doseMap": {
-            "Careful crystalloid boluses with reassessment": "ครั้งละ 250 ถึง 500 mL ให้ fluid หนักทำให้ pulmonary hemorrhage แย่ลง ใช้ปริมาณน้อยและเริ่ม norepinephrine เร็ว"
+            "Crystalloid bolus อย่างระวัง ประเมินซ้ำทุกครั้ง": "ครั้งละ 250 ถึง 500 mL ให้ fluid หนักทำให้ pulmonary hemorrhage แย่ลง ใช้ปริมาณน้อยและเริ่ม norepinephrine เร็ว"
           }
         }
       },
@@ -313,13 +313,13 @@
           ],
           "label": "ICU ทำ dialysis และให้ blood product",
           "actions": [
-            "ICU admission with lung protective ventilation",
-            "Early haemodialysis for the acute kidney injury",
-            "Platelets and blood products for active bleeding",
-            "Nephrology consult"
+            "Admit ICU ตั้ง ventilator แบบ lung protective",
+            "Hemodialysis เร็วสำหรับ AKI",
+            "Platelet และ blood product ถ้ามีเลือดออก",
+            "ปรึกษา nephro"
           ],
           "doseMap": {
-            "Early haemodialysis for the acute kidney injury": "Dialysis เร็วลด mortality ใน severe leptospirosis ไม่ต้องรอ indication ตามเกณฑ์คลาสสิก"
+            "Hemodialysis เร็วสำหรับ AKI": "Dialysis เร็วลด mortality ใน severe leptospirosis ไม่ต้องรอ indication ตามเกณฑ์คลาสสิก"
           }
         }
       },
@@ -365,12 +365,12 @@
           ],
           "label": "แจ้งและป้องกันคนอื่นในหมู่บ้าน",
           "actions": [
-            "Notify the district communicable disease unit",
-            "Advise boots and wound covering during flooding",
-            "Consider doxycycline prophylaxis for high risk exposed workers"
+            "แจ้งงานควบคุมโรคติดต่อของอำเภอ",
+            "แนะนำใส่บูทและปิดแผลช่วงน้ำท่วม",
+            "พิจารณา doxycycline ป้องกันในคนงานที่เสี่ยงสูง"
           ],
           "doseMap": {
-            "Consider doxycycline prophylaxis for high risk exposed workers": "200 mg สัปดาห์ละครั้งช่วงที่สัมผัสมาก หลักฐานปานกลาง แต่ราคาถูกและการระบาดนี้มีแหล่งชัดเจน"
+            "พิจารณา doxycycline ป้องกันในคนงานที่เสี่ยงสูง": "200 mg สัปดาห์ละครั้งช่วงที่สัมผัสมาก หลักฐานปานกลาง แต่ราคาถูกและการระบาดนี้มีแหล่งชัดเจน"
           }
         }
       },

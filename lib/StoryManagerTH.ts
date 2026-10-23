@@ -370,7 +370,8 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     "cases": [
       "case_01",
       "case_02_fluids",
-      "case_05_asthma"
+      "case_05_asthma",
+      "case_07"
     ]
   },
   "2": {
@@ -826,7 +827,9 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     "cases": [
       "case_03_cardiac",
       "case_01",
-      "case_02_fluids"
+      "case_02_fluids",
+      "case_09",
+      "case_15"
     ]
   },
   "3": {
@@ -1158,7 +1161,9 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     "cases": [
       "case_04_svt",
       "case_05_asthma",
-      "case_01"
+      "case_01",
+      "case_08",
+      "case_10"
     ]
   },
   "4": {
@@ -1491,7 +1496,8 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     "cases": [
       "case_03_cardiac",
       "case_06_trauma",
-      "case_02_fluids"
+      "case_02_fluids",
+      "case_11"
     ]
   },
   "5": {
@@ -1859,7 +1865,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
       "case_06_trauma",
       "case_03_cardiac",
       "case_01",
-      "case_06_trauma"
+      "case_42"
     ]
   },
   "6": {
@@ -2123,7 +2129,8 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     "cases": [
       "case_01",
       "case_03_cardiac",
-      "case_05_asthma"
+      "case_05_asthma",
+      "case_46"
     ]
   },
   "7": {
@@ -2338,7 +2345,8 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     "cases": [
       "case_04_svt",
       "case_02_fluids",
-      "case_06_trauma"
+      "case_06_trauma",
+      "case_47"
     ]
   },
   "8": {
@@ -2581,7 +2589,8 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     "cases": [
       "case_06_trauma",
       "case_03_cardiac",
-      "case_04_svt"
+      "case_04_svt",
+      "case_37"
     ]
   },
   "9": {
@@ -2830,7 +2839,8 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     "cases": [
       "case_02_fluids",
       "case_05_asthma",
-      "case_01"
+      "case_01",
+      "case_48"
     ]
   },
   "10": {
@@ -3269,7 +3279,8 @@ export const STORY_CAMPAIGN_TH: Record<number, {
       "case_06_trauma",
       "case_03_cardiac",
       "case_04_svt",
-      "case_02_fluids"
+      "case_02_fluids",
+      "case_34"
     ]
   },
   "11": {

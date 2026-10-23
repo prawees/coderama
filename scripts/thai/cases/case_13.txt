@@ -12,12 +12,18 @@ req1.d0: Intubate ก่อน ค่อย decontaminate ทีหลัง
 req1.f0: เสื้อผ้าและผิวที่เปื้อนยายังทำให้คนไข้ได้รับพิษต่อ และทำให้เจ้าหน้าที่ได้รับพิษด้วย ป้องกันตัวเองและ decontaminate ก่อน
 req1.d1: ล้างท้องทันที
 req1.f1: ยังไม่ใช่ตอนนี้ ต้องจัดการ airway กับผิวก่อน แนวทางรามาธิบดีให้ล้างท้องเฉพาะใน 1 ชม. หลังกิน และหลัง airway ปลอดภัยแล้ว
+req1.a0: ใส่ถุงมือสองชั้น gown และแว่นป้องกัน
+req1.a1: ถอดเสื้อผ้าทั้งหมดใส่ถุงปิด
+req1.a2: ล้างผิวหนังและผมด้วยน้ำปริมาณมาก
+req1.a3: เปิดระบายอากาศห้อง resus
 req2.l: Airway, suction ตลอด และช่วยหายใจ
 req2.d0: รอ atropine ทำให้เสมหะแห้งก่อนค่อยช่วยหายใจ
 req2.f0: Bronchorrhea กับกล้ามเนื้ออ่อนแรงฆ่าคนไข้เร็วมาก suction และช่วยหายใจไปพร้อมกับให้ atropine
 req2.d1: ใช้ succinylcholine ตอน intubate
 req2.f1: OP ยับยั้ง cholinesterase ซึ่งเป็นตัวสลาย succinylcholine ด้วย ทำให้ paralysis นาน ใช้ non-depolarizing agent
 req2.m0: อย่าใช้ succinylcholine ตอน intubate ยาถูกสลายด้วย cholinesterase paralysis จะนานหลายชั่วโมง ถ้าต้อง paralyze ใช้ rocuronium
+req2.a0: Yankauer suction ต่อเนื่อง
+req2.a1: Bag-valve-mask กับ O2 15 L/min
 req3.l: Atropine เต็มที่ เพิ่มเท่าตัวทุก 5 นาทีจนปอดแห้ง
 req3.c: Atropine 1.8 ถึง 3 mg IV เพิ่มเท่าตัวทุก 5 นาที
 req3.d0: Atropine 0.5 mg ทุก 30 นาที
@@ -25,6 +31,8 @@ req3.f0: ช้าเกินไปมาก OP poisoning ต้องเพิ
 req3.d1: Titrate atropine ตามขนาดรูม่านตา
 req3.f1: รูม่านตาเป็น endpoint ที่เชื่อไม่ได้ titrate ให้ปอดแห้ง HR เกิน 80 และ SBP เกิน 80
 req3.m0: 1.8 ถึง 3 mg IV (0.6 mg 3 ถึง 5 amp) ประเมินซ้ำทุก 5 นาที เพิ่มเท่าตัวจนปอดใส เสมหะแห้ง HR เกิน 80 และ SBP เกิน 80 ตามแนวทางศูนย์พิษวิทยารามาธิบดี ขนาดรวมเกิน 50 mg ก็เจอบ่อย
+req3.a0: Atropine IV bolus
+req3.a1: เพิ่ม dose เป็นสองเท่าทุก 5 นาที
 out1.l: Atropinization ได้แล้ว
 out1.n: Atropine รวม 34 mg ใน 25 นาที ปอดใส เสมหะหยุด HR ขึ้น รูม่านตายังเล็กอยู่ ซึ่งเป็นเรื่องปกติ และห้ามใช้เป็น endpoint
 req4.l: ให้ pralidoxime แก้ nicotinic feature และ reactivate enzyme
@@ -35,6 +43,8 @@ req4.d1: ให้ physostigmine แก้พิษ
 req4.f1: Physostigmine เป็น cholinesterase inhibitor จะทำให้ cholinergic toxicity แย่ลง
 req4.m0: ผู้ใหญ่ 1 ถึง 2 g IV ใน 30 ถึง 60 นาที เด็ก 30 mg/kg (แนวทางศูนย์พิษวิทยารามาธิบดี)
 req4.m1: 0.5 ถึง 1 g/h จน cholinergic sign สงบ
+req4.a0: Pralidoxime IV loading dose
+req4.a1: Pralidoxime drip
 ethical_1.l: คุยกับภรรยาเรื่องที่ทะเลาะกันโดยไม่โทษใคร และ consult จิตเวช (Empathy)
 ethical_1.n: ภรรยาเชื่อว่าเป็นความผิดของตัวเอง เพื่อนบ้านก็เริ่มมองว่าเป็นเรื่องน่าอายของครอบครัว หมอพาเธอแยกออกมาจากกลุ่มคน บอกว่าการกินยาฆ่าแมลงเป็นวิธีฆ่าตัวตายที่พบบ่อยที่สุดในชนบทไทย ไม่ใช่ความล้มเหลวของชีวิตคู่ แล้วนัดพยาบาลจิตเวชมาคุยกับทั้งสองคน พี่เอกบอกทีหลังว่าคุยแบบนี้สำคัญกว่า atropine เพราะครั้งที่สองมักเป็นครั้งที่ไม่รอด
 req5.l: Admit ICU เฝ้าระวัง intermediate syndrome
@@ -44,6 +54,10 @@ req5.f0: Intermediate syndrome ทำให้ respiratory failure ได้ท�
 req5.d1: ล้างท้องทุกวันบนวอร์ด
 req5.f1: ล้างท้องซ้ำไม่มีประโยชน์ ให้ตรวจ neck flexion และกำลังกล้ามเนื้อหายใจแทน
 req5.m0: เริ่มที่ 10 ถึง 20% ของ loading dose รวมต่อชั่วโมง ส่วนใหญ่ 0.5 ถึง 1.5 mg/h ประเมินทุกชั่วโมง intermediate syndrome ทำให้ respiratory failure ได้ที่ 24 ถึง 96 ชม. หลังดูเหมือนดีขึ้นแล้ว
+req5.a0: Admit ICU พร้อม atropine drip
+req5.a1: ประเมิน neck flexion และแรงกล้ามเนื้อหายใจเป็นระยะ
+req5.a2: ให้ Mg และ K ทดแทน
+req5.a3: ไม่ทำ gastric lavage แบบ prophylactic
 out2.l: Intermediate syndrome ที่ 48 ชม.
 out2.n: วันที่ 2 คนไข้รู้สึกตัวดี แต่ยกหัวพ้นหมอนไม่ได้ tidal volume ลดลง proximal muscle กับ neck flexor อ่อนแรงโดยไม่มี fasciculation ต้อง reintubate นี่คือช่วงที่คร่าชีวิตคนไข้ที่ดูเหมือนกำลังจะหาย
 out3.l: Disposition

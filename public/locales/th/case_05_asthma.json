@@ -74,7 +74,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Chest X-Ray",
+      "name": "CXR",
       "report": "Hyperinflation, flattened diaphragm ไม่มี consolidation หรือ pneumothorax",
       "imageUrl": "",
       "abnormal": true
@@ -139,6 +139,7 @@
         ]
       },
       "wrong_intubate": {
+        "slip": true,
         "vitals": {
           "bp": "90/50",
           "hr": 160,
@@ -148,6 +149,7 @@
         "options": null
       },
       "wrong_sedate": {
+        "slip": true,
         "vitals": {
           "bp": "100/60",
           "hr": 120,
@@ -157,6 +159,7 @@
         "options": null
       },
       "wrong_discharge": {
+        "slip": true,
         "vitals": {
           "bp": "110/70",
           "hr": 140,
@@ -175,6 +178,7 @@
         "options": null
       },
       "magnesium_early": {
+        "slip": true,
         "vitals": {
           "bp": "100/60",
           "hr": 130,

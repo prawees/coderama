@@ -1,5 +1,5 @@
 cc: ไฟลวกจากถังแก๊สระเบิดในครัวปิด
-bg: ถังแก๊ส LPG ระเบิดในครัวร้านอาหารที่ปิดทึบเมื่อ 40 นาทีก่อน ติดอยู่ในห้องหลายนาทีก่อนถูกดึงออกมา เพื่อนร่วมงานเอาน้ำมันพืชราดแผล ซึ่งทำกันบ่อยในพื้นที่ แต่กักความร้อนไว้และทำให้ประเมินแผลยาก น้ำหนัก 70 kg เฟอร์นิเจอร์ครัววัสดุสังเคราะห์ไหม้ในพื้นที่ปิด ให้ถือว่าได้รับทั้ง carbon monoxide และ cyanide ไว้ก่อน ไม่ต้องรอตรวจ
+bg: ถังแก๊ส LPG ระเบิดในครัวร้านอาหารที่ปิดทึบเมื่อ 40 นาทีก่อน ติดอยู่ในห้องหลายนาทีก่อนถูกดึงออกมา เพื่อนร่วมงานเอาน้ำมันพืชราดแผล น้ำหนัก 70 kg เฟอร์นิเจอร์ครัววัสดุสังเคราะห์ไหม้ในพื้นที่ปิด
 i.co1: Severe CO poisoning วัดได้ด้วย co-oximetry เท่านั้น pulse oximeter ธรรมดาอ่าน carboxyhemoglobin เป็น oxyhemoglobin และโชว์ 99% ให้วางใจผิดๆ
 i.lac1: Lactate เกิน 10 ในคนไข้ไฟไหม้ในพื้นที่ปิด สูงเกินสัดส่วนของภาวะช็อก เป็นตัวบ่งชี้แทนที่แรงของ cyanide toxicity การตรวจ cyanide ใช้เวลานานเกินจะมีประโยชน์ และรักษาแบบ empirical
 i.abg1: Severe metabolic acidosis PaO2 ปกติ O2 ปกติร่วมกับ acidosis รุนแรงและ lactate สูง คือรูปแบบของ cellular asphyxiant
@@ -13,6 +13,9 @@ req1.d1: ใช้ tube เล็กให้พอดีกับ airway ที
 req1.f1: ใช้ tube ใหญ่ที่สุดที่ใส่ได้ tube เล็กตันด้วยเขม่าและทำ bronchoscopy ได้จำกัด
 req1.m0: เสียงแหบ มีเขม่าใน oropharynx และหน้าไหม้ แปลว่า airway จะบวมปิดในไม่กี่ชั่วโมง intubate ตอนนี้ที่ยังง่าย รอ stridor แปลว่าต้องทำ surgical airway ผ่านเนื้อที่ไหม้
 req1.m1: หน้าบวมจะดัน tube ที่ตัดสั้นให้เลื่อน และเทปไม่ติดบนผิวที่ไหม้
+req1.a0: Rapid sequence intubation ทันที
+req1.a1: ใช้ tube ใหญ่ที่สุดที่มี
+req1.a2: ไม่ตัด tube และยึดด้วยเชือกแทนเทป
 req2.l: O2 100% และให้ยาแก้ cyanide แบบ empirical
 req2.d0: เชื่อค่า pulse oximeter 98%
 req2.f0: Pulse oximetry อ่าน carboxyhemoglobin เป็น oxyhemoglobin ใช้ co-oximetry
@@ -20,6 +23,9 @@ req2.d1: ให้ sodium nitrite แก้ cyanide
 req2.f1: Nitrite ทำให้ methemoglobinemia และส่ง O2 แย่ลงเมื่อมี CO ร่วม ใช้ hydroxocobalamin
 req2.m0: ลด half life ของ carboxyhemoglobin จากราว 4 ชม. ใน room air เหลือต่ำกว่า 1 ชม.
 req2.m1: 5 g IV ใน 15 นาที ให้แบบ empirical ในไฟไหม้พื้นที่ปิดที่ lactate เกิน 8 และความรู้สึกตัวเปลี่ยน ปลอดภัยแม้ไม่มี cyanide ต่างจากชุดยา nitrite ที่ทำให้ methemoglobinemia และอันตรายเมื่อมี CO ร่วม
+req2.a0: O2 100% ทาง ventilator
+req2.a1: Hydroxocobalamin IV
+req2.a2: วัดด้วย co-oximetry ไม่ใช่ pulse oximetry
 req3.l: คำนวณพื้นที่แผลไหม้และเริ่ม fluid resuscitation
 req3.c: Rule of nines และ Parkland
 req3.d0: นับรอยแดงรวมในพื้นที่แผลไหม้
@@ -28,6 +34,10 @@ req3.d1: ทิ้งน้ำมันไว้ช่วยปกป้อง�
 req3.f1: น้ำมันกักความร้อนและบังแผล เอาออกแล้วทำให้เย็น
 req3.m0: Ringer's lactate 2 ถึง 4 mL x kg x %TBSA ใน 24 ชม. (2 x 70 x 45 = 6300 mL) ครึ่งแรกใน 8 ชม. นับจากเวลาบาดเจ็บ ไม่ใช่เวลามาถึง titrate ให้ urine output 0.5 mL/kg/h และเลิกไล่ตามสูตรเมื่อปัสสาวะออกพอแล้ว
 req3.m1: น้ำไหลเย็น 20 นาทีถ้ายังไม่เกิน 3 ชม. แล้ว warm คนไข้แบบ active ทำแผลให้เย็นและทำตัวคนไข้ให้อุ่นพร้อมกันคือจุดสมดุล
+req3.a0: ประเมินด้วย rule of nines ไม่นับรอยแดง
+req3.a1: ล้างน้ำมันออกและทำแผลให้เย็น
+req3.a2: Modified Parkland
+req3.a3: ใส่สายสวนปัสสาวะ วัด output ทุกชั่วโมง
 req4.l: Escharotomy ที่หน้าอกและแขนขาที่ไหม้รอบวง
 req4.c: Escharotomy หน้าอกและแขนขาเดี๋ยวนี้
 req4.d0: รอศูนย์แผลไหม้ทำ escharotomy
@@ -36,6 +46,9 @@ req4.d1: ไม่ต้องให้ยาแก้ปวดเพราะ e
 req4.f1: เนื้อเยื่อรอบๆ ยังปวด ให้ยาแก้ปวด
 req4.m0: แผลไหม้ full thickness รอบหน้าอกทำให้อกขยายไม่ได้ เกิด ventilatory failure ที่ตั้ง ventilator ยังไงก็แก้ไม่ได้ กรีดตาม anterior axillary line ทั้งสองข้างและขวางตาม costal margin
 req4.m1: กรีดตรงกลางด้าน medial และ lateral ชีพจรหายเป็น sign ช่วงหลัง ลงมือเมื่อ eschar ตึงและ compartment pressure เพิ่ม
+req4.a0: Escharotomy หน้าอก
+req4.a1: Escharotomy แขนสองข้าง
+req4.a2: ให้ยาแก้ปวด แม้ eschar full thickness จะไม่มีความรู้สึก
 out1.l: Stable แล้ว
 out1.n: หลัง escharotomy หน้าอก ventilation ดีขึ้นมาก peak pressure ลดจาก 42 เป็น 28 cmH2O คลำ radial pulse ได้หลัง escharotomy แขน lactate ลดเหลือ 4.2 ใน 2 ชม. หลังได้ hydroxocobalamin carboxyhemoglobin ลดเหลือ 8% บน O2 100%
 ethical_1.l: บอกพยากรณ์โรคตามจริงกับครอบครัว และให้เห็นหน้ากันก่อนส่งตัว (Empathy)
@@ -47,6 +60,11 @@ req5.d1: ให้ prophylactic antibiotic IV ระหว่างส่งต�
 req5.f1: ไม่แนะนำ prophylactic antibiotic ในแผลไหม้
 req5.m0: ผ้าเปียกบนแผลไหม้ขนาดใหญ่ทำให้ hypothermia รุนแรงระหว่างส่งตัว 2 ชม.
 req5.m1: Prophylactic systemic antibiotic คัดเลือกเชื้อดื้อยาโดยไม่ได้ลด burn wound sepsis
+req5.a0: ส่งต่อศูนย์แผลไหม้
+req5.a1: ปิดแผลด้วยแผ่นฟิล์มห่ออาหาร ไม่ใช่ผ้าเปียก
+req5.a2: Warm แบบ active ระหว่างส่งตัว
+req5.a3: ใส่ NG tube และเริ่มให้อาหารทางสายเร็ว
+req5.a4: ป้องกันบาดทะยัก ไม่ให้ antibiotic แบบ prophylactic
 out2.l: ที่ศูนย์แผลไหม้
 out2.n: ทำ excision และ graft เป็นระยะตั้งแต่วันที่ 3 เกิด VAP วันที่ 9 รักษาได้ AKI ต้อง dialysis 5 ครั้ง extubate วันที่ 22 อยู่ ICU 34 วัน
 out3.l: Disposition

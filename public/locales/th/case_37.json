@@ -95,7 +95,7 @@
       "id": "ct1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "CT angiogram of the aorta",
+      "name": "CTA aorta",
       "report": "Intimal flap ตั้งแต่ aortic root ผ่าน arch และ descending aorta ลงไปถึงระดับ left common iliac artery เป็น Stanford type A, false lumen กด origin ของ left common carotid และ left common iliac มี pericardial effusion เล็กน้อย aortic root 52 mm ไม่มี mesenteric occlusion นี่คือ definitive investigation ต้องได้เร็ว ไม่ต้องสมบูรณ์แบบ",
       "imageUrl": "",
       "abnormal": true
@@ -104,7 +104,7 @@
       "id": "echo1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Bedside echocardiogram",
+      "name": "Echo ข้างเตียง",
       "report": "Aortic root โต เห็น flap ขยับได้ มี AR ปานกลางถึงรุนแรง pericardial effusion 12 mm ยังไม่มี tamponade physiology ทำได้ในไม่กี่นาที และพอจะหยุดไม่ให้ใครให้ thrombolysis",
       "imageUrl": "",
       "abnormal": true
@@ -113,7 +113,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus tachycardia มี ST elevation 1.5 mm ใน II, III, aVF flap ลามไปถึง right coronary ostium นี่คือ inferior STEMI จริงที่เกิดจาก dissection ให้ thrombolysis ตอนนี้ถึงตาย type A dissection ราว 1 ถึง 2% มาด้วย coronary involvement",
       "imageUrl": "",
       "abnormal": true
@@ -122,7 +122,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Chest X-ray",
+      "name": "CXR",
       "report": "Mediastinum กว้าง 9.5 cm aortic knuckle เสียรูป มี left pleural effusion เล็กน้อย dissection ราว 12 ถึง 20% มี CXR ปกติ CXR ปกติจึงตัดโรคนี้ไม่ได้เลย",
       "imageUrl": "",
       "abnormal": true
@@ -142,7 +142,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine and lactate",
+      "name": "Cr, lactate",
       "value": "Creatinine 1.8 mg/dL / lactate 3.4 mmol/L",
       "unit": "-",
       "normalRange": "Creatinine 0.7-1.3 mg/dL",
@@ -184,13 +184,13 @@
           ],
           "label": "วัด BP แขนสองข้างและคลำชีพจรทั้งสี่รยางค์ก่อนอย่างอื่น",
           "actions": [
-            "Bilateral arm blood pressure",
-            "Palpate all four limb pulses",
-            "12-lead ECG",
-            "Bedside echocardiogram"
+            "วัด BP แขนสองข้าง",
+            "คลำชีพจรทั้งสี่แขนขา",
+            "EKG 12 lead",
+            "Echo ข้างเตียง"
           ],
           "doseMap": {
-            "Bilateral arm blood pressure": "ใช้เวลา 90 วินาที ชีพจรหรือ BP สองข้างต่างกันในคนเจ็บหน้าอกคือ finding ที่กันไม่ให้ thrombolysis คนไข้ dissection แต่การประเมินเจ็บหน้าอกส่วนใหญ่ข้ามไป"
+            "วัด BP แขนสองข้าง": "ใช้เวลา 90 วินาที ชีพจรหรือ BP สองข้างต่างกันในคนเจ็บหน้าอกคือ finding ที่กันไม่ให้ thrombolysis คนไข้ dissection แต่การประเมินเจ็บหน้าอกส่วนใหญ่ข้ามไป"
           }
         }
       },
@@ -215,13 +215,13 @@
           ],
           "label": "หยุดและงด antiplatelet กับ anticoagulant",
           "actions": [
-            "No further antiplatelet agents",
-            "No heparin",
-            "Absolutely no thrombolysis",
-            "Document the ECG findings and the reason for withholding"
+            "ไม่ให้ antiplatelet เพิ่ม",
+            "ไม่ให้ heparin",
+            "ห้าม thrombolysis เด็ดขาด",
+            "บันทึก EKG ที่เห็นและเหตุผลที่ไม่ให้ยา"
           ],
           "doseMap": {
-            "Absolutely no thrombolysis": "Thrombolysis ใน type A dissection mortality เกิน 70% คลินิกให้ DAPT ไปแล้วเพราะเห็น ST elevation ซึ่งเพิ่มความเสี่ยงเลือดออกตอนผ่าตัด และย้อนกลับไม่ได้"
+            "ห้าม thrombolysis เด็ดขาด": "Thrombolysis ใน type A dissection mortality เกิน 70% คลินิกให้ DAPT ไปแล้วเพราะเห็น ST elevation ซึ่งเพิ่มความเสี่ยงเลือดออกตอนผ่าตัด และย้อนกลับไม่ได้"
           }
         }
       },
@@ -246,13 +246,13 @@
           ],
           "label": "Beta-blocker ก่อน แล้วค่อย vasodilator และคุมปวดเต็มที่",
           "actions": [
-            "Esmolol or labetalol IV",
-            "Then sodium nitroprusside or nicardipine",
+            "Esmolol หรือ labetalol IV",
+            "ตามด้วย nitroprusside หรือ nicardipine",
             "Morphine IV"
           ],
           "doseMap": {
-            "Esmolol or labetalol IV": "เป้า HR ต่ำกว่า 60 SBP 100 ถึง 120 คุม rate ลด shear force (dP/dt) ที่ทำให้ dissection ลาม",
-            "Then sodium nitroprusside or nicardipine": "ให้หลัง beta-block พอแล้วเท่านั้น ให้ vasodilator ก่อนจะเกิด reflex tachycardia เพิ่ม shear force และ dissection ลามต่อ ลำดับของยาสองตัวนี้คือบทเรียนทั้งหมด",
+            "Esmolol หรือ labetalol IV": "เป้า HR ต่ำกว่า 60 SBP 100 ถึง 120 คุม rate ลด shear force (dP/dt) ที่ทำให้ dissection ลาม",
+            "ตามด้วย nitroprusside หรือ nicardipine": "ให้หลัง beta-block พอแล้วเท่านั้น ให้ vasodilator ก่อนจะเกิด reflex tachycardia เพิ่ม shear force และ dissection ลามต่อ ลำดับของยาสองตัวนี้คือบทเรียนทั้งหมด",
             "Morphine IV": "Titrate ให้พอ ความปวดทำให้ catecholamine พุ่งและ flap ลาม ยาแก้ปวดในเคสนี้จึงเป็นการรักษา hemodynamic"
           }
         }
@@ -310,13 +310,13 @@
           ],
           "label": "ผ่าตัด CVT ด่วน นี่คือโรคที่ต้องผ่าตัด",
           "actions": [
-            "Immediate cardiothoracic referral and theatre",
-            "Cross-match 6 units",
-            "Correct coagulation given the dual antiplatelet load",
-            "Arterial line in the right arm, the higher pressure side"
+            "ส่งต่อ CVT และเข้าห้องผ่าตัดทันที",
+            "G/M 6 unit",
+            "แก้ coagulopathy จาก antiplatelet สองตัวที่ได้ไปแล้ว",
+            "Arterial line ที่แขนขวา ข้างที่ BP สูงกว่า"
           ],
           "doseMap": {
-            "Correct coagulation given the dual antiplatelet load": "อาจต้องให้ platelet ระหว่างผ่าตัดเพราะได้ clopidogrel มาจากคลินิก"
+            "แก้ coagulopathy จาก antiplatelet สองตัวที่ได้ไปแล้ว": "อาจต้องให้ platelet ระหว่างผ่าตัดเพราะได้ clopidogrel มาจากคลินิก"
           }
         }
       },
@@ -360,13 +360,13 @@
           ],
           "label": "ดูแลใน ICU และเฝ้าติดตามตลอดชีวิต",
           "actions": [
-            "Cardiac ICU admission",
-            "Strict blood pressure control, target systolic below 120",
-            "Serial imaging of the residual descending dissection",
-            "Screen first-degree relatives for aortopathy"
+            "Admit cardiac ICU",
+            "คุม BP เคร่งครัด เป้า SBP ต่ำกว่า 120",
+            "Imaging เป็นระยะดู dissection ที่เหลือใน descending aorta",
+            "Screen aortopathy ในญาติสายตรง"
           ],
           "doseMap": {
-            "Screen first-degree relatives for aortopathy": "Thoracic aortic dissection ราว 20% มีส่วนจากพันธุกรรม ลูกสองคนควรได้ทำ imaging"
+            "Screen aortopathy ในญาติสายตรง": "Thoracic aortic dissection ราว 20% มีส่วนจากพันธุกรรม ลูกสองคนควรได้ทำ imaging"
           }
         }
       },

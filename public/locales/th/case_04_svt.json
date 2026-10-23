@@ -74,7 +74,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Narrow complex tachycardia rate 185 ไม่เห็น P wave regular",
       "imageUrl": "",
       "abnormal": true
@@ -126,6 +126,7 @@
         "options": null
       },
       "wrong_adenosine": {
+        "slip": true,
         "vitals": {
           "bp": "70/40",
           "hr": 185,
@@ -142,6 +143,7 @@
         ]
       },
       "wrong_defib": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
@@ -151,6 +153,7 @@
         "options": null
       },
       "wrong_vagal": {
+        "slip": true,
         "vitals": {
           "bp": "75/45",
           "hr": 185,

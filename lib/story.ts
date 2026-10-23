@@ -20,6 +20,32 @@ export interface DayStory {
   cases: string[];
 }
 
+/**
+ * Clock time the shift starts, in minutes after midnight. The opening scene often names it
+ * ("ER รามาเซ็นทรัล 03:12 น."), and the clock should agree with the story. Defaults to 08:00.
+ */
+export function shiftStartMinutes(story: DayStory): number {
+  for (const n of story.start.slice(0, 3)) {
+    const m = (n.text || "").match(/(\d{1,2})[:.](\d{2})\s*น/);
+    if (m) {
+      const h = Number(m[1]), min = Number(m[2]);
+      if (h < 24 && min < 60) return h * 60 + min;
+    }
+  }
+  return 8 * 60;
+}
+
+/**
+ * The world's light runs on "minutes since 08:00" from dawn (0) to night (600).
+ * Map a real time of day onto that: early morning is dawn, evening and night are night.
+ */
+export function worldLightMinutes(timeOfDay: number): number {
+  const t = ((timeOfDay % 1440) + 1440) % 1440;
+  if (t >= 480 && t < 1080) return t - 480;
+  if (t >= 300 && t < 480) return 0;
+  return 600;
+}
+
 /** Minute of the shift at which a plain list of mid-shift nodes plays (12:00). */
 export const DEFAULT_MID_SHIFT_MINUTE = 240;
 

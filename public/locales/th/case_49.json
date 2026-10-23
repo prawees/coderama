@@ -10,7 +10,7 @@
     "Hypovolaemic shock",
     "Acute kidney injury"
   ],
-  "background": "คนงานก่อสร้าง ติดอยู่ในตึกที่ถล่มบางส่วนระหว่างรื้อถอน รู้สึกตัวและคุยกับทีมกู้ภัยตลอด ขาทั้งสองข้างใต้เข่าถูกแผ่นคอนกรีตทับราว 6 ชม. น้ำหนัก 78 kg ทีมรถพยาบาลเปิดเส้นให้ NSS 1 ลิตรตั้งแต่ยังติดอยู่ ซึ่งเป็นการตัดสินใจที่สำคัญที่สุดของวันนี้ ยกออกมาได้เมื่อ 25 นาทีก่อน ดูภายนอกดีจนหลอกตา",
+  "background": "คนงานก่อสร้าง ติดอยู่ในตึกที่ถล่มบางส่วนระหว่างรื้อถอน รู้สึกตัวและคุยกับทีมกู้ภัยตลอด ขาทั้งสองข้างใต้เข่าถูกแผ่นคอนกรีตทับราว 6 ชม. น้ำหนัก 78 kg ทีมรถพยาบาลเปิดเส้นให้ NSS 1 ลิตรตั้งแต่ยังติดอยู่ ยกออกมาได้เมื่อ 25 นาทีก่อน ดูภายนอกปกติดี",
   "patientAppearance": {
     "skinTone": "#bd8552",
     "bmiFactor": 1.0,
@@ -95,7 +95,7 @@
       "id": "k1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Potassium (point of care)",
+      "name": "K (ข้างเตียง)",
       "value": "7.2",
       "unit": "mmol/L",
       "normalRange": "3.5-5.0",
@@ -106,7 +106,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Peaked tented T ที่ V2 ถึง V5 P wave แบน QRS 132 ms เปลี่ยนเป็น sine wave แล้ว arrest ได้ในไม่กี่นาที ต้องติด monitor ก่อนยกออก ไม่ใช่หลัง",
       "imageUrl": "",
       "abnormal": true
@@ -115,7 +115,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase",
+      "name": "CK",
       "value": "88000",
       "unit": "U/L",
       "normalRange": "30-200",
@@ -126,8 +126,8 @@
       "id": "ua1",
       "kind": "lab",
       "category": "Urine",
-      "name": "Urinalysis",
-      "value": "Dark brown urine, dipstick blood 4+, no red cells on microscopy, pH 5.2",
+      "name": "UA",
+      "value": "ปัสสาวะสีน้ำตาลเข้ม dipstick blood 4+ ไม่มี RBC ใน microscopy, pH 5.2",
       "unit": "-",
       "normalRange": "Negative",
       "abnormal": true,
@@ -137,7 +137,7 @@
       "id": "gas1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Blood gas, calcium and lactate",
+      "name": "Blood gas, calcium, lactate",
       "value": "pH 7.18 / HCO3 13 / ionised Ca 0.82 mmol/L / lactate 5.6",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -148,7 +148,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine, phosphate and urate",
+      "name": "Cr, phosphate, urate",
       "value": "Creatinine 2.8 mg/dL / phosphate 2.4 mmol/L / urate 12 mg/dL",
       "unit": "-",
       "normalRange": "Creatinine 0.7-1.3 mg/dL",
@@ -199,13 +199,13 @@
           ],
           "label": "ติด monitor และเจาะ K ข้างเตียงก่อนอย่างอื่น",
           "actions": [
-            "Continuous cardiac monitoring",
-            "12-lead ECG",
-            "Point of care potassium and blood gas",
-            "Defibrillator pads on"
+            "ติด monitor หัวใจต่อเนื่อง",
+            "EKG 12 lead",
+            "K และ blood gas ข้างเตียง",
+            "ติด pad defibrillator"
           ],
           "doseMap": {
-            "Continuous cardiac monitoring": "ควรติดก่อนยกออก arrhythmia ที่ถึงตายมากับ reperfusion วินาทีที่ของหนักถูกยกออกคือวินาทีที่เสี่ยงที่สุด และไม่ควรปล่อยไว้โดยไม่มี monitor"
+            "ติด monitor หัวใจต่อเนื่อง": "ควรติดก่อนยกออก arrhythmia ที่ถึงตายมากับ reperfusion วินาทีที่ของหนักถูกยกออกคือวินาทีที่เสี่ยงที่สุด และไม่ควรปล่อยไว้โดยไม่มี monitor"
           }
         }
       },
@@ -230,15 +230,15 @@
           ],
           "label": "รักษา hyperkalemia ทันทีตาม EKG ไม่ต้องรอผล",
           "actions": [
-            "Calcium gluconate or chloride IV",
-            "Insulin with dextrose",
-            "Salbutamol nebuliser",
-            "Sodium bicarbonate"
+            "Calcium gluconate หรือ chloride IV",
+            "Insulin กับ dextrose",
+            "พ่น salbutamol",
+            "NaHCO3"
           ],
           "doseMap": {
-            "Calcium gluconate or chloride IV": "10% calcium chloride 10 mL IV ใน 3 นาที ซ้ำได้ตามต้องการ stabilize กล้ามเนื้อหัวใจในไม่กี่นาที ไม่ได้ลด K ต้องตามด้วยยาที่ลด K",
-            "Insulin with dextrose": "RI 10 unit ใน 50% glucose 50 mL IV ใน 15 นาที เจาะน้ำตาลทุกชั่วโมง",
-            "Sodium bicarbonate": "1 ถึง 2 mEq/kg ดัน K เข้าเซลล์และทำให้ปัสสาวะเป็นด่าง ทำสองหน้าที่พร้อมกันในเคสนี้"
+            "Calcium gluconate หรือ chloride IV": "10% calcium chloride 10 mL IV ใน 3 นาที ซ้ำได้ตามต้องการ stabilize กล้ามเนื้อหัวใจในไม่กี่นาที ไม่ได้ลด K ต้องตามด้วยยาที่ลด K",
+            "Insulin กับ dextrose": "RI 10 unit ใน 50% glucose 50 mL IV ใน 15 นาที เจาะน้ำตาลทุกชั่วโมง",
+            "NaHCO3": "1 ถึง 2 mEq/kg ดัน K เข้าเซลล์และทำให้ปัสสาวะเป็นด่าง ทำสองหน้าที่พร้อมกันในเคสนี้"
           }
         }
       },
@@ -263,14 +263,14 @@
           ],
           "label": "Fluid ปริมาณมากมาก และเริ่มก่อนยกออกถ้าทำได้",
           "actions": [
-            "Normal saline at high rate",
-            "Urinary catheter with hourly output",
-            "Avoid potassium-containing fluids",
-            "Consider urinary alkalinisation"
+            "NSS rate สูง",
+            "ใส่สายสวนปัสสาวะ วัด output ทุกชั่วโมง",
+            "หลีกเลี่ยง fluid ที่มี K",
+            "พิจารณาทำให้ปัสสาวะเป็นด่าง"
           ],
           "doseMap": {
-            "Normal saline at high rate": "เริ่ม 1 ถึง 1.5 ลิตรต่อชั่วโมง เป้า urine output 200 ถึง 300 mL/h ใน 24 ชม. แรกมักต้องใช้ถึง 10 ถึง 12 ลิตร นี่คือการรักษาเดียวที่ป้องกันไตวายจนต้อง dialysis",
-            "Avoid potassium-containing fluids": "ห้ามใช้ Ringer's lactate และ Hartmann's ใน crush syndrome เพราะมี K ทั้งคู่"
+            "NSS rate สูง": "เริ่ม 1 ถึง 1.5 ลิตรต่อชั่วโมง เป้า urine output 200 ถึง 300 mL/h ใน 24 ชม. แรกมักต้องใช้ถึง 10 ถึง 12 ลิตร นี่คือการรักษาเดียวที่ป้องกันไตวายจนต้อง dialysis",
+            "หลีกเลี่ยง fluid ที่มี K": "ห้ามใช้ Ringer's lactate และ Hartmann's ใน crush syndrome เพราะมี K ทั้งคู่"
           }
         }
       },
@@ -329,13 +329,13 @@
           ],
           "label": "ตัดสินใจเรื่อง fasciotomy ซึ่งไม่ได้ทำทุกราย",
           "actions": [
-            "Orthopaedic and vascular surgical review",
-            "Fasciotomy for viable muscle with compartment syndrome",
-            "Primary amputation if the muscle is already necrotic",
-            "Tetanus prophylaxis and antibiotics"
+            "ให้ ortho และ vascular ประเมิน",
+            "Fasciotomy เมื่อกล้ามเนื้อยังรอดและมี compartment syndrome",
+            "ตัดขาเลยถ้ากล้ามเนื้อตายแล้ว",
+            "ป้องกันบาดทะยักและให้ antibiotic"
           ],
           "doseMap": {
-            "Fasciotomy for viable muscle with compartment syndrome": "Fasciotomy ผ่านกล้ามเนื้อที่ตายมา 6 ชม. เปิดแผลติดเชื้อขนาดใหญ่ เพิ่ม sepsis และ mortality โดยไม่ได้ช่วยขา การตัดสินใจขึ้นกับว่ากล้ามเนื้อยังรอดไหม ซึ่งเป็นการตัดสินใจทางศัลยกรรมในห้องผ่าตัด ไม่ใช่ในห้อง resus"
+            "Fasciotomy เมื่อกล้ามเนื้อยังรอดและมี compartment syndrome": "Fasciotomy ผ่านกล้ามเนื้อที่ตายมา 6 ชม. เปิดแผลติดเชื้อขนาดใหญ่ เพิ่ม sepsis และ mortality โดยไม่ได้ช่วยขา การตัดสินใจขึ้นกับว่ากล้ามเนื้อยังรอดไหม ซึ่งเป็นการตัดสินใจทางศัลยกรรมในห้องผ่าตัด ไม่ใช่ในห้อง resus"
           }
         }
       },
@@ -359,14 +359,14 @@
           ],
           "label": "Dialysis เร็วและดูแลใน ICU",
           "actions": [
-            "ICU admission",
-            "Early haemodialysis or continuous renal replacement",
-            "Repeat potassium every 1-2 hours until stable",
-            "Active rewarming",
-            "Serial creatine kinase and calcium"
+            "Admit ICU",
+            "Hemodialysis หรือ CRRT เร็ว",
+            "เจาะ K ซ้ำทุก 1 ถึง 2 ชม. จน stable",
+            "Rewarm แบบ active",
+            "CK และ calcium เป็นระยะ"
           ],
           "doseMap": {
-            "Early haemodialysis or continuous renal replacement": "มี indication เมื่อ hyperkalemia ดื้อการรักษา ปัสสาวะออกน้อย หรือ acidosis รุนแรง ใน crush syndrome มักต้อง dialysis เพื่อคุม K มากกว่าเพื่อ uremia และอาจต้องทำภายในไม่กี่ชั่วโมง"
+            "Hemodialysis หรือ CRRT เร็ว": "มี indication เมื่อ hyperkalemia ดื้อการรักษา ปัสสาวะออกน้อย หรือ acidosis รุนแรง ใน crush syndrome มักต้อง dialysis เพื่อคุม K มากกว่าเพื่อ uremia และอาจต้องทำภายในไม่กี่ชั่วโมง"
           }
         }
       },

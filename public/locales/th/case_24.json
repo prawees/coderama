@@ -95,7 +95,7 @@
       "id": "hb1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haemoglobin",
+      "name": "Hb",
       "value": "6.4",
       "unit": "g/dL",
       "normalRange": "12.0-15.5",
@@ -106,7 +106,7 @@
       "id": "us1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Bedside ultrasound of the abdominal wall",
+      "name": "US ผนังหน้าท้องข้างเตียง",
       "report": "Heterogeneous collection ขนาดราว 15 x 9 cm ใน subcutaneous plane ระหว่าง flap กับ fascia มีลักษณะหมุนวน บ่งว่ายังเลือดออกอยู่ ไม่มี free fluid ในช่องท้อง fascia ไม่ขาด",
       "imageUrl": "",
       "abnormal": true
@@ -115,7 +115,7 @@
       "id": "coag1",
       "kind": "lab",
       "category": "Coagulation",
-      "name": "INR and fibrinogen",
+      "name": "INR, fibrinogen",
       "value": "INR 1.6 / fibrinogen 1.3 g/L",
       "unit": "-",
       "normalRange": "INR 0.9-1.2",
@@ -137,7 +137,7 @@
       "id": "bg1",
       "kind": "lab",
       "category": "Blood bank",
-      "name": "Group and crossmatch",
+      "name": "G/M",
       "value": "A Rh positive",
       "unit": "-",
       "normalRange": "-",
@@ -148,7 +148,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus tachycardia 130/min ไม่มี S1Q3T3 ไม่มี right heart strain ไม่มี ischemic change ไม่สนับสนุนว่า PE เป็นสาเหตุ",
       "imageUrl": "",
       "abnormal": true
@@ -187,12 +187,12 @@
           ],
           "label": "ถอดชุดกระชับและเปิดดูหน้าท้อง",
           "actions": [
-            "Cut off the compression garment",
-            "Full abdominal examination",
-            "Measure and mark abdominal girth"
+            "ตัดชุดกระชับออก",
+            "ตรวจท้องให้ครบ",
+            "วัดและทำเครื่องหมายรอบท้อง"
           ],
           "doseMap": {
-            "Cut off the compression garment": "ชุดกระชับบังการบวมที่กำลังขยาย และไม่ได้กดห้ามเลือดอะไรที่มีประโยชน์ คนไข้กับคลินิกมักไม่อยากถอด ถอดเลย"
+            "ตัดชุดกระชับออก": "ชุดกระชับบังการบวมที่กำลังขยาย และไม่ได้กดห้ามเลือดอะไรที่มีประโยชน์ คนไข้กับคลินิกมักไม่อยากถอด ถอดเลย"
           }
         }
       },
@@ -217,10 +217,10 @@
           ],
           "label": "เปิด 2 เส้นเบอร์ใหญ่ เจาะเลือด และ U/S ข้างเตียง",
           "actions": [
-            "IV access 16G x2",
-            "Full blood count, coagulation, fibrinogen, lactate",
-            "Group and crossmatch 4 units",
-            "Bedside ultrasound of the wall and abdomen"
+            "เปิดเส้น 16G 2 เส้น",
+            "CBC, coag, fibrinogen, lactate",
+            "G/M 4 unit",
+            "US ข้างเตียงที่ผนังหน้าท้องและในท้อง"
           ],
           "doseMap": {}
         }
@@ -246,14 +246,14 @@
           ],
           "label": "ให้ blood product กับ TXA ไม่ใช่ load crystalloid",
           "actions": [
-            "Emergency red cells",
-            "Fresh frozen plasma and cryoprecipitate",
-            "Tranexamic acid IV",
-            "Active warming"
+            "PRC ฉุกเฉิน",
+            "FFP และ cryoprecipitate",
+            "TXA IV",
+            "Warm แบบ active"
           ],
           "doseMap": {
-            "Tranexamic acid IV": "1 g ใน 10 นาที",
-            "Fresh frozen plasma and cryoprecipitate": "เป้า fibrinogen เกิน 2 g/L ก่อนเข้าห้องผ่าตัด"
+            "TXA IV": "1 g ใน 10 นาที",
+            "FFP และ cryoprecipitate": "เป้า fibrinogen เกิน 2 g/L ก่อนเข้าห้องผ่าตัด"
           }
         }
       },
@@ -311,9 +311,9 @@
           ],
           "label": "เข้าห้องผ่าตัดด่วน evacuate และหยุดเลือด",
           "actions": [
-            "Plastic surgery and general surgery consult",
-            "Theatre for haematoma evacuation and control of bleeding perforators",
-            "Anaesthetic assessment with shock precautions"
+            "ปรึกษา plastic และศัลย์ทั่วไป",
+            "เข้าห้องผ่าตัดเอา hematoma ออกและห้ามเลือดจาก perforator",
+            "ให้วิสัญญีประเมินโดยระวังภาวะช็อก"
           ],
           "doseMap": {}
         }
@@ -359,13 +359,13 @@
           ],
           "label": "ดูแลหลังผ่าตัด และรายงานอุบัติการณ์",
           "actions": [
-            "High dependency observation",
-            "Delayed thromboprophylaxis once haemostasis is secure",
-            "Flap perfusion monitoring",
-            "Formal incident report covering the same-day discharge, drain removal and telephone advice"
+            "Observe ใน high dependency",
+            "เริ่มป้องกัน VTE ช้าลงหลังห้ามเลือดได้แน่นอน",
+            "Monitor การไหลเวียนของ flap",
+            "เขียนรายงานอุบัติการณ์เรื่องการ D/C วันเดียว การถอด drain และคำแนะนำทางโทรศัพท์"
           ],
           "doseMap": {
-            "Delayed thromboprophylaxis once haemostasis is secure": "มีทั้งความเสี่ยงเลือดออกและลิ่มเลือดแข่งกัน ตอนนี้ใช้ mechanical prophylaxis ส่วนยาเริ่มที่ 24 ถึง 48 ชม."
+            "เริ่มป้องกัน VTE ช้าลงหลังห้ามเลือดได้แน่นอน": "มีทั้งความเสี่ยงเลือดออกและลิ่มเลือดแข่งกัน ตอนนี้ใช้ mechanical prophylaxis ส่วนยาเริ่มที่ 24 ถึง 48 ชม."
           }
         }
       },

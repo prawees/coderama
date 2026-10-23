@@ -80,7 +80,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus tachycardia 110 bpm ไม่มี acute ST change หรือ T inversion",
       "imageUrl": "",
       "abnormal": false
@@ -89,7 +89,7 @@
       "id": "trop1",
       "kind": "lab",
       "category": "Cardiac",
-      "name": "Troponin T",
+      "name": "TnT",
       "value": "<0.01",
       "unit": "ng/mL",
       "normalRange": "<0.01",
@@ -143,12 +143,12 @@
           ],
           "label": "ให้ aspirin และ nitroglycerin",
           "actions": [
-            "Aspirin PO",
-            "Nitroglycerin SL"
+            "Aspirin กิน",
+            "NTG อมใต้ลิ้น"
           ],
           "doseMap": {
-            "Aspirin PO": "324 mg",
-            "Nitroglycerin SL": "0.4 mg"
+            "Aspirin กิน": "324 mg",
+            "NTG อมใต้ลิ้น": "0.4 mg"
           }
         }
       },

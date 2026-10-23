@@ -95,7 +95,7 @@
       "id": "sat1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Pulse oximetry on room air",
+      "name": "SpO2 ที่ room air",
       "value": "86",
       "unit": "%",
       "normalRange": "94-100",
@@ -117,7 +117,7 @@
       "id": "rsv1",
       "kind": "lab",
       "category": "Micro",
-      "name": "Respiratory viral PCR (nasopharyngeal)",
+      "name": "Respiratory viral PCR (NP swab)",
       "value": "RSV positive",
       "unit": "-",
       "normalRange": "Negative",
@@ -128,7 +128,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Chest X-ray",
+      "name": "CXR",
       "report": "Hyperinflation กะบังลมแบน peribronchial thickening และ patchy atelectasis ที่ RML ไม่มี lobar consolidation ไม่มี effusion การถ่าย CXR routine ใน bronchiolitis เพิ่มการสั่ง antibiotic โดยไม่ทำให้ outcome ดีขึ้น เพราะ atelectasis ถูกอ่านผิดเป็น pneumonia ซ้ำแล้วซ้ำเล่า เคสนี้ทำได้เพราะอาการหนักและต้องใช้ O2",
       "imageUrl": "",
       "abnormal": true
@@ -137,7 +137,7 @@
       "id": "na1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Sodium",
+      "name": "Na",
       "value": "131",
       "unit": "mmol/L",
       "normalRange": "135-145",
@@ -148,7 +148,7 @@
       "id": "cbc1",
       "kind": "lab",
       "category": "CBC",
-      "name": "White cell count and CRP",
+      "name": "WBC, CRP",
       "value": "WBC 11.2 / CRP 14 mg/L",
       "unit": "-",
       "normalRange": "WBC 6.0-17.0",
@@ -189,14 +189,14 @@
           ],
           "label": "Suction จมูก และให้ O2",
           "actions": [
-            "Gentle nasal suction",
-            "Oxygen to target saturations 92% or above",
-            "Minimal handling",
-            "Continuous saturation and apnoea monitoring"
+            "Suction จมูกเบาๆ",
+            "O2 เป้า SpO2 92% ขึ้นไป",
+            "จับต้องตัวให้น้อยที่สุด",
+            "Monitor SpO2 และ apnea ต่อเนื่อง"
           ],
           "doseMap": {
-            "Gentle nasal suction": "ถูก ได้ผลทันที และถูกลืมซ้ำแล้วซ้ำเล่า เด็กเล็กหายใจทางจมูกเป็นหลัก แค่ทำให้จมูกโล่งก็ลด RR ได้มาก",
-            "Oxygen to target saturations 92% or above": "อย่าไล่ให้ถึง 100% เป้าสูงกว่าทำให้นอน รพ. นานขึ้นโดยไม่มีประโยชน์"
+            "Suction จมูกเบาๆ": "ถูก ได้ผลทันที และถูกลืมซ้ำแล้วซ้ำเล่า เด็กเล็กหายใจทางจมูกเป็นหลัก แค่ทำให้จมูกโล่งก็ลด RR ได้มาก",
+            "O2 เป้า SpO2 92% ขึ้นไป": "อย่าไล่ให้ถึง 100% เป้าสูงกว่าทำให้นอน รพ. นานขึ้นโดยไม่มีประโยชน์"
           }
         }
       },
@@ -221,12 +221,12 @@
           ],
           "label": "เพิ่มการช่วยหายใจเพราะมี apnea และหมดแรง",
           "actions": [
-            "High flow nasal cannula oxygen",
-            "Prepare for CPAP if no improvement",
-            "Senior paediatric review"
+            "High flow nasal cannula",
+            "เตรียม CPAP ถ้าไม่ดีขึ้น",
+            "ให้กุมารแพทย์อาวุโสประเมิน"
           ],
           "doseMap": {
-            "High flow nasal cannula oxygen": "2 L/kg/min (ราว 12 L/min สำหรับ 5.8 kg) อุ่นและชื้น ประเมินซ้ำที่ 60 ถึง 90 นาที ถ้าไม่ดีขึ้นทำนายว่าจะต้อง CPAP หรือ intubate"
+            "High flow nasal cannula": "2 L/kg/min (ราว 12 L/min สำหรับ 5.8 kg) อุ่นและชื้น ประเมินซ้ำที่ 60 ถึง 90 นาที ถ้าไม่ดีขึ้นทำนายว่าจะต้อง CPAP หรือ intubate"
           }
         }
       },
@@ -251,13 +251,13 @@
           ],
           "label": "ให้น้ำด้วยทางที่รุกล้ำน้อยที่สุดที่ได้ผล",
           "actions": [
-            "Nasogastric feeding or IV fluids",
-            "Restrict to two thirds maintenance with isotonic fluid",
-            "Strict fluid balance and daily sodium"
+            "ให้นมทาง NG tube หรือ IV fluid",
+            "จำกัดที่สองในสามของ maintenance ด้วย isotonic fluid",
+            "บันทึก I/O เคร่งครัด เจาะ Na ทุกวัน"
           ],
           "doseMap": {
-            "Nasogastric feeding or IV fluids": "ถ้า RR พอไหว NG feeding ดีกว่า เพราะรักษาการทำงานของลำไส้และไม่ต้องเปิดเส้น ที่ RR 72 เสี่ยงสำลักมาก คืนนี้ IV ปลอดภัยกว่า",
-            "Restrict to two thirds maintenance with isotonic fluid": "เต็ม maintenance ราว 23 mL/h สำหรับ 5.8 kg (4 mL/kg/h) จึงให้ราว 15 mL/h จำกัด fluid เพราะเสี่ยง SIADH"
+            "ให้นมทาง NG tube หรือ IV fluid": "ถ้า RR พอไหว NG feeding ดีกว่า เพราะรักษาการทำงานของลำไส้และไม่ต้องเปิดเส้น ที่ RR 72 เสี่ยงสำลักมาก คืนนี้ IV ปลอดภัยกว่า",
+            "จำกัดที่สองในสามของ maintenance ด้วย isotonic fluid": "เต็ม maintenance ราว 23 mL/h สำหรับ 5.8 kg (4 mL/kg/h) จึงให้ราว 15 mL/h จำกัด fluid เพราะเสี่ยง SIADH"
           }
         }
       },
@@ -282,14 +282,14 @@
           ],
           "label": "งดการรักษาที่ไม่ได้ผล",
           "actions": [
-            "No salbutamol",
-            "No nebulised adrenaline as routine",
-            "No corticosteroids",
-            "No antibiotics without evidence of bacterial infection",
-            "No chest physiotherapy"
+            "ไม่ให้ salbutamol",
+            "ไม่พ่น adrenaline แบบ routine",
+            "ไม่ให้ steroid",
+            "ไม่ให้ antibiotic ถ้าไม่มีหลักฐานติดเชื้อแบคทีเรีย",
+            "ไม่ทำกายภาพทรวงอก"
           ],
           "doseMap": {
-            "No salbutamol": "หลาย trial ไม่พบประโยชน์ใน bronchiolitis อายุต่ำกว่า 12 เดือน wheeze ดีขึ้นชั่วคราวไม่เหมือนกับนอน รพ. สั้นลงหรือใช้ O2 น้อยลง การสั่งยานี้คือความผิดพลาดที่พบบ่อยที่สุดของโรคนี้"
+            "ไม่ให้ salbutamol": "หลาย trial ไม่พบประโยชน์ใน bronchiolitis อายุต่ำกว่า 12 เดือน wheeze ดีขึ้นชั่วคราวไม่เหมือนกับนอน รพ. สั้นลงหรือใช้ O2 น้อยลง การสั่งยานี้คือความผิดพลาดที่พบบ่อยที่สุดของโรคนี้"
           }
         }
       },
@@ -348,10 +348,10 @@
           ],
           "label": "Admit พร้อมเกณฑ์ escalate ที่ชัดเจน",
           "actions": [
-            "Paediatric ward or HDU admission",
-            "Wean high flow as tolerated",
-            "Contact and droplet precautions",
-            "Discharge criteria: maintaining saturations in air and feeding above 75% of normal"
+            "Admit วอร์ดเด็กหรือ HDU",
+            "ค่อยๆ wean high flow ตามที่ทนได้",
+            "Contact และ droplet precaution",
+            "เกณฑ์ D/C: SpO2 ปกติใน room air และกินได้เกิน 75% ของปกติ"
           ],
           "doseMap": {}
         }

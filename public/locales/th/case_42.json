@@ -10,7 +10,7 @@
     "Alcohol withdrawal seizure",
     "Psychogenic non-epileptic seizure"
   ],
-  "background": "U/D epilepsy ตั้งแต่อายุ 19 กิน phenytoin ยาหมดมา 8 วันตอนไปทำงานต่างจังหวัด คนที่เห็นเล่าว่าชักเกร็งกระตุกทั้งตัวต่อเนื่องเริ่มราว 25 นาทีก่อนมาถึง มีหยุดสั้นๆ สองครั้งแค่ไม่กี่วินาที กู้ภัยให้ midazolam IM ระหว่างทาง 1 dose ไม่ได้ผล โตมาในฟาร์มหมูที่นครพนม ซึ่งเกี่ยวข้อง เพราะ neurocysticercosis เป็นสาเหตุที่ระบุได้บ่อยที่สุดของการชักที่เริ่มในผู้ใหญ่ในชนบทไทยหลายพื้นที่",
+  "background": "U/D epilepsy ตั้งแต่อายุ 19 กิน phenytoin ยาหมดมา 8 วันตอนไปทำงานต่างจังหวัด คนที่เห็นเล่าว่าชักเกร็งกระตุกทั้งตัวต่อเนื่องเริ่มราว 25 นาทีก่อนมาถึง มีหยุดสั้นๆ สองครั้งแค่ไม่กี่วินาที กู้ภัยให้ midazolam IM ระหว่างทาง 1 dose ไม่ได้ผล โตมาในฟาร์มหมูที่นครพนม",
   "patientAppearance": {
     "skinTone": "#c99763",
     "bmiFactor": 0.95,
@@ -95,7 +95,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Capillary glucose",
+      "name": "DTX",
       "value": "68",
       "unit": "mg/dL",
       "normalRange": "70-140",
@@ -117,7 +117,7 @@
       "id": "gas1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas",
+      "name": "ABG",
       "value": "pH 6.96 / pCO2 58 / pO2 48 / lactate 14.2",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -128,7 +128,7 @@
       "id": "ct1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "CT brain (non-contrast)",
+      "name": "CT brain ไม่ฉีดสี",
       "report": "Calcified lesion เล็กๆ หลายจุดในสมองทั้งสองซีก มี ring-enhancing lesion หนึ่งจุดที่ left parietal มี edema รอบๆ เข้าได้กับ neurocysticercosis หลายระยะ ไม่มีเลือดออก ไม่มี midline shift",
       "imageUrl": "",
       "abnormal": true
@@ -137,7 +137,7 @@
       "id": "na1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Sodium, calcium and magnesium",
+      "name": "Na, calcium, Mg",
       "value": "Na 138 / corrected Ca 9.2 mg/dL / Mg 0.78 mmol/L",
       "unit": "-",
       "normalRange": "Na 135-145 mmol/L",
@@ -148,7 +148,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase",
+      "name": "CK",
       "value": "4800",
       "unit": "U/L",
       "normalRange": "30-200",
@@ -199,14 +199,14 @@
           ],
           "label": "Airway, O2, น้ำตาล และจับเวลา ทั้งหมดใน 60 วินาทีแรก",
           "actions": [
-            "Nasopharyngeal airway and suction",
-            "High flow oxygen",
-            "Capillary glucose",
-            "Note the seizure start time and assign a timekeeper"
+            "Nasopharyngeal airway และ suction",
+            "High flow O2",
+            "DTX",
+            "จดเวลาเริ่มชักและมอบคนจับเวลา"
           ],
           "doseMap": {
-            "Nasopharyngeal airway and suction": "ขากรรไกรเกร็งอยู่ อย่าฝืนใส่ oral airway ใช้ nasopharyngeal airway ได้ผล",
-            "Note the seizure start time and assign a timekeeper": "Status นิยามที่ชักต่อเนื่อง 5 นาที ถ้าไม่มีคนจับเวลา benzodiazepine จะให้ช้า และยา second line จะให้ช้าไปมาก"
+            "Nasopharyngeal airway และ suction": "ขากรรไกรเกร็งอยู่ อย่าฝืนใส่ oral airway ใช้ nasopharyngeal airway ได้ผล",
+            "จดเวลาเริ่มชักและมอบคนจับเวลา": "Status นิยามที่ชักต่อเนื่อง 5 นาที ถ้าไม่มีคนจับเวลา benzodiazepine จะให้ช้า และยา second line จะให้ช้าไปมาก"
           }
         }
       },
@@ -231,13 +231,13 @@
           ],
           "label": "ให้ benzodiazepine ขนาดพอ ความผิดพลาดที่พบบ่อยที่สุดคือให้น้อยไป",
           "actions": [
-            "Diazepam IV or midazolam IM",
-            "Repeat once after 5 minutes if seizures continue",
-            "Thiamine if alcohol is a possibility"
+            "Diazepam IV หรือ midazolam IM",
+            "ซ้ำอีกครั้งหลัง 5 นาทีถ้ายังชัก",
+            "Thiamine ถ้าอาจเกี่ยวกับแอลกอฮอล์"
           ],
           "doseMap": {
-            "Diazepam IV or midazolam IM": "Diazepam 0.15 ถึง 0.2 mg/kg IV ไม่เกิน 10 mg ต่อ dose หรือ midazolam 10 mg IM ถ้าไม่มี IV (แนวทาง status epilepticus รามาธิบดี) ได้มาแล้วหนึ่ง dose ก่อนถึง รพ. ให้ dose ที่สองเต็มขนาดเลย",
-            "Repeat once after 5 minutes if seizures continue": "ไม่เกินสอง dose การให้ benzodiazepine น้อยไป แล้วให้ dose ที่สามที่สี่แทนการไปขั้นต่อไป คือความผิดพลาดที่พบบ่อยที่สุดใน status"
+            "Diazepam IV หรือ midazolam IM": "Diazepam 0.15 ถึง 0.2 mg/kg IV ไม่เกิน 10 mg ต่อ dose หรือ midazolam 10 mg IM ถ้าไม่มี IV (แนวทาง status epilepticus รามาธิบดี) ได้มาแล้วหนึ่ง dose ก่อนถึง รพ. ให้ dose ที่สองเต็มขนาดเลย",
+            "ซ้ำอีกครั้งหลัง 5 นาทีถ้ายังชัก": "ไม่เกินสอง dose การให้ benzodiazepine น้อยไป แล้วให้ dose ที่สามที่สี่แทนการไปขั้นต่อไป คือความผิดพลาดที่พบบ่อยที่สุดใน status"
           }
         }
       },
@@ -263,13 +263,13 @@
           "label": "ยากันชัก second line หลัง benzodiazepine สอง dose",
           "actions": [
             "Levetiracetam IV",
-            "Or sodium valproate IV",
-            "Or phenytoin IV with cardiac monitoring"
+            "หรือ valproate IV",
+            "หรือ phenytoin IV พร้อม monitor หัวใจ"
           ],
           "doseMap": {
             "Levetiracetam IV": "60 mg/kg ไม่เกิน 4500 mg ใน 10 นาที levetiracetam, valproate และ phenytoin ได้ผลพอกันใน ESETT trial เลือกตามผลข้างเคียงและสิ่งที่มีบนชั้นยา",
-            "Or sodium valproate IV": "40 mg/kg ไม่เกิน 3000 mg",
-            "Or phenytoin IV with cardiac monitoring": "15 ถึง 20 mg/kg ไม่เร็วกว่า 50 mg/min ติด EKG ตลอด ให้เร็วเกิดความดันต่ำและ arrhythmia รั่วออกนอกเส้นเกิด tissue necrosis ระดับยาตรวจไม่พบ ถือเหมือนไม่เคยได้ phenytoin"
+            "หรือ valproate IV": "40 mg/kg ไม่เกิน 3000 mg",
+            "หรือ phenytoin IV พร้อม monitor หัวใจ": "15 ถึง 20 mg/kg ไม่เร็วกว่า 50 mg/min ติด EKG ตลอด ให้เร็วเกิดความดันต่ำและ arrhythmia รั่วออกนอกเส้นเกิด tissue necrosis ระดับยาตรวจไม่พบ ถือเหมือนไม่เคยได้ phenytoin"
           }
         }
       },
@@ -316,13 +316,13 @@
           "label": "Intubate และให้ยาสลบสำหรับ refractory status",
           "actions": [
             "Rapid sequence intubation",
-            "Propofol or midazolam infusion",
-            "Continuous EEG monitoring",
-            "Vasopressor support"
+            "Propofol หรือ midazolam drip",
+            "Monitor EEG ต่อเนื่อง",
+            "Vasopressor"
           ],
           "doseMap": {
             "Rapid sequence intubation": "เลี่ยง paralysis ที่ออกฤทธิ์นาน ซึ่งบังการชักที่ยังเกิดอยู่ ใช้ตัวออกฤทธิ์สั้นและติด EEG ให้เร็วที่สุด",
-            "Propofol or midazolam infusion": "Titrate จนกดการชักได้หรือได้ burst suppression บน EEG thiopental เป็นทางเลือก"
+            "Propofol หรือ midazolam drip": "Titrate จนกดการชักได้หรือได้ burst suppression บน EEG thiopental เป็นทางเลือก"
           }
         }
       },
@@ -360,12 +360,12 @@
           "label": "หาและรักษาสาเหตุ",
           "actions": [
             "CT brain",
-            "Lumbar puncture once seizures are controlled and imaging is safe",
-            "Treat neurocysticercosis with albendazole plus corticosteroids",
-            "Fluids for rhabdomyolysis"
+            "LP เมื่อคุมชักได้และ imaging บอกว่าปลอดภัย",
+            "รักษา neurocysticercosis ด้วย albendazole ร่วมกับ steroid",
+            "Fluid สำหรับ rhabdomyolysis"
           ],
           "doseMap": {
-            "Treat neurocysticercosis with albendazole plus corticosteroids": "ให้ corticosteroid พร้อมหรือก่อนยาฆ่าพยาธิทุกครั้ง การฆ่า cyst กระตุ้นการอักเสบที่ทำให้ edema และการชักแย่ลงได้"
+            "รักษา neurocysticercosis ด้วย albendazole ร่วมกับ steroid": "ให้ corticosteroid พร้อมหรือก่อนยาฆ่าพยาธิทุกครั้ง การฆ่า cyst กระตุ้นการอักเสบที่ทำให้ edema และการชักแย่ลงได้"
           }
         }
       },

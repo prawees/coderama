@@ -4,7 +4,7 @@ import { db } from "@/lib/firebase";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { PixelIcon } from "@/components/ui/PixelIcon";
 import { getRankFromXp, useERStore } from "@/lib/erStore";
-import { RANK_SHORT_TH } from "@/lib/localization";
+import { RANK_SHORT_TH, universityTh } from "@/lib/localization";
 
 interface LeaderboardModalProps {
   onClose: () => void;
@@ -38,7 +38,7 @@ export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
   }, []);
 
   const universityScores = leaders.reduce((acc, curr) => {
-    const uni = curr.university || "ไม่ระบุ";
+    const uni = universityTh(curr.university) || "ไม่ระบุ";
     acc[uni] = (acc[uni] || 0) + (curr.xp || 0);
     return acc;
   }, {} as Record<string, number>);
@@ -95,7 +95,7 @@ export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
                 key={l.id}
                 i={i}
                 name={l.displayName || tr("Mystery doctor", "หมอนิรนาม")}
-                sub={`${l.university && l.university !== "Unknown" ? `${l.university}, ` : ""}${RANK_SHORT_TH[getRankFromXp(l.xp || 0)] ?? getRankFromXp(l.xp || 0)}`}
+                sub={`${l.university && l.university !== "Unknown" ? `${universityTh(l.university)}, ` : ""}${RANK_SHORT_TH[getRankFromXp(l.xp || 0)] ?? getRankFromXp(l.xp || 0)}`}
                 right={`${l.xp || 0} XP`}
                 right2={tr(`Day ${l.day || 1}`, `วันที่ ${l.day || 1}`)}
               />

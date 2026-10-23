@@ -139,6 +139,7 @@
         ]
       },
       "epi_early": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
@@ -148,6 +149,7 @@
         "options": null
       },
       "amio_early": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
@@ -157,6 +159,7 @@
         "options": null
       },
       "intubate_early": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
@@ -188,6 +191,7 @@
         ]
       },
       "shock_again": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
@@ -206,6 +210,7 @@
         "options": null
       },
       "wrong_atropine": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,

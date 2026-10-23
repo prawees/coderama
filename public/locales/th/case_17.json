@@ -95,7 +95,7 @@
       "id": "sm1",
       "kind": "lab",
       "category": "Micro",
-      "name": "Thick and thin blood smear",
+      "name": "Thick และ thin blood smear",
       "value": "P. falciparum, 14% parasitaemia, schizonts present",
       "unit": "-",
       "normalRange": "No parasites",
@@ -117,7 +117,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Capillary glucose",
+      "name": "DTX",
       "value": "38",
       "unit": "mg/dL",
       "normalRange": "70-140",
@@ -128,7 +128,7 @@
       "id": "hb1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haemoglobin and platelets",
+      "name": "Hb, platelet",
       "value": "Hb 6.4 g/dL / platelets 34 x10^9/L",
       "unit": "-",
       "normalRange": "Hb 13.5-17.5 g/dL",
@@ -139,7 +139,7 @@
       "id": "lac1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Lactate and bicarbonate",
+      "name": "Lactate, bicarbonate",
       "value": "Lactate 7.2 mmol/L / HCO3 11 mmol/L",
       "unit": "-",
       "normalRange": "Lactate 0.5-2.0 mmol/L",
@@ -150,7 +150,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine and bilirubin",
+      "name": "Cr, bilirubin",
       "value": "Creatinine 2.8 mg/dL / total bilirubin 5.6 mg/dL",
       "unit": "-",
       "normalRange": "Creatinine 0.7-1.3 mg/dL",
@@ -161,7 +161,7 @@
       "id": "bc1",
       "kind": "lab",
       "category": "Micro",
-      "name": "Blood cultures",
+      "name": "H/C",
       "value": "Pending",
       "unit": "-",
       "normalRange": "No growth",
@@ -203,11 +203,11 @@
           ],
           "label": "คนไข้ไข้และซึมทุกคน เจาะน้ำตาลก่อน",
           "actions": [
-            "Capillary glucose",
-            "IV dextrose bolus"
+            "DTX",
+            "Dextrose IV bolus"
           ],
           "doseMap": {
-            "IV dextrose bolus": "50% glucose 50 mL IV ตามด้วย 10% dextrose drip เจาะซ้ำทุกชั่วโมง hypoglycemia กลับมาได้ โดยเฉพาะถ้าได้ quinine"
+            "Dextrose IV bolus": "50% glucose 50 mL IV ตามด้วย 10% dextrose drip เจาะซ้ำทุกชั่วโมง hypoglycemia กลับมาได้ โดยเฉพาะถ้าได้ quinine"
           }
         }
       },
@@ -248,10 +248,10 @@
           ],
           "label": "ทำ thick และ thin smear กับ rapid test โดยไม่เลื่อนการรักษา",
           "actions": [
-            "Thick and thin blood smear",
+            "Thick และ thin blood smear",
             "Rapid diagnostic test",
-            "Blood cultures",
-            "Full severity criteria assessment"
+            "H/C",
+            "ประเมิน severity criteria ให้ครบ"
           ],
           "doseMap": {}
         }
@@ -304,13 +304,13 @@
           ],
           "label": "ให้ empirical antibiotic และ fluid อย่างระวัง",
           "actions": [
-            "Broad spectrum IV antibiotics",
-            "Cautious crystalloid resuscitation",
-            "Avoid aggressive fluid loading"
+            "Antibiotic IV ครอบคลุมกว้าง",
+            "Crystalloid อย่างระมัดระวัง",
+            "หลีกเลี่ยงการให้ fluid แบบรุนแรง"
           ],
           "doseMap": {
-            "Broad spectrum IV antibiotics": "Ceftriaxone 2 g IV วันละครั้ง จนกว่า H/C จะตัด bacteremia ร่วมออก",
-            "Cautious crystalloid resuscitation": "ให้ทีละน้อยแล้วประเมินซ้ำ ให้ fluid หนักใน severe malaria เพิ่ม pulmonary edema และ mortality"
+            "Antibiotic IV ครอบคลุมกว้าง": "Ceftriaxone 2 g IV วันละครั้ง จนกว่า H/C จะตัด bacteremia ร่วมออก",
+            "Crystalloid อย่างระมัดระวัง": "ให้ทีละน้อยแล้วประเมินซ้ำ ให้ fluid หนักใน severe malaria เพิ่ม pulmonary edema และ mortality"
           }
         }
       },
@@ -347,13 +347,13 @@
           ],
           "label": "ให้เลือด monitor และ admit ICU",
           "actions": [
-            "Packed red cell transfusion",
-            "ICU or high dependency admission",
-            "12 hourly parasite count",
-            "Hourly glucose and neurological observations"
+            "ให้ PRC",
+            "Admit ICU หรือ high dependency",
+            "นับ parasite ทุก 12 ชม.",
+            "DTX และ neuro sign ทุกชั่วโมง"
           ],
           "doseMap": {
-            "Packed red cell transfusion": "Hb ต่ำกว่า 7 g/dL ใน severe malaria ให้ช้าๆ ระวัง fluid overload"
+            "ให้ PRC": "Hb ต่ำกว่า 7 g/dL ใน severe malaria ให้ช้าๆ ระวัง fluid overload"
           }
         }
       },

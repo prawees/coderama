@@ -104,7 +104,7 @@
       "id": "pxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Pelvic X-ray",
+      "name": "Film pelvis",
       "report": "Symphysis แยก 4.5 cm SI joint กว้างทั้งสองข้าง APC injury, Young-Burgess type 2 แบบ open book มีที่ว่างใน retroperitoneum ให้เลือดไปขังได้มาก",
       "imageUrl": "",
       "abnormal": true
@@ -113,7 +113,7 @@
       "id": "hb1",
       "kind": "lab",
       "category": "CBC",
-      "name": "Haemoglobin",
+      "name": "Hb",
       "value": "8.2",
       "unit": "g/dL",
       "normalRange": "13.5-17.5",
@@ -124,7 +124,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Blood gas with base deficit",
+      "name": "Blood gas, base deficit",
       "value": "pH 7.11 / base deficit -14 / lactate 7.9",
       "unit": "-",
       "normalRange": "base deficit -2 to +2",
@@ -135,7 +135,7 @@
       "id": "coag1",
       "kind": "lab",
       "category": "Coagulation",
-      "name": "Fibrinogen and INR",
+      "name": "Fibrinogen, INR",
       "value": "Fibrinogen 1.1 g/L / INR 1.7",
       "unit": "-",
       "normalRange": "Fibrinogen 2.0-4.0 g/L",
@@ -146,7 +146,7 @@
       "id": "ct1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "CT trauma series with contrast (after stabilisation)",
+      "name": "CT trauma series ฉีดสี (หลัง stable)",
       "report": "Retroperitoneal hematoma ขนาดใหญ่ มี active arterial contrast extravasation จากแขนงของ internal iliac artery, pubic rami บนล่างหักทั้งสองข้าง ไม่มี solid organ injury มี bladder neck injury เล็กน้อย ไม่มี ICH",
       "imageUrl": "",
       "abnormal": true
@@ -186,11 +186,11 @@
           ],
           "label": "ใส่ pelvic binder ระดับ greater trochanter ทันที",
           "actions": [
-            "Apply pelvic binder",
-            "Internally rotate and strap the legs"
+            "ใส่ pelvic binder",
+            "หมุนขาเข้าด้านในแล้วมัดไว้"
           ],
           "doseMap": {
-            "Apply pelvic binder": "วางกึ่งกลางที่ greater trochanter ไม่ใช่ iliac crest binder ที่สูงเกินไปไม่ลดปริมาตร pelvis"
+            "ใส่ pelvic binder": "วางกึ่งกลางที่ greater trochanter ไม่ใช่ iliac crest binder ที่สูงเกินไปไม่ลดปริมาตร pelvis"
           }
         }
       },
@@ -215,9 +215,9 @@
           ],
           "label": "ห้ามเลือดที่ออกมากก่อน แล้วดู airway ให้ O2",
           "actions": [
-            "Direct pressure and staples to the scalp laceration",
-            "Oxygen 15 L/min",
-            "Two large bore IV or intraosseous access"
+            "กดห้ามเลือดและเย็บ staple แผลที่หนังศีรษะ",
+            "O2 15 L/min",
+            "เปิดเส้นใหญ่ 2 เส้น หรือ IO"
           ],
           "doseMap": {}
         }
@@ -242,14 +242,14 @@
           ],
           "label": "ให้เลือดแทน crystalloid ร่วมกับ TXA",
           "actions": [
-            "Activate massive transfusion protocol",
-            "Emergency O negative red cells",
-            "Tranexamic acid IV",
-            "Stop crystalloid"
+            "เปิด massive transfusion protocol",
+            "PRC O negative ฉุกเฉิน",
+            "TXA IV",
+            "หยุด crystalloid"
           ],
           "doseMap": {
-            "Activate massive transfusion protocol": "PRC : FFP : platelet 1:1:1 ถ้า fibrinogen ต่ำกว่า 1.5 g/L เพิ่ม cryoprecipitate",
-            "Tranexamic acid IV": "1 g ใน 10 นาที แล้ว 1 g ใน 8 ชม. ให้เฉพาะถ้ายังไม่เกิน 3 ชม. หลังบาดเจ็บ"
+            "เปิด massive transfusion protocol": "PRC : FFP : platelet 1:1:1 ถ้า fibrinogen ต่ำกว่า 1.5 g/L เพิ่ม cryoprecipitate",
+            "TXA IV": "1 g ใน 10 นาที แล้ว 1 g ใน 8 ชม. ให้เฉพาะถ้ายังไม่เกิน 3 ชม. หลังบาดเจ็บ"
           }
         }
       },
@@ -274,9 +274,9 @@
           ],
           "label": "Rewarm เต็มที่ แขนที่สามของ lethal triad",
           "actions": [
-            "Forced air warming blanket",
-            "Fluid and blood warmer",
-            "Remove wet clothing, raise room temperature"
+            "ผ้าห่มลมร้อน",
+            "เครื่องอุ่นน้ำเกลือและเลือด",
+            "ถอดเสื้อผ้าเปียก เพิ่มอุณหภูมิห้อง"
           ],
           "doseMap": {}
         }
@@ -336,12 +336,12 @@
           ],
           "label": "หยุดเลือดที่ต้นเหตุ angioembolization หรือ preperitoneal packing",
           "actions": [
-            "Interventional radiology angioembolisation",
-            "Or preperitoneal pelvic packing and external fixation if IR unavailable",
-            "Orthopaedic and general surgical consult"
+            "Angioembolisation ทาง IR",
+            "หรือ preperitoneal pelvic packing กับ external fixation ถ้าไม่มี IR",
+            "ปรึกษา ortho และศัลย์ทั่วไป"
           ],
           "doseMap": {
-            "Or preperitoneal pelvic packing and external fixation if IR unavailable": "ใน รพ. จังหวัดตอนตีสอง packing ในห้องผ่าตัดคือทางเลือกที่ทำได้จริง และเป็นทางเลือกที่ถูก"
+            "หรือ preperitoneal pelvic packing กับ external fixation ถ้าไม่มี IR": "ใน รพ. จังหวัดตอนตีสอง packing ในห้องผ่าตัดคือทางเลือกที่ทำได้จริง และเป็นทางเลือกที่ถูก"
           }
         }
       },
@@ -386,9 +386,9 @@
           ],
           "label": "ห้ามใส่ Foley ทาง urethra ใช้ suprapubic แทน",
           "actions": [
-            "Retrograde urethrogram or urology consult",
+            "Retrograde urethrogram หรือปรึกษา uro",
             "Suprapubic catheter",
-            "ICU admission with ongoing warming and coagulation correction"
+            "Admit ICU warm ต่อและแก้ coagulopathy"
           ],
           "doseMap": {
             "Suprapubic catheter": "เลือดที่ meatus ร่วมกับ pelvic fracture บอกว่ามี urethral injury ใส่ blind จะทำให้ partial tear กลายเป็น complete tear"

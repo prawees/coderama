@@ -95,7 +95,7 @@
       "id": "tft1",
       "kind": "lab",
       "category": "Endocrine",
-      "name": "Thyroid function",
+      "name": "TFT",
       "value": "TSH 128 mIU/L / free T4 1.8 pmol/L",
       "unit": "-",
       "normalRange": "TSH 0.4-4.0 mIU/L",
@@ -106,7 +106,7 @@
       "id": "na1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Sodium and glucose",
+      "name": "Na, glucose",
       "value": "Na 118 mmol/L / glucose 44 mg/dL",
       "unit": "-",
       "normalRange": "Na 135-145 mmol/L",
@@ -117,7 +117,7 @@
       "id": "gas1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas",
+      "name": "ABG",
       "value": "pH 7.21 / pCO2 78 / pO2 52 / HCO3 30",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -139,7 +139,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus bradycardia 42/min, low voltage ทุก lead, QTc ยาว 540 ms มี J wave ที่ inferior leads จาก hypothermia low voltage สนับสนุนว่ามี pericardial effusion",
       "imageUrl": "",
       "abnormal": true
@@ -148,7 +148,7 @@
       "id": "cxr1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Chest X-ray",
+      "name": "CXR",
       "report": "เงาหัวใจโตกลม เข้าได้กับ pericardial effusion มี pleural effusion เล็กน้อยทั้งสองข้าง และ RLL consolidation pneumonia คือตัวกระตุ้น",
       "imageUrl": "",
       "abnormal": true
@@ -157,7 +157,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase",
+      "name": "CK",
       "value": "1240",
       "unit": "U/L",
       "normalRange": "30-200",
@@ -198,13 +198,13 @@
           ],
           "label": "Airway กับการหายใจ แล้วเจาะน้ำตาล",
           "actions": [
-            "Assisted ventilation and intubation for hypercapnic failure",
-            "Capillary glucose and dextrose",
-            "Cardiac monitoring",
-            "Core temperature probe"
+            "ช่วยหายใจและ intubate สำหรับ hypercapnic failure",
+            "DTX และ dextrose",
+            "ติด monitor หัวใจ",
+            "ใส่ probe วัด core temperature"
           ],
           "doseMap": {
-            "Assisted ventilation and intubation for hypercapnic failure": "RR 8 กับ pCO2 78 ให้ O2 อย่างเดียวไม่หาย hypoventilation คือสาเหตุการเสียชีวิตที่พบบ่อยที่สุดใน myxedema coma"
+            "ช่วยหายใจและ intubate สำหรับ hypercapnic failure": "RR 8 กับ pCO2 78 ให้ O2 อย่างเดียวไม่หาย hypoventilation คือสาเหตุการเสียชีวิตที่พบบ่อยที่สุดใน myxedema coma"
           }
         }
       },
@@ -229,7 +229,7 @@
           "label": "Hydrocortisone ก่อน thyroid hormone",
           "actions": [
             "Hydrocortisone IV",
-            "Take a random cortisol first if it costs no delay"
+            "เจาะ random cortisol ก่อนถ้าไม่ทำให้ช้า"
           ],
           "doseMap": {
             "Hydrocortisone IV": "100 mg IV ทุก 8 ชม. ให้ก่อน levothyroxine thyroid hormone เพิ่ม metabolic demand และเร่งการกำจัด cortisol ถ้ามี adrenal insufficiency ร่วมอาจเกิด adrenal crisis ถึงตาย ลำดับนี้คือบทเรียนทั้งหมดของเคส"
@@ -257,13 +257,13 @@
           "label": "ให้ thyroid hormone ทางเส้นหรือทางสาย",
           "actions": [
             "Levothyroxine loading dose",
-            "Then 50-100 mcg daily",
-            "Consider adding liothyronine in severe cases"
+            "ตามด้วย 50 ถึง 100 mcg ต่อวัน",
+            "พิจารณาเพิ่ม liothyronine ในรายที่รุนแรง"
           ],
           "doseMap": {
             "Levothyroxine loading dose": "200 ถึง 400 mcg ลดขนาดในผู้สูงอายุและคนมี ischemic heart disease ถ้า รพ. มียาฉีดให้ IV รพ. ไทยหลายแห่งมีแต่ยาเม็ด บดให้ทาง NG tube ดูดซึมช้ากว่าแต่ได้ผล",
-            "Then 50-100 mcg daily": "IV หรือทางสายในขนาดสูงกว่าเล็กน้อย เพราะลำไส้ดูดซึมได้ไม่หมด",
-            "Consider adding liothyronine in severe cases": "5 ถึง 20 mcg แล้ว 2.5 ถึง 10 mcg ทุก 8 ชม. ถ้ามียา ออกฤทธิ์เร็วกว่า แต่เกิด arrhythmia ในหัวใจผู้สูงอายุได้มากกว่า"
+            "ตามด้วย 50 ถึง 100 mcg ต่อวัน": "IV หรือทางสายในขนาดสูงกว่าเล็กน้อย เพราะลำไส้ดูดซึมได้ไม่หมด",
+            "พิจารณาเพิ่ม liothyronine ในรายที่รุนแรง": "5 ถึง 20 mcg แล้ว 2.5 ถึง 10 mcg ทุก 8 ชม. ถ้ามียา ออกฤทธิ์เร็วกว่า แต่เกิด arrhythmia ในหัวใจผู้สูงอายุได้มากกว่า"
           },
           "choice": "Levothyroxine 200 ถึง 400 mcg IV หรือทาง NG tube"
         }
@@ -288,14 +288,14 @@
           ],
           "label": "Passive rewarming อย่างเดียว และรักษาตัวกระตุ้น",
           "actions": [
-            "Passive external rewarming with blankets",
-            "Warmed IV fluids",
-            "Antibiotics for the pneumonia",
-            "Cautious fluid replacement"
+            "Rewarm แบบ passive ด้วยผ้าห่ม",
+            "IV fluid อุ่น",
+            "Antibiotic รักษา pneumonia",
+            "ให้ fluid อย่างระวัง"
           ],
           "doseMap": {
-            "Passive external rewarming with blankets": "ห้ามใช้ active external rewarming ทำให้หลอดเลือดส่วนปลายขยายในคนที่เพิ่ม cardiac output ไม่ได้ และทำให้ circulatory collapse warm ไม่เกิน 0.5 C ต่อชั่วโมง",
-            "Cautious fluid replacement": "กล้ามเนื้อหัวใจทำงานไม่ดีและอาจมี pericardial effusion ให้ทีละน้อยและแก้ Na ช้าๆ"
+            "Rewarm แบบ passive ด้วยผ้าห่ม": "ห้ามใช้ active external rewarming ทำให้หลอดเลือดส่วนปลายขยายในคนที่เพิ่ม cardiac output ไม่ได้ และทำให้ circulatory collapse warm ไม่เกิน 0.5 C ต่อชั่วโมง",
+            "ให้ fluid อย่างระวัง": "กล้ามเนื้อหัวใจทำงานไม่ดีและอาจมี pericardial effusion ให้ทีละน้อยและแก้ Na ช้าๆ"
           }
         }
       },
@@ -354,14 +354,14 @@
           ],
           "label": "ดูแลใน ICU แก้ไขช้าๆ อย่างใจเย็น",
           "actions": [
-            "ICU admission",
-            "Monitor for arrhythmia during hormone replacement",
-            "Correct sodium no faster than 8-10 mmol/L per 24 hours",
-            "Echocardiogram for the pericardial effusion",
-            "Avoid all sedatives, which are cleared very slowly"
+            "Admit ICU",
+            "Monitor arrhythmia ระหว่างให้ฮอร์โมน",
+            "แก้ Na ไม่เร็วกว่า 8 ถึง 10 mmol/L ต่อ 24 ชม.",
+            "Echo ดู pericardial effusion",
+            "หลีกเลี่ยงยา sedative ทุกตัว เพราะถูกกำจัดช้ามาก"
           ],
           "doseMap": {
-            "Avoid all sedatives, which are cleared very slowly": "การเผาผลาญยาช้าลงมาก ยา sedate และ opioid ขนาดปกติจะสะสม และเป็นสาเหตุที่หมอทำเองซึ่งพบบ่อยของการไม่ตื่น"
+            "หลีกเลี่ยงยา sedative ทุกตัว เพราะถูกกำจัดช้ามาก": "การเผาผลาญยาช้าลงมาก ยา sedate และ opioid ขนาดปกติจะสะสม และเป็นสาเหตุที่หมอทำเองซึ่งพบบ่อยของการไม่ตื่น"
           }
         }
       },

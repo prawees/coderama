@@ -13,6 +13,10 @@ req1.f0: คนไข้ช็อกอยู่ echo ข้างเตีย�
 req1.d1: เจาะ D-dimer แล้วรอผล
 req1.f1: D-dimer ใช้ยืนยัน PE ไม่ได้ และเสียเวลาในคนไข้ช็อก ใช้ echo ข้างเตียง
 req1.m0: คนไข้ช็อกที่ถูกส่งไป CT อาจ arrest ในห้อง CT ที่ไม่มีใครช่วยได้ echo ตอบคำถามที่สำคัญคือ RV กำลังล้มเหลวหรือเปล่า
+req1.a0: High flow O2 15 L/min
+req1.a1: Monitor ต่อเนื่องและใส่ arterial line
+req1.a2: Echo ข้างเตียง
+req1.a3: Compression US ที่ขา
 req2.l: Fluid อย่างระวัง และให้ vasopressor เร็ว
 req2.d0: ให้ crystalloid 2 ลิตรเร็วๆ
 req2.f0: RV ที่กำลังล้มเหลวจะยิ่งโตเมื่อได้ fluid มาก ให้ bolus น้อยๆ และเริ่ม norepinephrine เร็ว
@@ -20,12 +24,16 @@ req2.d1: ให้ NTG drip ลด afterload
 req2.f1: Nitrate ลด preload และทำให้ BP ตกมากขึ้นใน massive PE
 req2.m0: RV ที่ล้มเหลวและได้น้ำเกินจะดัน septum เข้าไปใน LV ทำให้ cardiac output ลดลงอีก ให้เกินราว 500 mL ใน high-risk PE ทำให้ arrest ได้
 req2.m1: รักษา coronary perfusion ของ RV ที่ strain อยู่ เริ่มเลยดีกว่าให้ fluid ต่อ
+req2.a0: Fluid bolus เล็กๆ 250 ถึง 500 mL
+req2.a1: Norepinephrine drip ให้เร็ว
+req2.a2: หลีกเลี่ยงการให้ fluid ปริมาณมาก
 req3.l: ให้ anticoagulant ทันที
 req3.d0: รอ CT ก่อนให้ anticoagulant
 req3.f0: โอกาสเป็น massive PE สูงและไม่มีข้อห้าม ให้ anticoagulant ทันที
 req3.d1: เริ่ม warfarin คืนนี้
 req3.f1: Warfarin ใช้เวลาหลายวันกว่าจะออกฤทธิ์ และช่วงแรกทำให้เลือดแข็งตัวง่ายขึ้น ใช้ UFH IV
 req3.m0: Bolus 80 unit/kg แล้ว 18 unit/kg/h ในเคสนี้ UFH ดีกว่า LMWH เพราะออกฤทธิ์สั้นและ reverse ได้ สำคัญถ้าต้อง thrombolysis หรือ embolectomy ต่อ
+req3.a0: UFH IV bolus และ drip
 out1.l: ยังช็อกอยู่
 out1.n: ทั้งที่ได้ norepinephrine 0.3 mcg/kg/min SBP ยังอยู่ที่ 76 lactate ขึ้นเป็น 7.4 นี่คือ high-risk PE ที่ BP ต่ำต่อเนื่อง anticoagulant อย่างเดียวช่วยไม่ได้ ต้องลดปริมาณ clot เดี๋ยวนี้
 ethical_1.l: อธิบายความเสี่ยงเลือดออกจาก thrombolysis ตามจริงใน 60 วินาทีที่มี (Empathy)
@@ -38,6 +46,9 @@ req4.d1: ใส่ IVC filter เป็นการรักษาหลัก
 req4.f1: Filter ไม่ได้รักษา clot ที่มีอยู่หรือช็อก thrombolysis ทำให้เลือดไหลกลับมา
 req4.m0: 100 mg ใน 2 ชม. หรือแบบเร่ง 0.6 mg/kg ใน 15 นาที (ไม่เกิน 50 mg) ถ้าใกล้ arrest การผ่าตัดใหญ่เมื่อเร็วๆ นี้เป็น relative contraindication ไม่ใช่ absolute เมื่อทางเลือกอื่นคือเสียชีวิตจาก obstructive shock
 req4.m1: เริ่มใหม่โดยไม่ต้อง bolus เมื่อ APTT ต่ำกว่า 2 เท่าของปกติ
+req4.a0: Alteplase IV
+req4.a1: หยุด heparin drip ระหว่างให้ bolus regimen
+req4.a2: G/M และเตรียมเลือดไว้
 out2.l: Reperfusion
 out2.n: 90 นาทีหลังเริ่มยา SBP ขึ้นเป็น 108 SpO2 94% lactate ลงเป็น 3.1 echo ซ้ำ RV/LV ratio ดีขึ้นเป็น 0.9 มี hematoma ใหญ่ที่แผลเข่า แต่ไม่มีเลือดออกในสมอง
 req5.l: ดูแลใน ICU และวางแผน anticoagulant ระยะยาว
@@ -47,5 +58,9 @@ req5.f0: Provoked PE ยังต้องได้ anticoagulant อย่า�
 req5.d1: หยุด anticoagulant เมื่อ stable
 req5.f1: หยุดเร็วเสี่ยงเป็นซ้ำ วางแผน anticoagulant ระยะยาว
 req5.m0: เธอหยุดยาเพราะฉีดแล้วแสบ และไม่มีใครอธิบายว่ายากันอะไร นั่นคือความล้มเหลวในการสื่อสารที่มีอัตราตาย และแก้ได้
+req5.a0: Admit ICU ดู neuro sign
+req5.a1: เปลี่ยนเป็น anticoagulant กินเมื่อ stable
+req5.a2: Screen thrombophilia และมะเร็ง
+req5.a3: ถามว่าทำไมหยุดยาป้องกัน
 out3.l: Disposition
 out3.n: D/C วันที่ 8 ด้วย DOAC อย่างน้อย 3 เดือนตามมาตรฐานของ provoked embolism echo ที่ 3 เดือน RV ขนาดปกติ ได้คำแนะนำเรื่อง CTEPH ซึ่งเกิดในผู้รอดชีวิตส่วนน้อย และมาด้วยเหนื่อยไม่ทราบสาเหตุหลายเดือนต่อมา

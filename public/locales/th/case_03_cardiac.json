@@ -7,7 +7,7 @@
     "Acute Myocardial Infarction",
     "Ventricular Fibrillation"
   ],
-  "background": "คนไข้กุมหน้าอกแล้วล้มลงในห้องรอตรวจ คลำ pulse ไม่ได้ ทุกนาทีที่เสียไปคือกล้ามเนื้อหัวใจที่เสียไป",
+  "background": "คนไข้กุมหน้าอกแล้วล้มลงในห้องรอตรวจ คลำ pulse ไม่ได้",
   "patientAppearance": {
     "skinTone": "#ffc0cb",
     "bmiFactor": 1.2,
@@ -74,7 +74,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Rhythm Strip",
+      "name": "Rhythm strip",
       "report": "Chaotic irregular deflections ขนาดไม่เท่ากัน ไม่เห็น P wave, QRS หรือ T wave",
       "imageUrl": "",
       "abnormal": true
@@ -139,6 +139,7 @@
         ]
       },
       "epi_early": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
@@ -148,6 +149,7 @@
         "options": null
       },
       "amio_early": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
@@ -157,6 +159,7 @@
         "options": null
       },
       "intubate_early": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
@@ -188,6 +191,7 @@
         ]
       },
       "shock_again": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
@@ -206,6 +210,7 @@
         "options": null
       },
       "wrong_atropine": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,

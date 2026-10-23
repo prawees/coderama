@@ -10,7 +10,7 @@
     "Cauda equina syndrome",
     "Vertebral osteomyelitis"
   ],
-  "background": "มาแผนกนี้ครั้งที่ 4 ใน 6 สัปดาห์ และครั้งที่ 11 ใน 4 รพ. ภายใน 3 เดือน บอกว่าปวดหลังส่วนล่าง 10 เต็ม 10 แจ้งว่าแพ้ยาแก้ปวดที่ไม่ใช่ opioid ทุกตัวที่เสนอ ขอ pethidine โดยระบุชื่อและขนาด ไม่ยอมบอกชื่อหมอประจำ ประวัติเก่าเคยกลับไปเองก่อนตรวจเมื่อถูกปฏิเสธ เคยขับรถบรรทุกจนหลังบาดเจ็บเมื่อ 2 ปีก่อน ตั้งแต่นั้นไม่ได้ทำงาน เขาไม่ใช่อาชญากรและไม่ได้โกหก เขาน่าจะเป็นคนที่มีปัญหาปวดเรื้อรัง opioid use disorder หรือทั้งสองอย่าง และทั้งสองเป็นโรคที่รักษาได้ ซึ่งการมาครั้งนี้เป็นอาการของมัน",
+  "background": "มาแผนกนี้ครั้งที่ 4 ใน 6 สัปดาห์ และครั้งที่ 11 ใน 4 รพ. ภายใน 3 เดือน บอกว่าปวดหลังส่วนล่าง 10 เต็ม 10 แจ้งว่าแพ้ยาแก้ปวดที่ไม่ใช่ opioid ทุกตัวที่เสนอ ขอ pethidine โดยระบุชื่อและขนาด ไม่ยอมบอกชื่อหมอประจำ ประวัติเก่าเคยกลับไปเองก่อนตรวจเมื่อถูกปฏิเสธ เคยขับรถบรรทุกจนหลังบาดเจ็บเมื่อ 2 ปีก่อน ตั้งแต่นั้นไม่ได้ทำงาน",
   "patientAppearance": {
     "skinTone": "#d3a06f",
     "bmiFactor": 1.05,
@@ -95,8 +95,8 @@
       "id": "records1",
       "kind": "lab",
       "category": "Records",
-      "name": "Shared prescription monitoring record",
-      "value": "31 opioid prescriptions from 9 prescribers in 4 months",
+      "name": "ประวัติการรับยาจากทุก รพ.",
+      "value": "ใบสั่ง opioid 31 ใบ จากแพทย์ 9 คน ใน 4 เดือน",
       "unit": "-",
       "normalRange": "-",
       "abnormal": true,
@@ -106,7 +106,7 @@
       "id": "ua1",
       "kind": "lab",
       "category": "Urine",
-      "name": "Urinalysis",
+      "name": "UA",
       "value": "No blood, no nitrite, no leucocytes",
       "unit": "-",
       "normalRange": "Negative",
@@ -115,9 +115,10 @@
     },
     {
       "id": "xr1",
+      "indicated": false,
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Lumbar spine X-ray (if ordered)",
+      "name": "Film L-spine",
       "report": "Degenerative change เล็กน้อยที่ L4-L5 ไม่ต่างจาก film เมื่อ 14 เดือนก่อน ไม่มี fracture ไม่มี lytic lesion ไม่มี disc space แคบที่บ่งว่าติดเชื้อ การทำ imaging ใน non-specific low back pain ที่ไม่มี red flag ไม่ได้ทำให้ outcome ดีขึ้น และมักเจอ finding ที่ทำให้คนไข้เชื่อหนักขึ้นว่ากระดูกเสียหาย",
       "imageUrl": "",
       "abnormal": true
@@ -126,7 +127,7 @@
       "id": "cbc1",
       "kind": "lab",
       "category": "CBC",
-      "name": "White cell count and CRP (if ordered)",
+      "name": "WBC, CRP",
       "value": "WBC 7.1 / CRP 3 mg/L",
       "unit": "-",
       "normalRange": "WBC 4.0-11.0",
@@ -137,7 +138,7 @@
       "id": "cows1",
       "kind": "lab",
       "category": "Scoring",
-      "name": "Clinical Opiate Withdrawal Scale",
+      "name": "COWS (Clinical Opiate Withdrawal Scale)",
       "value": "3",
       "unit": "points",
       "normalRange": "<5 no withdrawal",
@@ -179,13 +180,13 @@
           ],
           "label": "ประเมิน red flag ให้ดีก่อนตัดสินเรื่องยา",
           "actions": [
-            "Full neurological examination of the lower limbs",
-            "Perianal sensation and anal tone",
-            "Ask about urinary retention and saddle anaesthesia",
-            "Screen for fever, weight loss, cancer history, injecting drug use, trauma"
+            "ตรวจระบบประสาทขาทั้งสองข้างให้ครบ",
+            "ความรู้สึกรอบทวารและ anal tone",
+            "ถามเรื่องปัสสาวะคั่งและชาบริเวณ saddle",
+            "Screen ไข้ น้ำหนักลด ประวัติมะเร็ง ใช้ยาฉีด และอุบัติเหตุ"
           ],
           "doseMap": {
-            "Full neurological examination of the lower limbs": "การคิดว่าคนที่มาบ่อยไม่ได้เป็นอะไร คือวิธีที่ cauda equina กับ spinal abscess ถูกพลาด ตรวจเขาเหมือนไม่เคยเห็นแฟ้มของเขามาก่อน"
+            "ตรวจระบบประสาทขาทั้งสองข้างให้ครบ": "การคิดว่าคนที่มาบ่อยไม่ได้เป็นอะไร คือวิธีที่ cauda equina กับ spinal abscess ถูกพลาด ตรวจเขาเหมือนไม่เคยเห็นแฟ้มของเขามาก่อน"
           }
         }
       },
@@ -197,6 +198,7 @@
           "y": 200
         },
         "data": {
+          "choice": "สรุปว่าไม่มี red flag แล้วคุยเรื่องยาตรงๆ",
           "label": "ไม่มีภาวะฉุกเฉิน",
           "outcomeType": "improved",
           "narrative": "ตรวจระบบประสาทปกติ ไม่มี red flag V/S ปกติ UA negative ไม่มีอะไรฉุกเฉิน มีปัญหาปวดเรื้อรังกับ opioid use disorder และทั้งสองไม่ได้รักษาด้วยการฉีด pethidine ตอนห้าทุ่ม",
@@ -237,14 +239,14 @@
           ],
           "label": "ปฏิเสธ opioid ฉีดอย่างชัดเจน ไม่ต่อรอง",
           "actions": [
-            "No pethidine",
-            "No parenteral opioid",
-            "No opioid prescription to take away",
-            "Document the decision and the reasoning factually"
+            "ไม่ให้ pethidine",
+            "ไม่ให้ opioid ฉีด",
+            "ไม่จ่าย opioid กลับบ้าน",
+            "บันทึกการตัดสินใจและเหตุผลตามข้อเท็จจริง"
           ],
           "doseMap": {
-            "No pethidine": "Pethidine ไม่มีที่ในเวชปฏิบัติปัจจุบัน ออกฤทธิ์สั้น มี metabolite ที่เป็นพิษต่อระบบประสาทซึ่งสะสม และติดง่าย ไม่ควรให้แม้ตอนที่มี indication ให้ opioid จริง",
-            "Document the decision and the reasoning factually": "เขียนว่าตรวจเจออะไรและตัดสินใจอะไร อย่าเขียนว่ามาหายา คำตีตราติดตัวคนไข้ไปทุกครั้งที่มา และเป็นวิธีที่คนที่มี spinal abscess ถูก D/C"
+            "ไม่ให้ pethidine": "Pethidine ไม่มีที่ในเวชปฏิบัติปัจจุบัน ออกฤทธิ์สั้น มี metabolite ที่เป็นพิษต่อระบบประสาทซึ่งสะสม และติดง่าย ไม่ควรให้แม้ตอนที่มี indication ให้ opioid จริง",
+            "บันทึกการตัดสินใจและเหตุผลตามข้อเท็จจริง": "เขียนว่าตรวจเจออะไรและตัดสินใจอะไร อย่าเขียนว่ามาหายา คำตีตราติดตัวคนไข้ไปทุกครั้งที่มา และเป็นวิธีที่คนที่มี spinal abscess ถูก D/C"
           }
         }
       },
@@ -269,13 +271,13 @@
           ],
           "label": "เสนอการจัดการปวดที่ไม่ใช่ opioid อย่างจริงจัง",
           "actions": [
-            "Regular paracetamol and a topical NSAID",
-            "Encourage continued movement rather than bed rest",
-            "Explain the evidence for physiotherapy and graded activity",
-            "Test the reported allergies rather than accepting them at face value"
+            "Paracetamol ตามเวลาและ NSAID ทาภายนอก",
+            "แนะนำให้ขยับตัวต่อแทนนอนพัก",
+            "อธิบายหลักฐานเรื่องกายภาพและเพิ่มกิจกรรมทีละขั้น",
+            "ถามรายละเอียดการแพ้ยาที่แจ้ง แทนการเชื่อทันที"
           ],
           "doseMap": {
-            "Test the reported allergies rather than accepting them at face value": "ถามว่าแต่ละยาเกิดอะไรขึ้นจริงๆ การแพ้ยาที่ไม่ใช่ opioid ทุกตัวมักกลายเป็นผลข้างเคียง หรือประสบการณ์ไม่ดีครั้งเดียว และหลายตัวกลับมาใช้ได้เมื่อค่อยๆ ถาม"
+            "ถามรายละเอียดการแพ้ยาที่แจ้ง แทนการเชื่อทันที": "ถามว่าแต่ละยาเกิดอะไรขึ้นจริงๆ การแพ้ยาที่ไม่ใช่ opioid ทุกตัวมักกลายเป็นผลข้างเคียง หรือประสบการณ์ไม่ดีครั้งเดียว และหลายตัวกลับมาใช้ได้เมื่อค่อยๆ ถาม"
           }
         }
       },
@@ -300,14 +302,14 @@
           ],
           "label": "ส่งต่อรักษา opioid use disorder และคลินิกปวดเรื้อรัง",
           "actions": [
-            "Refer to a methadone maintenance clinic",
-            "Refer to a chronic pain clinic",
-            "Connect him with a harm reduction programme",
-            "Suggest a single named prescriber to consolidate his care"
+            "ส่งต่อคลินิก methadone",
+            "ส่งต่อคลินิกระงับปวดเรื้อรัง",
+            "เชื่อมเขากับโครงการ harm reduction",
+            "เสนอให้มีแพทย์สั่งยาคนเดียวที่ระบุชื่อ เพื่อรวมการดูแลไว้ที่เดียว"
           ],
           "doseMap": {
-            "Suggest a single named prescriber to consolidate his care": "การดูแลที่กระจายไปเก้าคนสั่งยาอันตราย คนสั่งยาคนเดียวพร้อมแผนเป็นลายลักษณ์อักษรลดทั้งความเสี่ยง overdose และการมา ER",
-            "Connect him with a harm reduction programme": "เขาได้ opioid จากหลายแหล่งและเสี่ยง overdose จริง โครงการ outreach มี naloxone ให้ การเสนอไม่ใช่การกล่าวหา เป็นเหตุผลเดียวกับการคาดเข็มขัดนิรภัย"
+            "เสนอให้มีแพทย์สั่งยาคนเดียวที่ระบุชื่อ เพื่อรวมการดูแลไว้ที่เดียว": "การดูแลที่กระจายไปเก้าคนสั่งยาอันตราย คนสั่งยาคนเดียวพร้อมแผนเป็นลายลักษณ์อักษรลดทั้งความเสี่ยง overdose และการมา ER",
+            "เชื่อมเขากับโครงการ harm reduction": "เขาได้ opioid จากหลายแหล่งและเสี่ยง overdose จริง โครงการ outreach มี naloxone ให้ การเสนอไม่ใช่การกล่าวหา เป็นเหตุผลเดียวกับการคาดเข็มขัดนิรภัย"
           }
         }
       },
@@ -333,6 +335,7 @@
           "y": 340
         },
         "data": {
+          "choice": "ฉีด pethidine ให้แล้ว D/C",
           "label": "เส้นทางที่ง่ายที่สุด",
           "outcomeType": "worsened",
           "narrative": "ถ้าฉีด pethidine ให้ ใช้เวลา 4 นาทีแทน 19 ทุกคนสบายใจ แล้วเขาก็กลับมาในอีก 9 วัน tolerance สูงขึ้น ขนาดเพิ่มขึ้นเรื่อยๆ 18 เดือนต่อมาเสียชีวิตจาก overdose ของยาที่ไม่มีใครดูแล ทุกการตัดสินใจตลอดทางเป็นของหมอที่เหนื่อยและเลือกทางที่เร็ว และไม่มีครั้งไหนถูกบันทึกว่าเป็นความผิดพลาด",

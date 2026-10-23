@@ -95,7 +95,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase",
+      "name": "CK",
       "value": "42000",
       "unit": "U/L",
       "normalRange": "30-200",
@@ -106,8 +106,8 @@
       "id": "ua1",
       "kind": "lab",
       "category": "Urine",
-      "name": "Urinalysis",
-      "value": "Dark tea-coloured urine, dipstick blood 4+, no red cells on microscopy",
+      "name": "UA",
+      "value": "ปัสสาวะสีชาเข้ม dipstick blood 4+ ไม่มี RBC ใน microscopy",
       "unit": "-",
       "normalRange": "Negative",
       "abnormal": true,
@@ -117,7 +117,7 @@
       "id": "k1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Potassium and creatinine",
+      "name": "K, Cr",
       "value": "K 6.1 mmol/L / creatinine 2.2 mg/dL",
       "unit": "-",
       "normalRange": "K 3.5-5.0 mmol/L",
@@ -128,7 +128,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG",
+      "name": "EKG 12 lead",
       "report": "Sinus tachycardia มี ventricular ectopic บ่อย peaked T เข้าได้กับ hyperkalemia ไม่มี ST elevation arrhythmia คือสาเหตุการเสียชีวิตทันทีในไฟดูด ต้อง monitor 24 ชม. หลังโดนไฟแรงสูงหรือหมดสติ",
       "imageUrl": "",
       "abnormal": true
@@ -137,7 +137,7 @@
       "id": "gas1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Blood gas and lactate",
+      "name": "Blood gas, lactate",
       "value": "pH 7.22 / HCO3 16 / lactate 5.8",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -148,7 +148,7 @@
       "id": "ct1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "CT head, cervical spine and torso",
+      "name": "CT head, C-spine และลำตัว",
       "report": "Right frontal contusion เล็ก ไม่มี mass effect ไม่มี C-spine injury rib 6 ถึง 8 ขวาหัก มี pulmonary contusion เล็กน้อย ไม่มี intra-abdominal injury การตกต้อง work up เป็น blunt trauma ด้วยตัวมันเอง",
       "imageUrl": "",
       "abnormal": true
@@ -187,10 +187,10 @@
           ],
           "label": "ดูแลเป็น blunt trauma ด้วย ไม่ใช่แค่ไฟดูด",
           "actions": [
-            "Primary survey with cervical spine precautions",
-            "Continuous cardiac monitoring",
-            "12-lead ECG",
-            "Full trauma imaging"
+            "Primary survey พร้อมระวัง C-spine",
+            "ติด monitor หัวใจต่อเนื่อง",
+            "EKG 12 lead",
+            "Imaging trauma ให้ครบ"
           ],
           "doseMap": {
             "Treat as blunt trauma as well as electrical injury": "การตกและกล้ามเนื้อเกร็งค้างทำให้กระดูกหักและบาดเจ็บภายในโดยไม่เกี่ยวกับกระแสไฟ ดูแค่แผลไหม้จะพลาดกระดูกสันหลังกับศีรษะ"
@@ -218,13 +218,13 @@
           ],
           "label": "ให้ fluid เต็มที่ เกินสูตรตาม burn surface area ไปมาก",
           "actions": [
-            "Large volume crystalloid",
-            "Urinary catheter with hourly output",
-            "Do not use the Parkland formula here"
+            "Crystalloid ปริมาณมาก",
+            "ใส่สายสวนปัสสาวะ วัด output ทุกชั่วโมง",
+            "ห้ามใช้สูตร Parkland ในเคสนี้"
           ],
           "doseMap": {
-            "Large volume crystalloid": "เป้า urine output 1.5 ถึง 2 mL/kg/h (ราว 115 ถึง 150 mL/h) ประมาณสองเท่าของเป้าในแผลไหม้จากความร้อน",
-            "Do not use the Parkland formula here": "สูตรตามพื้นที่ผิวประเมินความต้องการในไฟแรงสูงต่ำไปมาก เพราะมองไม่เห็นกล้ามเนื้อที่เสียหาย titrate ตาม urine output ไม่ใช่ตามการคำนวณ"
+            "Crystalloid ปริมาณมาก": "เป้า urine output 1.5 ถึง 2 mL/kg/h (ราว 115 ถึง 150 mL/h) ประมาณสองเท่าของเป้าในแผลไหม้จากความร้อน",
+            "ห้ามใช้สูตร Parkland ในเคสนี้": "สูตรตามพื้นที่ผิวประเมินความต้องการในไฟแรงสูงต่ำไปมาก เพราะมองไม่เห็นกล้ามเนื้อที่เสียหาย titrate ตาม urine output ไม่ใช่ตามการคำนวณ"
           }
         }
       },
@@ -249,14 +249,14 @@
           ],
           "label": "รักษา hyperkalemia และ monitor arrhythmia",
           "actions": [
-            "Calcium gluconate for ECG changes",
-            "Insulin and dextrose",
-            "Continuous cardiac monitoring for at least 24 hours",
-            "Repeat potassium every 2 hours"
+            "Calcium gluconate ถ้า EKG เปลี่ยน",
+            "Insulin กับ dextrose",
+            "Monitor หัวใจต่อเนื่องอย่างน้อย 24 ชม.",
+            "เจาะ K ซ้ำทุก 2 ชม."
           ],
           "doseMap": {
-            "Calcium gluconate for ECG changes": "10% 10 mL IV ใน 3 นาที ซ้ำได้ตามต้องการ",
-            "Continuous cardiac monitoring for at least 24 hours": "มี indication หลังโดนไฟแรงสูง หมดสติ หรือ EKG แรกผิดปกติ เขามีครบทั้งสาม"
+            "Calcium gluconate ถ้า EKG เปลี่ยน": "10% 10 mL IV ใน 3 นาที ซ้ำได้ตามต้องการ",
+            "Monitor หัวใจต่อเนื่องอย่างน้อย 24 ชม.": "มี indication หลังโดนไฟแรงสูง หมดสติ หรือ EKG แรกผิดปกติ เขามีครบทั้งสาม"
           }
         }
       },
@@ -300,12 +300,12 @@
           ],
           "label": "Fasciotomy ด่วน เตรียมรับ K พุ่ง",
           "actions": [
-            "Emergency forearm fasciotomy and carpal tunnel release",
-            "Prepare for reperfusion hyperkalaemia",
-            "Orthopaedic and burns surgical involvement"
+            "Fasciotomy ปลายแขนและ carpal tunnel release ด่วน",
+            "เตรียมรับ hyperkalemia จาก reperfusion",
+            "ให้ ortho และศัลย์แผลไหม้ร่วมดูแล"
           ],
           "doseMap": {
-            "Prepare for reperfusion hyperkalaemia": "การเปิด compartment ที่กล้ามเนื้อตายจะชะ K และ myoglobin เข้ากระแสเลือด เตรียม calcium, insulin, dextrose และ defibrillator ไว้ก่อนลงมีด"
+            "เตรียมรับ hyperkalemia จาก reperfusion": "การเปิด compartment ที่กล้ามเนื้อตายจะชะ K และ myoglobin เข้ากระแสเลือด เตรียม calcium, insulin, dextrose และ defibrillator ไว้ก่อนลงมีด"
           }
         }
       },
@@ -343,14 +343,14 @@
           ],
           "label": "ส่งต่อศูนย์แผลไหม้และติดตามต่อ",
           "actions": [
-            "Transfer to a burns centre",
-            "Serial debridement of necrotic muscle",
-            "Renal support if myoglobinuria persists",
-            "Ophthalmology review for delayed cataract",
-            "Neurology follow-up for delayed neuropathy"
+            "ส่งต่อศูนย์แผลไหม้",
+            "Debride กล้ามเนื้อตายเป็นระยะ",
+            "Renal support ถ้า myoglobinuria ยังอยู่",
+            "ให้จักษุแพทย์ดูต้อกระจกที่เกิดช้า",
+            "นัด neuro ติดตาม neuropathy ที่เกิดช้า"
           ],
           "doseMap": {
-            "Ophthalmology review for delayed cataract": "ผู้รอดจากไฟแรงสูงส่วนหนึ่งเกิดต้อกระจก บางครั้งหลายเดือนต่อมา ต้องบันทึก baseline ไว้ตอนนี้"
+            "ให้จักษุแพทย์ดูต้อกระจกที่เกิดช้า": "ผู้รอดจากไฟแรงสูงส่วนหนึ่งเกิดต้อกระจก บางครั้งหลายเดือนต่อมา ต้องบันทึก baseline ไว้ตอนนี้"
           }
         }
       },

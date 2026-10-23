@@ -45,10 +45,19 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
 
   // Scoring: wrong choices made this case, and which wrong options were already tried at the current step
   const [mistakes, setMistakes] = useState(0);
+  // Unneeded tests count against the grade but do not make the patient sicker
+  const [testSlips, setTestSlips] = useState(0);
+  const slipTotal = mistakes + testSlips;
   const [supervised, setSupervised] = useState(false);
   const isAboveRank = (rank: string) => (lifetimeXp || 0) < (RANK_THRESHOLDS[rank] ?? 0);
   const [triedWrong, setTriedWrong] = useState<Record<string, string[]>>({});
   const [feedback, setFeedback] = useState<{ kind: 'good' | 'bad'; title: string; body?: string } | null>(null);
+  // Steps taken, with the slip count at each, so vitals carry forward and the debrief can replay the case
+  const [path, setPath] = useState<{ id: string; mistakes: number }[]>([]);
+  const [slips, setSlips] = useState<{ text: string; why?: string }[]>([]);
+  // Tests are ordered, not handed out. Results on file (brought by the patient) need no order.
+  const [ordered, setOrdered] = useState<string[]>([]);
+  const [labNote, setLabNote] = useState<{ title: string; body?: string } | null>(null);
 
   const addFloatingText = (text: string, type: 'good' | 'bad', x: number, y: number) => {
     const id = textIdCounter.current++;
@@ -62,6 +71,8 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     let bp = "120/80";
     let hr = 80;
     let o2 = "98%";
+    let rr: number = caseData?.vitals?.rr?.value ?? 16;
+    let temp: number = caseData?.vitals?.temp?.value ?? 37;
 
     // Parse base vitals
     if (rawVitals?.sbp?.value) {
@@ -90,9 +101,11 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       if (overrideVitals.hr !== undefined) hr = overrideVitals.hr;
       if (overrideVitals.spo2 !== undefined) o2 = `${overrideVitals.spo2}%`;
       else if (overrideVitals.o2 !== undefined) o2 = overrideVitals.o2;
+      if (overrideVitals.rr !== undefined) rr = overrideVitals.rr;
+      if (overrideVitals.temp !== undefined) temp = overrideVitals.temp;
     }
 
-    return { bp, hr, o2 };
+    return { bp, hr, o2, rr, temp };
   };
 
   // Convert managementGraph nodes to unified map
@@ -102,6 +115,8 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       caseData.managementGraph.nodes.forEach((n: any) => {
         nodesMap[n.id] = {
           vitals: normalizeVitals(caseData.vitals, n.data?.vitalChanges),
+          // Steps without their own vitals keep whatever the monitor showed last
+          ownVitals: Boolean(n.data?.vitalChanges && Object.keys(n.data.vitalChanges).length),
           narrative: n.data?.narrative || n.data?.label || '',
           label: n.data?.label || '',
           distractors: Array.isArray(n.data?.distractors) ? n.data.distractors : [],
@@ -133,7 +148,8 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
           type: data.type || "intervention",
           outcomeType: data.outcomeType || data.data?.outcomeType,
           ethicalValue: data.data?.ethicalValue,
-          vitals: normalizeVitals(data.vitals)
+          vitals: normalizeVitals(data.vitals),
+          ownVitals: Boolean(data.vitals)
         };
       });
     }
@@ -171,6 +187,12 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       </div>
     );
   }
+
+  /** `slipped` counts a mistake made on the way in, so the new step's own vitals already include it */
+  const goTo = (id: string, slipped = 0) => {
+    setCurrentNodeId(id);
+    setPath((prev) => [...prev, { id, mistakes: mistakes + slipped }]);
+  };
 
   type Choice = {
     key: string;
@@ -210,15 +232,20 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
         choices.push({ key, text: d.label, kind: 'wrong', requiredRank: o.requiredRank || 'MS5', feedback: d.feedback });
       });
     }
-    if (isDecision) choices.sort((x, y) => seededOrder(nodeId + x.key) - seededOrder(nodeId + y.key));
+    // Shuffle every step: the older branching cases list the right answer first
+    choices.sort((x, y) => seededOrder(nodeId + x.key) - seededOrder(nodeId + y.key));
     return { choices, isDecision };
   };
+
+  /** A wrong turn in the older branching cases, or a counterfactual ending ("if you had given the pethidine...") */
+  const offPath = (node: any) => Boolean(node?.slip || node?.outcomeType === 'worsened');
 
   const handleAction = async (choice: Choice) => {
     const { isDecision } = buildChoices(effectiveNodeId, currentNode);
 
     if (choice.kind === 'wrong') {
       setMistakes(m => m + 1);
+      setSlips(prev => [...prev, { text: choice.text, why: choice.feedback }]);
       setTriedWrong(prev => ({ ...prev, [effectiveNodeId]: [...(prev[effectiveNodeId] || []), choice.key] }));
       deductEnergy(5);
       setIsShaking(true);
@@ -236,6 +263,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     const targetNodeId = choice.targetNode!;
     const nextNode = nodesMap[targetNodeId];
     if (!nextNode) return;
+    let slipped = 0;
 
     if (isDecision) {
       const firstTry = !(triedWrong[effectiveNodeId]?.length);
@@ -250,6 +278,19 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       setFeedback({ kind: 'good', title: choice.label || choice.text, body: orders.length ? orders.map((o) => `• ${o}`).join('\n') : undefined });
     } else {
       setFeedback(null);
+      // Legacy branching cases: a turn off the correct path is a slip, explained in the debrief.
+      // When it ends the case, the debrief also names the move that was right.
+      if (offPath(nextNode)) {
+        slipped = 1;
+        setMistakes((m) => m + 1);
+        const right = (currentNode.options || []).find((o: any) => !offPath(nodesMap[o.targetNode]));
+        const ends = !nextNode.options?.length;
+        setSlips((prev) => [...prev, {
+          text: choice.text,
+          // An ending already shows its narrative on screen, so the debrief gives the right move instead
+          why: ends ? (right ? `ทางที่ถูก: ${right.text}` : '') : nextNode.narrative,
+        }]);
+      }
       // Legacy branching cases: judge the choice by whether blood pressure improves
       const currentSystolic = parseInt(currentNode.vitals.bp.split('/')[0]);
       const nextSystolic = parseInt(nextNode.vitals.bp.split('/')[0]);
@@ -275,18 +316,52 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       }
     }
 
-    const procedureName = choice.label || choice.text;
-    if (procedureName.includes("IV") || procedureName.includes("CPR") || procedureName.includes("Push")) {
+    // Compressions are the one step where the player's own hands matter: rate is scored
+    const said = `${choice.text} ${choice.label ?? ''}`;
+    if (!nextNode.slip && /CPR|กดหน้าอก/i.test(said) && !/ไม่กดหน้าอก/.test(said)) {
        setActiveMinigame({ name: choice.text, targetNodeId });
     } else {
-       setCurrentNodeId(targetNodeId);
+       goTo(targetNodeId, slipped);
     }
+  };
+
+  const investigations: any[] = Array.isArray(caseData.investigations) ? caseData.investigations : [];
+  const orderTest = (inv: any) => {
+    if (ordered.includes(inv.id) || inv.onFile) return;
+    audio.playClick();
+    setOrdered((prev) => [...prev, inv.id]);
+    if (inv.indicated === false) {
+      // Ordering what the patient does not need is a slip: it costs time, money and sometimes harm
+      setTestSlips((m) => m + 1);
+      setSlips((prev) => [...prev, { text: `สั่ง ${inv.name}`, why: inv.report }]);
+      deductEnergy(3);
+      setLabNote({ title: `${inv.name} ไม่มี indication`, body: inv.report });
+    } else {
+      setLabNote(null);
+    }
+  };
+
+  /** H or L against the reference range, the way a lab system prints it. Non-numeric results show * when abnormal. */
+  const labFlag = (inv: any): string => {
+    const raw = String(inv.value ?? '').trim();
+    const range = String(inv.normalRange ?? '').trim();
+    const startsNumeric = /^[<>]?\s*-?\d/.test(raw);
+    const v = parseFloat(raw.replace(/^[<>]\s*/, ''));
+    if (startsNumeric && !isNaN(v)) {
+      const between = range.match(/^(-?[\d.]+)\s*[-–]\s*(-?[\d.]+)/);
+      if (between) return v < parseFloat(between[1]) ? 'L' : v > parseFloat(between[2]) ? 'H' : '';
+      const below = range.match(/^<\s*([\d.]+)/);
+      if (below) return v >= parseFloat(below[1]) ? 'H' : '';
+      const above = range.match(/^>\s*([\d.]+)/);
+      if (above) return v <= parseFloat(above[1]) ? 'L' : '';
+    }
+    return inv.abnormal ? '*' : '';
   };
 
   const isNodeSuccessful = (nodeId: string, node: any) => {
     if (!node) return false;
     if (node.outcomeType === 'improved' || node.outcomeType === 'resolved' || node.outcomeType === 'success') return true;
-    if (node.outcomeType === 'critical' || node.outcomeType === 'deteriorated' || node.outcomeType === 'fatal') return false;
+    if (node.outcomeType === 'critical' || node.outcomeType === 'deteriorated' || node.outcomeType === 'fatal' || node.outcomeType === 'worsened') return false;
     
     const lowerId = (nodeId || "").toLowerCase();
     if (lowerId.startsWith('correct') || lowerId.startsWith('out_correct') || lowerId === 'out1' || lowerId.includes('resolved') || lowerId.includes('success')) {
@@ -308,8 +383,8 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   type Grade = 'clean' | 'minor' | 'poor' | 'critical';
   const gradeOutcome = (reachedGoodEnding: boolean): Grade => {
     if (!reachedGoodEnding) return 'critical';
-    if (mistakes === 0) return 'clean';
-    if (mistakes === 1) return 'minor';
+    if (slipTotal === 0) return 'clean';
+    if (slipTotal === 1) return 'minor';
     return 'poor';
   };
   const GRADE_REWARDS: Record<Grade, { xp: number; cash: number }> = {
@@ -386,6 +461,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     }
     // Remember them. A good outcome brings a letter the next morning.
     useERStore.getState().recordPatient(caseKey, grade !== 'critical');
+    useERStore.getState().logShiftPatient({ caseId: caseKey, grade, mistakes: slipTotal });
     // A finished patient tires you out a little. Tuned so a shift fits six to eight patients.
     deductEnergy(12);
     if (currentInstanceId) {
@@ -396,16 +472,27 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
 
   if (!currentNode) return null;
 
-  // Each wrong step visibly worsens the patient
+  // The monitor shows the last vitals a step set, so a patient who improved stays improved.
+  // Slips since then visibly worsen the patient until treatment changes the picture again.
   const shownVitals = (() => {
-    const v = currentNode.vitals || { bp: "120/80", hr: 80, o2: "98%" };
-    if (mistakes === 0 || String(v.bp).includes('0/0')) return v;
+    let anchor = { v: nodesMap[startNodeId]?.vitals || currentNode.vitals, at: 0 };
+    for (let i = path.length - 1; i >= 0; i--) {
+      const n = nodesMap[path[i].id];
+      if (n?.ownVitals) { anchor = { v: n.vitals, at: path[i].mistakes }; break; }
+    }
+    const v = anchor.v || { bp: "120/80", hr: 80, o2: "98%", rr: 16, temp: 37 };
+    const pending = mistakes - anchor.at;
+    // A well patient (every baseline vital normal) does not crash because of a poor decision
+    const sickAtBaseline = Object.values(caseData.vitals || {}).some((x: any) => x?.abnormal);
+    if (pending <= 0 || !sickAtBaseline || String(v.bp).includes('0/0')) return v;
     const [sys, dia] = String(v.bp).split('/').map((x: string) => parseInt(x));
     const o2 = parseInt(String(v.o2));
     return {
-      bp: `${Math.max(50, sys - 6 * mistakes)}/${Math.max(30, (dia || 80) - 4 * mistakes)}`,
-      hr: (typeof v.hr === 'number' ? v.hr : 80) + 8 * mistakes,
-      o2: isNaN(o2) ? v.o2 : `${Math.max(70, o2 - mistakes)}%`,
+      ...v,
+      bp: `${Math.max(50, sys - 6 * pending)}/${Math.max(30, (dia || 80) - 4 * pending)}`,
+      hr: (typeof v.hr === 'number' ? v.hr : 80) + 8 * pending,
+      o2: isNaN(o2) ? v.o2 : `${Math.max(70, o2 - pending)}%`,
+      rr: (v.rr ?? 16) + 2 * pending,
     };
   })();
   const shownSystolic = parseInt(String(shownVitals.bp).split('/')[0]);
@@ -436,15 +523,20 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       {activeMinigame && (
         <MinigameOverlay
           interventionName={activeMinigame.name}
-          onComplete={async (success) => {
+          onComplete={async (success, rate) => {
             setActiveMinigame(null);
             if (success) {
               await Haptics.impact({ style: ImpactStyle.Medium });
-              setCurrentNodeId(activeMinigame.targetNodeId);
+              goTo(activeMinigame.targetNodeId);
             } else {
               await Haptics.vibrate();
-              setFeedback({ kind: 'bad', title: 'จังหวะพลาด', body: 'เสียพลังงาน 10 ลองใหม่อีกที' });
-              deductEnergy(10);
+              const why = rate > 120
+                ? `เฉลี่ย ${rate} ครั้ง/นาที เร็วเกินไป หน้าอกคืนตัวไม่ทัน เลือดไหลกลับเข้าหัวใจไม่พอ`
+                : `เฉลี่ย ${rate} ครั้ง/นาที ช้าเกินไป coronary perfusion pressure ไม่ถึง`;
+              setFeedback({ kind: 'bad', title: 'จังหวะ CPR ไม่ได้ 100 ถึง 120 ครั้ง/นาที', body: `${why} ลองใหม่อีกครั้ง` });
+              setMistakes((m) => m + 1);
+              setSlips((prev) => [...prev, { text: `กดหน้าอก ${rate} ครั้ง/นาที`, why }]);
+              deductEnergy(5);
             }
           }}
         />
@@ -472,9 +564,14 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
             <PatientPortrait seed={caseKey} sex={caseData.sex} ageGroup={caseData.patientAppearance?.ageGroup} skinTone={caseData.patientAppearance?.skinTone} age={parseFloat(caseData.age)} className="w-full h-full" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[20px] leading-none truncate" data-testid="patient-name">
-              {patient ? `${patient.name.th} ${patient.age.th}` : caseData.title}
-            </p>
+            <div className="flex items-center gap-2">
+              <p className="text-[20px] leading-none truncate" data-testid="patient-name">
+                {patient ? `${patient.name.th} ${patient.age.th}` : caseData.title}
+              </p>
+              {slipTotal > 0 && (
+                <span className="shrink-0 cozy-tag !bg-[#f6c3c6] px-1.5 py-0.5 text-[13px] leading-none" data-testid="slip-count">{`พลาด ${slipTotal}`}</span>
+              )}
+            </div>
             {patient ? (
               <div className="relative mt-1.5 bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[6px] px-2 py-1 text-[15px] leading-snug text-[#3a2a2f]">
                 <span className="absolute -left-[7px] top-2 w-0 h-0 border-y-[5px] border-y-transparent border-r-[6px] border-r-[#e7d3a8]" />
@@ -493,9 +590,9 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
             {[
               { k: 'HR', v: shownVitals.hr, bad: shownVitals.hr > 110 || shownVitals.hr < 40 },
               { k: 'BP', v: shownVitals.bp, bad: String(shownVitals.bp).includes('0/0') || shownSystolic < 90 },
-              { k: 'RR', v: caseData.vitals?.rr?.value || 16, bad: (caseData.vitals?.rr?.value || 16) > 24 },
+              { k: 'RR', v: shownVitals.rr ?? 16, bad: (shownVitals.rr ?? 16) > 24 || (shownVitals.rr ?? 16) < 10 },
               { k: 'SpO2', v: shownVitals.o2, bad: parseInt(String(shownVitals.o2)) < 92 },
-              { k: 'T', v: caseData.vitals?.temp?.value || 37.0, bad: (caseData.vitals?.temp?.value || 37) >= 38.5 },
+              { k: 'T', v: shownVitals.temp ?? 37.0, bad: (shownVitals.temp ?? 37) >= 38.5 || (shownVitals.temp ?? 37) < 35 },
             ].map((x) => (
               <div key={x.k} className="flex flex-col items-center min-w-0">
                 <span className="text-[#7fc8d8] text-[12px] leading-none">{x.k}</span>
@@ -529,8 +626,8 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
             {activeTab === 'exam' && (
               <div className="space-y-2">
                 {caseData.exam ? caseData.exam.map((e: any) => (
-                  <div key={e.id} className={`p-2 rounded-[4px] border-2 ${e.abnormal ? 'bg-[#fbe1dc] border-[#d95763]' : 'bg-[#fff6e3] border-[#e7d3a8]'}`}>
-                    <h4 className={`text-[15px] leading-none mb-1 ${e.abnormal ? 'text-[#a93c4b]' : 'text-[#3f8a48]'}`}>{e.system}</h4>
+                  <div key={e.id} className="p-2 rounded-[4px] border-2 bg-[#fff6e3] border-[#e7d3a8]">
+                    <h4 className="text-[15px] leading-none mb-1 text-[#86522e]">{e.system}</h4>
                     <p className="text-[17px] leading-snug">{e.finding}</p>
                   </div>
                 )) : <p>{'ยังไม่ได้ตรวจร่างกาย'}</p>}
@@ -538,13 +635,44 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
             )}
 
             {activeTab === 'labs' && (
-              <div className="space-y-2">
-                {caseData.investigations ? caseData.investigations.map((lab: any) => (
-                  <div key={lab.id} className={`p-2 rounded-[4px] border-2 ${lab.abnormal ? 'bg-[#fdf0c8] border-[#e8b84f]' : 'bg-[#fff6e3] border-[#e7d3a8]'}`}>
-                    <h4 className={`text-[15px] leading-none mb-1 ${lab.abnormal ? 'text-[#9a6a10]' : 'text-[#3f6f80]'}`}>{lab.name}</h4>
-                    <p className="text-[17px] leading-snug">{lab.report || `${lab.value} ${lab.unit}`}</p>
+              <div className="space-y-2" data-testid="labs-tab">
+                <p className="text-[15px] leading-snug text-[#86522e]">แตะเพื่อสั่งตรวจ สั่งเท่าที่จะเปลี่ยนการรักษา ตรวจที่ไม่มี indication นับเป็นพลาด</p>
+                {labNote && (
+                  <div className="p-2 rounded-[4px] border-2 bg-[#fbe1dc] border-[#d95763] text-[15px] leading-snug" data-testid="lab-note">
+                    <p className="text-[#a93c4b]">✗ {labNote.title}</p>
+                    {labNote.body && <p className="mt-0.5">{labNote.body}</p>}
                   </div>
-                )) : <p>{'ผลแล็บยังไม่ออก'}</p>}
+                )}
+                {investigations.length ? investigations.map((inv: any) => {
+                  const shown = inv.onFile || ordered.includes(inv.id);
+                  if (!shown) {
+                    return (
+                      <button key={inv.id} onClick={() => orderTest(inv)} className="cozy-btn w-full py-1.5 px-2.5 text-left flex items-center justify-between gap-2" data-testid={`order-${inv.id}`}>
+                        <span className="text-[16px] leading-tight">{inv.name}</span>
+                        <span className="shrink-0 text-[13px] leading-none text-[#86522e]">สั่ง</span>
+                      </button>
+                    );
+                  }
+                  const hasValue = inv.value !== undefined && inv.value !== '';
+                  const flag = hasValue ? labFlag(inv) : '';
+                  return (
+                    <div key={inv.id} className="p-2 rounded-[4px] border-2 bg-[#fff6e3] border-[#e7d3a8]" data-testid={`result-${inv.id}`}>
+                      <div className="flex items-center justify-between gap-2">
+                        <h4 className="text-[15px] leading-tight text-[#3f6f80]">{inv.name}</h4>
+                        {inv.onFile && <span className="text-[12px] leading-none text-[#86522e]">ผลเดิม</span>}
+                      </div>
+                      {hasValue ? (
+                        <p className="text-[18px] leading-tight mt-1 tabular-nums">
+                          {inv.value} <span className="text-[14px] text-[#5b4148]">{inv.unit !== '-' ? inv.unit : ''}</span>
+                          {flag && <span className="ml-1.5 text-[15px] text-[#a93c4b]">{flag}</span>}
+                          {inv.normalRange && <span className="block text-[13px] leading-none mt-1 text-[#86522e]">ค่าปกติ {inv.normalRange}</span>}
+                        </p>
+                      ) : (
+                        <p className="text-[16px] leading-snug mt-1">{inv.report}</p>
+                      )}
+                    </div>
+                  );
+                }) : <p>{'ไม่มีอะไรให้สั่งตรวจในเคสนี้'}</p>}
               </div>
             )}
 
@@ -559,14 +687,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                   </div>
                 )}
 
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <p className="text-[20px] leading-tight">{promptText}</p>
-                  {mistakes > 0 && (
-                    <span className="shrink-0 cozy-tag !bg-[#f6c3c6] px-1.5 py-0.5 text-[14px] leading-none">
-                      {`พลาด ${mistakes}`}
-                    </span>
-                  )}
-                </div>
+                <p className="text-[20px] leading-tight mb-2">{promptText}</p>
 
                 <div className="flex flex-col gap-2 mt-auto">
                   {choices.length > 0 ? (
@@ -607,8 +728,49 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                     };
                     const good = grade === 'clean' || grade === 'minor';
                     const coins = `${reward.cash} เหรียญ`;
+                    // Debrief: the steps that mattered, what went wrong and why, and how to read the results
+                    const takeaways: string[] = path
+                      .map((p) => nodesMap[p.id])
+                      .filter((n: any) => n && (n.type === 'required' || n.type === 'ethicalChoice') && n.label)
+                      .map((n: any) => n.label);
+                    if (!takeaways.length) {
+                      // Older branching cases teach through the narrative of the right turns
+                      path.filter((p) => p.id.startsWith('correct')).forEach((p) => {
+                        const n = nodesMap[p.id];
+                        if (n?.narrative) takeaways.push(n.narrative);
+                      });
+                    }
+                    const readings = investigations.filter((inv: any) => inv.abnormal && inv.indicated !== false && inv.report);
                     return (
                       <>
+                        <div className="rounded-[4px] border-2 border-[#e7d3a8] bg-[#fffaf0] px-2.5 py-2 text-[15px] leading-snug flex flex-col gap-2" data-testid="debrief">
+                          {takeaways.length > 0 && (
+                            <div>
+                              <p className="text-[16px] text-[#3f8a48] mb-0.5">ประเด็นสำคัญของเคสนี้</p>
+                              <ul className="list-disc pl-4 space-y-0.5">{takeaways.map((t, i) => <li key={i}>{t}</li>)}</ul>
+                            </div>
+                          )}
+                          {slips.length > 0 && (
+                            <div>
+                              <p className="text-[16px] text-[#a93c4b] mb-0.5">ที่พลาดไป</p>
+                              <ul className="list-disc pl-4 space-y-1">{slips.map((sl, i) => (
+                                <li key={i}><span className="text-[#a93c4b]">{sl.text}</span>{sl.why ? <span className="block whitespace-pre-line text-[#5b4148]">{sl.why}</span> : null}</li>
+                              ))}</ul>
+                            </div>
+                          )}
+                          {readings.length > 0 && (
+                            <div>
+                              <p className="text-[16px] text-[#3f6f80] mb-0.5">อ่านผลตรวจ</p>
+                              <ul className="list-disc pl-4 space-y-1">{readings.map((inv: any) => (
+                                <li key={inv.id}>
+                                  <span className="text-[#3f6f80]">{inv.name}{inv.value ? ` ${inv.value} ${inv.unit !== '-' ? inv.unit : ''}` : ''}</span>
+                                  {!ordered.includes(inv.id) && !inv.onFile && <span className="text-[#86522e]"> (ไม่ได้สั่ง)</span>}
+                                  <span className="block text-[#5b4148]">{inv.report}</span>
+                                </li>
+                              ))}</ul>
+                            </div>
+                          )}
+                        </div>
                         {patient && (
                           <div className="mb-1 rounded-[4px] border-2 border-[#e7d3a8] bg-[#fff6e3] px-2.5 py-2 text-center" data-testid="diagnosis">
                             <p className="text-[19px] leading-tight"><span className="text-[#86522e]">Dx </span>{patient.dx.th}</p>

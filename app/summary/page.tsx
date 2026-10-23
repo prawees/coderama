@@ -12,9 +12,17 @@ import { music } from "@/lib/music";
 import { motion } from "framer-motion";
 import { NPCS } from "@/lib/npcs";
 import { phaseForDay, Phase } from "@/lib/world/maps";
+import { patientFor } from "@/lib/patients";
 
 /** Whoever is looking out for you at this point in the story signs off the day */
 const MENTOR: Record<Phase, string> = { rama1: "bob", korat: "ek", lovely: "kit", rama2: "pim" };
+
+const GRADE_TH: Record<string, { text: string; good: boolean }> = {
+  clean: { text: "ถูกทุกขั้น", good: true },
+  minor: { text: "พลาด 1", good: true },
+  poor: { text: "รอด แต่ดูแลได้ดีกว่านี้", good: false },
+  critical: { text: "อาการแย่ลง", good: false },
+};
 
 const SIGNOFF = {
   none: { en: "A quiet day, or a hiding day? Tomorrow, find me before lunch.", th: "วันนี้ไม่เห็นรับเคสเลยนะ พรุ่งนี้มาหาพี่ก่อนเที่ยง เดี๋ยวพาดูเอง" },
@@ -95,6 +103,24 @@ export default function SummaryPage() {
             ))}
           </div>
 
+          {(shiftStats.patients ?? []).length > 0 && (
+            <div className="mt-3 max-h-40 overflow-y-auto flex flex-col gap-1" data-testid="summary-patients">
+              <p className="text-[15px] leading-none text-[#86522e]">คนไข้วันนี้</p>
+              {(shiftStats.patients ?? []).map((sp, i) => {
+                const who = patientFor(sp.caseId);
+                const g = GRADE_TH[sp.grade] ?? GRADE_TH.poor;
+                return (
+                  <div key={i} className="flex items-baseline justify-between gap-2 text-[15px] leading-snug border-b border-dashed border-[#e7d3a8] last:border-0 py-0.5">
+                    <span className="min-w-0">
+                      <span>{who?.name.th ?? sp.caseId}</span>
+                      <span className="block text-[13px] text-[#5b4148]">{who?.dx.th}</span>
+                    </span>
+                    <span className={`shrink-0 text-[13px] ${g.good ? "text-[#3f8a48]" : "text-[#a93c4b]"}`}>{g.text}</span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
           {showNote && mentor && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-4 flex gap-2.5 items-start bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] p-2">
               <div className="w-12 h-12 shrink-0 rounded-[3px] overflow-hidden border-2 border-[#3a2a2f]">

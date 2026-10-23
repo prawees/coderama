@@ -96,7 +96,7 @@
       "id": "poc1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Capillary glucose",
+      "name": "DTX",
       "value": "62",
       "unit": "mg/dL",
       "normalRange": "70-140",
@@ -107,7 +107,7 @@
       "id": "temp1",
       "kind": "lab",
       "category": "POCT",
-      "name": "Rectal core temperature",
+      "name": "อุณหภูมิทางทวาร",
       "value": "40.1",
       "unit": "C",
       "normalRange": "36.5-37.5",
@@ -118,7 +118,7 @@
       "id": "gas1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Venous blood gas and lactate",
+      "name": "VBG, lactate",
       "value": "pH 6.98 / pCO2 52 / HCO3 12 / lactate 15.8",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -129,7 +129,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase",
+      "name": "CK",
       "value": "9800",
       "unit": "U/L",
       "normalRange": "30-200",
@@ -140,7 +140,7 @@
       "id": "k1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Potassium and creatinine",
+      "name": "K, Cr",
       "value": "K 6.4 mmol/L / creatinine 2.1 mg/dL",
       "unit": "-",
       "normalRange": "K 3.5-5.0 mmol/L",
@@ -151,7 +151,7 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "12-Lead ECG (once sedated)",
+      "name": "EKG 12 lead (หลังให้ยานอนหลับ)",
       "report": "Sinus tachycardia 152/min มี peaked T และ QRS 118 ms จาก hyperkalemia และ acidosis ไม่มี ST elevation, QTc 470 ms",
       "imageUrl": "",
       "abnormal": true
@@ -160,7 +160,7 @@
       "id": "ct1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "CT brain (once sedated and stable)",
+      "name": "CT brain (หลังให้ยาและ stable)",
       "report": "ไม่มีเลือดออกในสมอง ไม่มี contusion ไม่มีกะโหลกร้าวแม้มีแผลถลอกที่หน้า ปกติ ทำเพราะตัดประวัติศีรษะกระแทกระหว่างควบคุมตัวทาง clinical ไม่ได้",
       "imageUrl": "",
       "abnormal": false
@@ -200,13 +200,13 @@
           ],
           "label": "พลิกตัวขึ้นจากท่าคว่ำ ทันทีและก่อนอย่างอื่น",
           "actions": [
-            "Remove from prone position, turn supine or lateral",
-            "Remove pressure from the back and chest",
-            "Uncuff the hands from behind the back",
-            "Oxygen 15 L/min"
+            "เลิกให้นอนคว่ำ พลิกนอนหงายหรือตะแคง",
+            "เอาน้ำหนักที่กดหลังและอกออก",
+            "ปลดกุญแจมือที่ล็อกไว้ข้างหลัง",
+            "O2 15 L/min"
           ],
           "doseMap": {
-            "Remove from prone position, turn supine or lateral": "การกดตัวท่าคว่ำพร้อมน้ำหนักบนหลังคือกลไกการเสียชีวิตจากการควบคุมตัว ทำให้อกขยายไม่ได้ในคนที่ขาด O2 อย่างหนัก ไม่ควรปล่อยคนไข้คว่ำไว้นานกว่าเวลาที่ใช้คุมแขนขาแม้แต่วินาทีเดียว"
+            "เลิกให้นอนคว่ำ พลิกนอนหงายหรือตะแคง": "การกดตัวท่าคว่ำพร้อมน้ำหนักบนหลังคือกลไกการเสียชีวิตจากการควบคุมตัว ทำให้อกขยายไม่ได้ในคนที่ขาด O2 อย่างหนัก ไม่ควรปล่อยคนไข้คว่ำไว้นานกว่าเวลาที่ใช้คุมแขนขาแม้แต่วินาทีเดียว"
           }
         }
       },
@@ -232,13 +232,13 @@
           "label": "Sedate ด้วยยาให้เร็ว เพราะการควบคุมทางกายคือสิ่งที่กำลังฆ่าเขา",
           "actions": [
             "Ketamine IM",
-            "Or midazolam plus droperidol IM if ketamine is unavailable",
-            "Prepare airway equipment before giving it"
+            "หรือ midazolam ร่วมกับ droperidol IM ถ้าไม่มี ketamine",
+            "เตรียมอุปกรณ์ airway ก่อนให้ยา"
           ],
           "doseMap": {
             "Ketamine IM": "4 ถึง 5 mg/kg IM (ราว 350 mg) สำหรับอาละวาดรุนแรง ออกฤทธิ์ใน 3 ถึง 5 นาที รักษา airway reflex และ respiratory drive ไว้ และไม่ทำให้ BP ตก เป็นยาที่เลือกเมื่อเป้าหมายคือหยุดกล้ามเนื้อให้เร็ว",
-            "Or midazolam plus droperidol IM if ketamine is unavailable": "Midazolam 5 ถึง 10 mg IM ร่วมกับ droperidol 10 mg IM ออกฤทธิ์ช้ากว่าและกดการหายใจมากกว่า",
-            "Prepare airway equipment before giving it": "เตรียม suction, bag-valve-mask และยา intubate ไว้ข้างเตียง คนไข้ส่วนหนึ่งที่ได้ ketamine ขนาด dissociative ต้องช่วย airway และ laryngospasm เกิดไม่บ่อยแต่เกิดจริง"
+            "หรือ midazolam ร่วมกับ droperidol IM ถ้าไม่มี ketamine": "Midazolam 5 ถึง 10 mg IM ร่วมกับ droperidol 10 mg IM ออกฤทธิ์ช้ากว่าและกดการหายใจมากกว่า",
+            "เตรียมอุปกรณ์ airway ก่อนให้ยา": "เตรียม suction, bag-valve-mask และยา intubate ไว้ข้างเตียง คนไข้ส่วนหนึ่งที่ได้ ketamine ขนาด dissociative ต้องช่วย airway และ laryngospasm เกิดไม่บ่อยแต่เกิดจริง"
           }
         }
       },
@@ -263,14 +263,14 @@
           ],
           "label": "ทันทีที่ sedate ได้ ให้ดูแลเป็นภาวะฉุกเฉินทางกาย ไม่ใช่ปัญหาพฤติกรรม",
           "actions": [
-            "Capillary glucose",
-            "Rectal core temperature",
-            "Full monitoring, ECG, venous gas",
-            "Dextrose for hypoglycaemia"
+            "DTX",
+            "วัด core temperature ทางทวาร",
+            "Monitor ครบ EKG และ VBG",
+            "Dextrose แก้ hypoglycemia"
           ],
           "doseMap": {
-            "Capillary glucose": "ใช้ 90 วินาที และเป็นการวินิจฉัยจริงในคนไข้กลุ่มนี้ส่วนน้อยที่สำคัญ sedate คนไข้อาละวาดที่น้ำตาลต่ำโดยไม่แก้น้ำตาล คือวิธีที่คนเสียชีวิตในห้องตรวจ",
-            "Dextrose for hypoglycaemia": "50% glucose 50 mL IV เจาะซ้ำที่ 30 นาที"
+            "DTX": "ใช้ 90 วินาที และเป็นการวินิจฉัยจริงในคนไข้กลุ่มนี้ส่วนน้อยที่สำคัญ sedate คนไข้อาละวาดที่น้ำตาลต่ำโดยไม่แก้น้ำตาล คือวิธีที่คนเสียชีวิตในห้องตรวจ",
+            "Dextrose แก้ hypoglycemia": "50% glucose 50 mL IV เจาะซ้ำที่ 30 นาที"
           }
         }
       },
@@ -294,15 +294,15 @@
           ],
           "label": "ลดอุณหภูมิเต็มที่ และ fluid resuscitation",
           "actions": [
-            "Active cooling to below 38.5 C",
-            "Large volume crystalloid",
-            "Calcium gluconate for the hyperkalaemic ECG changes",
-            "Insulin and dextrose",
-            "Sodium bicarbonate for severe acidosis"
+            "Cooling แบบ active ให้ต่ำกว่า 38.5 C",
+            "Crystalloid ปริมาณมาก",
+            "Calcium gluconate สำหรับ EKG ที่เปลี่ยนจาก hyperkalemia",
+            "Insulin กับ dextrose",
+            "NaHCO3 สำหรับ acidosis รุนแรง"
           ],
           "doseMap": {
-            "Active cooling to below 38.5 C": "Ice pack ที่คอ รักแร้ ขาหนีบ ร่วมกับพ่นละอองน้ำและเป่าลม เหมือน heat stroke ยาลดไข้ไม่ได้ผลเพราะ set point ปกติ",
-            "Large volume crystalloid": "เริ่ม 2 ลิตร แล้วเป้า urine output 2 mL/kg/h สำหรับ rhabdomyolysis"
+            "Cooling แบบ active ให้ต่ำกว่า 38.5 C": "Ice pack ที่คอ รักแร้ ขาหนีบ ร่วมกับพ่นละอองน้ำและเป่าลม เหมือน heat stroke ยาลดไข้ไม่ได้ผลเพราะ set point ปกติ",
+            "Crystalloid ปริมาณมาก": "เริ่ม 2 ลิตร แล้วเป้า urine output 2 mL/kg/h สำหรับ rhabdomyolysis"
           }
         }
       },
@@ -363,12 +363,12 @@
           "label": "ตัดสาเหตุทางกายที่ตัดไม่ได้ตอนเขายังดิ้นอยู่",
           "actions": [
             "CT brain",
-            "Full septic screen if fever persists after cooling",
-            "Serial creatine kinase and renal function",
-            "Continuous cardiac monitoring"
+            "Septic workup ให้ครบถ้ายังมีไข้หลัง cooling",
+            "CK และ renal function เป็นระยะ",
+            "ติด monitor หัวใจต่อเนื่อง"
           ],
           "doseMap": {
-            "Full septic screen if fever persists after cooling": "อย่าโทษยากระตุ้นไปหมด meningoencephalitis มาด้วย agitated delirium ได้ และคนที่วินิจฉัยได้คือคนที่ยังถามต่อหลังจากมีคำตอบที่ชัดเจนแล้ว"
+            "Septic workup ให้ครบถ้ายังมีไข้หลัง cooling": "อย่าโทษยากระตุ้นไปหมด meningoencephalitis มาด้วย agitated delirium ได้ และคนที่วินิจฉัยได้คือคนที่ยังถามต่อหลังจากมีคำตอบที่ชัดเจนแล้ว"
           }
         }
       },

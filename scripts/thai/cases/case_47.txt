@@ -1,5 +1,5 @@
 cc: แขนขาขวาอ่อนแรงทันที พูดไม่ได้ เมื่อ 70 นาทีก่อน
-bg: Last known well 07:10 น. ตอนลูกสาวออกไปทำงาน พบตอน 07:40 น. พูดไม่ได้ ปากเบี้ยวขวา แขนขวาตก มาถึง 08:20 น. คือ 70 นาทีหลังเริ่มอาการ เป็น AF ได้ DOAC แต่หยุดเองเมื่อ 4 เดือนก่อนหลังเลือดกำเดาไหล ไม่ได้บอกใคร เป็น HT และ DM type 2 ด้วย น้ำหนักราว 62 kg ลูกสาวอยู่ด้วยและยืนยันเวลาได้แม่นยำ ซึ่งเป็นสิ่งที่มีค่าที่สุดในเคสนี้
+bg: Last known well 07:10 น. ตอนลูกสาวออกไปทำงาน พบตอน 07:40 น. พูดไม่ได้ ปากเบี้ยวขวา แขนขวาตก มาถึง 08:20 น. เป็น AF ได้ DOAC แต่หยุดเองเมื่อ 4 เดือนก่อนหลังเลือดกำเดาไหล ไม่ได้บอกใคร เป็น HT และ DM type 2 ด้วย น้ำหนักราว 62 kg ลูกสาวอยู่ด้วยและยืนยันเวลาได้แม่นยำ
 i.poc1: ปกติ hypoglycemia คือโรคเลียนแบบ stroke ที่สำคัญที่สุด ทำให้อ่อนแรงครึ่งซีกร่วมกับพูดไม่ได้ได้ และแก้ได้หมด เจาะก่อน CT ไม่ใช่หลัง
 i.ct1: ไม่มีเลือดออก มี hyperdense left MCA sign มี early ischemic change คือ insular ribbon หายไป และแยก grey-white ไม่ได้ที่ left basal ganglia ASPECTS 8 คำถามเดียวที่ scan นี้ต้องตอบก่อน thrombolysis คือมีเลือดหรือไม่
 i.cta1: Left M1 MCA occlusion collateral ดี large vessel occlusion ทำให้เป็น candidate ของ mechanical thrombectomy นอกจาก thrombolysis และการรู้เรื่องนี้เปลี่ยนว่าเธอต้องไปอยู่ที่ไหนในชั่วโมงหน้า
@@ -13,12 +13,19 @@ req1.f0: เวลาเริ่มอาการคือ last known well ซ
 req1.d1: ไม่ต้องเจาะน้ำตาล อาการชัดว่าเป็น stroke
 req1.f1: Hypoglycemia เลียนแบบ stroke ได้ เจาะน้ำตาลก่อน thrombolysis
 req1.m0: ไม่ใช่เวลาที่พบว่าอ่อนแรง แต่เป็นเวลาสุดท้ายที่เห็นว่าปกติ ตัวเลขเดียวนี้ตัดสินว่าจะได้รักษาไหม และพอลูกสาวออกไปจอดรถ อาจไม่มีใครบอกได้อีก
+req1.a0: Activate stroke fast track ตั้งแต่มาถึง
+req1.a1: DTX
+req1.a2: ให้คะแนน NIHSS
+req1.a3: หา last known well จากพยาน
 req2.l: CT ไม่ฉีดสีทันที แล้วตามด้วย CTA
 req2.d0: ทำ MRI brain ก่อนตัดสินใจ thrombolysis
 req2.f0: CT ไม่ฉีดสีเร็วกว่าและพอสำหรับตัดเลือดออก
 req2.d1: รอผลเลือดครบก่อน CT
 req2.f1: ถ้าไม่มีประวัติเลือดออก อย่าเลื่อน imaging หรือ thrombolysis เพื่อรอผลเลือด
 req2.m0: ในคนที่ไม่ได้กิน anticoagulant และไม่มีประวัติเลือดออก การรอผล coag เสียสมองไป 30 ถึง 45 นาที large vessel occlusion เสียเซลล์ประสาทราว 1.9 ล้านเซลล์ต่อนาที
+req2.a0: CT brain ไม่ฉีดสีภายใน 20 นาทีหลังมาถึง
+req2.a1: CTA ศีรษะและคอ
+req2.a2: ไม่ต้องรอผลเลือดครบถ้าไม่มีประวัติเลือดออก
 req3.l: ลด BP ให้ต่ำกว่า 185/110 ก่อน thrombolysis และไม่ต่ำกว่านั้น
 req3.c: Labetalol IV ให้ต่ำกว่า 185/110
 req3.d0: ลด BP ลงถึง 140/90 ก่อน thrombolysis
@@ -27,6 +34,9 @@ req3.d1: อม nifedipine ลด BP
 req3.f1: ทำให้ BP ตกแบบคาดเดาไม่ได้ ใช้ labetalol หรือ nicardipine IV
 req3.m0: 10 ถึง 20 mg IV ใน 1 ถึง 2 นาที ซ้ำได้ 1 ครั้งหลัง 10 นาที
 req3.m1: อย่าแก้เกิน ใน occlusion ที่ยังไม่ได้รักษา BP สูงกำลังเลี้ยง penumbra ผ่าน collateral ลดแรงจะทำให้ infarct ขยาย ถ้าไม่ใช่ candidate ของ thrombolysis permissive hypertension ถึง 220/120 คือสิ่งที่ถูก
+req3.a0: Labetalol IV
+req3.a1: หรือ nicardipine drip
+req3.a2: เป้าต่ำกว่า 185/110 ก่อน thrombolysis และต่ำกว่า 180/105 นาน 24 ชม. หลังให้
 req4.l: Thrombolysis IV ภายใน window
 req4.d0: ให้ aspirin 300 mg แทน thrombolysis
 req4.f0: ยังอยู่ใน window thrombolysis ทำให้ outcome ดีขึ้น ห้ามให้ antiplatelet 24 ชม. หลังให้
@@ -35,6 +45,9 @@ req4.f1: ทุกนาทีมีค่า door to needle ควรไม่�
 req4.m0: 0.9 mg/kg (56 mg) 10% bolus ใน 1 นาที ที่เหลือใน 60 นาที ไม่เกิน 90 mg
 req4.m1: 0.25 mg/kg bolus ครั้งเดียว non-inferior ต่อ alteplase และให้เร็วกว่ามาก สำคัญที่สุดตอนต้องส่งต่อไป thrombectomy
 req4.m2: และทำ CT ซ้ำที่ 24 ชม. ก่อนเริ่มยาตัวไหน
+req4.a0: Alteplase IV
+req4.a1: หรือ tenecteplase bolus ครั้งเดียวถ้ามี
+req4.a2: ไม่ให้ antiplatelet หรือ anticoagulant 24 ชม. หลังให้
 out1.l: Door to needle 41 นาที
 out1.n: เริ่ม thrombolysis ที่ 111 นาทีหลังเริ่มอาการ NIHSS ดีขึ้นจาก 19 เป็น 15 ระหว่างให้ยา M1 occlusion ไม่น่าจะสลายได้ด้วยยาอย่างเดียว CTA จึงสำคัญ เธอต้องได้เอา clot ออกด้วยเครื่องมือ
 ethical_1.l: คุยกับคนไข้ ไม่ใช่แค่ลูกสาว และอธิบายความเสี่ยงต่อหน้า (Empathy)
@@ -45,6 +58,9 @@ req5.f0: ส่งต่อทำ thrombectomy โดยไม่ต้องร
 req5.d1: Thrombolysis อย่างเดียวพอสำหรับ large vessel occlusion
 req5.f1: Thrombectomy เพิ่มประโยชน์มากใน large vessel occlusion
 req5.m0: Thrombectomy มี indication ได้ถึง 24 ชม. หลังเริ่มอาการในคนที่เลือกแล้วว่ามี large vessel occlusion ยิ่งเร็วยิ่งดี ยาหยดต่อระหว่างส่งตัว
+req5.a0: ส่งต่อทีม neurointervention ทันที
+req5.a1: ส่งตัวโดยไม่ต้องรอ alteplase หยดหมด
+req5.a2: คุมและ monitor BP ต่อระหว่างส่งตัว
 out2.l: Reperfusion
 out2.n: Thrombectomy ได้ TICI 2b ที่ 3 ชม. 20 นาทีหลังเริ่มอาการ ใช้สอง pass NIHSS 8 ที่ 24 ชม. CT ซ้ำเห็น infarct ที่ left basal ganglia ขนาดไม่ใหญ่ ไม่มี hemorrhagic transformation
 req6.l: Secondary prevention และคุยเรื่อง anticoagulant
@@ -54,5 +70,9 @@ req6.f0: เริ่ม anticoagulant เร็วหลัง infarct เส�
 req6.d1: ให้ดื่มน้ำทดสอบการกลืน
 req6.f1: ต้องประเมินการกลืนอย่างเป็นทางการก่อนให้อะไรทางปาก
 req6.m0: เธอหยุดยาหลังเลือดกำเดาไหลและไม่บอกใคร เพราะคิดว่าจะโดนดุ ความเงียบนั้นทำให้เกิด stroke ครั้งนี้ ทางแก้คือบอกเธอชัดๆ ว่าให้โทรมาแทนการหยุดยา และให้เบอร์ที่มีคนรับสายจริง
+req6.a0: เริ่ม anticoagulant ใหม่ตามช่วงเวลาที่เหมาะสมหลัง infarct
+req6.a1: ประเมินการกลืนก่อนให้อะไรทางปาก
+req6.a2: เริ่มฝึกพูดและกายภาพเร็ว
+req6.a3: คุยเรื่องที่ทำไมเธอหยุด anticoagulant
 out3.l: Disposition
 out3.n: mRS 2 ที่ 90 วัน เดินเองได้ นึกคำพูดลำบากเล็กน้อย เริ่ม anticoagulant ใหม่วันที่ 6 เธอเก็บบัตรนัดที่มีเบอร์ตรงของพยาบาล stroke ไว้ ซึ่งเป็นสิ่งที่น่าจะป้องกัน stroke ครั้งที่สองได้มากที่สุด

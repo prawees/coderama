@@ -106,7 +106,7 @@
       "id": "ck1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatine kinase",
+      "name": "CK",
       "value": "8600",
       "unit": "U/L",
       "normalRange": "30-200",
@@ -117,7 +117,7 @@
       "id": "abg1",
       "kind": "lab",
       "category": "ABG",
-      "name": "Arterial blood gas",
+      "name": "ABG",
       "value": "pH 7.28 / pCO2 54 / pO2 62 / lactate 4.2",
       "unit": "-",
       "normalRange": "pH 7.35-7.45",
@@ -128,7 +128,7 @@
       "id": "cbc1",
       "kind": "lab",
       "category": "CBC",
-      "name": "White cell count",
+      "name": "WBC",
       "value": "14.2",
       "unit": "x10^9/L",
       "normalRange": "4.0-11.0",
@@ -139,7 +139,7 @@
       "id": "cr1",
       "kind": "lab",
       "category": "Chemistry",
-      "name": "Creatinine and potassium",
+      "name": "Cr, K",
       "value": "Creatinine 1.7 mg/dL / K 5.2 mmol/L",
       "unit": "-",
       "normalRange": "Creatinine 0.7-1.3 mg/dL",
@@ -192,12 +192,12 @@
           ],
           "label": "ย้ายไปห้องมืด เงียบ กระตุ้นน้อยที่สุดทันที",
           "actions": [
-            "Dark quiet single room",
-            "Cluster all nursing interventions",
-            "Warn all staff that touch, light and noise trigger spasms"
+            "ห้องเดี่ยว มืด เงียบ",
+            "รวบงานพยาบาลทั้งหมดทำในรอบเดียว",
+            "เตือนทุกคนว่าการสัมผัส แสง และเสียงกระตุ้นการเกร็ง"
           ],
           "doseMap": {
-            "Dark quiet single room": "นี่คือการรักษา ไม่ใช่แค่ให้สบาย ทุกสิ่งกระตุ้นที่เลี่ยงได้คือการเกร็งที่เลี่ยงได้ และการเกร็งทำให้ hypoxia, rhabdomyolysis และกระดูกหัก"
+            "ห้องเดี่ยว มืด เงียบ": "นี่คือการรักษา ไม่ใช่แค่ให้สบาย ทุกสิ่งกระตุ้นที่เลี่ยงได้คือการเกร็งที่เลี่ยงได้ และการเกร็งทำให้ hypoxia, rhabdomyolysis และกระดูกหัก"
           }
         }
       },
@@ -222,12 +222,12 @@
           ],
           "label": "Secure airway เร็ว ก่อน laryngospasm จะบังคับให้ทำ",
           "actions": [
-            "Early elective intubation",
-            "Plan for tracheostomy",
-            "Avoid awake laryngoscopy attempts"
+            "Intubate แบบ elective เร็ว",
+            "วางแผน tracheostomy",
+            "หลีกเลี่ยงการทำ laryngoscopy ตอนตื่น"
           ],
           "doseMap": {
-            "Early elective intubation": "ทำแบบ elective และเร็ว การ intubate ฉุกเฉินตอนมี laryngospasm และ trismus แทบเป็นไปไม่ได้ คนไข้กลุ่มนี้มักต้องใช้ ventilator 2 ถึง 3 สัปดาห์ tracheostomy จึงควรวางแผนไว้ ไม่ใช่ทำแบบฉุกละหุก"
+            "Intubate แบบ elective เร็ว": "ทำแบบ elective และเร็ว การ intubate ฉุกเฉินตอนมี laryngospasm และ trismus แทบเป็นไปไม่ได้ คนไข้กลุ่มนี้มักต้องใช้ ventilator 2 ถึง 3 สัปดาห์ tracheostomy จึงควรวางแผนไว้ ไม่ใช่ทำแบบฉุกละหุก"
           }
         }
       },
@@ -253,14 +253,14 @@
           "label": "ให้ human tetanus immunoglobulin ดูแลแผล และ antibiotic",
           "actions": [
             "Human tetanus immunoglobulin IM",
-            "Surgical wound debridement after immunoglobulin",
+            "Debride แผลหลังให้ immunoglobulin",
             "Metronidazole IV",
-            "Tetanus toxoid at a different site"
+            "Tetanus toxoid คนละตำแหน่ง"
           ],
           "doseMap": {
             "Human tetanus immunoglobulin IM": "3000 ถึง 6000 unit IM ให้ก่อน debride เพื่อ neutralize toxin ที่หลุดออกมาจากการผ่าตัด immunoglobulin จับได้แค่ toxin ที่ยังไม่จับกับปลายประสาท แก้ toxin ที่จับแล้วไม่ได้",
             "Metronidazole IV": "500 mg ทุก 8 ชม. 7 ถึง 10 วัน ดีกว่า penicillin ซึ่งเป็น GABA antagonist เองและทำให้เกร็งมากขึ้นได้",
-            "Tetanus toxoid at a different site": "การเป็นโรคไม่ได้ทำให้มีภูมิ ยังต้องฉีดวัคซีน"
+            "Tetanus toxoid คนละตำแหน่ง": "การเป็นโรคไม่ได้ทำให้มีภูมิ ยังต้องฉีดวัคซีน"
           }
         }
       },
@@ -285,14 +285,14 @@
           ],
           "label": "คุมการเกร็งด้วย benzodiazepine ขนาดสูงและ magnesium",
           "actions": [
-            "Diazepam or midazolam infusion",
-            "Magnesium sulphate infusion",
-            "Neuromuscular blockade if spasms persist"
+            "Diazepam หรือ midazolam drip",
+            "MgSO4 drip",
+            "Neuromuscular blockade ถ้ายังเกร็ง"
           ],
           "doseMap": {
-            "Diazepam or midazolam infusion": "ขนาดสูงกว่าปกติมากเป็นเรื่องที่คาดได้ บ่อยครั้ง 100 ถึง 500 mg diazepam equivalent ต่อวัน titrate ให้คุมเกร็งได้",
-            "Magnesium sulphate infusion": "Loading 4 g แล้ว 2 ถึง 3 g/h เป้าระดับในเลือด 2 ถึง 4 mmol/L ลดความถี่การเกร็งและช่วย autonomic instability",
-            "Neuromuscular blockade if spasms persist": "Rocuronium drip ร่วมกับ sedation ที่พอ ห้าม paralyze คนไข้ที่รู้สึกตัวเต็มที่โดยไม่ sedate ลึก"
+            "Diazepam หรือ midazolam drip": "ขนาดสูงกว่าปกติมากเป็นเรื่องที่คาดได้ บ่อยครั้ง 100 ถึง 500 mg diazepam equivalent ต่อวัน titrate ให้คุมเกร็งได้",
+            "MgSO4 drip": "Loading 4 g แล้ว 2 ถึง 3 g/h เป้าระดับในเลือด 2 ถึง 4 mmol/L ลดความถี่การเกร็งและช่วย autonomic instability",
+            "Neuromuscular blockade ถ้ายังเกร็ง": "Rocuronium drip ร่วมกับ sedation ที่พอ ห้าม paralyze คนไข้ที่รู้สึกตัวเต็มที่โดยไม่ sedate ลึก"
           }
         }
       },
@@ -350,14 +350,14 @@
           ],
           "label": "จัดการ autonomic instability และการอยู่ ICU นาน",
           "actions": [
-            "Continue magnesium",
-            "Short acting agents for autonomic swings",
-            "Nutrition support, high caloric requirement",
-            "Thromboprophylaxis and pressure area care"
+            "ให้ Mg ต่อ",
+            "ยาออกฤทธิ์สั้นสำหรับ autonomic ที่แกว่ง",
+            "ดูแลโภชนาการ ต้องการพลังงานสูง",
+            "ป้องกัน VTE และดูแลแผลกดทับ"
           ],
           "doseMap": {
-            "Short acting agents for autonomic swings": "Esmolol สำหรับ BP พุ่ง เพราะปิดได้ในไม่กี่นาทีเมื่อ BP แกว่งลง เลี่ยง beta-blocker ออกฤทธิ์นาน ซึ่งสัมพันธ์กับการเสียชีวิตกะทันหันในบาดทะยัก",
-            "Nutrition support, high caloric requirement": "การเกร็งต่อเนื่องทำให้ใช้พลังงานเพิ่มเป็นสองเท่าได้ เริ่ม enteral feeding เร็ว"
+            "ยาออกฤทธิ์สั้นสำหรับ autonomic ที่แกว่ง": "Esmolol สำหรับ BP พุ่ง เพราะปิดได้ในไม่กี่นาทีเมื่อ BP แกว่งลง เลี่ยง beta-blocker ออกฤทธิ์นาน ซึ่งสัมพันธ์กับการเสียชีวิตกะทันหันในบาดทะยัก",
+            "ดูแลโภชนาการ ต้องการพลังงานสูง": "การเกร็งต่อเนื่องทำให้ใช้พลังงานเพิ่มเป็นสองเท่าได้ เริ่ม enteral feeding เร็ว"
           }
         }
       },

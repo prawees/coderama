@@ -43,6 +43,12 @@ export const RANK_SHORT_TH: Record<string, string> = {
   MS5: "นศพ. ปี 5", MS6: "extern", Intern: "intern", "Asst. Prof": "ผศ.", "Assoc. Prof": "รศ.", Prof: "ศ.",
 };
 
+/** Medical school as stored in the save, shown the way students say it */
+export const UNIVERSITY_TH: Record<string, string> = {
+  Rama: "รามาธิบดี", Siriraj: "ศิริราช", Chula: "จุฬาฯ", ChiangMai: "เชียงใหม่", KhonKaen: "ขอนแก่น", Other: "ที่อื่น",
+};
+export const universityTh = (u?: string) => (u ? UNIVERSITY_TH[u] ?? u : "");
+
 export const translate = (key: string, lang: 'en' | 'th'): string => {
   const dict: Record<string, { en: string, th: string }> = {
     'hub_title': { en: 'ER CENTRAL COMMAND', th: 'ศูนย์ควบคุมฉุกเฉิน' },
