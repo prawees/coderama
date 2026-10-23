@@ -26,7 +26,7 @@ Numbers are digits: HR 38, 3 วัน, 72 ปี.
 - Residents and staff call the player น้อง or น้อง{ชื่อ}. They speak short and casual: "น้องไปดูเตียง 2 หน่อย", "จัด fluid ไปก่อนเลย".
 - Patients and relatives speak plain Thai with no jargon: "หมอคะ แม่ซึมไปตั้งแต่เช้า".
 - Narration uses no pronoun where Thai allows it, otherwise คุณ.
-- Never write ผม/ฉัน with a slash. Pick the form from the player's gender, or rephrase.
+- The player says ผม if male and หนู if female, at every rank. In the player's own lines write ผม/ฉัน, ครับ/ค่ะ and ครับ/คะ; lib/voice.ts swaps in the right word when the line is shown, so no slash ever reaches the screen. Anywhere else, rephrase so no pronoun is needed.
 
 ## Tone
 
