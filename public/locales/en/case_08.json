@@ -183,6 +183,7 @@
           "y": 200
         },
         "data": {
+          "choice": "High flow oxygen, collar and monitoring",
           "distractors": [
             {
               "label": "Send him straight to CT to define the injuries",
@@ -225,6 +226,7 @@
           "y": 200
         },
         "data": {
+          "choice": "Needle decompression of the left chest now",
           "distractors": [
             {
               "label": "Portable chest X-ray first to confirm the diagnosis",

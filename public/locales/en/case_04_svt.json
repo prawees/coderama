@@ -47,7 +47,7 @@
       },
       "wrong_adenosine": {
         "vitals": { "bp": "70/40", "hr": 185, "o2": "95%" },
-        "narrative": "Adenosine is for STABLE narrow-complex tachycardia. Delaying electrical therapy in an unstable patient causes further deterioration. The patient loses consciousness.",
+        "narrative": "Adenosine can be tried in an unstable regular narrow-complex tachycardia only while cardioversion is being set up, never instead of it. Here it delayed the shock, and she loses consciousness.",
         "options": [
           { "id": "opt1", "text": "Proceed to Synchronized Cardioversion", "targetNode": "correct_cardioversion", "requiredRank": "R1" }
         ]

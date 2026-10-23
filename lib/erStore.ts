@@ -27,10 +27,12 @@ export type ShiftMode = 'off-duty' | 'on-call' | 'on-shift' | 'boss-battle';
 
 export type Era = 'MED_Y5' | 'MED_Y6' | 'INTERN' | 'RESIDENT' | 'PROFESSOR';
 
+/** Training stage by story day: year five and six at Rama, the year-six externship
+ *  at Korat, internship at Lovely, residency back at Rama, then attending. */
 export const getEra = (day: number): Era => {
   if (day <= 5) return 'MED_Y5';
-  if (day <= 10) return 'MED_Y6';
-  if (day <= 15) return 'INTERN';
+  if (day <= 15) return 'MED_Y6';
+  if (day <= 25) return 'INTERN';
   if (day <= 30) return 'RESIDENT';
   return 'PROFESSOR';
 };
@@ -59,6 +61,23 @@ export const getRankFromXp = (xp: number): Rank => {
   if (xp >= RANK_THRESHOLDS['Intern']) return 'Intern';
   if (xp >= RANK_THRESHOLDS['MS6']) return 'MS6';
   return 'MS5';
+};
+
+const RANK_ORDER: Rank[] = ['MS5', 'MS6', 'Intern', 'R1', 'R2', 'R3', 'Asst. Prof', 'Assoc. Prof', 'Prof'];
+
+/** The rank the story says you hold on a given day. Reaching a chapter promotes you to at least this. */
+export const rankFloorForDay = (day: number): Rank =>
+  day >= 31 ? 'Asst. Prof' : day >= 26 ? 'R1' : day >= 16 ? 'Intern' : day >= 6 ? 'MS6' : 'MS5';
+
+/** The highest rank XP can earn before the story moves you on. From day 31 the promotion exam takes over. */
+export const rankCeilingForDay = (day: number): Rank =>
+  day >= 31 ? 'Prof' : day >= 26 ? 'R3' : day >= 16 ? 'Intern' : day >= 6 ? 'MS6' : 'MS5';
+
+/** Lifetime XP cap for the story chapter, one point below the next rank. Infinity once the campaign is over. */
+export const chapterXpCap = (day: number): number => {
+  if (day >= 31) return Infinity;
+  const next = RANK_ORDER[RANK_ORDER.indexOf(rankCeilingForDay(day)) + 1];
+  return RANK_THRESHOLDS[next] - 1;
 };
 
 export interface ActiveCase {
@@ -329,9 +348,21 @@ export const useERStore = create<ERState>()(
         const nextThreshold = nextThresholds.length > 0 ? Math.min(...nextThresholds) : Infinity;
         
         const newLifetimeXp = state.lifetimeXp + (amount * boost);
-        
-        // Cap lifetimeXp at nextThreshold - 1 so they don't promote automatically.
-        // They must take the End of Year test to push it to the nextThreshold!
+
+        // During the campaign the story sets the pace: rank can rise within the chapter,
+        // but not past it. Spendable XP keeps accumulating for skills either way.
+        if (state.currentDay <= 30) {
+          return {
+            xp: state.xp + (amount * boost),
+            lifetimeXp: Math.max(state.lifetimeXp, Math.min(newLifetimeXp, chapterXpCap(state.currentDay))),
+            shiftStats: {
+              ...state.shiftStats,
+              xpEarned: state.shiftStats.xpEarned + (amount * boost)
+            }
+          };
+        }
+
+        // After the campaign, cap lifetimeXp at nextThreshold - 1 so promotion needs the end-of-year exam.
         if (newLifetimeXp >= nextThreshold && currentRank !== 'Prof') {
           return {
             xp: state.xp + (amount * boost),
@@ -518,7 +549,12 @@ export const useERStore = create<ERState>()(
       },
       completeTutorial: () => set({ tutorialCompleted: true }),
       setSyncEnabled: (sync: boolean) => set({ syncEnabled: sync }),
-      incrementDay: () => set((state) => ({ currentDay: state.currentDay + 1 })),
+      incrementDay: () => set((state) => {
+        const currentDay = state.currentDay + 1;
+        // A new chapter brings the promotion the story describes
+        const floor = RANK_THRESHOLDS[rankFloorForDay(currentDay)];
+        return { currentDay, lifetimeXp: Math.max(state.lifetimeXp, floor) };
+      }),
       setStoryFlag: (key, value) => set((state) => ({
         storyFlags: { ...state.storyFlags, [key]: value }
       })),

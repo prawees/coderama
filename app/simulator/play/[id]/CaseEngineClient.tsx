@@ -232,9 +232,12 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
             .filter((e: any) => e.source === n.id)
             .map((e: any) => {
               const targetNode = caseData.managementGraph.nodes.find((tn: any) => tn.id === e.target);
+              // `choice` is the plain action shown on the button. The full `label` often explains
+              // why the step is right, which would give the answer away, so it is shown after the pick.
               return {
                 id: e.id,
-                text: targetNode?.data?.label || 'Continue',
+                text: targetNode?.data?.choice || targetNode?.data?.label || 'Continue',
+                label: targetNode?.data?.label || targetNode?.data?.choice || 'Continue',
                 targetNode: e.target,
                 requiredRank: targetNode?.data?.requiredRank || 'MS5'
               };
@@ -292,6 +295,8 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   type Choice = {
     key: string;
     text: string;
+    /** Full teaching label for a correct step, shown in the feedback after it is picked */
+    label?: string;
     kind: 'edge' | 'wrong';
     targetNode?: string;
     requiredRank: string;
@@ -313,14 +318,16 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     const choices: Choice[] = [];
     let isDecision = false;
     for (const o of node.options) {
-      choices.push({ key: `edge:${o.id ?? o.targetNode}`, text: o.text, kind: 'edge', targetNode: o.targetNode, requiredRank: o.requiredRank || 'MS5' });
+      choices.push({ key: `edge:${o.id ?? o.targetNode}`, text: o.text, label: o.label, kind: 'edge', targetNode: o.targetNode, requiredRank: o.requiredRank || 'MS5' });
       const target = nodesMap[o.targetNode];
       (target?.distractors || []).forEach((d: any, i: number) => {
         if (!d?.label) return;
         isDecision = true;
         const key = `wrong:${o.targetNode}:${i}`;
         if (tried.includes(key)) return;
-        choices.push({ key, text: d.label, kind: 'wrong', requiredRank: 'MS5', feedback: d.feedback });
+        // Wrong options carry the same rank tag as the step they sit beside, so a
+        // "supervised" badge never marks the right answer on its own.
+        choices.push({ key, text: d.label, kind: 'wrong', requiredRank: o.requiredRank || 'MS5', feedback: d.feedback });
       });
     }
     if (isDecision) choices.sort((x, y) => seededOrder(nodeId + x.key) - seededOrder(nodeId + y.key));
@@ -328,10 +335,6 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   };
 
   const handleAction = async (choice: Choice) => {
-    // Above-rank interventions are allowed under supervision, which lowers the case reward.
-    // (Hard locks left first-day students with nothing to press.)
-    if (isAboveRank(choice.requiredRank)) setSupervised(true);
-
     const { isDecision } = buildChoices(effectiveNodeId, currentNode);
 
     if (choice.kind === 'wrong') {
@@ -346,6 +349,9 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       return;
     }
 
+    // Above-rank interventions are allowed under supervision, which lowers the case reward.
+    // (Hard locks left first-day students with nothing to press.) Only a correct pick counts.
+    if (isAboveRank(choice.requiredRank)) setSupervised(true);
     await Haptics.impact({ style: ImpactStyle.Light });
     const targetNodeId = choice.targetNode!;
     const nextNode = nodesMap[targetNodeId];
@@ -358,7 +364,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
         addXp(15);
       }
       const actions = (caseData.managementGraph?.nodes || []).find?.((n: any) => n.id === targetNodeId)?.data?.actions;
-      setFeedback({ kind: 'good', title: choice.text, body: Array.isArray(actions) && actions.length ? actions.join(', ') : undefined });
+      setFeedback({ kind: 'good', title: choice.label || choice.text, body: Array.isArray(actions) && actions.length ? actions.join(', ') : undefined });
     } else {
       setFeedback(null);
       // Legacy branching cases: judge the choice by whether blood pressure improves
@@ -386,7 +392,8 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       }
     }
 
-    if (choice.text.includes("IV") || choice.text.includes("CPR") || choice.text.includes("Push")) {
+    const procedureName = choice.label || choice.text;
+    if (procedureName.includes("IV") || procedureName.includes("CPR") || procedureName.includes("Push")) {
        setActiveMinigame({ name: choice.text, targetNodeId });
     } else {
        setCurrentNodeId(targetNodeId);

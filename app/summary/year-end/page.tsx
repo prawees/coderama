@@ -13,7 +13,7 @@ import { LOCATION_NAMES, phaseForDay } from "@/lib/world/maps";
 import { music } from "@/lib/music";
 
 type L = { en: string; th: string };
-interface Chapter { title: L; line: L; host: string; button: L }
+interface Chapter { title: L; line: L; host: string; button: L; promo?: L }
 
 /** One page per chapter break, keyed by the day the player is about to start. */
 const CHAPTERS: Record<number, Chapter> = {
@@ -25,6 +25,7 @@ const CHAPTERS: Record<number, Chapter> = {
     },
     host: "bob",
     button: { en: "Back to Rama", th: "กลับไปรามาฯ" },
+    promo: { en: "Now a year six student", th: "เลื่อนเป็นนักศึกษาแพทย์ปีหก" },
   },
   11: {
     title: { en: "Off to Korat", th: "ไปโคราช" },
@@ -43,6 +44,7 @@ const CHAPTERS: Record<number, Chapter> = {
     },
     host: "kit",
     button: { en: "Badge in", th: "แตะบัตรเข้า" },
+    promo: { en: "Graduated. Now an intern", th: "จบแล้ว เป็นแพทย์ใช้ทุน" },
   },
   26: {
     title: { en: "Home again", th: "กลับบ้าน" },
@@ -52,6 +54,7 @@ const CHAPTERS: Record<number, Chapter> = {
     },
     host: "pim",
     button: { en: "Start residency", th: "เริ่มเรสซิเดนต์" },
+    promo: { en: "Now a first-year resident", th: "เป็นแพทย์ประจำบ้านปีหนึ่ง" },
   },
   31: {
     title: { en: "The department is yours", th: "แผนกนี้เป็นของหนูแล้ว" },
@@ -61,6 +64,7 @@ const CHAPTERS: Record<number, Chapter> = {
     },
     host: "ann",
     button: { en: "Keep playing", th: "เล่นต่อ" },
+    promo: { en: "Now an attending", th: "เป็นอาจารย์แพทย์" },
   },
 };
 
@@ -114,6 +118,11 @@ export default function YearEndPage() {
           </p>
           <h1 className="text-[40px] leading-none mt-2">{ch.title[language]}</h1>
           <p className="text-[17px] leading-none mt-1.5 text-[#86522e]">{place}</p>
+          {ch.promo && (
+            <p className="mt-2 inline-flex items-center gap-1.5 cozy-tag px-2 py-1 text-[16px] leading-none" data-testid="chapter-promo">
+              <PixelIcon name="badge" size={13} />{ch.promo[language]}
+            </p>
+          )}
 
           <AnimatePresence>
             {step >= 1 && (

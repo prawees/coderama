@@ -221,6 +221,7 @@
           "y": 200
         },
         "data": {
+          "choice": "IV access, glucose, ketones and venous gas",
           "distractors": [
             {
               "label": "Start insulin immediately based on the glucometer reading",
@@ -315,8 +316,8 @@
               "feedback": "Insulin drives potassium into cells. Starting it before knowing the level can cause cardiac arrest."
             },
             {
-              "label": "Withhold potassium because the result is normal",
-              "feedback": "Total body potassium is depleted in DKA even when serum is normal. Add replacement once urine output is confirmed."
+              "label": "Add 40 mmol/h of potassium now, since total body potassium is always depleted",
+              "feedback": "Her potassium is 5.4, above 5.3. Give none yet, recheck in 2 hours, and add 20 to 30 mmol/L to the fluid once it falls below 5.3 with good urine output."
             }
           ],
           "label": "Check potassium before starting insulin and replace as needed",
@@ -364,6 +365,7 @@
           "y": 200
         },
         "data": {
+          "choice": "Hourly glucose, add dextrose below 250 mg/dL",
           "distractors": [
             {
               "label": "Stop the insulin infusion once glucose is below 250 mg/dL",
@@ -414,6 +416,7 @@
           "y": 200
         },
         "data": {
+          "choice": "Overlap SC basal insulin before stopping the drip",
           "distractors": [
             {
               "label": "Stop the infusion and give subcutaneous insulin at the same time",

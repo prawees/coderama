@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { useERStore, getEra, useHydrated } from "@/lib/erStore";
+import { useERStore, getEra, useHydrated, chapterXpCap, rankFloorForDay, getRankFromXp, RANK_THRESHOLDS } from "@/lib/erStore";
 import { getLocalizedRankTitle, translate } from "@/lib/localization";
 import { scheduleOnCallCases, cancelOnCallCases } from "@/lib/notifications";
 import { PageTransition } from "@/components/ui/PageTransition";
@@ -48,7 +48,6 @@ export default function HubPage() {
   const [isQuestsOpen, setIsQuestsOpen] = useState(false);
   const [isCinematic, setIsCinematic] = useState(false);
   
-  const { getRankFromXp, RANK_THRESHOLDS } = require('@/lib/erStore');
   const currentRankId = getRankFromXp(lifetimeXp || xp);
   const localizedRank = getLocalizedRankTitle(currentRankId, playerName, playerGender, language);
   
@@ -57,8 +56,16 @@ export default function HubPage() {
   const nextThresholds = thresholds.filter((t: number) => t > lifetimeXp);
   const nextThreshold = nextThresholds.length > 0 ? Math.min(...nextThresholds) : Infinity;
   
-  // They are ready to take the End of Year Test if their lifetimeXp is capped just below the threshold!
-  const isReadyForPromotion = lifetimeXp >= nextThreshold - 1;
+  // The promotion exam is the endgame loop. During the campaign, chapters promote you.
+  const isReadyForPromotion = currentDay >= 31 && lifetimeXp >= nextThreshold - 1;
+  const chapterCapped = currentDay <= 30 && lifetimeXp >= chapterXpCap(currentDay);
+
+  // Saves from before chapter promotions: bring rank up to what the story says you are.
+  useEffect(() => {
+    if (!hydrated) return;
+    const floor = RANK_THRESHOLDS[rankFloorForDay(currentDay)];
+    if ((useERStore.getState().lifetimeXp || 0) < floor) useERStore.setState({ lifetimeXp: floor });
+  }, [hydrated, currentDay]);
   const prevThreshold = [...thresholds].reverse().find(t => t <= (lifetimeXp || 0)) || 0;
   const progressPercent = Math.min(100, Math.max(0, ((lifetimeXp || 0) - prevThreshold) / (nextThreshold === Infinity ? prevThreshold : nextThreshold - prevThreshold) * 100));
   
@@ -662,6 +669,8 @@ export default function HubPage() {
             </div>
             {isReadyForPromotion ? (
               <p className="text-[15px] leading-none mt-1.5 text-[#a93c4b] animate-pulse">{tr('Promotion exam ready!', 'พร้อมสอบเลื่อนขั้นแล้ว!')}</p>
+            ) : chapterCapped ? (
+              <p className="text-[15px] leading-none mt-1.5 text-[#4f7a3a]" data-testid="chapter-capped">{tr('Ready for what comes next. XP still counts toward skills.', 'พร้อมสำหรับบทต่อไปแล้ว XP ยังใช้อัปสกิลได้')}</p>
             ) : (
               <div className="cozy-bar h-3 mt-1.5"><span style={{ width: `${progressPercent}%`, background: '#7fc8d8' }} /></div>
             )}

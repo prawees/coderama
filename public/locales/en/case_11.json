@@ -221,6 +221,7 @@
           "y": 200
         },
         "data": {
+          "choice": "Bedside FAST and transvaginal scan in resus",
           "distractors": [
             {
               "label": "Formal CT abdomen to look for appendicitis",
@@ -247,6 +248,7 @@
           "y": 200
         },
         "data": {
+          "choice": "O negative blood and massive transfusion",
           "distractors": [
             {
               "label": "Give 3 litres of normal saline until the pressure is normal",
@@ -360,6 +362,7 @@
           "y": 200
         },
         "data": {
+          "choice": "Anti-D, repeat bloods and pregnancy unit follow-up",
           "distractors": [
             {
               "label": "Discharge without anti-D because the pregnancy is over",
@@ -378,7 +381,7 @@
             "Early pregnancy unit follow up and counselling"
           ],
           "doseMap": {
-            "Anti-D immunoglobulin": "250-300 mcg IM within 72 hours"
+            "Anti-D immunoglobulin": "250 IU (50 micrograms) IM within 72 hours"
           }
         }
       },

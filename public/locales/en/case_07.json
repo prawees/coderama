@@ -302,6 +302,7 @@
           "y": 80
         },
         "data": {
+          "choice": "Repeat IM adrenaline 0.5 mg now",
           "distractors": [
             {
               "label": "Wait 30 minutes for the antihistamine to work",
@@ -363,7 +364,7 @@
             },
             {
               "label": "Skip all adjuncts, they are never useful",
-              "feedback": "Antihistamines help skin symptoms and are reasonable after adrenaline. Steroids are commonly given. They are adjuncts, not nothing."
+              "feedback": "Antihistamines help the itch and urticaria once she is stable. Routine steroids are no longer recommended in UK guidance, but they are reasonable here because asthma is part of the picture."
             }
           ],
           "label": "Adjuncts after adrenaline, never instead of it",

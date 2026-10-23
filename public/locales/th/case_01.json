@@ -7,7 +7,7 @@
     "Digoxin Toxicity",
     "Beta Blocker Overdose"
   ],
-  "background": "Patient was found unresponsive at home with an empty pill bottle nearby. He has a history of atrial fibrillation and hypertension.",
+  "background": "ผู้ป่วยถูกพบหมดสติที่บ้าน มีขวดยาเปล่าวางอยู่ใกล้ตัว มีประวัติหัวใจเต้นผิดจังหวะชนิด AF และความดันโลหิตสูง ขวดยาบนโต๊ะในครัวคือยาดิจอกซินของเขาที่รับมาเมื่อแปดวันก่อน",
   "patientAppearance": {
     "skinTone": "#d4a373",
     "bmiFactor": 0.8,
@@ -75,7 +75,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "12-Lead ECG",
-      "report": "Sinus bradycardia, severe 1st degree AV block, scooped ST segments.",
+      "report": "AF ที่มี ventricular response ช้า 35 ครั้งต่อนาที ST depression แบบ scooped (reverse tick) และ ventricular ectopic บ่อย เข้าได้กับพิษดิจอกซิน",
       "imageUrl": "",
       "abnormal": true
     },
@@ -89,6 +89,17 @@
       "normalRange": "3.5-5.0",
       "abnormal": true,
       "report": "Hyperkalemia"
+    },
+    {
+      "id": "dig1",
+      "kind": "lab",
+      "category": "Toxicology",
+      "name": "ระดับดิจอกซินในเลือด",
+      "value": "4.8",
+      "unit": "ng/mL",
+      "normalRange": "0.5-2.0",
+      "abnormal": true,
+      "report": "อยู่ในระดับเป็นพิษ ระดับที่เจาะหลังให้ Fab จะเชื่อถือไม่ได้ ค่านี้จึงสำคัญ"
     }
   ],
   "managementGraph": {
@@ -152,12 +163,60 @@
           "y": 0
         },
         "data": {
-          "label": "ผลลัพธ์",
+          "label": "ประคองไว้ชั่วคราว",
           "outcomeType": "improved",
-          "narrative": "อัตราการเต้นของหัวใจดีขึ้นเล็กน้อย",
+          "narrative": "ชีพจรขึ้นเป็น 45 หลังให้ atropine แต่นี่เป็นแค่การประคอง ดิจอกซินยังจับอยู่กับ sodium pump ในหัวใจ",
           "vitalChanges": {
             "hr": 45,
             "sbp": 90
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 600,
+          "y": 200
+        },
+        "data": {
+          "label": "ให้ยาต้านพิษ Digoxin-specific antibody fragments",
+          "actions": [
+            "Digoxin immune Fab IV",
+            "ตรวจโพแทสเซียมซ้ำใน 1 ชั่วโมง",
+            "ติดมอนิเตอร์หัวใจต่อเนื่อง"
+          ],
+          "doseMap": {
+            "Digoxin immune Fab IV": "พิษรุนแรงที่ไม่ทราบขนาดยาที่กิน ให้ 10 ไวแอล IV ใน 30 นาที ให้ซ้ำถ้าไม่ตอบสนอง โพแทสเซียมจะลดลงเมื่อ Fab ออกฤทธิ์ ระวังโพแทสเซียมต่ำ"
+          },
+          "distractors": [
+            {
+              "label": "ฟอกเลือดเพื่อเอาดิจอกซินออก",
+              "feedback": "ดิจอกซินกระจายในร่างกายกว้างมาก การฟอกเลือดแทบเอาออกไม่ได้ ยาต้านพิษคือ Fab"
+            },
+            {
+              "label": "รอผลระดับดิจอกซินซ้ำก่อนให้ยาต้านพิษ",
+              "feedback": "หัวใจเต้นช้าร่วมกับช็อกและโพแทสเซียมเกิน 5 คือพิษที่คุกคามชีวิต ให้ Fab ทันที"
+            }
+          ]
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 800,
+          "y": 200
+        },
+        "data": {
+          "label": "จังหวะหัวใจกลับมา",
+          "outcomeType": "resolved",
+          "narrative": "ภายใน 40 นาที ชีพจร 72 ความดัน 118/70 โพแทสเซียมลดเหลือ 4.4 โดยไม่ต้องรักษาอื่น เขาตื่นขึ้นมาถามว่าทำไมทุกคนมายืนล้อมเตียง",
+          "vitalChanges": {
+            "hr": 72,
+            "sbp": 118,
+            "dbp": 70,
+            "gcs": 15
           }
         }
       }
@@ -182,6 +241,16 @@
         "id": "e3",
         "source": "req1",
         "target": "out1"
+      },
+      {
+        "id": "e4",
+        "source": "out1",
+        "target": "req2"
+      },
+      {
+        "id": "e5",
+        "source": "req2",
+        "target": "out2"
       }
     ]
   }

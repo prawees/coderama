@@ -197,6 +197,7 @@
           "y": 200
         },
         "data": {
+          "choice": "Suction, jaw thrust and bag-mask ventilation",
           "distractors": [
             {
               "label": "Give naloxone 2 mg IV before touching the airway",
@@ -253,6 +254,7 @@
           "y": 200
         },
         "data": {
+          "choice": "Naloxone 0.04-0.4 mg IV, titrated to breathing",
           "distractors": [
             {
               "label": "Naloxone until he is fully awake and talking",
@@ -366,6 +368,7 @@
           "y": 200
         },
         "data": {
+          "choice": "Take-home naloxone and addiction referral",
           "distractors": [
             {
               "label": "Discharge with a lecture about drug use and no follow-up",

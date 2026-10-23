@@ -47,7 +47,7 @@
       },
       "wrong_adenosine": {
         "vitals": { "bp": "70/40", "hr": 185, "o2": "95%" },
-        "narrative": "Adenosine ใช้สำหรับ STABLE narrow-complex tachycardia การมัวเสียเวลากับยาในผู้ป่วยที่ Unstable ทำให้ผู้ป่วยแย่ลง ผู้ป่วย GCS drop และหมดสติ",
+        "narrative": "Adenosine ลองให้ได้ใน unstable regular narrow-complex tachycardia เฉพาะระหว่างเตรียม cardioversion เท่านั้น ห้ามใช้แทน ครั้งนี้มันทำให้การช็อกล่าช้า ผู้ป่วย GCS drop และหมดสติ",
         "options": [
           { "id": "opt1", "text": "รีบทำ Synchronized Cardioversion ทันที", "targetNode": "correct_cardioversion", "requiredRank": "R1" }
         ]
