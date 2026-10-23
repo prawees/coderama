@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { withBase } from "@/lib/basePath";
 
 /** Something broke. Keep the save, offer a way back to the clinic. */
 export default function ErrorPage({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
@@ -18,7 +19,7 @@ export default function ErrorPage({ error, reset }: { error: Error & { digest?: 
         </p>
         <div className="mt-4 flex gap-2">
           <button className="cozy-btn cozy-btn-sky flex-1 py-1.5 text-[19px]" onClick={() => reset()}>Try again</button>
-          <button className="cozy-btn cozy-btn-leaf flex-1 py-1.5 text-[19px]" onClick={() => { window.location.href = "/hub"; }}>Back to the clinic</button>
+          <button className="cozy-btn cozy-btn-leaf flex-1 py-1.5 text-[19px]" onClick={() => { window.location.href = withBase("/hub"); }}>Back to the clinic</button>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { withBase } from "@/lib/basePath";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { audio } from "@/lib/audio";
@@ -23,7 +24,7 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
   const hardReset = () => {
     if (confirm("Are you sure you want to completely erase your save data? This cannot be undone.")) {
        localStorage.clear();
-       window.location.href = '/';
+       window.location.href = withBase('/');
     }
   };
 
