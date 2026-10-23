@@ -17,10 +17,10 @@ import { phaseForDay, Phase } from "@/lib/world/maps";
 const MENTOR: Record<Phase, string> = { rama1: "bob", korat: "ek", lovely: "kit", rama2: "pim" };
 
 const SIGNOFF = {
-  none: { en: "A quiet day, or a hiding day? Tomorrow, find me before lunch.", th: "วันนี้เงียบ หรือแอบหลบ? พรุ่งนี้มาหาก่อนเที่ยงนะ" },
-  some: { en: "Steady. Not flashy. Steady is underrated.", th: "สม่ำเสมอ ไม่หวือหวา ความสม่ำเสมอถูกมองข้ามเสมอ" },
-  many: { en: "That was a real shift. Go eat something warm.", th: "เวรนี้ของจริง ไปกินอะไรอุ่นๆ ซะ" },
-  fainted: { en: "We found you asleep on the supply shelf. Pace yourself. Tea from the kettle, a sit on the bench, it all adds up.", th: "เจอหลับอยู่บนชั้นวางของ ค่อยๆ ทำนะ ชาจากกาต้มน้ำ นั่งพักที่ม้านั่ง ช่วยได้ทั้งนั้น" },
+  none: { en: "A quiet day, or a hiding day? Tomorrow, find me before lunch.", th: "วันนี้ไม่เห็นรับเคสเลยนะ พรุ่งนี้มาหาพี่ก่อนเที่ยง เดี๋ยวพาดูเอง" },
+  some: { en: "Your patients went home in good shape. Sleep, and come back tomorrow.", th: "คนไข้วันนี้เรียบร้อยดี กลับไปนอนเถอะ พรุ่งนี้เจอกัน" },
+  many: { en: "That was a real shift. Go eat something warm.", th: "เวรนี้หนักจริง แวะหาอะไรอุ่นๆ กินก่อนนอนนะ" },
+  fainted: { en: "We found you asleep on the supply shelf. Tea from the kettle and a sit on the bench both help.", th: "เจอน้องหลับอยู่บนชั้นวางของ พรุ่งนี้แวะชงชาหรือออกไปนั่งพักบ้างนะ อย่าฝืน" },
 };
 
 function CountUp({ to, prefix = "", delay = 0 }: { to: number; prefix?: string; delay?: number }) {
@@ -68,18 +68,17 @@ export default function SummaryPage() {
   const tier = fainted ? "fainted" : shiftStats.casesTreated === 0 ? "none" : shiftStats.casesTreated <= 2 ? "some" : "many";
 
   const rows = [
-    { icon: "sun", label: tr("Hours on shift", "ชั่วโมงเข้าเวร"), value: <><CountUp to={hours} delay={300} /> {tr("h", "ชม.")}</> },
-    { icon: "bed", label: tr("Patients seen", "ผู้ป่วยที่ดูแล"), value: <CountUp to={shiftStats.casesTreated} delay={600} /> },
-    { icon: "quest", label: tr("Experience", "ประสบการณ์"), value: <CountUp to={Math.round(shiftStats.xpEarned)} prefix="+" delay={900} /> },
-    { icon: "coin", label: tr("Pay", "ค่าตอบแทน"), value: <CountUp to={shiftStats.cashEarned} prefix="+" delay={1200} /> },
+    { icon: "sun", label: "อยู่เวร", value: <><CountUp to={hours} delay={300} /> {tr("h", "ชม.")}</> },
+    { icon: "bed", label: "คนไข้ที่ดู", value: <CountUp to={shiftStats.casesTreated} delay={600} /> },
+    { icon: "quest", label: "XP ที่ได้", value: <CountUp to={Math.round(shiftStats.xpEarned)} prefix="+" delay={900} /> },
+    { icon: "coin", label: "เหรียญที่ได้", value: <CountUp to={shiftStats.cashEarned} prefix="+" delay={1200} /> },
   ];
 
   return (
     <PageTransition>
       <div className="w-full h-[100dvh] cozy-night text-pixel-text font-pixel flex flex-col items-center justify-center p-5 relative" data-testid="summary">
         <motion.div initial={{ scale: 0.92, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.35 }} className="cozy-panel w-full max-w-sm p-4">
-          <p className="text-center text-[16px] leading-none text-[#86522e]">{tr(`Day ${finishedDay} complete`, `จบวันที่ ${finishedDay}`)}</p>
-          <h1 className="text-center text-[38px] leading-none mt-1">{tr("Shift ledger", "บัญชีประจำวัน")}</h1>
+          <h1 className="text-center text-[34px] leading-tight">จบเวรวันที่ {finishedDay}</h1>
 
           <div className="mt-4 flex flex-col">
             {rows.map((r, i) => (
@@ -102,8 +101,8 @@ export default function SummaryPage() {
                 <PixelPortrait speaker={mentor.name.en} className="w-full h-full" />
               </div>
               <div>
-                <p className="text-[15px] leading-none text-[#86522e]">{mentor.name[language]}</p>
-                <p className="text-[17px] leading-snug mt-1">{SIGNOFF[tier][language]}</p>
+                <p className="text-[15px] leading-none text-[#86522e]">{mentor.name.th}</p>
+                <p className="text-[17px] leading-snug mt-1">{SIGNOFF[tier].th}</p>
               </div>
             </motion.div>
           )}
@@ -117,7 +116,7 @@ export default function SummaryPage() {
                   className="w-full py-2 text-[22px]"
                   data-testid="summary-next"
                 >
-                  {isEndOfEpisode ? tr("Pack your bag", "เก็บกระเป๋า") : tr("Head home", "กลับบ้าน")}
+                  {isEndOfEpisode ? "เก็บกระเป๋า" : "กลับบ้าน"}
                 </PixelButton>
               </motion.div>
             )}
