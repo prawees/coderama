@@ -20,6 +20,8 @@ import { DayCard } from "@/components/game/DayCard";
 import { Pager } from "@/components/ui/Pager";
 import { DialogueBox } from "@/components/game/DialogueBox";
 import { QuestsModal } from "@/components/game/QuestsModal";
+import { LettersModal } from "@/components/game/LettersModal";
+import { unreadLetters } from "@/lib/letters";
 import { LeaderboardModal } from "@/components/game/LeaderboardModal";
 import { ConsultsModal } from "@/components/game/ConsultsModal";
 import { SettingsMenu } from "@/components/game/SettingsMenu";
@@ -48,6 +50,8 @@ export default function HubPage() {
   
   const hydrated = useHydrated();
   const [isQuestsOpen, setIsQuestsOpen] = useState(false);
+  const [isLettersOpen, setIsLettersOpen] = useState(false);
+  const patientLog = useERStore((s) => s.patientLog);
   const [isCinematic, setIsCinematic] = useState(false);
   
   const currentRankId = getRankFromXp(lifetimeXp || xp);
@@ -543,6 +547,7 @@ export default function HubPage() {
     openLeaderboard: () => setIsLeaderboardOpen(true),
     openConsults: () => setIsConsultsOpen(true),
     openShop: () => router.push('/hub/shop'),
+    openLetters: () => setIsLettersOpen(true),
     openCase: (caseId, instanceId) => router.push(`/simulator/play/${caseId}?instanceId=${instanceId}`),
     toast: showToast,
     addLog,
@@ -564,7 +569,8 @@ export default function HubPage() {
 
   const tr = (en: string, th: string) => (language === 'th' ? th : en);
   const onShift = shiftMode === 'on-shift' || shiftMode === 'boss-battle';
-  const anyModal = isQuestsOpen || isLeaderboardOpen || isConsultsOpen || isSettingsOpen || isFriendsOpen || activeTab === 'LOGS';
+  const hasMail = unreadLetters(patientLog, currentDay).length > 0;
+  const anyModal = isQuestsOpen || isLettersOpen || isLeaderboardOpen || isConsultsOpen || isSettingsOpen || isFriendsOpen || activeTab === 'LOGS';
 
   return (
     <PageTransition>
@@ -579,6 +585,7 @@ export default function HubPage() {
           npcs={social.npcs}
           playerLook={playerLook}
           activeCases={activeCases}
+          mail={hasMail}
           clockMinutes={clockMinutes}
           onShift={onShift}
           paused={dialogueQueue.length > 0 || anyModal || dayCard !== null}
@@ -752,6 +759,7 @@ export default function HubPage() {
 
       <AnimatePresence>
         {isQuestsOpen && <QuestsModal onClose={() => setIsQuestsOpen(false)} />}
+        {isLettersOpen && <LettersModal onClose={() => setIsLettersOpen(false)} />}
         {isLeaderboardOpen && <LeaderboardModal onClose={() => setIsLeaderboardOpen(false)} />}
         {isConsultsOpen && <ConsultsModal onClose={() => setIsConsultsOpen(false)} />}
         {isSettingsOpen && <SettingsMenu isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />}

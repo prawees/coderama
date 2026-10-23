@@ -16,7 +16,7 @@ export type Phase = "rama1" | "korat" | "lovely" | "rama2";
 export type PropKind =
   | "window" | "clock" | "painting" | "notice" | "bed" | "desk" | "kettle" | "plant"
   | "bookshelf" | "vending" | "chair" | "rug" | "catbed" | "doormat" | "tree" | "bench"
-  | "flowerbed" | "pond" | "ambulance" | "lamp" | "fence" | "signpost";
+  | "flowerbed" | "pond" | "ambulance" | "lamp" | "fence" | "signpost" | "postbox";
 
 export interface Prop {
   kind: PropKind;
@@ -30,7 +30,7 @@ export interface Prop {
   flat?: boolean;
 }
 
-export type InteractKind = "bed" | "computer" | "kettle" | "notice" | "bookshelf" | "vending" | "pond" | "bench" | "ambulance" | "catbed" | "tree" | "window";
+export type InteractKind = "bed" | "computer" | "kettle" | "notice" | "bookshelf" | "vending" | "pond" | "bench" | "ambulance" | "catbed" | "tree" | "window" | "postbox";
 
 export interface Interactable {
   id: string;
@@ -124,6 +124,7 @@ function erMain(theme: Theme): WorldMap {
       { kind: "plant", x: 14, y: 9, solid: true, variant: plant },
       { kind: "plant", x: 10, y: 9, solid: true, variant: "monstera" },
       { kind: "doormat", x: 7, y: 9, w: 2, flat: true },
+      { kind: "postbox", x: 9, y: 9, solid: true },
     ],
     interactables: [
       { id: "bed_1", kind: "bed", x: 2, y: 3 },
@@ -139,6 +140,7 @@ function erMain(theme: Theme): WorldMap {
       { id: "catbed", kind: "catbed", x: 0, y: 8 },
       { id: "window", kind: "window", x: 5, y: 1 },
       { id: "window", kind: "window", x: 9, y: 1 },
+      { id: "postbox", kind: "postbox", x: 9, y: 9 },
     ],
     doors: [
       { x: 7, y: 10, target: "AMBULANCE_BAY", spawn: { x: 7, y: 2 } },

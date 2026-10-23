@@ -45,6 +45,8 @@ interface ClinicWorldProps {
   npcs: WorldNpc[];
   playerLook: Look;
   activeCases: ActiveCase[];
+  /** Unread letters wait in the postbox; it shows an envelope bubble */
+  mail?: boolean;
   clockMinutes: number;
   onShift: boolean;
   paused: boolean;
@@ -171,6 +173,7 @@ export function ClinicWorld(props: ClinicWorldProps) {
 
   // Patients and NPC roster updates
   useEffect(() => { engineRef.current?.refreshBeds(); }, [props.activeCases]);
+  useEffect(() => { engineRef.current?.refreshMail(); }, [props.mail]);
   useEffect(() => { engineRef.current?.refreshNpcs(); }, [props.npcs]);
   useEffect(() => { engineRef.current?.refreshPlayer(); }, [props.playerLook]);
 
@@ -266,6 +269,7 @@ function createEngine(
   let catModeT = 0;
   const npcActors = new Map<string, Actor>();
   const bedSprites: { sprite: PIXI.Container; index: number; x: number; y: number }[] = [];
+  let postboxSprite: PIXI.Container | null = null;
   const glassSprites: PIXI.Sprite[] = [];
   const particles: { s: PIXI.Sprite; vx: number; vy: number; life: number; sway?: number; t: number; kind: string }[] = [];
   let lastPrompt: string | null = null;
@@ -302,6 +306,7 @@ function createEngine(
     if (ground) { root.removeChild(ground); ground.destroy(); }
     npcActors.clear();
     bedSprites.length = 0;
+    postboxSprite = null;
     glassSprites.length = 0;
     particles.length = 0;
     cat = null;
@@ -354,6 +359,17 @@ function createEngine(
         bedSprites.push({ sprite: c, index: Number(p.variant ?? 0), x: p.x, y: p.y });
         continue;
       }
+      if (p.kind === "postbox") {
+        const c = new PIXI.Container();
+        const g = propGrid(p, theme);
+        const pos = propPixelPos(p, g);
+        c.addChild(new PIXI.Sprite(textureFrom("prop:postbox", () => g)));
+        c.x = pos.x; c.y = pos.y;
+        c.zIndex = pos.y + g.h;
+        actors.addChild(c);
+        postboxSprite = c;
+        continue;
+      }
       const g = propGrid(p, theme);
       const pos = propPixelPos(p, g);
       const s = new PIXI.Sprite(textureFrom(`prop:${p.kind}:${theme}:${p.variant ?? ""}`, () => g));
@@ -371,6 +387,7 @@ function createEngine(
     refreshNpcs();
     spawnCat();
     refreshBeds();
+    refreshMail();
 
     // ambient particles
     if (map.outdoor) {
@@ -441,6 +458,17 @@ function createEngine(
       (bubble as any).__bob = true;
       b.sprite.addChild(bubble);
     }
+  }
+
+  function refreshMail() {
+    if (!postboxSprite) return;
+    while (postboxSprite.children.length > 1) postboxSprite.removeChildAt(1).destroy();
+    if (!propsRef.current.mail) return;
+    const bubble = new PIXI.Sprite(textureFrom("emote:mail", () => T.emoteBubble("mail")));
+    bubble.anchor.set(0.5, 1);
+    bubble.x = 8; bubble.y = -1;
+    (bubble as any).__bob = true;
+    postboxSprite.addChild(bubble);
   }
 
   /* ---------- particles ---------- */
@@ -839,6 +867,7 @@ function createEngine(
 
     // bed bubbles bob
     for (const b of bedSprites) for (const c of b.sprite.children) if ((c as any).__bob) c.y = -1 - Math.abs(Math.sin(elapsed * 3)) * 3;
+    if (postboxSprite) for (const c of postboxSprite.children) if ((c as any).__bob) c.y = -1 - Math.abs(Math.sin(elapsed * 3)) * 3;
 
     // particles
     for (let i = particles.length - 1; i >= 0; i--) {
@@ -913,6 +942,7 @@ function createEngine(
   return {
     load,
     refreshBeds,
+    refreshMail,
     refreshNpcs,
     refreshPlayer,
     interact,

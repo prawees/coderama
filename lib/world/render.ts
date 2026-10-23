@@ -61,6 +61,7 @@ export function propGrid(p: Prop, theme: Theme): PixelGrid {
     case "lamp": return T.lampPost();
     case "fence": return T.fence();
     case "signpost": return T.signpost();
+    case "postbox": return T.postbox();
   }
 }
 

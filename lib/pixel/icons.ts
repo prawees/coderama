@@ -10,6 +10,16 @@ const K: Key = {
 };
 
 const ICONS: Record<string, string[]> = {
+  mail: [
+    "kkkkkkkkkkkk",
+    "kkxxxxxxxxkk",
+    "kxkxxxxxxkxk",
+    "kxxkxxxxkxxk",
+    "kxxxkrrkxxxk",
+    "kxxxxkkxxxxk",
+    "kxxxxxxxxxxk",
+    "kkkkkkkkkkkk",
+  ],
   coin: [
     "   kkkkk    ",
     "  kyyyyyk   ",

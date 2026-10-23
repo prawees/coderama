@@ -239,6 +239,8 @@ interface ERState {
   setPlayerName: (name: string) => void;
   prestige: (perk: string) => void;
   buyGift: (giftId: string, cost: number) => boolean;
+  /** A gift that arrived for free, such as one sent with a patient's letter */
+  receiveGift: (giftId: string) => void;
   recordPatient: (caseId: string, good: boolean) => void;
   readLetter: (caseId: string) => void;
   useGift: (giftId: string) => boolean;
@@ -591,6 +593,7 @@ export const useERStore = create<ERState>()(
         if (get().activeQuests.includes('q_gear_up')) get().completeQuest('q_gear_up');
         return true;
       },
+      receiveGift: (giftId) => set((state) => ({ gifts: { ...state.gifts, [giftId]: (state.gifts[giftId] || 0) + 1 } })),
       useGift: (giftId) => {
         const n = get().gifts[giftId] || 0;
         if (n <= 0) return false;

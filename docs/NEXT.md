@@ -10,8 +10,9 @@ Left, in this order:
 2. Story days are done. Edits go in `scripts/thai/story/dayNN.txt`, then `python3 scripts/thai/story_patch.py`.
 3. Screens are done: shop, skills, both leaderboards, quest rewards, minigame, useWorldSocial pearls.
    Profile, friends, consults and lib/npcs.ts were already Thai and are unchanged.
-4. Letters: mailbox prop art is in lib/pixel/tiles.ts (postbox, mail emote). Still to wire: ER map prop at (9,9),
-   envelope bubble, letters modal, scrapbook tab.
+4. Letters are done: postbox at (9,9) on the ER map, envelope bubble while a letter is unread,
+   components/game/LettersModal.tsx with a letters tab and a scrapbook tab. A letter arrives the morning
+   after a good outcome (lib/letters.ts); reading one adds any gift the patient sent.
 5. The playtest bots are not in the repo. Rebuild, playtest, push, update PR #1.
 
 Voice rules: docs/WRITING.md.

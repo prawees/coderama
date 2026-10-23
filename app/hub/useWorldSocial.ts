@@ -40,6 +40,7 @@ export function useWorldSocial(opts: {
   openLeaderboard: () => void;
   openConsults: () => void;
   openShop: () => void;
+  openLetters: () => void;
   openCase: (caseId: string, instanceId: string) => void;
   toast: (msg: string) => void;
   addLog: (msg: string) => void;
@@ -175,6 +176,10 @@ export function useWorldSocial(opts: {
       case "vending":
         opts.openShop();
         return;
+      case "postbox":
+        audio.playClick();
+        opts.openLetters();
+        return;
       case "kettle":
         if (onceToday("kettle")) { st.restoreEnergy(8); opts.worldApi.current?.emote("player", "heart"); say(t(lang, "You make a cup of tea and drink it while it's still too hot. Worth it. (+8 energy)", "คุณชงชาแล้วดื่มทั้งที่ยังร้อนเกินไป คุ้มค่า (+8 พลังงาน)")); }
         else say(t(lang, "The kettle is still warm. Someone else's turn now.", "กาต้มน้ำยังอุ่นอยู่ ตาคนอื่นบ้างแล้ว"));
@@ -256,6 +261,7 @@ export function useWorldSocial(opts: {
           kettle: ["Make tea", "ชงชา"], notice: ["Read the board", "อ่านบอร์ด"], bookshelf: ["Browse books", "หยิบหนังสือ"],
           vending: ["Supply closet", "ห้องเก็บของ"], pond: ["Look at the koi", "ดูปลาคาร์ป"], bench: ["Sit down", "นั่งพัก"],
           tree: ["Smell the flowers", "ดมดอกไม้"], ambulance: ["Ambulance", "รถพยาบาล"], catbed: ["Kanom's bed", "ที่นอนขนม"], window: ["Look outside", "มองออกไปข้างนอก"],
+          postbox: ["Postbox", "เปิดตู้ไปรษณีย์"],
         };
         const lbl = labels[target.kind];
         return lbl ? (lang === "th" ? lbl[1] : lbl[0]) : null;
