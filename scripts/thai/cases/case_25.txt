@@ -1,0 +1,48 @@
+cc: หอบเหนื่อย สับสน 28 ชม. หลังดูดไขมันปริมาณมาก
+bg: ดูดไขมันปริมาณมากที่หน้าท้อง สีข้าง ต้นขา ร่วมกับฉีดไขมันที่สะโพก เมื่อ 28 ชม. ก่อน ดูดออกราว 5.5 ลิตรในครั้งเดียวภายใต้ tumescent anesthesia D/C หลัง observe 6 ชม. ช่วงกลางคืนเริ่มหอบและกระสับกระส่าย แฟนพามาตอนที่พูดไม่รู้เรื่อง กินยาคุมกำเนิดชนิดรวม ทำงานฝ่ายการตลาด อีก 4 วันมีงานเปิดตัวสินค้า เลยเลือกทำครั้งเดียวแทนแบ่งทำสองครั้ง
+i.abg1: Severe hypoxemic respiratory failure ร่วมกับ respiratory alkalosis, PaO2 ต่ำกว่า 60 mmHg เป็น major Gurd criterion ของ fat embolism syndrome
+i.cxr1: Diffuse patchy alveolar infiltrate ทั้งสองข้างแบบ snowstorm หัวใจขนาดปกติ ไม่มี pleural effusion ไม่มี pneumothorax infiltrate ดูน้อยกว่าระดับ hypoxemia ซึ่งเป็นลักษณะเฉพาะ
+i.ctpa1: ไม่มี filling defect ใน pulmonary artery ถึงระดับ segmental ตัด thromboembolism ก้อนใหญ่ออก มี ground glass opacity กระจายทั่วร่วมกับ interlobular septal thickening สนับสนุน fat embolism มากกว่า thrombotic embolism
+i.cbc1: Anemia และ thrombocytopenia เป็น minor Gurd criteria ทั้งคู่ ถ้าลดลงทั้งสองอย่างกะทันหันโดยไม่มีสาเหตุหลังผ่าตัดกระดูกหรือศัลยกรรมความงาม ให้นึกถึงโรคนี้
+i.echo1: RV โตเล็กน้อย บีบตัวดี ไม่มี McConnell's sign ไม่มี thrombus in transit, LV function ปกติ ไม่สนับสนุน massive PE และไม่สนับสนุน cardiogenic pulmonary edema
+i.ecg1: Sinus tachycardia 126/min มี non-specific ST depression V1 ถึง V3 ไม่มี S1Q3T3, QTc 430 ms ไม่สนับสนุน lidocaine toxicity จาก tumescent solution
+req1.l: ให้ O2 high flow และเปิดดูทั้งตัวหา petechial rash
+req1.c: O2 high flow และเปิดเสื้อคลุมดู
+req1.d0: Cannula 2 L/min เลี่ยง hyperoxia
+req1.f0: หอบและสับสน ให้ O2 high flow แล้วหา sign คลาสสิก
+req1.d1: ทำ LP หาสาเหตุสับสน
+req1.f1: Hypoxia สับสน และ petechiae หลังดูดไขมันชี้ไปที่ fat embolism LP ไม่ใช่ขั้นแรก
+req1.m0: Petechial rash คือ finding ที่วินิจฉัยโรคนี้ข้างเตียงได้ และจางไปใน 24 ชม. ถ้าไม่เปิดเสื้อดูในชั่วโมงแรกๆ จะไม่มีวันได้เห็น
+req2.l: ตัดโรคที่รักษาได้ซึ่งคล้ายกันออกก่อนสรุปการวินิจฉัย
+req2.c: CTPA, echo และดู lidocaine toxicity
+req2.d0: วินิจฉัย fat embolism เลย ไม่ต้องตรวจเพิ่ม
+req2.f0: Fat embolism เป็น diagnosis of exclusion, PE, local anesthetic toxicity และ sepsis เป็นโรคคล้ายกันที่รักษาได้
+req2.d1: ให้ thrombolysis ไปเลย คิดว่าเป็น PE
+req2.f1: Thrombolysis โดยไม่ยืนยันเสี่ยงเลือดออกรุนแรง ตัดโรคคล้ายกันออกก่อน
+req2.m0: Tumescent liposuction ใช้ lidocaine ขนาดสูงมาก ดูดซึมสูงสุดช้าที่ 12 ถึง 14 ชม. toxicity มาด้วยชารอบปาก หูอื้อ ชัก และ arrhythmia และมียาแก้จำเพาะ
+req3.l: ประคับประคองการหายใจ ไม่มีการรักษาจำเพาะ
+req3.c: NIV หรือ intubate ตั้งแบบ lung protective
+req3.d0: Methylprednisolone ขนาดสูงเป็นการรักษา
+req3.f0: Steroid ยังไม่มีหลักฐานว่ารักษา fat embolism ที่เกิดแล้วได้ การรักษาคือประคับประคอง
+req3.d1: Heparin เต็มขนาดรักษา embolism
+req3.f1: Heparin ไม่ได้รักษา fat emboli และเพิ่มความเสี่ยงเลือดออก การรักษาคือประคับประคอง
+req3.m0: ทั้งคู่ไม่มีหลักฐานใน fat embolism syndrome ที่เกิดแล้ว และ heparin อาจทำให้แผลผ่าตัดเลือดออกมากขึ้น prophylactic steroid มีหลักฐานอ่อนเฉพาะในคนไข้ ortho ความเสี่ยงสูง ซึ่งไม่ใช่สถานการณ์นี้
+out1.l: Hypoxemia แย่ลงเรื่อยๆ
+out1.n: ลอง NIV ไม่ได้ผล intubate ชั่วโมงที่ 3 P/F ratio 130 เข้าเกณฑ์ moderate ARDS, fat embolism syndrome หายเองได้ใน 3 ถึง 7 วัน งานคือประคองชีวิตไว้และไม่ให้ปอดบาดเจ็บจาก ventilator ระหว่างรอ
+ethical_1.l: บอกแฟนว่าเกิดอะไรขึ้นจริงๆ รวมถึงปริมาณที่ดูดออก (Empathy)
+ethical_1.n: ผู้ประสานงานของคลินิกมาถึงและเสนอจะคุยกับครอบครัวเอง หมอปฏิเสธและคุยกับแฟนเอง อธิบายว่า fat embolism คืออะไร ว่า 5.5 ลิตรในครั้งเดียวเกินปริมาณที่ guideline ส่วนใหญ่ถือว่าปลอดภัยไปมาก และ complication นี้ไม่บ่อยแต่เป็นที่รู้จัก เขาถามว่าเธอได้รับการบอกไหม หมอไม่รู้ และบอกว่าไม่รู้แทนการเดาไปทางใดทางหนึ่ง ประโยคนั้นคือความต่างระหว่างความซื่อตรงกับการเลือกข้าง
+req4.l: ICU ตั้ง ventilator แบบ lung protective และ neuroprotection
+req4.d0: ใช้ tidal volume สูงเปิดปอด
+req4.f0: Tidal volume สูงทำให้ปอดบาดเจ็บ ใช้ 6 mL/kg predicted body weight
+req4.d1: Admit วอร์ดสามัญ on O2
+req4.f1: Hypoxemia ที่แย่ลงเรื่อยๆ ต้องอยู่ ICU พร้อม lung protective ventilation
+req4.m0: Plateau pressure ต่ำกว่า 30 cmH2O ถ้า P/F ยังต่ำกว่า 150 พิจารณา prone
+out2.l: ระยะฟื้นตัว
+out2.n: Oxygenation ดีขึ้นตั้งแต่วันที่ 4 extubate วันที่ 6 มีช่วงสับสนและความจำระยะสั้นไม่ดี หายภายใน 3 สัปดาห์ ระบบประสาทใน fat embolism มักฟื้นได้ครบ ควรบอกครอบครัวตั้งแต่แรก เพราะภาพช่วงเฉียบพลันดูน่ากลัวมาก
+req5.l: รายงานและป้องกัน
+req5.d0: ไม่ต้องรายงาน เป็น complication ที่รู้กันอยู่แล้ว
+req5.f0: ดูดปริมาณมากในครั้งเดียวและ D/C เร็วเป็นความเสี่ยงที่แก้ได้ รายงานและเสนอให้ปรับ
+req5.d1: เสนอให้ห้ามดูดไขมันทั้งหมด
+req5.f1: หลักฐานสนับสนุนให้แบ่งทำเมื่อเกินราว 4 ลิตรและ observe ค้างคืน ไม่ใช่สั่งห้าม
+out3.l: Disposition
+out3.n: D/C วันที่ 14 ความคิดความจำปกติ เหนื่อยง่ายเล็กน้อยเวลาออกแรง หายใน 3 เดือน พลาดงานเปิดตัวสินค้า คลินิกปรับเพดานปริมาณที่ดูดได้ต่อครั้ง ลงวันที่สัปดาห์หลังรายงานของหมอ ซึ่งเป็นสิ่งที่ใกล้เคียงคำยอมรับที่สุดที่ใครจะได้

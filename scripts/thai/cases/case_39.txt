@@ -1,0 +1,50 @@
+cc: ปวดขารุนแรง มีไข้ 20 ชม. หลังจับอาหารทะเล
+bg: พ่อค้าส่งอาหารทะเลที่ตลาดปลา เมื่อวานเช้าโดนลังหอยนางรมบาดหน้าแข้งขวา ล้างแผลด้วยน้ำทะเล 20 ชม. ต่อมาปวดขาทรมานมาก หนาวสั่น อาเจียน เป็น cirrhosis จาก chronic hepatitis B ไม่มียาประจำ โรคตับเรื้อรังและธาตุเหล็กเกินเพิ่มความเสี่ยงติดเชื้อ Vibrio vulnificus แบบรุนแรงราว 80 เท่า ประวัตินี้ร่วมกับอาการที่ลุกลามเร็วคือรูปแบบของโรคนี้
+i.lric1: Score 11 ความเสี่ยงสูง LRINEC ต่ำไม่ได้ตัด necrotizing fasciitis และเคยทำให้ล่าช้าจนเสียชีวิต score ใช้สนับสนุนความสงสัยทาง clinical ไม่เคยใช้ล้มมันได้
+i.lac1: Severe septic shock และ tissue hypoperfusion
+i.ct1: มี gas ตาม deep fascial plane ของ anterior และ lateral compartment, fascia หนาและไม่ enhance, มี fat stranding สนับสนุน necrotizing fasciitis imaging มีประโยชน์เฉพาะเมื่อไม่ทำให้ผ่าตัดช้า และ scan ปกติก็ไม่ได้ตัดการวินิจฉัย
+i.bc1: Positive ที่ 9 ชม. Gram negative bacilli รูปโค้งในคนไข้ cirrhosis ที่สัมผัสน้ำทะเลแทบจะวินิจฉัยได้เลย และเปลี่ยนการเลือก antibiotic เพราะต้องใช้ doxycycline ร่วมกับ 3rd generation cephalosporin โดยเฉพาะ
+i.ck1: กล้ามเนื้อถูกกระทบ CK สูงร่วมกับปวดเกินสัดส่วนเพิ่มความกังวลว่าเป็น necrotizing infection มากกว่า cellulitis ธรรมดา
+i.coag1: Coagulopathy จาก sepsis บน cirrhosis แก้ก่อนเข้าห้องผ่าตัด แต่อย่าให้การแก้ทำให้ผ่าตัดช้า
+req1.l: จับได้ว่าปวดเกินสัดส่วน และตามศัลย์ทันที
+req1.c: ขีดขอบผิวหนัง ตามศัลย์เดี๋ยวนี้
+req1.d0: รอ CT ยืนยัน necrotizing fasciitis ก่อน
+req1.f0: Imaging ทำให้ผ่าตัดช้า ปวดเกินสัดส่วนร่วมกับ systemic toxicity ต้อง consult ศัลย์ทันที
+req1.d1: รักษาเป็น cellulitis ธรรมดาด้วยยากิน
+req1.f1: ปวดรุนแรง ไข้ และ cirrhosis หลังสัมผัสน้ำทะเล ชวนนึกถึง Vibrio necrotizing infection
+req1.m0: ลามหลาย cm ต่อชั่วโมง แยกจาก cellulitis ได้ใน 30 นาที และไม่เสียเงินเลย
+req2.l: Resuscitate ด้วย fluid เต็มที่ และเก็บ culture
+req2.d0: จำกัด fluid เพราะเป็น cirrhosis
+req2.f0: คนไข้ septic shock อยู่ resuscitate ด้วย balanced crystalloid และเพิ่ม vasopressor
+req2.d1: ไม่ต้องเก็บ culture จะได้ไม่ช้า
+req2.f1: เก็บ culture ได้เร็วและไม่ควรทำให้ antibiotic ช้า แต่สำคัญ
+req2.m0: ราว 2 ลิตร แล้วประเมินซ้ำ ถ้าเปิดเส้นยากอย่ารอเก็บ culture จนให้ antibiotic ช้า
+req3.l: Broad spectrum antibiotic ที่ครอบคลุม Vibrio และยับยั้ง toxin
+req3.c: Meropenem, doxycycline และ clindamycin IV
+req3.d0: Cloxacillin อย่างเดียว
+req3.f0: Vibrio vulnificus ต้องครอบคลุมเฉพาะ เช่น doxycycline ร่วมกับ cephalosporin หรือ carbapenem และยับยั้ง toxin
+req3.d1: รอผล culture ก่อนให้ antibiotic
+req3.f1: Vibrio necrotizing fasciitis ฆ่าคนไข้ได้ในไม่กี่ชั่วโมง รักษาทันที
+req3.m0: 1 g IV ทุก 8 ชม. ครอบคลุมกว้าง
+req3.m1: 100 mg ทุก 12 ชม. จำเป็นสำหรับ Vibrio vulnificus โดยเฉพาะ ใช้ร่วมกับ 3rd generation cephalosporin หรือ carbapenem เพิ่มอัตรารอด
+req3.m2: 900 mg ทุก 8 ชม. เพิ่มเพื่อยับยั้ง toxin ผ่านการยับยั้งการสร้างโปรตีนของแบคทีเรีย ซึ่งแยกจากฤทธิ์ฆ่าเชื้อ
+out1.l: ลุกลามเร็ว
+out1.n: ใน 45 นาที ขอบผิวที่เปลี่ยนสีลามเลยเส้นปากกาไป 6 cm ถึงกลางต้นขา BP ตกเหลือ 70/38 ทั้งที่ได้ fluid 2 ลิตรและ norepinephrine antibiotic เข้าเนื้อตายไม่ได้ มีแต่มีดผ่าตัดที่เปลี่ยนทิศทางนี้ได้
+ethical_1.l: บอกคนไข้และญาติว่ามีแนวโน้มต้องตัดขา ก่อนเขาจะตัดสินใจเองไม่ได้ (Empathy)
+ethical_1.n: ตอนนี้เขายังรู้ตัวพอจะเซ็น consent แต่อีกชั่วโมงอาจไม่ใช่แล้ว หมอไม่โยนเรื่องนี้ให้ศัลย์ไปบอกระหว่างทางไปห้องผ่าตัด หมอบอกเขาเองตอนนี้ตรงๆ ว่าการผ่าตัดอาจจบที่ตัดขาเหนือเข่า ว่านี่คือโอกาสรอดคืนนี้ที่ดีที่สุด และรู้ว่างานของเขาต้องยืนทั้งวัน ลูกชายก็ขายปลาเหมือนกัน หมอทำให้แน่ใจว่าลูกชายได้ยินเรื่องน้ำทะเลกับ cirrhosis ด้วย เพราะเขามีปัจจัยเสี่ยงทั้งสองอย่าง พี่พิมบอกทีหลังว่าครึ่งหลังนั้นคืองานสาธารณสุขที่ทำข้างเตียง
+req4.l: ผ่าตัด debride ด่วน นี่คือการรักษา definitive อย่างเดียว
+req4.c: เข้าห้องผ่าตัด radical debridement เดี๋ยวนี้
+req4.d0: ให้ antibiotic ต่อแล้วดูเส้นที่ขีดไว้
+req4.f0: Antibiotic เข้าเนื้อตายไม่ได้ surgical debridement คือ definitive
+req4.d1: Hyperbaric oxygen ก่อนผ่าตัด
+req4.f1: Hyperbaric oxygen ต้องไม่ทำให้ debridement ช้า
+req4.m0: ทุกชั่วโมงที่ debride ครั้งแรกช้า mortality เพิ่มขึ้นอย่างวัดได้ ต้อง debride ถึงเนื้อดีที่เลือดออก debride ครั้งแรกไม่พอคือความผิดพลาดทางศัลยกรรมที่พบบ่อยที่สุด
+out2.l: ในห้องผ่าตัด
+out2.n: Deep fascia ตายเป็นวงกว้าง มีน้ำสีน้ำล้างจาน ใช้นิ้วเซาะแยก tissue plane ได้ง่าย ซึ่งเป็น hallmark ระหว่างผ่าตัด radical debridement ตั้งแต่ข้อเท้าถึงกลางต้นขาโดยเก็บกล้ามเนื้อไว้ debride ซ้ำอีกสองครั้งที่ 24 และ 48 ชม. เก็บขาไว้ได้
+req5.l: ดูแลใน ICU และวางแผน reconstruction
+req5.d0: เย็บปิดแผลเลยหลัง debride ครั้งแรก
+req5.f0: มักต้อง debride ซ้ำหลายครั้ง ใช้ negative pressure therapy จนแผลสะอาด
+req5.d1: ย้ายไปวอร์ดสามัญหลังผ่าตัด
+req5.f1: ยังต้องใช้ vasopressor ต้องดูแลใน ICU
+out3.l: Disposition
+out3.n: ทำ split thickness skin graft วันที่ 16 ส่งต่อ rehab สัปดาห์ที่ 6 ขาใช้งานได้แต่มีแผลเป็นและข้อติด mortality ของ Vibrio vulnificus necrotizing infection ในคนไข้ cirrhosis มีรายงานเกิน 50% ที่ต่างคือเวลาจากประตูถึงมีด 94 นาที ตอนนี้ลูกชายใส่ถุงมือที่ตลาดแล้ว

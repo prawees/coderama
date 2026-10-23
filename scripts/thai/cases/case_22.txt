@@ -1,0 +1,49 @@
+cc: ไข้ ตัวเหลือง ไอเป็นเลือด
+bg: ชาวนา เดินเท้าเปล่าในนาน้ำท่วมมา 2 สัปดาห์หลังฝนหนัก มีแผลถลอกกำลังหายที่หน้าแข้งซ้าย ไข้สูงมา 6 วัน ปวดน่องและต้นขามาก ปวดหัว ตั้งแต่วันที่ 4 ปัสสาวะสีเข้ม ตาเหลือง เช้านี้ไอเป็นเลือดสดสองครั้ง รอบนามีควายหลายตัวและหนูเยอะ ฝนปีนี้หนักที่สุดในรอบ 9 ปี นี่คือระบาดวิทยาที่สำคัญ
+i.cxr1: Diffuse patchy alveolar opacity ทั้งสองข้าง ชัดที่ lower และ mid zone หัวใจขนาดปกติ เป็น alveolar hemorrhage ไม่ใช่ pulmonary edema และไม่ใช่ lobar pneumonia
+i.bili1: Bilirubin สูงมากแต่ transaminase สูงเล็กน้อย ความไม่สัมพันธ์กันนี้แยก leptospirosis จาก viral hepatitis ที่ transaminase เป็นหลักพัน
+i.cr1: AKI ร่วมกับ hypokalemia ไตวายแบบ non-oliguric hypokalemic เป็นลักษณะของ leptospirosis และไม่ค่อยเจอใน AKI จากสาเหตุอื่น
+i.cbc1: Neutrophilic leukocytosis ร่วมกับ thrombocytopenia WBC สูงไม่สนับสนุน dengue ที่มักมี leukopenia
+i.sero1: IgM อาจ negative ในสัปดาห์แรก ผล negative จึงไม่ใช่เหตุผลให้งด antibiotic รักษาตามระบาดวิทยาและ clinical
+i.ck1: CK สูงร่วมกับตัวเหลืองและไตวาย ช่วยแยก leptospirosis จาก viral hepatitis
+req1.l: Oxygenation และจับ alveolar hemorrhage ได้เร็ว
+req1.c: O2 high flow จัดท่านั่ง crossmatch
+req1.d0: คิดว่าไอเป็นเลือดจาก TB แยกห้อง
+req1.f0: ประวัติสัมผัสชี้ไปที่ leptospirosis ร่วมกับ pulmonary hemorrhage ให้ O2 และจับให้ได้เร็วก่อน
+req1.d1: ให้ O2 เฉพาะเมื่อ SpO2 ต่ำกว่า 85%
+req1.f1: Pulmonary hemorrhage แย่ลงเร็ว ให้ O2 high flow เดี๋ยวนี้และเตรียม escalate
+req1.m0: 15 L/min ทาง NRB เตรียม intubate และตั้ง lung protective
+req2.l: เริ่ม antibiotic ทันที ไม่ต้องรอ serology
+req2.d0: รอผล leptospira serology ยืนยันก่อนให้ antibiotic
+req2.f0: Serology ใช้เวลาหลายวันและมัก negative ช่วงแรก เริ่ม antibiotic ตาม clinical
+req2.d1: ให้ amoxicillin กินแบบผู้ป่วยนอก
+req2.f1: Severe leptospirosis ที่มีตัวเหลืองและไอเป็นเลือดต้องได้ ceftriaxone หรือ penicillin IV และ admit
+req2.m0: 1 ถึง 2 g IV วันละครั้ง 7 วัน
+req2.m1: 1.5 ล้าน unit IV ทุก 6 ชม. เตือนเรื่อง Jarisch-Herxheimer reaction ในชั่วโมงแรกๆ
+req3.l: Fluid อย่างระวัง และให้ K ทดแทน
+req3.c: Fluid ทีละน้อย ให้ K ทดแทน
+req3.d0: Bolus fluid ปริมาณมาก flush ไต
+req3.f0: Fluid overload ทำให้ pulmonary hemorrhage แย่ลง bolus อย่างระวังแล้วประเมินซ้ำ
+req3.d1: งด K เพราะไตวาย
+req3.f1: Leptospirosis มักทำให้ AKI แบบ non-oliguric hypokalemic เจาะดูแล้วให้ K ทดแทน
+req3.m0: ครั้งละ 250 ถึง 500 mL ให้ fluid หนักทำให้ pulmonary hemorrhage แย่ลง ใช้ปริมาณน้อยและเริ่ม norepinephrine เร็ว
+out1.l: การหายใจแย่ลง
+out1.n: SpO2 ตกเหลือ 80% ทั้งที่ให้ O2 เต็มที่ ไอเป็นเลือดมากขึ้น intubate ตั้ง lung protective ventilation PEEP 12 ตอนนี้ภัยเฉพาะหน้าคือ alveolar hemorrhage ไม่ใช่ตับหรือไต
+ethical_1.l: คุยกับภรรยาตามจริงก่อน intubate ไม่ใช่หลัง (Empathy)
+ethical_1.n: หมอมีเวลา 4 นาทีก่อนใส่ tube และคนไข้ยังพูดได้ หมอพาภรรยาเข้ามา บอกทั้งสองคนว่า pulmonary hemorrhage จาก leptospirosis คร่าชีวิตคนที่เป็นมากกว่าครึ่ง แล้วปล่อยให้สองคนได้พูดสิ่งที่ต้องพูดกัน เสียเวลา preoxygenate ไป 4 นาที พี่ใจบอกทีหลังว่าญาติให้อภัยได้แทบทุกผลลัพธ์ ยกเว้นการไม่ได้คุยกันครั้งสุดท้าย
+req4.l: ICU ทำ dialysis และให้ blood product
+req4.d0: Admit วอร์ดสามัญ พรุ่งนี้เช้าค่อยตรวจซ้ำ
+req4.f0: กำลังแย่ลงทั้ง respiratory failure และไต ต้อง ICU และ dialysis
+req4.d1: Steroid ขนาดสูงเป็นการรักษาหลัก
+req4.f1: Steroid ยังไม่มีหลักฐานใน pulmonary hemorrhage จาก leptospirosis หลักคือดูแลใน ICU และ dialysis
+req4.m0: Dialysis เร็วลด mortality ใน severe leptospirosis ไม่ต้องรอ indication ตามเกณฑ์คลาสสิก
+out2.l: จุดเปลี่ยนวันที่ 5
+out2.n: ไอเป็นเลือดหยุดที่ 60 ชม. ได้ dialysis 5 ครั้ง bilirubin สูงสุด 26 mg/dL แล้วลดลง extubate วันที่ 9 ไตใน leptospirosis มักฟื้นได้ครบ ซึ่งเป็นข้อดีข้อเดียวของโรคนี้
+req5.l: แจ้งและป้องกันคนอื่นในหมู่บ้าน
+req5.d0: รักษาคนไข้ ส่วนสาธารณสุขให้คนอื่นจัดการ
+req5.f0: Leptospirosis เป็นโรคที่ต้องรายงาน คนอื่นในหมู่บ้านก็สัมผัสแบบเดียวกัน แจ้งและให้คำแนะนำ
+req5.d1: ให้ doxycycline ทุกคนในหมู่บ้าน 1 เดือน
+req5.f1: Prophylaxis สำหรับคนทำงานที่สัมผัสความเสี่ยงสูง ไม่ใช่ทุกคน แจ้งและแนะนำแบบเจาะกลุ่ม
+req5.m0: 200 mg สัปดาห์ละครั้งช่วงที่สัมผัสมาก หลักฐานปานกลาง แต่ราคาถูกและการระบาดนี้มีแหล่งชัดเจน
+out3.l: Disposition
+out3.n: D/C วันที่ 21 Cr 1.3 mg/dL ไม่ต้องใช้ O2 สัปดาห์นั้นมีอีกสองรายจากตำบลเดียวกันมา ได้รักษาตั้งแต่วันที่ 2 แทนวันที่ 6 และไม่มีใครเลือดออกเลย

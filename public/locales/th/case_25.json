@@ -1,0 +1,448 @@
+{
+  "title": "36yo F Fat Embolism after Liposuction",
+  "age": "36",
+  "sex": "F",
+  "chiefComplaint": "หอบเหนื่อย สับสน 28 ชม. หลังดูดไขมันปริมาณมาก",
+  "diagnoses": [
+    "Fat embolism syndrome",
+    "Pulmonary thromboembolism",
+    "Lidocaine systemic toxicity",
+    "Fluid overload pulmonary oedema",
+    "Sepsis"
+  ],
+  "background": "ดูดไขมันปริมาณมากที่หน้าท้อง สีข้าง ต้นขา ร่วมกับฉีดไขมันที่สะโพก เมื่อ 28 ชม. ก่อน ดูดออกราว 5.5 ลิตรในครั้งเดียวภายใต้ tumescent anesthesia D/C หลัง observe 6 ชม. ช่วงกลางคืนเริ่มหอบและกระสับกระส่าย แฟนพามาตอนที่พูดไม่รู้เรื่อง กินยาคุมกำเนิดชนิดรวม ทำงานฝ่ายการตลาด อีก 4 วันมีงานเปิดตัวสินค้า เลยเลือกทำครั้งเดียวแทนแบ่งทำสองครั้ง",
+  "patientAppearance": {
+    "skinTone": "#f2cba8",
+    "bmiFactor": 1.0,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 128,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 96,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 58,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 36,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 38.4,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 86,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 12,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Agitated, confused, air hungry, unable to give a coherent history, pulling at the oxygen mask",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Subconjunctival petechiae in both eyes. Retinal examination shows cotton wool spots and retinal fat globules (Purtscher-like retinopathy), which is close to diagnostic in this setting",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia at 128/min, loud P2, no murmur, JVP mildly raised, capillary refill 3 seconds",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Bilateral fine crackles throughout, no wheeze, saturations 86% on 15 L/min, respiratory rate 36. Hypoxaemia disproportionate to the chest X-ray findings",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Extensive bruising and tenderness over all liposuction sites, no peritonism, compression garments in place, no evidence of intra-abdominal perforation",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Non-blanching petechial rash across the upper chest, anterior axillary folds and neck, in a distribution that spares the lower body. This petechial rash appears in about half of cases, is often missed under a gown, and typically fades within 24 hours",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 12 (E3V4M5), agitated and disorientated, no focal deficit, no meningism. Cerebral involvement precedes or accompanies the respiratory picture in most cases",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Arterial blood gas",
+      "value": "pH 7.46 / pCO2 28 / pO2 48 / P/F ratio 160",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Severe hypoxemic respiratory failure ร่วมกับ respiratory alkalosis, PaO2 ต่ำกว่า 60 mmHg เป็น major Gurd criterion ของ fat embolism syndrome"
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Portable Chest X-ray",
+      "report": "Diffuse patchy alveolar infiltrate ทั้งสองข้างแบบ snowstorm หัวใจขนาดปกติ ไม่มี pleural effusion ไม่มี pneumothorax infiltrate ดูน้อยกว่าระดับ hypoxemia ซึ่งเป็นลักษณะเฉพาะ",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "ctpa1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CT pulmonary angiogram",
+      "report": "ไม่มี filling defect ใน pulmonary artery ถึงระดับ segmental ตัด thromboembolism ก้อนใหญ่ออก มี ground glass opacity กระจายทั่วร่วมกับ interlobular septal thickening สนับสนุน fat embolism มากกว่า thrombotic embolism",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "cbc1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Haemoglobin and platelets",
+      "value": "Hb 9.2 g/dL / platelets 78 x10^9/L",
+      "unit": "-",
+      "normalRange": "Hb 12.0-15.5 g/dL",
+      "abnormal": true,
+      "report": "Anemia และ thrombocytopenia เป็น minor Gurd criteria ทั้งคู่ ถ้าลดลงทั้งสองอย่างกะทันหันโดยไม่มีสาเหตุหลังผ่าตัดกระดูกหรือศัลยกรรมความงาม ให้นึกถึงโรคนี้"
+    },
+    {
+      "id": "echo1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Bedside echocardiogram",
+      "report": "RV โตเล็กน้อย บีบตัวดี ไม่มี McConnell's sign ไม่มี thrombus in transit, LV function ปกติ ไม่สนับสนุน massive PE และไม่สนับสนุน cardiogenic pulmonary edema",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "12-Lead ECG",
+      "report": "Sinus tachycardia 126/min มี non-specific ST depression V1 ถึง V3 ไม่มี S1Q3T3, QTc 430 ms ไม่สนับสนุน lidocaine toxicity จาก tumescent solution",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "O2 high flow และเปิดเสื้อคลุมดู",
+          "distractors": [
+            {
+              "label": "Cannula 2 L/min เลี่ยง hyperoxia",
+              "feedback": "หอบและสับสน ให้ O2 high flow แล้วหา sign คลาสสิก"
+            },
+            {
+              "label": "ทำ LP หาสาเหตุสับสน",
+              "feedback": "Hypoxia สับสน และ petechiae หลังดูดไขมันชี้ไปที่ fat embolism LP ไม่ใช่ขั้นแรก"
+            }
+          ],
+          "label": "ให้ O2 high flow และเปิดดูทั้งตัวหา petechial rash",
+          "actions": [
+            "High flow oxygen 15 L/min",
+            "Expose chest, axillae and neck",
+            "Fundoscopy",
+            "Continuous monitoring"
+          ],
+          "doseMap": {
+            "Expose chest, axillae and neck": "Petechial rash คือ finding ที่วินิจฉัยโรคนี้ข้างเตียงได้ และจางไปใน 24 ชม. ถ้าไม่เปิดเสื้อดูในชั่วโมงแรกๆ จะไม่มีวันได้เห็น"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "CTPA, echo และดู lidocaine toxicity",
+          "distractors": [
+            {
+              "label": "วินิจฉัย fat embolism เลย ไม่ต้องตรวจเพิ่ม",
+              "feedback": "Fat embolism เป็น diagnosis of exclusion, PE, local anesthetic toxicity และ sepsis เป็นโรคคล้ายกันที่รักษาได้"
+            },
+            {
+              "label": "ให้ thrombolysis ไปเลย คิดว่าเป็น PE",
+              "feedback": "Thrombolysis โดยไม่ยืนยันเสี่ยงเลือดออกรุนแรง ตัดโรคคล้ายกันออกก่อน"
+            }
+          ],
+          "label": "ตัดโรคที่รักษาได้ซึ่งคล้ายกันออกก่อนสรุปการวินิจฉัย",
+          "actions": [
+            "CT pulmonary angiogram",
+            "Bedside echocardiogram",
+            "ECG and lidocaine toxicity assessment",
+            "Blood cultures and sepsis screen"
+          ],
+          "doseMap": {
+            "ECG and lidocaine toxicity assessment": "Tumescent liposuction ใช้ lidocaine ขนาดสูงมาก ดูดซึมสูงสุดช้าที่ 12 ถึง 14 ชม. toxicity มาด้วยชารอบปาก หูอื้อ ชัก และ arrhythmia และมียาแก้จำเพาะ"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "NIV หรือ intubate ตั้งแบบ lung protective",
+          "distractors": [
+            {
+              "label": "Methylprednisolone ขนาดสูงเป็นการรักษา",
+              "feedback": "Steroid ยังไม่มีหลักฐานว่ารักษา fat embolism ที่เกิดแล้วได้ การรักษาคือประคับประคอง"
+            },
+            {
+              "label": "Heparin เต็มขนาดรักษา embolism",
+              "feedback": "Heparin ไม่ได้รักษา fat emboli และเพิ่มความเสี่ยงเลือดออก การรักษาคือประคับประคอง"
+            }
+          ],
+          "label": "ประคับประคองการหายใจ ไม่มีการรักษาจำเพาะ",
+          "actions": [
+            "Non-invasive ventilation or intubation with lung protective settings",
+            "PEEP titration",
+            "No heparin, no steroids as treatment"
+          ],
+          "doseMap": {
+            "No heparin, no steroids as treatment": "ทั้งคู่ไม่มีหลักฐานใน fat embolism syndrome ที่เกิดแล้ว และ heparin อาจทำให้แผลผ่าตัดเลือดออกมากขึ้น prophylactic steroid มีหลักฐานอ่อนเฉพาะในคนไข้ ortho ความเสี่ยงสูง ซึ่งไม่ใช่สถานการณ์นี้"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "Hypoxemia แย่ลงเรื่อยๆ",
+          "outcomeType": "worsened",
+          "narrative": "ลอง NIV ไม่ได้ผล intubate ชั่วโมงที่ 3 P/F ratio 130 เข้าเกณฑ์ moderate ARDS, fat embolism syndrome หายเองได้ใน 3 ถึง 7 วัน งานคือประคองชีวิตไว้และไม่ให้ปอดบาดเจ็บจาก ventilator ระหว่างรอ",
+          "vitalChanges": {
+            "hr": 136,
+            "sbp": 92,
+            "dbp": 54,
+            "rr": 20,
+            "spo2": 91,
+            "gcs": 3
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 420
+        },
+        "data": {
+          "label": "บอกแฟนว่าเกิดอะไรขึ้นจริงๆ รวมถึงปริมาณที่ดูดออก (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "ผู้ประสานงานของคลินิกมาถึงและเสนอจะคุยกับครอบครัวเอง หมอปฏิเสธและคุยกับแฟนเอง อธิบายว่า fat embolism คืออะไร ว่า 5.5 ลิตรในครั้งเดียวเกินปริมาณที่ guideline ส่วนใหญ่ถือว่าปลอดภัยไปมาก และ complication นี้ไม่บ่อยแต่เป็นที่รู้จัก เขาถามว่าเธอได้รับการบอกไหม หมอไม่รู้ และบอกว่าไม่รู้แทนการเดาไปทางใดทางหนึ่ง ประโยคนั้นคือความต่างระหว่างความซื่อตรงกับการเลือกข้าง"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ใช้ tidal volume สูงเปิดปอด",
+              "feedback": "Tidal volume สูงทำให้ปอดบาดเจ็บ ใช้ 6 mL/kg predicted body weight"
+            },
+            {
+              "label": "Admit วอร์ดสามัญ on O2",
+              "feedback": "Hypoxemia ที่แย่ลงเรื่อยๆ ต้องอยู่ ICU พร้อม lung protective ventilation"
+            }
+          ],
+          "label": "ICU ตั้ง ventilator แบบ lung protective และ neuroprotection",
+          "actions": [
+            "ICU admission",
+            "Tidal volume 6 mL/kg predicted body weight",
+            "Avoid fever and maintain normoglycaemia",
+            "Mechanical thromboprophylaxis"
+          ],
+          "doseMap": {
+            "Tidal volume 6 mL/kg predicted body weight": "Plateau pressure ต่ำกว่า 30 cmH2O ถ้า P/F ยังต่ำกว่า 150 พิจารณา prone"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "ระยะฟื้นตัว",
+          "outcomeType": "improved",
+          "narrative": "Oxygenation ดีขึ้นตั้งแต่วันที่ 4 extubate วันที่ 6 มีช่วงสับสนและความจำระยะสั้นไม่ดี หายภายใน 3 สัปดาห์ ระบบประสาทใน fat embolism มักฟื้นได้ครบ ควรบอกครอบครัวตั้งแต่แรก เพราะภาพช่วงเฉียบพลันดูน่ากลัวมาก",
+          "vitalChanges": {
+            "hr": 94,
+            "sbp": 112,
+            "dbp": 68,
+            "rr": 20,
+            "spo2": 96,
+            "temp": 37.0,
+            "gcs": 14
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ไม่ต้องรายงาน เป็น complication ที่รู้กันอยู่แล้ว",
+              "feedback": "ดูดปริมาณมากในครั้งเดียวและ D/C เร็วเป็นความเสี่ยงที่แก้ได้ รายงานและเสนอให้ปรับ"
+            },
+            {
+              "label": "เสนอให้ห้ามดูดไขมันทั้งหมด",
+              "feedback": "หลักฐานสนับสนุนให้แบ่งทำเมื่อเกินราว 4 ลิตรและ observe ค้างคืน ไม่ใช่สั่งห้าม"
+            }
+          ],
+          "label": "รายงานและป้องกัน",
+          "actions": [
+            "Adverse event report to the medical director",
+            "Recommend staged procedures above 4 litres aspirate",
+            "Recommend overnight observation after large volume liposuction",
+            "Occupational and psychological follow up"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 14 ความคิดความจำปกติ เหนื่อยง่ายเล็กน้อยเวลาออกแรง หายใน 3 เดือน พลาดงานเปิดตัวสินค้า คลินิกปรับเพดานปริมาณที่ดูดได้ต่อครั้ง ลงวันที่สัปดาห์หลังรายงานของหมอ ซึ่งเป็นสิ่งที่ใกล้เคียงคำยอมรับที่สุดที่ใครจะได้",
+          "vitalChanges": {
+            "hr": 82,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 16,
+            "spo2": 98,
+            "temp": 36.8,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "out2",
+        "target": "req5"
+      },
+      {
+        "id": "e9",
+        "source": "req5",
+        "target": "out3"
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+cc: ล้มหมดสติ หอบเหนื่อยมาก
+bg: บินกรุงเทพไปแฟรงก์เฟิร์ตไปกลับภายใน 8 วัน เครื่องลงเมื่อ 4 ชม. ก่อน ผ่าตัดเปลี่ยนข้อเข่า 11 วันก่อนเดินทาง หยุดฉีด enoxaparin ป้องกันลิ่มเลือดก่อนกำหนดเพราะฉีดแล้วแสบ ปวดน่องขวามา 2 วัน คิดว่าเป็นจากผ่าตัด ล้มลงที่สายพานรับกระเป๋า หมดสติไปครู่หนึ่ง มาถึงด้วยรถพยาบาล SpO2 84% ทั้งที่ on O2 high flow
+i.echo1: RV โตมาก RV/LV ratio เกิน 1.2 septum แบนทั้ง systole และ diastole (D-shaped LV) มี McConnell's sign คือ mid free wall akinesia แต่ apex ยังบีบดี IVC โตไม่ collapse ไม่มี pericardial effusion ในคนไข้ที่ unstable เกินจะไป CT ข้อมูลเท่านี้พอให้ thrombolysis ได้
+i.ecg1: Sinus tachycardia 134/min มี S1Q3T3, incomplete RBBB และ T inversion V1 ถึง V4 เป็น right heart strain sensitivity ต่ำ EKG ปกติก็ตัดโรคนี้ไม่ได้
+i.ctpa1: Saddle embolus ก้อนใหญ่ที่ bifurcation ของ pulmonary artery มี filling defect ทั้ง central และ lobar ทั้งสองข้าง RV/LV ratio 1.6 และ contrast ไหลย้อนเข้า IVC บ่งชี้ right heart strain ทำหลัง stabilize แล้วเท่านั้น
+i.trop1: สูงทั้งคู่ บ่งว่ากล้ามเนื้อ RV บาดเจ็บและ strain เป็นตัวบอกพยากรณ์โรค ไม่ใช่ตัววินิจฉัย ห้ามรอผลก่อนรักษา
+i.abg1: Hypoxemia ร่วมกับ respiratory alkalosis และมี lactic acidosis จากช็อกซ้อน
+i.us2: Right femoral และ popliteal vein กดไม่ยุบ มี echogenic thrombus ยืนยันต้นเหตุ ทำข้างเตียงได้ใน 2 นาที และช่วยสนับสนุนการวินิจฉัยตอนคนไข้ unstable เกินจะเคลื่อนย้าย
+req1.l: O2, monitor และ echo ข้างเตียง ไม่ใช่พาไปห้อง CT
+req1.c: O2, arterial line และ echo ข้างเตียง
+req1.d0: ส่ง CTPA ทันที
+req1.f0: คนไข้ช็อกอยู่ echo ข้างเตียงเห็น RV strain ได้โดยไม่ต้องเคลื่อนย้ายคนไข้ unstable
+req1.d1: เจาะ D-dimer แล้วรอผล
+req1.f1: D-dimer ใช้ยืนยัน PE ไม่ได้ และเสียเวลาในคนไข้ช็อก ใช้ echo ข้างเตียง
+req1.m0: คนไข้ช็อกที่ถูกส่งไป CT อาจ arrest ในห้อง CT ที่ไม่มีใครช่วยได้ echo ตอบคำถามที่สำคัญคือ RV กำลังล้มเหลวหรือเปล่า
+req2.l: Fluid อย่างระวัง และให้ vasopressor เร็ว
+req2.d0: ให้ crystalloid 2 ลิตรเร็วๆ
+req2.f0: RV ที่กำลังล้มเหลวจะยิ่งโตเมื่อได้ fluid มาก ให้ bolus น้อยๆ และเริ่ม norepinephrine เร็ว
+req2.d1: ให้ NTG drip ลด afterload
+req2.f1: Nitrate ลด preload และทำให้ BP ตกมากขึ้นใน massive PE
+req2.m0: RV ที่ล้มเหลวและได้น้ำเกินจะดัน septum เข้าไปใน LV ทำให้ cardiac output ลดลงอีก ให้เกินราว 500 mL ใน high-risk PE ทำให้ arrest ได้
+req2.m1: รักษา coronary perfusion ของ RV ที่ strain อยู่ เริ่มเลยดีกว่าให้ fluid ต่อ
+req3.l: ให้ anticoagulant ทันที
+req3.d0: รอ CT ก่อนให้ anticoagulant
+req3.f0: โอกาสเป็น massive PE สูงและไม่มีข้อห้าม ให้ anticoagulant ทันที
+req3.d1: เริ่ม warfarin คืนนี้
+req3.f1: Warfarin ใช้เวลาหลายวันกว่าจะออกฤทธิ์ และช่วงแรกทำให้เลือดแข็งตัวง่ายขึ้น ใช้ UFH IV
+req3.m0: Bolus 80 unit/kg แล้ว 18 unit/kg/h ในเคสนี้ UFH ดีกว่า LMWH เพราะออกฤทธิ์สั้นและ reverse ได้ สำคัญถ้าต้อง thrombolysis หรือ embolectomy ต่อ
+out1.l: ยังช็อกอยู่
+out1.n: ทั้งที่ได้ norepinephrine 0.3 mcg/kg/min SBP ยังอยู่ที่ 76 lactate ขึ้นเป็น 7.4 นี่คือ high-risk PE ที่ BP ต่ำต่อเนื่อง anticoagulant อย่างเดียวช่วยไม่ได้ ต้องลดปริมาณ clot เดี๋ยวนี้
+ethical_1.l: อธิบายความเสี่ยงเลือดออกจาก thrombolysis ตามจริงใน 60 วินาทีที่มี (Empathy)
+ethical_1.n: คนไข้สับสนแต่ยังตัดสินใจได้ ลูกสาวอยู่ด้วย หมอไม่ได้ทำไปเลย หมอบอกด้วยคำธรรมดาว่ายานี้มีโอกาสเลือดออกในสมองราว 2% ถ้าไม่ให้มีแนวโน้มจะเสียชีวิตคืนนี้ และการผ่าเข่ามา 11 วันทำให้เสี่ยงเลือดออกเพิ่มขึ้นอีก คนไข้บอกว่าทำเลย ลูกสาวถามว่ามีทางอื่นไหม หมออธิบายเรื่อง surgical embolectomy ตามจริง รวมถึงว่า รพ. นี้ทำไม่ได้ตอนตีสี่ 90 วินาที พอแล้ว consent ที่ได้ภายใต้ความกดดันก็ยังเป็น consent ถ้าข้อมูลเป็นความจริง
+req4.l: Systemic thrombolysis เพราะ hemodynamic ไม่ stable
+req4.c: Alteplase 100 mg IV ใน 2 ชม.
+req4.d0: ให้ heparin อย่างเดียวแล้ว observe
+req4.f0: ช็อกต่อเนื่องใน massive PE เป็น indication ของ systemic thrombolysis
+req4.d1: ใส่ IVC filter เป็นการรักษาหลัก
+req4.f1: Filter ไม่ได้รักษา clot ที่มีอยู่หรือช็อก thrombolysis ทำให้เลือดไหลกลับมา
+req4.m0: 100 mg ใน 2 ชม. หรือแบบเร่ง 0.6 mg/kg ใน 15 นาที (ไม่เกิน 50 mg) ถ้าใกล้ arrest การผ่าตัดใหญ่เมื่อเร็วๆ นี้เป็น relative contraindication ไม่ใช่ absolute เมื่อทางเลือกอื่นคือเสียชีวิตจาก obstructive shock
+req4.m1: เริ่มใหม่โดยไม่ต้อง bolus เมื่อ APTT ต่ำกว่า 2 เท่าของปกติ
+out2.l: Reperfusion
+out2.n: 90 นาทีหลังเริ่มยา SBP ขึ้นเป็น 108 SpO2 94% lactate ลงเป็น 3.1 echo ซ้ำ RV/LV ratio ดีขึ้นเป็น 0.9 มี hematoma ใหญ่ที่แผลเข่า แต่ไม่มีเลือดออกในสมอง
+req5.l: ดูแลใน ICU และวางแผน anticoagulant ระยะยาว
+req5.c: Admit ICU แล้วเปลี่ยนเป็นยากิน
+req5.d0: D/C ด้วย enoxaparin 2 สัปดาห์
+req5.f0: Provoked PE ยังต้องได้ anticoagulant อย่างน้อย 3 เดือน และต้อง monitor ใน ICU หลัง thrombolysis
+req5.d1: หยุด anticoagulant เมื่อ stable
+req5.f1: หยุดเร็วเสี่ยงเป็นซ้ำ วางแผน anticoagulant ระยะยาว
+req5.m0: เธอหยุดยาเพราะฉีดแล้วแสบ และไม่มีใครอธิบายว่ายากันอะไร นั่นคือความล้มเหลวในการสื่อสารที่มีอัตราตาย และแก้ได้
+out3.l: Disposition
+out3.n: D/C วันที่ 8 ด้วย DOAC อย่างน้อย 3 เดือนตามมาตรฐานของ provoked embolism echo ที่ 3 เดือน RV ขนาดปกติ ได้คำแนะนำเรื่อง CTEPH ซึ่งเกิดในผู้รอดชีวิตส่วนน้อย และมาด้วยเหนื่อยไม่ทราบสาเหตุหลายเดือนต่อมา

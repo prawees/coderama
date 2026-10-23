@@ -1,0 +1,49 @@
+cc: อาเจียนเป็นเลือดสดปริมาณมาก
+bg: U/D cirrhosis จาก chronic hepatitis B เคยส่องกล้องเจอ esophageal varices grade 3 หยุด propranolol ไปเมื่อ 6 เดือนก่อนเพราะกินแล้วเพลีย ไม่ได้ไปทำ band ligation ตามนัด อาเจียนเป็นเลือดปริมาณมาก 3 ครั้งใน 2 ชม. ถ่ายดำเหนียว 1 ครั้ง คืนนี้ดื่มเหล้า ภรรยาบอกว่า 2 วันมานี้สับสนมากขึ้น บ่งว่า encephalopathy เริ่มมาก่อนเลือดออกแล้ว
+i.hb1: Severe anemia ร่วมกับ thrombocytopenia จาก hypersplenism ให้เลือดถึงเป้า Hb 7 ถึง 8 g/dL เท่านั้น ให้เกินจะเพิ่ม portal pressure เพิ่มเลือดออกซ้ำและ mortality
+i.coag1: Coagulopathy จากโรคตับ INR สูงใน cirrhosis ไม่ได้บอกแนวโน้มเลือดออกได้แน่นอน เพราะทั้ง procoagulant และ anticoagulant factor ลดลงพร้อมกัน อย่าไล่แก้ INR ด้วย FFP เพราะปริมาณน้ำเพิ่ม portal pressure
+i.lft1: Child-Pugh C, MELD ราว 24 ไตทำงานลดลงทำให้กังวล hepatorenal syndrome ซึ่งเปลี่ยนพยากรณ์โรคมาก
+i.endo1: Grade 3 esophageal varices 3 column มี active spurting จากเส้นหนึ่งที่ 38 cm และมี red wale sign ที่เส้นอื่น มี portal hypertensive gastropathy ไม่มี peptic ulcer ทำ band ligation ได้ 4 เส้น หยุดเลือดได้
+i.lac1: Hemorrhagic shock ร่วมกับ ammonia สูง ระดับ ammonia สัมพันธ์กับ grade ของ encephalopathy ไม่ดี ไม่ควรใช้นำการรักษา
+i.asc1: SBP พบในคนไข้ cirrhosis ที่มาด้วย variceal bleeding ราว 20% และพลาดบ่อยเพราะทุกคนสนใจแต่เลือดที่อาเจียน
+req1.l: Airway ก่อน คนไข้รายนี้จะ aspirate
+req1.d0: จับนอนราบ ให้ยา sedate แก้กระสับกระส่าย
+req1.f0: นอนราบร่วมกับ sedation เสี่ยงสำลักเลือด จัดท่านั่งและพิจารณา intubate เร็ว
+req1.d1: ใส่ NG tube ล้างเลือดออก
+req1.f1: การล้างไม่ช่วยและเสี่ยงทำให้ varices บาดเจ็บ protect airway
+req1.m0: GCS 12 มี encephalopathy และอาเจียนเป็นเลือดไม่หยุด aspiration pneumonia เป็นสาเหตุการเสียชีวิตหลักใน variceal bleeding การ intubate ก่อนส่องกล้องมักเป็นการตัดสินใจที่ถูก
+req2.l: ให้เลือดแบบจำกัด เป้า Hb 7 ถึง 8 g/dL
+req2.c: ให้เลือดถึง Hb 7 ถึง 8 g/dL
+req2.d0: ให้เลือดจนถึง Hb 12 g/dL
+req2.f0: ให้เลือดเยอะเพิ่ม portal pressure เพิ่มเลือดออกซ้ำและ mortality เป้า 7 ถึง 8 g/dL
+req2.d1: ให้ NSS 4 ลิตรแก้ BP
+req2.f1: Crystalloid ปริมาณมากเพิ่ม portal pressure และทำให้เลือดออกมากขึ้น ให้เลือดแบบจำกัด
+req2.m0: Restrictive strategy เพิ่มอัตรารอดเทียบกับเป้า 9 g/dL ใน variceal bleeding ให้เลือดจน Hb ปกติเพิ่ม portal pressure และกระตุ้นเลือดออกซ้ำ เป็นตัวอย่างที่ชัดที่สุดตัวอย่างหนึ่งที่รักษามากขึ้นแล้วตายมากขึ้น
+req3.l: ให้ vasoactive drug และ antibiotic ก่อนส่องกล้อง
+req3.d0: ให้ propranolol IV รักษา varices
+req3.f0: Beta-blocker ใช้ป้องกันซ้ำ ไม่ใช่ตอนเลือดออกเฉียบพลัน และทำให้ BP ต่ำลงอีก ใช้ terlipressin หรือ octreotide
+req3.d1: ไม่ต้องให้ antibiotic ไม่มี sign ติดเชื้อ
+req3.f1: Prophylactic antibiotic ลดการติดเชื้อ เลือดออกซ้ำ และการเสียชีวิตใน cirrhosis ที่มี GI bleeding
+req3.m0: Terlipressin 2 mg IV แล้ว 1 ถึง 2 mg ทุก 4 ถึง 6 ชม. เริ่มก่อนส่องกล้อง ลดเลือดออกและเพิ่มอัตรารอด
+req3.m1: 1 g IV วันละครั้ง 7 วัน antibiotic prophylaxis ใน cirrhosis ที่มี GI bleeding ลด mortality และเป็นหนึ่งในสิ่งที่ได้ผลคุ้มที่สุดแต่ถูกลืมบ่อยที่สุดในคนไข้กลุ่มนี้
+out1.l: Stable บางส่วน
+out1.n: หลังได้ PRC 3 unit กับ terlipressin SBP ขึ้นถึง 98 อาเจียนเป็นเลือดช้าลง Hb 7.4 หยุดให้เลือด ไม่ให้ต่อจนถึงตัวเลขที่สบายใจ intubate เพื่อส่องกล้อง
+ethical_1.l: ถามว่าทำไมหยุด propranolol โดยไม่เทศนาเรื่องเหล้า (Empathy)
+ethical_1.n: การคุยแบบง่ายคือเทศนาเรื่องเหล้า การคุยที่มีประโยชน์คือถามว่าทำไมหยุดยาที่ป้องกันเรื่องนี้ได้พอดี เขาหยุดเพราะเพลียจนทำงาน รปภ. ไม่ไหว และไม่มีใครเสนอยาอื่นหรืออธิบายว่ายากินไว้ทำไม หมอเปลี่ยนเป็น carvedilol จัดนัด hepatology ให้ก่อน D/C แทนการเขียนจดหมาย และส่งต่อคลินิกเลิกเหล้าที่เขายอมไปจริงเพราะหมอไม่ได้เปิดบทสนทนาด้วยเรื่องนั้น พี่แอนสังเกตว่าเขา admit มาแล้ว 4 ครั้ง และนี่คือครั้งแรกที่มีคนถาม
+req4.l: ส่องกล้องด่วนทำ band ligation ภายใน 12 ชม.
+req4.d0: ส่องกล้องแบบนัดอีก 48 ชม.
+req4.f0: Variceal bleeding ต้องส่องกล้องภายใน 12 ชม.
+req4.d1: ใส่ Sengstaken tube เป็นการรักษาหลักตัวแรก
+req4.f1: Balloon tamponade เป็นแค่สะพานชั่วคราวเมื่อส่องกล้องไม่สำเร็จ ไม่ใช่ definitive therapy
+req4.m0: Sengstaken-Blakemore tube ใส่ได้ไม่เกิน 24 ชม. และเฉพาะคนไข้ที่ intubate แล้ว complication สูงรวมถึงหลอดอาหารแตก เป็นสะพานไปสู่การรักษาจริง ไม่ใช่การรักษา
+req5.l: รักษา encephalopathy และ peritonitis
+req5.d0: ให้ benzodiazepine sedate แก้สับสน
+req5.f0: Benzodiazepine ทำให้ hepatic encephalopathy แย่ลง ใช้ lactulose
+req5.d1: ไม่ปวดท้องก็ไม่ต้องเจาะน้ำในท้อง
+req5.f1: SBP มักไม่มีอาการ แนะนำให้เจาะ diagnostic tap ทุกครั้งที่คนไข้ cirrhosis admit
+req5.m0: 25 mL ทุก 12 ชม. titrate ให้ถ่ายนิ่ม 2 ถึง 3 ครั้งต่อวัน
+req5.m1: 1.5 g/kg วันที่ 1 และ 1 g/kg วันที่ 3 สำหรับ SBP ลด hepatorenal syndrome และ mortality
+out2.l: ระหว่าง admit
+out2.n: ไม่มีเลือดออกซ้ำหลัง banding extubate วันที่ 2 encephalopathy หายด้วย lactulose neutrophil ในน้ำในท้องกลับมาปกติวันที่ 5 Cr ดีขึ้นด้วย albumin ไม่เกิด hepatorenal syndrome mortality 6 สัปดาห์หลัง variceal bleeding ใน Child-Pugh C ราว 30% และเขาอยู่ฝั่งที่รอด
+out3.l: Disposition
+out3.n: D/C วันที่ 9 ด้วย carvedilol นัด banding ทุก 2 สัปดาห์จนหมด และมีใบนัด hepatology อยู่ในมือ ไม่ใช่รอไปรษณีย์ ประเมินว่าจะเป็น candidate ปลูกถ่ายตับได้ไหม ซึ่งขึ้นกับการเลิกเหล้าที่มีหลักฐาน เขามา banding ครั้งแรกตามนัด ซึ่งมากกว่าที่ทำได้หลัง admit สามครั้งก่อน

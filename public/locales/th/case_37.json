@@ -1,0 +1,447 @@
+{
+  "title": "62yo M Type A Aortic Dissection",
+  "age": "62",
+  "sex": "M",
+  "chiefComplaint": "เจ็บหน้าอกเหมือนถูกฉีก ทะลุไปหลังทันที",
+  "diagnoses": [
+    "Stanford type A aortic dissection",
+    "ST elevation myocardial infarction",
+    "Pulmonary embolism",
+    "Oesophageal rupture",
+    "Acute pericarditis"
+  ],
+  "background": "ปวดแบบฉีกขาดระหว่างสะบักรุนแรงทันที แรงสุดตั้งแต่วินาทีแรก ตอนยกกระเป๋าเดินทาง เป็น HT มานาน คุมไม่ได้ กินยาสามตัวไม่สม่ำเสมอ เล่าว่าอาการปวดเลื่อนจากระหว่างสะบักลงไปทางท้องใน 20 นาที หมอที่คลินิกใกล้บ้านเห็น ST change เลยให้ aspirin กับ clopidogrel และกำลังจะจัดให้ thrombolysis แต่ญาติตัดสินใจขับรถพามาที่นี่แทน",
+  "patientAppearance": {
+    "skinTone": "#d09a68",
+    "bmiFactor": 1.1,
+    "ageGroup": "elderly"
+  },
+  "vitals": {
+    "hr": {
+      "value": 112,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 178,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 96,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 26,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.6,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 96,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 14,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "In severe distress, restless and unable to find a comfortable position, diaphoretic, describing the worst pain of his life with an abrupt maximal onset",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "No jugular venous distension initially, hoarse voice from recurrent laryngeal nerve stretch, no Horner syndrome, carotid pulses present but the left is weaker than the right",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Blood pressure 178/96 in the right arm and 132/74 in the left, a 46 mmHg differential. Early diastolic murmur at the left sternal edge indicating new aortic regurgitation. Right femoral pulse weak, left femoral pulse absent",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Clear breath sounds, tachypnoeic from pain, no crackles, no pleural rub. Left pleural effusion may develop from haemorrhage into the pleural space",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft with disproportionate periumbilical pain and no tenderness on palpation, which raises mesenteric malperfusion from the dissection flap. No pulsatile mass palpable, bowel sounds present",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Diaphoretic, left leg cooler and paler than the right with delayed capillary refill, no rash, no bruising",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 14, transient right arm weakness that has now resolved, no dysphasia, pupils equal. Stroke-like features occur in around 15% of dissections and are the reason some are thrombolysed by mistake, with catastrophic results",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "ct1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CT angiogram of the aorta",
+      "report": "Intimal flap ตั้งแต่ aortic root ผ่าน arch และ descending aorta ลงไปถึงระดับ left common iliac artery เป็น Stanford type A, false lumen กด origin ของ left common carotid และ left common iliac มี pericardial effusion เล็กน้อย aortic root 52 mm ไม่มี mesenteric occlusion นี่คือ definitive investigation ต้องได้เร็ว ไม่ต้องสมบูรณ์แบบ",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "echo1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Bedside echocardiogram",
+      "report": "Aortic root โต เห็น flap ขยับได้ มี AR ปานกลางถึงรุนแรง pericardial effusion 12 mm ยังไม่มี tamponade physiology ทำได้ในไม่กี่นาที และพอจะหยุดไม่ให้ใครให้ thrombolysis",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "12-Lead ECG",
+      "report": "Sinus tachycardia มี ST elevation 1.5 mm ใน II, III, aVF flap ลามไปถึง right coronary ostium นี่คือ inferior STEMI จริงที่เกิดจาก dissection ให้ thrombolysis ตอนนี้ถึงตาย type A dissection ราว 1 ถึง 2% มาด้วย coronary involvement",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Chest X-ray",
+      "report": "Mediastinum กว้าง 9.5 cm aortic knuckle เสียรูป มี left pleural effusion เล็กน้อย dissection ราว 12 ถึง 20% มี CXR ปกติ CXR ปกติจึงตัดโรคนี้ไม่ได้เลย",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "ddim1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "D-dimer",
+      "value": "6400",
+      "unit": "ng/mL",
+      "normalRange": "<500",
+      "abnormal": true,
+      "report": "สูงมาก D-dimer ต่ำกว่า 500 ภายใน 24 ชม. หลังเริ่มอาการมี negative predictive value ดีสำหรับ dissection แต่ค่าที่สูงไม่จำเพาะเลย ห้ามใช้วินิจฉัย"
+    },
+    {
+      "id": "cr1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Creatinine and lactate",
+      "value": "Creatinine 1.8 mg/dL / lactate 3.4 mmol/L",
+      "unit": "-",
+      "normalRange": "Creatinine 0.7-1.3 mg/dL",
+      "abnormal": true,
+      "report": "ไตทำงานลดลงจาก renal artery involvement และ lactate ที่สูงขึ้นบ่งว่ามี malperfusion บ้างแล้ว"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "BP แขนสองข้าง คลำชีพจรครบสี่",
+          "distractors": [
+            {
+              "label": "ให้ aspirin 300 mg คิดว่าเป็น ACS",
+              "feedback": "ปวดแบบฉีกร้าวไปหลังชวนนึกถึง dissection วัด BP สองแขนและคลำชีพจรก่อนให้ antiplatelet"
+            },
+            {
+              "label": "ส่งเข้า cath lab เลย",
+              "feedback": "CAG ใน dissection ทำให้ผ่าตัดช้าและอาจถึงตาย ยืนยันการวินิจฉัยก่อน"
+            }
+          ],
+          "label": "วัด BP แขนสองข้างและคลำชีพจรทั้งสี่รยางค์ก่อนอย่างอื่น",
+          "actions": [
+            "Bilateral arm blood pressure",
+            "Palpate all four limb pulses",
+            "12-lead ECG",
+            "Bedside echocardiogram"
+          ],
+          "doseMap": {
+            "Bilateral arm blood pressure": "ใช้เวลา 90 วินาที ชีพจรหรือ BP สองข้างต่างกันในคนเจ็บหน้าอกคือ finding ที่กันไม่ให้ thrombolysis คนไข้ dissection แต่การประเมินเจ็บหน้าอกส่วนใหญ่ข้ามไป"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "ไม่ให้ heparin ไม่ให้ antiplatelet เพิ่ม",
+          "distractors": [
+            {
+              "label": "เริ่ม heparin สำหรับ ACS",
+              "feedback": "Anticoagulant ใน aortic dissection เพิ่มเลือดออกและการเสียชีวิต งดไว้"
+            },
+            {
+              "label": "Thrombolysis เพราะมี ST change",
+              "feedback": "Thrombolysis ใน dissection มักถึงตาย ST change อาจมาจาก flap ลามถึง coronary ostium"
+            }
+          ],
+          "label": "หยุดและงด antiplatelet กับ anticoagulant",
+          "actions": [
+            "No further antiplatelet agents",
+            "No heparin",
+            "Absolutely no thrombolysis",
+            "Document the ECG findings and the reason for withholding"
+          ],
+          "doseMap": {
+            "Absolutely no thrombolysis": "Thrombolysis ใน type A dissection mortality เกิน 70% คลินิกให้ DAPT ไปแล้วเพราะเห็น ST elevation ซึ่งเพิ่มความเสี่ยงเลือดออกตอนผ่าตัด และย้อนกลับไม่ได้"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Esmolol แล้วค่อย nitroprusside ร่วมกับ morphine",
+          "distractors": [
+            {
+              "label": "Hydralazine อย่างเดียวลด BP",
+              "feedback": "Vasodilator อย่างเดียวทำให้ reflex tachycardia เพิ่ม shear stress ต้อง beta-block ก่อน"
+            },
+            {
+              "label": "ไม่ให้ยาแก้ปวด จะได้ใช้ปวดติดตามอาการ",
+              "feedback": "ความปวดกระตุ้น catecholamine และ BP คุมปวดเต็มที่"
+            }
+          ],
+          "label": "Beta-blocker ก่อน แล้วค่อย vasodilator และคุมปวดเต็มที่",
+          "actions": [
+            "Esmolol or labetalol IV",
+            "Then sodium nitroprusside or nicardipine",
+            "Morphine IV"
+          ],
+          "doseMap": {
+            "Esmolol or labetalol IV": "เป้า HR ต่ำกว่า 60 SBP 100 ถึง 120 คุม rate ลด shear force (dP/dt) ที่ทำให้ dissection ลาม",
+            "Then sodium nitroprusside or nicardipine": "ให้หลัง beta-block พอแล้วเท่านั้น ให้ vasodilator ก่อนจะเกิด reflex tachycardia เพิ่ม shear force และ dissection ลามต่อ ลำดับของยาสองตัวนี้คือบทเรียนทั้งหมด",
+            "Morphine IV": "Titrate ให้พอ ความปวดทำให้ catecholamine พุ่งและ flap ลาม ยาแก้ปวดในเคสนี้จึงเป็นการรักษา hemodynamic"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "คุม hemodynamic ได้",
+          "outcomeType": "improved",
+          "narrative": "HR 58 SBP 112 หลังได้ esmolol และ nitroprusside ปวดคุมได้ด้วย morphine 12 mg คลำ femoral ซ้ายได้เมื่อเลือดไหลใน true lumen ดีขึ้น CT ยืนยัน type A dissection ตาม CVT แล้ว",
+          "vitalChanges": {
+            "hr": 58,
+            "sbp": 112,
+            "dbp": 68,
+            "rr": 20,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 420
+        },
+        "data": {
+          "label": "บอกตัวเลข mortality กับญาติตามจริง และไม่โทษหมอคลินิกต่อหน้าญาติ (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "ลูกชายถามว่าโอกาสเป็นยังไง type A dissection ที่ไม่ได้รักษามี mortality ราว 1 ถึง 2% ต่อชั่วโมง ผ่าตัดแล้วราว 15 ถึง 25% หมอบอกตัวเลขพวกนี้แทนการบอกว่าอาการหนัก ลูกชายถามต่อว่าหมอคลินิกทำผิดหรือเปล่า หมอบอกว่า inferior STEMI จาก dissection เป็นกับดักจริงๆ ของเวชศาสตร์ฉุกเฉิน การที่ญาติตัดสินใจขับมาที่นี่คือเหตุผลที่เขายังมีชีวิต และเคสนี้จะได้รับการทบทวนอย่างเหมาะสม อ.กิตอ่าน note ทีหลังแล้วบอกว่าหมอส่วนใหญ่คงใช้โอกาสฟรีนี้ทำให้ตัวเองดูดี"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "รักษาด้วยยาอย่างเดียวสำหรับ type A",
+              "feedback": "Type A dissection เป็นภาวะฉุกเฉินทางศัลยกรรม ไม่ผ่าตัด mortality สูง"
+            },
+            {
+              "label": "รอฤทธิ์ DAPT หมดก่อนผ่าตัด",
+              "feedback": "รอแล้ว mortality เพิ่ม ผ่าตัดเดี๋ยวนี้และแก้ coagulation"
+            }
+          ],
+          "label": "ผ่าตัด CVT ด่วน นี่คือโรคที่ต้องผ่าตัด",
+          "actions": [
+            "Immediate cardiothoracic referral and theatre",
+            "Cross-match 6 units",
+            "Correct coagulation given the dual antiplatelet load",
+            "Arterial line in the right arm, the higher pressure side"
+          ],
+          "doseMap": {
+            "Correct coagulation given the dual antiplatelet load": "อาจต้องให้ platelet ระหว่างผ่าตัดเพราะได้ clopidogrel มาจากคลินิก"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "ผ่าตัดซ่อม",
+          "outcomeType": "improved",
+          "narrative": "ทำ Bentall procedure เปลี่ยน aortic root และ ascending aorta พร้อมเปลี่ยนลิ้น ภายใต้ deep hypothermic circulatory arrest bypass 246 นาที เลือดออกมาก ได้ PRC 9 unit ส่วนหนึ่งเพราะ antiplatelet รอดชีวิต",
+          "vitalChanges": {
+            "hr": 88,
+            "sbp": 108,
+            "dbp": 62,
+            "rr": 16,
+            "gcs": 3
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "D/C ด้วยเป้า SBP 160",
+              "feedback": "คุม SBP ต่ำกว่า 120 อย่างเข้มงวดลดการลามของ dissection ที่เหลืออยู่"
+            },
+            {
+              "label": "หลังผ่าตัดไม่ต้องทำ imaging ติดตาม",
+              "feedback": "Descending dissection ที่เหลือต้องทำ imaging เป็นระยะ"
+            }
+          ],
+          "label": "ดูแลใน ICU และเฝ้าติดตามตลอดชีวิต",
+          "actions": [
+            "Cardiac ICU admission",
+            "Strict blood pressure control, target systolic below 120",
+            "Serial imaging of the residual descending dissection",
+            "Screen first-degree relatives for aortopathy"
+          ],
+          "doseMap": {
+            "Screen first-degree relatives for aortopathy": "Thoracic aortic dissection ราว 20% มีส่วนจากพันธุกรรม ลูกสองคนควรได้ทำ imaging"
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "Extubate วันที่ 3 D/C วันที่ 14 ไตเสื่อมเหลือเล็กน้อย ต้องกิน beta-blocker ตลอดชีวิตและทำ CT ทุกปีติดตาม type B ส่วนที่เหลือ scan คัดกรองของลูกสาวเจอ ascending aorta 44 mm เข้าโปรแกรมติดตาม ซึ่งอาจเป็นผลลัพธ์ที่มีค่าที่สุดของการ admit ครั้งนี้",
+          "vitalChanges": {
+            "hr": 62,
+            "sbp": 116,
+            "dbp": 70,
+            "rr": 16,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "out2",
+        "target": "req5"
+      },
+      {
+        "id": "e9",
+        "source": "req5",
+        "target": "out3"
+      }
+    ]
+  }
+}
