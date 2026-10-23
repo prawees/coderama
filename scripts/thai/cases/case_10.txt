@@ -1,0 +1,52 @@
+cc: ไม่รู้สึกตัว หายใจช้า
+bg: พี่ชายพบนอนฟุบอยู่ในห้องน้ำ เรียกไม่ตอบ บนพื้นมีเข็มฉีดยากับช้อนไหม้ ไม่รู้ว่าหมดสติไปนานเท่าไร เห็นครั้งสุดท้ายยังปกติเมื่อ 90 นาทีก่อน พี่ชายเล่าว่าเพิ่งออกจากศูนย์บำบัดเมื่อ 3 สัปดาห์ก่อนหลังเลิกยาได้ช่วงหนึ่ง คนแถวนั้นไม่ได้ให้ naloxone เคยเป็น hepatitis C ไม่มียาประจำ
+i.poc1: ปกติ ตัด hypoglycemia ออกจากสาเหตุของ coma ได้ คนไข้ไม่รู้สึกตัวทุกคนต้องเจาะก่อนอย่างอื่น
+i.vbg1: Acute respiratory acidosis จาก hypoventilation นี่คือสิ่งที่ฆ่าคนไข้ ไม่ใช่รูม่านตา
+i.ck1: Rhabdomyolysis จากนอนนิ่งนาน ดู renal function และเริ่ม fluid
+i.cr1: AKI น่าจะจาก myoglobin และ pre-renal
+i.para1: ตรวจไม่พบที่ 4 ชม. ขึ้นไปหลังกิน ตัดการกินยาผสม paracetamol ร่วมด้วยออก
+i.sal1: Negative
+i.ecg1: Sinus bradycardia 50/min, QRS 92 ms, QTc 430 ms ไม่มี Brugada pattern ไม่มี terminal R ใน aVR ไม่สนับสนุนว่ากินยาที่ block sodium channel ร่วมด้วย
+i.cxr1: Patchy airspace opacity ที่ฐานปอดทั้งสองข้าง เข้าได้กับ aspiration หรือ non-cardiogenic pulmonary edema จาก naloxone หัวใจขนาดปกติ ไม่มี pneumothorax
+req1.l: Airway ก่อน suction, jaw thrust และ bag-mask พร้อม O2
+req1.c: Suction, jaw thrust, bag-mask ventilation
+req1.d0: ให้ naloxone 2 mg IV ก่อนจัดการ airway
+req1.f0: Hypoxia คือสิ่งที่ฆ่าคนไข้ เปิด airway และช่วยหายใจก่อน naloxone ขนาดสูงทำให้ withdrawal รุนแรงและอาเจียน
+req1.d1: จัดท่า recovery position แล้วรอดู
+req1.f1: คนไข้หายใจไม่พอ SpO2 ต่ำ ต้องช่วย airway และ bag-mask จริงจัง
+req1.m0: 10 ถึง 12 ครั้ง/นาที จนหายใจเองได้
+req2.l: เจาะ DTX และติด monitor
+req2.d0: ไม่ต้องเจาะ DTX ชัดอยู่แล้วว่าเป็น opioid
+req2.f0: Hypoglycemia เลียนแบบหรือเกิดร่วมกับ overdose ได้ และตัดออกได้เร็ว เจาะ DTX ทุกครั้ง
+req2.d1: ส่ง CT brain ก่อนรักษาอะไรต่อ
+req2.f1: Toxidrome ชัดเจน monitor, DTX และเปิดเส้นมาก่อน imaging รอได้
+req3.l: Titrate naloxone ให้หายใจได้ ไม่ใช่ให้ตื่น
+req3.c: Naloxone 0.04 ถึง 0.4 mg IV titrate ตามการหายใจ
+req3.d0: ให้ naloxone จนตื่นเต็มที่และพูดได้
+req3.f0: เป้าหมายคือหายใจพอ ไม่ใช่ตื่นเต็มที่ titrate จนตื่นจะทำให้ withdrawal รุนแรง
+req3.d1: ให้ flumazenil เผื่อมี benzodiazepine
+req3.f1: Flumazenil กระตุ้นชักได้ใน mixed overdose หรือคนที่ใช้ benzodiazepine ประจำ ไม่ใช่ยาที่ให้ routine
+req3.m0: 0.04 ถึง 0.4 mg IV ซ้ำทุก 2 ถึง 3 นาที รวมไม่เกิน 2 mg เป้า RR เกิน 12 ไม่ใช่ให้ตื่นเต็มที่ ถ้าไม่มี IV ให้ 0.4 ถึง 0.8 mg IM
+out1.l: กลับมาหายใจได้
+out1.n: หลังได้ 0.4 mg แบ่งให้ RR ขึ้นเป็น 14 SpO2 96% ลืมตา สับสน กระสับกระส่าย ดึง mask ไม่มี withdrawal รุนแรงเพราะหมอ titrate ไม่ต้อง intubate
+ethical_1.l: คุยกับคนไข้โดยไม่ตัดสิน ถามว่าใช้อะไร และเสนอ harm reduction แทนการเทศนา (Empathy)
+ethical_1.n: หมอเลี่ยงคำว่าคนติดยา อธิบายว่า tolerance ลดลงตอนเลิกยา ขนาดเดิมเลยเกือบเอาชีวิต แล้วถามว่าอะไรจะช่วยได้จริง คนไข้บอกว่าเป็น heroin ที่ปน fentanyl และยอมคุยกับทีมบำบัด พี่บ๊อบบอกว่าเปลืองเตียง พี่แอนไม่เห็นด้วยเงียบๆ
+req4.l: Observe re-sedation และรักษา rhabdomyolysis
+req4.d0: D/C ทันทีที่ตื่นหลังได้ naloxone
+req4.f0: Naloxone หมดฤทธิ์ก่อน opioid หลายตัว observe re-sedation อย่างน้อย 4 ถึง 6 ชม.
+req4.d1: ไม่ต้องสนใจ CK ยังหนุ่มแข็งแรง
+req4.f1: หมดสตินานทำให้ rhabdomyolysis ส่ง CK และให้ IV fluid ปกป้องไต
+req4.m0: ให้ 2 ใน 3 ของ bolus ที่ได้ผลต่อชั่วโมง แล้ว titrate
+req4.m1: NSS ให้ urine output 1 ถึง 2 mL/kg/h
+out2.l: Re-sedation
+out2.n: นาทีที่ 70 RR ลงเหลือ 7 อีกครั้ง naloxone มี half life สั้นกว่า synthetic opioid ออกฤทธิ์นานที่คนไข้ใช้ ให้ซ้ำอีก dose แล้วเริ่ม drip
+req5.l: วางแผน D/C เชื่อมกับการบำบัด และมีแผนรับมือ overdose
+req5.c: Refer คลินิก methadone และให้แผนรับมือ overdose
+req5.d0: D/C พร้อมเทศนาเรื่องยาเสพติด ไม่มีนัด F/U
+req5.f0: เพิ่งออกจากศูนย์บำบัด tolerance ลดลง เสี่ยง overdose สูงมาก ส่งต่อคลินิก methadone และให้แผนรับมือ overdose
+req5.d1: แจ้งตำรวจก่อน D/C
+req5.f1: การดูแลทาง clinical ไม่ต้องแจ้งตำรวจเรื่องใช้ยา ทำลายความไว้ใจ และทำให้ครั้งหน้าไม่กล้ามาขอความช่วยเหลือ
+req5.m0: รพ. รัฐหลายแห่งในไทยมีคลินิก methadone maintenance ส่วน buprenorphine ยังไม่มีให้ทั่วไปในไทย
+req5.m1: Naloxone กลับบ้านยังไม่ใช่ routine ใน รพ. ไทย แต่โครงการ outreach สำหรับผู้ใช้ยาด้วยการฉีดมีติดตัวไว้
+out3.l: Disposition
+out3.n: 12 ชม. ต่อมา off drip ได้ หายใจปกติ CK ลดลงหลังได้ fluid กลับบ้านพร้อมนัดคลินิก methadone อีก 2 วัน พี่ชายรู้จักท่า recovery position แล้ว และมีเบอร์ทีม outreach ที่พก naloxone

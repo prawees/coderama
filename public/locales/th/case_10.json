@@ -1,0 +1,470 @@
+{
+  "title": "34yo M Opioid Overdose",
+  "age": "34",
+  "sex": "M",
+  "chiefComplaint": "ไม่รู้สึกตัว หายใจช้า",
+  "diagnoses": [
+    "Opioid overdose",
+    "Benzodiazepine co-ingestion",
+    "Hypoglycaemia",
+    "Pontine haemorrhage",
+    "Organophosphate poisoning"
+  ],
+  "background": "พี่ชายพบนอนฟุบอยู่ในห้องน้ำ เรียกไม่ตอบ บนพื้นมีเข็มฉีดยากับช้อนไหม้ ไม่รู้ว่าหมดสติไปนานเท่าไร เห็นครั้งสุดท้ายยังปกติเมื่อ 90 นาทีก่อน พี่ชายเล่าว่าเพิ่งออกจากศูนย์บำบัดเมื่อ 3 สัปดาห์ก่อนหลังเลิกยาได้ช่วงหนึ่ง คนแถวนั้นไม่ได้ให้ naloxone เคยเป็น hepatitis C ไม่มียาประจำ",
+  "patientAppearance": {
+    "skinTone": "#b98a68",
+    "bmiFactor": 0.85,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 52,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 92,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 54,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 5,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 35.4,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 78,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 6,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Unresponsive to voice, withdraws to pain only, cyanosed around the lips, thin and unkempt",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Pinpoint pupils 1 mm bilaterally with sluggish reaction, snoring stertorous airway relieved by jaw thrust, vomitus at the angle of the mouth, no head injury or haemotympanum",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus bradycardia at 52/min, regular, normal heart sounds, capillary refill 3 seconds, peripheral pulses present",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Shallow irregular respirations at 5/min, bibasal coarse crackles, no wheeze, chest expansion symmetrical",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, non-distended, absent bowel sounds, no organomegaly, bladder not palpable",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cool and dry, old and fresh needle track marks over both antecubital fossae, a fresh puncture with surrounding erythema on the left forearm, a pressure area with induration over the right hip, no diaphoresis",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 6 (E1V1M4), generalised hypotonia, no lateralising signs, plantars downgoing, no fasciculations or seizure activity",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Capillary glucose",
+      "value": "96",
+      "unit": "mg/dL",
+      "normalRange": "70-140",
+      "abnormal": false,
+      "report": "ปกติ ตัด hypoglycemia ออกจากสาเหตุของ coma ได้ คนไข้ไม่รู้สึกตัวทุกคนต้องเจาะก่อนอย่างอื่น"
+    },
+    {
+      "id": "vbg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Venous blood gas",
+      "value": "pH 7.16 / pCO2 74 / HCO3 24",
+      "unit": "-",
+      "normalRange": "pH 7.32-7.42",
+      "abnormal": true,
+      "report": "Acute respiratory acidosis จาก hypoventilation นี่คือสิ่งที่ฆ่าคนไข้ ไม่ใช่รูม่านตา"
+    },
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Creatine kinase",
+      "value": "4280",
+      "unit": "U/L",
+      "normalRange": "30-200",
+      "abnormal": true,
+      "report": "Rhabdomyolysis จากนอนนิ่งนาน ดู renal function และเริ่ม fluid"
+    },
+    {
+      "id": "cr1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Creatinine",
+      "value": "1.6",
+      "unit": "mg/dL",
+      "normalRange": "0.7-1.3",
+      "abnormal": true,
+      "report": "AKI น่าจะจาก myoglobin และ pre-renal"
+    },
+    {
+      "id": "para1",
+      "kind": "lab",
+      "category": "Toxicology",
+      "name": "Serum paracetamol",
+      "value": "<10",
+      "unit": "mcg/mL",
+      "normalRange": "<10",
+      "abnormal": false,
+      "report": "ตรวจไม่พบที่ 4 ชม. ขึ้นไปหลังกิน ตัดการกินยาผสม paracetamol ร่วมด้วยออก"
+    },
+    {
+      "id": "sal1",
+      "kind": "lab",
+      "category": "Toxicology",
+      "name": "Serum salicylate",
+      "value": "<2",
+      "unit": "mg/dL",
+      "normalRange": "<2",
+      "abnormal": false,
+      "report": "Negative"
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "12-Lead ECG",
+      "report": "Sinus bradycardia 50/min, QRS 92 ms, QTc 430 ms ไม่มี Brugada pattern ไม่มี terminal R ใน aVR ไม่สนับสนุนว่ากินยาที่ block sodium channel ร่วมด้วย",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Portable Chest X-ray",
+      "report": "Patchy airspace opacity ที่ฐานปอดทั้งสองข้าง เข้าได้กับ aspiration หรือ non-cardiogenic pulmonary edema จาก naloxone หัวใจขนาดปกติ ไม่มี pneumothorax",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "Suction, jaw thrust, bag-mask ventilation",
+          "distractors": [
+            {
+              "label": "ให้ naloxone 2 mg IV ก่อนจัดการ airway",
+              "feedback": "Hypoxia คือสิ่งที่ฆ่าคนไข้ เปิด airway และช่วยหายใจก่อน naloxone ขนาดสูงทำให้ withdrawal รุนแรงและอาเจียน"
+            },
+            {
+              "label": "จัดท่า recovery position แล้วรอดู",
+              "feedback": "คนไข้หายใจไม่พอ SpO2 ต่ำ ต้องช่วย airway และ bag-mask จริงจัง"
+            }
+          ],
+          "label": "Airway ก่อน suction, jaw thrust และ bag-mask พร้อม O2",
+          "actions": [
+            "Suction airway",
+            "Jaw thrust and oropharyngeal airway",
+            "Bag-valve-mask ventilation with 15 L/min oxygen"
+          ],
+          "doseMap": {
+            "Bag-valve-mask ventilation with 15 L/min oxygen": "10 ถึง 12 ครั้ง/นาที จนหายใจเองได้"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ไม่ต้องเจาะ DTX ชัดอยู่แล้วว่าเป็น opioid",
+              "feedback": "Hypoglycemia เลียนแบบหรือเกิดร่วมกับ overdose ได้ และตัดออกได้เร็ว เจาะ DTX ทุกครั้ง"
+            },
+            {
+              "label": "ส่ง CT brain ก่อนรักษาอะไรต่อ",
+              "feedback": "Toxidrome ชัดเจน monitor, DTX และเปิดเส้นมาก่อน imaging รอได้"
+            }
+          ],
+          "label": "เจาะ DTX และติด monitor",
+          "actions": [
+            "Capillary glucose",
+            "Cardiac monitor, SpO2 and end-tidal CO2",
+            "IV access"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Naloxone 0.04 ถึง 0.4 mg IV titrate ตามการหายใจ",
+          "distractors": [
+            {
+              "label": "ให้ naloxone จนตื่นเต็มที่และพูดได้",
+              "feedback": "เป้าหมายคือหายใจพอ ไม่ใช่ตื่นเต็มที่ titrate จนตื่นจะทำให้ withdrawal รุนแรง"
+            },
+            {
+              "label": "ให้ flumazenil เผื่อมี benzodiazepine",
+              "feedback": "Flumazenil กระตุ้นชักได้ใน mixed overdose หรือคนที่ใช้ benzodiazepine ประจำ ไม่ใช่ยาที่ให้ routine"
+            }
+          ],
+          "label": "Titrate naloxone ให้หายใจได้ ไม่ใช่ให้ตื่น",
+          "actions": [
+            "Naloxone IV"
+          ],
+          "doseMap": {
+            "Naloxone IV": "0.04 ถึง 0.4 mg IV ซ้ำทุก 2 ถึง 3 นาที รวมไม่เกิน 2 mg เป้า RR เกิน 12 ไม่ใช่ให้ตื่นเต็มที่ ถ้าไม่มี IV ให้ 0.4 ถึง 0.8 mg IM"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "กลับมาหายใจได้",
+          "outcomeType": "improved",
+          "narrative": "หลังได้ 0.4 mg แบ่งให้ RR ขึ้นเป็น 14 SpO2 96% ลืมตา สับสน กระสับกระส่าย ดึง mask ไม่มี withdrawal รุนแรงเพราะหมอ titrate ไม่ต้อง intubate",
+          "vitalChanges": {
+            "hr": 78,
+            "sbp": 108,
+            "dbp": 64,
+            "rr": 14,
+            "spo2": 96,
+            "gcs": 13
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 400
+        },
+        "data": {
+          "label": "คุยกับคนไข้โดยไม่ตัดสิน ถามว่าใช้อะไร และเสนอ harm reduction แทนการเทศนา (Empathy)",
+          "ethicalValue": 15,
+          "narrative": "หมอเลี่ยงคำว่าคนติดยา อธิบายว่า tolerance ลดลงตอนเลิกยา ขนาดเดิมเลยเกือบเอาชีวิต แล้วถามว่าอะไรจะช่วยได้จริง คนไข้บอกว่าเป็น heroin ที่ปน fentanyl และยอมคุยกับทีมบำบัด พี่บ๊อบบอกว่าเปลืองเตียง พี่แอนไม่เห็นด้วยเงียบๆ"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "D/C ทันทีที่ตื่นหลังได้ naloxone",
+              "feedback": "Naloxone หมดฤทธิ์ก่อน opioid หลายตัว observe re-sedation อย่างน้อย 4 ถึง 6 ชม."
+            },
+            {
+              "label": "ไม่ต้องสนใจ CK ยังหนุ่มแข็งแรง",
+              "feedback": "หมดสตินานทำให้ rhabdomyolysis ส่ง CK และให้ IV fluid ปกป้องไต"
+            }
+          ],
+          "label": "Observe re-sedation และรักษา rhabdomyolysis",
+          "actions": [
+            "Monitored observation at least 4-6 hours after the last naloxone dose",
+            "Naloxone infusion if repeated dosing is needed",
+            "IV crystalloid for rhabdomyolysis",
+            "Repeat venous gas"
+          ],
+          "doseMap": {
+            "Naloxone infusion if repeated dosing is needed": "ให้ 2 ใน 3 ของ bolus ที่ได้ผลต่อชั่วโมง แล้ว titrate",
+            "IV crystalloid for rhabdomyolysis": "NSS ให้ urine output 1 ถึง 2 mL/kg/h"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "Re-sedation",
+          "outcomeType": "worsened",
+          "narrative": "นาทีที่ 70 RR ลงเหลือ 7 อีกครั้ง naloxone มี half life สั้นกว่า synthetic opioid ออกฤทธิ์นานที่คนไข้ใช้ ให้ซ้ำอีก dose แล้วเริ่ม drip",
+          "vitalChanges": {
+            "hr": 62,
+            "sbp": 98,
+            "dbp": 58,
+            "rr": 7,
+            "spo2": 88,
+            "gcs": 10
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "choice": "Refer คลินิก methadone และให้แผนรับมือ overdose",
+          "distractors": [
+            {
+              "label": "D/C พร้อมเทศนาเรื่องยาเสพติด ไม่มีนัด F/U",
+              "feedback": "เพิ่งออกจากศูนย์บำบัด tolerance ลดลง เสี่ยง overdose สูงมาก ส่งต่อคลินิก methadone และให้แผนรับมือ overdose"
+            },
+            {
+              "label": "แจ้งตำรวจก่อน D/C",
+              "feedback": "การดูแลทาง clinical ไม่ต้องแจ้งตำรวจเรื่องใช้ยา ทำลายความไว้ใจ และทำให้ครั้งหน้าไม่กล้ามาขอความช่วยเหลือ"
+            }
+          ],
+          "label": "วางแผน D/C เชื่อมกับการบำบัด และมีแผนรับมือ overdose",
+          "actions": [
+            "Methadone maintenance clinic referral",
+            "Naloxone through a harm reduction programme",
+            "Hepatitis C and HIV screening offer",
+            "Written overdose advice for him and his brother"
+          ],
+          "doseMap": {
+            "Methadone maintenance clinic referral": "รพ. รัฐหลายแห่งในไทยมีคลินิก methadone maintenance ส่วน buprenorphine ยังไม่มีให้ทั่วไปในไทย",
+            "Naloxone through a harm reduction programme": "Naloxone กลับบ้านยังไม่ใช่ routine ใน รพ. ไทย แต่โครงการ outreach สำหรับผู้ใช้ยาด้วยการฉีดมีติดตัวไว้"
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "12 ชม. ต่อมา off drip ได้ หายใจปกติ CK ลดลงหลังได้ fluid กลับบ้านพร้อมนัดคลินิก methadone อีก 2 วัน พี่ชายรู้จักท่า recovery position แล้ว และมีเบอร์ทีม outreach ที่พก naloxone",
+          "vitalChanges": {
+            "hr": 76,
+            "sbp": 116,
+            "dbp": 70,
+            "rr": 16,
+            "spo2": 97,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "out2",
+        "target": "req5"
+      },
+      {
+        "id": "e9",
+        "source": "req5",
+        "target": "out3"
+      }
+    ]
+  }
+}

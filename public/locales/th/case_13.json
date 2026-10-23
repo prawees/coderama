@@ -1,0 +1,443 @@
+{
+  "title": "45yo M Organophosphate Poisoning",
+  "age": "45",
+  "sex": "M",
+  "chiefComplaint": "พบหมดสติในไร่มัน น้ำลายฟูมปาก",
+  "diagnoses": [
+    "Organophosphate poisoning",
+    "Carbamate poisoning",
+    "Opioid overdose",
+    "Status epilepticus",
+    "Brainstem stroke"
+  ],
+  "background": "ชาวไร่อ้อยและมันสำปะหลัง เพื่อนบ้านขนมาท้ายกระบะ 40 นาทีหลังพบนอนข้างถังพ่นยาที่ล้มอยู่ ข้างตัวมีขวด chlorpyrifos เปล่า ภรรยาเล่าว่าดื่มเหล้าหนักตั้งแต่ผลผลิตเสียหาย เมื่อคืนทะเลาะกัน ตัวเปียกยาเข้มข้นทั้งตัว",
+  "patientAppearance": {
+    "skinTone": "#b5793f",
+    "bmiFactor": 0.9,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 42,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 88,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 52,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 8,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.1,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 81,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 7,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Unresponsive, soaked clothing with a strong solvent and garlic odour, generalised sweating, muscle fasciculations visible over the chest and thighs",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Pinpoint pupils 1 mm and unreactive, copious frothy oral and nasal secretions requiring continuous suction, lacrimation, airway soiled",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus bradycardia at 42/min, hypotensive, peripheries warm and wet, no murmur",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Coarse crackles throughout both lungs from bronchorrhoea, wheeze, shallow ineffective respirations at 8/min. This is what kills, the patient drowns in their own secretions",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, hyperactive bowel sounds, faecal and urinary incontinence, no guarding",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Profuse diaphoresis, contaminated clothing still in place, chemical erythema over the back where the sprayer leaked, no needle marks",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 7 (E1V2M4), generalised fasciculations, flaccid tone between fasciculations, no seizure activity at present",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Arterial blood gas",
+      "value": "pH 7.14 / pCO2 68 / pO2 54 / HCO3 20",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Type 2 respiratory failure ร่วมกับ mixed acidosis หายใจไม่พอจาก bronchorrhea และกล้ามเนื้อหายใจอ่อนแรง"
+    },
+    {
+      "id": "che1",
+      "kind": "lab",
+      "category": "Toxicology",
+      "name": "Plasma butyrylcholinesterase",
+      "value": "480",
+      "unit": "U/L",
+      "normalRange": "4900-11900",
+      "abnormal": true,
+      "report": "ต่ำมาก ยืนยันว่า cholinesterase ถูกยับยั้ง ใช้ยืนยันการวินิจฉัย แต่ห้ามรอผลก่อนให้ atropine ซึ่งให้ตาม clinical"
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "12-Lead ECG",
+      "report": "Sinus bradycardia 42/min, 1st degree AV block, QTc 510 ms QT ยาวใน OP poisoning ทำนาย torsades ในภายหลัง ต้องให้ Mg และแก้ electrolyte",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Capillary glucose",
+      "value": "142",
+      "unit": "mg/dL",
+      "normalRange": "70-140",
+      "abnormal": true,
+      "report": "สูงเล็กน้อย ไม่มี hypoglycemia ตัดอีกสาเหตุที่พบบ่อยของชาวไร่หมดสติออกได้"
+    },
+    {
+      "id": "k1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "Potassium and magnesium",
+      "value": "K 3.1 / Mg 0.62",
+      "unit": "mmol/L",
+      "normalRange": "K 3.5-5.0 / Mg 0.7-1.0",
+      "abnormal": true,
+      "report": "ต่ำทั้งคู่ ซ้ำเติม QT ยาว ให้ทดแทนก่อนเกิด torsades"
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Portable Chest X-ray",
+      "report": "Diffuse airspace opacity ทั้งสองข้าง เข้าได้กับ aspiration และ bronchorrhea, ET tube อยู่เหนือ carina 3 cm",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "ใส่ PPE ถอดเสื้อผ้าคนไข้ ล้างตัว",
+          "distractors": [
+            {
+              "label": "Intubate ก่อน ค่อย decontaminate ทีหลัง",
+              "feedback": "เสื้อผ้าและผิวที่เปื้อนยายังทำให้คนไข้ได้รับพิษต่อ และทำให้เจ้าหน้าที่ได้รับพิษด้วย ป้องกันตัวเองและ decontaminate ก่อน"
+            },
+            {
+              "label": "ล้างท้องทันที",
+              "feedback": "ยังไม่ใช่ตอนนี้ ต้องจัดการ airway กับผิวก่อน แนวทางรามาธิบดีให้ล้างท้องเฉพาะใน 1 ชม. หลังกิน และหลัง airway ปลอดภัยแล้ว"
+            }
+          ],
+          "label": "ป้องกันตัวเองและ decontaminate ก่อนอย่างอื่น",
+          "actions": [
+            "Double gloves, gown, eye protection",
+            "Remove and bag all clothing",
+            "Copious water irrigation of skin and hair",
+            "Ventilate the resus area"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "รอ atropine ทำให้เสมหะแห้งก่อนค่อยช่วยหายใจ",
+              "feedback": "Bronchorrhea กับกล้ามเนื้ออ่อนแรงฆ่าคนไข้เร็วมาก suction และช่วยหายใจไปพร้อมกับให้ atropine"
+            },
+            {
+              "label": "ใช้ succinylcholine ตอน intubate",
+              "feedback": "OP ยับยั้ง cholinesterase ซึ่งเป็นตัวสลาย succinylcholine ด้วย ทำให้ paralysis นาน ใช้ non-depolarizing agent"
+            }
+          ],
+          "label": "Airway, suction ตลอด และช่วยหายใจ",
+          "actions": [
+            "Yankauer suction, continuous",
+            "Bag-valve-mask with 15 L/min oxygen"
+          ],
+          "doseMap": {
+            "Bag-valve-mask with 15 L/min oxygen": "อย่าใช้ succinylcholine ตอน intubate ยาถูกสลายด้วย cholinesterase paralysis จะนานหลายชั่วโมง ถ้าต้อง paralyze ใช้ rocuronium"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Atropine 1.8 ถึง 3 mg IV เพิ่มเท่าตัวทุก 5 นาที",
+          "distractors": [
+            {
+              "label": "Atropine 0.5 mg ทุก 30 นาที",
+              "feedback": "ช้าเกินไปมาก OP poisoning ต้องเพิ่มขนาดเร็ว เท่าตัวทุก 5 นาทีจนปอดใส"
+            },
+            {
+              "label": "Titrate atropine ตามขนาดรูม่านตา",
+              "feedback": "รูม่านตาเป็น endpoint ที่เชื่อไม่ได้ titrate ให้ปอดแห้ง HR เกิน 80 และ SBP เกิน 80"
+            }
+          ],
+          "label": "Atropine เต็มที่ เพิ่มเท่าตัวทุก 5 นาทีจนปอดแห้ง",
+          "actions": [
+            "Atropine IV bolus",
+            "Double the dose every 5 minutes"
+          ],
+          "doseMap": {
+            "Atropine IV bolus": "1.8 ถึง 3 mg IV (0.6 mg 3 ถึง 5 amp) ประเมินซ้ำทุก 5 นาที เพิ่มเท่าตัวจนปอดใส เสมหะแห้ง HR เกิน 80 และ SBP เกิน 80 ตามแนวทางศูนย์พิษวิทยารามาธิบดี ขนาดรวมเกิน 50 mg ก็เจอบ่อย"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "Atropinization ได้แล้ว",
+          "outcomeType": "improved",
+          "narrative": "Atropine รวม 34 mg ใน 25 นาที ปอดใส เสมหะหยุด HR ขึ้น รูม่านตายังเล็กอยู่ ซึ่งเป็นเรื่องปกติ และห้ามใช้เป็น endpoint",
+          "vitalChanges": {
+            "hr": 96,
+            "sbp": 108,
+            "dbp": 64,
+            "rr": 14,
+            "spo2": 96
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "choice": "Pralidoxime loading dose และ drip",
+          "distractors": [
+            {
+              "label": "ให้ pralidoxime แทน atropine",
+              "feedback": "Pralidoxime ไม่ได้แก้ muscarinic secretion เป็นยาเสริม atropine ใช้แทนไม่ได้"
+            },
+            {
+              "label": "ให้ physostigmine แก้พิษ",
+              "feedback": "Physostigmine เป็น cholinesterase inhibitor จะทำให้ cholinergic toxicity แย่ลง"
+            }
+          ],
+          "label": "ให้ pralidoxime แก้ nicotinic feature และ reactivate enzyme",
+          "actions": [
+            "Pralidoxime IV loading dose",
+            "Pralidoxime infusion"
+          ],
+          "doseMap": {
+            "Pralidoxime IV loading dose": "ผู้ใหญ่ 1 ถึง 2 g IV ใน 30 ถึง 60 นาที เด็ก 30 mg/kg (แนวทางศูนย์พิษวิทยารามาธิบดี)",
+            "Pralidoxime infusion": "0.5 ถึง 1 g/h จน cholinergic sign สงบ"
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 400
+        },
+        "data": {
+          "label": "คุยกับภรรยาเรื่องที่ทะเลาะกันโดยไม่โทษใคร และ consult จิตเวช (Empathy)",
+          "ethicalValue": 15,
+          "narrative": "ภรรยาเชื่อว่าเป็นความผิดของตัวเอง เพื่อนบ้านก็เริ่มมองว่าเป็นเรื่องน่าอายของครอบครัว หมอพาเธอแยกออกมาจากกลุ่มคน บอกว่าการกินยาฆ่าแมลงเป็นวิธีฆ่าตัวตายที่พบบ่อยที่สุดในชนบทไทย ไม่ใช่ความล้มเหลวของชีวิตคู่ แล้วนัดพยาบาลจิตเวชมาคุยกับทั้งสองคน พี่เอกบอกทีหลังว่าคุยแบบนี้สำคัญกว่า atropine เพราะครั้งที่สองมักเป็นครั้งที่ไม่รอด"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "choice": "ICU พร้อม atropine drip และตรวจ neck flexion",
+          "distractors": [
+            {
+              "label": "D/C หลัง 24 ชม. เมื่อเสมหะแห้งแล้ว",
+              "feedback": "Intermediate syndrome ทำให้ respiratory failure ได้ที่ 24 ถึง 96 ชม. ต้อง monitor ใน ICU"
+            },
+            {
+              "label": "ล้างท้องทุกวันบนวอร์ด",
+              "feedback": "ล้างท้องซ้ำไม่มีประโยชน์ ให้ตรวจ neck flexion และกำลังกล้ามเนื้อหายใจแทน"
+            }
+          ],
+          "label": "Admit ICU เฝ้าระวัง intermediate syndrome",
+          "actions": [
+            "ICU admission with atropine infusion",
+            "Serial neck flexion and respiratory muscle strength",
+            "Magnesium and potassium replacement",
+            "No prophylactic gastric lavage"
+          ],
+          "doseMap": {
+            "ICU admission with atropine infusion": "เริ่มที่ 10 ถึง 20% ของ loading dose รวมต่อชั่วโมง ส่วนใหญ่ 0.5 ถึง 1.5 mg/h ประเมินทุกชั่วโมง intermediate syndrome ทำให้ respiratory failure ได้ที่ 24 ถึง 96 ชม. หลังดูเหมือนดีขึ้นแล้ว"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "Intermediate syndrome ที่ 48 ชม.",
+          "outcomeType": "worsened",
+          "narrative": "วันที่ 2 คนไข้รู้สึกตัวดี แต่ยกหัวพ้นหมอนไม่ได้ tidal volume ลดลง proximal muscle กับ neck flexor อ่อนแรงโดยไม่มี fasciculation ต้อง reintubate นี่คือช่วงที่คร่าชีวิตคนไข้ที่ดูเหมือนกำลังจะหาย",
+          "vitalChanges": {
+            "rr": 8,
+            "spo2": 90,
+            "gcs": 14
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "Extubate วันที่ 6 cholinesterase กำลังกลับมา จิตแพทย์ได้ดูก่อน D/C และ อสม. จัดที่เก็บยาฆ่าแมลงแบบล็อกได้ให้หมู่บ้าน ซึ่งเป็นมาตรการเดียวที่มีหลักฐานระดับประชากรรองรับ",
+          "vitalChanges": {
+            "hr": 82,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 16,
+            "spo2": 97,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e6",
+        "source": "req4",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e_skip",
+        "source": "req4",
+        "target": "req5"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

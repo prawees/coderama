@@ -1,0 +1,49 @@
+cc: ไข้มา 5 วัน ตอนนี้ตัวเย็น ซึม
+bg: ชาวนาจากปักธงชัย ไข้สูงมา 5 วัน ปวดกระบอกตา ปวดเมื่อยตัวมาก อาเจียน เช้านี้ไข้ลง ญาติคิดว่าดีขึ้นแล้ว แต่ต่อมาตัวเย็น เหงื่อออก สับสน เดือนนี้เพื่อนบ้านเป็นไข้เลือดออกไปแล้ว 2 คน ไม่มีโรคประจำตัว กินยาแก้ปวดไม่ทราบชื่อจากร้านชำในหมู่บ้านมา 4 วัน น่าจะเป็น NSAID
+i.hct1: Hct ขึ้นเกิน 20% จาก baseline 43% นี่คือตัวบอก plasma leakage และเป็นตัวเลขที่ใช้ titrate fluid
+i.plt1: Severe thrombocytopenia ถ้าไม่มี significant bleeding ไม่ต้องให้ platelet ให้ไปก็ไม่ช่วย outcome
+i.ns1: ยืนยัน acute dengue ตอนนี้อยู่ใน critical phase ซึ่งเริ่มตอนไข้ลง
+i.lft1: Transaminitis AST สูงกว่า ALT แบบที่เจอใน dengue บ่อย ถ้า hepatitis รุนแรงถือเป็น severe dengue
+i.us1: Right pleural effusion, GB wall หนา 8 mm, ascites เล็กน้อย, IVC collapse มี plasma leak และ intravascular depletion
+i.lac1: Hypoperfusion
+i.coag1: Coagulopathy จากตับ
+req1.l: รู้ว่าเข้า critical phase แล้ว เจาะ Hct baseline
+req1.d0: ไข้ลงแล้ว บอกญาติว่ากำลังจะหาย
+req1.f0: ไข้ลงคือจุดเริ่มของ critical phase ใน dengue ช่วงที่ plasma leak และช็อก
+req1.d1: รอผล dengue IgM ก่อนค่อยตัดสินใจรักษา
+req1.f1: Dengue รักษาตาม clinical ตอนนี้ใช้ Hct baseline กับการประเมินช็อกกำหนด fluid
+req2.l: Bolus isotonic ที่มี dextrose สำหรับ compensated shock
+req2.c: 5%D/NSS 500 mL ใน 1 ถึง 2 ชม.
+req2.d0: ให้ platelet เพราะเกล็ดเลือดต่ำ
+req2.f0: Prophylactic platelet ไม่ได้กันเลือดออกหรือช็อกใน dengue ช็อกนี้มาจาก plasma leak ต้องได้ crystalloid
+req2.d1: งด fluid ทั้งหมด กลัว pulmonary edema
+req2.f1: ตอนนี้ compensated shock อยู่ ต้องได้ isotonic bolus ก่อน แล้วค่อยลด rate ทีละขั้น
+req2.m0: ผู้ใหญ่ 500 mL ใน 1 ถึง 2 ชม. เด็ก 10 mL/kg ตามแนวทาง dengue ของกรมการแพทย์ วอร์ดไทยใช้ isotonic ที่มี dextrose อย่าง 5%D/NSS ให้เสร็จแล้วประเมิน Hct, pulse pressure และ urine output ซ้ำ
+req3.l: หยุด NSAID และงดฉีดยาเข้ากล้าม
+req3.c: หยุด NSAID ไม่ฉีด IM
+req3.d0: ให้ NSAID ต่อ แก้ปวดเมื่อยกับไข้
+req3.f0: NSAID เพิ่มเลือดออกและกระเพาะอักเสบใน dengue ใช้ paracetamol อย่างเดียว
+req3.d1: ฉีด diclofenac IM แก้ปวด
+req3.f1: ฉีด IM ใน dengue ทำให้เกิด hematoma และ NSAID ทำให้เลือดออกมากขึ้น เลี่ยงทั้งคู่
+req3.m0: 500 mg กินทุก 6 ชม. ไม่เกิน 2 g/วัน เพราะมี transaminitis
+out1.l: ตอบสนองบางส่วน
+out1.n: หลัง bolus ที่สอง pulse pressure กว้างขึ้นเป็น 22 mmHg Hct ลงเป็น 48% ตัวอุ่นขึ้น รู้สึกตัวดีขึ้น แต่ urine output แค่ 0.3 mL/kg/h
+ethical_1.l: อธิบายญาติว่าทำไมไข้ลงแล้วถึงทรุด (Empathy)
+ethical_1.n: ญาติเชื่อว่าไข้ลงคือหาย เกือบพากลับบ้านไปแล้วเมื่อเช้า หมออธิบายว่าไข้เลือดออกอันตรายที่สุดใน 24 ถึง 48 ชม. หลังไข้ลง ญาติเข้าใจทันที แล้วบอกว่าลูกสาวบ้านข้างๆ ก็อยู่บ้าน เป็นแบบเดียวกันวันที่ 5 พี่ใจส่งข้อความหา อสม. ทันที
+req4.l: Titrate ตาม urine output กับ Hct ไม่ใช่ BP อย่างเดียว
+req4.c: ลด fluid ทีละขั้น titrate ตามปัสสาวะกับ Hct
+req4.d0: ให้ 20 mL/kg/h ต่อไปจน BP ปกติ
+req4.f0: ให้ fluid มากเกินทำให้ fluid overload และ pulmonary edema ตอน leak หยุด ลด rate ทีละขั้นแล้ว titrate ตาม urine output กับ Hct
+req4.d1: ตอบสนองแล้ว หยุด IV fluid ได้เลย
+req4.f1: Leak ยังมีต่ออีก 24 ถึง 48 ชม. หยุดทันทีเสี่ยงช็อกซ้ำ ค่อยๆ ลด rate
+req4.m0: ลด rate แบบผู้ใหญ่ตามแนวทางไทย ทีละขั้นตาม vital signs กับ Hct เป้า urine output 0.5 mL/kg/h ตลอดช่วง leak 24 ถึง 48 ชม. รวมแล้วไม่ควรเกิน M+5% ที่วอร์ดไทยสอนกันมา
+req4.m1: ความถี่ในการเจาะ Hct ช่วง critical phase ตามแนวทางไทย Hct ขึ้นแปลว่า leak เพิ่ม Hct ลงแต่ vital signs ไม่นิ่งให้คิดถึงเลือดออกภายใน
+out2.l: Reabsorption phase
+out2.n: ชั่วโมงที่ 30 Hct ลงเป็น 38% ปัสสาวะออกดีขึ้น ผื่นขึ้นเป็นปื้นและคัน หยุด fluid ได้ platelet 24 และกำลังขึ้น ไม่ต้องให้เลือดเลย
+req5.l: Admit observe ใกล้ชิดตลอด critical phase
+req5.d0: ตอบสนองแล้ว ให้ paracetamol กลับบ้าน
+req5.f0: ยังอยู่ใน critical phase ต้อง admit monitor จนกว่า leak จะหยุด
+req5.d1: Admit แต่ไม่ต้องวัด V/S ให้หลับพักผ่อน
+req5.f1: Critical phase ต้อง monitor ใกล้ชิด ทั้งช็อก เลือดออก และ fluid overload
+out3.l: Disposition
+out3.n: D/C วันที่ 8 platelet 96 ไม่มีเลือดออก แจ้งควบคุมยุงลายแล้ว เย็นนั้นลูกสาวบ้านข้างๆ มาถึงตอนเริ่มช็อก จับได้ทันพอดี

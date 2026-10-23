@@ -8,18 +8,18 @@ import c4 from "../public/locales/th/case_05_asthma.json";
 import c5 from "../public/locales/th/case_06_trauma.json";
 import c6 from "../public/locales/en/case_07.json";
 import c7 from "../public/locales/en/case_07_vip.json";
-import c8 from "../public/locales/en/case_08.json";
+import c8 from "../public/locales/th/case_08.json";
 import c9 from "../public/locales/en/case_09.json";
-import c10 from "../public/locales/en/case_10.json";
+import c10 from "../public/locales/th/case_10.json";
 import c11 from "../public/locales/en/case_11.json";
-import c12 from "../public/locales/en/case_12.json";
-import c13 from "../public/locales/en/case_13.json";
-import c14 from "../public/locales/en/case_14.json";
-import c15 from "../public/locales/en/case_15.json";
-import c16 from "../public/locales/en/case_16.json";
-import c17 from "../public/locales/en/case_17.json";
-import c18 from "../public/locales/en/case_18.json";
-import c19 from "../public/locales/en/case_19.json";
+import c12 from "../public/locales/th/case_12.json";
+import c13 from "../public/locales/th/case_13.json";
+import c14 from "../public/locales/th/case_14.json";
+import c15 from "../public/locales/th/case_15.json";
+import c16 from "../public/locales/th/case_16.json";
+import c17 from "../public/locales/th/case_17.json";
+import c18 from "../public/locales/th/case_18.json";
+import c19 from "../public/locales/th/case_19.json";
 import c20 from "../public/locales/en/case_20.json";
 import c21 from "../public/locales/en/case_21.json";
 import c22 from "../public/locales/en/case_22.json";
@@ -106,4 +106,4 @@ export const CASE_DATA: Record<string, any> = {
   "case_50": c50,
 };
 
-export const THAI_CASES = 6;
+export const THAI_CASES = 16;

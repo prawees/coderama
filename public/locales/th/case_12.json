@@ -1,0 +1,456 @@
+{
+  "title": "21yo M Dengue Shock Syndrome",
+  "age": "21",
+  "sex": "M",
+  "chiefComplaint": "ไข้มา 5 วัน ตอนนี้ตัวเย็น ซึม",
+  "diagnoses": [
+    "Dengue shock syndrome",
+    "Septic shock",
+    "Leptospirosis",
+    "Scrub typhus",
+    "Malaria"
+  ],
+  "background": "ชาวนาจากปักธงชัย ไข้สูงมา 5 วัน ปวดกระบอกตา ปวดเมื่อยตัวมาก อาเจียน เช้านี้ไข้ลง ญาติคิดว่าดีขึ้นแล้ว แต่ต่อมาตัวเย็น เหงื่อออก สับสน เดือนนี้เพื่อนบ้านเป็นไข้เลือดออกไปแล้ว 2 คน ไม่มีโรคประจำตัว กินยาแก้ปวดไม่ทราบชื่อจากร้านชำในหมู่บ้านมา 4 วัน น่าจะเป็น NSAID",
+  "patientAppearance": {
+    "skinTone": "#c08552",
+    "bmiFactor": 0.85,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 132,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 88,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 78,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 28,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.3,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 95,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 13,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Restless then drowsy, cold clammy peripheries despite being afebrile, narrow pulse pressure of 10 mmHg",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Flushed face, injected conjunctivae, gum bleeding on gentle probing, no neck stiffness, dry tongue",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia, weak thready pulse, capillary refill 5 seconds, narrow pulse pressure, heart sounds normal",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Reduced air entry at the right base with stony dull percussion, consistent with pleural effusion from plasma leak",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Tender hepatomegaly 3 cm below the costal margin, shifting dullness, no rebound, severe abdominal pain is a dengue warning sign",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Confluent blanching rash with islands of sparing over both legs, scattered petechiae, positive tourniquet test, cool mottled knees",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 13 (E3V4M6), no focal deficit, no meningism, pupils equal and reactive",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "hct1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Haematocrit",
+      "value": "54",
+      "unit": "%",
+      "normalRange": "40-50",
+      "abnormal": true,
+      "report": "Hct ขึ้นเกิน 20% จาก baseline 43% นี่คือตัวบอก plasma leakage และเป็นตัวเลขที่ใช้ titrate fluid"
+    },
+    {
+      "id": "plt1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Platelet count",
+      "value": "18",
+      "unit": "x10^9/L",
+      "normalRange": "150-400",
+      "abnormal": true,
+      "report": "Severe thrombocytopenia ถ้าไม่มี significant bleeding ไม่ต้องให้ platelet ให้ไปก็ไม่ช่วย outcome"
+    },
+    {
+      "id": "ns1",
+      "kind": "lab",
+      "category": "Serology",
+      "name": "Dengue NS1 antigen and IgM",
+      "value": "NS1 positive, IgM positive",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": true,
+      "report": "ยืนยัน acute dengue ตอนนี้อยู่ใน critical phase ซึ่งเริ่มตอนไข้ลง"
+    },
+    {
+      "id": "lft1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "AST and ALT",
+      "value": "AST 480 / ALT 310",
+      "unit": "U/L",
+      "normalRange": "<40",
+      "abnormal": true,
+      "report": "Transaminitis AST สูงกว่า ALT แบบที่เจอใน dengue บ่อย ถ้า hepatitis รุนแรงถือเป็น severe dengue"
+    },
+    {
+      "id": "us1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Bedside ultrasound",
+      "report": "Right pleural effusion, GB wall หนา 8 mm, ascites เล็กน้อย, IVC collapse มี plasma leak และ intravascular depletion",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "lac1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Lactate",
+      "value": "4.4",
+      "unit": "mmol/L",
+      "normalRange": "0.5-2.0",
+      "abnormal": true,
+      "report": "Hypoperfusion"
+    },
+    {
+      "id": "coag1",
+      "kind": "lab",
+      "category": "Coagulation",
+      "name": "INR",
+      "value": "1.6",
+      "unit": "-",
+      "normalRange": "0.9-1.2",
+      "abnormal": true,
+      "report": "Coagulopathy จากตับ"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ไข้ลงแล้ว บอกญาติว่ากำลังจะหาย",
+              "feedback": "ไข้ลงคือจุดเริ่มของ critical phase ใน dengue ช่วงที่ plasma leak และช็อก"
+            },
+            {
+              "label": "รอผล dengue IgM ก่อนค่อยตัดสินใจรักษา",
+              "feedback": "Dengue รักษาตาม clinical ตอนนี้ใช้ Hct baseline กับการประเมินช็อกกำหนด fluid"
+            }
+          ],
+          "label": "รู้ว่าเข้า critical phase แล้ว เจาะ Hct baseline",
+          "actions": [
+            "Haematocrit",
+            "Platelet count",
+            "Dengue NS1 and IgM",
+            "Bedside ultrasound for effusion and ascites"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ให้ platelet เพราะเกล็ดเลือดต่ำ",
+              "feedback": "Prophylactic platelet ไม่ได้กันเลือดออกหรือช็อกใน dengue ช็อกนี้มาจาก plasma leak ต้องได้ crystalloid"
+            },
+            {
+              "label": "งด fluid ทั้งหมด กลัว pulmonary edema",
+              "feedback": "ตอนนี้ compensated shock อยู่ ต้องได้ isotonic bolus ก่อน แล้วค่อยลด rate ทีละขั้น"
+            }
+          ],
+          "label": "Bolus isotonic ที่มี dextrose สำหรับ compensated shock",
+          "actions": [
+            "5%D/NSS bolus",
+            "Haematocrit before and after"
+          ],
+          "doseMap": {
+            "5%D/NSS bolus": "ผู้ใหญ่ 500 mL ใน 1 ถึง 2 ชม. เด็ก 10 mL/kg ตามแนวทาง dengue ของกรมการแพทย์ วอร์ดไทยใช้ isotonic ที่มี dextrose อย่าง 5%D/NSS ให้เสร็จแล้วประเมิน Hct, pulse pressure และ urine output ซ้ำ"
+          },
+          "choice": "5%D/NSS 500 mL ใน 1 ถึง 2 ชม."
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "หยุด NSAID ไม่ฉีด IM",
+          "distractors": [
+            {
+              "label": "ให้ NSAID ต่อ แก้ปวดเมื่อยกับไข้",
+              "feedback": "NSAID เพิ่มเลือดออกและกระเพาะอักเสบใน dengue ใช้ paracetamol อย่างเดียว"
+            },
+            {
+              "label": "ฉีด diclofenac IM แก้ปวด",
+              "feedback": "ฉีด IM ใน dengue ทำให้เกิด hematoma และ NSAID ทำให้เลือดออกมากขึ้น เลี่ยงทั้งคู่"
+            }
+          ],
+          "label": "หยุด NSAID และงดฉีดยาเข้ากล้าม",
+          "actions": [
+            "Discontinue NSAID",
+            "Paracetamol for fever",
+            "No IM injections, no aspirin"
+          ],
+          "doseMap": {
+            "Paracetamol for fever": "500 mg กินทุก 6 ชม. ไม่เกิน 2 g/วัน เพราะมี transaminitis"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "ตอบสนองบางส่วน",
+          "outcomeType": "improved",
+          "narrative": "หลัง bolus ที่สอง pulse pressure กว้างขึ้นเป็น 22 mmHg Hct ลงเป็น 48% ตัวอุ่นขึ้น รู้สึกตัวดีขึ้น แต่ urine output แค่ 0.3 mL/kg/h",
+          "vitalChanges": {
+            "hr": 112,
+            "sbp": 100,
+            "dbp": 72,
+            "rr": 24,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 400
+        },
+        "data": {
+          "label": "อธิบายญาติว่าทำไมไข้ลงแล้วถึงทรุด (Empathy)",
+          "ethicalValue": 10,
+          "narrative": "ญาติเชื่อว่าไข้ลงคือหาย เกือบพากลับบ้านไปแล้วเมื่อเช้า หมออธิบายว่าไข้เลือดออกอันตรายที่สุดใน 24 ถึง 48 ชม. หลังไข้ลง ญาติเข้าใจทันที แล้วบอกว่าลูกสาวบ้านข้างๆ ก็อยู่บ้าน เป็นแบบเดียวกันวันที่ 5 พี่ใจส่งข้อความหา อสม. ทันที"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "choice": "ลด fluid ทีละขั้น titrate ตามปัสสาวะกับ Hct",
+          "distractors": [
+            {
+              "label": "ให้ 20 mL/kg/h ต่อไปจน BP ปกติ",
+              "feedback": "ให้ fluid มากเกินทำให้ fluid overload และ pulmonary edema ตอน leak หยุด ลด rate ทีละขั้นแล้ว titrate ตาม urine output กับ Hct"
+            },
+            {
+              "label": "ตอบสนองแล้ว หยุด IV fluid ได้เลย",
+              "feedback": "Leak ยังมีต่ออีก 24 ถึง 48 ชม. หยุดทันทีเสี่ยงช็อกซ้ำ ค่อยๆ ลด rate"
+            }
+          ],
+          "label": "Titrate ตาม urine output กับ Hct ไม่ใช่ BP อย่างเดียว",
+          "actions": [
+            "Step down 250, 150, 100, 80, then 40 mL/h",
+            "Hourly urine output",
+            "Haematocrit every 4 to 6 hours",
+            "Strict fluid balance chart"
+          ],
+          "doseMap": {
+            "Step down 250, 150, 100, 80, then 40 mL/h": "ลด rate แบบผู้ใหญ่ตามแนวทางไทย ทีละขั้นตาม vital signs กับ Hct เป้า urine output 0.5 mL/kg/h ตลอดช่วง leak 24 ถึง 48 ชม. รวมแล้วไม่ควรเกิน M+5% ที่วอร์ดไทยสอนกันมา",
+            "Haematocrit every 4 to 6 hours": "ความถี่ในการเจาะ Hct ช่วง critical phase ตามแนวทางไทย Hct ขึ้นแปลว่า leak เพิ่ม Hct ลงแต่ vital signs ไม่นิ่งให้คิดถึงเลือดออกภายใน"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "Reabsorption phase",
+          "outcomeType": "improved",
+          "narrative": "ชั่วโมงที่ 30 Hct ลงเป็น 38% ปัสสาวะออกดีขึ้น ผื่นขึ้นเป็นปื้นและคัน หยุด fluid ได้ platelet 24 และกำลังขึ้น ไม่ต้องให้เลือดเลย",
+          "vitalChanges": {
+            "hr": 88,
+            "sbp": 116,
+            "dbp": 74,
+            "rr": 18,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ตอบสนองแล้ว ให้ paracetamol กลับบ้าน",
+              "feedback": "ยังอยู่ใน critical phase ต้อง admit monitor จนกว่า leak จะหยุด"
+            },
+            {
+              "label": "Admit แต่ไม่ต้องวัด V/S ให้หลับพักผ่อน",
+              "feedback": "Critical phase ต้อง monitor ใกล้ชิด ทั้งช็อก เลือดออก และ fluid overload"
+            }
+          ],
+          "label": "Admit observe ใกล้ชิดตลอด critical phase",
+          "actions": [
+            "Ward admission with 4 hourly observations",
+            "Watch for fluid overload and pulmonary oedema",
+            "Bleeding precautions"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 8 platelet 96 ไม่มีเลือดออก แจ้งควบคุมยุงลายแล้ว เย็นนั้นลูกสาวบ้านข้างๆ มาถึงตอนเริ่มช็อก จับได้ทันพอดี",
+          "vitalChanges": {
+            "hr": 78,
+            "sbp": 118,
+            "dbp": 76,
+            "rr": 16,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "out2",
+        "target": "req5"
+      },
+      {
+        "id": "e9",
+        "source": "req5",
+        "target": "out3"
+      }
+    ]
+  }
+}

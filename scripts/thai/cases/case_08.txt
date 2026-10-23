@@ -1,0 +1,49 @@
+cc: เจ็บหน้าอก หอบเหนื่อยมากหลังมอเตอร์ไซค์ล้ม
+bg: มอเตอร์ไซค์ชนกระบะ ความเร็วราว 60 km/h เมื่อ 25 นาทีก่อน ใส่หมวก ไม่สลบ ล้มตะแคงซ้ายกระแทกขอบฟุตบาท กู้ภัยบอกว่าหอบมากขึ้นเรื่อยๆ และ SpO2 ตกระหว่างทางทั้งที่ on NRB mask ไม่มีโรคประจำตัว ไม่มียาประจำ ไม่สูบบุหรี่
+i.us1: Left anterior chest: ไม่มี lung sliding ไม่มี B-lines, barcode sign บน M-mode เจอ lung point ด้านข้าง ไม่มี pericardial effusion ไม่มี free fluid ใน Morison's pouch, splenorenal recess หรือ pelvis ทำข้างเตียง 90 วินาทีโดยไม่ทำให้ decompress ช้า
+i.cxr1: Left ICD tip ชี้ขึ้น apex ยังเหลือ apical pneumothorax ซ้าย 10% rib 5 และ 6 ซ้ายหัก mediastinum อยู่กลาง ไม่มี hemothorax ปอดส่วนอื่นใส
+i.abg1: Mixed respiratory และ metabolic acidosis ร่วมกับ severe hypoxemia เจาะก่อน decompress
+i.lac1: Obstructive shock จาก venous return ลดลง
+i.hb1: เกือบปกติ ไม่สนับสนุนว่าช็อกจากเสียเลือดเป็นหลัก แต่ Hb ช่วงแรกอาจหลอกให้วางใจได้
+i.ecg1: Sinus tachycardia 132/min, low voltage ที่ left precordial leads ไม่มี electrical alternans ไม่มี ischemic change
+i.tns1: Crossmatch ไว้ 2 unit ยังไม่เปิด MTP
+req1.l: Primary survey ให้ O2 high flow และ protect C-spine
+req1.c: O2 high flow ใส่ collar ติด monitor
+req1.d0: ส่ง CT ทันทีจะได้รู้ว่าบาดเจ็บตรงไหน
+req1.f0: คนไข้ unstable ห้ามออกจากห้อง resus ทำ primary survey กับให้ O2 ก่อน
+req1.d1: ถอด collar ออกจะได้ตรวจคอให้ละเอียด
+req1.f1: กลไกการบาดเจ็บแรงสูง ต้อง protect C-spine ตลอด primary survey
+req1.m0: 15 L/min
+ethical_1.l: บอกคนไข้ก่อนทำ needle decompression และขอความยินยอมด้วยวาจา (Empathy)
+ethical_1.n: คนไข้กลัวและดิ้นปัด mask หมอบอกสั้นๆ ประโยคเดียวว่าจะทำอะไรและทำไม แล้ววางมือบนไหล่ คนไข้หยุดดิ้นและให้ทำ พี่แอนสังเกตว่าหมอไม่ต้อง sedate เลย
+req2.l: Needle หรือ finger decompression ทันที ไม่ต้องรอ film
+req2.c: Needle decompression ข้างซ้ายเดี๋ยวนี้
+req2.d0: ถ่าย portable CXR ยืนยันก่อน
+req2.f0: Tension pneumothorax วินิจฉัยทาง clinical รอ film อาจเสียชีวิตได้ decompress เลย
+req2.d1: Intubate และ ventilate ก่อนอย่างอื่น
+req2.f1: Positive pressure ทำให้ tension pneumothorax แย่ลงจน arrest ได้ decompress ก่อน
+req2.m0: Cannula 14G ยาวอย่างน้อย 5 cm หรือทำ finger thoracostomy ถ้าผนังอกหนา
+out1.l: ตอบสนองทันที
+out1.n: ลมพุ่งออกมา trachea กลับมาอยู่กลางในนาทีเดียว neck vein แฟบลง คนไข้สงบลงขณะที่ SpO2 ค่อยๆ ขึ้น
+req3.l: ใส่ ICD ข้างซ้ายเป็น definitive
+req3.d0: คา needle ไว้แล้วส่งขึ้นวอร์ด
+req3.f0: Needle เป็นแค่การประคอง หักงอและอุดตันได้ ต้องใส่ ICD
+req3.d1: ใส่ ICD ที่ 2nd ICS, MCL
+req3.f1: ICD ใส่ที่ 5th ICS หน้าต่อ MAL ใน safe triangle
+req3.m0: ICD 28 Fr ต่อ underwater seal ห้าม clamp
+req3.m1: 1% lidocaine 10 ถึง 20 mL
+req4.l: เปิด IV ให้ยาแก้ปวด และถ่าย CXR ยืนยัน
+req4.d0: ฉีด pethidine IM แก้ปวด ไม่ต้องเปิด IV
+req4.f0: คนไข้ trauma ต้องมี IV access ให้ opioid IV แบบ titrate คุมระดับยาได้
+req4.d1: ไม่ให้ยาแก้ปวดจนกว่า surgeon จะมาตรวจ
+req4.f1: ยาแก้ปวดไม่ได้บัง surgical sign จนมีผล การงดยาเป็นแนวคิดเก่าและไม่ใจดีกับคนไข้
+req4.m0: 25 ถึง 50 mcg IV ทุก 5 นาทีจนได้ผล monitor RR
+out2.l: Stable แล้ว
+out2.n: ICD มี swing และมี bubble ตอนหายใจออก film ซ้ำปอดเกือบขยายเต็ม คนไข้ปวดน้อยลงพอจะหายใจลึกๆ ได้
+req5.l: ทำ secondary survey ให้ครบ และส่ง trauma imaging
+req5.d0: ใส่ ICD แล้ว film ดีขึ้นก็ D/C ได้
+req5.f0: กลไกแรงสูงต้อง secondary survey ครบและส่ง imaging หา occult injury
+req5.d1: ส่ง imaging แค่ chest ที่เหลือตรวจปกติ
+req5.f1: บาดแผลที่เจ็บมากบังบาดแผลอื่นได้ ส่ง imaging หัวถึง pelvis ตามกลไก
+out3.l: Disposition
+out3.n: CT ยืนยัน rib 4 ถึง 7 ซ้ายหัก มี pulmonary contusion เล็กน้อย ไม่มี intra-abdominal injury admit วอร์ดศัลย์พร้อม ICD, incentive spirometry และแผนทำ regional block

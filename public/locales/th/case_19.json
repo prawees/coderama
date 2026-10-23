@@ -1,0 +1,456 @@
+{
+  "title": "4yo M Drowning (Irrigation Canal)",
+  "age": "4",
+  "sex": "M",
+  "chiefComplaint": "จมน้ำในคลองชลประทาน ดึงขึ้นมาไม่รู้สึกตัว",
+  "diagnoses": [
+    "Drowning with hypoxic cardiac arrest",
+    "Aspiration pneumonitis",
+    "Hypothermia",
+    "Cervical spine injury",
+    "Non-accidental injury"
+  ],
+  "background": "พบลอยคว่ำหน้าอยู่ในคลองชลประทานหลังบ้าน คาดว่าจมอยู่ 5 ถึง 8 นาที ไม่มีใครเห็น พี่สาวอายุ 11 ขวบดึงขึ้นมา เพื่อนบ้านกดหน้าอกโดยไม่ช่วยหายใจราว 6 นาทีจนรถพยาบาลมาถึง ได้ ROSC บนรถหลัง 2 cycle กับ adrenaline 1 dose น้ำหนักประมาณ 16 kg การจมน้ำเป็นสาเหตุการตายอันดับหนึ่งของเด็กไทยอายุ 1 ถึง 14 ปี เจอมากสุดช่วงเมษายนและปิดเทอม",
+  "patientAppearance": {
+    "skinTone": "#dda878",
+    "bmiFactor": 0.9,
+    "ageGroup": "child"
+  },
+  "vitals": {
+    "hr": {
+      "value": 168,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 74,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 42,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 8,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 33.8,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 82,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 6,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Small child, unresponsive, wet and cold, mottled and cyanosed, agonal respirations at 8/min, canal weed in his hair",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Frothy pink fluid at the mouth and nose, silt and vegetation in the oropharynx requiring suction, pupils 5 mm and sluggish bilaterally, no head injury palpable, cervical collar applied because the mechanism is unwitnessed",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia at 168/min post arrest, weak central pulses, capillary refill 5 seconds, cold peripheries. In hypothermia, pulses are hard to feel and you must check for a full minute before declaring arrest",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Widespread coarse crackles in all zones, poor chest expansion, wheeze, oxygen saturations 82% on 15 L/min via mask. Surfactant washout, not water in the lungs, is what impairs gas exchange",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Distended with swallowed water and air from bag-mask ventilation, soft, no bruising to suggest inflicted injury, bowel sounds present",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cold, mottled and cyanosed, core temperature 33.8 C, no bruising of different ages, no burns, no marks suggesting non-accidental injury",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 6 (E1V2M3), flaccid tone, no seizure activity at present, pupils sluggish. Neurological prognosis in drowning is decided by hypoxic time and cannot be assessed reliably for 72 hours, particularly while hypothermic",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Arterial blood gas",
+      "value": "pH 6.98 / pCO2 62 / pO2 46 / HCO3 14 / lactate 11",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Severe mixed acidosis ร่วมกับ profound hypoxemia หลัง hypoxic arrest lactate เกิน 10 หลังเด็กจมน้ำสัมพันธ์กับ neurological outcome ที่ไม่ดี แต่ตัวมันเองยังไม่ใช่เหตุผลที่จะหยุด"
+    },
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Capillary glucose",
+      "value": "58",
+      "unit": "mg/dL",
+      "normalRange": "70-140",
+      "abnormal": true,
+      "report": "Hypoglycemia เด็กเล็กมี glycogen สะสมน้อยและใช้หมดเร็วตอน arrest ทั้ง hypo และ hyperglycemia ทำให้ hypoxic brain injury แย่ลง"
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Portable Chest X-ray",
+      "report": "Diffuse perihilar และ basal airspace opacity ทั้งสองข้าง เข้าได้กับ aspiration และ pulmonary edema, ET tube อยู่เหนือ carina 1 cm ต้องดึงออก 1.5 cm มี gastric distension ไม่มี pneumothorax ไม่มี rib fracture",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "temp1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Core (oesophageal) temperature",
+      "value": "33.8",
+      "unit": "C",
+      "normalRange": "36.5-37.5",
+      "abnormal": true,
+      "report": "Moderate hypothermia อย่า warm เกิน 36 C, TTM ที่ 33 ถึง 36 C นาน 24 ถึง 48 ชม. เป็นมาตรฐานหลัง pediatric cardiac arrest การ active rewarm จนปกติเป็นผลเสีย"
+    },
+    {
+      "id": "k1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "Potassium and sodium",
+      "value": "K 3.2 / Na 138 mmol/L",
+      "unit": "mmol/L",
+      "normalRange": "K 3.5-5.0",
+      "abnormal": true,
+      "report": "Hypokalemia เล็กน้อย เจอบ่อยใน hypothermia เพราะ K เข้าเซลล์ พอ warm แล้ว K จะขึ้นเอง ให้ทดแทนอย่างระวัง"
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "12-Lead ECG",
+      "report": "Sinus tachycardia 166/min, QTc ยาว 480 ms มี Osborn J wave ที่ inferior และ lateral leads เข้าได้กับ hypothermia หัวใจที่เย็นไวต่อการกระตุ้น จับและเคลื่อนย้ายเด็กเบาๆ",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "กดท้องเอาน้ำออกจากปอด",
+              "feedback": "กดท้องทำให้ช่วยหายใจช้าลงและ aspirate จมน้ำเป็นภาวะ hypoxic ต้องช่วยหายใจ"
+            },
+            {
+              "label": "กดหน้าอกอย่างเดียว ไม่ต้องช่วยหายใจ",
+              "feedback": "จมน้ำเป็น hypoxic arrest การช่วยหายใจด้วย O2 สำคัญที่สุด"
+            }
+          ],
+          "label": "จมน้ำ: airway, suction และ oxygenation มาก่อน",
+          "actions": [
+            "Suction the oropharynx",
+            "Bag-valve-mask with 15 L/min oxygen and PEEP",
+            "Cervical spine precautions"
+          ],
+          "doseMap": {
+            "Bag-valve-mask with 15 L/min oxygen and PEEP": "จมน้ำเป็น hypoxic arrest การช่วยหายใจจึงสำคัญที่สุด ลำดับคือ airway ก่อน ต่างจาก cardiac arrest ในผู้ใหญ่ อย่ากดท้องเอาน้ำออก จะทำให้ aspirate"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "RSI แล้วตั้ง PEEP 8 ถึง 10 กับ 6 ถึง 8 mL/kg",
+          "distractors": [
+            {
+              "label": "Bag ต่อไปโดยไม่ intubate",
+              "feedback": "ยัง hypoxemia ต่อเนื่อง intubate และตั้ง lung protective ventilation พร้อม PEEP"
+            },
+            {
+              "label": "PEEP ต่ำ 0 ถึง 2 cmH2O",
+              "feedback": "ปอดจมน้ำต้องใช้ PEEP เปิด alveoli ที่มีน้ำท่วม ใช้ 8 ถึง 10 cmH2O"
+            }
+          ],
+          "label": "RSI แล้วตั้ง ventilator แบบ lung protective",
+          "actions": [
+            "Rapid sequence intubation",
+            "Ketamine and rocuronium",
+            "PEEP 8-10 cmH2O",
+            "Nasogastric tube to decompress the stomach"
+          ],
+          "doseMap": {
+            "Ketamine and rocuronium": "Ketamine 2 mg/kg (32 mg) และ rocuronium 1.2 mg/kg (19 mg) ketamine ช่วยพยุง BP ในเด็กที่ช็อก",
+            "PEEP 8-10 cmH2O": "Tidal volume 6 ถึง 8 mL/kg surfactant ถูกล้างออก ปอดเลยเป็นเหมือน ARDS"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "Bolus fluid ปริมาณมาก 60 mL/kg",
+              "feedback": "ให้ fluid มากทำให้ pulmonary edema แย่ลงในเด็กจมน้ำ bolus อย่างระวังและใช้ inotrope"
+            },
+            {
+              "label": "ไม่ต้องเจาะน้ำตาล เด็กยังเล็กไม่น่าเป็นเบาหวาน",
+              "feedback": "Hypoglycemia เจอบ่อยในเด็กที่เครียดจากโรค เจาะดูแล้วแก้"
+            }
+          ],
+          "label": "แก้น้ำตาล และพยุง circulation",
+          "actions": [
+            "IV or intraosseous access",
+            "Dextrose bolus",
+            "Cautious isotonic fluid bolus",
+            "Adrenaline infusion if fluid unresponsive"
+          ],
+          "doseMap": {
+            "Dextrose bolus": "10% dextrose 2 mL/kg (32 mL) เจาะซ้ำใน 30 นาที",
+            "Cautious isotonic fluid bolus": "10 mL/kg (160 mL) แล้วประเมินซ้ำ ปริมาณมากทำให้ pulmonary edema แย่ลงในเด็กจมน้ำ"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "Oxygenation ดีขึ้น",
+          "outcomeType": "improved",
+          "narrative": "ได้ PEEP กับ O2 100% SpO2 ขึ้นเป็น 94% ใน 10 นาที perfusion ดีขึ้นหลังได้ fluid bolus กับ dextrose ยังไม่รู้สึกตัวลึก ซึ่งตอนนี้ยังบอกอะไรเรื่อง outcome ไม่ได้เลย",
+          "vitalChanges": {
+            "hr": 142,
+            "sbp": 88,
+            "dbp": 50,
+            "rr": 20,
+            "spo2": 94,
+            "temp": 34.2
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 420
+        },
+        "data": {
+          "label": "ไปคุยกับพี่สาว 11 ขวบที่ดึงน้องขึ้นมา (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "พยาบาลดูแลพ่อแม่อยู่ พี่สาวนั่งคนเดียวอยู่หน้าห้อง resus ตัวยังเปียก และได้ยินใครสักคนพูดว่าน้องอาจไม่ตื่น หมอนั่งยองลงแล้วบอกว่าการกดหน้าอกของหนูกับเพื่อนบ้านคือเหตุผลที่หัวใจน้องยังเต้นตอนนี้ และอะไรที่จะเกิดต่อจากนี้ถูกกำหนดไปแล้วที่คลอง ไม่ใช่เพราะหนู พี่เอกบอกทีหลังว่า 28 ปีที่ผ่านมา พี่น้องของเด็กคือคนที่ไม่มีใครคุยด้วย และเป็นคนที่จะยังแบกเรื่องนี้อยู่ตอนอายุสามสิบ"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "choice": "Passive rewarming คุมไม่เกิน 37.5 C",
+          "distractors": [
+            {
+              "label": "Active rewarm เร็วๆ ให้ถึง 38 C",
+              "feedback": "ไข้ทำให้ neurological outcome แย่ลงหลัง hypoxic injury warm แบบ passive และคุมไม่เกิน 37.5 C"
+            },
+            {
+              "label": "ไม่ต้องสนใจอุณหภูมิ",
+              "feedback": "การคุมอุณหภูมิสำคัญต่อการฟื้นของสมอง monitor และอย่าให้มีไข้"
+            }
+          ],
+          "label": "TTM ไม่ rewarm แรง",
+          "actions": [
+            "Passive rewarming only, then hold at 36-37.5 C",
+            "Continuous core temperature monitoring",
+            "Avoid hyperthermia",
+            "Treat seizures aggressively"
+          ],
+          "doseMap": {
+            "Passive rewarming only, then hold at 36-37.5 C": "อย่าให้เกิน 37.5 C ไข้หลัง hypoxic brain injury ทำให้ outcome แย่ลง และเป็นสิ่งเดียวที่หมอคุมได้แน่ๆ"
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "choice": "ส่ง PICU และส่งต่อทีมคุ้มครองเด็ก",
+          "distractors": [
+            {
+              "label": "ให้ prophylactic antibiotic กับ steroid",
+              "feedback": "ทั้งคู่ไม่มีหลักฐานในเด็กจมน้ำ ให้ antibiotic เมื่อมีหลักฐานการติดเชื้อ"
+            },
+            {
+              "label": "Stable แล้ว D/C กลับบ้าน",
+              "feedback": "ต้องดูแลใน PICU และประเมินเรื่องคุ้มครองเด็กเพราะจมน้ำตอนไม่มีผู้ใหญ่ดูแล"
+            }
+          ],
+          "label": "ส่ง PICU และประเมินเรื่องการคุ้มครองเด็ก",
+          "actions": [
+            "PICU transfer",
+            "No prophylactic antibiotics or steroids",
+            "Child protection and supervision assessment",
+            "Family support and debriefing"
+          ],
+          "doseMap": {
+            "No prophylactic antibiotics or steroids": "ทั้งคู่ไม่ได้ทำให้ outcome ดีขึ้นในเด็กจมน้ำ รักษาการติดเชื้อเมื่อพิสูจน์ได้ ตามผล culture น้ำคลองสกปรกก็จริง แต่ prophylaxis ก็ยังไม่ได้ผล"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "48 ชม. ถัดมา",
+          "outcomeType": "improved",
+          "narrative": "Extubate วันที่ 4 ทำตามสั่งได้วันที่ 5 มี left hemiparesis เล็กน้อยกับพูดลำบาก neuro คาดว่าจะฟื้นได้มากแต่ไม่ครบใน 6 เดือน ตอนนี้สิ่งที่กำหนดผลคือ 8 นาทีใต้น้ำ ไม่ใช่สิ่งที่เกิดขึ้นใน ER",
+          "vitalChanges": {
+            "hr": 110,
+            "sbp": 96,
+            "dbp": 58,
+            "rr": 22,
+            "spo2": 97,
+            "temp": 36.5,
+            "gcs": 11
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "ส่งต่อ rehab ที่ 3 สัปดาห์ คลองหลังบ้านไม่มีรั้ว ผู้ใหญ่สองคนในบ้านว่ายน้ำไม่เป็นทั้งคู่ ส่งเรื่องถึงสาธารณสุขอำเภอเข้าโครงการสอนว่ายน้ำเพื่อเอาชีวิตรอด ซึ่งเป็นมาตรการเดียวในเคสนี้ที่มีหลักฐานระดับประชากรรองรับ",
+          "vitalChanges": {
+            "hr": 104,
+            "sbp": 100,
+            "dbp": 60,
+            "rr": 20,
+            "spo2": 98,
+            "temp": 36.8,
+            "gcs": 14
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

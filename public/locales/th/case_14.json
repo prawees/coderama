@@ -1,0 +1,478 @@
+{
+  "title": "17yo M Pelvic Fracture Haemorrhage",
+  "age": "17",
+  "sex": "M",
+  "chiefComplaint": "มอเตอร์ไซค์ชนกระบะ มาถึงช็อก",
+  "diagnoses": [
+    "Open book pelvic fracture with haemorrhagic shock",
+    "Intra-abdominal haemorrhage",
+    "Retroperitoneal haematoma",
+    "Urethral injury",
+    "Traumatic brain injury"
+  ],
+  "background": "คืนวันศุกร์บนถนนมิตรภาพ ไม่ใส่หมวก กระเด็นไปราว 15 เมตร รถเข้าไปอยู่ใต้กระบะ กู้ภัยยกด้วย scoop stretcher ให้ NSS 500 mL ระหว่างทาง ใช้เวลาเกิดเหตุถึง รพ. 35 นาที แม่กำลังขี่มอเตอร์ไซค์มาจากโนนสูง อีก 40 นาทีถึง น้องอายุ 17 เรื่อง consent ผ่าตัดเลยเป็นปัญหาจริง",
+  "patientAppearance": {
+    "skinTone": "#d09a6a",
+    "bmiFactor": 0.9,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 142,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 72,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 38,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 32,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 35.1,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 93,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 12,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Young, agitated and combative from hypoperfusion, grey and cold, road rash over the whole left side",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Scalp laceration 8 cm over the left parietal region with active venous bleeding, no midface instability, no CSF rhinorrhoea, cervical collar applied, no haemotympanum",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia at 142/min, radial pulse barely palpable, femoral pulse present, capillary refill over 5 seconds, no JVD",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Equal air entry bilaterally, tender left ribs 8 to 10 without flail, no surgical emphysema, tachypnoeic from acidosis",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Distended, diffusely tender, seatbelt sign absent, pelvis feels unstable on gentle assessment. Do not spring the pelvis repeatedly, each examination disrupts clot",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cold clammy mottled skin to mid-thigh, extensive abrasions, blood at the urethral meatus and a scrotal haematoma, temperature 35.1 C and falling",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 12 (E3V4M5), agitated, pupils 3 mm equal and reactive, moves all limbs, no lateralising signs",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "fast1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "eFAST",
+      "report": "ไม่มี free fluid ใน Morison's pouch, splenorenal recess หรือ pelvis ไม่มี pericardial effusion มี lung sliding ทั้งสองข้าง FAST negative ไม่ได้ตัดเลือดออกใน retroperitoneum จาก pelvis ซึ่งคือที่ที่คนไข้รายนี้เสียเลือดอยู่",
+      "imageUrl": "",
+      "abnormal": false
+    },
+    {
+      "id": "pxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Pelvic X-ray",
+      "report": "Symphysis แยก 4.5 cm SI joint กว้างทั้งสองข้าง APC injury, Young-Burgess type 2 แบบ open book มีที่ว่างใน retroperitoneum ให้เลือดไปขังได้มาก",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "hb1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Haemoglobin",
+      "value": "8.2",
+      "unit": "g/dL",
+      "normalRange": "13.5-17.5",
+      "abnormal": true,
+      "report": "ต่ำแล้วทั้งที่ได้ crystalloid ก่อนถึง รพ. แค่ 500 mL แปลว่ากำลังเสียเลือดมาก"
+    },
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Blood gas with base deficit",
+      "value": "pH 7.11 / base deficit -14 / lactate 7.9",
+      "unit": "-",
+      "normalRange": "base deficit -2 to +2",
+      "abnormal": true,
+      "report": "Base deficit รุนแรงทำนายการต้องให้เลือดและการเสียชีวิตได้ดีกว่า BP ในคนไข้ trauma อายุน้อย ซึ่ง compensate ได้ดีจนวันหนึ่งไม่ไหวขึ้นมาทันที"
+    },
+    {
+      "id": "coag1",
+      "kind": "lab",
+      "category": "Coagulation",
+      "name": "Fibrinogen and INR",
+      "value": "Fibrinogen 1.1 g/L / INR 1.7",
+      "unit": "-",
+      "normalRange": "Fibrinogen 2.0-4.0 g/L",
+      "abnormal": true,
+      "report": "Acute traumatic coagulopathy lethal triad ทั้ง hypothermia, acidosis และ coagulopathy มาครบแล้ว"
+    },
+    {
+      "id": "ct1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CT trauma series with contrast (after stabilisation)",
+      "report": "Retroperitoneal hematoma ขนาดใหญ่ มี active arterial contrast extravasation จากแขนงของ internal iliac artery, pubic rami บนล่างหักทั้งสองข้าง ไม่มี solid organ injury มี bladder neck injury เล็กน้อย ไม่มี ICH",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "Pelvic binder คร่อม greater trochanter",
+          "distractors": [
+            {
+              "label": "ใส่ pelvic binder ระดับ iliac crest",
+              "feedback": "Binder ที่ iliac crest ไม่ได้ปิด pelvic ring และอาจทำให้แยกมากขึ้น ต้องคร่อม greater trochanter"
+            },
+            {
+              "label": "Spring pelvis ดูว่า unstable จริงก่อน",
+              "feedback": "Spring pelvis ทำให้ clot หลุดและเลือดออกมากขึ้น ใส่ binder ตามกลไกและภาวะช็อกได้เลย"
+            }
+          ],
+          "label": "ใส่ pelvic binder ระดับ greater trochanter ทันที",
+          "actions": [
+            "Apply pelvic binder",
+            "Internally rotate and strap the legs"
+          ],
+          "doseMap": {
+            "Apply pelvic binder": "วางกึ่งกลางที่ greater trochanter ไม่ใช่ iliac crest binder ที่สูงเกินไปไม่ลดปริมาตร pelvis"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "กดแผลที่หนังศีรษะ ให้ O2 เปิด 2 เส้น",
+          "distractors": [
+            {
+              "label": "ปล่อยแผลที่หนังศีรษะไว้ แผลเล็ก",
+              "feedback": "แผลหนังศีรษะเลือดออกเร็วและทำให้ช็อกได้มาก กดหรือเย็บ staple ห้ามเลือด"
+            },
+            {
+              "label": "ใส่ central line ก่อนเพื่อเปิดเส้น",
+              "feedback": "Peripheral เบอร์ใหญ่สองเส้นหรือ IO เร็วกว่า และให้ flow ได้สูงกว่า"
+            }
+          ],
+          "label": "ห้ามเลือดที่ออกมากก่อน แล้วดู airway ให้ O2",
+          "actions": [
+            "Direct pressure and staples to the scalp laceration",
+            "Oxygen 15 L/min",
+            "Two large bore IV or intraosseous access"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ให้ NSS อุ่นอีก 2 ลิตรก่อนให้เลือด",
+              "feedback": "Crystalloid เจือจาง clotting factor และทำให้ lethal triad แย่ลง ให้เลือดกับ plasma ร่วมกับ TXA"
+            },
+            {
+              "label": "รอผล Hb ก่อนค่อยให้เลือด",
+              "feedback": "Hb ตามหลังภาวะเสียเลือดเฉียบพลัน ให้เลือดตาม clinical shock"
+            }
+          ],
+          "label": "ให้เลือดแทน crystalloid ร่วมกับ TXA",
+          "actions": [
+            "Activate massive transfusion protocol",
+            "Emergency O negative red cells",
+            "Tranexamic acid IV",
+            "Stop crystalloid"
+          ],
+          "doseMap": {
+            "Activate massive transfusion protocol": "PRC : FFP : platelet 1:1:1 ถ้า fibrinogen ต่ำกว่า 1.5 g/L เพิ่ม cryoprecipitate",
+            "Tranexamic acid IV": "1 g ใน 10 นาที แล้ว 1 g ใน 8 ชม. ให้เฉพาะถ้ายังไม่เกิน 3 ชม. หลังบาดเจ็บ"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "choice": "Forced air warmer และ fluid warmer",
+          "distractors": [
+            {
+              "label": "ปล่อยให้ตัวเย็นไว้ ลด metabolic demand",
+              "feedback": "Hypothermia ทำให้ coagulopathy แย่ลง active rewarming เป็นส่วนหนึ่งของ damage control resuscitation"
+            },
+            {
+              "label": "ค่อย warm หลังกลับจาก angiography",
+              "feedback": "Hypothermia ทำให้เลือดออกมากขึ้นตั้งแต่ตอนนี้ เริ่ม warm เลยและทำต่อตลอด"
+            }
+          ],
+          "label": "Rewarm เต็มที่ แขนที่สามของ lethal triad",
+          "actions": [
+            "Forced air warming blanket",
+            "Fluid and blood warmer",
+            "Remove wet clothing, raise room temperature"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "Transient responder",
+          "outcomeType": "improved",
+          "narrative": "หลังได้ PRC 4 unit และ FFP 4 unit SBP ขึ้นถึง 96 แล้วไหลลงเหลือ 84 ใน 10 นาที เลือดยังออกอยู่ และไม่มี blood product ไหนแก้ได้ ต้องหยุดเลือดที่ต้นเหตุ ไม่ใช่ resuscitate เพิ่ม",
+          "vitalChanges": {
+            "hr": 126,
+            "sbp": 84,
+            "dbp": 48,
+            "rr": 28,
+            "temp": 35.6,
+            "gcs": 13
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 400
+        },
+        "data": {
+          "label": "ทำการรักษาตามหลักภาวะฉุกเฉิน และโทรหาแม่เองจากห้อง resus (Empathy)",
+          "ethicalValue": 15,
+          "narrative": "น้องยังไม่บรรลุนิติภาวะ แม่อยู่ห่างไป 40 นาที หมอไม่รอ เพราะการรักษาฉุกเฉินเพื่อรักษาชีวิตไม่ต้องรอ consent จากผู้ปกครอง แต่หมอก็ไม่ได้ทำเงียบๆ หมอใช้เวลา 60 วินาทีโทรหาแม่ตอนจอดข้างทาง บอกว่าลูกยังมีชีวิต บอกว่ากำลังจะทำอะไรและทำไมรอไม่ได้ แล้วบอกว่าให้มาประตูไหน พี่ใจบอกทีหลังว่าสายแบบนี้แหละที่ญาติจำไปตลอดชีวิต"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "choice": "Angioembolization หรือ preperitoneal packing",
+          "distractors": [
+            {
+              "label": "Explore lap หยุดเลือดจาก pelvis",
+              "feedback": "เลือดจาก pelvis อยู่ใน retroperitoneum เปิดท้องจะทำให้ tamponade หลุด ใช้ angioembolization หรือ preperitoneal packing"
+            },
+            {
+              "label": "ให้เลือดต่อและ observe ใน ER",
+              "feedback": "เป็น transient responder ต้องหยุดเลือดที่ต้นเหตุ"
+            }
+          ],
+          "label": "หยุดเลือดที่ต้นเหตุ angioembolization หรือ preperitoneal packing",
+          "actions": [
+            "Interventional radiology angioembolisation",
+            "Or preperitoneal pelvic packing and external fixation if IR unavailable",
+            "Orthopaedic and general surgical consult"
+          ],
+          "doseMap": {
+            "Or preperitoneal pelvic packing and external fixation if IR unavailable": "ใน รพ. จังหวัดตอนตีสอง packing ในห้องผ่าตัดคือทางเลือกที่ทำได้จริง และเป็นทางเลือกที่ถูก"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "หยุดเลือดได้",
+          "outcomeType": "improved",
+          "narrative": "ทำ preperitoneal packing ร่วมกับ external fixation EBL 2.8 ลิตร ได้ PRC รวม 11 unit ไป ICU แบบ packed และ intubated นัด re-look 48 ชม. นี่คือ damage control ยังไม่ใช่การซ่อมจริง",
+          "vitalChanges": {
+            "hr": 104,
+            "sbp": 106,
+            "dbp": 62,
+            "temp": 36.2,
+            "gcs": 12
+          }
+        }
+      },
+      {
+        "id": "req6",
+        "type": "required",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "choice": "Suprapubic catheter ไม่ใส่ทาง urethra",
+          "distractors": [
+            {
+              "label": "ใส่ Foley ดู urine output",
+              "feedback": "Pelvic fracture ที่อาจมี urethral injury ห้ามใส่ catheter แบบ blind ทาง urethra ส่ง imaging ก่อน หรือใช้ suprapubic"
+            },
+            {
+              "label": "ไม่ต้องระบายปัสสาวะเลย",
+              "feedback": "ต้อง monitor urine output suprapubic catheter ทำได้อย่างปลอดภัย"
+            }
+          ],
+          "label": "ห้ามใส่ Foley ทาง urethra ใช้ suprapubic แทน",
+          "actions": [
+            "Retrograde urethrogram or urology consult",
+            "Suprapubic catheter",
+            "ICU admission with ongoing warming and coagulation correction"
+          ],
+          "doseMap": {
+            "Suprapubic catheter": "เลือดที่ meatus ร่วมกับ pelvic fracture บอกว่ามี urethral injury ใส่ blind จะทำให้ partial tear กลายเป็น complete tear"
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2400,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "เอา pack ออกวันที่ 3 ทำ definitive pelvic fixation วันที่ 6 เดินด้วย walker ได้ใน 3 สัปดาห์ น้องจะปวด SI joint เรื้อรัง และเกือบแน่นอนว่าจะกลับไปขี่มอเตอร์ไซค์โดยไม่ใส่หมวกอีก ซึ่งเป็นส่วนของงานนี้ที่ไม่เคยจบ",
+          "vitalChanges": {
+            "hr": 88,
+            "sbp": 116,
+            "dbp": 70,
+            "rr": 18,
+            "temp": 36.8,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e5",
+        "source": "req4",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "req6"
+      },
+      {
+        "id": "e10",
+        "source": "req6",
+        "target": "out3"
+      }
+    ]
+  }
+}

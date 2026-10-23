@@ -1,0 +1,447 @@
+{
+  "title": "52yo F Russell's Viper Envenomation",
+  "age": "52",
+  "sex": "F",
+  "chiefComplaint": "งูกัดเท้าขวาตอนเกี่ยวข้าว ตอนนี้เลือดออกตามไรฟัน",
+  "diagnoses": [
+    "Russell's viper (Daboia siamensis) envenomation",
+    "Malayan pit viper envenomation",
+    "Green pit viper envenomation",
+    "Dry bite",
+    "Cellulitis"
+  ],
+  "background": "ถูกงูกัดเมื่อ 2 ชม. ก่อนตอนเกี่ยวข้าวช่วงโพล้เพล้ เพื่อนบ้านเอาผ้ารัดเหนือเข่าไว้ แล้วพอกสมุนไพรตำที่แผล บอกว่างูตัวสั้น อ้วน สีน้ำตาล มีลายวงรีสีเข้ม ไม่ได้กินยาอะไร บ้านอยู่ห่าง รพ. 40 km กระบะเสียกลางทาง ในตู้เย็นมีเซรุ่มงูแมวเซา 5 vial ล็อตใหม่มาวันอังคาร",
+  "patientAppearance": {
+    "skinTone": "#b8834e",
+    "bmiFactor": 0.95,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 108,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 96,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 58,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 22,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 37.0,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 97,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 15,
+      "abnormal": false
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Anxious, in severe pain, cooperative and fully alert, a cloth tourniquet still tied tightly around the right thigh",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Spontaneous gum bleeding, blood-stained saliva, no ptosis, no ophthalmoplegia, full mouth opening, normal voice. Absence of neurotoxic signs helps distinguish from cobra or krait envenomation",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia, borderline hypotension, capillary refill 3 seconds, dorsalis pedis pulse present on the bitten limb",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Clear breath sounds, normal effort, no respiratory muscle weakness, single breath count 32",
+      "abnormal": false
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, mild generalised tenderness, no guarding, no flank bruising, bowel sounds present",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Two fang marks 12 mm apart on the dorsum of the right foot with oozing serosanguinous fluid, swelling to mid-calf, herbal paste over the wound, bruising extending proximally, bleeding from the IV cannula site",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 15, no ptosis, no bulbar weakness, normal power in all limbs, sensation intact distally",
+      "abnormal": false
+    }
+  ],
+  "investigations": [
+    {
+      "id": "wbct1",
+      "kind": "lab",
+      "category": "Bedside",
+      "name": "20 minute whole blood clotting test",
+      "value": "Non-clotting at 20 minutes",
+      "unit": "-",
+      "normalRange": "Clot forms within 20 min",
+      "abnormal": true,
+      "report": "เลือดดำสดใส่หลอดแก้วสะอาด แห้ง ไม่ได้ล้าง ไม่แข็งตัวที่ 20 นาที นี่คือ test ที่มีประโยชน์ที่สุดใน รพ. อำเภอ และเป็น indication ให้เซรุ่มได้ด้วยตัวมันเอง"
+    },
+    {
+      "id": "coag1",
+      "kind": "lab",
+      "category": "Coagulation",
+      "name": "INR and fibrinogen",
+      "value": "INR >8 (unmeasurable) / fibrinogen <0.5 g/L",
+      "unit": "-",
+      "normalRange": "INR 0.9-1.2",
+      "abnormal": true,
+      "report": "Venom induced consumption coagulopathy ให้ FFP โดยไม่ให้เซรุ่มก็เหมือนราดน้ำมันใส่ไฟ พิษจะกินไปหมด"
+    },
+    {
+      "id": "plt1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Platelet count",
+      "value": "62",
+      "unit": "x10^9/L",
+      "normalRange": "150-400",
+      "abnormal": true,
+      "report": "Thrombocytopenia ลักษณะของงูแมวเซา"
+    },
+    {
+      "id": "cr1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Creatinine and potassium",
+      "value": "Creatinine 1.9 mg/dL / K 5.1 mmol/L",
+      "unit": "-",
+      "normalRange": "Creatinine 0.5-1.0 mg/dL",
+      "abnormal": true,
+      "report": "AKI ระยะแรก งูแมวเซาเป็นสาเหตุอันดับหนึ่งของไตวายจากงูที่ต้องทำ dialysis ในเอเชียตะวันออกเฉียงใต้"
+    },
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Creatine kinase",
+      "value": "2100",
+      "unit": "U/L",
+      "normalRange": "30-200",
+      "abnormal": true,
+      "report": "Rhabdomyolysis ซ้ำเติมไต"
+    },
+    {
+      "id": "ua1",
+      "kind": "lab",
+      "category": "Urine",
+      "name": "Urinalysis",
+      "value": "Blood 3+, protein 2+, no red cells on microscopy",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": true,
+      "report": "Dipstick blood บวกแต่ไม่มี RBC บอกว่ามี myoglobinuria หรือ hemoglobinuria"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "ค่อยๆ คลายผ้า splint ขา",
+          "distractors": [
+            {
+              "label": "รัดไว้ต่อ กันพิษกระจาย",
+              "feedback": "Tourniquet ทำให้ขาขาดเลือด และกันพิษกระจายได้ไม่จริง คลายออกอย่างระวังพร้อม monitor"
+            },
+            {
+              "label": "กรีดแผลแล้วดูดพิษออก",
+              "feedback": "กรีดและดูดทำลายเนื้อเยื่อและติดเชื้อ โดยเอาพิษออกได้แทบไม่มีเลย"
+            }
+          ],
+          "label": "คลายผ้าที่รัดออกอย่างระวัง และ immobilize ขา",
+          "actions": [
+            "Slow removal of the constricting band with monitoring",
+            "Splint the limb at heart level",
+            "Remove the herbal paste and clean the wound",
+            "Do not incise, suck or apply ice"
+          ],
+          "doseMap": {
+            "Slow removal of the constricting band with monitoring": "คลายตอนที่มียา resus พร้อมอยู่ข้างมือ คลายทันทีอาจปล่อยพิษก้อนใหญ่เข้ากระแสเลือด"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "20 minute whole blood clotting test",
+          "distractors": [
+            {
+              "label": "ให้เซรุ่มทุกคนที่งูกัดโดยไม่ต้องตรวจ",
+              "feedback": "เซรุ่มมีโอกาสแพ้ ให้เมื่อมี systemic envenomation ยืนยันด้วย 20 minute clotting test"
+            },
+            {
+              "label": "รอ coagulation study จากแล็บ",
+              "feedback": "20 minute whole blood clotting test ข้างเตียงเร็วและเชื่อถือได้ในบริบทนี้"
+            }
+          ],
+          "label": "ทำ 20 minute whole blood clotting test และระบุชนิดงู",
+          "actions": [
+            "20 minute whole blood clotting test",
+            "Ask about the snake's appearance",
+            "Examine for neurotoxic signs: ptosis, single breath count"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ให้ FFP แก้ clotting ก่อน",
+              "feedback": "Plasma ถูกกินไปหมดตอนที่พิษยังออกฤทธิ์ ต้อง neutralize พิษด้วยเซรุ่มก่อน"
+            },
+            {
+              "label": "ให้เซรุ่มงูเห่าเพราะมีในสต็อก",
+              "feedback": "เซรุ่มจำเพาะต่อชนิดงู งูแมวเซาต้องใช้เซรุ่ม monovalent ของงูแมวเซา"
+            }
+          ],
+          "label": "ให้เซรุ่มจำเพาะสำหรับ systemic envenomation",
+          "actions": [
+            "Russell's viper monovalent antivenom IV",
+            "Adrenaline drawn up at the bedside before infusion"
+          ],
+          "doseMap": {
+            "Russell's viper monovalent antivenom IV": "3 vial ละลายใน NSS 100 mL ให้ใน 30 ถึง 60 นาที ถ้า clotting test ยังไม่แข็งตัวที่ 6 ชม. ให้ซ้ำ",
+            "Adrenaline drawn up at the bedside before infusion": "0.5 mg 1:1000 IM เตรียมไว้สำหรับ anaphylactoid reaction ซึ่งเกิดได้ถึง 20% ของการให้"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "Anaphylactoid reaction ระหว่างให้",
+          "outcomeType": "worsened",
+          "narrative": "ผ่านไป 12 นาทีมีผื่นลมพิษ wheeze และ BP ตก หยุดเซรุ่ม ให้ adrenaline IM แล้ว 20 นาทีต่อมาให้เซรุ่มต่อในอัตราช้าลงจนครบ เป็นเรื่องที่คาดไว้ได้ ไม่ใช่เหตุผลที่จะงดการรักษาเดียวที่ได้ผล",
+          "vitalChanges": {
+            "hr": 124,
+            "sbp": 84,
+            "dbp": 50,
+            "rr": 26,
+            "spo2": 93
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 420
+        },
+        "data": {
+          "label": "ไม่ตำหนิญาติเรื่องผ้ารัดกับสมุนไพร (Empathy)",
+          "ethicalValue": 10,
+          "narrative": "เพื่อนบ้านที่รัดผ้ายืนรอโดนดุอยู่ที่ทางเดิน หมอบอกตรงๆ ว่าผ้ากับยาพอกไม่ช่วยและอาจทำให้แย่ลง แล้วบอกในประโยคเดียวกันว่าการขับกระบะเสียๆ พาป้ามา 40 km คือเหตุผลที่ป้ายังมีชีวิต เขาฟังส่วนแรกเพราะหมอพูดส่วนที่สอง เขาเป็น อสม. ดูแลคน 400 คน ครั้งหน้าเขาจะพาคนไข้มาตรงๆ เลย"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "choice": "ทำ clotting test ซ้ำที่ 6 ชม.",
+          "distractors": [
+            {
+              "label": "ทำ clotting test ซ้ำหลัง 24 ชม.",
+              "feedback": "ต้องตรวจ clotting ซ้ำที่ 6 ชม. เพื่อตัดสินว่าต้องให้เซรุ่มเพิ่มไหม"
+            },
+            {
+              "label": "ให้ platelet เพราะเลือดยังออกตามไรฟัน",
+              "feedback": "ให้ blood product ก่อน neutralize พิษก็ถูกกินหมด ตรวจซ้ำที่ 6 ชม. ถ้ายังไม่แข็งตัวให้เซรุ่มซ้ำ"
+            }
+          ],
+          "label": "ทำ clotting test ซ้ำที่ 6 ชม. ถ้ายังไม่แข็งตัวให้เซรุ่มเพิ่ม",
+          "actions": [
+            "Repeat 20 minute whole blood clotting test at 6 hours",
+            "Further antivenom if non-clotting",
+            "Do not give FFP or platelets before antivenom"
+          ],
+          "doseMap": {
+            "Further antivenom if non-clotting": "อีก 3 vial ในตู้เย็นเหลือแค่ 2 vial ติดต่อคลังยาเขตกับ รพ. ที่รับ refer เดี๋ยวนี้เลย ไม่ใช่รอ 6 โมงเช้า"
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "จำกัด fluid ถนอมไต",
+              "feedback": "งูแมวเซากัดทำให้ AKI บ่อย ให้ fluid พอและ monitor urine output ช่วยได้"
+            },
+            {
+              "label": "D/C เมื่อ clotting กลับมาปกติ",
+              "feedback": "AKI เกิดได้ในหลายวัน ต้อง monitor urine output กับ Cr"
+            }
+          ],
+          "label": "ให้ fluid และ monitor AKI",
+          "actions": [
+            "IV crystalloid targeting urine output 1-2 mL/kg/h",
+            "Hourly urine output and daily creatinine",
+            "Nephrology referral for dialysis planning",
+            "Tetanus prophylaxis"
+          ],
+          "doseMap": {
+            "Tetanus prophylaxis": "ให้หลัง coagulopathy หายแล้ว ห้ามฉีดเข้ากล้ามตอนที่ยังเลือดออก"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "Coagulopathy หายแล้ว",
+          "outcomeType": "improved",
+          "narrative": "Clotting กลับมาปกติที่ 14 ชม. หลังได้เซรุ่มรวม 6 vial เลือดตามไรฟันหยุด Cr ขึ้นสูงสุด 3.4 mg/dL วันที่ 3 ต้อง HD สองครั้ง แล้วไตก็ฟื้น",
+          "vitalChanges": {
+            "hr": 88,
+            "sbp": 112,
+            "dbp": 68,
+            "rr": 18
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 9 ไตกลับมาปกติ เท้ายังบวมถาวร ไม่ได้ทำ fasciotomy ซึ่งถูกต้องแล้ว ขาบวมจากพิษงูไม่ค่อยเป็น compartment syndrome จริง และการทำ fasciotomy ในขาที่มี coagulopathy เป็นวิธีฆ่าคนไข้ที่มีบันทึกไว้ชัดเจน",
+          "vitalChanges": {
+            "hr": 80,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 16
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

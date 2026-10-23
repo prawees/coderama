@@ -1,0 +1,380 @@
+{
+  "title": "34yo F Low Acuity URI (Non-Emergency)",
+  "age": "34",
+  "sex": "F",
+  "chiefComplaint": "น้ำมูก ไอ มา 3 วัน ขอให้น้ำเกลือกับยาฆ่าเชื้อ",
+  "diagnoses": [
+    "Viral upper respiratory tract infection",
+    "Allergic rhinitis",
+    "Acute bacterial sinusitis",
+    "Streptococcal pharyngitis"
+  ],
+  "background": "มา ER ตอนตีสองยี่สิบคืนวันศุกร์ เดินมาเอง ถือกระเป๋าเอง มีน้ำมูกใส จาม เจ็บคอเล็กน้อย ไอแห้งๆ มา 3 วัน วัดไข้ที่บ้านไม่มีไข้ กินข้าวกินน้ำได้ปกติ เมื่อวานยังไปทำงาน ที่มาตอนนี้เพราะคิว OPD ตอนเช้ารอ 4 ชั่วโมง แล้ววันอาทิตย์ต้องบินไปเชียงใหม่ ขอน้ำเกลือ ขอฉีดยาฆ่าเชื้อ และขอใบรับรองแพทย์หยุดงาน 2 วัน ขณะเดียวกันมีมอเตอร์ไซค์ชน 2 รายกำลังมา อีก 4 นาทีถึง",
+  "patientAppearance": {
+    "skinTone": "#e6bd97",
+    "bmiFactor": 1.0,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 82,
+      "abnormal": false
+    },
+    "sbp": {
+      "value": 118,
+      "abnormal": false
+    },
+    "dbp": {
+      "value": 74,
+      "abnormal": false
+    },
+    "rr": {
+      "value": 16,
+      "abnormal": false
+    },
+    "temp": {
+      "value": 37.2,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 99,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 15,
+      "abnormal": false
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Well, comfortable, sitting and using her phone, speaking in full sentences, no distress",
+      "abnormal": false
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Clear rhinorrhoea with boggy turbinates, mild pharyngeal erythema without exudate, no tonsillar swelling, no cervical lymphadenopathy, no trismus, tympanic membranes normal. Centor score 0",
+      "abnormal": false
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Regular rate and rhythm, normal heart sounds, capillary refill under 2 seconds, peripheries warm",
+      "abnormal": false
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Clear breath sounds throughout, no wheeze or crackles, no tachypnoea, no accessory muscle use",
+      "abnormal": false
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, non-tender, bowel sounds normal, no organomegaly",
+      "abnormal": false
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Warm and dry, well perfused, no rash, no petechiae, normal turgor",
+      "abnormal": false
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 15, alert and fully orientated, no neck stiffness, no photophobia, no focal deficit",
+      "abnormal": false
+    }
+  ],
+  "investigations": [
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Tympanic temperature (repeat)",
+      "value": "37.2",
+      "unit": "C",
+      "normalRange": "36.5-37.5",
+      "abnormal": false,
+      "report": "ไม่มีไข้ วัดเพราะคนไข้บอกว่ารู้สึกตัวร้อน ไม่ได้เปลี่ยนการรักษา"
+    },
+    {
+      "id": "cbc1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Complete blood count (if ordered)",
+      "value": "WBC 7.4, neutrophils 58%",
+      "unit": "x10^9/L",
+      "normalRange": "4.0-11.0",
+      "abnormal": false,
+      "report": "ปกติ test นี้ไม่มี indication เสียเวลาพยาบาล 30 นาที trauma สองรายที่กำลังมาต้องรอ และถ้าผลผิดปกตินิดหน่อยก็จะพาไปส่ง test อื่นที่ไม่จำเป็นอีก"
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Chest X-ray (if ordered)",
+      "report": "ปอดปกติ หัวใจขนาดปกติ ไม่มี consolidation ไม่มี indication ไม่มีไข้ ไม่หอบเร็ว ไม่ desat ตรวจปอดไม่มี focal sign โอกาสเป็น pneumonia ต่ำกว่า 1% รังสีกับค่าใช้จ่ายเสียเปล่า",
+      "imageUrl": "",
+      "abnormal": false
+    },
+    {
+      "id": "strep1",
+      "kind": "lab",
+      "category": "Micro",
+      "name": "Rapid streptococcal antigen (if ordered)",
+      "value": "Negative",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": false,
+      "report": "Negative ตามที่ Centor 0 ทำนายไว้ guideline ไม่แนะนำให้ตรวจที่คะแนนนี้ เพราะถ้าผลบวกก็มักเป็น carrier มากกว่าติดเชื้อจริง"
+    },
+    {
+      "id": "sat1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Pulse oximetry on room air",
+      "value": "99",
+      "unit": "%",
+      "normalRange": "95-100",
+      "abnormal": false,
+      "report": "ปกติ รวมกับปอดใส RR 16 แทบตัด lower respiratory tract infection ที่ต้องรักษาใน ER ออกได้"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ส่ง CXR กับ CBC ก่อนคุยกับคนไข้",
+              "feedback": "ส่ง test โดยไม่มี indication เปลืองทรัพยากร ซักประวัติกับตรวจร่างกาย focused ก็พอจะ rule out red flag แล้ว"
+            },
+            {
+              "label": "ให้กลับบ้านเลยไม่ต้องตรวจ",
+              "feedback": "คนไข้ทุกคนควรได้รับการประเมิน focused หา red flag ก่อนจะบอกว่าไม่เป็นอะไร"
+            }
+          ],
+          "label": "ซักประวัติ ตรวจร่างกายแบบ focused หา red flag",
+          "actions": [
+            "Full vital signs",
+            "HENT and chest examination",
+            "Screen for red flags: dyspnoea, chest pain, stridor, dehydration, immunosuppression, neck stiffness"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "label": "ไม่มีภาวะฉุกเฉิน",
+          "outcomeType": "improved",
+          "narrative": "V/S ปกติ ปอดใส Centor 0 ไม่มี red flag เป็น viral illness ที่หายเองได้ วันที่ 3 ของโรคที่ปกติเป็น 7 ถึง 10 วัน ไม่มีอะไรที่ต้องใช้ ER",
+          "vitalChanges": {}
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 720,
+          "y": 420
+        },
+        "data": {
+          "label": "ใช้เวลา 90 วินาทีอธิบาย แทนที่จะมองว่ามาเสียเวลา (Empathy)",
+          "ethicalValue": 15,
+          "narrative": "บอกไปเลยว่าไม่ควรมา ER คงเร็วกว่า แต่หมอเลือกอธิบายว่าเป็นอะไร ทำไมยาฆ่าเชื้อไม่ทำให้หายเร็วขึ้น ปกติเป็นกี่วัน และอาการไหนที่ต้องกลับมา คนไข้บอกว่าไม่เคยมีใครอธิบายแบบนี้มาก่อน ถึงได้ขอน้ำเกลือมาสิบปี พี่ใจบอกว่าคุยแค่นี้ใช้เวลาน้อยกว่าเขียนใบสั่งยาฆ่าเชื้ออีก"
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "choice": "ไม่ให้น้ำเกลือ ไม่ให้ยาฆ่าเชื้อ อธิบายเหตุผล",
+          "distractors": [
+            {
+              "label": "ให้น้ำเกลือไปให้คนไข้พอใจ",
+              "feedback": "IV fluid มีความเสี่ยงและค่าใช้จ่าย คนไข้ก็ดื่มน้ำได้ปกติ อธิบายว่าทำไมไม่จำเป็น"
+            },
+            {
+              "label": "จ่าย amoxicillin ไว้เผื่อ",
+              "feedback": "นี่คือ viral illness ยาฆ่าเชื้อเพิ่มผลข้างเคียงและเชื้อดื้อยาโดยไม่มีประโยชน์"
+            }
+          ],
+          "label": "ปฏิเสธสิ่งที่ไม่มี indication และบอกเหตุผล",
+          "actions": [
+            "No IV fluids: she is drinking normally",
+            "No antibiotics: viral illness, Centor 0",
+            "No routine bloods or chest X-ray",
+            "Address the underlying concern about the flight"
+          ],
+          "doseMap": {
+            "No antibiotics: viral illness, Centor 0": "บอกผลเสียให้เป็นรูปธรรม เชื้อดื้อยา ท้องเสียราว 1 ใน 10 และมีโอกาสแพ้ยาทางผิวหนังรุนแรงเล็กน้อย ปฏิเสธลอยๆ คนไข้จะไปหาหมอคนใหม่ บอกเหตุผลชัดๆ จะไม่ไป"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "จ่าย codeine แก้ไอ",
+              "feedback": "Codeine ช่วยไอเฉียบพลันได้น้อยและมีความเสี่ยง วิธีง่ายๆ ก็พอแล้ว"
+            },
+            {
+              "label": "จ่าย steroid กินให้อาการสงบ",
+              "feedback": "Steroid ไม่มี indication ใน viral URI ธรรมดาและมีผลข้างเคียง"
+            }
+          ],
+          "label": "รักษาตามอาการด้วยยาที่ซื้อเองได้",
+          "actions": [
+            "Paracetamol",
+            "Saline nasal irrigation",
+            "Fluids and rest advice"
+          ],
+          "doseMap": {
+            "Paracetamol": "500 ถึง 1000 mg กินทุก 6 ชม. เวลามีอาการ ไม่เกิน 4 g/วัน"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "นัดกลับมา ER พรุ่งนี้",
+              "feedback": "ไม่ต้อง F/U ที่ ER ให้ไป OPD หรือหน่วยปฐมภูมิ"
+            },
+            {
+              "label": "Admit ไว้หนึ่งคืนเผื่อไว้",
+              "feedback": "ไม่มีภาวะฉุกเฉิน admit ก็เปลืองเตียงและเสี่ยงติดเชื้อในโรงพยาบาล"
+            }
+          ],
+          "label": "ส่งไปถูกที่ และให้คำแนะนำอาการที่ต้องกลับมาเป็นลายลักษณ์อักษร",
+          "actions": [
+            "Refer to outpatient department or the primary care unit for routine follow up",
+            "Written return advice",
+            "Medical certificate only if genuinely indicated"
+          ],
+          "doseMap": {
+            "Written return advice": "กลับมาถ้าหอบเหนื่อย เจ็บหน้าอก ไข้เกิน 38.5 C นานกว่า 3 วัน กลืนน้ำไม่ได้ หรืออาการแย่ลงหลังวันที่ 10"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 120
+        },
+        "data": {
+          "label": "Disposition ถูกต้อง",
+          "outcomeType": "resolved",
+          "narrative": "D/C ใน 14 นาที ได้คำแนะนำ ไม่มีใบสั่งยา ทีม resus ว่างพอดีตอนมอเตอร์ไซค์สองรายมาถึงในอีก 3 นาที คนไข้หายเองตามปกติและได้บินวันอาทิตย์ การตัดสินใจที่ถูกใน ER ไม่จำเป็นต้องมีหัตถการเสมอไป",
+          "vitalChanges": {}
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 340
+        },
+        "data": {
+          "label": "เส้นทางที่เปลืองทรัพยากร",
+          "outcomeType": "worsened",
+          "narrative": "ถ้าให้น้ำเกลือ ฉีดยาฆ่าเชื้อ และส่ง CXR คนไข้จะอยู่บนเตียง monitor 90 นาที พยาบาลหนึ่งคนไม่ว่างตอน trauma รายแรกมาถึงพร้อม cardiac arrest อีก 4 วันคนไข้กลับมาด้วยท้องเสียจากยาฆ่าเชื้อ ไม่มีอะไรที่หมอทำเปลี่ยนตัวโรคเลย อันตรายบางแบบมาในรูปความสุภาพและความหวังดี",
+          "vitalChanges": {}
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "out1"
+      },
+      {
+        "id": "e3",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req2"
+      },
+      {
+        "id": "e4",
+        "source": "ethical_1",
+        "target": "req2"
+      },
+      {
+        "id": "e5",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e6",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "req1",
+        "target": "out3"
+      }
+    ]
+  }
+}
