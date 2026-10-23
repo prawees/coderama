@@ -1,0 +1,448 @@
+{
+  "title": "22yo F Paraquat Ingestion",
+  "age": "22",
+  "sex": "F",
+  "chiefComplaint": "เจ็บปาก อาเจียน หลังกินยาฆ่าหญ้า",
+  "diagnoses": [
+    "Paraquat poisoning",
+    "Corrosive ingestion",
+    "Glyphosate-surfactant poisoning",
+    "Organophosphate poisoning"
+  ],
+  "background": "พี่ชายพามาราว 3 ชม. หลังกินน้ำยาสีเขียวอมฟ้าไม่ทราบปริมาณ จากขวดไม่มีฉลากที่เก็บไว้ในโรงเก็บของ paraquat ถูกห้ามใช้ในไทยตั้งแต่ปี 2563 แต่ยังมีของเก่าเก็บไว้ตามไร่นา รู้สึกตัวดีและตอนนี้เสียใจที่ทำ ไม่มี antidote และไม่มีการรักษาไหนที่เปลี่ยนผลได้แน่นอน งานที่ซื่อตรงในเคสนี้คือจับได้เร็ว เลี่ยงสิ่งที่ทำให้แย่ลง และการพูดคุย",
+  "patientAppearance": {
+    "skinTone": "#dda87a",
+    "bmiFactor": 0.85,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 106,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 108,
+      "abnormal": false
+    },
+    "dbp": {
+      "value": 66,
+      "abnormal": false
+    },
+    "rr": {
+      "value": 22,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.8,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 97,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 15,
+      "abnormal": false
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Alert, in pain, frightened, deceptively well-looking. Early paraquat poisoning looks far less serious than it is, and this appearance misleads clinicians into under-triaging",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Extensive ulceration of the tongue, palate and posterior pharynx with a white pseudomembrane developing. Drooling because swallowing is too painful. Voice hoarse. Airway patent but the pharyngeal oedema needs watching",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Mild sinus tachycardia, blood pressure normal at present, capillary refill 2 seconds, no murmur",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Clear breath sounds, saturations 97% on room air. This is the crucial window: the lungs are currently normal and progressive fibrosis develops over the following 5 to 14 days",
+      "abnormal": false
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Epigastric tenderness, repeated vomiting, no peritonism, bowel sounds present, no evidence of perforation",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Chemical burns to the lips and chin where liquid spilled, staining on the fingers and shirt, warm and well perfused peripherally",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 15, fully orientated and able to participate in decisions about her own care. This matters, because everything that follows depends on her being able to understand it",
+      "abnormal": false
+    }
+  ],
+  "investigations": [
+    {
+      "id": "urine1",
+      "kind": "lab",
+      "category": "Bedside",
+      "name": "Urine dithionite test",
+      "value": "Dark blue",
+      "unit": "-",
+      "normalRange": "No colour change",
+      "abnormal": true,
+      "report": "เติม sodium dithionite ในปัสสาวะแล้วเป็นสีฟ้าถ้ามี paraquat ความเข้มของสีสะท้อนความเข้มข้น test ข้างเตียงราคาถูกที่ยืนยันการวินิจฉัยได้ในไม่กี่นาทีและบอกพยากรณ์โรคได้ สีฟ้าเข้มบ่งว่ากินปริมาณมาก"
+    },
+    {
+      "id": "cr1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Creatinine (serial)",
+      "value": "1.1 mg/dL at 3h, 2.4 at 12h, 4.1 at 24h",
+      "unit": "-",
+      "normalRange": "0.5-1.0 mg/dL",
+      "abnormal": true,
+      "report": "อัตราที่ Cr ขึ้นใน 24 ชม. แรกเป็นตัวบอกพยากรณ์ที่ดีที่สุดตัวหนึ่ง ขึ้นเร็วบ่งว่าดูดซึมเข้าไปมาก"
+    },
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Arterial blood gas on room air",
+      "value": "pH 7.36 / pO2 92 / HCO3 22",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": false,
+      "report": "ปกติตอนมาถึง เจาะบน room air อย่าให้ O2 เพื่อให้ได้ตัวเลขที่ดูดีขึ้น เพราะ O2 เร่งให้ปอดบาดเจ็บ"
+    },
+    {
+      "id": "lft1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Liver function",
+      "value": "AST 88 / ALT 74 / bilirubin 1.9 mg/dL",
+      "unit": "-",
+      "normalRange": "AST <40 U/L",
+      "abnormal": true,
+      "report": "ตับเริ่มบาดเจ็บ อวัยวะหลายระบบถูกกระทบใน 48 ชม. แรกสะท้อนปริมาณที่ได้รับ"
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Chest X-ray (baseline)",
+      "report": "ปอดใส หัวใจขนาดปกติ เป็น film baseline ไว้เปรียบเทียบ opacity แบบ reticular แล้วรวมเป็นปื้นมักเริ่มเห็นตั้งแต่วันที่ 5",
+      "imageUrl": "",
+      "abnormal": false
+    },
+    {
+      "id": "endo1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Upper GI endoscopy assessment",
+      "report": "เลื่อนไปในช่วงเฉียบพลัน คาดว่ามีแผลในปากคอและหลอดอาหารกว้าง ส่องกล้องเร็วเพิ่มความเสี่ยงทะลุและไม่เปลี่ยนการรักษา",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "คิดว่าเป็น glyphosate และบอกญาติว่าไม่เป็นไร",
+              "feedback": "ยาฆ่าหญ้าสีเขียวอมฟ้าไม่มีฉลากต้องระบุให้ได้ urine dithionite test ยืนยัน paraquat ได้เร็ว"
+            },
+            {
+              "label": "รอผล paraquat level จากแล็บก่อนลงมือ",
+              "feedback": "Dithionite test ข้างเตียงให้คำตอบเร็วและบอกพยากรณ์ได้ตอนนี้เลย"
+            }
+          ],
+          "label": "ยืนยันชนิดสาร และทำ urine dithionite test",
+          "actions": [
+            "Urine dithionite test",
+            "Identify the container and concentration if possible",
+            "Baseline bloods and room air blood gas",
+            "Contact the poisons centre"
+          ],
+          "doseMap": {
+            "Contact the poisons centre": "ศูนย์พิษวิทยารามาธิบดี 1367 โทรเร็ว ไม่ใช่รอตอนคนไข้แย่ลง"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "Room air ยกเว้น SpO2 ต่ำกว่า 90%",
+          "distractors": [
+            {
+              "label": "ให้ O2 high flow ปกป้องปอด",
+              "feedback": "O2 เร่งการบาดเจ็บของปอดจาก paraquat ผ่าน free radical งดไว้ยกเว้น SpO2 ต่ำกว่า 90%"
+            },
+            {
+              "label": "Intubate เร็วเพื่อ protect airway",
+              "feedback": "คนไข้ protect airway เองได้ intubate เร็วเพิ่มการสัมผัส O2 โดยไม่มีประโยชน์"
+            }
+          ],
+          "label": "งด O2 ยกเว้น SpO2 ต่ำกว่า 90%",
+          "actions": [
+            "No supplemental oxygen",
+            "Room air monitoring",
+            "Document the reason prominently at the bedside and in the notes"
+          ],
+          "doseMap": {
+            "No supplemental oxygen": "Paraquat ทำลายเนื้อปอดผ่าน redox cycling ที่ต้องใช้ O2 การให้ O2 เร่ง pulmonary fibrosis อย่างวัดได้ นี่คือคำสั่งที่ขัดสัญชาตญาณที่สุดในพิษวิทยา และจะถูกคนหวังดีแก้กลับถ้าไม่เขียนไว้ตัวโตๆ"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ทำให้อาเจียนด้วย ipecac",
+              "feedback": "การทำให้อาเจียนเพิ่มการบาดเจ็บของหลอดอาหารและเสี่ยงสำลักโดยไม่มีประโยชน์"
+            },
+            {
+              "label": "งดยาแก้ปวดจะได้บอกอาการได้",
+              "feedback": "แผลไหม้ในปากคอปวดมาก ยาแก้ปวดเป็นส่วนหนึ่งของการดูแลประคับประคอง"
+            }
+          ],
+          "label": "Decontamination และสูตรของศูนย์พิษ",
+          "actions": [
+            "Fuller's earth or activated charcoal",
+            "Charcoal haemoperfusion within 4 hours",
+            "Cyclophosphamide and dexamethasone",
+            "Vitamin C and vitamin E",
+            "Analgesia for the oropharyngeal burns",
+            "Antiemetic"
+          ],
+          "doseMap": {
+            "Fuller's earth or activated charcoal": "15% Fuller's earth 1000 mL หรือ activated charcoal 100 g ถ้า airway ปลอดภัย อาเจียนออกให้ซ้ำ (แนวทางศูนย์พิษวิทยารามาธิบดี)",
+            "Charcoal haemoperfusion within 4 hours": "ทำ 6 ถึง 8 ชม. มาถึงที่ 3 ชม. window ยังเปิดอยู่แต่กำลังจะปิด",
+            "Cyclophosphamide and dexamethasone": "Cyclophosphamide 5 mg/kg/วัน IV แบ่งให้ ร่วมกับ dexamethasone 10 mg IV ทุก 8 ชม. หลักฐานว่าได้ประโยชน์มีจำกัด และเธอควรได้ยินเรื่องนี้ตามจริง",
+            "Vitamin C and vitamin E": "Vitamin C 6 g IV ใน 24 ชม. vitamin E 800 IU วันละ 4 ครั้ง",
+            "Analgesia for the oropharyngeal burns": "Opioid แบบ titrate แผลปวดรุนแรงมาก และให้ยาแก้ปวดไม่พอเป็นเรื่องที่พบบ่อย"
+          },
+          "choice": "Fuller's earth, hemoperfusion, สูตรรามาฯ"
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "พยากรณ์โรคชัดขึ้น",
+          "outcomeType": "worsened",
+          "narrative": "Dithionite test สีฟ้าเข้ม Cr ขึ้นจาก 1.1 เป็น 4.1 mg/dL ใน 24 ชม. ทั้งที่ทำ hemoperfusion และให้ยาครบสูตร สีฟ้าเข้มมักแปลว่าได้รับปริมาณที่ถึงตาย การพูดเรื่องนี้ตามจริงตอนนี้เป็นส่วนหนึ่งของการรักษา",
+          "vitalChanges": {
+            "hr": 118,
+            "sbp": 102,
+            "dbp": 60,
+            "rr": 26,
+            "spo2": 94
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 420
+        },
+        "data": {
+          "label": "บอกความจริงในจังหวะของเธอ และถามว่าเธออยากใช้เวลาที่เหลืออย่างไร (Empathy)",
+          "ethicalValue": 25,
+          "narrative": "เธอรู้สึกตัวเต็มที่และถามหมอตรงๆ ว่าจะตายไหม สิ่งที่อยากทำคือพูดเรื่อง dialysis กับ protocol ทดลอง ให้ญาติได้ยินอะไรที่มีความหวัง แต่หมอนั่งลงแทน ถามว่าเธอเข้าใจอะไรอยู่แล้วบ้าง แล้วบอกตามจริงว่าผลตรวจบอกอะไร อะไรที่รู้และอะไรที่ยังไม่รู้ เธอขอให้แม่มา และขอไม่ให้เจ็บ ทั้งสองอย่างเป็นสิ่งที่หมอทำให้ได้จริง พี่พิมบอกทีหลังว่านี่คือบทสนทนาที่ยากที่สุดในการแพทย์ และเป็นที่ที่การเลี่ยงตอบสร้างความเสียหายมากที่สุด เพราะมันขโมยวันที่คนคนหนึ่งยังเหลืออยู่"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "รอให้ stable ทางกายก่อนค่อย consult จิตเวช",
+              "feedback": "เธออาจตัดสินใจเองไม่ได้เมื่ออาการแย่ลง ให้จิตเวชและ palliative care เข้ามาเร็วตอนที่เธอยังร่วมได้"
+            },
+            {
+              "label": "Consult จิตเวชอย่างเดียว palliative care ยังเร็วไป",
+              "feedback": "พยากรณ์โรคแย่มาก palliative care ตั้งแต่เนิ่นๆ ช่วยคุมอาการได้ดีขึ้นควบคู่กับการรักษาเต็มที่"
+            }
+          ],
+          "label": "ให้จิตเวชและ palliative care เข้ามาพร้อมกันตั้งแต่เนิ่นๆ",
+          "actions": [
+            "Urgent psychiatric assessment while she is able to participate",
+            "Palliative care referral for symptom control",
+            "Family support and interpreter if needed",
+            "Continue full supportive care"
+          ],
+          "doseMap": {
+            "Urgent psychiatric assessment while she is able to participate": "ตอนนี้เธอยังตัดสินใจเองได้ การประเมินและที่สำคัญกว่าคือการดูแลใจต้องเกิดขึ้นตอนที่ยังเป็นแบบนี้ อย่าคิดว่าจิตเวชมีไว้สำหรับคนที่รอดเท่านั้น"
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "choice": "Opioid แก้หอบ คุยเรื่องขอบเขตการรักษา",
+          "distractors": [
+            {
+              "label": "ให้ O2 high flow แก้หอบ",
+              "feedback": "O2 เร่ง fibrosis ของปอด ใช้ opioid และยาคลายกังวลแก้หอบ และคุยเรื่องเป้าหมายการดูแล"
+            },
+            {
+              "label": "Escalate ไป ECMO และขึ้นทะเบียนปลูกถ่ายปอด",
+              "feedback": "Paraquat lung fibrosis แทบไม่ตอบสนองต่อการ escalate แบบนี้ คุยเรื่องขอบเขตการรักษากับเธอและครอบครัว"
+            }
+          ],
+          "label": "คุมอาการ และเลี่ยงการรักษาที่ไร้ประโยชน์",
+          "actions": [
+            "Opioid and anxiolytic titration for dyspnoea",
+            "Continue room air unless hypoxaemia is symptomatic",
+            "Discuss ceiling of treatment with patient and family",
+            "Renal support if it improves comfort or buys meaningful time"
+          ],
+          "doseMap": {
+            "Discuss ceiling of treatment with patient and family": "Intubate และใช้ ventilator ใน paraquat lung fibrosis ที่เกิดแล้ว ยืดการตายโดยไม่เปลี่ยนผล นี่คือการคุยกับเธอ ไม่ใช่คุยเรื่องเธอ"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "วันที่ 8",
+          "outcomeType": "worsened",
+          "narrative": "หอบมากขึ้นเรื่อยๆ CXR เป็น opacity แบบ reticular แล้วรวมเป็นปื้น คุมอาการได้ แม่กับพี่ชายอยู่ด้วย ไม่มีอะไรที่ทำใน ER เปลี่ยนผลนี้ได้ และสิ่งที่ทำได้ดีคือความซื่อตรงกับยาแก้ปวด",
+          "vitalChanges": {
+            "hr": 124,
+            "sbp": 96,
+            "dbp": 56,
+            "rr": 32,
+            "spo2": 84
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "หลังจากนั้นและการป้องกัน",
+          "outcomeType": "resolved",
+          "narrative": "ครอบครัวได้รับการดูแลเรื่องความสูญเสีย และพี่ชายที่ขับรถพามาได้รับการติดตามเป็นพิเศษ ญาติที่รู้สึกว่าทำช้าไปจะแบกเรื่องนี้ไปอีกหลายปี แจ้งเกษตรอำเภอเรื่องขวดไม่มีฉลาก เจอภาชนะสารต้องห้ามอีก 9 ถังในตำบลเดียวกัน การจำกัดการเข้าถึงคือมาตรการเดียวในการกินยาฆ่าแมลงเพื่อทำร้ายตัวเองที่มีหลักฐานระดับประชากรแน่นหนา และเป็นสิ่งที่เกิดนอก รพ.",
+          "vitalChanges": {}
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

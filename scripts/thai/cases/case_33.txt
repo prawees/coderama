@@ -1,0 +1,54 @@
+cc: ไม่ดูดนม ตัวอ่อนปวกเปียก แม่บอกว่าลูกดูไม่ปกติ
+bg: ทารกชายครบกำหนดอายุ 12 วัน คลอดปกติที่ 39 สัปดาห์ น้ำหนักแรกคลอด 3.1 kg ตอนนี้ 2.9 kg กลับบ้านได้ดีวันที่ 2 แม่ฝากครรภ์ช้าเลยไม่เคยตรวจ GBS 8 ชม. ที่ผ่านมาดูดนมได้น้อย ตัวเย็น แม่บอกแค่ว่าลูกดูไม่เหมือนเดิม ไม่มีไข้ ทารกที่ติดเชื้อในกระแสเลือดมักไม่มีไข้หรือตัวเย็น และทารกที่ดูดีก็มี bacteremia ได้ คำพูดของแม่คือข้อมูลที่เชื่อถือได้ที่สุดในเคสนี้
+i.poc1: Hypoglycemia แก้ทันที เป็นทั้งผลของ sepsis และเป็นสาเหตุให้สมองทารกบาดเจ็บได้เอง
+i.lp1: Bacterial meningitis เจอ Gram positive cocci in chains เข้าได้กับ GBS ทารก late-onset GBS sepsis มี meningitis ได้ถึงหนึ่งในสาม LP จึงเป็นส่วนหนึ่งของการ work up ไม่ใช่ของเสริม แต่อย่าเลื่อน antibiotic เพื่อรอทำ
+i.bc1: Positive ไวต่อ penicillin เก็บ culture ก่อน antibiotic เฉพาะถ้าไม่เสียเวลา
+i.gas1: Severe metabolic acidosis lactate สูง septic shock
+i.cbc1: Leukopenia ร่วมกับ thrombocytopenia ใน neonatal sepsis WBC ต่ำน่ากลัวกว่า WBC สูง และ WBC ปกติไม่เคยตัด sepsis
+i.crp1: สูง แต่ CRP ตามหลัง 12 ถึง 24 ชม. ค่าช่วงแรกปกติพบบ่อยใน fulminant sepsis ห้ามใช้ตัดสินว่าจะเริ่ม antibiotic ในทารกหรือไม่
+req1.l: รักษาเป็น sepsis จากความสงสัยอย่างเดียว เจาะน้ำตาลทันที
+req1.c: DTX และ IO ภายใน 5 นาที
+req1.d0: รอผลเลือดยืนยันการติดเชื้อ
+req1.f0: Neonatal sepsis รักษาจากความสงสัย ช้าแล้ว mortality เพิ่ม
+req1.d1: ทำ LP ก่อนเจาะน้ำตาลหรือเปิดเส้น
+req1.f1: น้ำตาลกับการเปิดเส้นมาก่อน LP รอได้จนกว่าจะ stable
+req1.m0: ทารกช็อกให้ใส่ IO เร็ว การเปิดเส้นไม่ได้ซ้ำหลายรอบคือสาเหตุที่พบบ่อยที่สุดที่ทำให้ antibiotic ช้า
+req2.l: แก้ hypoglycemia
+req2.c: 10% dextrose 2 mL/kg แล้วต่อ drip
+req2.d0: Bolus 50% glucose
+req2.f0: 50% glucose เข้มข้นเกินไปสำหรับทารกและทำลายเส้นเลือด ใช้ 10% dextrose
+req2.d1: ป้อนน้ำตาลทางปาก
+req2.f1: เด็กปวกเปียกและไม่ดูดนม hypoglycemia ต้องให้ dextrose IV
+req2.m0: 10% dextrose 2 mL/kg (6 mL) เจาะซ้ำใน 30 นาที
+req2.m1: GIR 6 ถึง 8 mg/kg/min คุมน้ำตาลให้เกิน 45 mg/dL
+req3.l: Antibiotic ภายใน 1 ชม. ขนาดสำหรับ meningitis
+req3.c: Ampicillin ร่วมกับ cefotaxime IV เดี๋ยวนี้
+req3.d0: Ceftriaxone อย่างเดียว
+req3.f0: Ceftriaxone แทนที่ bilirubin และทำปฏิกิริยากับ calcium ในทารก และไม่ครอบคลุม Listeria ใช้ ampicillin ร่วมกับ cefotaxime
+req3.d1: Amoxicillin กินแล้วนัดดูอาการ
+req3.f1: ทารก septic ต้องได้ antibiotic IV ขนาดสำหรับ meningitis
+req3.m0: 100 mg/kg (290 mg) IV ครอบคลุม GBS และ Listeria
+req3.m1: 50 mg/kg (145 mg) IV ในทารกใช้ cefotaxime แทน ceftriaxone เพราะ ceftriaxone แทนที่ bilirubin และตกตะกอนกับสารน้ำที่มี calcium
+req3.m2: 20 mg/kg IV ทุก 8 ชม. neonatal HSV แยกจาก bacterial sepsis ไม่ได้ และมักพลาดจนสายเกินไป
+req4.l: Fluid resuscitation และ inotrope ถ้าช็อกไม่ตอบสนองต่อ fluid
+req4.c: Bolus 10 mL/kg ไม่ตอบสนองให้ adrenaline
+req4.d0: ให้ fluid 60 mL/kg โดยไม่ประเมินซ้ำ
+req4.f0: ทารก overload เร็ว ประเมินซ้ำหลังทุก bolus ดูตับโตและ crepitation
+req4.d1: งด inotrope จนกว่าจะได้ central line
+req4.f1: เริ่ม inotrope ทาง peripheral หรือ IO ได้ระหว่างรอ central line
+req4.m0: ครั้งละ 10 mL/kg (29 mL) ไม่ใช่ 20 mL/kg กล้ามเนื้อหัวใจทารกรับ volume ได้ไม่ดี fluid overload เกิดง่าย
+req4.m1: เริ่มหลัง bolus 2 ถึง 3 ครั้ง แทนการให้ volume ต่อ
+out1.l: ตอบสนองต่อ resuscitation
+out1.n: ได้ antibiotic ที่ 38 นาทีหลังมาถึง หลังได้ NSS 60 mL กับ adrenaline drip capillary refill ดีขึ้นเป็น 3 วินาที lactate ลดเหลือ 4.1 ยังตัวอ่อนอยู่ ทำ LP หลัง stable ผลเป็น meningitis
+ethical_1.l: เชื่อแม่ และบอกแม่ว่าเชื่อ (Empathy)
+ethical_1.n: อาการเดียวที่แม่บอกคือลูกดูไม่เหมือนเดิม และ 6 ชม. ก่อนแม่ถูกส่งกลับจากคลินิกด้วยเหตุผลนั้นเลย ไม่มีไข้ ไม่มี sign จำเพาะ แม่ลูกแรกที่กังวล หมอบอกแม่ชัดๆ ว่าแม่คิดถูก การที่พ่อแม่บอกว่าทารกดูไม่เหมือนเดิมเป็นหนึ่งในตัวทำนายโรครุนแรงที่แรงที่สุดในงานวิจัยทั้งหมด และแม่ควรพูดประโยคนี้กับหมอทุกคนที่เจอ และคาดหวังให้ถูกรับฟัง พี่พิมใช้เคสนี้สอน เพราะสิ่งที่ล้มเหลวไม่ใช่ความรู้ แต่เป็นการไม่รับฟัง
+req5.l: Antibiotic คอร์สยาว และดูแลใน NICU
+req5.d0: หยุด antibiotic ที่ 48 ชม. ถ้า culture ไม่ขึ้น
+req5.f0: GBS ที่มี meningitis ต้องได้ antibiotic IV 14 ถึง 21 วัน
+req5.d1: D/C หลังได้ยากิน 7 วัน
+req5.f1: GBS meningitis ต้องได้ยา IV นานและติดตามพัฒนาการ
+req5.m0: อย่างน้อย 14 วันสำหรับ GBS meningitis และ 21 วันถ้ามี complication คอร์ส 7 วันสำหรับ bacteremia ไม่พอเมื่อยืนยัน meningitis แล้ว
+out2.l: ระหว่าง admit
+out2.n: CSF ซ้ำไม่มีเชื้อที่ 48 ชม. ชักแบบ subtle 2 ครั้งในวันที่ 2 ตอบสนองต่อ phenobarbital U/S สมองไม่มี ventriculitis หรือ abscess กินนมได้วันที่ 6 off inotrope วันที่ 3
+out3.l: Disposition
+out3.n: D/C วันที่ 18 หลังได้ antibiotic ครบ 14 วัน กินนมได้เต็มที่ น้ำหนักขึ้น คัดกรองการได้ยินปกติ เข้าโปรแกรมติดตามพัฒนาการ เพราะผู้รอดจาก neonatal GBS meningitis ราวหนึ่งในสี่มีความบกพร่องระยะยาว แม่ได้รับคำอธิบายที่ถูกต้องว่า door-to-antibiotic 38 นาทีคือเหตุผลที่ตัวเลขเป็นหนึ่งในสี่ ไม่ใช่สูงกว่านั้น

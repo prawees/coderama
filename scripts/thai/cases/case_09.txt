@@ -1,0 +1,58 @@
+cc: อาเจียน ปวดท้อง ซึม
+bg: นักศึกษาปี 1 กระหายน้ำ ปัสสาวะบ่อย น้ำหนักลด 6 kg มา 4 สัปดาห์ คิดว่าเครียดเรื่องสอบ อาเจียนและปวดท้องทั่วๆ มา 2 วัน วันนี้ซึมจนไปเรียนไม่ไหว ไม่เคยเป็นเบาหวาน ไม่มีประวัติครอบครัว ไม่ดื่มเหล้า LMP 3 สัปดาห์ก่อน เพื่อนร่วมห้องบอกว่าตั้งแต่เช้าหายใจแปลกๆ
+i.poc1: Severe hyperglycemia
+i.vbg1: High anion gap metabolic acidosis รุนแรง compensate ทางหายใจเต็มที่ เข้าเกณฑ์ severe DKA
+i.bhb1: Ketonemia มาก ใช้ค่านี้แทน urine ketone ติดตามการหาย
+i.k1: K ที่วัดได้สูง แต่ K ทั้งร่างกายพร่องมาก จะลดลงเร็วเมื่อเริ่ม insulin
+i.na1: Pseudohyponatremia จาก hyperglycemia corrected Na ราว 135 mmol/L
+i.cr1: Pre-renal AKI จากขาดน้ำ anion gap 30 mmol/L
+i.ecg1: Sinus tachycardia 122/min peaked T สูงที่ V2 ถึง V4 เข้าได้กับ hyperkalemia QRS ปกติ ไม่มี ischemic change
+i.ua1: Ketonuria และ glycosuria ไม่มีหลักฐาน UTI เป็นตัวกระตุ้น
+i.cbc2: Leukocytosis พบบ่อยใน DKA เอง หาการติดเชื้อต่อเฉพาะถ้ามีไข้ มีแหล่ง หรือมี left shift
+i.hba1c: ยืนยันว่าน้ำตาลสูงโดยไม่ได้รักษามาหลายเดือน เข้าได้กับ type 1 diabetes ที่เพิ่งเริ่มเป็น
+req1.l: เปิด IV เจาะ DTX ketone และ venous gas พร้อม K
+req1.c: เปิด IV, DTX, ketone และ venous gas
+req1.d0: เริ่ม insulin ทันทีตามค่า DTX
+req1.f0: ให้ insulin ก่อน fluid และก่อนรู้ค่า K เสี่ยง hypokalemia ถึงตายและ cardiovascular collapse
+req1.d1: ส่ง CT ท้องดูอาการปวดก่อน
+req1.f1: ปวดท้องพบบ่อยใน DKA และมักหายเมื่อรักษา gas, น้ำตาล, ketone และ K ข้างเตียงมาก่อน
+req2.l: Fluid resuscitation ก่อน insulin
+req2.d0: ให้ insulin 10 unit IV bolus เดี๋ยวนี้
+req2.f0: Fluid มาก่อน ไม่แนะนำ bolus และให้ insulin ก่อนแก้ volume ทำให้ BP ต่ำลง
+req2.d1: ให้ sodium bicarbonate แก้ acidosis
+req2.f1: Bicarbonate ไม่มี indication ยกเว้น pH ต่ำกว่าราว 6.9 ทำให้ hypokalemia แย่ลงและอาจเกิด cerebral edema
+req2.m0: 15 ถึง 20 mL/kg (ราว 1000 mL) ในชั่วโมงแรก แล้ว 250 ถึง 500 mL/h ตาม perfusion
+out1.l: Perfusion ดีขึ้น
+out1.n: หลังได้ลิตรแรกรู้สึกตัวดีขึ้น มือเท้าอุ่นขึ้น น้ำตาลลดเหลือ 448 mg/dL แล้วจากการเจือจางและไตขับออกอย่างเดียว
+ethical_1.l: นั่งลงบอกเธอว่าเป็น type 1 diabetes และโทรหาพ่อแม่ถ้าเธออนุญาต (Empathy)
+ethical_1.n: หมออธิบายการวินิจฉัยด้วยภาษาธรรมดาก่อนเริ่ม insulin drip และถามว่าอยากให้บอกพ่อแม่ว่าอะไร เธอร้องไห้ แล้วถามคำถามดีๆ ว่ายังกลับไปเรียนได้ไหม พี่แอนนัดพยาบาลให้ความรู้เบาหวานไว้ตอนเช้า พี่บ๊อบบ่นว่าให้วอร์ดทำทีหลังก็ได้
+req3.l: ดู K ก่อนเริ่ม insulin และให้ทดแทนตามต้องการ
+req3.d0: เริ่ม insulin แล้วค่อยดู K ทีหลัง
+req3.f0: Insulin ดัน K เข้าเซลล์ เริ่มก่อนรู้ค่าทำให้ cardiac arrest ได้
+req3.d1: ให้ K 40 mmol/h เลย เพราะ K ทั้งร่างกายพร่องเสมอ
+req3.f1: K 5.4 เกิน 5.3 ยังไม่ต้องให้ เจาะซ้ำใน 2 ชม. แล้วเติม 20 ถึง 30 mmol/L ใน fluid เมื่อต่ำกว่า 5.3 และปัสสาวะออกดี
+req3.m0: K 3.3 ถึง 5.3 mmol/L เติม 20 ถึง 30 mmol/L ใน fluid ถ้า K ต่ำกว่า 3.3 hold insulin และให้ K ก่อน ถ้าเกิน 5.3 ไม่ต้องให้ เจาะซ้ำใน 2 ชม.
+req4.l: Insulin drip rate คงที่ ไม่ bolus
+req4.d0: ฉีด insulin SC ทุก 4 ชม.
+req4.f0: การดูดซึมทาง SC เชื่อไม่ได้ในคนไข้ช็อกและ acidosis ใช้ IV drip rate คงที่
+req4.d1: Bolus insulin 0.3 unit/kg แล้วเพิ่ม drip เป็นสองเท่า
+req4.f1: Bolus ขนาดใหญ่ทำให้น้ำตาลและ K ลดเร็วเกิน drip rate คงที่ราว 0.1 unit/kg/h คือมาตรฐาน
+req4.m0: 0.1 unit/kg/h ต่อเนื่อง (ราว 5 unit/h) bolus ไม่มีประโยชน์เพิ่ม และเพิ่มความเสี่ยง hypokalemia กับ cerebral edema
+req5.l: Monitor ทุกชั่วโมง เติม dextrose เมื่อน้ำตาลต่ำกว่า 250 mg/dL
+req5.c: DTX ทุกชั่วโมง เติม dextrose เมื่อต่ำกว่า 250 mg/dL
+req5.d0: หยุด insulin drip เมื่อน้ำตาลต่ำกว่า 250 mg/dL
+req5.f0: ต้องใช้ insulin กำจัด ketone เติม dextrose แล้วให้ insulin ต่อจน ketoacidosis หาย
+req5.d1: เจาะน้ำตาลกับ K ทุก 6 ชม.
+req5.f1: น้ำตาลกับ K เปลี่ยนเร็ว เจาะ DTX ทุกชั่วโมง K กับ gas ทุก 2 ชม.
+req5.m0: เริ่มเมื่อน้ำตาลต่ำกว่า 250 mg/dL ให้ insulin ต่อเพื่อกำจัด ketone เป้าน้ำตาลลด 50 ถึง 75 mg/dL ต่อชั่วโมง
+out2.l: Acidosis กำลังหาย
+out2.n: ชั่วโมงที่ 6 pH 7.28 HCO3 15 mmol/L beta-hydroxybutyrate 1.9 mmol/L K 3.9 mmol/L ระหว่างให้ทดแทน หายใจแบบ Kussmaul หายแล้ว ไม่ได้ให้ bicarbonate ซึ่งถูกต้องที่ pH นี้
+req6.l: เปลี่ยนเป็น insulin SC เมื่อเข้าเกณฑ์หายแล้วเท่านั้น
+req6.c: ให้ basal insulin SC คาบเกี่ยวก่อนหยุด drip
+req6.d0: หยุด drip และฉีด insulin SC พร้อมกัน
+req6.f0: ถ้าไม่คาบเกี่ยว 1 ถึง 2 ชม. ketoacidosis กลับมาได้ ให้คาบเกี่ยวก่อนหยุด drip
+req6.d1: เปลี่ยนเป็น metformin กินเพราะกินข้าวได้แล้ว
+req6.f1: นี่คือ type 1 diabetes ที่เพิ่งเป็น ต้องใช้ insulin ตลอดชีวิต ไม่ใช่ metformin
+req6.m0: ให้ 1 ถึง 2 ชม. ก่อนหยุด drip เกณฑ์หายคือ anion gap ต่ำกว่า 12 HCO3 อย่างน้อย 15 และ beta-hydroxybutyrate ต่ำกว่า 0.6 โดยคนไข้กินอาหารได้
+out3.l: Disposition
+out3.n: Admit วอร์ดอายุรกรรมด้วย basal bolus regimen พยาบาลเบาหวานเริ่มสอนนับคาร์บและเทคนิคการฉีดก่อน D/C ไม่มี cerebral edema ไม่มี arrhythmia จาก hypokalemia

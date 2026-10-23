@@ -1,0 +1,61 @@
+cc: ผื่นขึ้น หายใจลำบากหลังกินข้าว
+bg: เพื่อนพามา 20 นาทีหลังกินข้าวผัดกุ้งที่ร้านริมทาง เริ่มคันฝ่ามือ แล้วผื่นลามทั่วตัว แน่นคอ อาเจียน เป็น allergic rhinitis และ asthma เล็กน้อย พ่น salbutamol เดือนละ 1 ถึง 2 ครั้ง ไม่ได้พก adrenaline autoinjector กิน cetirizine 10 mg ที่ร้านแล้วไม่ดีขึ้น LMP 2 สัปดาห์ก่อน
+i.ecg1: Sinus tachycardia 126/min ไม่มี ischemic ST change QTc ปกติ
+i.cxr1: Hyperinflation กะบังลมแบน ไม่มี consolidation, effusion หรือ pneumothorax หัวใจขนาดปกติ
+i.poc1: ปกติ ตัด hypoglycemia ออกจากสาเหตุที่พฤติกรรมเปลี่ยน
+i.abg1: Hypoxemia ร่วมกับ metabolic acidosis และ respiratory compensation บางส่วน เข้าได้กับช็อกและ bronchospasm
+i.lac1: สูง เข้าได้กับ distributive shock และ hypoperfusion
+i.tryp1: สูงมาก ใช้ยืนยันเท่านั้น ผลออกหลัง resuscitate เสร็จ เจาะ baseline ซ้ำที่ 24 ชม.
+i.cbc1: Hemoconcentration จาก capillary leak และ plasma รั่วออกนอกหลอดเลือด
+ethical_1.l: นั่งลงระดับสายตา บอกว่ากำลังเกิดอะไรขึ้นและกำลังจะให้ adrenaline เดี๋ยวนี้ (Empathy)
+ethical_1.n: หมอใช้ 15 วินาทีอธิบายแผนด้วยภาษาธรรมดาระหว่างที่พยาบาลดูดยา adrenaline RR ลดลงเล็กน้อยเมื่อความตื่นตระหนกลดลง เพื่อนยื่นถุงอาหารให้ ฉลากเขียนว่ามีกะปิกับน้ำมันถั่วลิสง
+req1.l: Adrenaline IM ที่ต้นขาด้านหน้าข้าง
+req1.d0: ให้ chlorpheniramine กับ hydrocortisone IV ก่อน
+req1.f0: Antihistamine กับ steroid ไม่ได้แก้ airway บวมหรือช็อก adrenaline IM คือ first line และห้ามช้า
+req1.d1: Adrenaline 1 mg IV push
+req1.f1: 1 mg IV คือขนาดสำหรับ cardiac arrest ในคนที่ยังมีชีพจรทำให้ arrhythmia หรือ myocardial ischemia ได้ ให้ 0.5 mg IM ที่ต้นขา
+req1.m0: 0.5 mg (1:1000 0.5 mL) IM กลางต้นขาด้านหน้าข้าง ซ้ำได้ทุก 5 นาที
+req2.l: O2 high flow จัดท่านอนหงายยกขาสูง
+req2.d0: จับนั่งแล้วพาเดินไปอาเจียนในห้องน้ำ
+req2.f0: ให้คนไข้ anaphylaxis ที่ BP ต่ำลุกยืนหรือนั่งทำให้ cardiac arrest จาก empty ventricle ได้ ให้นอนหงายยกขาสูง
+req2.d1: Cannula 2 L/min กลัว oxygen toxicity
+req2.f1: แน่นคอและ BP ต่ำ ให้ O2 high flow ทาง NRB mask
+req2.m0: 15 L/min เป้า SpO2 94 ถึง 98%
+req3.l: เปิด IV เบอร์ใหญ่ 2 เส้น load crystalloid เร็ว
+req3.d0: เปิดเส้นเล็กเส้นเดียว ให้ maintenance 80 mL/h
+req3.f0: Anaphylactic shock มีหลอดเลือดขยายและ capillary leak มาก ต้องเปิด 2 เส้นเบอร์ใหญ่และ load crystalloid เร็ว
+req3.d1: งด fluid กลัว pulmonary edema
+req3.f1: ปัญหาคือ distributive shock ไม่ใช่ fluid overload งด fluid ทำให้ BP ต่ำลงอีก
+req3.m0: 20 mL/kg (ราว 1000 mL) ใน 10 ถึง 15 นาที ประเมินซ้ำหลังทุก bolus
+out1.l: ตอบสนองบางส่วน
+out1.n: Stridor เบาลง ผื่นลมพิษเริ่มจาง แต่ยัง wheeze อยู่และ BP ยังต่ำหลัง fluid ลิตรแรก
+req4.l: Adrenaline IM dose ที่สองที่ 5 นาทีเพราะ BP ยังต่ำ
+req4.c: ให้ adrenaline 0.5 mg IM ซ้ำเดี๋ยวนี้
+req4.d0: รอ 30 นาทีให้ antihistamine ออกฤทธิ์
+req4.f0: BP ยังต่ำหลัง adrenaline dose แรก ต้องให้ IM ซ้ำที่ 5 นาที ไม่ใช่รอยาเสริม
+req4.d1: เริ่ม dopamine drip แทน adrenaline
+req4.f1: Adrenaline คือยาที่เลือก dose IM ที่สองมาก่อน ถ้าดื้อค่อยให้ adrenaline drip
+req4.m0: 0.5 mg IM ถ้าต้องให้ dose ที่สามให้เริ่ม IV drip
+req5.l: พ่นยาขยายหลอดลมสำหรับ wheeze ที่ยังอยู่
+req5.d0: Aminophylline IV bolus แก้ wheeze
+req5.f0: Aminophylline ไม่ใช่ first line และเพิ่มความเสี่ยง arrhythmia ซ้อนกับ adrenaline ใช้ salbutamol พ่น
+req5.d1: ไม่ต้องสนใจ wheeze เดี๋ยว antihistamine ก็ช่วย
+req5.f1: Antihistamine ไม่ได้รักษา bronchospasm wheeze ที่ยังอยู่หลัง adrenaline ต้องพ่นยาขยายหลอดลม
+req5.m0: 2.5 mg ใน NSS 3 mL พ่นด้วย O2 ซ้ำได้ตามต้องการ
+req6.l: ยาเสริมให้หลัง adrenaline ไม่เคยให้แทน
+req6.d0: หยุด adrenaline เพราะให้ steroid แล้ว
+req6.f0: Steroid ออกฤทธิ์เป็นชั่วโมงและแทน adrenaline ไม่ได้ ยาเสริมเป็นแค่ส่วนเพิ่ม
+req6.d1: ไม่ให้ยาเสริมเลย ไม่มีประโยชน์
+req6.f1: Chlorpheniramine ช่วยคันและลมพิษเมื่อ stable แล้ว steroid ไม่ได้รักษาปฏิกิริยาเฉียบพลัน แต่แนวทางศิริราชยังให้ hydrocortisone 200 mg และเธอเป็น asthma ด้วย ให้ได้อย่างสมเหตุสมผล
+req6.m0: 10 mg IV ช้าๆ
+req6.m1: 200 mg IV
+out2.l: Stable แล้ว
+out2.n: Stridor หาย wheeze เหลือแค่เสียงหวีดปลายลมหายใจออกประปราย ผื่นกำลังจาง พูดได้เป็นประโยค
+req7.l: Admit observe และวางแผน D/C ให้ปลอดภัย
+req7.d0: ดูดีแล้ว D/C ได้เลย
+req7.f0: Biphasic reaction เกิดได้หลายชั่วโมงต่อมา โดยเฉพาะหลัง BP ต่ำและได้ adrenaline สอง dose observe 6 ถึง 12 ชม.
+req7.d1: D/C ด้วย antihistamine กินอย่างเดียว ไม่ต้องมี autoinjector
+req7.f1: เธอเพิ่งมี anaphylaxis ที่คุกคามชีวิต ต้องได้ adrenaline autoinjector แผนปฏิบัติตัว และส่งต่อคลินิกภูมิแพ้
+req7.m0: Autoinjector 0.3 mg สาธิตวิธีใช้ก่อน D/C
+out3.l: Disposition
+out3.n: Observe 8 ชม. ไม่มี biphasic reaction กลับบ้านพร้อม autoinjector 2 อัน แผนปฏิบัติตัว และนัดคลินิกภูมิแพ้ เพื่อนถ่ายรูปป้ายร้านไว้ให้เลี่ยงครั้งหน้า
