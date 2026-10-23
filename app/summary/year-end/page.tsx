@@ -89,7 +89,8 @@ export default function YearEndPage() {
   else if (currentDay === 26 && storyFlags.WHISTLEBLOWER) coda = "กลับมาพร้อมใจที่สบาย กับเพื่อนที่น้อยลงไปสองสามคน";
 
   useEffect(() => {
-    music.fadeToTrack("home", 2.0);
+    // a chapter break gets the main theme
+    music.fadeToTrack("title", 2.0);
     const a = setTimeout(() => setStep((s) => Math.max(s, 1)), 1600);
     const b = setTimeout(() => setStep((s) => Math.max(s, 2)), 3600);
     return () => { clearTimeout(a); clearTimeout(b); };

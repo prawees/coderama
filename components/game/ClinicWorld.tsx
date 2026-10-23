@@ -66,10 +66,9 @@ interface ClinicWorldProps {
 const DIRS: Record<Dir, [number, number]> = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
 const CAT_FUR = "#e8a25a";
 
-/** Sky colour through the shift (minutes since 08:00); before the shift it is dawn */
-function skyColor(minutes: number, onShift: boolean): string {
-  if (!onShift) return "#f7c6c0";
-  const stops: [number, string][] = [[0, "#ffd9b8"], [90, "#a9dcf0"], [360, "#a9dcf0"], [450, "#ffc58a"], [540, "#e08a8a"], [600, "#6b6aa8"]];
+/** Sky colour by time of day (minutes since 08:00: 0 dawn, 600 night), on or off shift */
+function skyColor(minutes: number): string {
+  const stops: [number, string][] = [[0, "#ffd9b8"], [90, "#a9dcf0"], [360, "#a9dcf0"], [450, "#ffc58a"], [540, "#e08a8a"], [600, "#2e3566"]];
   for (let i = 1; i < stops.length; i++) {
     if (minutes <= stops[i][0]) {
       const [m0, c0] = stops[i - 1];
@@ -80,14 +79,14 @@ function skyColor(minutes: number, onShift: boolean): string {
   return stops[stops.length - 1][1];
 }
 
-/** Multiply-tint for the whole scene: warm morning, neutral midday, golden afternoon, lilac dusk */
-function sceneTint(minutes: number, onShift: boolean, outdoor: boolean): { color: number; alpha: number } {
-  const strength = outdoor ? 1 : 0.6;
-  if (!onShift) return { color: 0xf0c8d8, alpha: 0.32 * strength };
+/** Multiply-tint for the whole scene: warm morning, neutral midday, golden afternoon, blue night */
+function sceneTint(minutes: number, outdoor: boolean): { color: number; alpha: number } {
+  const strength = outdoor ? 1 : 0.7;
   if (minutes < 90) return { color: 0xffd8b0, alpha: (0.28 - (minutes / 90) * 0.24) * strength };
   if (minutes < 380) return { color: 0xffffff, alpha: 0 };
   if (minutes < 520) return { color: 0xffb070, alpha: ((minutes - 380) / 140) * 0.32 * strength };
-  return { color: 0xb090d0, alpha: 0.38 * strength };
+  if (minutes < 600) return { color: 0xb090d0, alpha: (0.32 + ((minutes - 520) / 80) * 0.1) * strength };
+  return { color: 0x5c64a8, alpha: 0.52 * strength };
 }
 
 const hex = (c: string) => parseInt(c.slice(1, 7), 16);
@@ -797,15 +796,16 @@ function createEngine(
 
   function updateLighting() {
     const p = propsRef.current;
-    const key = `${Math.floor(p.clockMinutes / 10)}:${p.onShift}:${map.id}`;
+    const key = `${Math.floor(p.clockMinutes / 10)}:${map.id}`;
     if (key === lastTintKey) return;
     lastTintKey = key;
-    const sky = hex(skyColor(p.clockMinutes, p.onShift));
+    const sky = hex(skyColor(p.clockMinutes));
     for (const g of glassSprites) g.tint = sky;
-    const t = sceneTint(p.clockMinutes, p.onShift, map.outdoor);
+    const t = sceneTint(p.clockMinutes, map.outdoor);
     tint.clear();
     tint.rect(0, 0, map.width * TILE, map.height * TILE).fill({ color: t.color, alpha: t.alpha });
-    const beamsOn = p.onShift ? p.clockMinutes < 480 : true;
+    // sunbeams only while the sun is up
+    const beamsOn = p.clockMinutes < 450;
     beamLayer.visible = beamsOn;
   }
 
@@ -893,7 +893,7 @@ function createEngine(
       }
     }
     if (map.outdoor && Math.random() < dt * 0.8) spawnPetal();
-    if (map.outdoor && p.onShift && p.clockMinutes > 480 && Math.random() < dt * 1.5) spawnFirefly();
+    if (map.outdoor && p.clockMinutes > 520 && Math.random() < dt * 1.5) spawnFirefly();
     if (!map.outdoor && beamLayer.visible && particles.filter((q) => q.kind === "mote").length < 10) spawnMote();
     beamLayer.alpha = 0.85 + Math.sin(elapsed * 0.7) * 0.15;
 

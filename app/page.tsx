@@ -7,7 +7,7 @@ import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { audio } from "@/lib/audio";
-import { music, TrackId } from "@/lib/music";
+import { music } from "@/lib/music";
 
 import { TitleScene } from "@/components/game/TitleScene";
 import { PixelPortrait } from "@/components/game/PixelPortrait";
@@ -51,8 +51,7 @@ export default function RootPage() {
     Haptics.impact({ style: ImpactStyle.Light });
     audio.playClick();
     
-    const tracks: TrackId[] = ['sunrise', 'first_house', 'home', 'wandering', 'deep_mines', 'the_void', 'nightfall'];
-    music.playTrack(tracks[Math.floor(Math.random() * tracks.length)]);
+    music.fadeToTrack('title', 1.5);
     
     setMenuState('MENU');
   };
@@ -220,11 +219,11 @@ export default function RootPage() {
               <div className="space-y-4 flex flex-col items-center">
                 <div className="flex gap-3 items-start w-full">
                   <div className="w-20 h-20 shrink-0 rounded-[4px] overflow-hidden border-[3px] border-[#3a2a2f]">
-                    <PixelPortrait speaker="Prof. Somchai" className="w-full h-full" />
+                    <PixelPortrait speaker="Auntie Noi" className="w-full h-full" />
                   </div>
                   <div className="flex-1">
-                    <p className="cozy-tag inline-block px-2 py-0.5 text-base leading-none !bg-[#ffd66b]">อ.สมชาย</p>
-                    <p className="text-xl leading-tight mt-2">ยินดีต้อนรับสู่ ER นะ น้องชื่ออะไร</p>
+                    <p className="cozy-tag inline-block px-2 py-0.5 text-base leading-none !bg-[#ffd66b]">ป้าน้อย ห้องเก็บของ</p>
+                    <p className="text-xl leading-tight mt-2">คุณหมอคนใหม่ใช่ไหมจ๊ะ ป้าทำป้ายชื่อให้ก่อน ชื่อเล่นอะไรจ๊ะ</p>
                   </div>
                 </div>
                 <div className="w-full flex items-center gap-2 bg-[#fff6e3] border-[3px] border-[#3a2a2f] rounded-[4px] p-2.5 text-xl">

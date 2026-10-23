@@ -27,7 +27,7 @@ import { LeaderboardModal } from "@/components/game/LeaderboardModal";
 import { ConsultsModal } from "@/components/game/ConsultsModal";
 import { SettingsMenu } from "@/components/game/SettingsMenu";
 import { CutsceneNode, CutsceneChoice } from "@/lib/StoryManager";
-import { getDayStory, advanceQueue, resolveRouters, visibleChoices, shiftStartMinutes, worldLightMinutes } from "@/lib/story";
+import { getDayStory, advanceQueue, resolveRouters, visibleChoices, shiftStartMinutes, timeInScene, worldLightMinutes } from "@/lib/story";
 import { audio } from "@/lib/audio";
 import { music, TrackId } from "@/lib/music";
 import { AnimatePresence } from "framer-motion";
@@ -91,8 +91,6 @@ export default function HubPage() {
   const [dialogueQueue, setDialogueQueue] = useState<CutsceneNode[]>([]);
   const [caseToInject, setCaseToInject] = useState<string | null>(null);
   const [actionOnDialogueEnd, setActionOnDialogueEnd] = useState<'START_SHIFT' | 'END_SHIFT' | 'PRESTIGE' | null>(null);
-  const prevCasesCount = useRef<number | null>(null);
-  const triggeredEvents = useRef<Set<number>>(new Set());
   const [isPowerOutage, setIsPowerOutage] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   
@@ -116,61 +114,37 @@ export default function HubPage() {
 
   // Phase 75: Dynamic Generative Music & SFX
   useEffect(() => {
-    if (prevCasesCount.current === null) {
-       prevCasesCount.current = activeCases.length;
-       return;
-    }
-    
-    if (activeCases.length > prevCasesCount.current) {
-        audio.playPager();
-    }
-    prevCasesCount.current = activeCases.length;
+    // (the pager itself sounds where a patient is added, so it is not doubled here)
 
-    let targetTrack: TrackId | null = null;
-    const isEmergency = activeCases.length > 0;
-
+    // One patient waiting is the normal rhythm of a shift, so the song of the hour keeps playing;
+    // two waiting tightens the music, three or more drives it
+    let targetTrack: TrackId;
     if (shiftMode === 'on-shift' || shiftMode === 'boss-battle') {
-      if (activeCases.length > 2) {
-         targetTrack = 'the_void'; // Overwhelmed
-      } else if (activeCases.length > 0) {
-         targetTrack = 'deep_mines'; // Active tense cases
-      } else {
-         // Idle on-shift
-         if (clockMinutes < 240) targetTrack = 'sunrise'; // Morning (8am - 12pm)
-         else if (clockMinutes > 420) targetTrack = 'nightfall'; // Night (3pm - 5pm+)
-         else targetTrack = 'wandering'; // Afternoon (12pm - 3pm)
-      }
+      const hour = Math.floor(((shiftStart + clockMinutes) % 1440) / 60);
+      if (activeCases.length >= 3) targetTrack = 'the_void';
+      else if (activeCases.length === 2) targetTrack = 'deep_mines';
+      else if (hour >= 5 && hour < 12) targetTrack = 'sunrise';
+      else if (hour >= 12 && hour < 18) targetTrack = 'wandering';
+      else targetTrack = 'nightfall';
     } else {
-       targetTrack = 'first_house'; // Pre-shift / Hub
+      targetTrack = 'first_house';
     }
-
-    const currentTrack = music.getCurrentTrack();
-    
-    if (currentTrack === targetTrack) return; // No change needed
-
-    // If entering an idle state from a different track, 30% chance to just enjoy silence
-    // By grouping clockMinutes, we don't spam this random roll every minute.
-    if (!isEmergency && currentTrack !== targetTrack && targetTrack !== null) {
-        if (Math.random() < 0.3) {
-            targetTrack = null;
-        }
-    }
-
-    music.fadeToTrack(targetTrack, 4.0); // 4 second smooth crossfade
-  }, [shiftMode, activeCases.length, Math.floor(clockMinutes / 120)]);
+    if (music.getCurrentTrack() !== targetTrack) music.fadeToTrack(targetTrack, 3.0);
+  }, [shiftMode, activeCases.length, Math.floor(clockMinutes / 60)]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     // wait for the saved game, otherwise a returning player sees the tutorial again
     if (!hydrated) return;
     if (!tutorialCompleted) {
       audio.playPAChime();
-      // Read the saved name at this moment; never greet anyone by the store's placeholder
+      // Read the saved name at this moment; never greet anyone by the store's placeholder.
+      // Nobody in the cast has met the player yet, so the narrator speaks; Bob and Ann
+      // introduce themselves in the day 1 scene and give the pager tip after it (FIRST_SHIFT_TIP).
       const saved = useERStore.getState().playerName;
-      const name = saved && saved !== 'Doctor' ? saved : '';
+      const name = saved && saved !== 'Doctor' ? ` ${saved}` : '';
       setDialogueQueue([
-        { speaker: "Prof. Somchai", text: `ยินดีต้อนรับสู่ ER นะ น้อง${name} เคสที่นี่ออกสอบ NL ทั้งนั้น ดูให้ดีล่ะ` },
-        { speaker: "Nurse Ann", text: `เพจเจอร์ดังเมื่อไหร่ แตะที่เตียงด้านล่างได้เลยค่ะหมอ ว่างๆ แวะมาคุยกับพวกพี่ด้วยนะ ทุกคนมีของโปรด` },
-        { speaker: "Prof. Somchai", text: `กดเริ่มเวรได้เลย โชคดีนะ` }
+        { speaker: "System", text: `03:10 น. วันแรกของ นศพ.${name} ที่ ER รามาเซ็นทรัล` },
+        { speaker: "System", text: `เดินดูรอบๆ ได้ แตะคนหรือของเพื่อคุยด้วย พร้อมเมื่อไหร่ แตะ "เริ่มเวร" ด้านล่าง` },
       ]);
     }
     
@@ -236,6 +210,16 @@ export default function HubPage() {
         if (actionOnDialogueEnd === 'START_SHIFT') {
           executeStartShift();
           setActionOnDialogueEnd(null);
+          // The first shift ends its scene with the pager going off: the two people the player
+          // has just met tell them what to do about it
+          if (!useERStore.getState().storyFlags['FIRST_SHIFT_TIP']) {
+            setStoryFlag('FIRST_SHIFT_TIP', true);
+            next = [
+              { speaker: "Nurse Ann", text: "เพจเจอร์ดังเมื่อไหร่ แตะที่เตียงด้านล่างได้เลยค่ะหมอ ใครรอนานอาการจะแย่ลงนะคะ" },
+              { speaker: "Dr. Bob", text: "สั่ง lab เท่าที่จะเปลี่ยนการรักษา แล้วอ่านสรุปท้ายเคสให้ดี เคสที่นี่ออกสอบ NL ทั้งนั้น" },
+              { speaker: "Nurse Ann", text: "ว่างๆ แวะมาคุยกับพวกพี่ด้วยนะคะ ทุกคนมีของโปรด" },
+            ];
+          }
         } else if (actionOnDialogueEnd === 'END_SHIFT') {
           executeEndShift();
           setActionOnDialogueEnd(null);
@@ -406,13 +390,18 @@ export default function HubPage() {
     if (shiftMode === 'off-duty' || shiftMode === 'on-call') return;
     if (dialogueQueue.length > 0) return;
 
-    const event = getDayStory(currentDay, language).mid.find(e => e.triggerMinute === clockMinutes);
-    if (event && !triggeredEvents.current.has(clockMinutes)) {
-       triggeredEvents.current.add(clockMinutes);
+    // A mid-shift scene plays at its minute, or when the player comes back from their first
+    // patient, whichever is sooner. Leaving early must not skip the story or the flags it sets.
+    const played = useERStore.getState().shiftStats.midPlayed ?? [];
+    const event = getDayStory(currentDay, language).mid.find(
+      (e) => !played.includes(e.triggerMinute) && (clockMinutes >= e.triggerMinute || shiftStats.casesTreated >= 1)
+    );
+    if (event) {
+       useERStore.getState().markMidPlayed(event.triggerMinute);
        setDialogueQueue(playable(event.cutscene));
        if (event.injectCase) setCaseToInject(event.injectCase);
     }
-  }, [clockMinutes, shiftMode, dialogueQueue.length, currentDay, language]);
+  }, [clockMinutes, shiftMode, dialogueQueue.length, currentDay, language, shiftStats.casesTreated]);
 
   // Handle End of Shift or Pass Out
   useEffect(() => {
@@ -484,7 +473,6 @@ export default function HubPage() {
     audio.playAmbientHum();
     setClock(0);
     resetShiftStats();
-    triggeredEvents.current = new Set();
     setShiftMode('on-shift');
     
     // Apply Upgrades
@@ -497,6 +485,13 @@ export default function HubPage() {
   };
 
   const executeEndShift = () => {
+    // The closing scene says what time it is ("11:40 น."), so the shift ends then
+    const story = getDayStory(currentDay, language);
+    const end = timeInScene(story.end);
+    if (end !== null) {
+      const worked = (end - shiftStartMinutes(story) + 1440) % 1440;
+      if (worked > useERStore.getState().clockMinutes) setClock(worked);
+    }
     audio.playShiftEnd();
     audio.stopAmbientHum();
     setShiftMode('off-duty');
@@ -611,9 +606,12 @@ export default function HubPage() {
 
   // The clock starts when the day's story says the shift starts, and the light follows real time of day
   const shiftStart = useMemo(() => shiftStartMinutes(getDayStory(currentDay, language)), [currentDay, language]);
-  const timeOfDay = (shiftStart + clockMinutes) % 1440;
+  const shiftLive = shiftMode === 'on-shift' || shiftMode === 'boss-battle';
+  // Off duty, the clock still holds the last shift's end; show the coming shift's start instead
+  const shownMinutes = shiftLive ? clockMinutes : 0;
+  const timeOfDay = Math.floor(shiftStart + shownMinutes) % 1440;
   const formatTime = (mins: number) => {
-    const t = (shiftStart + mins) % 1440;
+    const t = Math.floor(shiftStart + mins) % 1440;
     const hours = Math.floor(t / 60);
     const m = t % 60;
     return `${hours.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
@@ -638,7 +636,7 @@ export default function HubPage() {
           playerLook={playerLook}
           activeCases={activeCases}
           mail={hasMail}
-          clockMinutes={onShift ? worldLightMinutes(timeOfDay) : clockMinutes}
+          clockMinutes={worldLightMinutes(timeOfDay)}
           onShift={onShift}
           paused={dialogueQueue.length > 0 || anyModal || dayCard !== null}
           fastForward={isFastForwarding}
@@ -655,7 +653,7 @@ export default function HubPage() {
           <div className="flex items-center gap-1.5 text-[18px] leading-none">
             <PixelIcon name={timeOfDay >= 360 && timeOfDay < 1110 ? 'sun' : 'moon'} size={15} />
             <span>{tr('Day', 'วันที่')} {currentDay}</span>
-            <span className="tabular-nums text-[#86522e]">{formatTime(clockMinutes)}</span>
+            <span className="tabular-nums text-[#86522e]">{formatTime(shownMinutes)}</span>
           </div>
           <div className="text-[13px] leading-none mt-1 text-[#86522e] max-w-[11rem] truncate">
             {currentMap === 'AMBULANCE_BAY' ? tr('Courtyard', 'ลานหน้าตึก') : LOCATION_NAMES[phase][language]}

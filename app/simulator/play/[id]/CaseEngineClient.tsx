@@ -397,9 +397,11 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   const callAttending = async () => {
     await Haptics.impact({ style: ImpactStyle.Heavy });
     addFloatingText("อาจารย์มารับเคสต่อแล้ว", "good", window.innerWidth / 2, window.innerHeight / 2);
-    // addXp and addCurrency already record XP, cash and the treated case in shiftStats
+    // addXp and addCurrency record XP and cash in shiftStats; the patient is counted here
     addXp(50);
     addCurrency(25);
+    useERStore.setState((state) => ({ shiftStats: { ...state.shiftStats, casesTreated: state.shiftStats.casesTreated + 1 } }));
+    useERStore.getState().incrementClock(30);
     deductEnergy(15);
     if (currentInstanceId) removeCase(currentInstanceId);
     setTimeout(() => router.push('/hub'), 700);
@@ -450,15 +452,14 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     } else {
       await Haptics.vibrate();
     }
-    // addXp and addCurrency already update shiftStats (XP, cash, and casesTreated for positive cash)
+    // addXp and addCurrency record XP and cash in shiftStats; the patient is counted here
     if (reward.xp > 0) addXp(reward.xp);
-    if (reward.cash > 0) {
-      addCurrency(reward.cash);
-    } else {
-      useERStore.setState(state => ({
-        shiftStats: { ...state.shiftStats, casesTreated: state.shiftStats.casesTreated + 1 }
-      }));
-    }
+    if (reward.cash > 0) addCurrency(reward.cash);
+    useERStore.setState((state) => ({
+      shiftStats: { ...state.shiftStats, casesTreated: state.shiftStats.casesTreated + 1 }
+    }));
+    // The clock only runs in the hub, so time at the bedside is added when the patient is done
+    useERStore.getState().incrementClock(45);
     // Remember them. A good outcome brings a letter the next morning.
     useERStore.getState().recordPatient(caseKey, grade !== 'critical');
     useERStore.getState().logShiftPatient({ caseId: caseKey, grade, mistakes: slipTotal });

@@ -180,6 +180,8 @@ interface ERState {
     patients?: ShiftPatient[];
     /** Cases brought in this shift, so nobody arrives twice */
     spawned?: string[];
+    /** Mid-shift scenes already played (by trigger minute), so leaving the hub never replays one */
+    midPlayed?: number[];
   };
 
   // RPG State
@@ -233,6 +235,7 @@ interface ERState {
   resetShiftStats: () => void;
   logShiftPatient: (p: ShiftPatient) => void;
   markSpawned: (caseId: string) => void;
+  markMidPlayed: (minute: number) => void;
   updateFriendship: (npcId: string, amount: number) => void;
   addKarma: (amount: number) => void;
   startQuest: (questId: string) => void;
@@ -454,7 +457,7 @@ export const useERStore = create<ERState>()(
         
         return { 
           currency: state.currency + earned,
-          shiftStats: { ...state.shiftStats, cashEarned: amount > 0 ? state.shiftStats.cashEarned + earned : state.shiftStats.cashEarned, casesTreated: amount > 0 ? state.shiftStats.casesTreated + 1 : state.shiftStats.casesTreated }
+          shiftStats: { ...state.shiftStats, cashEarned: amount > 0 ? state.shiftStats.cashEarned + earned : state.shiftStats.cashEarned }
         };
       }),
       setupPlayer: (name, gender, _language, appearance, university) => set({ 
@@ -536,7 +539,7 @@ export const useERStore = create<ERState>()(
         clockMinutes: 0,
         completedQuests: [],
         tutorialCompleted: false,
-        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [] },
+        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] },
         gifts: {},
         npcDaily: {},
         knownTastes: {},
@@ -545,10 +548,13 @@ export const useERStore = create<ERState>()(
         patientLog: {}
       }),
       resetShiftStats: () => set((state) => ({
-        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [] }
+        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] }
       })),
       markSpawned: (caseId) => set((state) => ({
         shiftStats: { ...state.shiftStats, spawned: [...(state.shiftStats.spawned ?? []), caseId] }
+      })),
+      markMidPlayed: (minute) => set((state) => ({
+        shiftStats: { ...state.shiftStats, midPlayed: [...(state.shiftStats.midPlayed ?? []), minute] }
       })),
       logShiftPatient: (p) => set((state) => ({
         shiftStats: { ...state.shiftStats, patients: [...(state.shiftStats.patients ?? []), p] }

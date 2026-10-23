@@ -4,6 +4,7 @@ import { withBase } from "@/lib/basePath";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { audio } from "@/lib/audio";
+import { music } from "@/lib/music";
 import { useERStore } from "@/lib/erStore";
 
 interface SettingsMenuProps {
@@ -22,6 +23,7 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
     const next = !isMuted;
     setIsMuted(next);
     audio.setMute(next);
+    music.setMute(next);
     if (!next) audio.playClick();
   };
 

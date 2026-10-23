@@ -24,15 +24,21 @@ export interface DayStory {
  * Clock time the shift starts, in minutes after midnight. The opening scene often names it
  * ("ER รามาเซ็นทรัล 03:12 น."), and the clock should agree with the story. Defaults to 08:00.
  */
-export function shiftStartMinutes(story: DayStory): number {
-  for (const n of story.start.slice(0, 3)) {
+/** The first "HH:MM น." in a scene's opening lines, as minutes after midnight */
+export function timeInScene(scene: CutsceneNode[]): number | null {
+  // Look past an opening flag check, which carries no text worth reading
+  for (const n of scene.filter((x) => !x.text?.startsWith("[ROUTER]")).slice(0, 8)) {
     const m = (n.text || "").match(/(\d{1,2})[:.](\d{2})\s*น/);
     if (m) {
       const h = Number(m[1]), min = Number(m[2]);
       if (h < 24 && min < 60) return h * 60 + min;
     }
   }
-  return 8 * 60;
+  return null;
+}
+
+export function shiftStartMinutes(story: DayStory): number {
+  return timeInScene(story.start) ?? 8 * 60;
 }
 
 /**

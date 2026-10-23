@@ -19,7 +19,8 @@ export function LettersModal({ onClose }: { onClose: () => void }) {
   const treated = Object.entries(patientLog).filter(([id]) => PATIENTS[id]).sort(([, a], [, b]) => b.day - a.day);
 
   const openLetter = (id: string) => {
-    audio.playClick();
+    if (patientLog[id].letterRead) audio.playClick();
+    else audio.playSparkle();
     const p = PATIENTS[id];
     if (!patientLog[id].letterRead) {
       readLetter(id);
