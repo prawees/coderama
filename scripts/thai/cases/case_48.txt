@@ -1,0 +1,51 @@
+cc: ไข้ ปวดขา มีผื่น มา 9 ชม.
+bg: นักเรียนประจำ มีไข้และปวดหัวตั้งแต่เที่ยงคืน ตีสี่ปวดน่องทั้งสองข้างมาก มือเท้าเย็น ตัวเองกับพยาบาลโรงเรียนคิดว่าเป็นไข้หวัดใหญ่ เห็นผื่นครั้งแรกตอน 7 โมงเช้า พอ 8 โมงครึ่งผื่นลามชัดขึ้น มาถึง 09:10 น. 9 ชม. หลังเริ่มอาการ สัปดาห์นี้นักเรียนในหอเดียวกันไม่สบายอีก 2 คน ปวดแขนขารุนแรง มือเท้าเย็น และสีผิวผิดปกติ มาก่อนผื่นคลาสสิกและ meningism โดยเฉลี่ย 8 ชม. และเป็น sign ที่ซื้อเวลาได้
+i.lac1: Severe tissue hypoperfusion ใน meningococcal disease lactate กับ capillary refill บอกว่าใกล้ตายแค่ไหนได้ดีกว่า BP เพราะวัยรุ่นรักษา BP ไว้ได้จนถึงวินาทีที่รักษาไม่ได้
+i.coag1: DIC คือกระบวนการที่ทำให้เกิด purpura และเป็นเหตุผลที่ห้ามทำ LP ตอนนี้
+i.bc1: Positive PCR ยังบวกต่ออีกหลายวันหลังเริ่ม antibiotic จึงควรส่งแม้ให้ยาไปแล้วและ culture น่าจะไม่ขึ้น
+i.gluc1: Hypoglycemia, hyponatremia และ hypocalcemia ทั้งสามเกิดได้ใน severe meningococcal sepsis ทั้งสามทำให้หัวใจบีบตัวแย่ลง และทั้งสามแก้ได้ในไม่กี่นาที
+i.cbc1: Leukopenia ในบริบทนี้เป็นตัวบ่งความรุนแรงและ sepsis ที่ท่วมท้น ไม่ใช่เหตุผลให้สงสัยว่าไม่ใช่แบคทีเรีย
+i.cort1: ต่ำเกินไป ชวนนึกถึง adrenal hemorrhage (Waterhouse-Friderichsen syndrome) ซึ่งเป็น complication ที่รู้จักของ fulminant meningococcemia
+req1.l: Antibiotic ในนาทีแรกๆ ก่อนจัดการเรื่องอื่น
+req1.c: Ceftriaxone 2 g IV, IO หรือ IM เดี๋ยวนี้
+req1.d0: ทำ LP ก่อนยืนยันเชื้อ
+req1.f0: ห้ามเลื่อน antibiotic ห้ามทำ LP ใน septicemic shock
+req1.d1: รอเจาะ H/C ก่อนให้ antibiotic
+req1.f1: ช้าแล้ว mortality เพิ่ม เก็บ culture เฉพาะถ้าไม่ทำให้ช้า
+req1.m0: 2 g IV ทุกชั่วโมงที่ช้า mortality เพิ่มขึ้นมาก ถ้าเปิดเส้นเกินไม่กี่นาที ให้ทาง IO หรือ IM แทนการรอ ความผิดพลาดที่ถึงตายบ่อยที่สุดในโรคนี้คือเลื่อน antibiotic เพื่อรอ imaging รอ LP หรือรอ staff
+req2.l: Fluid resuscitation เต็มที่สำหรับ capillary leak
+req2.c: Balanced crystalloid bolus 20 mL/kg
+req2.d0: จำกัด fluid กัน cerebral edema
+req2.f0: เป็น septicemic shock ร่วมกับ capillary leak ต้องได้ bolus
+req2.d1: Bolus ครั้งเดียวไม่ต้องประเมินซ้ำ
+req2.f1: ประเมินซ้ำหลังทุก bolus เพื่อกำหนด fluid ต่อ
+req2.m0: 20 mL/kg (ราว 1200 mL) เร็วๆ ซ้ำได้ meningococcal septicemia ต้องการ fluid มหาศาลเพราะ capillary leak บ่อยครั้ง 60 ถึง 100 mL/kg ในชั่วโมงแรกๆ ตรงนี้ให้น้อยไปพบบ่อยกว่าให้มากไปมาก
+req3.l: เริ่ม vasoactive เร็ว อย่าให้ fluid อย่างเดียวต่อไป
+req3.d0: ให้ fluid เกิน 80 mL/kg ก่อนเริ่ม vasopressor
+req3.f0: ให้ fluid อย่างเดียวต่อไปทำให้ pulmonary edema เริ่ม vasoactive เร็ว
+req3.d1: รอ central line ก่อนเริ่ม adrenaline
+req3.f1: ให้ทาง peripheral หรือ IO ได้ระหว่างรอ central line
+req3.m0: Cold shock ที่ capillary refill นานเหมาะกับ adrenaline อย่ารอ central line ให้แบบเจือจางทาง peripheral ปลอดภัยกว่าปล่อยช็อกไว้หนึ่งชั่วโมง
+req3.m1: 50 mg IV ทุก 6 ชม. เพราะ cortisol ต่ำและอาจมี adrenal hemorrhage
+req4.l: ไม่ทำ LP และไม่เลื่อนการรักษาเพื่อรอ imaging
+req4.c: ไม่ทำ LP ส่ง PCR จากเลือด
+req4.d0: ส่ง CT brain ก่อนรักษา
+req4.f0: อย่าเลื่อนการรักษาเพื่อรอ imaging รักษา septicemia เดี๋ยวนี้
+req4.d1: ให้ dexamethasone สำหรับ meningitis
+req4.f1: Dexamethasone ไม่มี indication ใน meningococcal septicemia
+req4.m0: ห้ามทำในเคสนี้เพราะช็อก coagulopathy fibrinogen 0.9 platelet 48 และความรู้สึกตัวลดลง PCR จากเลือดได้เชื้อโดยไม่มีความเสี่ยง LP ในคนไข้รายนี้ทำให้ coning หรือ epidural hematoma ได้ และไม่ได้เปลี่ยนการรักษาคืนนี้เลย
+out1.l: แย่ลงทั้งที่รักษาแล้ว
+out1.n: หลังได้ crystalloid 3.5 ลิตรกับ adrenaline drip SBP ขึ้นถึง 92 แต่ purpura ยังลามต่อ นิ้วมือนิ้วเท้าคล้ำ ต้อง intubate เพราะความรู้สึกตัวลดลง ได้ antibiotic ที่ 14 นาทีหลังมาถึง โรคนี้ยังลุกลามต่ออีกหลายชั่วโมงหลังเริ่มการรักษาที่ถูก
+ethical_1.l: โทรแจ้งสาธารณสุขเองตอน 09:40 น. ไม่โยนให้คนอื่น (Empathy)
+ethical_1.n: พ่อแม่อยู่ห่างไป 4 ชม. โรงเรียนมีนักเรียนประจำ 380 คน สองคนไม่สบายอยู่แล้ว ความรู้สึกคืออยากทุ่มทั้งหมดกับการ resuscitate แล้วให้วอร์ดแจ้งเรื่องโรค หมอโทรจากห้อง resus แจ้งงานควบคุมโรคติดต่อของอำเภอภายในชั่วโมง ระบุผู้สัมผัสใกล้ชิดรวมทั้งหอพักและนักเรียนสองคนที่ไม่สบายให้ได้ ciprofloxacin ป้องกัน และจัดวัคซีน บ่ายนั้นหนึ่งในสองคน admit ด้วย early meningococcemia และหายดี โทรศัพท์ครั้งนั้นใช้ 4 นาที และเป็นสิ่งที่คุ้มที่สุดที่ทำทั้งวัน
+req5.l: ดูแลใน ICU จัดการ coagulopathy และแขนขาขาดเลือด
+req5.c: ICU, cryo ถ้าเลือดออก, แจ้งผู้สัมผัส
+req5.d0: ให้ platelet กับ FFP ให้ตัวเลขปกติ
+req5.f0: Blood product ให้ตามเลือดออกและ fibrinogen ไม่ใช่ตามตัวเลขอย่างเดียว
+req5.d1: รอทีมเช้าแจ้งสาธารณสุข
+req5.f1: ผู้สัมผัสต้องได้ยาป้องกันเร็ว แจ้งสาธารณสุขเดี๋ยวนี้
+req5.m0: Cryoprecipitate เมื่อ fibrinogen ต่ำกว่า 1.5 g/L ไม่ต้องแก้ platelet แบบป้องกันถ้าไม่มีเลือดออกหรือไม่ได้จะทำหัตถการ
+out2.l: รอดแต่เสียเนื้อเยื่อ
+out2.n: ช็อกหายใน 48 ชม. purpura fulminans ทำให้นิ้วเท้าซ้ายสามนิ้วกับปลายนิ้วมือสองนิ้วตายทั้งความหนา extubate วันที่ 6 ไม่มีความผิดปกติทางระบบประสาท คัดกรองการได้ยินปกติ ซึ่งไม่ใช่เรื่องแน่นอนหลัง meningococcal disease
+out3.l: Disposition
+out3.n: ตัดนิ้วเท้าสามนิ้วสัปดาห์ที่ 3 แล้วฟื้นฟู D/C วันที่ 28 ตรวจคัดกรอง complement deficiency ซึ่งเป็นมาตรฐานหลัง invasive meningococcal disease ในวัยรุ่น ผลปกติ โรงเรียนจัดฉีดวัคซีนและไม่มีรายใหม่ 9 ชม. จากอาการแรกถึง antibiotic คือตัวเลขที่อธิบายนิ้วเท้าที่หายไป

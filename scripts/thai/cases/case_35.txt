@@ -1,0 +1,51 @@
+cc: ล้มหมดสติทันทีระหว่างรอคลอด
+bg: ครรภ์ที่ 3 GA 39+4 สัปดาห์ อยู่ใน active labour ปากมดลูกเปิด 8 cm ได้ oxytocin เร่งคลอด เจาะถุงน้ำคร่ำเมื่อ 11 นาทีก่อน บอกว่ารู้สึกหนาวและกลัวขึ้นมาทันที แล้วชักครู่หนึ่งและหมดสติ ความรู้สึกว่ากำลังจะเกิดเรื่องร้ายก่อนล้มพบในเคสส่วนใหญ่ และมักเป็นสัญญาณเตือนเดียว ประกาศ obstetric emergency ตอน 03:14 น.
+i.coag1: Fulminant DIC fibrinogen ที่ร่วงจาก baseline ตอนตั้งครรภ์ 4 ถึง 6 g/L เหลือต่ำกว่า 0.5 ในไม่กี่นาที เกือบจำเพาะต่อ AFE ในบรรดาภาวะวิกฤตทางสูติกรรม
+i.abg1: Profound mixed acidosis ร่วมกับ severe hypoxemia
+i.echo1: RV โตมาก บีบตัวแย่ septum โป่งเข้า LV LV เล็กและเลือดเข้าไม่พอ ไม่มี pericardial effusion รูปแบบ RV failure นี้นำการรักษา ต้องใช้ vasopressor และ pulmonary vasodilator และแปลว่าการ load fluid หนักจะทำให้แย่ลง
+i.hb1: ลดเร็วจาก PPH บนภาวะ coagulopathy เต็มรูปแบบ
+i.ecg1: Sinus tachycardia 146/min, right axis deviation, S1Q3T3 และ T inversion V1 ถึง V4 acute right heart strain ดูจาก EKG อย่างเดียวแยกจาก massive PE ไม่ได้
+i.ca1: Hypocalcemia จากให้เลือดปริมาณมากที่มี citrate calcium จำเป็นทั้งต่อการแข็งตัวของเลือดและการบีบตัวของหัวใจ และถูกลืมซ้ำแล้วซ้ำเล่าระหว่าง massive transfusion
+req1.l: ประกาศ obstetric emergency ดันมดลูกไปทางซ้าย airway และ O2
+req1.c: ประกาศ emergency ดันมดลูก ให้ O2
+req1.d0: ให้ oxytocin drip ต่อ
+req1.f0: คนไข้กำลังทรุด ตามทีมฉุกเฉิน ตะแคงซ้าย และช่วย airway
+req1.d1: จับนอนราบเตรียม CPR เลย
+req1.f1: ยังมี output อยู่ ดันมดลูกไปทางซ้ายลดการกด vena cava
+req1.m0: ดีกว่าเอียงเตียง เพราะการกดหน้าอกที่ได้ผลต้องทำบนพื้นราบ มดลูกครบกำหนดกด aorta และ vena cava จน cardiac output ระหว่าง CPR ลดลงครึ่งหนึ่งได้
+req2.l: เตรียม perimortem C/S ภายใน 4 นาทีถ้า arrest
+req2.c: มีดผ่าตัดข้างเตียงและคนจับเวลา
+req2.d0: เตรียมย้ายไปห้องผ่าตัดทำ C/S ถ้า arrest
+req2.f0: Perimortem C/S ทำตรงที่ arrest ภายใน 4 นาที เตรียมมีดไว้ข้างเตียง
+req2.d1: CPR ให้ครบ 15 นาทีก่อนคลอด
+req2.f1: คลอดภายใน 4 ถึง 5 นาทีหลัง arrest เพิ่มการรอดของทั้งแม่และลูก
+req2.m0: ถ้า arrest ที่อายุครรภ์เกิน 20 สัปดาห์ ต้องเริ่มคลอดภายใน 4 นาทีและเสร็จภายใน 5 นาที ทำข้างเตียง ไม่ใช่ในห้องผ่าตัด และทำเพื่อช่วย resuscitate แม่เป็นหลัก โดยลดการกด aorta และ vena cava
+req3.l: พยุง RV อย่าท่วมมัน
+req3.d0: ให้ fluid 2 ลิตรเร็วๆ แก้ BP ต่ำ
+req3.f0: RV กำลังล้มเหลว fluid เกินทำให้แย่ลง ใช้ vasopressor และ inotrope
+req3.d1: ให้ heparin คิดว่าเป็น PE
+req3.f1: นี่คือ AFE ที่เสี่ยง DIC heparin จะทำให้เลือดออกมากขึ้น
+req3.m0: เริ่มเร็วสำหรับ vasoplegia
+req3.m1: Dobutamine หรือ milrinone พิจารณา inhaled nitric oxide หรือ pulmonary vasodilator ถ้ามี
+req3.m2: RV ที่ล้มเหลวและโตจะแย่ลงเมื่อได้ volume นี่ตรงข้ามกับปฏิกิริยาอัตโนมัติเมื่อคนไข้สูติล้มพร้อมเลือดออก และเป็นเหตุผลที่ echo สำคัญ
+req4.l: Massive transfusion โดยเล็งที่ fibrinogen
+req4.d0: ให้ PRC อย่างเดียว
+req4.f0: AFE ทำให้ DIC กิน fibrinogen ให้ cryo หรือ fibrinogen ตั้งแต่เนิ่นๆ
+req4.d1: รอผล coag ก่อนให้ blood product
+req4.f1: DIC เกิดเร็ว เปิด MTP เดี๋ยวนี้
+req4.m0: เป้า fibrinogen เกิน 2 g/L ใน AFE coagulopathy มักฆ่าเร็วกว่าเหตุการณ์ทางหัวใจ และไม่ตอบสนองต่อ PRC อย่างเดียว
+req4.m1: 10% calcium chloride 10 mL ซ้ำได้ ตามระดับ ionized calcium
+out1.l: Cardiac arrest และ perimortem delivery
+out1.n: Arrest เป็น PEA ที่นาทีที่ 6 เริ่ม perimortem C/S ที่ 4 นาทีหลัง arrest ทารกคลอดที่ 4 นาที 40 วินาที Apgar 3 แล้ว 7 หลัง resuscitate ROSC ของแม่กลับมา 90 วินาทีหลังคลอด ซึ่งคือผลที่หัตถการนี้ออกแบบมาให้เกิด
+ethical_1.l: จัดคนดูแลสามี และ debrief ทีมหลังจบ (Empathy)
+ethical_1.n: สามีเห็นท้องภรรยาถูกเปิดบนเตียงคลอด หมอจัดพยาบาลผดุงครรภ์อาวุโสอยู่กับเขาตั้งแต่วินาทีนั้น แทนที่จะปล่อยไว้ที่ทางเดินสองชั่วโมงอย่างที่มักเกิด หลังจบหมอยืนยันให้ debrief ทีมตอน 8 โมงเช้า ไม่ปล่อยให้ทุกคนกลับบ้าน น้องผดุงครรภ์ที่ถือ fetal monitor อยู่อายุ 23 และเพิ่งเห็น perimortem C/S เธอจะจำได้ว่ามีใครคุยกับเธอหรือเปล่า พี่พิมนำ debrief และบอกว่าแผนกเสียคนไปเพราะคืนแบบนี้ที่ไม่ได้คุยกันมากกว่าเพราะเงินเดือน
+req5.l: ดูแลหลัง arrest ใน ICU และหยุดเลือด
+req5.d0: ย้ายไปวอร์ดสามัญหลังคลอด
+req5.f0: รอดจาก arrest แต่เลือดยังออก ต้องอยู่ ICU และหยุดเลือด
+req5.d1: หยุดให้เลือดเมื่อถึง ICU
+req5.f1: ให้ blood product ตามผลต่อไปตราบที่เลือดยังออก
+req5.m0: ตัดมดลูกถ้าคุมเลือดไม่ได้ แต่ต้องแก้ fibrinogen ก่อน ผ่าตัดเข้าไปใน coagulopathy ที่ยังไม่แก้ทำให้เลือดออกมากขึ้น
+out2.l: รอดด้วยการพยุงอวัยวะ
+out2.n: ให้เลือดรวม PRC 14 unit FFP 12 unit cryo 20 unit platelet 3 pool เก็บมดลูกไว้ได้ด้วย balloon extubate วันที่ 4 มี cognitive impairment เล็กน้อยจากช่วง hypoxia ดีขึ้นที่ 3 เดือน อัตรารอดที่รายงานดีขึ้นมากเมื่อจับได้เร็วและให้ blood product เต็มที่
+out3.l: Disposition
+out3.n: D/C วันที่ 16 พร้อมลูกสาว ส่งข้อมูลเข้าทะเบียน AFE ระดับชาติ ได้คำปรึกษาว่ามีรายงานการเป็นซ้ำในครรภ์หน้า แต่ไม่ชัดว่าเสี่ยงเพิ่ม ซึ่งเป็นคำตอบตามจริงมากกว่าคำปลอบใจ หน่วยทบทวนความพร้อม perimortem C/S และย้ายชุดมีดผ่าตัดเข้าไปไว้ทุกห้องคลอด

@@ -11,7 +11,7 @@ import c7 from "../public/locales/en/case_07_vip.json";
 import c8 from "../public/locales/th/case_08.json";
 import c9 from "../public/locales/en/case_09.json";
 import c10 from "../public/locales/th/case_10.json";
-import c11 from "../public/locales/en/case_11.json";
+import c11 from "../public/locales/th/case_11.json";
 import c12 from "../public/locales/th/case_12.json";
 import c13 from "../public/locales/th/case_13.json";
 import c14 from "../public/locales/th/case_14.json";
@@ -34,8 +34,8 @@ import c30 from "../public/locales/en/case_30.json";
 import c31 from "../public/locales/en/case_31.json";
 import c32 from "../public/locales/en/case_32.json";
 import c33 from "../public/locales/en/case_33.json";
-import c34 from "../public/locales/en/case_34.json";
-import c35 from "../public/locales/en/case_35.json";
+import c34 from "../public/locales/th/case_34.json";
+import c35 from "../public/locales/th/case_35.json";
 import c36 from "../public/locales/th/case_36.json";
 import c37 from "../public/locales/th/case_37.json";
 import c38 from "../public/locales/th/case_38.json";
@@ -45,12 +45,12 @@ import c41 from "../public/locales/th/case_41.json";
 import c42 from "../public/locales/th/case_42.json";
 import c43 from "../public/locales/th/case_43.json";
 import c44 from "../public/locales/th/case_44.json";
-import c45 from "../public/locales/en/case_45.json";
-import c46 from "../public/locales/en/case_46.json";
+import c45 from "../public/locales/th/case_45.json";
+import c46 from "../public/locales/th/case_46.json";
 import c47 from "../public/locales/th/case_47.json";
-import c48 from "../public/locales/en/case_48.json";
-import c49 from "../public/locales/en/case_49.json";
-import c50 from "../public/locales/en/case_50.json";
+import c48 from "../public/locales/th/case_48.json";
+import c49 from "../public/locales/th/case_49.json";
+import c50 from "../public/locales/th/case_50.json";
 
 export const CASE_DATA: Record<string, any> = {
   "case_01": c0,
@@ -106,4 +106,4 @@ export const CASE_DATA: Record<string, any> = {
   "case_50": c50,
 };
 
-export const THAI_CASES = 36;
+export const THAI_CASES = 44;

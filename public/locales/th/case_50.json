@@ -1,0 +1,484 @@
+{
+  "title": "MCI: Bus vs Tanker, 34 Casualties (Triage Scenario)",
+  "age": "34",
+  "sex": "M",
+  "chiefComplaint": "Mass casualty incident ผู้บาดเจ็บระลอกแรกถึงในอีก 6 นาที",
+  "diagnoses": [
+    "Mass casualty incident with capacity failure",
+    "Multiple blunt polytrauma",
+    "Inhalational injury from the tanker fire",
+    "Secondary triage error",
+    "Departmental surge failure"
+  ],
+  "background": "รถบัสนำเที่ยวชนรถบรรทุกน้ำมันบนทางด่วนยกระดับตอน 21:40 น. รายงานผู้บาดเจ็บ 34 คน วิกฤตอย่างน้อย 8 คน มีไฟไหม้ที่จุดเกิดเหตุ แผนกมี resus bay 4 เตียง เตียง monitor 18 เตียง ศัลยแพทย์ทั่วไปอยู่เวร 2 คน ห้องผ่าตัดว่าง 1 ห้อง และเลือด O negative ในตู้เย็น 6 unit มีอีกสอง รพ. รับผู้บาดเจ็บ หมอคือแพทย์ฉุกเฉินที่อาวุโสที่สุดในตึก staff trauma อยู่ห่างไป 30 นาที V/S ที่เห็นเป็นของคนไข้รายแรกที่บรรยายข้างล่าง ซึ่งเป็นคนแรกที่ผ่านประตูมา และเป็นการ triage ครั้งแรกที่หมอจะถูกตัดสิน",
+  "patientAppearance": {
+    "skinTone": "#c99a68",
+    "bmiFactor": 1.0,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 148,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 76,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 40,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 34,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 35.2,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 88,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 9,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Index patient: 34 year old male, thrown from the bus, cold and grey, GCS 9, obvious deformity of the left thigh. He walked past triage on a stretcher into resus one, and the question is whether he should have",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Facial soot and singed nasal hairs from the tanker fire, hoarse voice, no stridor yet. Nine of the thirty-four casualties have similar airway findings and there are four ventilators available in the whole hospital",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Tachycardic at 148/min, systolic 76, radial pulse impalpable and femoral pulse weak. Under the START triage system an impalpable radial pulse with a respiratory rate above 30 places him in the immediate (red) category",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Reduced air entry on the left with hyperresonance and tracheal shift, consistent with a tension pneumothorax. This is treatable in 60 seconds at the door and is the classic thing that gets missed when everyone is counting casualties",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Distended and rigid. Positive eFAST with free fluid in Morison's pouch and the pelvis. He needs the one available operating theatre, and three other red patients also need it",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cold and mottled, partial thickness burns to about 12% of the body surface over the right arm and flank, open left femoral fracture with ongoing bleeding controlled by a tourniquet applied at scene",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 9 (E2V3M4), moving all limbs, pupils equal. In a mass casualty setting, a GCS that is low from shock rather than from head injury is a resource question and not a neurological one, because it will improve with blood",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "capacity1",
+      "kind": "lab",
+      "category": "Logistics",
+      "name": "Departmental capacity audit",
+      "value": "4 resus bays / 18 cubicles / 1 theatre / 6 units O negative / 4 ventilators",
+      "unit": "-",
+      "normalRange": "-",
+      "abnormal": true,
+      "report": "ผู้บาดเจ็บ 34 คนเทียบกับตัวเลขเหล่านี้ ใน mass casualty incident สิ่งที่จำกัดไม่เคยเป็นความรู้ แต่เป็นเวลาห้องผ่าตัด เลือด และ ventilator แผนต้องเขียนตามสามตัวเลขนี้ ไม่ใช่ตามจำนวนคนไข้"
+    },
+    {
+      "id": "triage1",
+      "kind": "lab",
+      "category": "Scoring",
+      "name": "START triage distribution at 40 minutes",
+      "value": "Red 8, Yellow 11, Green 13, Black 2",
+      "unit": "-",
+      "normalRange": "-",
+      "abnormal": true,
+      "report": "คนไข้ immediate 8 คน resus bay 4 เตียง ห้องผ่าตัด 1 ห้อง re-triage ทุกคนทุก 15 นาที เพราะเหลืองกลายเป็นแดง และเขียวเดินออกไปล้มที่ลานจอดรถ"
+    },
+    {
+      "id": "fast1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "eFAST (index patient)",
+      "report": "Free fluid ใน Morison's pouch และ pelvis ไม่มี lung sliding ข้างซ้าย เจอ lung point ยืนยันทั้ง hemoperitoneum และ left pneumothorax ใน mass casualty incident eFAST คือเครื่องมือ triage ที่ตัดสินว่าใครได้ห้องผ่าตัด เพราะใช้ 90 วินาที ส่วน CT ไม่ใช่",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "blood1",
+      "kind": "lab",
+      "category": "Blood bank",
+      "name": "Blood bank status",
+      "value": "6 units O negative on site, 20 more units 45 minutes away",
+      "unit": "-",
+      "normalRange": "-",
+      "abnormal": true,
+      "report": "6 unit กับคนไข้แดง 8 คน การเรียกระบบขนส่งเลือดของเขตตั้งแต่สายแรก แทนที่จะรอใช้ไป 4 unit คือความต่างระหว่างมีเลือดที่นาทีที่ 45 กับนาทีที่ 90"
+    },
+    {
+      "id": "gas1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Blood gas and lactate (index patient)",
+      "value": "pH 7.09 / base deficit -16 / lactate 9.2 / COHb 14%",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Severe shock ร่วมกับ carboxyhemoglobin สูงจากไฟไหม้ base deficit คือตัวแยกที่ดีที่สุดที่มีว่าใครต้องได้เลือดและห้องผ่าตัดก่อน"
+    },
+    {
+      "id": "xr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Portable chest and pelvis X-ray",
+      "report": "Left pneumothorax decompress แล้ว มี ICD อยู่ mediastinum ไม่กว้าง pelvis ปกติ left femoral shaft fracture ถ่าย portable อย่างเดียว ระลอกแรกไม่มีใครไป CT เพราะทางเดินห้อง CT จะกลายเป็นคิว และคิวจะกลายเป็นคอขวด",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "ประกาศ major incident และเป็นผู้สั่งการ",
+          "distractors": [
+            {
+              "label": "ไปรักษาคนไข้วิกฤตรายแรกเอง",
+              "feedback": "ใน mass casualty incident ต้องมีคนสั่งการ ประกาศเหตุการณ์และรับบทบาท"
+            },
+            {
+              "label": "เก็บคนไข้ที่มีอยู่ทั้งหมดไว้ในแผนก",
+              "feedback": "เคลียร์แผนกให้มีที่รับผู้บาดเจ็บที่กำลังมา"
+            }
+          ],
+          "label": "ประกาศเหตุการณ์ และรับบทบาท ไม่ใช่รับคนไข้",
+          "actions": [
+            "Declare a major incident and activate the hospital plan",
+            "Appoint yourself or a named colleague as medical commander",
+            "Appoint a separate triage officer at the door",
+            "Clear the department: discharge or move every patient who can be moved"
+          ],
+          "doseMap": {
+            "Appoint yourself or a named colleague as medical commander": "ผู้สั่งการไม่รักษาคนไข้ ความล้มเหลวที่พบบ่อยที่สุดใน mass casualty incident คือหมอที่ประสบการณ์มากที่สุดไปรับคนไข้วิกฤตรายแรก และแผนกเสียคนเดียวที่เห็นภาพรวมไป"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "START triage ที่ประตู ทำแค่สิ่งที่ใช้ 60 วินาที",
+          "distractors": [
+            {
+              "label": "Resuscitate คนไข้แต่ละรายเต็มที่ที่ประตู",
+              "feedback": "Triage ที่ประตูทำแค่หัตถการช่วยชีวิต resuscitate เต็มที่ทำให้การไหลติดขัด"
+            },
+            {
+              "label": "Triage ตามลำดับที่มาถึง",
+              "feedback": "ใช้ระบบ triage ที่กำหนดตาม physiology"
+            }
+          ],
+          "label": "Triage ที่ประตูด้วยระบบที่กำหนด ทำแค่หัตถการ 60 วินาที",
+          "actions": [
+            "START or equivalent triage at the entrance",
+            "Open the airway and decompress a tension pneumothorax, nothing more",
+            "Apply tourniquets to catastrophic haemorrhage",
+            "Tag every patient and record the time"
+          ],
+          "doseMap": {
+            "Open the airway and decompress a tension pneumothorax, nothing more": "ที่จุด triage ทำได้แค่หัตถการที่ใช้ไม่ถึงนาทีและช่วยชีวิตได้ เริ่ม resuscitate เต็มที่ที่จุด triage คือหยุด triage และคิวข้างหลังจะเสียคนมากกว่าที่ช่วยได้"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "จัดห้องผ่าตัด เลือด และ ventilator ตามประโยชน์",
+          "distractors": [
+            {
+              "label": "ให้ห้องผ่าตัดกับคนไข้ที่มาถึงคนแรก",
+              "feedback": "ทรัพยากรไปที่คนที่คาดว่าจะได้ประโยชน์มากที่สุด จัดสรรอย่างชัดเจน"
+            },
+            {
+              "label": "เก็บเลือดไว้ให้คนที่บาดเจ็บหนักที่สุด",
+              "feedback": "จัดสรรเลือดตามประโยชน์ต่อการรอดชีวิต และเรียกเลือดจากเขต"
+            }
+          ],
+          "label": "จัดสรรทรัพยากรที่ขาดแคลนอย่างชัดเจน และเขียนการจัดสรรไว้",
+          "actions": [
+            "Assign the operating theatre by expected survival benefit",
+            "Assign the 6 units of O negative",
+            "Assign the 4 ventilators",
+            "Activate regional blood transport and mutual aid immediately"
+          ],
+          "doseMap": {
+            "Assign the operating theatre by expected survival benefit": "ประโยชน์สูงสุดต่อคนจำนวนมากที่สุด non-responder ที่ยังช่วยได้และจะตายถ้าไม่ผ่าตัดไปก่อน responder รอได้ ส่วนที่ช่วยไม่ได้จัดเป็น expectant นี่คือการกลับหัวทางจริยธรรมจากงานปกติ และต้องเป็นการตัดสินใจที่ประกาศชัดและมีชื่อคนรับผิดชอบ"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "คนไข้รายแรก stable และเขาไม่ได้เข้าห้องผ่าตัดเป็นคนแรก",
+          "outcomeType": "improved",
+          "narrative": "ICD ข้างซ้ายที่ประตูทำให้ SpO2 ขึ้นเป็น 94% SBP 92 หลังได้เลือด 2 unit eFAST บวกแต่เป็น responder คนไข้แดงอีกรายที่ FAST บวก ไม่ตอบสนอง SBP 60 ได้ห้องผ่าตัดก่อน คนไข้ของหมอเข้าเป็นคนที่สอง 35 นาทีต่อมา รอดทั้งคู่ ถ้าหมอเอาห้องผ่าตัดให้คนไข้ตรงหน้า อีกคนคงไม่รอด",
+          "vitalChanges": {
+            "hr": 118,
+            "sbp": 92,
+            "dbp": 54,
+            "rr": 24,
+            "spo2": 94,
+            "gcs": 13
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 420
+        },
+        "data": {
+          "label": "จัดคนดูแลคนไข้ expectant แทนการปล่อยไว้ที่ทางเดิน (Empathy)",
+          "ethicalValue": 25,
+          "narrative": "คนไข้สองรายถูก triage เป็น expectant บาดเจ็บที่รอดไม่ได้ด้วยทรัพยากรที่มีคืนนี้ ทางที่มีประสิทธิภาพคือย้ายไปห้องข้างแล้วลืมไป หมอจัดพยาบาลหนึ่งคนกับพระหนึ่งรูป เขียน order ยาแก้ปวดและ sedation ให้ทั้งสองราย แล้วพูดกับทีมดังๆ ว่า expectant ไม่ได้แปลว่าทิ้ง หนึ่งในนั้นรู้สึกตัวอยู่ 11 นาที และมีคนจับมืออยู่ตลอด พี่พิมบอกทีหลังว่านี่คือส่วนของการฝึก major incident ที่ไม่มีใครซ้อม และเป็นส่วนที่ทุกคนจำไปตลอดชีวิตการทำงาน"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "choice": "Re-triage ทุก 15 นาที เต็มแล้วให้เบี่ยงไปที่อื่น",
+          "distractors": [
+            {
+              "label": "Triage ครั้งเดียวไม่ต้องซ้ำ",
+              "feedback": "คนไข้แย่ลงได้ re-triage ทุก 15 นาที"
+            },
+            {
+              "label": "รับรถพยาบาลทุกคันที่มา",
+              "feedback": "เมื่อเต็มแล้ว ให้เบี่ยงไปที่อื่นเพื่อปกป้องคนไข้ที่อยู่ที่นี่แล้ว"
+            }
+          ],
+          "label": "Re-triage ทุก 15 นาที และคุมระลอกที่สอง",
+          "actions": [
+            "Formal retriage of all yellow and green patients every 15 minutes",
+            "Designate a separate area for walking wounded away from the resuscitation area",
+            "Assign a scribe to maintain a single casualty board",
+            "Refuse further ambulances once capacity is reached"
+          ],
+          "doseMap": {
+            "Refuse further ambulances once capacity is reached": "การเบี่ยงไปอีกสอง รพ. ที่รับผู้บาดเจ็บเป็นการตัดสินใจทาง clinical ไม่ใช่งานธุรการ รับคนไข้ที่รักษาไม่ไหวเท่ากับทำให้แผนกที่ล้นหนึ่งแห่งกลายเป็นสองแห่ง"
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ซ่อมทุกบาดแผลให้จบในการผ่าตัดครั้งแรก",
+              "feedback": "Damage control surgery ช่วยชีวิตได้เมื่อทรัพยากรขาดแคลน แบ่งการรักษา definitive เป็นขั้น"
+            },
+            {
+              "label": "Fix กระดูกหักทั้งหมดคืนแรก",
+              "feedback": "แบ่ง fixation ทาง ortho เป็นขั้น บาดเจ็บที่คุกคามชีวิตมาก่อน"
+            }
+          ],
+          "label": "Damage control surgery แล้วค่อยรักษา definitive เป็นขั้นๆ",
+          "actions": [
+            "Damage control laparotomy rather than definitive repair",
+            "Pack, close and return to ICU",
+            "Stage all orthopaedic fixation",
+            "Reassess burns and inhalational injuries as the second priority wave"
+          ],
+          "doseMap": {
+            "Damage control laparotomy rather than definitive repair": "40 นาทีต่อราย แทน 3 ชม. ห้องผ่าตัดเดียวกับคนไข้แดง 8 คน วินัยในการผ่าตัดคือเครื่องมือ triage"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "ผลที่ 6 ชม.",
+          "outcomeType": "improved",
+          "narrative": "ผู้บาดเจ็บ 34 คนกระจายไปสาม รพ. แผนกนี้รับ 19 คน เสียชีวิตที่จุดเกิดเหตุ 2 คน expectant 2 คนเสียชีวิตภายในชั่วโมง เสียชีวิตในห้องผ่าตัด 1 คน รอดถึง ICU หรือวอร์ด 14 คน คนไข้รายแรกรอดด้วย splenectomy, femoral nail วันที่ 3 และ inhalation injury ที่หายดี",
+          "vitalChanges": {
+            "hr": 96,
+            "sbp": 112,
+            "dbp": 64,
+            "rr": 18,
+            "temp": 36.4,
+            "spo2": 96,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "req6",
+        "type": "required",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "choice": "Hot debrief ก่อนใครกลับบ้าน",
+          "distractors": [
+            {
+              "label": "ให้ทุกคนกลับบ้านโดยไม่ debrief",
+              "feedback": "Hot debrief ที่มีโครงสร้างหาจุดบกพร่องของระบบและดูแลทีม"
+            },
+            {
+              "label": "Debrief เพื่อหาว่าใครทำผิด",
+              "feedback": "Debrief เน้นที่ระบบ ไม่ใช่การโทษ"
+            }
+          ],
+          "label": "Debrief แผนกก่อนใครกลับบ้าน",
+          "actions": [
+            "Structured hot debrief within 2 hours",
+            "Identify the specific system failures, not the individuals",
+            "Arrange psychological support for staff and for the expectant patients' families",
+            "Formal review within 2 weeks"
+          ],
+          "doseMap": {
+            "Structured hot debrief within 2 hours": "น้องๆ ที่ติดป้าย expectant ต้องการสิ่งนี้มากกว่า staff และเป็นกลุ่มที่มักถูกส่งกลับบ้านก่อน"
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2400,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "Debrief เจอจุดบกพร่องที่แก้ได้สามข้อ เรียกขนส่งเลือดที่นาทีที่ 22 แทนนาทีที่ 2 ไม่มีพื้นที่สำหรับผู้บาดเจ็บที่เดินได้ที่กำหนดไว้ล่วงหน้า และไม่มีใครดูแลกระดานผู้บาดเจ็บใน 18 นาทีแรก แก้ทั้งสามข้อภายในเดือนเดียว เหตุการณ์ครั้งถัดไปแผนกทำได้ดีขึ้นอย่างวัดได้ ซึ่งเป็นนิยามเดียวที่มีประโยชน์ของผลลัพธ์ที่ดีจากคืนแบบนี้",
+          "vitalChanges": {}
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "req6"
+      },
+      {
+        "id": "e10",
+        "source": "req6",
+        "target": "out3"
+      }
+    ]
+  }
+}

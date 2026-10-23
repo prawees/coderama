@@ -1,0 +1,462 @@
+{
+  "title": "27yo F Ruptured Ectopic Pregnancy",
+  "age": "27",
+  "sex": "F",
+  "chiefComplaint": "ปวดท้องน้อยทันที แล้วล้มหมดสติ",
+  "diagnoses": [
+    "Ruptured ectopic pregnancy",
+    "Ruptured ovarian cyst with haemoperitoneum",
+    "Ovarian torsion",
+    "Pelvic inflammatory disease",
+    "Appendicitis"
+  ],
+  "background": "ปวดท้องน้อยขวารุนแรงทันทีเมื่อ 2 ชม. ก่อนขณะทำงาน แล้วเป็นลมหมดสติต่อหน้าคนอื่น มีเลือดออกกะปริบกะปรอยทางช่องคลอด 3 วัน คิดว่าประจำเดือนมาช้า LMP 7 สัปดาห์ก่อน ปกติรอบเดือนสม่ำเสมอ ใส่ห่วงอนามัยชนิดทองแดงมา 18 เดือน เคยเป็น chlamydia รักษาแล้วเมื่อ 3 ปีก่อน ยังไม่ได้ตรวจการตั้งครรภ์ เริ่มปวดปลายไหล่ขวาบนรถพยาบาล",
+  "patientAppearance": {
+    "skinTone": "#eec5a3",
+    "bmiFactor": 0.95,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 128,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 76,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 40,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 26,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.6,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 98,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 14,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Pale, clammy, restless with pain, lying still with knees drawn up",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Conjunctival pallor, dry mucous membranes, no jaundice, no lymphadenopathy",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia, thready radial pulse, capillary refill 4 seconds, normal heart sounds, JVP not visible",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Clear breath sounds, shallow rapid respirations limited by abdominal pain",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Distended and diffusely tender with worst pain in the right iliac fossa, guarding and rebound tenderness, percussion tenderness across the lower abdomen, absent bowel sounds",
+      "abnormal": true
+    },
+    {
+      "id": "pelv1",
+      "system": "Pelvic",
+      "finding": "Dark blood in the vaginal vault, closed cervical os, IUD threads visible, severe cervical motion tenderness, tender fullness in the right adnexa, boggy pouch of Douglas",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cool pale peripheries with mottling to the knees, no rash, no bruising",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 14 (E4V4M6), anxious and slow to respond during pain spikes, no focal deficit",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "hcg1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Urine beta-hCG",
+      "value": "Positive",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": true,
+      "report": "Positive ผู้หญิงวัยเจริญพันธุ์ที่ปวดท้องและช็อกเป็น ectopic pregnancy จนกว่าจะพิสูจน์ได้ว่าไม่ใช่ และการใส่ห่วงไม่ได้ตัดการตั้งครรภ์"
+    },
+    {
+      "id": "us1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Bedside FAST and transvaginal ultrasound",
+      "report": "Free fluid ใน Morison's pouch และ pelvis มี echogenic material หมุนวนบ่งว่าเป็นก้อนเลือด มดลูกว่าง endometrium บาง มีห่วงอยู่ในโพรง มี heterogeneous mass ที่ right adnexa 34 mm แยกจากรังไข่ มี fluid รอบๆ ไม่มี intrauterine gestational sac",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "hb1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Haemoglobin",
+      "value": "7.8",
+      "unit": "g/dL",
+      "normalRange": "12.0-15.5",
+      "abnormal": true,
+      "report": "Acute anemia จากเลือดออกในช่องท้อง Hb แรกปกติก็ไม่ได้ตัดโรคนี้"
+    },
+    {
+      "id": "shcg1",
+      "kind": "lab",
+      "category": "Endocrine",
+      "name": "Serum beta-hCG",
+      "value": "4820",
+      "unit": "IU/L",
+      "normalRange": "<5 (non-pregnant)",
+      "abnormal": true,
+      "report": "เกิน discriminatory zone มดลูกว่างที่ระดับนี้ร่วมกับ free fluid บ่งชี้ ectopic pregnancy ในคนไข้ unstable ผลนี้ไม่ควรทำให้เข้าห้องผ่าตัดช้า"
+    },
+    {
+      "id": "bg1",
+      "kind": "lab",
+      "category": "Blood bank",
+      "name": "Blood group and crossmatch",
+      "value": "O Rh negative",
+      "unit": "-",
+      "normalRange": "-",
+      "abnormal": true,
+      "report": "Rh negative crossmatch ไว้ 4 unit ต้องให้ anti-D immunoglobulin"
+    },
+    {
+      "id": "lac1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Lactate",
+      "value": "4.8",
+      "unit": "mmol/L",
+      "normalRange": "0.5-2.0",
+      "abnormal": true,
+      "report": "Hemorrhagic shock และ tissue hypoperfusion"
+    },
+    {
+      "id": "coag1",
+      "kind": "lab",
+      "category": "Coagulation",
+      "name": "INR and fibrinogen",
+      "value": "INR 1.3 / fibrinogen 1.8 g/L",
+      "unit": "-",
+      "normalRange": "INR 0.9-1.2 / fibrinogen 2.0-4.0 g/L",
+      "abnormal": true,
+      "report": "Dilutional และ consumptive coagulopathy ระยะแรก ให้ blood product ตามสัดส่วนแทน crystalloid"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ส่งไปห้อง U/S ทำ scan เต็มรูปแบบ",
+              "feedback": "คนไข้ unstable ห้ามออกจากห้อง resus ตรวจการตั้งครรภ์ เปิดเส้น crossmatch มาก่อน"
+            },
+            {
+              "label": "รอผล serum beta-hCG ก่อนทำอะไร",
+              "feedback": "UPT ได้คำตอบในไม่กี่นาที serum ใช้เวลาหลายชั่วโมงและไม่ได้เปลี่ยนอะไรตอนนี้"
+            }
+          ],
+          "label": "ตรวจ UPT เปิด IV เบอร์ใหญ่ 2 เส้น เจาะเลือด",
+          "actions": [
+            "Urine beta-hCG",
+            "IV access 16G x2",
+            "CBC, coagulation, lactate, group and crossmatch 4 units"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "FAST และ TVS ข้างเตียงในห้อง resus",
+          "distractors": [
+            {
+              "label": "CT ท้องหา appendicitis",
+              "feedback": "ผู้หญิงวัยเจริญพันธุ์ที่ช็อกและ UPT บวกต้องทำ U/S ข้างเตียงในห้อง resus ไม่ใช่พาไป CT"
+            },
+            {
+              "label": "ไม่ต้องทำ imaging admit วอร์ดนรีเวช",
+              "feedback": "FAST ข้างเตียงยืนยัน hemoperitoneum ได้เร็ว และทำให้ตัดสินใจเข้าห้องผ่าตัดเร็วขึ้น"
+            }
+          ],
+          "label": "FAST ข้างเตียงและ transvaginal U/S โดยไม่ออกจากห้อง resus",
+          "actions": [
+            "Bedside FAST",
+            "Transvaginal ultrasound"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "เลือด O negative และ MTP",
+          "distractors": [
+            {
+              "label": "ให้ NSS 3 ลิตรจน BP ปกติ",
+              "feedback": "Crystalloid ปริมาณมากเจือจาง clotting factor และทำให้เลือดออกมากขึ้น ให้ blood product เร็ว"
+            },
+            {
+              "label": "รอเลือด crossmatch ก่อนให้",
+              "feedback": "Crossmatch ใช้เวลานานเกินไปใน hemorrhagic shock ใช้ O negative ฉุกเฉินและเปิด MTP"
+            }
+          ],
+          "label": "เปิด MTP และให้เลือด ไม่ใช่ crystalloid หลายลิตร",
+          "actions": [
+            "Emergency O negative red cells",
+            "Activate massive transfusion protocol",
+            "Tranexamic acid IV",
+            "Limited crystalloid"
+          ],
+          "doseMap": {
+            "Emergency O negative red cells": "2 unit ทันทีระหว่างรอเลือด crossmatch",
+            "Activate massive transfusion protocol": "PRC : FFP : platelet 1:1:1",
+            "Tranexamic acid IV": "1 g ใน 10 นาที",
+            "Limited crystalloid": "ไม่เกิน 1000 mL ใช้ permissive hypotension จนกว่าจะหยุดเลือดได้"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "ตอบสนองชั่วคราว",
+          "outcomeType": "improved",
+          "narrative": "PRC 2 unit ทำให้ BP ขึ้นครู่เดียวแล้วเริ่มตกอีก เป็น transient responder เลือดออกแบบที่ต้องผ่าตัด blood product เท่าไรก็แก้ไม่ได้ใน ER",
+          "vitalChanges": {
+            "hr": 118,
+            "sbp": 88,
+            "dbp": 50,
+            "rr": 24,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 400
+        },
+        "data": {
+          "label": "บอกเธอว่าตั้งครรภ์และรักษาครรภ์ไว้ไม่ได้ ก่อนเข้าห้องผ่าตัด (Empathy)",
+          "ethicalValue": 15,
+          "narrative": "หมอใช้ 40 วินาทีบอกว่าเธอตั้งครรภ์ ครรภ์อยู่ผิดที่และอยู่รอดไม่ได้ และการผ่าตัดเดี๋ยวนี้คือสิ่งที่จะช่วยชีวิตเธอ หมอถามว่ามีใครที่อยากให้โทรหาไหม เธอขอให้โทรหาพี่สาว การบอกก่อนดมยาแทนที่จะบอกหลัง คือความต่างระหว่าง informed consent กับการที่คนไข้ตื่นมาเจอข่าวที่ไม่มีใครเตรียมเธอไว้"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "Admit วอร์ดให้ methotrexate",
+              "feedback": "Methotrexate สำหรับ ectopic ที่ยังไม่แตกและ stable เธอเป็น ruptured ectopic กับช็อก ต้องผ่าตัด"
+            },
+            {
+              "label": "Observe ใน ER จนกว่าจะ stable",
+              "feedback": "เป็น transient responder การหยุดเลือดอยู่ในห้องผ่าตัด"
+            }
+          ],
+          "label": "Consult สูติ-นรีเวชเข้าห้องผ่าตัดทันที",
+          "actions": [
+            "Emergency gynaecology consult",
+            "Nil by mouth and anaesthetic review",
+            "Consent for laparoscopy or laparotomy, possible salpingectomy"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "เข้าห้องผ่าตัด",
+          "outcomeType": "improved",
+          "narrative": "เข้าห้องผ่าตัด 28 นาทีหลังมาถึง laparoscopy เจอเลือดในช่องท้อง 1200 mL กับ ruptured right tubal pregnancy ทำ right salpingectomy เลือดหยุด",
+          "vitalChanges": {
+            "hr": 96,
+            "sbp": 108,
+            "dbp": 64,
+            "rr": 18,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "choice": "Anti-D เจาะเลือดซ้ำ และนัดคลินิกครรภ์",
+          "distractors": [
+            {
+              "label": "D/C โดยไม่ให้ anti-D เพราะไม่ได้ตั้งครรภ์แล้ว",
+              "feedback": "เธอ Rh negative ต้องให้ anti-D กัน sensitization ที่จะกระทบการตั้งครรภ์ครั้งหน้า"
+            },
+            {
+              "label": "ให้ anti-D เฉพาะถ้าอยากมีลูกอีก",
+              "feedback": "Sensitization กระทบทั้งการตั้งครรภ์และการให้เลือดในอนาคต เสนอ anti-D ให้ผู้หญิง Rh negative ทุกคนหลังผ่าตัด ectopic"
+            }
+          ],
+          "label": "ดูแลหลังผ่าตัด รวมถึง anti-D เพราะ Rh negative",
+          "actions": [
+            "Anti-D immunoglobulin",
+            "Repeat haemoglobin and coagulation",
+            "Analgesia and thromboprophylaxis",
+            "Early pregnancy unit follow up and counselling"
+          ],
+          "doseMap": {
+            "Anti-D immunoglobulin": "250 IU (50 mcg) IM ภายใน 72 ชม."
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "Hb 9.6 g/dL หลังได้เลือด 4 unit extubate แล้ว stable อยู่วอร์ดนรีเวช ได้คำปรึกษาเรื่องการมีลูกต่อด้วยท่อนำไข่ที่เหลือข้างเดียว และความเสี่ยง ectopic ซ้ำที่สูงขึ้น พี่สาวมานั่งอยู่ข้างเตียง",
+          "vitalChanges": {
+            "hr": 84,
+            "sbp": 116,
+            "dbp": 70,
+            "rr": 16,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "out2",
+        "target": "req5"
+      },
+      {
+        "id": "e9",
+        "source": "req5",
+        "target": "out3"
+      }
+    ]
+  }
+}
