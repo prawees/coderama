@@ -1,0 +1,455 @@
+{
+  "title": "33yo F Thyroid Storm",
+  "age": "33",
+  "sex": "F",
+  "chiefComplaint": "ไข้ ใจสั่น กระสับกระส่าย",
+  "diagnoses": [
+    "Thyroid storm",
+    "Sepsis",
+    "Sympathomimetic toxicity",
+    "Neuroleptic malignant syndrome",
+    "Serotonin syndrome"
+  ],
+  "background": "U/D Graves disease วินิจฉัยเมื่อ 2 ปีก่อน หยุด methimazole เองเมื่อ 4 เดือนก่อนตอนรู้ว่าตั้งครรภ์ เพราะอ่านในเน็ตว่ายาทำอันตรายต่อทารก และไม่ได้บอกใคร ตอนนี้ตั้งครรภ์ 22 สัปดาห์ เป็น UTI มา 4 วัน ซึ่งเป็นตัวกระตุ้น 36 ชม. ที่ผ่านมามีไข้ กระสับกระส่าย สับสน ญาติพามาตอนเริ่มพูดไม่รู้เรื่อง thyroid storm ที่ไม่ได้รักษามี mortality 10 ถึง 30%",
+  "patientAppearance": {
+    "skinTone": "#eec39d",
+    "bmiFactor": 0.85,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 168,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 156,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 58,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 32,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 40.2,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 95,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 12,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Agitated and delirious, drenched in sweat, thin with obvious recent weight loss, warm to touch, restless in the bed",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Bilateral exophthalmos with lid lag and lid retraction, diffusely enlarged smooth goitre with an audible bruit over both lobes, no tracheal deviation, no stridor",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Atrial fibrillation at 168/min with a wide pulse pressure of 156/58, bounding pulses, third heart sound, bibasal crackles indicating high output cardiac failure",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Tachypnoeic at 32/min with fine bibasal crackles from pulmonary congestion, no bronchial breathing or focal consolidation",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Gravid uterus consistent with 22 weeks, fetal heart rate 176 (tachycardic, mirroring the mother), hyperactive bowel sounds with diarrhoea, mild right upper quadrant tenderness from hepatic congestion",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Warm, flushed and profusely diaphoretic, pretibial myxoedema over both shins, fine tremor of the outstretched hands, onycholysis",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 12 (E3V4M5), agitated delirium, brisk reflexes with a fine tremor, proximal muscle weakness, no focal deficit, no neck stiffness",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "tft1",
+      "kind": "lab",
+      "category": "Endocrine",
+      "name": "Thyroid function",
+      "value": "TSH <0.01 mIU/L / free T4 68 pmol/L / free T3 24 pmol/L",
+      "unit": "-",
+      "normalRange": "Free T4 12-22 pmol/L",
+      "abnormal": true,
+      "report": "Thyrotoxicosis รุนแรงทาง biochemistry ระดับฮอร์โมนแยก storm จาก thyrotoxicosis ธรรมดาไม่ได้ thyroid storm วินิจฉัยทาง clinical จากการทำงานของอวัยวะที่ผิดปกติ และห้ามรอผลก่อนรักษา"
+    },
+    {
+      "id": "burch1",
+      "kind": "lab",
+      "category": "Scoring",
+      "name": "Burch-Wartofsky score",
+      "value": "85",
+      "unit": "points",
+      "normalRange": "<25 unlikely",
+      "abnormal": true,
+      "report": "Temp 40.2 (30 คะแนน), กระสับกระส่ายรุนแรงและ delirium (20), ท้องเสีย (10), HR เกิน 140 (25), pulmonary congestion (10), มีตัวกระตุ้น (10) คะแนนเกิน 45 ชี้ไปทาง storm มาก"
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "12-Lead ECG",
+      "report": "AF with rapid ventricular response 168/min ไม่มี ischemic ST change, AF เจอใน thyrotoxicosis 10 ถึง 35% และเป็นอาการนำที่พบบ่อยในวัยนี้",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "lft1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Liver function",
+      "value": "Bilirubin 3.2 mg/dL / AST 92 / ALT 78",
+      "unit": "-",
+      "normalRange": "Bilirubin <1.2 mg/dL",
+      "abnormal": true,
+      "report": "Jaundice ร่วมกับตับทำงานผิดปกติจาก congestion ตัวเหลืองใน thyroid storm เป็นพยากรณ์ไม่ดี และทำให้ใช้ thionamide ยากขึ้นเพราะตัวยาเองก็เป็นพิษต่อตับ"
+    },
+    {
+      "id": "ua1",
+      "kind": "lab",
+      "category": "Micro",
+      "name": "Urinalysis and culture",
+      "value": "Nitrite positive, leucocytes 3+, E. coli on culture",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": true,
+      "report": "UTI เป็นตัวกระตุ้น thyroid storm แทบทุกครั้งมีตัวกระตุ้น ถ้าไม่หาและไม่รักษา storm จะไม่สงบ"
+    },
+    {
+      "id": "gluc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Glucose and calcium",
+      "value": "Glucose 168 mg/dL / corrected calcium 11.2 mg/dL",
+      "unit": "-",
+      "normalRange": "Calcium 8.5-10.2 mg/dL",
+      "abnormal": true,
+      "report": "Hyperglycemia และ hypercalcemia เป็นลักษณะที่รู้จักของ thyrotoxicosis จาก bone turnover ที่เพิ่มขึ้น"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "รักษาเลยตาม Burch-Wartofsky score",
+          "distractors": [
+            {
+              "label": "รอผล TFT ก่อนรักษา",
+              "feedback": "Thyroid storm วินิจฉัยทาง clinical รักษาตาม Burch-Wartofsky score"
+            },
+            {
+              "label": "ให้ aspirin ลดไข้",
+              "feedback": "Aspirin แทนที่ thyroid hormone จาก binding protein ทำให้ storm แย่ลง ใช้ paracetamol"
+            }
+          ],
+          "label": "รักษาตาม clinical ไม่ต้องรอผล TFT",
+          "actions": [
+            "Calculate Burch-Wartofsky score",
+            "Continuous cardiac monitoring",
+            "IV access and bloods including TFTs",
+            "Active cooling with paracetamol, never aspirin"
+          ],
+          "doseMap": {
+            "Active cooling with paracetamol, never aspirin": "Aspirin แทนที่ thyroid hormone จาก TBG ทำให้ free hormone สูงขึ้นและ storm แย่ลง เป็นความผิดพลาดเฉพาะที่เกิดบ่อย"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ให้ iodine ก่อน block การหลั่งฮอร์โมน",
+              "feedback": "Beta-blocker ก่อนคุมฤทธิ์ adrenergic ส่วน iodine ต้องรอหลัง thionamide"
+            },
+            {
+              "label": "ห้ามใช้ beta-blocker เลยเพราะตั้งครรภ์",
+              "feedback": "ใช้ propranolol ในคนตั้งครรภ์ที่เป็น thyroid storm ได้ ระวังถ้ามี heart failure"
+            }
+          ],
+          "label": "Beta-blocker ก่อน คุม adrenergic storm",
+          "actions": [
+            "Propranolol IV or oral",
+            "Esmolol infusion if titration is needed",
+            "Cautious use given the cardiac failure"
+          ],
+          "doseMap": {
+            "Propranolol IV or oral": "1 mg IV ช้าๆ ซ้ำได้ หรือ 60 ถึง 80 mg กินทุก 4 ถึง 6 ชม. เลือก propranolol เพราะขนาดสูงยัง block การเปลี่ยน T4 เป็น T3 ที่ส่วนปลายด้วย",
+            "Cautious use given the cardiac failure": "เป็น high output failure ไม่ใช่ pump failure ยังมี indication ให้ beta-blocker แต่ titrate ด้วย esmolol drip จะได้หยุดทันถ้า output ตก"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "PTU เดี๋ยวนี้ iodine อีก 1 ชม. และ hydrocortisone",
+          "distractors": [
+            {
+              "label": "ให้ iodine ก่อน thionamide",
+              "feedback": "ให้ iodine ก่อน thionamide เท่ากับให้วัตถุดิบสร้างฮอร์โมนเพิ่ม thionamide ก่อน iodine อีก 1 ชม."
+            },
+            {
+              "label": "ให้ hydrocortisone อย่างเดียว ไม่ต้องให้ thionamide",
+              "feedback": "Steroid ช่วย block การเปลี่ยนที่ส่วนปลาย แต่ไม่ได้หยุดการสร้างฮอร์โมน ต้องมี thionamide"
+            }
+          ],
+          "label": "Thionamide ก่อน iodine ลำดับสำคัญ",
+          "actions": [
+            "Propylthiouracil (preferred here)",
+            "Then iodine at least one hour later",
+            "Hydrocortisone IV"
+          ],
+          "doseMap": {
+            "Propylthiouracil (preferred here)": "Loading 600 mg แล้ว 200 ถึง 250 mg ทุก 4 ชม. ใน storm ดีกว่า methimazole เพราะ block การเปลี่ยน T4 เป็น T3 ที่ส่วนปลายด้วย และเลือกใช้ในไตรมาสแรก แม้ตอนนี้จะ 22 สัปดาห์แล้ว",
+            "Then iodine at least one hour later": "Lugol's iodine หรือ potassium iodide อย่างน้อย 1 ชม. หลัง thionamide ให้ iodine ก่อนเท่ากับให้วัตถุดิบสร้างฮอร์โมนใหม่และทำให้ storm แย่ลง ลำดับนี้คือบทเรียนที่คุ้มที่สุดของเคส",
+            "Hydrocortisone IV": "100 mg IV ทุก 8 ชม. block การเปลี่ยนที่ส่วนปลายและรักษา relative adrenal insufficiency ใน storm"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ยังไม่ต้องสนใจ UTI จน storm สงบ",
+              "feedback": "การติดเชื้อคือตัวกระตุ้น รักษาเดี๋ยวนี้"
+            },
+            {
+              "label": "ยังไม่ต้อง consult สูติจนกว่าจะ stable",
+              "feedback": "ครรภ์ 22 สัปดาห์ การ monitor ทารกและ consult สูติเป็นส่วนหนึ่งของ resuscitation"
+            }
+          ],
+          "label": "รักษาตัวกระตุ้น และประคับประคอง",
+          "actions": [
+            "Antibiotics for the urinary tract infection",
+            "IV fluids with dextrose",
+            "Cooling measures",
+            "Fetal monitoring and obstetric involvement"
+          ],
+          "doseMap": {
+            "IV fluids with dextrose": "Metabolic rate สูงทำให้ glycogen หมด ต้องการ fluid มากจากไข้ เหงื่อ และท้องเสีย"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "ตอบสนองช่วงแรก",
+          "outcomeType": "improved",
+          "narrative": "HR ลดลงเป็น 118 ใน 4 ชม. ด้วย esmolol ไข้ลงเป็น 38.4 ด้วย cooling ยังมี delirium FHR ลงมานิ่งที่ 152 เมื่อแม่ดีขึ้น เป็นรูปแบบที่คาดไว้",
+          "vitalChanges": {
+            "hr": 118,
+            "sbp": 138,
+            "dbp": 68,
+            "rr": 26,
+            "temp": 38.4,
+            "gcs": 13
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "คุยเรื่องที่หยุดยาเองโดยไม่ทำให้เธอรู้สึกโง่ (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "เธอหยุดยาที่ช่วยชีวิตเพราะสิ่งที่อ่านตอนตั้งครรภ์และกำลังกลัว และไม่ได้บอกหมอเพราะคิดว่าจะโดนดุ พอเธอรู้สึกตัวดี หมอบอกว่า thyrotoxicosis ที่ไม่ได้รักษาตอนตั้งครรภ์อันตรายต่อทารกมากกว่ายาหลายเท่า สัญชาตญาณที่อยากปกป้องลูกนั้นถูกแล้ว แม้ข้อสรุปจะผิด และสิ่งสำคัญตอนนี้คือเธอบอกหมอได้ทุกครั้งที่กังวลเรื่องยา หมอจัดนัด endocrine กับสูติร่วมกัน แทนที่จะเป็นสองคลินิกแยกที่เธอต้องเดินหาเอง"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "หยุดยาทั้งหมดเมื่อ HR ลงแล้ว",
+              "feedback": "ค่อยๆ ลดยาภายใต้ endocrine เพื่อไม่ให้กลับเป็นซ้ำ"
+            },
+            {
+              "label": "ให้ radioactive iodine เป็นการรักษา definitive ตอนนี้",
+              "feedback": "Radioactive iodine ห้ามใช้ในคนตั้งครรภ์"
+            }
+          ],
+          "label": "Admit ICU และวางแผนการรักษาระยะยาว",
+          "actions": [
+            "ICU or high dependency admission",
+            "Continue the four drug regimen with tapering",
+            "Cholestyramine if hormone levels remain very high",
+            "Endocrinology and obstetric joint care"
+          ],
+          "doseMap": {
+            "Cholestyramine if hormone levels remain very high": "4 g วันละ 4 ครั้ง ตัด enterohepatic recirculation ของ thyroid hormone มีประโยชน์ถ้าตอบสนองช้า"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "หาย",
+          "outcomeType": "improved",
+          "narrative": "ไข้ลงภายใน 36 ชม. delirium หายวันที่ 3 กลับเป็น sinus rhythm เองวันที่ 4 ไม่ต้องให้ anticoagulant free T4 ลงเหลือ 32 pmol/L วันที่ 5 ครรภ์ดำเนินต่อ U/S ดูความผิดปกติทารกปกติ",
+          "vitalChanges": {
+            "hr": 92,
+            "sbp": 122,
+            "dbp": 74,
+            "rr": 18,
+            "temp": 37.0,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 8 ด้วย PTU เจาะ TFT ทุกสัปดาห์ นัดคลินิกร่วม การรักษา definitive ด้วย radioiodine หรือผ่าตัดเลื่อนไปหลังคลอด เพราะ radioiodine ห้ามใช้เด็ดขาดในคนตั้งครรภ์ คลอดลูกแข็งแรงที่ 38 สัปดาห์",
+          "vitalChanges": {
+            "hr": 84,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 16,
+            "temp": 36.8,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e5",
+        "source": "req4",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

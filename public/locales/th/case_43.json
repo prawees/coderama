@@ -1,0 +1,391 @@
+{
+  "title": "39yo M Chronic Back Pain, Opioid Request (Non-Emergency)",
+  "age": "39",
+  "sex": "M",
+  "chiefComplaint": "ปวดหลังมาก ขอฉีด pethidine โดยระบุชื่อยา",
+  "diagnoses": [
+    "Chronic non-specific low back pain",
+    "Opioid use disorder",
+    "Renal colic",
+    "Cauda equina syndrome",
+    "Vertebral osteomyelitis"
+  ],
+  "background": "มาแผนกนี้ครั้งที่ 4 ใน 6 สัปดาห์ และครั้งที่ 11 ใน 4 รพ. ภายใน 3 เดือน บอกว่าปวดหลังส่วนล่าง 10 เต็ม 10 แจ้งว่าแพ้ยาแก้ปวดที่ไม่ใช่ opioid ทุกตัวที่เสนอ ขอ pethidine โดยระบุชื่อและขนาด ไม่ยอมบอกชื่อหมอประจำ ประวัติเก่าเคยกลับไปเองก่อนตรวจเมื่อถูกปฏิเสธ เคยขับรถบรรทุกจนหลังบาดเจ็บเมื่อ 2 ปีก่อน ตั้งแต่นั้นไม่ได้ทำงาน เขาไม่ใช่อาชญากรและไม่ได้โกหก เขาน่าจะเป็นคนที่มีปัญหาปวดเรื้อรัง opioid use disorder หรือทั้งสองอย่าง และทั้งสองเป็นโรคที่รักษาได้ ซึ่งการมาครั้งนี้เป็นอาการของมัน",
+  "patientAppearance": {
+    "skinTone": "#d3a06f",
+    "bmiFactor": 1.05,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 76,
+      "abnormal": false
+    },
+    "sbp": {
+      "value": 128,
+      "abnormal": false
+    },
+    "dbp": {
+      "value": 80,
+      "abnormal": false
+    },
+    "rr": {
+      "value": 16,
+      "abnormal": false
+    },
+    "temp": {
+      "value": 36.8,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 99,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 15,
+      "abnormal": false
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Comfortable at rest, moves onto the trolley without assistance, reports 10 out of 10 pain while scrolling on his phone. Note this observation without moralising about it: pain behaviour and pain intensity correlate poorly, and this discrepancy is information rather than proof of anything",
+      "abnormal": false
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "No pallor, mucous membranes moist, pupils 3 mm and equal with normal reaction, no rhinorrhoea, no yawning, no piloerection, so he is not in acute withdrawal",
+      "abnormal": false
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Regular rate and rhythm, normal heart sounds, no murmur (specifically listened for, because injecting drug use raises endocarditis risk), peripheries warm",
+      "abnormal": false
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Clear breath sounds, normal respiratory rate, no cough",
+      "abnormal": false
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, non-tender, no renal angle tenderness on either side, no palpable bladder, no pulsatile mass, bowel sounds normal",
+      "abnormal": false
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "No injection sites, no cellulitis or abscess, no track marks, no rash over the spine, no midline tenderness or step deformity on palpation of the lumbar spine",
+      "abnormal": false
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "Normal power 5/5 in both legs, reflexes symmetrical, straight leg raise negative bilaterally, normal perianal sensation, normal anal tone, no urinary retention or incontinence. No red flags for cauda equina. Do this examination properly and document it, because the one time it is skipped is the time it matters",
+      "abnormal": false
+    }
+  ],
+  "investigations": [
+    {
+      "id": "records1",
+      "kind": "lab",
+      "category": "Records",
+      "name": "Shared prescription monitoring record",
+      "value": "31 opioid prescriptions from 9 prescribers in 4 months",
+      "unit": "-",
+      "normalRange": "-",
+      "abnormal": true,
+      "report": "การดูประวัติเป็นงานทาง clinical ไม่ใช่การจับผิด ยืนยันว่าเขามี opioid use disorder ซึ่งคือการวินิจฉัยจริง และคือสิ่งที่ต้องรักษา"
+    },
+    {
+      "id": "ua1",
+      "kind": "lab",
+      "category": "Urine",
+      "name": "Urinalysis",
+      "value": "No blood, no nitrite, no leucocytes",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": false,
+      "report": "Negative แทบตัด renal colic ออก ซึ่งเป็นการวินิจฉัยที่เขียนไว้ในการมาสองครั้งก่อน"
+    },
+    {
+      "id": "xr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Lumbar spine X-ray (if ordered)",
+      "report": "Degenerative change เล็กน้อยที่ L4-L5 ไม่ต่างจาก film เมื่อ 14 เดือนก่อน ไม่มี fracture ไม่มี lytic lesion ไม่มี disc space แคบที่บ่งว่าติดเชื้อ การทำ imaging ใน non-specific low back pain ที่ไม่มี red flag ไม่ได้ทำให้ outcome ดีขึ้น และมักเจอ finding ที่ทำให้คนไข้เชื่อหนักขึ้นว่ากระดูกเสียหาย",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "cbc1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "White cell count and CRP (if ordered)",
+      "value": "WBC 7.1 / CRP 3 mg/L",
+      "unit": "-",
+      "normalRange": "WBC 4.0-11.0",
+      "abnormal": false,
+      "report": "ปกติ ไม่สนับสนุน vertebral osteomyelitis หรือ discitis ซึ่งเป็นการวินิจฉัยที่ห้ามพลาดในคนที่มีประวัติใช้ยาฉีด"
+    },
+    {
+      "id": "cows1",
+      "kind": "lab",
+      "category": "Scoring",
+      "name": "Clinical Opiate Withdrawal Scale",
+      "value": "3",
+      "unit": "points",
+      "normalRange": "<5 no withdrawal",
+      "abnormal": false,
+      "report": "ตอนนี้ไม่มี withdrawal ที่สำคัญ เกี่ยวเพราะการเริ่ม buprenorphine ต้องได้คะแนนเกิน 12 เริ่มตอนนี้จะกระตุ้น withdrawal"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "ตรวจระบบประสาทและ red flag ให้ครบ",
+          "distractors": [
+            {
+              "label": "ฉีด pethidine ก่อน แล้วค่อยตรวจ",
+              "feedback": "ต้องตัด red flag ก่อนตัดสินใจอะไร opioid ยังทำให้ตรวจร่างกายได้ไม่ชัด"
+            },
+            {
+              "label": "ไม่ตรวจเพราะมาหายา",
+              "feedback": "คนที่มี substance use disorder ก็เป็น cauda equina และติดเชื้อที่กระดูกสันหลังได้ ตรวจให้ดี"
+            }
+          ],
+          "label": "ประเมิน red flag ให้ดีก่อนตัดสินเรื่องยา",
+          "actions": [
+            "Full neurological examination of the lower limbs",
+            "Perianal sensation and anal tone",
+            "Ask about urinary retention and saddle anaesthesia",
+            "Screen for fever, weight loss, cancer history, injecting drug use, trauma"
+          ],
+          "doseMap": {
+            "Full neurological examination of the lower limbs": "การคิดว่าคนที่มาบ่อยไม่ได้เป็นอะไร คือวิธีที่ cauda equina กับ spinal abscess ถูกพลาด ตรวจเขาเหมือนไม่เคยเห็นแฟ้มของเขามาก่อน"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "label": "ไม่มีภาวะฉุกเฉิน",
+          "outcomeType": "improved",
+          "narrative": "ตรวจระบบประสาทปกติ ไม่มี red flag V/S ปกติ UA negative ไม่มีอะไรฉุกเฉิน มีปัญหาปวดเรื้อรังกับ opioid use disorder และทั้งสองไม่ได้รักษาด้วยการฉีด pethidine ตอนห้าทุ่ม",
+          "vitalChanges": {}
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 720,
+          "y": 420
+        },
+        "data": {
+          "label": "ปฏิเสธโดยไม่ดูถูก และเสนอการรักษาที่เขาต้องการจริงๆ (Empathy)",
+          "ethicalValue": 25,
+          "narrative": "มีทางง่ายสองทาง ฉีดให้จบๆ ไป หรือปฏิเสธห้วนๆ แล้วปล่อยให้เขาเดินออกไปอย่างโกรธ หมอเลือกทางที่สาม บอกว่าจะไม่ให้ pethidine และบอกเหตุผลในประโยคเดียว ไม่ใช่ห้าประโยค แล้วบอกว่ามา 11 ครั้งใน 3 เดือนไม่ใช่พฤติกรรมของคนที่สบายดี ถามว่าเขาคิดว่าเกิดอะไรขึ้น และเสนอ opioid agonist treatment เป็นทางเลือกทางการแพทย์ ไม่ใช่ทางศีลธรรม เขาเงียบไปพักหนึ่ง แล้วบอกว่าไม่เคยพูดเรื่องนี้ออกมาให้ใครฟังเลย พี่บ๊อบบอกว่าเคสนี้ใช้ไป 19 นาทีที่แผนกไม่มี พี่บ๊อบพูดถูก และมันก็ยังเป็นสิ่งที่ถูก"
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "choice": "ไม่ให้ pethidine ไม่ให้ opioid ฉีด",
+          "distractors": [
+            {
+              "label": "ให้ pethidine ขนาดน้อยลงเป็นการประนีประนอม",
+              "feedback": "Pethidine มี metabolite ที่เป็นพิษและไม่มีบทบาทในเคสนี้ การต่อรองยิ่งตอกย้ำรูปแบบเดิม"
+            },
+            {
+              "label": "จ่าย tramadol กลับบ้าน",
+              "feedback": "ใบสั่ง opioid กลับบ้านป้อนรูปแบบเดิมและเสี่ยงอันตราย ปฏิเสธให้ชัด"
+            }
+          ],
+          "label": "ปฏิเสธ opioid ฉีดอย่างชัดเจน ไม่ต่อรอง",
+          "actions": [
+            "No pethidine",
+            "No parenteral opioid",
+            "No opioid prescription to take away",
+            "Document the decision and the reasoning factually"
+          ],
+          "doseMap": {
+            "No pethidine": "Pethidine ไม่มีที่ในเวชปฏิบัติปัจจุบัน ออกฤทธิ์สั้น มี metabolite ที่เป็นพิษต่อระบบประสาทซึ่งสะสม และติดง่าย ไม่ควรให้แม้ตอนที่มี indication ให้ opioid จริง",
+            "Document the decision and the reasoning factually": "เขียนว่าตรวจเจออะไรและตัดสินใจอะไร อย่าเขียนว่ามาหายา คำตีตราติดตัวคนไข้ไปทุกครั้งที่มา และเป็นวิธีที่คนที่มี spinal abscess ถูก D/C"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "choice": "Paracetamol, NSAID ทาภายนอก, ขยับตัวต่อ",
+          "distractors": [
+            {
+              "label": "นอนพักบนเตียงเคร่งครัด 2 สัปดาห์",
+              "feedback": "นอนพักทำให้อาการปวดหลังแย่ลง แนะนำให้ขยับตัว"
+            },
+            {
+              "label": "จ่าย diazepam เป็นยาคลายกล้ามเนื้อ",
+              "feedback": "Benzodiazepine ช่วยปวดหลังได้น้อย และเพิ่มความเสี่ยงติดยาร่วมกับ opioid"
+            }
+          ],
+          "label": "เสนอการจัดการปวดที่ไม่ใช่ opioid อย่างจริงจัง",
+          "actions": [
+            "Regular paracetamol and a topical NSAID",
+            "Encourage continued movement rather than bed rest",
+            "Explain the evidence for physiotherapy and graded activity",
+            "Test the reported allergies rather than accepting them at face value"
+          ],
+          "doseMap": {
+            "Test the reported allergies rather than accepting them at face value": "ถามว่าแต่ละยาเกิดอะไรขึ้นจริงๆ การแพ้ยาที่ไม่ใช่ opioid ทุกตัวมักกลายเป็นผลข้างเคียง หรือประสบการณ์ไม่ดีครั้งเดียว และหลายตัวกลับมาใช้ได้เมื่อค่อยๆ ถาม"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "choice": "ส่งต่อคลินิกบำบัดยาเสพติดและคลินิกระงับปวด",
+          "distractors": [
+            {
+              "label": "ห้ามเข้าแผนกอีก",
+              "feedback": "การห้ามเข้าผลักความเสี่ยงไปที่อื่น ส่งต่อคลินิกบำบัดและคลินิกปวด"
+            },
+            {
+              "label": "D/C โดยไม่ส่งต่อ",
+              "feedback": "น่าจะเป็น opioid use disorder เสนอ methadone และช่องทางติดต่อ harm reduction"
+            }
+          ],
+          "label": "ส่งต่อรักษา opioid use disorder และคลินิกปวดเรื้อรัง",
+          "actions": [
+            "Refer to a methadone maintenance clinic",
+            "Refer to a chronic pain clinic",
+            "Connect him with a harm reduction programme",
+            "Suggest a single named prescriber to consolidate his care"
+          ],
+          "doseMap": {
+            "Suggest a single named prescriber to consolidate his care": "การดูแลที่กระจายไปเก้าคนสั่งยาอันตราย คนสั่งยาคนเดียวพร้อมแผนเป็นลายลักษณ์อักษรลดทั้งความเสี่ยง overdose และการมา ER",
+            "Connect him with a harm reduction programme": "เขาได้ opioid จากหลายแหล่งและเสี่ยง overdose จริง โครงการ outreach มี naloxone ให้ การเสนอไม่ใช่การกล่าวหา เป็นเหตุผลเดียวกับการคาดเข็มขัดนิรภัย"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 120
+        },
+        "data": {
+          "label": "Disposition ถูกต้อง",
+          "outcomeType": "resolved",
+          "narrative": "กลับไปโดยไม่ได้ฉีดยา ได้ใบส่งต่อคลินิกปวด ช่องทางติดต่อ harm reduction และนัดคลินิก methadone สัปดาห์หน้า เขาไปจริง 10 สัปดาห์ต่อมาอยู่ใน methadone ไม่ได้กลับไป ER ไหนอีก และปวดไม่ได้มากกว่าเดิม สิ่งที่ได้ผลคือ 19 นาทีกับใบส่งต่อ ไม่ใช่ยาแก้ปวด",
+          "vitalChanges": {}
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 340
+        },
+        "data": {
+          "label": "เส้นทางที่ง่ายที่สุด",
+          "outcomeType": "worsened",
+          "narrative": "ถ้าฉีด pethidine ให้ ใช้เวลา 4 นาทีแทน 19 ทุกคนสบายใจ แล้วเขาก็กลับมาในอีก 9 วัน tolerance สูงขึ้น ขนาดเพิ่มขึ้นเรื่อยๆ 18 เดือนต่อมาเสียชีวิตจาก overdose ของยาที่ไม่มีใครดูแล ทุกการตัดสินใจตลอดทางเป็นของหมอที่เหนื่อยและเลือกทางที่เร็ว และไม่มีครั้งไหนถูกบันทึกว่าเป็นความผิดพลาด",
+          "vitalChanges": {}
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "out1"
+      },
+      {
+        "id": "e3",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req2"
+      },
+      {
+        "id": "e4",
+        "source": "ethical_1",
+        "target": "req2"
+      },
+      {
+        "id": "e5",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e6",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "req1",
+        "target": "out3"
+      }
+    ]
+  }
+}

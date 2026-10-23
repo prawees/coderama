@@ -1,0 +1,447 @@
+{
+  "title": "47yo M Methanol Poisoning",
+  "age": "47",
+  "sex": "M",
+  "chiefComplaint": "ตาบอด หายใจหอบลึก เช้าหลังดื่มเหล้า",
+  "diagnoses": [
+    "Methanol poisoning",
+    "Ethylene glycol poisoning",
+    "Diabetic ketoacidosis",
+    "Salicylate toxicity",
+    "Uraemia"
+  ],
+  "background": "ดื่มยาดองที่ต้มกลั่นเองในงานศพเมื่อราว 16 ชม. ก่อน ตื่นมาปวดหัวมาก อาเจียน ปวดท้อง แล้วตามัว บอกว่าเหมือนมองผ่านพายุหิมะ พอมาถึง รพ. เห็นแค่แสง เพื่อนผู้ชายอีก 3 คนจากงานเดียวกันได้ข่าวว่าไม่สบายอยู่บ้าน หนึ่งคนยังไม่ตื่น ช่วงล่าช้า 12 ถึง 24 ชม. ที่เป็นลักษณะเฉพาะ แปลว่า formic acid ซึ่งเป็น metabolite ที่เป็นพิษมีเวลาสะสมแล้ว",
+  "patientAppearance": {
+    "skinTone": "#b5804f",
+    "bmiFactor": 1.0,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 112,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 104,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 62,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 34,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.4,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 97,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 13,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Distressed, deep sighing Kussmaul respirations, smells of alcohol but is not clinically intoxicated, which is itself a clue since methanol produces less inebriation than ethanol",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Pupils 6 mm, dilated and sluggishly reactive. Fundoscopy shows optic disc hyperaemia with blurred margins and retinal oedema. Visual acuity is light perception only in both eyes",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia at 112/min, blood pressure maintained, capillary refill 3 seconds, no murmur",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Clear lung fields with deep rapid Kussmaul breathing compensating for severe metabolic acidosis. Any fall in respiratory rate here signals decompensation, not improvement",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Diffuse epigastric tenderness without guarding, repeated vomiting, no rebound. Haemorrhagic pancreatitis is a recognised complication",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Warm and dry, no jaundice, no needle marks, no rash, capillary refill normal centrally",
+      "abnormal": false
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 13 (E3V4M6), confused and agitated, no focal limb deficit, no meningism. Basal ganglia damage, specifically putaminal necrosis, is the classic late finding and causes a parkinsonian syndrome in survivors",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Arterial blood gas",
+      "value": "pH 6.94 / pCO2 12 / HCO3 4 / anion gap 38",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "High anion gap metabolic acidosis รุนแรงมาก compensate ทางหายใจเต็มที่ pH ต่ำกว่า 7.0 ใน methanol poisoning สัมพันธ์กับ mortality สูง และเป็น indication ของ dialysis ได้ด้วยตัวเอง"
+    },
+    {
+      "id": "osm1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Osmolar gap",
+      "value": "42",
+      "unit": "mOsm/kg",
+      "normalRange": "<10",
+      "abnormal": true,
+      "report": "Osmolar gap สูงจาก alcohol ที่ยังไม่ถูกเปลี่ยน เมื่อ methanol เปลี่ยนเป็น formic acid osmolar gap จะลดลงและ anion gap จะสูงขึ้น คนไข้ที่มาช้าอาจมี osmolar gap เกือบปกติ gap ปกติจึงไม่เคยตัดการวินิจฉัย"
+    },
+    {
+      "id": "meth1",
+      "kind": "lab",
+      "category": "Toxicology",
+      "name": "Serum methanol level",
+      "value": "68",
+      "unit": "mg/dL",
+      "normalRange": "0",
+      "abnormal": true,
+      "report": "ใช้ยืนยันได้ แต่ รพ. ไทยส่วนใหญ่ตรวจไม่ได้ และมักใช้เวลาหลายชั่วโมง ห้ามรอ รักษาตาม acidosis, osmolar gap และอาการทางตา"
+    },
+    {
+      "id": "lac1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Lactate and ketones",
+      "value": "Lactate 3.1 mmol/L / beta-hydroxybutyrate 0.4 mmol/L",
+      "unit": "-",
+      "normalRange": "Lactate 0.5-2.0 mmol/L",
+      "abnormal": true,
+      "report": "Lactate กับ ketone รวมกันอธิบาย anion gap 38 ได้แค่ส่วนน้อย ที่เหลือคือ formic acid และเลขคณิตนี้คือการวินิจฉัย"
+    },
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Capillary glucose",
+      "value": "108",
+      "unit": "mg/dL",
+      "normalRange": "70-140",
+      "abnormal": false,
+      "report": "ปกติ ตัด DKA ออกจากสาเหตุของ acidosis"
+    },
+    {
+      "id": "ct1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CT brain (non-contrast)",
+      "report": "Low attenuation สมมาตรที่ putamen ทั้งสองข้าง มี hemorrhagic change เริ่มต้น bilateral putaminal necrosis แทบจะ pathognomonic ของ methanol poisoning และทำนาย parkinsonian syndrome ถาวร",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "Anion gap, osmolar gap และ visual acuity",
+          "distractors": [
+            {
+              "label": "รักษาเป็นเมาค้างด้วย IV fluid กับยาแก้อาเจียน",
+              "feedback": "ตาบอดร่วมกับ anion gap acidosis รุนแรงหลังดื่มเหล้าต้มเอง คือ methanol poisoning จนกว่าจะพิสูจน์ได้ว่าไม่ใช่"
+            },
+            {
+              "label": "รอผล methanol level",
+              "feedback": "Methanol level แทบไม่เคยได้เร็ว วินิจฉัยจาก anion gap, osmolar gap และอาการทางตา"
+            }
+          ],
+          "label": "จับ pattern ให้ได้ anion gap acidosis รุนแรงร่วมกับตาบอด",
+          "actions": [
+            "Blood gas with anion gap",
+            "Calculate the osmolar gap",
+            "Formal visual acuity and fundoscopy",
+            "Capillary glucose and salicylate level"
+          ],
+          "doseMap": {
+            "Calculate the osmolar gap": "Measured ลบ calculated osmolality รวมกับ anion gap ที่อธิบายไม่ได้ วินิจฉัยได้โดยไม่ต้องใช้ test พิเศษ"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "Ethanol ทาง NG tube หรือ fomepizole ถ้ามี",
+          "distractors": [
+            {
+              "label": "รอยืนยันก่อน block alcohol dehydrogenase",
+              "feedback": "Formic acid ทำให้ตาบอดและ acidosis block alcohol dehydrogenase ทันที"
+            },
+            {
+              "label": "ให้ activated charcoal",
+              "feedback": "Charcoal ไม่จับ alcohol block alcohol dehydrogenase ด้วย ethanol หรือ fomepizole"
+            }
+          ],
+          "label": "Block alcohol dehydrogenase ทันที ไม่ต้องรอยืนยัน",
+          "actions": [
+            "Ethanol by nasogastric tube",
+            "Or fomepizole IV if available"
+          ],
+          "doseMap": {
+            "Ethanol by nasogastric tube": "สูตรศูนย์พิษวิทยารามาธิบดี เหล้า 37% ผสมน้ำ 1:1 loading 800 mg/kg แล้ว 80 ถึง 130 mg/kg/h (150 ในคนดื่มประจำ) เป้า blood ethanol 100 mg/dL ผู้ชาย 60 kg คือเหล้าราว 165 mL กับน้ำ 165 mL แล้วชั่วโมงละราว 23 mL กับน้ำ 23 mL",
+            "Or fomepizole IV if available": "15 mg/kg ใน 30 นาที แล้ว 10 mg/kg ทุก 12 ชม. ไม่ทำให้ซึมและไม่ต้องเจาะระดับ แต่ไม่อยู่ในรายการ antidote ของศูนย์พิษ และ รพ. ไทยมีน้อยแห่ง"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "งด bicarbonate กลัว fluid overload",
+              "feedback": "แก้ acidosis ลดการเข้าเนื้อเยื่อและสมองของ formic acid ให้ bicarbonate"
+            },
+            {
+              "label": "ให้ thiamine อย่างเดียว",
+              "feedback": "Folinic acid ช่วยเผาผลาญ formic acid ใน methanol poisoning ให้ร่วมกับ bicarbonate"
+            }
+          ],
+          "label": "Bicarbonate และ folinic acid",
+          "actions": [
+            "Sodium bicarbonate IV",
+            "Folinic acid IV"
+          ],
+          "doseMap": {
+            "Sodium bicarbonate IV": "Bolus 1 ถึง 2 mEq/kg เป้า pH เกิน 7.2 การแก้ acidemia ทำให้ formate อยู่ในรูป ionized ซึ่งเข้า retina และสมองได้น้อยลง เป็นไม่กี่สถานการณ์ที่ bicarbonate รักษาที่กลไกจริง",
+            "Folinic acid IV": "1 mg/kg ไม่เกิน 50 mg IV ทุก 4 ชม. เร่งการสลาย formate เป็น CO2 กับน้ำ"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "Acidosis ดีขึ้นบางส่วน",
+          "outcomeType": "improved",
+          "narrative": "pH ดีขึ้นเป็น 7.16 หลังได้ bicarbonate 300 mEq ยัง acidosis หนักอยู่ anion gap 30 การมองเห็นไม่ดีขึ้น bicarbonate แค่ซื้อเวลา ไม่ได้รักษาพิษ ต้องเอา formate ออก",
+          "vitalChanges": {
+            "hr": 104,
+            "sbp": 110,
+            "dbp": 66,
+            "rr": 30,
+            "gcs": 14
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "หยุด ethanol เมื่อเริ่ม dialysis",
+              "feedback": "Methanol ยังถูกเผาผลาญอยู่ และ dialysis ล้าง ethanol ออกเร็ว เพิ่ม ethanol ระหว่าง dialysis"
+            },
+            {
+              "label": "Observe แล้วเจาะ gas ซ้ำใน 6 ชม.",
+              "feedback": "ตาบอดร่วมกับ acidosis รุนแรงเป็น indication ของ HD ด่วน"
+            }
+          ],
+          "label": "HD ด่วน",
+          "actions": [
+            "Emergency haemodialysis",
+            "Nephrology and ICU referral",
+            "Continue the alcohol dehydrogenase blocker during dialysis"
+          ],
+          "doseMap": {
+            "Emergency haemodialysis": "เกณฑ์ศูนย์พิษวิทยารามาธิบดี มองเห็นผิดปกติ กินเกิน 30 mL methanol เกิน 50 mg/dL หรือ pH ต่ำกว่า 7.25 เขาเข้าสามข้อ dialysis เอาออกได้ทั้ง methanol และ formate ซึ่งไม่มีวิธีอื่นทำได้",
+            "Continue the alcohol dehydrogenase blocker during dialysis": "Dialysis ล้าง ethanol ด้วย เพิ่ม ethanol เป็น 250 ถึง 350 mg/kg/h ระหว่างทำ หรือให้ fomepizole ทุก 4 ชม."
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "ตามหาคนอื่นที่ดื่มด้วย แทนที่จะรักษาแค่คนไข้ตรงหน้า (Empathy)",
+          "ethicalValue": 25,
+          "narrative": "เขาพูดถึงเพื่อนอีก 3 คนในงาน หนึ่งคนยังไม่ตื่น หมอไม่หยุดแค่คนไข้ของตัวเอง หมอถามชื่อหมู่บ้าน โทรหาสาธารณสุขอำเภอและ รพ. ใกล้ที่สุดตอนตีสาม ให้ตามล็อตเหล้า เจออีก 4 คน สองคนยัง acidosis แต่ไม่มีอาการ หนึ่งคนตาบอด หนึ่งคนเสียชีวิตแล้ว สองคนที่ไม่มีอาการได้รักษาก่อน formate สะสมและได้เก็บสายตาไว้ทั้งคู่ เพียงเพราะมีคนถามว่าใครดื่มด้วยอีก พี่แอนบอกว่านี่เป็นเคสเดียวที่เคยเห็นที่โทรศัพท์สายเดียวช่วยชีวิตสองคนที่ไม่เคยเข้ามาในแผนกเลย"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "รักษาคนไข้ ไม่ต้องพูดถึงแหล่งเหล้า",
+              "feedback": "คนอื่นอาจดื่มล็อตเดียวกัน แจ้งสาธารณสุขอำเภอ"
+            },
+            {
+              "label": "หยุด dialysis เมื่อเริ่มมองเห็นบ้าง",
+              "feedback": "ทำ dialysis ต่อจน anion gap ปกติ"
+            }
+          ],
+          "label": "ดูแลใน ICU และแจ้งสาธารณสุข",
+          "actions": [
+            "ICU admission with repeat gases",
+            "Ophthalmology review",
+            "Notify the district health office and food safety authority",
+            "Continue dialysis until the anion gap normalises"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "Acidosis หาย",
+          "outcomeType": "improved",
+          "narrative": "HD สองครั้งใน 14 ชม. pH ปกติ anion gap ปิด การมองเห็นดีขึ้นจากเห็นแค่แสงเป็นนับนิ้วได้ที่ 1 เมตร ความเสียหายต่อ optic nerve ที่เกิดไปแล้วเป็นถาวร",
+          "vitalChanges": {
+            "hr": 88,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 18,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 9 สายตาเสียถาวร (6/60 ทั้งสองข้าง) และมี parkinsonian syndrome เคลื่อนไหวช้าเล็กน้อยจาก putaminal necrosis ขึ้นทะเบียนผู้พิการทางการเห็น ตามเจอโรงต้มและล็อตเหล้า เก็บขวดออกได้ 11 ขวดจาก 3 หมู่บ้าน",
+          "vitalChanges": {
+            "hr": 80,
+            "sbp": 122,
+            "dbp": 74,
+            "rr": 16,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e6",
+        "source": "req4",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e_skip",
+        "source": "req4",
+        "target": "req5"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

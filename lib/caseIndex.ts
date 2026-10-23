@@ -28,8 +28,8 @@ import c24 from "../public/locales/th/case_24.json";
 import c25 from "../public/locales/th/case_25.json";
 import c26 from "../public/locales/th/case_26.json";
 import c27 from "../public/locales/th/case_27.json";
-import c28 from "../public/locales/en/case_28.json";
-import c29 from "../public/locales/en/case_29.json";
+import c28 from "../public/locales/th/case_28.json";
+import c29 from "../public/locales/th/case_29.json";
 import c30 from "../public/locales/en/case_30.json";
 import c31 from "../public/locales/en/case_31.json";
 import c32 from "../public/locales/en/case_32.json";
@@ -40,14 +40,14 @@ import c36 from "../public/locales/th/case_36.json";
 import c37 from "../public/locales/th/case_37.json";
 import c38 from "../public/locales/th/case_38.json";
 import c39 from "../public/locales/th/case_39.json";
-import c40 from "../public/locales/en/case_40.json";
-import c41 from "../public/locales/en/case_41.json";
-import c42 from "../public/locales/en/case_42.json";
-import c43 from "../public/locales/en/case_43.json";
-import c44 from "../public/locales/en/case_44.json";
+import c40 from "../public/locales/th/case_40.json";
+import c41 from "../public/locales/th/case_41.json";
+import c42 from "../public/locales/th/case_42.json";
+import c43 from "../public/locales/th/case_43.json";
+import c44 from "../public/locales/th/case_44.json";
 import c45 from "../public/locales/en/case_45.json";
 import c46 from "../public/locales/en/case_46.json";
-import c47 from "../public/locales/en/case_47.json";
+import c47 from "../public/locales/th/case_47.json";
 import c48 from "../public/locales/en/case_48.json";
 import c49 from "../public/locales/en/case_49.json";
 import c50 from "../public/locales/en/case_50.json";
@@ -106,4 +106,4 @@ export const CASE_DATA: Record<string, any> = {
   "case_50": c50,
 };
 
-export const THAI_CASES = 28;
+export const THAI_CASES = 36;

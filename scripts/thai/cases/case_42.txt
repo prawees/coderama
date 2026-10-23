@@ -1,0 +1,56 @@
+cc: ชักต่อเนื่อง 25 นาที
+bg: U/D epilepsy ตั้งแต่อายุ 19 กิน phenytoin ยาหมดมา 8 วันตอนไปทำงานต่างจังหวัด คนที่เห็นเล่าว่าชักเกร็งกระตุกทั้งตัวต่อเนื่องเริ่มราว 25 นาทีก่อนมาถึง มีหยุดสั้นๆ สองครั้งแค่ไม่กี่วินาที กู้ภัยให้ midazolam IM ระหว่างทาง 1 dose ไม่ได้ผล โตมาในฟาร์มหมูที่นครพนม ซึ่งเกี่ยวข้อง เพราะ neurocysticercosis เป็นสาเหตุที่ระบุได้บ่อยที่สุดของการชักที่เริ่มในผู้ใหญ่ในชนบทไทยหลายพื้นที่
+i.poc1: ต่ำก้ำกึ่ง เจาะน้ำตาลในคนไข้ชักทุกคนภายในนาทีแรก hypoglycemia คือสาเหตุที่แก้ได้เร็วที่สุด และพลาดเพราะทุกคนรีบหยิบ benzodiazepine ก่อน
+i.phen1: ตรวจไม่พบ เข้าได้กับขาดยา 8 วัน การไม่กินยาและยาขาดเป็นตัวกระตุ้น status ที่พบบ่อยที่สุดในคนที่เป็น epilepsy อยู่เดิม
+i.gas1: Severe mixed acidosis lactate สูงมากจากกล้ามเนื้อทำงาน lactate ระดับนี้หลังชักเกร็งเป็นเรื่องที่คาดได้และหายเร็ว ตัวมันเองไม่ได้บอกว่ามี sepsis หรือ ischemia
+i.ct1: Calcified lesion เล็กๆ หลายจุดในสมองทั้งสองซีก มี ring-enhancing lesion หนึ่งจุดที่ left parietal มี edema รอบๆ เข้าได้กับ neurocysticercosis หลายระยะ ไม่มีเลือดออก ไม่มี midline shift
+i.na1: ปกติ ตัดตัวกระตุ้นทาง metabolic ที่พบบ่อยออก
+i.ck1: Rhabdomyolysis จากกล้ามเนื้อทำงานนาน เริ่ม fluid และ monitor renal function
+i.eeg1: มี epileptiform discharge ต่อเนื่องที่ left parietal หลังหยุดชักให้เห็นแล้ว ยืนยันว่ายังมี non-convulsive status ถ้าไม่มี EEG คนไข้จะถูกคิดว่าอยู่ใน post-ictal และไม่ได้รักษาไปหลายชั่วโมง
+req1.l: Airway, O2, น้ำตาล และจับเวลา ทั้งหมดใน 60 วินาทีแรก
+req1.c: Nasal airway, O2, DTX และคนจับเวลา
+req1.d0: รอให้หยุดชักเอง
+req1.f0: Status epilepticus ทำลายเซลล์ประสาท ลงมือภายในนาทีแรก
+req1.d1: เอาอะไรใส่ปากกันกัดลิ้น
+req1.f1: ทำให้ฟันกับ airway บาดเจ็บ ใช้ nasopharyngeal airway และ suction
+req1.m0: ขากรรไกรเกร็งอยู่ อย่าฝืนใส่ oral airway ใช้ nasopharyngeal airway ได้ผล
+req1.m1: Status นิยามที่ชักต่อเนื่อง 5 นาที ถ้าไม่มีคนจับเวลา benzodiazepine จะให้ช้า และยา second line จะให้ช้าไปมาก
+req2.l: ให้ benzodiazepine ขนาดพอ ความผิดพลาดที่พบบ่อยที่สุดคือให้น้อยไป
+req2.c: Diazepam 10 mg IV ซ้ำได้ 1 ครั้งที่ 5 นาที
+req2.d0: Diazepam 2 mg IV แล้วรอ 20 นาที
+req2.f0: ให้น้อยไปคือความผิดพลาดที่พบบ่อยที่สุด ให้ขนาดเต็มแล้วซ้ำ 1 ครั้งหลัง 5 นาที
+req2.d1: ข้ามไป phenytoin เลยโดยไม่ให้ benzodiazepine
+req2.f1: Benzodiazepine คือ first line ยา second line ให้หลัง benzodiazepine สอง dose
+req2.m0: Diazepam 0.15 ถึง 0.2 mg/kg IV ไม่เกิน 10 mg ต่อ dose หรือ midazolam 10 mg IM ถ้าไม่มี IV (แนวทาง status epilepticus รามาธิบดี) ได้มาแล้วหนึ่ง dose ก่อนถึง รพ. ให้ dose ที่สองเต็มขนาดเลย
+req2.m1: ไม่เกินสอง dose การให้ benzodiazepine น้อยไป แล้วให้ dose ที่สามที่สี่แทนการไปขั้นต่อไป คือความผิดพลาดที่พบบ่อยที่สุดใน status
+req3.l: ยากันชัก second line หลัง benzodiazepine สอง dose
+req3.c: Levetiracetam 60 mg/kg IV
+req3.d0: Benzodiazepine dose ที่สามและสี่
+req3.f0: หลังสอง dose แล้ว benzodiazepine เพิ่มกดการหายใจโดยไม่มีประโยชน์ ให้ยา second line
+req3.d1: Phenytoin กินทาง NG tube
+req3.f1: Load ทางปากช้าเกินไปใน status epilepticus ใช้ยา second line ทาง IV
+req3.m0: 60 mg/kg ไม่เกิน 4500 mg ใน 10 นาที levetiracetam, valproate และ phenytoin ได้ผลพอกันใน ESETT trial เลือกตามผลข้างเคียงและสิ่งที่มีบนชั้นยา
+req3.m1: 40 mg/kg ไม่เกิน 3000 mg
+req3.m2: 15 ถึง 20 mg/kg ไม่เร็วกว่า 50 mg/min ติด EKG ตลอด ให้เร็วเกิดความดันต่ำและ arrhythmia รั่วออกนอกเส้นเกิด tissue necrosis ระดับยาตรวจไม่พบ ถือเหมือนไม่เคยได้ phenytoin
+out1.l: Refractory status
+out1.n: ยังชักอยู่ที่ 42 นาทีหลังเริ่ม ทั้งที่ได้ benzodiazepine สอง dose และ levetiracetam แล้ว นี่คือ refractory status epilepticus เซลล์ประสาทเริ่มบาดเจ็บหลังชักต่อเนื่องราว 30 นาที ตอนนี้คือสมองบาดเจ็บที่แข่งกับเวลา ไม่ใช่เกมรอ
+req4.l: Intubate และให้ยาสลบสำหรับ refractory status
+req4.c: RSI และ propofol drip พร้อม EEG
+req4.d0: ลองยา second line ตัวอื่นต่อบนวอร์ด
+req4.f0: Refractory status ต้อง intubate ให้ยาสลบ drip และ monitor EEG
+req4.d1: Paralyze ด้วย rocuronium แล้วจบแค่นั้น
+req4.f1: Paralysis บังการชักแต่ไม่ได้หยุดคลื่นสมอง ต้องให้ยาสลบและ EEG
+req4.m0: เลี่ยง paralysis ที่ออกฤทธิ์นาน ซึ่งบังการชักที่ยังเกิดอยู่ ใช้ตัวออกฤทธิ์สั้นและติด EEG ให้เร็วที่สุด
+req4.m1: Titrate จนกดการชักได้หรือได้ burst suppression บน EEG thiopental เป็นทางเลือก
+ethical_1.l: หาว่าทำไมยาหมด และแก้ตรงนั้น ไม่ใช่แค่การชัก (Empathy)
+ethical_1.n: พี่ชายเล่าว่าเขาทำงานก่อสร้างอีกจังหวัด สิทธิการรักษาอยู่ที่ รพ. ที่ห่างไป 8 ชม. และลางาน 3 วันไปรับยาไม่ได้ เขียนว่าไม่ร่วมมือกินยาใน discharge summary ก็ถูก แต่ไม่มีประโยชน์ หมอจัดย้ายการรับยาไป รพ. ใกล้ที่ทำงาน ให้ยา 90 วัน และเขียนบัตรให้ยื่นที่ร้านยาไหนก็ได้ น้องวันถามว่าเรื่องนี้สำคัญยังไงในเมื่อการชักคือเรื่องฉุกเฉิน คำตอบคือการชักเป็นแค่อาการของระบบการรับยา
+req5.l: หาและรักษาสาเหตุ
+req5.d0: ทำ LP ก่อน CT
+req5.f0: ทำ imaging ก่อน ตัด mass lesion หรือความดันในสมองสูงก่อน LP
+req5.d1: D/C ด้วย phenytoin ขนาดเดิม
+req5.f1: หาและรักษาสาเหตุ และแก้เรื่องที่ทำให้ยาหมด
+req5.m0: ให้ corticosteroid พร้อมหรือก่อนยาฆ่าพยาธิทุกครั้ง การฆ่า cyst กระตุ้นการอักเสบที่ทำให้ edema และการชักแย่ลงได้
+out2.l: คุมการชักได้
+out2.n: ได้ burst suppression ด้วย propofol drip EEG ยังมี electrographic seizure ต่ออีก 6 ชม. ก่อนคุมได้ wean และ extubate วันที่ 3 มี expressive dysphasia เล็กน้อย ดีขึ้นใน 2 สัปดาห์ เป็นผลจากระยะเวลาของ status ไม่ใช่การตัดสินใจครั้งใดครั้งหนึ่ง
+out3.l: Disposition
+out3.n: D/C วันที่ 12 ด้วย levetiracetam เลือกแทน phenytoin เพราะติดตามง่ายกว่า ได้ยา 90 วัน และย้ายสิทธิรับยาไป รพ. ใกล้ที่ทำงาน กิน albendazole ครบพร้อม steroid แนะนำให้งดขับรถ 1 ปี และที่มีประโยชน์กว่าคือบอกชัดๆ ว่าจะรับยาครั้งหน้ายังไงโดยไม่เสียค่าแรง 3 วัน

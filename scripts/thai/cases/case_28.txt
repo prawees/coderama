@@ -1,0 +1,55 @@
+cc: ขากรรไกรแข็ง เกร็งกระตุกทั้งตัวแบบเจ็บปวด
+bg: เหยียบตะปูขึ้นสนิมในบ่อปลาเมื่อ 9 วันก่อน ล้างแผลด้วยเหล้าขาวเอง ไม่ได้มา รพ. 5 วันก่อนเริ่มรู้สึกขากรรไกรแข็ง ต่อมากลืนลำบาก แล้วเกร็งกระตุกทั้งตัว เจ็บมาก เวลามีเสียงหรือมีคนแตะตัว ไม่มีประวัติฉีดวัคซีนบาดทะยัก เมื่อวานคลินิกเอกชนให้ metoclopramide แก้อาเจียน ทำให้ภาพไม่ชัด เพราะ dystonic reaction ดูคล้ายกันผิวเผินและตอบสนองต่อ diphenhydramine แต่บาดทะยักไม่ตอบสนอง
+i.clin1: เอาไม้กดลิ้นแตะ posterior pharynx แล้วคนไข้กัดแทนที่จะ gag sensitivity ราว 94% specificity ราว 100% และไม่เสียเงิน บาดทะยักวินิจฉัยทาง clinical ไม่มี lab ยืนยัน
+i.ck1: Rhabdomyolysis จากเกร็งต่อเนื่อง monitor renal function
+i.abg1: Mixed acidosis ร่วมกับ hypoventilation จากผนังอกแข็งและ laryngospasm แนวโน้มนี้จบที่ respiratory arrest ระหว่างเกร็ง
+i.cbc1: Leukocytosis เล็กน้อย ไม่จำเพาะ WBC ปกติก็ไม่ได้ตัดการวินิจฉัย
+i.cr1: AKI จาก rhabdomyolysis เริ่มมี hyperkalemia
+i.tox1: Negative พิษ strychnine ทำให้เกร็งแทบเหมือนกัน แต่กล้ามเนื้อคลายเต็มที่ระหว่างครั้ง ส่วนบาดทะยักยังแข็งค้างพื้นฐานอยู่ การแยกข้างเตียงเชื่อได้มากกว่า test
+req1.l: ย้ายไปห้องมืด เงียบ กระตุ้นน้อยที่สุดทันที
+req1.c: ย้ายไปห้องแยกที่มืดและเงียบ
+req1.d0: ตรวจซ้ำบ่อยๆ ติดตามการเกร็ง
+req1.f0: การแตะตัว แสง และเสียงกระตุ้นการเกร็ง กระตุ้นให้น้อยที่สุด รวมการดูแลไว้ทำทีเดียว
+req1.d1: ให้อยู่ใน resus bay หลักเพื่อ observe
+req1.f1: Resus bay ที่เสียงดังกระตุ้นการเกร็ง ย้ายไปห้องมืดและเงียบ
+req1.m0: นี่คือการรักษา ไม่ใช่แค่ให้สบาย ทุกสิ่งกระตุ้นที่เลี่ยงได้คือการเกร็งที่เลี่ยงได้ และการเกร็งทำให้ hypoxia, rhabdomyolysis และกระดูกหัก
+req2.l: Secure airway เร็ว ก่อน laryngospasm จะบังคับให้ทำ
+req2.c: Elective intubation ภายใต้ยาสลบเดี๋ยวนี้
+req2.d0: รอจนจำเป็นต้อง intubate
+req2.f0: Laryngospasm เกิดได้ทันทีและถึงตาย secure airway เร็วแบบ elective
+req2.d1: ลอง awake fiberoptic intubation
+req2.f1: การจับ airway ตอนคนไข้บาดทะยักยังตื่นกระตุ้น laryngospasm intubate ภายใต้ยาสลบ
+req2.m0: ทำแบบ elective และเร็ว การ intubate ฉุกเฉินตอนมี laryngospasm และ trismus แทบเป็นไปไม่ได้ คนไข้กลุ่มนี้มักต้องใช้ ventilator 2 ถึง 3 สัปดาห์ tracheostomy จึงควรวางแผนไว้ ไม่ใช่ทำแบบฉุกละหุก
+req3.l: ให้ human tetanus immunoglobulin ดูแลแผล และ antibiotic
+req3.c: Tetanus immunoglobulin, debride, metronidazole
+req3.d0: ให้ tetanus toxoid อย่างเดียว
+req3.f0: Toxoid ไม่ได้ neutralize toxin ที่อยู่ในกระแสเลือด ต้องให้ human tetanus immunoglobulin ด้วย
+req3.d1: ไม่ต้องให้ antibiotic toxin อยู่ในกระแสเลือดแล้ว
+req3.f1: Antibiotic กำจัดเชื้อที่ยังผลิต toxin อยู่ในแผล ให้ metronidazole ร่วมกับ immunoglobulin และ debridement
+req3.m0: 3000 ถึง 6000 unit IM ให้ก่อน debride เพื่อ neutralize toxin ที่หลุดออกมาจากการผ่าตัด immunoglobulin จับได้แค่ toxin ที่ยังไม่จับกับปลายประสาท แก้ toxin ที่จับแล้วไม่ได้
+req3.m1: 500 mg ทุก 8 ชม. 7 ถึง 10 วัน ดีกว่า penicillin ซึ่งเป็น GABA antagonist เองและทำให้เกร็งมากขึ้นได้
+req3.m2: การเป็นโรคไม่ได้ทำให้มีภูมิ ยังต้องฉีดวัคซีน
+req4.l: คุมการเกร็งด้วย benzodiazepine ขนาดสูงและ magnesium
+req4.c: Benzodiazepine drip และ magnesium drip
+req4.d0: Diazepam ขนาดต่ำเวลามีอาการ
+req4.f0: Generalized tetanus มักต้องใช้ benzodiazepine ขนาดสูงต่อเนื่องร่วมกับ magnesium
+req4.d1: Succinylcholine drip คุมการเกร็ง
+req4.f1: Succinylcholine ทำให้ hyperkalemia ได้ ใช้ benzodiazepine, magnesium และ non-depolarizing blocker
+req4.m0: ขนาดสูงกว่าปกติมากเป็นเรื่องที่คาดได้ บ่อยครั้ง 100 ถึง 500 mg diazepam equivalent ต่อวัน titrate ให้คุมเกร็งได้
+req4.m1: Loading 4 g แล้ว 2 ถึง 3 g/h เป้าระดับในเลือด 2 ถึง 4 mmol/L ลดความถี่การเกร็งและช่วย autonomic instability
+req4.m2: Rocuronium drip ร่วมกับ sedation ที่พอ ห้าม paralyze คนไข้ที่รู้สึกตัวเต็มที่โดยไม่ sedate ลึก
+out1.l: คุมเกร็งได้ แต่ autonomic storm เริ่ม
+out1.n: การเกร็งสงบลงวันที่ 2 ด้วย magnesium และ sedation drip ตั้งแต่วันที่ 6 BP แกว่งระหว่าง 210/120 HR 160 กับ 80/40 HR 45 ภายในไม่กี่นาที autonomic instability นี้แหละที่ฆ่าคนไข้บาดทะยักที่ได้รับการรักษาแล้ว ไม่ใช่การเกร็ง
+ethical_1.l: อธิบายญาติว่าคนไข้ตื่นและได้ยิน และให้ความสำคัญกับยาแก้ปวด (Empathy)
+ethical_1.n: ก่อน sedate หมออธิบายภรรยาว่าเขารู้สึกตัวเต็มที่ทุกครั้งที่เกร็ง ซึ่งโหดร้ายกว่าโรควิกฤตอื่นๆ และการคุมปวดกับ sedation ได้รับความสำคัญเป็นอันดับต้น ไม่ใช่เรื่องรอง หมอบอกทีมพยาบาลด้วยให้คุยกับเขาระหว่างดูแล แม้หลัง paralyze แล้ว พี่พิมใช้เคสนี้สอนทีหลังว่าคนไข้ที่ถูก paralyze คือคนไข้ที่รู้สึกตัว จนกว่าจะพิสูจน์ได้ว่า sedate พอ และบาปที่พบบ่อยที่สุดใน ICU บาดทะยักคือ paralyze โดย sedate ไม่พอ
+req5.l: จัดการ autonomic instability และการอยู่ ICU นาน
+req5.d0: รักษา BP สูงด้วย labetalol drip ขนาดสูง
+req5.f0: Autonomic instability แกว่งเร็ว ยาออกฤทธิ์นานทำให้ BP ตกรุนแรงได้ ใช้ magnesium และยาออกฤทธิ์สั้น
+req5.d1: วางแผน D/C ในสัปดาห์เดียวเมื่อหายเกร็ง
+req5.f1: บาดทะยักเป็นโรคที่ใช้เวลานานและมี autonomic storm ต้องอยู่ ICU นาน
+req5.m0: Esmolol สำหรับ BP พุ่ง เพราะปิดได้ในไม่กี่นาทีเมื่อ BP แกว่งลง เลี่ยง beta-blocker ออกฤทธิ์นาน ซึ่งสัมพันธ์กับการเสียชีวิตกะทันหันในบาดทะยัก
+req5.m1: การเกร็งต่อเนื่องทำให้ใช้พลังงานเพิ่มเป็นสองเท่าได้ เริ่ม enteral feeding เร็ว
+out2.l: ฟื้นตัวช้า
+out2.n: Autonomic instability สงบตั้งแต่วันที่ 18 wean ออกจาก tracheostomy วันที่ 26 อยู่ ICU รวม 31 วัน มี ICU-acquired weakness มาก ต้องฟื้นฟูอีกหลายเดือน
+out3.l: Disposition
+out3.n: ส่งต่อ rehab สัปดาห์ที่ 7 ฉีดวัคซีนชุดแรกครบ เพราะรอดจากบาดทะยักไม่ได้ทำให้มีภูมิเลย ทั้ง 5 สัปดาห์นี้ และค่าใช้จ่ายทั้งหมด ป้องกันได้ด้วยวัคซีนราคาไม่ถึง 50 บาท
