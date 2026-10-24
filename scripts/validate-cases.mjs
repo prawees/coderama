@@ -84,5 +84,17 @@ for (const lang of readdirSync(root)) {
   }
 }
 
+// Review patients take a name of the right sex from lib/review.ts, which keeps its own copy of each case's sex
+{
+  const review = readFileSync(join(root, "..", "..", "lib", "review.ts"), "utf8");
+  for (const file of readdirSync(join(root, "en")).filter((f) => /^case_.*\.json$/.test(f))) {
+    const id = file.slice(0, -5);
+    const sex = JSON.parse(readFileSync(join(root, "en", file), "utf8")).sex;
+    const m = review.match(new RegExp(`\\b${id}: "([MF])"`));
+    if (!m) err(`lib/review.ts`, `no sex for ${id}`);
+    else if (m[1] !== sex) err(`lib/review.ts`, `${id} is ${m[1]} but the case says ${sex}`);
+  }
+}
+
 console.log(`\n${errors} error(s), ${warnings} warning(s)`);
 process.exit(errors ? 1 : 0);

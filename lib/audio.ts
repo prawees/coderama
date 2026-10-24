@@ -22,6 +22,7 @@ class AudioEngine {
     this.isMuted = muted;
     if (muted) {
       this.stopAmbientHum();
+      this.stopRain();
     }
   }
 
@@ -75,6 +76,77 @@ class AudioEngine {
 
   public setAmbientIntensity(intensity: number) {
     this.currentIntensity = intensity;
+  }
+
+  private rainGain: GainNode | null = null;
+  private rainSrc: AudioBufferSourceNode | null = null;
+  private rainLevel = 1;
+  private dripTimer: ReturnType<typeof setTimeout> | null = null;
+
+  private rainVolume() {
+    return 0.22 * this.rainLevel * useERStore.getState().sfxVolume;
+  }
+
+  /** Rain on the roof: a soft high hiss and now and then a drip from the gutter. Level 1 outside, lower indoors. */
+  public playRain(level = 1) {
+    this.initContext();
+    if (!this.ctx || this.isMuted) return;
+    if (this.rainGain) { this.setRainLevel(level); return; }
+    this.rainLevel = level;
+    const ctx = this.ctx;
+    const len = ctx.sampleRate * 3;
+    const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    // pink noise, Paul Kellet's economy filter
+    let b0 = 0, b1 = 0, b2 = 0;
+    for (let i = 0; i < len; i++) {
+      const w = Math.random() * 2 - 1;
+      b0 = 0.99765 * b0 + w * 0.099046;
+      b1 = 0.963 * b1 + w * 0.2965164;
+      b2 = 0.57 * b2 + w * 1.0526913;
+      d[i] = (b0 + b1 + b2 + w * 0.1848) * 0.1;
+    }
+    const src = ctx.createBufferSource();
+    src.buffer = buf; src.loop = true;
+    const hp = ctx.createBiquadFilter();
+    hp.type = 'highpass'; hp.frequency.value = 800;
+    const lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass'; lp.frequency.value = 6500;
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0, ctx.currentTime);
+    g.gain.linearRampToValueAtTime(this.rainVolume(), ctx.currentTime + 3);
+    src.connect(hp).connect(lp).connect(g).connect(ctx.destination);
+    src.start();
+    this.rainSrc = src;
+    this.rainGain = g;
+    const drip = () => {
+      if (!this.rainGain || !this.ctx) return;
+      this.chime(1300 + Math.random() * 900, this.ctx.currentTime, 0.012 * this.rainLevel, 0.07);
+      this.dripTimer = setTimeout(drip, 700 + Math.random() * 2600);
+    };
+    this.dripTimer = setTimeout(drip, 1500);
+  }
+
+  public setRainLevel(level: number) {
+    this.rainLevel = level;
+    if (!this.rainGain || !this.ctx) return;
+    const g = this.rainGain.gain, t = this.ctx.currentTime;
+    g.cancelScheduledValues(t);
+    g.setValueAtTime(g.value, t);
+    g.linearRampToValueAtTime(this.rainVolume(), t + 0.8);
+  }
+
+  public stopRain() {
+    if (this.dripTimer) { clearTimeout(this.dripTimer); this.dripTimer = null; }
+    if (this.rainGain && this.ctx) {
+      const g = this.rainGain, src = this.rainSrc;
+      g.gain.cancelScheduledValues(this.ctx.currentTime);
+      g.gain.setValueAtTime(g.gain.value, this.ctx.currentTime);
+      g.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 1.5);
+      setTimeout(() => { try { src?.stop(); } catch {} g.disconnect(); }, 1600);
+      this.rainGain = null;
+      this.rainSrc = null;
+    }
   }
 
   /** A soft struck tone with a natural decay, the building block of the cosy sounds */

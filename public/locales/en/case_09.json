@@ -317,7 +317,7 @@
             },
             {
               "label": "Add 40 mmol/h of potassium now, since total body potassium is always depleted",
-              "feedback": "Her potassium is 5.4, above 5.3. Give none yet, recheck in 2 hours, and add 20 to 30 mmol/L to the fluid once it falls below 5.3 with good urine output."
+              "feedback": "Her potassium is 5.4, above 5.0. Give none yet, recheck in 2 hours, and add 20 to 30 mmol/L to the fluid once it falls below 5.0 with good urine output."
             }
           ],
           "label": "Check potassium before starting insulin and replace as needed",
@@ -326,7 +326,7 @@
             "Potassium chloride in maintenance fluid"
           ],
           "doseMap": {
-            "Potassium chloride in maintenance fluid": "If K 3.3-5.3 mmol/L add 20-30 mmol/L to the fluid. If K below 3.3 mmol/L hold insulin and replace first. If above 5.3 mmol/L give no potassium and recheck in 2 hours"
+            "Potassium chloride in maintenance fluid": "If K 3.5-5.0 mmol/L add 20-30 mmol/L to the fluid to keep K at 4-5. If K below 3.5 mmol/L hold insulin and give potassium at 10 mmol/h first. If above 5.0 mmol/L give no potassium and recheck in 2 hours"
           }
         }
       },
@@ -434,7 +434,7 @@
             "Endocrinology and diabetes educator referral"
           ],
           "doseMap": {
-            "Long acting subcutaneous insulin": "Give 1-2 hours before stopping the drip. Resolution means anion gap under 12, bicarbonate at least 15 and beta-hydroxybutyrate under 0.6 with the patient eating"
+            "Long acting subcutaneous insulin": "Give 1-2 hours before stopping the drip. Resolution means beta-hydroxybutyrate under 0.6 mmol/L with venous pH at least 7.3 or bicarbonate at least 18 mmol/L, and the patient eating"
           }
         }
       },

@@ -36,7 +36,7 @@ req3.d0: ลด BP ลงถึง 110/70 เร็วๆ
 req3.f0: ลดเร็วทำให้เลือดไปรกน้อยลงและเป็นอันตรายต่อทารก ลดทีละน้อย
 req3.d1: กัดแคปซูล nifedipine อมใต้ลิ้น
 req3.f1: กัดแคปซูลทำให้ BP ตกเร็วแบบคาดเดาไม่ได้ ใช้ labetalol, hydralazine หรือ nifedipine กิน
-req3.m0: 20 mg IV เพิ่มเท่าตัวทุก 10 นาที รวมไม่เกิน 300 mg เป้า SBP 140 ถึง 150 DBP 90 ถึง 100
+req3.m0: 20 mg IV ถ้า BP ยังสูงที่ 10 นาทีให้ 40 mg แล้วต่อด้วย 80 mg ทุก 10 นาที รวมไม่เกิน 300 mg เป้า SBP 140 ถึง 150 DBP 90 ถึง 100
 req3.m1: 5 mg IV ทุก 20 นาที ทำให้แม่ BP ตกและ fetal distress มากกว่า labetalol อย่าลด BP แบบทันที เพราะเลือดไปรกไม่มี autoregulation ลดเร็วทำให้ทารกแย่
 req3.a0: Labetalol IV
 req3.a1: หรือ hydralazine IV

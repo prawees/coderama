@@ -2,12 +2,14 @@
 
 import { useMemo, MutableRefObject } from "react";
 import { useERStore } from "@/lib/erStore";
-import { NPCS, CAT, ROSTER, heartsFor, tasteOf, lineFor, NpcDef } from "@/lib/npcs";
+import { NPCS, CAT, rosterOn, heartsFor, tasteOf, lineFor, birthdayOn, NpcDef } from "@/lib/npcs";
 import { GIFTS, TASTE_POINTS, Taste } from "@/lib/gifts";
 import type { CutsceneNode, CutsceneChoice } from "@/lib/StoryManager";
 import type { WorldApi, WorldNpc, WorldTarget } from "@/components/game/ClinicWorld";
 import type { Phase } from "@/lib/world/maps";
 import { audio } from "@/lib/audio";
+import { requestFor, teamFor } from "@/lib/requests";
+import { weatherFor, windowView } from "@/lib/weather";
 
 type Lang = "en" | "th";
 const t = (lang: Lang, en: string, th: string) => (lang === "th" ? th : en);
@@ -34,6 +36,8 @@ export function useWorldSocial(opts: {
   phase: Phase;
   language: Lang;
   currentDay: number;
+  /** Real clock time, minutes after midnight, for what the window shows */
+  minuteOfDay: number;
   setDialogueQueue: (q: CutsceneNode[]) => void;
   setIsCinematic: (b: boolean) => void;
   worldApi: MutableRefObject<WorldApi | null>;
@@ -46,10 +50,11 @@ export function useWorldSocial(opts: {
   addLog: (msg: string) => void;
 }) {
   const { phase, language: lang, currentDay: day } = opts;
+  const rain = weatherFor(day) === "rain";
 
   const npcs: WorldNpc[] = useMemo(
-    () => ROSTER[phase].map((r) => ({ id: r.id, name: NPCS[r.id].name[lang], look: NPCS[r.id].look, map: r.map, home: r.home, spots: r.spots })),
-    [phase, lang]
+    () => rosterOn(day, phase).map((r) => ({ id: r.id, name: NPCS[r.id].name[lang], look: NPCS[r.id].look, map: r.map, home: r.home, spots: r.spots })),
+    [phase, lang, day]
   );
 
   const speakerNode = (def: NpcDef, text: string): CutsceneNode => ({ speaker: def.name[lang], text, voice: def.voice });
@@ -90,9 +95,17 @@ export function useWorldSocial(opts: {
     const daily = st.npcDaily[id] || {};
     const firstToday = daily.talkDay !== day;
     if (firstToday) { st.updateFriendship(id, 2); st.markNpc(id, "talkDay", day); }
+    const req = requestFor(day);
+    if (firstToday && req?.kind === "social") {
+      const talked = useERStore.getState().npcDaily;
+      if (teamFor(day).every((n) => talked[n]?.talkDay === day)) st.completeRequest(day);
+    }
     const after = before + (firstToday ? 2 : 0);
     opts.worldApi.current?.emote(id, heartsFor(after) >= 6 ? "heart" : firstToday ? "note" : "dots");
-    const node = speakerNode(def, lineFor(def, heartsFor(after), day, lang));
+    const birthday = birthdayOn(day, phase) === id;
+    const node = speakerNode(def, birthday && firstToday
+      ? "วันนี้วันเกิดเรานะ ไม่ต้องร้องเพลง ขอแค่คืนนี้ไม่มีใครโค้ดก็พอ"
+      : lineFor(def, heartsFor(after), day, lang));
     const scenes = heartScenes(def, heartsFor(after));
     if (daily.giftDay !== day) {
       node.choices = giftChoices((g) => give(id, g), () => opts.setDialogueQueue(scenes));
@@ -111,10 +124,13 @@ export function useWorldSocial(opts: {
     if (!def || !st.useGift(giftId)) return;
     const before = st.friendships[id] || 0;
     const taste = tasteOf(def, giftId);
-    st.updateFriendship(id, TASTE_POINTS[taste]);
+    // A birthday gift counts three times, unless it's something they hate
+    const birthday = birthdayOn(day, phase) === id && taste !== "hate";
+    const points = TASTE_POINTS[taste] * (birthday ? 3 : 1);
+    st.updateFriendship(id, points);
     st.markNpc(id, "giftDay", day);
     st.learnTaste(id, giftId, taste);
-    const after = before + TASTE_POINTS[taste];
+    const after = before + points;
     opts.worldApi.current?.emote(id, reactionEmote(taste));
     if (taste === "love") {
       opts.worldApi.current?.sparkle(id);
@@ -122,9 +138,12 @@ export function useWorldSocial(opts: {
       if (st.activeQuests.includes("q_favourite")) st.completeQuest("q_favourite");
     }
     opts.addLog(`${def.name.en}: ${GIFTS[giftId]?.name.en} (${taste})`);
+    const req = requestFor(day);
+    if (req?.kind === "gift" && req.npcId === id && req.giftId === giftId) st.completeRequest(day);
     const scenes = heartScenes(def, heartsFor(after));
     if (scenes.length) opts.setIsCinematic(true);
-    opts.setDialogueQueue([speakerNode(def, def.gift[taste][lang]), ...scenes]);
+    const cake: CutsceneNode[] = birthday ? [{ speaker: "System", text: `ของขวัญวันเกิด${def.name.th} ความสนิทเพิ่มสามเท่า` }] : [];
+    opts.setDialogueQueue([speakerNode(def, def.gift[taste][lang]), ...cake, ...scenes]);
   }
 
   function petCat() {
@@ -152,6 +171,8 @@ export function useWorldSocial(opts: {
         s.learnTaste("cat", g, taste);
         opts.worldApi.current?.emote("cat", reactionEmote(taste));
         if (taste === "love") opts.worldApi.current?.sparkle("cat");
+        const req = requestFor(day);
+        if (req?.kind === "kanom" && g === req.giftId) s.completeRequest(day);
         opts.setDialogueQueue([{ speaker: CAT.name[lang], text: CAT.gift[taste][lang], voice: 1500 }]);
       }, () => opts.setDialogueQueue([]));
     }
@@ -181,7 +202,14 @@ export function useWorldSocial(opts: {
         opts.openLetters();
         return;
       case "kettle":
-        if (onceToday("kettle")) { st.restoreEnergy(8); opts.worldApi.current?.emote("player", "heart"); say(t(lang, "You make a cup of tea and drink it while it's still too hot. Worth it. (+8 energy)", "คุณชงชาแล้วดื่มทั้งที่ยังร้อนเกินไป คุ้มค่า (+8 พลังงาน)")); }
+        if (onceToday("kettle")) {
+          // Hot tea on a wet day does a little more
+          st.restoreEnergy(rain ? 12 : 8);
+          opts.worldApi.current?.emote("player", "heart");
+          say(rain
+            ? t(lang, "Rain on the roof and a hot cup of tea. The best ten minutes of the shift. (+12 energy)", "ฝนตกบนหลังคา กับชาร้อนหนึ่งแก้ว สิบนาทีที่ดีที่สุดของเวร (+12 พลังงาน)")
+            : t(lang, "You make a cup of tea and drink it while it's still too hot. Worth it. (+8 energy)", "คุณชงชาแล้วดื่มทั้งที่ยังร้อนเกินไป คุ้มค่า (+8 พลังงาน)"));
+        }
         else say(t(lang, "The kettle is still warm. Someone else's turn now.", "กาต้มน้ำยังอุ่นอยู่ ตาคนอื่นบ้างแล้ว"));
         return;
       case "bookshelf": {
@@ -192,20 +220,29 @@ export function useWorldSocial(opts: {
       }
       case "notice": {
         // the board leaks gift hints about whoever works here now
-        const here = ROSTER[phase];
+        const here = rosterOn(day, phase);
         const npc = NPCS[here[day % here.length].id];
         const gift = GIFTS[npc.loves[day % npc.loves.length]];
         const hint = t(lang, `Someone has pinned a note: "${npc.name.en} would do anything for ${gift.name.en}."`, `มีคนแปะโน้ตไว้: "${npc.name.th}ยอมทำทุกอย่างเพื่อ${gift.name.th}"`);
         const other = NOTICES[day % NOTICES.length][lang];
-        opts.setDialogueQueue([{ speaker: "System", text: other }, { speaker: "System", text: hint }]);
+        const req = requestFor(day);
+        const done = useERStore.getState().requestsDone?.includes(day);
+        const pinned: CutsceneNode[] = req
+          ? [{ speaker: "System", text: done ? `งานวันนี้ที่บอร์ด เสร็จแล้ว ✓ ${req.note}` : `ประกาศใหม่ ${req.note} (รางวัล ${req.cash} เหรียญ ดูได้ที่สมุดภารกิจ)` }]
+          : [];
+        const bday = birthdayOn(day, phase);
+        const circled: CutsceneNode[] = bday ? [{ speaker: "System", text: `ปฏิทินบนบอร์ดมีวงกลมแดงไว้ วันนี้วันเกิด${NPCS[bday].name.th}` }] : [];
+        opts.setDialogueQueue([...pinned, ...circled, { speaker: "System", text: other }, { speaker: "System", text: hint }]);
         return;
       }
       case "pond":
+        if (rain) { say(t(lang, "Rain dimples the pond. The koi have gone deep and are not taking visitors.", "ฝนตกเป็นวงๆ บนผิวน้ำ ปลาคาร์ปดำลงไปก้นบ่อ ไม่รับแขก")); return; }
         say(onceToday("pond")
           ? t(lang, "The koi gather, convinced you are food. You make a small wish. Nobody needs to know what it was.", "ปลาคาร์ปมารวมกัน คิดว่าคุณเป็นอาหาร คุณอธิษฐานเบาๆ ไม่ต้องมีใครรู้ว่าขออะไร")
           : t(lang, "The koi have lost interest in you. Fair.", "ปลาคาร์ปเลิกสนใจคุณแล้ว ก็สมควร"));
         return;
       case "bench":
+        if (rain) { say(t(lang, "The bench is soaked. Maybe the kettle instead.", "ม้านั่งเปียกโชก ไปชงชาที่มุมกาต้มน้ำดีกว่า")); return; }
         if (onceToday("bench")) { st.restoreEnergy(6); say(t(lang, "You sit for a moment. A breeze moves through the frangipani. (+6 energy)", "คุณนั่งพักสักครู่ ลมพัดผ่านต้นลีลาวดี (+6 พลังงาน)")); }
         else say(t(lang, "The bench is warm from the sun. You can't sit all day, though.", "ม้านั่งอุ่นแดด แต่จะนั่งทั้งวันก็ไม่ได้"));
         return;
@@ -218,15 +255,9 @@ export function useWorldSocial(opts: {
       case "catbed":
         say(t(lang, "Kanom's bed. Warm, and roughly forty percent cat hair.", "ที่นอนของขนม อุ่น และเป็นขนแมวราวสี่สิบเปอร์เซ็นต์"));
         return;
-      case "window": {
-        const m = st.clockMinutes;
-        say(st.shiftMode === "off-duty"
-          ? t(lang, "Pink dawn over the car park. The day hasn't decided what it is yet.", "ฟ้ารุ่งสีชมพูเหนือลานจอดรถ วันนี้ยังไม่ตัดสินใจว่าจะเป็นวันแบบไหน")
-          : m < 240 ? t(lang, "Morning light. A street vendor is setting up across the road.", "แสงยามเช้า แม่ค้าฝั่งตรงข้ามกำลังตั้งร้าน")
-          : m < 420 ? t(lang, "Blazing afternoon. The car park shimmers.", "บ่ายร้อนจัด ลานจอดรถระยิบระยับ")
-          : t(lang, "Golden hour. The sky looks like a mango.", "แสงทองยามเย็น ท้องฟ้าเหมือนมะม่วงสุก"));
+      case "window":
+        say(windowView(opts.minuteOfDay, weatherFor(day)));
         return;
-      }
     }
   }
 

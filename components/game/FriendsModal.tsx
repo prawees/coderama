@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useERStore } from "@/lib/erStore";
-import { NPCS, CAT, ROSTER, heartsFor } from "@/lib/npcs";
+import { NPCS, CAT, ROSTER, heartsFor, BIRTHDAYS, isAbsent } from "@/lib/npcs";
 import { GIFTS } from "@/lib/gifts";
 import { GIFT_ICON } from "@/lib/pixel/icons";
 import type { Phase } from "@/lib/world/maps";
@@ -42,11 +42,18 @@ export function FriendsModal({ phase, onClose }: { phase: Phase; onClose: () => 
           <div className="flex items-center justify-between gap-2">
             <span className="text-[19px] leading-none">{name}</span>
             <span className="flex gap-1 text-[13px] leading-none text-[#86522e]">
-              <span className={daily.talkDay === currentDay ? "text-[#3f8a48]" : ""}>{daily.talkDay === currentDay ? tr("chatted", "คุยแล้ว") : tr("not yet", "ยังไม่คุย")}</span>
+              {isAbsent(id, currentDay)
+                ? <span>ไม่อยู่วันนี้</span>
+                : <span className={daily.talkDay === currentDay ? "text-[#3f8a48]" : ""}>{daily.talkDay === currentDay ? tr("chatted", "คุยแล้ว") : tr("not yet", "ยังไม่คุย")}</span>}
               {daily.giftDay === currentDay && <span className="text-[#a93c4b]">{tr("+ gift", "+ ของขวัญ")}</span>}
             </span>
           </div>
           <div className="mt-1"><Hearts points={points} /></div>
+          {BIRTHDAYS[id] && (
+            <p className={`mt-1 text-[13px] leading-none ${BIRTHDAYS[id] === currentDay ? "text-[#a93c4b]" : "text-[#86522e]"}`}>
+              {BIRTHDAYS[id] === currentDay ? "วันนี้วันเกิด ให้ของขวัญได้สามเท่า" : `วันเกิด วันที่ ${BIRTHDAYS[id]}`}
+            </p>
+          )}
           {known.length > 0 && (
             <div className="mt-1.5 flex flex-wrap gap-x-2 gap-y-1 text-[13px] leading-none text-[#86522e]">
               {known.map(([gift, taste]) => (

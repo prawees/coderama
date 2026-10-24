@@ -21,8 +21,12 @@ import { DayCard } from "@/components/game/DayCard";
 import { Pager } from "@/components/ui/Pager";
 import { DialogueBox } from "@/components/game/DialogueBox";
 import { QuestsModal } from "@/components/game/QuestsModal";
-import { LettersModal } from "@/components/game/LettersModal";
+import { LettersModal, LettersTab } from "@/components/game/LettersModal";
 import { unreadLetters } from "@/lib/letters";
+import { requestFor } from "@/lib/requests";
+import { claimableMilestones } from "@/lib/casebook";
+import { reviewName } from "@/lib/review";
+import { weatherFor } from "@/lib/weather";
 import { LeaderboardModal } from "@/components/game/LeaderboardModal";
 import { ConsultsModal } from "@/components/game/ConsultsModal";
 import { SettingsMenu } from "@/components/game/SettingsMenu";
@@ -52,6 +56,7 @@ export default function HubPage() {
   const hydrated = useHydrated();
   const [isQuestsOpen, setIsQuestsOpen] = useState(false);
   const [isLettersOpen, setIsLettersOpen] = useState(false);
+  const [lettersTab, setLettersTab] = useState<LettersTab>('letters');
   const patientLog = useERStore((s) => s.patientLog);
   const [isCinematic, setIsCinematic] = useState(false);
   
@@ -363,11 +368,14 @@ export default function HubPage() {
             state.markSpawned(selectedCase);
             
             const who = patientFor(selectedCase);
-            setPagerMessage(who ? `${who.name.th} ${who.age.th}\n${who.pager.th}` : 'มีคนไข้ใหม่ค่ะหมอ');
+            // Someone new with a condition the player has already met: a review case under their own name
+            const alias = state.patientLog[selectedCase] ? reviewName(selectedCase, currentDay * 7 + (state.shiftStats.spawned ?? []).length) : undefined;
+            setPagerMessage(who ? `${alias ?? who.name.th} ${who.age.th}\n${alias ? 'เคสทบทวน ' : ''}${who.pager.th}` : 'มีคนไข้ใหม่ค่ะหมอ');
 
             addCase({
               id: `case_${Date.now()}`,
               caseDataId: selectedCase,
+              alias,
               skinTone: PATIENT_SKIN[selectedCase],
               receivedAt: Date.now(),
               expiresAt: Date.now() + 5 * 60 * 1000, 
@@ -561,7 +569,10 @@ export default function HubPage() {
     if (energy > 0 && energy <= 25 && !warnedLowEnergy.current) {
       warnedLowEnergy.current = true;
       worldApi.current?.emote('player', 'sweat');
-      showToast('เริ่มหมดแรงแล้ว แวะชงชาที่มุมกาต้มน้ำ หรือออกไปนั่งพักที่ม้านั่งก่อนนะ');
+      // the bench is soaked on rainy days, so only the kettle is worth suggesting
+      showToast(weatherFor(useERStore.getState().currentDay) === 'rain'
+        ? 'เริ่มหมดแรงแล้ว แวะชงชาร้อนๆ ที่มุมกาต้มน้ำก่อนนะ'
+        : 'เริ่มหมดแรงแล้ว แวะชงชาที่มุมกาต้มน้ำ หรือออกไปนั่งพักที่ม้านั่งก่อนนะ');
     }
   }, [energy, shiftMode, language, showToast]);
 
@@ -580,17 +591,50 @@ export default function HubPage() {
     return () => window.removeEventListener('questComplete', onQuest);
   }, [language, showToast]);
 
+  // Rain on rainy days, louder out in the courtyard than under the roof
+  const rainy = weatherFor(currentDay) === 'rain';
+  useEffect(() => {
+    if (!rainy) return;
+    audio.playRain(currentMap === 'AMBULANCE_BAY' ? 1 : 0.45);
+  }, [rainy, currentMap]);
+  useEffect(() => {
+    if (!rainy) return;
+    return () => audio.stopRain();
+  }, [rainy]);
+
+  // The notice-board request, when it is finished in the clinic
+  useEffect(() => {
+    const onRequest = (e: Event) => {
+      const r = requestFor((e as CustomEvent).detail as number);
+      if (!r) return;
+      audio.playCashRegister();
+      worldApi.current?.emote('player', 'star');
+      worldApi.current?.sparkle('player');
+      showToast(`งานจากบอร์ดสำเร็จ: ${r.goal} (+${r.cash} เหรียญ)`);
+    };
+    window.addEventListener('requestComplete', onRequest);
+    return () => window.removeEventListener('requestComplete', onRequest);
+  }, [showToast]);
+
+  // The clock starts when the day's story says the shift starts, and the light follows real time of day
+  const shiftStart = useMemo(() => shiftStartMinutes(getDayStory(currentDay, language)), [currentDay, language]);
+  const shiftLive = shiftMode === 'on-shift' || shiftMode === 'boss-battle';
+  // Off duty, the clock still holds the last shift's end; show the coming shift's start instead
+  const shownMinutes = shiftLive ? clockMinutes : 0;
+  const timeOfDay = Math.floor(shiftStart + shownMinutes) % 1440;
+
   const social = useWorldSocial({
     phase,
     language,
     currentDay,
+    minuteOfDay: timeOfDay,
     setDialogueQueue: playScene,
     setIsCinematic,
     worldApi,
     openLeaderboard: () => setIsLeaderboardOpen(true),
     openConsults: () => setIsConsultsOpen(true),
     openShop: () => router.push('/hub/shop'),
-    openLetters: () => setIsLettersOpen(true),
+    openLetters: () => { setLettersTab('letters'); setIsLettersOpen(true); },
     openCase: (caseId, instanceId) => router.push(`/simulator/play/${caseId}?instanceId=${instanceId}`),
     toast: showToast,
     addLog,
@@ -604,12 +648,6 @@ export default function HubPage() {
     setCurrentMap(target);
   };
 
-  // The clock starts when the day's story says the shift starts, and the light follows real time of day
-  const shiftStart = useMemo(() => shiftStartMinutes(getDayStory(currentDay, language)), [currentDay, language]);
-  const shiftLive = shiftMode === 'on-shift' || shiftMode === 'boss-battle';
-  // Off duty, the clock still holds the last shift's end; show the coming shift's start instead
-  const shownMinutes = shiftLive ? clockMinutes : 0;
-  const timeOfDay = Math.floor(shiftStart + shownMinutes) % 1440;
   const formatTime = (mins: number) => {
     const t = Math.floor(shiftStart + mins) % 1440;
     const hours = Math.floor(t / 60);
@@ -619,7 +657,12 @@ export default function HubPage() {
 
   const tr = (en: string, th: string) => (language === 'th' ? th : en);
   const onShift = shiftMode === 'on-shift' || shiftMode === 'boss-battle';
-  const hasMail = unreadLetters(patientLog, currentDay).length > 0;
+  const casebookClaimed = useERStore((s) => s.casebookClaimed);
+  const requestsDone = useERStore((s) => s.requestsDone);
+  // The postbox bubble also means a casebook reward is waiting to be claimed
+  const hasMail = unreadLetters(patientLog, currentDay).length > 0
+    || claimableMilestones(Object.keys(patientLog).length, casebookClaimed ?? []).length > 0;
+  const openRequest = !!requestFor(currentDay) && !(requestsDone ?? []).includes(currentDay);
   const anyModal = isQuestsOpen || isLettersOpen || isLeaderboardOpen || isConsultsOpen || isSettingsOpen || isFriendsOpen || activeTab === 'LOGS';
 
   return (
@@ -636,6 +679,7 @@ export default function HubPage() {
           playerLook={playerLook}
           activeCases={activeCases}
           mail={hasMail}
+          rain={rainy}
           clockMinutes={worldLightMinutes(timeOfDay)}
           onShift={onShift}
           paused={dialogueQueue.length > 0 || anyModal || dayCard !== null}
@@ -651,7 +695,7 @@ export default function HubPage() {
         {/* Day and time plaque */}
         <div className="absolute top-2 left-2 z-40 cozy-tag px-2 py-1 pointer-events-none" data-testid="hud-day">
           <div className="flex items-center gap-1.5 text-[18px] leading-none">
-            <PixelIcon name={timeOfDay >= 360 && timeOfDay < 1110 ? 'sun' : 'moon'} size={15} />
+            <PixelIcon name={rainy ? 'rain' : timeOfDay >= 360 && timeOfDay < 1110 ? 'sun' : 'moon'} size={15} />
             <span>{tr('Day', 'วันที่')} {currentDay}</span>
             <span className="tabular-nums text-[#86522e]">{formatTime(shownMinutes)}</span>
           </div>
@@ -721,7 +765,7 @@ export default function HubPage() {
             )}
           </div>
           <button onClick={() => { audio.playClick(); setIsQuestsOpen(true); }} className="cozy-btn cozy-btn-sun px-2 py-1 flex items-center gap-1 text-[17px] leading-none" aria-label="quests">
-            <PixelIcon name="quest" size={16} />{activeQuests.length}
+            <PixelIcon name="quest" size={16} />{activeQuests.length + (openRequest ? 1 : 0)}
           </button>
         </div>
 
@@ -738,7 +782,7 @@ export default function HubPage() {
                     className={`cozy-btn py-1.5 px-1 flex flex-col items-center leading-none ${c ? 'cozy-btn-berry animate-[cozyWiggle_1.2s_ease-in-out_infinite]' : 'opacity-70'}`}
                   >
                     <span className="flex items-center gap-1 text-[16px]"><PixelIcon name="bed" size={16} />{bedIdx + 1}</span>
-                    <span className="text-[14px] mt-1 max-w-full truncate px-0.5">{c ? (patientFor(c.caseDataId)?.name.th ?? 'คนไข้') : tr('free', 'ว่าง')}</span>
+                    <span className="text-[14px] mt-1 max-w-full truncate px-0.5">{c ? (c.alias ?? patientFor(c.caseDataId)?.name.th ?? 'คนไข้') : tr('free', 'ว่าง')}</span>
                   </button>
                 );
               })}
@@ -812,8 +856,8 @@ export default function HubPage() {
       )}
 
       <AnimatePresence>
-        {isQuestsOpen && <QuestsModal onClose={() => setIsQuestsOpen(false)} />}
-        {isLettersOpen && <LettersModal onClose={() => setIsLettersOpen(false)} />}
+        {isQuestsOpen && <QuestsModal onClose={() => setIsQuestsOpen(false)} onOpenCasebook={() => { setIsQuestsOpen(false); setLettersTab('casebook'); setIsLettersOpen(true); }} />}
+        {isLettersOpen && <LettersModal initialTab={lettersTab} onClose={() => setIsLettersOpen(false)} />}
         {isLeaderboardOpen && <LeaderboardModal onClose={() => setIsLeaderboardOpen(false)} />}
         {isConsultsOpen && <ConsultsModal onClose={() => setIsConsultsOpen(false)} />}
         {isSettingsOpen && <SettingsMenu isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />}

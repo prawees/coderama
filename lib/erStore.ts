@@ -3,6 +3,8 @@ import { create } from 'zustand';
 import { persist, StateStorage, createJSONStorage } from 'zustand/middleware';
 import { Preferences } from '@capacitor/preferences';
 import { QUEST_DATABASE } from './quests';
+import { requestFor } from './requests';
+import { CASEBOOK_MILESTONES } from './casebook';
 
 // Custom Capacitor Storage Engine for Zustand Persist.
 // Writes are ignored until the saved game has been read back: Capacitor storage is async,
@@ -37,7 +39,7 @@ export const getEra = (day: number): Era => {
   return 'PROFESSOR';
 };
 
-export interface ShiftPatient { caseId: string; grade: string; mistakes: number }
+export interface ShiftPatient { caseId: string; grade: string; mistakes: number; /** review patients go by their own name */ name?: string }
 
 export type Rank = 'MS5' | 'MS6' | 'Intern' | 'R1' | 'R2' | 'R3' | 'Asst. Prof' | 'Assoc. Prof' | 'Prof';
 
@@ -90,6 +92,8 @@ export interface ActiveCase {
   bedIndex?: number; // Added to spawn them in specific beds
   skinTone?: string;
   shirtColor?: string;
+  /** A review case: someone new with a condition already met, under their own name (lib/review.ts) */
+  alias?: string;
 }
 
 export type GearType = 'stethoscope' | 'scrubs' | 'shoes';
@@ -140,6 +144,8 @@ export interface PatientRecord {
   day: number;
   good: boolean;
   letterRead: boolean;
+  /** Casebook star: the patient was cared for well (every step right, or one slip) at least once */
+  star?: boolean;
 }
 
 interface ERState {
@@ -210,6 +216,10 @@ interface ERState {
   propDaily: Record<string, number>; // prop or activity -> day last used
   /** Patients you have treated, first good or bad outcome per case, and whether their letter was read */
   patientLog: Record<string, PatientRecord>;
+  /** Days whose notice-board request was done */
+  requestsDone: number[];
+  /** Casebook milestones already claimed, by page count */
+  casebookClaimed: number[];
 
   // Actions
   setShiftMode: (mode: ShiftMode) => void;
@@ -252,13 +262,17 @@ interface ERState {
   buyGift: (giftId: string, cost: number) => boolean;
   /** A gift that arrived for free, such as one sent with a patient's letter */
   receiveGift: (giftId: string) => void;
-  recordPatient: (caseId: string, good: boolean) => void;
+  /** A review case only ever adds the casebook star; the letter belongs to the first patient */
+  recordPatient: (caseId: string, good: boolean, star?: boolean, review?: boolean) => void;
   readLetter: (caseId: string) => void;
   useGift: (giftId: string) => boolean;
   markNpc: (npcId: string, field: 'talkDay' | 'giftDay', day: number) => void;
   learnTaste: (npcId: string, giftId: string, taste: string) => void;
   markHeartEvent: (key: string) => void;
   useProp: (key: string, day: number) => void;
+  /** Finish today's notice-board request and pay it out. False if there is none or it was done. */
+  completeRequest: (day: number) => boolean;
+  claimCasebook: (count: number) => boolean;
 }
 
 export const useERStore = create<ERState>()(
@@ -282,6 +296,8 @@ export const useERStore = create<ERState>()(
       heartEventsSeen: [],
       propDaily: {},
       patientLog: {},
+      requestsDone: [],
+      casebookClaimed: [],
 
       friendships: {},
       karma: 0,
@@ -545,7 +561,9 @@ export const useERStore = create<ERState>()(
         knownTastes: {},
         heartEventsSeen: [],
         propDaily: {},
-        patientLog: {}
+        patientLog: {},
+        requestsDone: [],
+        casebookClaimed: []
       }),
       resetShiftStats: () => set((state) => ({
         shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] }
@@ -628,11 +646,17 @@ export const useERStore = create<ERState>()(
       learnTaste: (npcId, giftId, taste) => set((state) => ({
         knownTastes: { ...state.knownTastes, [npcId]: { ...state.knownTastes[npcId], [giftId]: taste } }
       })),
-      recordPatient: (caseId, good) => set((state) => {
+      recordPatient: (caseId, good, star = false, review = false) => set((state) => {
         const prev = state.patientLog[caseId];
-        // Keep the first good outcome. A later good result can replace an earlier bad one.
-        if (prev && (prev.good || !good)) return {};
-        return { patientLog: { ...state.patientLog, [caseId]: { day: state.currentDay, good, letterRead: false } } };
+        if (review) {
+          return prev && star && !prev.star ? { patientLog: { ...state.patientLog, [caseId]: { ...prev, star: true } } } : {};
+        }
+        // Keep the first good outcome. A later good result can replace an earlier bad one,
+        // and a later well-run case earns the star without moving the letter.
+        if (prev && (prev.good || !good)) {
+          return star && !prev.star ? { patientLog: { ...state.patientLog, [caseId]: { ...prev, star: true } } } : {};
+        }
+        return { patientLog: { ...state.patientLog, [caseId]: { day: state.currentDay, good, letterRead: false, star } } };
       }),
       readLetter: (caseId) => set((state) => {
         const rec = state.patientLog[caseId];
@@ -641,6 +665,28 @@ export const useERStore = create<ERState>()(
       }),
       markHeartEvent: (key) => set((state) => ({ heartEventsSeen: [...state.heartEventsSeen, key] })),
       useProp: (key, day) => set((state) => ({ propDaily: { ...state.propDaily, [key]: day } })),
+      completeRequest: (day) => {
+        const st = get();
+        const r = requestFor(day);
+        if (!r || r.day !== st.currentDay || (st.requestsDone ?? []).includes(day)) return false;
+        set((state) => ({ requestsDone: [...(state.requestsDone ?? []), day] }));
+        if (r.cash > 0) st.addCurrency(r.cash);
+        if (r.xp > 0) st.addXp(r.xp);
+        if (r.friend > 0) st.updateFriendship(r.npcId, r.friend);
+        if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('requestComplete', { detail: day }));
+        return true;
+      },
+      claimCasebook: (count) => {
+        const st = get();
+        const m = CASEBOOK_MILESTONES.find((x) => x.count === count);
+        if (!m || (st.casebookClaimed ?? []).includes(count)) return false;
+        const filled = Object.keys(st.patientLog).length;
+        if (filled < count) return false;
+        set((state) => ({ casebookClaimed: [...(state.casebookClaimed ?? []), count] }));
+        st.addCurrency(m.cash);
+        if (m.giftId) st.receiveGift(m.giftId);
+        return true;
+      },
       prestige: (perk) => set(state => ({
          prestigeCount: state.prestigeCount + 1,
          legacyPerks: [...state.legacyPerks, perk],
@@ -651,6 +697,7 @@ export const useERStore = create<ERState>()(
          storyFlags: {},
          activeQuests: [],
          completedQuests: [],
+         requestsDone: [],
          friendships: {},
          isPendingPromotion: false,
          clockMinutes: 0
@@ -707,6 +754,8 @@ export const useERStore = create<ERState>()(
         heartEventsSeen: state.heartEventsSeen,
         propDaily: state.propDaily,
         patientLog: state.patientLog,
+        requestsDone: state.requestsDone,
+        casebookClaimed: state.casebookClaimed,
       })
     }
   )

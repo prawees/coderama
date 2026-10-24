@@ -47,6 +47,8 @@ interface ClinicWorldProps {
   activeCases: ActiveCase[];
   /** Unread letters wait in the postbox; it shows an envelope bubble */
   mail?: boolean;
+  /** A rainy day: rain falls outside, drops run down the windows inside, and the light greys */
+  rain?: boolean;
   clockMinutes: number;
   onShift: boolean;
   paused: boolean;
@@ -388,10 +390,10 @@ function createEngine(
     refreshBeds();
     refreshMail();
 
-    // ambient particles
+    // ambient particles (butterflies stay home when it rains)
     if (map.outdoor) {
-      for (let i = 0; i < 2; i++) spawnButterfly();
-    } else {
+      if (!propsRef.current.rain) for (let i = 0; i < 2; i++) spawnButterfly();
+    } else if (!propsRef.current.rain) {
       for (let i = 0; i < 10; i++) spawnMote(true);
     }
 
@@ -511,6 +513,40 @@ function createEngine(
     s.blendMode = "add";
     fx.addChild(s);
     particles.push({ s, vx: (Math.random() - 0.5) * 6, vy: (Math.random() - 0.5) * 4, life: 6, t: 0, kind: "firefly" });
+  }
+
+  /** A raindrop that falls to a random spot on the ground and splashes there */
+  function spawnRain() {
+    const s = new PIXI.Sprite(PIXI.Texture.WHITE);
+    s.width = 1; s.height = 6; s.tint = 0xd8e6ff; s.alpha = 0.6;
+    const vy = 230 + Math.random() * 60, vx = -28;
+    const land = (1.5 + Math.random() * (map.height - 1.5)) * TILE;
+    const y0 = land - (120 + Math.random() * 80);
+    s.x = Math.random() * (map.width * TILE + 40); s.y = y0;
+    s.zIndex = 9500;
+    fx.addChild(s);
+    particles.push({ s, vx, vy, life: (land - y0) / vy, t: 0, kind: "rain" });
+  }
+
+  function spawnSplash(x: number, y: number) {
+    const s = new PIXI.Sprite(PIXI.Texture.WHITE);
+    s.width = 3; s.height = 1; s.tint = 0xdfeaff; s.alpha = 0.6;
+    s.x = x - 1; s.y = y;
+    fx.addChild(s);
+    particles.push({ s, vx: 0, vy: 0, life: 0.18, t: 0, kind: "splash" });
+  }
+
+  /** A drop running down the inside of a window */
+  function spawnDrip() {
+    const wins = map.props.filter((q) => q.kind === "window");
+    if (!wins.length) return;
+    const w = wins[Math.floor(Math.random() * wins.length)];
+    const s = new PIXI.Sprite(PIXI.Texture.WHITE);
+    s.width = 1; s.height = 2; s.tint = 0xe6efff; s.alpha = 0.75;
+    s.x = w.x * TILE + 3 + Math.floor(Math.random() * 10);
+    s.y = w.y * TILE + 2 + Math.random() * 4;
+    fx.addChild(s);
+    particles.push({ s, vx: 0, vy: 5 + Math.random() * 9, life: 0.8 + Math.random() * 0.6, t: 0, kind: "drip" });
   }
 
   function burst(x: number, y: number, n = 8) {
@@ -796,16 +832,18 @@ function createEngine(
 
   function updateLighting() {
     const p = propsRef.current;
-    const key = `${Math.floor(p.clockMinutes / 10)}:${map.id}`;
+    const key = `${Math.floor(p.clockMinutes / 10)}:${map.id}:${p.rain ? "rain" : ""}`;
     if (key === lastTintKey) return;
     lastTintKey = key;
-    const sky = hex(skyColor(p.clockMinutes));
+    const sky = hex(p.rain ? mix(skyColor(p.clockMinutes), "#8d97a8", 0.65) : skyColor(p.clockMinutes));
     for (const g of glassSprites) g.tint = sky;
-    const t = sceneTint(p.clockMinutes, map.outdoor);
+    let t = sceneTint(p.clockMinutes, map.outdoor);
+    // overcast: a cool grey over the day, night stays night
+    if (p.rain) t = { color: t.alpha > 0.3 ? t.color : 0x8e9cb8, alpha: Math.max(t.alpha, map.outdoor ? 0.32 : 0.16) };
     tint.clear();
     tint.rect(0, 0, map.width * TILE, map.height * TILE).fill({ color: t.color, alpha: t.alpha });
-    // sunbeams only while the sun is up
-    const beamsOn = p.clockMinutes < 450;
+    // sunbeams only while the sun is up and out
+    const beamsOn = p.clockMinutes < 450 && !p.rain;
     beamLayer.visible = beamsOn;
   }
 
@@ -886,14 +924,21 @@ function createEngine(
       if (q.kind === "mote") q.s.alpha = Math.min(0.8, q.t * 0.6, (q.life - q.t) * 0.6);
       if (q.kind === "firefly") q.s.alpha = 0.5 + Math.sin(q.t * 4) * 0.5;
       if (q.kind === "sparkle") { q.vy += 60 * dt; q.s.alpha = 1 - q.t / q.life; }
+      if (q.kind === "splash") q.s.alpha = 0.6 * (1 - q.t / q.life);
+      if (q.kind === "drip") q.s.alpha = 0.75 * Math.min(1, (q.life - q.t) * 3);
       if (q.t > q.life) {
+        if (q.kind === "rain") spawnSplash(q.s.x, q.s.y + q.s.height);
         q.s.destroy();
         particles.splice(i, 1);
         if (q.kind === "mote" && beamLayer.visible) spawnMote();
       }
     }
-    if (map.outdoor && Math.random() < dt * 0.8) spawnPetal();
-    if (map.outdoor && p.clockMinutes > 520 && Math.random() < dt * 1.5) spawnFirefly();
+    if (p.rain) {
+      if (map.outdoor) { const n = Math.floor(dt * 240 + Math.random()); for (let k = 0; k < n; k++) spawnRain(); }
+      else if (Math.random() < dt * 5) spawnDrip();
+    }
+    if (map.outdoor && !p.rain && Math.random() < dt * 0.8) spawnPetal();
+    if (map.outdoor && !p.rain && p.clockMinutes > 520 && Math.random() < dt * 1.5) spawnFirefly();
     if (!map.outdoor && beamLayer.visible && particles.filter((q) => q.kind === "mote").length < 10) spawnMote();
     beamLayer.alpha = 0.85 + Math.sin(elapsed * 0.7) * 0.15;
 

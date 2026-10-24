@@ -58,6 +58,31 @@ all 51 cases, patients, hub, case screen, creator, settings, summary, chapter pa
   a krathong in the hand basin (sets WISH_TEAM, WISH_SLEEP or WISH_TRUTH), water during the crash
   (calls back the wish).
 
+## Farm-game pass (things to do between patients)
+- Notice board request each day from day 2 (lib/requests.ts): bring someone a gift, one case with every
+  step right and no attending, chat with the whole team, or feed Kanom. Shown on the board and at the top
+  of the quest log; pays coins, sometimes XP, and friendship with whoever pinned it.
+- Casebook (postbox, second tab, or the button in the quest log; lib/casebook.ts): all 51 patients as a
+  collection, locked pages as ???, a star for a case run well (every step right or one slip), and each
+  page lists the case's key steps from the case file itself. Rewards at 5, 15, 30 and 51 pages.
+- Review cases (lib/review.ts): 51 cases cover about 93 patient slots, so conditions come round again.
+  A repeat is now someone new under their own name with a "เคสทบทวน" tag, never the patient who already
+  went home and wrote to you. A review case can earn the casebook star but never changes the letter.
+- Weather (lib/weather.ts): rain on days 1, 3, 7, 12, 18, 22, 27 (1 and 3 because the story says so).
+  Rain outside, drops on the windows inside, a grey light, a soft rain sound, hot tea worth more, the
+  bench too wet to sit on. The day card line and the HUD icon follow it. The window now shows the real
+  hour instead of a fixed line.
+- Birthdays (BIRTHDAYS in lib/npcs.ts): a gift that day counts three times unless it is hated. Bob's is
+  day 5 to match Auntie Noi's banana cake. The day card, the board and the friends list say whose it is.
+- Ann is off the floor on day 5 (ABSENT in lib/npcs.ts), since that day opens with her locker cleared.
+
+Clinical fixes from the playtest: DKA potassium and resolution criteria now follow the 2024
+ADA/EASD/JBDS/AACE/DTS consensus (hold insulin below K 3.5, no K above 5.0, resolution is BHB under 0.6
+with pH 7.3 or bicarbonate 18). Naloxone no longer reads as capped at 2 mg (escalate, and look for
+another cause after 10 mg). Methylergometrine in PPH follows WHO (repeat once at 15 minutes, then
+every 4 hours, 5 doses at most). Labetalol in eclampsia reads 20, 40, then 80 mg, 300 mg in total.
+Energy costs dropped so a struggling student does not faint on day 1.
+
 Checks: `npx tsc --noEmit`, `npm run validate`, `npm run build`. The playtest bots are not in the repo.
 The last headless pass covered: title to first patient (17 taps, first patient at about 1 s), cases 01,
 02, 03 (CPR fast and correct), 04, 05, 07, 23, 27, 43, the end-shift gate and the summary.

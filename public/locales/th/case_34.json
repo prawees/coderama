@@ -267,7 +267,7 @@
             "หรือ nifedipine กิน"
           ],
           "doseMap": {
-            "Labetalol IV": "20 mg IV เพิ่มเท่าตัวทุก 10 นาที รวมไม่เกิน 300 mg เป้า SBP 140 ถึง 150 DBP 90 ถึง 100",
+            "Labetalol IV": "20 mg IV ถ้า BP ยังสูงที่ 10 นาทีให้ 40 mg แล้วต่อด้วย 80 mg ทุก 10 นาที รวมไม่เกิน 300 mg เป้า SBP 140 ถึง 150 DBP 90 ถึง 100",
             "หรือ hydralazine IV": "5 mg IV ทุก 20 นาที ทำให้แม่ BP ตกและ fetal distress มากกว่า labetalol อย่าลด BP แบบทันที เพราะเลือดไปรกไม่มี autoregulation ลดเร็วทำให้ทารกแย่"
           }
         }

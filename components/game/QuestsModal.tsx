@@ -1,16 +1,23 @@
 import { useERStore } from "@/lib/erStore";
 import { QUEST_DATABASE } from "@/lib/quests";
+import { requestFor } from "@/lib/requests";
+import { CASEBOOK_IDS } from "@/lib/casebook";
 import { motion } from "framer-motion";
 import { audio } from "@/lib/audio";
 import { PixelIcon } from "@/components/ui/PixelIcon";
 
 interface QuestsModalProps {
   onClose: () => void;
+  /** Opens the casebook, which lives in the postbox */
+  onOpenCasebook?: () => void;
 }
 
 /** Quest log on a parchment scroll */
-export function QuestsModal({ onClose }: QuestsModalProps) {
-  const { activeQuests, completedQuests, language } = useERStore();
+export function QuestsModal({ onClose, onOpenCasebook }: QuestsModalProps) {
+  const { activeQuests, completedQuests, language, currentDay, requestsDone, patientLog } = useERStore();
+  const filled = CASEBOOK_IDS.filter((id) => patientLog[id]).length;
+  const today = requestFor(currentDay);
+  const todayDone = !!today && (requestsDone ?? []).includes(currentDay);
   const tr = (en: string, th: string) => (language === "th" ? th : en);
   const title = (id: string) => (language === "th" ? QUEST_DATABASE[id]?.title_th : QUEST_DATABASE[id]?.title);
   const desc = (id: string) => (language === "th" ? QUEST_DATABASE[id]?.description_th : QUEST_DATABASE[id]?.description);
@@ -28,7 +35,17 @@ export function QuestsModal({ onClose }: QuestsModalProps) {
           <button onClick={() => { audio.playClick(); onClose(); }} className="cozy-btn px-2 py-0.5 text-lg leading-none" aria-label="close">✕</button>
         </div>
         <div className="flex-1 overflow-y-auto flex flex-col gap-2 pr-1">
-          {activeQuests.length === 0 && <p className="text-[16px] text-[#86522e] italic">{tr("No quests right now. Enjoy the quiet.", "ตอนนี้ไม่มีภารกิจ เพลินกับความเงียบไปก่อน")}</p>}
+          {today && (
+            <div className={`border-2 rounded-[4px] p-2 ${todayDone ? "bg-[#eef6e6] border-[#b7d7a8]" : "bg-[#fff1d6] border-[#e2b86a]"}`} data-testid="daily-request">
+              <p className="text-[14px] leading-none text-[#86522e] flex items-center gap-1"><PixelIcon name="log" size={11} />งานวันนี้จากบอร์ดประกาศ</p>
+              <p className={`text-[19px] leading-none mt-1.5 ${todayDone ? "line-through text-[#86522e]" : ""}`}>{today.goal}</p>
+              <p className="text-[15px] leading-snug mt-1 text-[#5b4148]">{today.note}</p>
+              <p className="text-[14px] leading-none mt-1.5 text-[#3f8a48] flex items-center gap-1">
+                {todayDone ? "✓ เสร็จแล้ว" : <><PixelIcon name="coin" size={11} />+{today.cash} เหรียญ{today.xp ? ` +${today.xp} XP` : ""}</>}
+              </p>
+            </div>
+          )}
+          {activeQuests.length === 0 && !today && <p className="text-[16px] text-[#86522e] italic">{tr("No quests right now. Enjoy the quiet.", "ตอนนี้ไม่มีภารกิจ เพลินกับความเงียบไปก่อน")}</p>}
           {activeQuests.map((id) => QUEST_DATABASE[id] && (
             <div key={id} className="bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] p-2">
               <p className="text-[19px] leading-none">{title(id)}</p>
@@ -36,6 +53,11 @@ export function QuestsModal({ onClose }: QuestsModalProps) {
               <p className="text-[14px] leading-none mt-1.5 text-[#3f8a48] flex items-center gap-1"><PixelIcon name="coin" size={11} />{QUEST_DATABASE[id].rewardText}</p>
             </div>
           ))}
+          {onOpenCasebook && (
+            <button onClick={() => { audio.playClick(); onOpenCasebook(); }} className="cozy-btn w-full py-1.5 px-2 text-[16px] leading-none flex items-center justify-center gap-1.5" data-testid="open-casebook">
+              <PixelIcon name="casebook" size={14} />สมุดเคส เจอแล้ว {filled}/{CASEBOOK_IDS.length} คน
+            </button>
+          )}
           {completedQuests.length > 0 && (
             <>
               <p className="text-[15px] leading-none text-[#86522e] mt-2">{tr("Done", "สำเร็จแล้ว")}</p>

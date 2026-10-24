@@ -417,6 +417,35 @@ export const ROSTER: Record<Phase, { id: string; map: MapId; home: { x: number; 
   ],
 };
 
+/**
+ * Birthdays, as campaign days, each inside the stretch the person is working with you.
+ * Bob's is day 5, the night Auntie Noi brings the banana with a candle in it.
+ * A gift on someone's birthday counts three times over, as long as it isn't one they hate.
+ */
+export const BIRTHDAYS: Record<string, number> = {
+  bob: 5, ann: 7, somchai: 8,
+  jai: 12, suk: 13, ek: 14,
+  kit: 17, mali: 19, beam: 20, nam: 23, kai: 24,
+  pim: 28, wan: 30,
+};
+
+/** Days someone is off the floor because of the story: day 5, Ann's locker has been cleared */
+export const ABSENT: Record<string, number[]> = { ann: [5] };
+
+export function isAbsent(id: string, day: number) {
+  return ABSENT[id]?.includes(day) ?? false;
+}
+
+/** Who is working at the place today */
+export function rosterOn(day: number, phase: Phase) {
+  return ROSTER[phase].filter((r) => !isAbsent(r.id, day));
+}
+
+/** Whose birthday it is today, if they are working here today */
+export function birthdayOn(day: number, phase: Phase): string | null {
+  return rosterOn(day, phase).map((r) => r.id).find((id) => BIRTHDAYS[id] === day) ?? null;
+}
+
 export function heartsFor(points: number) {
   return Math.max(0, Math.min(10, Math.floor(points / 20)));
 }

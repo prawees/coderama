@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 import { NPCS } from "@/lib/npcs";
 import { phaseForDay, Phase } from "@/lib/world/maps";
 import { patientFor } from "@/lib/patients";
+import { requestFor } from "@/lib/requests";
 
 /** Whoever is looking out for you at this point in the story signs off the day */
 const MENTOR: Record<Phase, string> = { rama1: "bob", korat: "ek", lovely: "kit", rama2: "pim" };
@@ -81,6 +82,11 @@ export default function SummaryPage() {
     { icon: "quest", label: "XP ที่ได้", value: <CountUp to={Math.round(shiftStats.xpEarned)} prefix="+" delay={900} /> },
     { icon: "coin", label: "เหรียญที่ได้", value: <CountUp to={shiftStats.cashEarned} prefix="+" delay={1200} /> },
   ];
+  // The day's notice-board request, done or let go
+  if (requestFor(finishedDay)) {
+    const done = (useERStore.getState().requestsDone ?? []).includes(finishedDay);
+    rows.push({ icon: "log", label: "งานจากบอร์ด", value: <span className={done ? "text-[#3f8a48]" : "text-[#86522e] text-[18px]"}>{done ? "✓" : "ไม่ทัน"}</span> });
+  }
 
   return (
     <PageTransition>
@@ -112,7 +118,7 @@ export default function SummaryPage() {
                 return (
                   <div key={i} className="flex items-baseline justify-between gap-2 text-[15px] leading-snug border-b border-dashed border-[#e7d3a8] last:border-0 py-0.5">
                     <span className="min-w-0">
-                      <span>{who?.name.th ?? sp.caseId}</span>
+                      <span>{sp.name ?? who?.name.th ?? sp.caseId}</span>
                       <span className="block text-[13px] text-[#5b4148]">{who?.dx.th}</span>
                     </span>
                     <span className={`shrink-0 text-[13px] ${g.good ? "text-[#3f8a48]" : "text-[#a93c4b]"}`}>{g.text}</span>

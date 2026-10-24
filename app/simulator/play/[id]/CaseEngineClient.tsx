@@ -4,6 +4,8 @@ import { useEffect, useState, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useERStore } from "@/lib/erStore";
 import { CASE_DATA } from "@/lib/caseIndex";
+import { requestFor } from "@/lib/requests";
+import { reviewQuote } from "@/lib/review";
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { motion, AnimatePresence } from "framer-motion";
@@ -34,6 +36,9 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   // Dynamically load case data based on selected language
   const caseData = CASE_DATA[caseKey];
   const patient = patientFor(caseKey);
+  // A review case is someone new with a condition already met, under their own name
+  const alias = activeCase?.alias;
+  const patientName = alias ?? patient?.name.th;
 
   const [currentNodeId, setCurrentNodeId] = useState<string | null>(null);
   const [activeMinigame, setActiveMinigame] = useState<{name: string, targetNodeId: string} | null>(null);
@@ -247,10 +252,11 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       setMistakes(m => m + 1);
       setSlips(prev => [...prev, { text: choice.text, why: choice.feedback }]);
       setTriedWrong(prev => ({ ...prev, [effectiveNodeId]: [...(prev[effectiveNodeId] || []), choice.key] }));
-      deductEnergy(5);
+      // Mistakes are how students learn, so they cost a little energy, not the shift
+      deductEnergy(2);
       setIsShaking(true);
       setTimeout(() => setIsShaking(false), 500);
-      addFloatingText("-5 พลังงาน", "bad", window.innerWidth / 2, window.innerHeight / 2);
+      addFloatingText("-2 พลังงาน", "bad", window.innerWidth / 2, window.innerHeight / 2);
       setFeedback({ kind: 'bad', title: choice.text, body: choice.feedback });
       await Haptics.vibrate();
       return;
@@ -334,7 +340,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       // Ordering what the patient does not need is a slip: it costs time, money and sometimes harm
       setTestSlips((m) => m + 1);
       setSlips((prev) => [...prev, { text: `สั่ง ${inv.name}`, why: inv.report }]);
-      deductEnergy(3);
+      deductEnergy(1);
       setLabNote({ title: `${inv.name} ไม่มี indication`, body: inv.report });
     } else {
       setLabNote(null);
@@ -402,7 +408,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     addCurrency(25);
     useERStore.setState((state) => ({ shiftStats: { ...state.shiftStats, casesTreated: state.shiftStats.casesTreated + 1 } }));
     useERStore.getState().incrementClock(30);
-    deductEnergy(15);
+    deductEnergy(10);
     if (currentInstanceId) removeCase(currentInstanceId);
     setTimeout(() => router.push('/hub'), 700);
   };
@@ -431,13 +437,20 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
         createdAt: Date.now()
       });
       addFloatingText(language === 'th' ? "ฝากคำถามไว้ที่ห้องพักแพทย์แล้ว" : "Note left in the lounge", "good", window.innerWidth / 2, window.innerHeight / 2);
-      deductEnergy(15);
+      deductEnergy(10);
       if (currentInstanceId) removeCase(currentInstanceId);
       setTimeout(() => router.push('/hub'), 700);
     } catch (e) {
       console.error("Failed to request consult", e);
       setFeedback({ kind: 'bad', title: 'ส่งไม่สำเร็จ', body: 'เช็คเน็ตแล้วลองใหม่นะ' });
     }
+  };
+
+  /** Today's notice-board request asks for one patient with every step right, unsupervised */
+  const meetsBoardRequest = (grade: Grade) => {
+    const st = useERStore.getState();
+    const r = requestFor(st.currentDay);
+    return !!r && r.kind === 'clean' && grade === 'clean' && !supervised && !(st.requestsDone ?? []).includes(st.currentDay);
   };
 
   const rewardFor = (grade: Grade) => {
@@ -461,10 +474,11 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     // The clock only runs in the hub, so time at the bedside is added when the patient is done
     useERStore.getState().incrementClock(45);
     // Remember them. A good outcome brings a letter the next morning.
-    useERStore.getState().recordPatient(caseKey, grade !== 'critical');
-    useERStore.getState().logShiftPatient({ caseId: caseKey, grade, mistakes: slipTotal });
+    useERStore.getState().recordPatient(caseKey, grade !== 'critical', grade === 'clean' || grade === 'minor', !!alias);
+    useERStore.getState().logShiftPatient({ caseId: caseKey, grade, mistakes: slipTotal, name: alias });
+    if (meetsBoardRequest(grade)) useERStore.getState().completeRequest(useERStore.getState().currentDay);
     // A finished patient tires you out a little. Tuned so a shift fits six to eight patients.
-    deductEnergy(12);
+    deductEnergy(10);
     if (currentInstanceId) {
       removeCase(currentInstanceId);
     }
@@ -537,7 +551,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
               setFeedback({ kind: 'bad', title: 'จังหวะ CPR ไม่ได้ 100 ถึง 120 ครั้ง/นาที', body: `${why} ลองใหม่อีกครั้ง` });
               setMistakes((m) => m + 1);
               setSlips((prev) => [...prev, { text: `กดหน้าอก ${rate} ครั้ง/นาที`, why }]);
-              deductEnergy(5);
+              deductEnergy(2);
             }
           }}
         />
@@ -562,13 +576,14 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
         {/* Patient card: a person first, the diagnosis comes at the end */}
         <div className="cozy-panel flex gap-2.5 p-2 flex-shrink-0 items-start" data-testid="patient-card">
           <div className="w-14 h-14 flex-shrink-0 rounded-[3px] overflow-hidden border-2 border-[#3a2a2f]">
-            <PatientPortrait seed={caseKey} sex={caseData.sex} ageGroup={caseData.patientAppearance?.ageGroup} skinTone={caseData.patientAppearance?.skinTone} age={parseFloat(caseData.age)} className="w-full h-full" />
+            <PatientPortrait seed={alias ?? caseKey} sex={caseData.sex} ageGroup={caseData.patientAppearance?.ageGroup} skinTone={caseData.patientAppearance?.skinTone} age={parseFloat(caseData.age)} className="w-full h-full" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <p className="text-[20px] leading-none truncate" data-testid="patient-name">
-                {patient ? `${patient.name.th} ${patient.age.th}` : caseData.title}
+                {patient ? `${patientName} ${patient.age.th}` : caseData.title}
               </p>
+              {alias && <span className="shrink-0 cozy-tag !bg-[#cfe6f0] px-1.5 py-0.5 text-[13px] leading-none" data-testid="review-tag">เคสทบทวน</span>}
               {slipTotal > 0 && (
                 <span className="shrink-0 cozy-tag !bg-[#f6c3c6] px-1.5 py-0.5 text-[13px] leading-none" data-testid="slip-count">{`พลาด ${slipTotal}`}</span>
               )}
@@ -576,7 +591,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
             {patient ? (
               <div className="relative mt-1.5 bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[6px] px-2 py-1 text-[15px] leading-snug text-[#3a2a2f]">
                 <span className="absolute -left-[7px] top-2 w-0 h-0 border-y-[5px] border-y-transparent border-r-[6px] border-r-[#e7d3a8]" />
-                <span className="text-[#86522e]">{patient.by.th}: </span>&ldquo;{patient.quote.th}&rdquo;
+                <span className="text-[#86522e]">{patient.by.th}: </span>&ldquo;{alias ? reviewQuote(caseKey, alias) : patient.quote.th}&rdquo;
               </div>
             ) : (
               <p className="text-[15px] leading-tight mt-1 line-clamp-2">{caseData.chiefComplaint}</p>
@@ -775,13 +790,23 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                         {patient && (
                           <div className="mb-1 rounded-[4px] border-2 border-[#e7d3a8] bg-[#fff6e3] px-2.5 py-2 text-center" data-testid="diagnosis">
                             <p className="text-[19px] leading-tight"><span className="text-[#86522e]">Dx </span>{patient.dx.th}</p>
-                            {grade !== 'critical' && patient.letter && (
+                            {alias ? (
+                              <p className="text-[15px] leading-snug mt-1 text-[#3f6f80]">เคสทบทวน อาการเดียวกับที่หมอเคยเจอ ทำได้ดีจะได้ดาวในสมุดเคส</p>
+                            ) : grade !== 'critical' && patient.letter && (
                               <p className="text-[15px] leading-snug mt-1 text-[#86522e]">
                                 {`${patient.name.th} อาจเขียนจดหมายมาหาหมอตอนกลับถึงบ้าน`}
                               </p>
                             )}
                           </div>
                         )}
+                        {meetsBoardRequest(grade) && (() => {
+                          const r = requestFor(useERStore.getState().currentDay)!;
+                          return (
+                            <p className="mb-1 text-center text-[15px] leading-snug text-[#3f8a48]" data-testid="board-request-done">
+                              {`✓ งานจากบอร์ด: ${r.goal} (+${r.cash} เหรียญ${r.xp ? ` +${r.xp} XP` : ''})`}
+                            </p>
+                          );
+                        })()}
                         <button
                           onClick={() => finishCase(grade)}
                           className={`cozy-btn w-full py-3 ${good ? 'cozy-btn-leaf' : 'cozy-btn-berry'}`}

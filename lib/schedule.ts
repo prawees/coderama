@@ -1,7 +1,8 @@
 /**
  * Which patient walks in next. A shift should feel like new people, not the same six on a loop:
  * today's patients the player has never met come first, then any earlier patient they missed,
- * and only after that someone they have met before, never twice in one shift.
+ * and only after that a condition they have met before, as a review case: someone new under
+ * their own name (lib/review.ts), never the same condition twice in one shift.
  * Returns null when the ER has nobody new for today.
  */
 export function pickCase(opts: {

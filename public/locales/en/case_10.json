@@ -270,7 +270,7 @@
             "Naloxone IV"
           ],
           "doseMap": {
-            "Naloxone IV": "0.04 to 0.4 mg IV, repeat every 2-3 min up to 2 mg. Aim for a respiratory rate above 12, not a fully awake patient. Use 0.4-0.8 mg IM if there is no IV access"
+            "Naloxone IV": "Start at 0.04 to 0.4 mg IV, repeat every 2-3 min and escalate as needed. Aim for a respiratory rate above 12, not a fully awake patient. No response after 10 mg in total means look for another cause. Use 0.4-0.8 mg IM if there is no IV access"
           }
         }
       },
