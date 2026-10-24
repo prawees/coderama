@@ -14,6 +14,7 @@ export interface MidShiftEvent {
 }
 
 export interface DayStory {
+  day?: number;
   start: CutsceneNode[];
   end: CutsceneNode[];
   mid: MidShiftEvent[];
@@ -22,7 +23,7 @@ export interface DayStory {
 
 /**
  * Clock time the shift starts, in minutes after midnight. The opening scene often names it
- * ("ER รามาเซ็นทรัล 03:12 น."), and the clock should agree with the story. Defaults to 08:00.
+ * ("ER รามาเซ็นทรัล 03:12 น."), and the clock should agree with the story. Otherwise 08:00, or 19:00 on a night shift.
  */
 /** The first "HH:MM น." in a scene's opening lines, as minutes after midnight */
 export function timeInScene(scene: CutsceneNode[]): number | null {
@@ -37,8 +38,15 @@ export function timeInScene(scene: CutsceneNode[]): number | null {
   return null;
 }
 
+/**
+ * Days the story writes as night shifts without naming a time in the opening scene: the Korat
+ * rotation ("the only staff physician on tonight, for the next twelve hours", a death at 23:41)
+ * and the residency nights on days 26 and 31. They start at 19:00 instead of 08:00.
+ */
+const NIGHT_SHIFTS = new Set([11, 12, 13, 14, 15, 26, 31]);
+
 export function shiftStartMinutes(story: DayStory): number {
-  return timeInScene(story.start) ?? 8 * 60;
+  return timeInScene(story.start) ?? (story.day !== undefined && NIGHT_SHIFTS.has(story.day) ? 19 * 60 : 8 * 60);
 }
 
 /**
@@ -61,7 +69,7 @@ export function getCampaign(language: string) {
 
 export function getDayStory(day: number, language: string): DayStory {
   const raw: any = (getCampaign(language) as any)[day] ?? (STORY_CAMPAIGN as any)[day];
-  if (!raw) return { start: [], end: [], mid: [], cases: [] };
+  if (!raw) return { day, start: [], end: [], mid: [], cases: [] };
 
   const start: CutsceneNode[] = raw.startOfDayCutscene ?? raw.startShiftEvents ?? [];
   const end: CutsceneNode[] = raw.endOfDayCutscene ?? raw.endShiftEvents ?? [];
@@ -78,7 +86,7 @@ export function getDayStory(day: number, language: string): DayStory {
     }
   }
 
-  return { start, end, mid, cases: raw.cases ?? [] };
+  return { day, start, end, mid, cases: raw.cases ?? [] };
 }
 
 /** Find a node by id anywhere in the day's scenes and return the queue starting at it. */
