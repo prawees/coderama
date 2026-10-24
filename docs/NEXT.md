@@ -68,6 +68,9 @@ all 51 cases, patients, hub, case screen, creator, settings, summary, chapter pa
 - Review cases (lib/review.ts): 51 cases cover about 93 patient slots, so conditions come round again.
   A repeat is now someone new under their own name with a "เคสทบทวน" tag, never the patient who already
   went home and wrote to you. A review case can earn the casebook star but never changes the letter.
+  Reviews draw on every condition met so far, the one brought in longest ago first (`lastSeen`), so
+  they rotate instead of cycling cases 01 to 06. case_07_vip was in no day's list and now comes on
+  day 6, so all 51 casebook pages can be filled.
 - Weather (lib/weather.ts): rain on days 1, 3, 7, 12, 18, 22, 27 (1 and 3 because the story says so).
   Rain outside, drops on the windows inside, a grey light, a soft rain sound, hot tea worth more, the
   bench too wet to sit on. The day card line and the HUD icon follow it. The window now shows the real
@@ -75,6 +78,8 @@ all 51 cases, patients, hub, case screen, creator, settings, summary, chapter pa
 - Birthdays (BIRTHDAYS in lib/npcs.ts): a gift that day counts three times unless it is hated. Bob's is
   day 5 to match Auntie Noi's banana cake. The day card, the board and the friends list say whose it is.
 - Ann is off the floor on day 5 (ABSENT in lib/npcs.ts), since that day opens with her locker cleared.
+- Night shifts: days 11 to 15, 26 and 31 are written as nights but name no time, so they start at
+  19:00 (NIGHT_SHIFTS in lib/story.ts). A time in the opening scene still wins.
 
 Clinical fixes from the playtest: DKA potassium and resolution criteria now follow the 2024
 ADA/EASD/JBDS/AACE/DTS consensus (hold insulin below K 3.5, no K above 5.0, resolution is BHB under 0.6
