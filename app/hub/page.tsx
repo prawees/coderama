@@ -1,26 +1,45 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { useERStore, getEra } from "@/lib/erStore";
+import { useERStore, getEra, useHydrated, chapterXpCap, rankFloorForDay, getRankFromXp, RANK_THRESHOLDS } from "@/lib/erStore";
 import { getLocalizedRankTitle, translate } from "@/lib/localization";
 import { scheduleOnCallCases, cancelOnCallCases } from "@/lib/notifications";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { PixelButton } from "@/components/ui/PixelButton";
-import { MapData } from "@/components/game/Engine2D";
-import { PixiEngine2D } from "@/components/game/PixiEngine2D";
-import { MAPS } from "@/lib/maps";
+import { ClinicWorld, WorldApi } from "@/components/game/ClinicWorld";
+import { phaseForDay, LOCATION_NAMES, MapId } from "@/lib/world/maps";
+import { playerLookFrom } from "@/lib/playerLook";
+import { useWorldSocial } from "./useWorldSocial";
+import { patientFor } from "@/lib/patients";
+import { pickCase } from "@/lib/schedule";
+import { PATIENT_SKIN } from "@/lib/patientSkin";
+import { STARTER_QUESTS, QUEST_DATABASE } from "@/lib/quests";
+import { PixelIcon } from "@/components/ui/PixelIcon";
+import { FriendsModal } from "@/components/game/FriendsModal";
+import { DayCard } from "@/components/game/DayCard";
 import { Pager } from "@/components/ui/Pager";
 import { DialogueBox } from "@/components/game/DialogueBox";
 import { QuestsModal } from "@/components/game/QuestsModal";
+import { LettersModal, LettersTab } from "@/components/game/LettersModal";
+import { unreadLetters } from "@/lib/letters";
+import { requestFor } from "@/lib/requests";
+import { claimableMilestones } from "@/lib/casebook";
+import { reviewName } from "@/lib/review";
+import { weatherFor } from "@/lib/weather";
 import { LeaderboardModal } from "@/components/game/LeaderboardModal";
 import { ConsultsModal } from "@/components/game/ConsultsModal";
 import { SettingsMenu } from "@/components/game/SettingsMenu";
-import { STORY_CAMPAIGN, CutsceneNode, CutsceneChoice } from "@/lib/StoryManager";
-import { STORY_CAMPAIGN_TH } from "@/lib/StoryManagerTH";
+import { CutsceneNode, CutsceneChoice } from "@/lib/StoryManager";
+import { getDayStory, advanceQueue, resolveRouters, visibleChoices, shiftStartMinutes, timeInScene, worldLightMinutes } from "@/lib/story";
 import { audio } from "@/lib/audio";
 import { music, TrackId } from "@/lib/music";
 import { AnimatePresence } from "framer-motion";
+
+// Story choices were authored with XP in the thousands (about 637,000 across the campaign),
+// while a perfect case pays 100 (about 12,000 across 31 days). At 2% the story and the
+// cases contribute roughly equally, so dialogue nudges progression instead of skipping ranks.
+const STORY_XP_SCALE = 0.02;
 
 export default function HubPage() {
   const router = useRouter();
@@ -31,13 +50,16 @@ export default function HubPage() {
     tutorialCompleted, completeTutorial, updateFriendship, friendships,
     activeQuests, completedQuests, startQuest, completeQuest, restoreEnergy,
     currentDay, incrementDay, inventory, removeFromInventory, setStoryFlag, addKarma, addXp, forcePromote, storyFlags,
-    hospitalUpgrades
+    hospitalUpgrades, shiftStats
   } = useERStore();
   
+  const hydrated = useHydrated();
   const [isQuestsOpen, setIsQuestsOpen] = useState(false);
+  const [isLettersOpen, setIsLettersOpen] = useState(false);
+  const [lettersTab, setLettersTab] = useState<LettersTab>('letters');
+  const patientLog = useERStore((s) => s.patientLog);
   const [isCinematic, setIsCinematic] = useState(false);
   
-  const { getRankFromXp, RANK_THRESHOLDS } = require('@/lib/erStore');
   const currentRankId = getRankFromXp(lifetimeXp || xp);
   const localizedRank = getLocalizedRankTitle(currentRankId, playerName, playerGender, language);
   
@@ -46,24 +68,34 @@ export default function HubPage() {
   const nextThresholds = thresholds.filter((t: number) => t > lifetimeXp);
   const nextThreshold = nextThresholds.length > 0 ? Math.min(...nextThresholds) : Infinity;
   
-  // They are ready to take the End of Year Test if their lifetimeXp is capped just below the threshold!
-  const isReadyForPromotion = lifetimeXp >= nextThreshold - 1;
+  // The promotion exam is the endgame loop. During the campaign, chapters promote you.
+  const isReadyForPromotion = currentDay >= 31 && lifetimeXp >= nextThreshold - 1;
+  const chapterCapped = currentDay <= 30 && lifetimeXp >= chapterXpCap(currentDay);
+
+  // Saves from before chapter promotions: bring rank up to what the story says you are.
+  useEffect(() => {
+    if (!hydrated) return;
+    const floor = RANK_THRESHOLDS[rankFloorForDay(currentDay)];
+    if ((useERStore.getState().lifetimeXp || 0) < floor) useERStore.setState({ lifetimeXp: floor });
+  }, [hydrated, currentDay]);
   const prevThreshold = [...thresholds].reverse().find(t => t <= (lifetimeXp || 0)) || 0;
   const progressPercent = Math.min(100, Math.max(0, ((lifetimeXp || 0) - prevThreshold) / (nextThreshold === Infinity ? prevThreshold : nextThreshold - prevThreshold) * 100));
   
-  const [logs, setLogs] = useState<string[]>(['System: ER Dashboard initialized.']);
+  const [logs, setLogs] = useState<string[]>(['เปิดสมุดบันทึกเวรแล้ว']);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [isConsultsOpen, setIsConsultsOpen] = useState(false);
   const logEndRef = useRef<HTMLDivElement>(null);
   
   const [pagerMessage, setPagerMessage] = useState<string | null>(null);
-  const [currentMap, setCurrentMap] = useState<string>('ER_MAIN');
+  const [currentMap, setCurrentMap] = useState<MapId>('ER_MAIN');
   const [spawnPos, setSpawnPos] = useState<{x: number, y: number} | undefined>(undefined);
+  const [isFriendsOpen, setIsFriendsOpen] = useState(false);
+  const [toastMsg, setToastMsg] = useState<string | null>(null);
+  const [dayCard, setDayCard] = useState<number | null>(null);
+  const worldApi = useRef<WorldApi | null>(null);
   const [dialogueQueue, setDialogueQueue] = useState<CutsceneNode[]>([]);
   const [caseToInject, setCaseToInject] = useState<string | null>(null);
   const [actionOnDialogueEnd, setActionOnDialogueEnd] = useState<'START_SHIFT' | 'END_SHIFT' | 'PRESTIGE' | null>(null);
-  const prevCasesCount = useRef<number | null>(null);
-  const triggeredEvents = useRef<Set<number>>(new Set());
   const [isPowerOutage, setIsPowerOutage] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   
@@ -87,170 +119,94 @@ export default function HubPage() {
 
   // Phase 75: Dynamic Generative Music & SFX
   useEffect(() => {
-    if (prevCasesCount.current === null) {
-       prevCasesCount.current = activeCases.length;
-       return;
-    }
-    
-    if (activeCases.length > prevCasesCount.current) {
-        audio.playPager();
-    }
-    prevCasesCount.current = activeCases.length;
+    // (the pager itself sounds where a patient is added, so it is not doubled here)
 
-    let targetTrack: TrackId | null = null;
-    const isEmergency = activeCases.length > 0;
-
+    // One patient waiting is the normal rhythm of a shift, so the song of the hour keeps playing;
+    // two waiting tightens the music, three or more drives it
+    let targetTrack: TrackId;
     if (shiftMode === 'on-shift' || shiftMode === 'boss-battle') {
-      if (activeCases.length > 2) {
-         targetTrack = 'the_void'; // Overwhelmed
-      } else if (activeCases.length > 0) {
-         targetTrack = 'deep_mines'; // Active tense cases
-      } else {
-         // Idle on-shift
-         if (clockMinutes < 240) targetTrack = 'sunrise'; // Morning (8am - 12pm)
-         else if (clockMinutes > 420) targetTrack = 'nightfall'; // Night (3pm - 5pm+)
-         else targetTrack = 'wandering'; // Afternoon (12pm - 3pm)
-      }
+      const hour = Math.floor(((shiftStart + clockMinutes) % 1440) / 60);
+      if (activeCases.length >= 3) targetTrack = 'the_void';
+      else if (activeCases.length === 2) targetTrack = 'deep_mines';
+      else if (hour >= 5 && hour < 12) targetTrack = 'sunrise';
+      else if (hour >= 12 && hour < 18) targetTrack = 'wandering';
+      else targetTrack = 'nightfall';
     } else {
-       targetTrack = 'first_house'; // Pre-shift / Hub
+      targetTrack = 'first_house';
     }
-
-    const currentTrack = music.getCurrentTrack();
-    
-    if (currentTrack === targetTrack) return; // No change needed
-
-    // If entering an idle state from a different track, 30% chance to just enjoy silence
-    // By grouping clockMinutes, we don't spam this random roll every minute.
-    if (!isEmergency && currentTrack !== targetTrack && targetTrack !== null) {
-        if (Math.random() < 0.3) {
-            targetTrack = null;
-        }
-    }
-
-    music.fadeToTrack(targetTrack, 4.0); // 4 second smooth crossfade
-  }, [shiftMode, activeCases.length, Math.floor(clockMinutes / 120)]);
+    if (music.getCurrentTrack() !== targetTrack) music.fadeToTrack(targetTrack, 3.0);
+  }, [shiftMode, activeCases.length, Math.floor(clockMinutes / 60)]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    // wait for the saved game, otherwise a returning player sees the tutorial again
+    if (!hydrated) return;
     if (!tutorialCompleted) {
       audio.playPAChime();
+      // Read the saved name at this moment; never greet anyone by the store's placeholder.
+      // Nobody in the cast has met the player yet, so the narrator speaks; Bob and Ann
+      // introduce themselves in the day 1 scene and give the pager tip after it (FIRST_SHIFT_TIP).
+      const saved = useERStore.getState().playerName;
+      const name = saved && saved !== 'Doctor' ? ` ${saved}` : '';
       setDialogueQueue([
-        { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `ยินดีต้อนรับสู่ Code Rama ER, ${localizedRank}.` : `Welcome to Code Rama ER, ${localizedRank}.` },
-        { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `เตรียมตัวพบกับ 'เวรเยิน' ของจริง คืนนี้คุณต้องเข้าเวร 36 ชั่วโมงต่อเนื่อง แถมเครื่องชงกาแฟก็เพิ่งพัง` : `Get ready for a real 'Ward Wen Yern' (brutal shift). You're on a 36-hour call and the coffee machine is broken.` },
-        { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `เคสที่คุณจะเจออ้างอิงตามเกณฑ์สอบใบประกอบวิชาชีพ (NL) ทุกเคส เพราะฉะนั้นตั้งใจรักษาล่ะ!` : `Every case you see here is mapped to the National License (NL) exam blueprints. So pay attention!` },
-        { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `เมื่อเพจเจอร์ดัง ให้เดินไปที่เตียงแล้วกด 'A' เพื่อเริ่มรักษา อย่าปล่อยให้คนไข้รอนานจนหมดสติ` : `When the pager beeps, walk to the bed and press 'A' to treat. Don't let them pass out.` },
-        { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `ขอให้โชคดีนะ... คุณต้องใช้มันแน่` : `Good luck... you'll need it.` }
+        { speaker: "System", text: `03:10 น. วันแรกของ นศพ.${name} ที่ ER รามาเซ็นทรัล` },
+        { speaker: "System", text: `เดินดูรอบๆ ได้ แตะคนหรือของเพื่อคุยด้วย พร้อมเมื่อไหร่ แตะ "เริ่มเวร" ด้านล่าง` },
       ]);
     }
     
     // Start First Shift quest
-    if (tutorialCompleted && !activeQuests.includes('q_first_shift') && !completedQuests.includes('q_first_shift')) {
-      startQuest('q_first_shift');
+    if (tutorialCompleted) {
+      for (const q of STARTER_QUESTS) if (!activeQuests.includes(q) && !completedQuests.includes(q)) startQuest(q);
     }
-  }, [tutorialCompleted, localizedRank, activeQuests, completedQuests, startQuest]);
+  }, [hydrated, tutorialCompleted, localizedRank, activeQuests, completedQuests, startQuest]);
+
+  // Start a scene, skipping any flag-check node it opens on
+  const playable = (scene: CutsceneNode[]) =>
+    resolveRouters(scene, getDayStory(currentDay, language), useERStore.getState().storyFlags);
+
+  /** Skip to the next decision, or to the scene's last line, so the end-of-scene logic still runs on the next tap */
+  const skipScene = () => {
+    const story = getDayStory(currentDay, language);
+    const flags = useERStore.getState().storyFlags;
+    let q = dialogueQueue;
+    for (let guard = 0; q.length && guard < 300; guard++) {
+      const head = q[0];
+      if ((visibleChoices(head.choices, flags) ?? []).length) break;
+      const nq = resolveRouters(advanceQueue(q, story, head.nextId), story, flags);
+      if (!nq.length) break;
+      q = nq;
+    }
+    if (q !== dialogueQueue) setDialogueQueue(q);
+  };
+  const canSkip = dialogueQueue.length > 1 || Boolean(dialogueQueue[0]?.nextId);
 
   const handleDialogueComplete = (choice?: CutsceneChoice) => {
+    // World chats and gifting run their own action instead of following nextId
+    if (choice?.onPick) {
+      choice.onPick();
+      return;
+    }
     // Process effects
     if (choice) {
        if (choice.karmaEffect) addKarma(choice.karmaEffect);
        if (choice.flagEffect) setStoryFlag(choice.flagEffect, true);
-       if (choice.xpEffect) addXp(choice.xpEffect);
+       if (choice.xpEffect) addXp(Math.round(choice.xpEffect * STORY_XP_SCALE));
     }
     
     // Determine next node ID
     const nextNodeId = choice?.nextId || dialogueQueue[0]?.nextId;
     
-    setDialogueQueue(prev => {
+    {
+      // Computed from the current queue, then side effects run once (not inside a state updater,
+      // which React StrictMode calls twice in development).
+      const prev = dialogueQueue;
       let next: CutsceneNode[] = [];
       
-      if (nextNodeId) {
-         // Search the campaign data to jump to nextNodeId
-         const campaignData = language === 'th' ? STORY_CAMPAIGN_TH[currentDay] : STORY_CAMPAIGN[currentDay];
-         
-         const searchAndSlice = (arr: CutsceneNode[] | undefined) => {
-             if (!arr) return null;
-             const idx = arr.findIndex(n => n.id === nextNodeId);
-             if (idx !== -1) return arr.slice(idx);
-             return null;
-         };
-         
-         let jumpedNext = searchAndSlice(campaignData?.startOfDayCutscene) || searchAndSlice(campaignData?.endOfDayCutscene);
-         if (!jumpedNext && campaignData?.midShiftEvents && campaignData.midShiftEvents.length > 0) {
-             if ('text' in campaignData.midShiftEvents[0]) {
-                 jumpedNext = searchAndSlice(campaignData.midShiftEvents as CutsceneNode[]);
-             } else {
-                 for (const event of campaignData.midShiftEvents as any[]) {
-                     jumpedNext = searchAndSlice(event.cutscene);
-                     if (jumpedNext) break;
-                 }
-             }
-         }
-         
-         if (jumpedNext) {
-             next = jumpedNext;
-         } else {
-             next = prev.slice(1);
-         }
-      } else {
-         next = prev.slice(1);
-      }
+      const story = getDayStory(currentDay, language);
+
+      next = advanceQueue(prev, story, nextNodeId);
       
-      // Auto-resolve router nodes
-      while (next.length > 0 && next[0].speaker === 'System' && next[0].id?.endsWith('_check')) {
-          const routerNode = next[0];
-          let chosenNextId: string | undefined = undefined;
-          
-          if (routerNode.choices) {
-              const flags = useERStore.getState().storyFlags;
-              for (const c of routerNode.choices) {
-                  if (c.text.startsWith('[IF_FLAG:')) {
-                      const flagMatch = c.text.match(/\[IF_FLAG:(.*?)\]/);
-                      if (flagMatch && flags[flagMatch[1]]) {
-                          chosenNextId = c.nextId;
-                          break;
-                      }
-                  } else if (c.text.startsWith('[IF_NOT_FLAG:')) {
-                      const flagMatch = c.text.match(/\[IF_NOT_FLAG:(.*?)\]/);
-                      if (flagMatch && !flags[flagMatch[1]]) {
-                          chosenNextId = c.nextId;
-                          break;
-                      }
-                  } else if (c.text.startsWith('[ELSE]')) {
-                      chosenNextId = c.nextId;
-                      break;
-                  }
-              }
-          }
-          
-          if (chosenNextId) {
-             const campaignData = STORY_CAMPAIGN[currentDay];
-             const searchAndSlice = (arr: CutsceneNode[] | undefined) => {
-                 if (!arr) return null;
-                 const idx = arr.findIndex(n => n.id === chosenNextId);
-                 if (idx !== -1) return arr.slice(idx);
-                 return null;
-             };
-             
-             let jumpedNext = searchAndSlice(campaignData?.startOfDayCutscene) || searchAndSlice(campaignData?.endOfDayCutscene);
-             if (!jumpedNext && campaignData?.midShiftEvents && campaignData.midShiftEvents.length > 0) {
-                 if ('text' in campaignData.midShiftEvents[0]) {
-                     jumpedNext = searchAndSlice(campaignData.midShiftEvents as CutsceneNode[]);
-                 } else {
-                     for (const event of campaignData.midShiftEvents as any[]) {
-                         jumpedNext = searchAndSlice(event.cutscene);
-                         if (jumpedNext) break;
-                     }
-                 }
-             }
-             
-             if (jumpedNext) {
-                 next = jumpedNext;
-             } else {
-                 next = next.slice(1);
-             }
-          } else {
-             next = next.slice(1);
-          }
-      }
+      // Auto-resolve router nodes (flag checks), in the player's language
+      next = resolveRouters(next, story, useERStore.getState().storyFlags);
       
       if (next.length === 0) {
         if (!tutorialCompleted) {
@@ -259,6 +215,16 @@ export default function HubPage() {
         if (actionOnDialogueEnd === 'START_SHIFT') {
           executeStartShift();
           setActionOnDialogueEnd(null);
+          // The first shift ends its scene with the pager going off: the two people the player
+          // has just met tell them what to do about it
+          if (!useERStore.getState().storyFlags['FIRST_SHIFT_TIP']) {
+            setStoryFlag('FIRST_SHIFT_TIP', true);
+            next = [
+              { speaker: "Nurse Ann", text: "เพจเจอร์ดังเมื่อไหร่ แตะที่เตียงด้านล่างได้เลยค่ะหมอ ใครรอนานอาการจะแย่ลงนะคะ" },
+              { speaker: "Dr. Bob", text: "สั่ง lab เท่าที่จะเปลี่ยนการรักษา แล้วอ่านสรุปท้ายเคสให้ดี เคสที่นี่ออกสอบ NL ทั้งนั้น" },
+              { speaker: "Nurse Ann", text: "ว่างๆ แวะมาคุยกับพวกพี่ด้วยนะคะ ทุกคนมีของโปรด" },
+            ];
+          }
         } else if (actionOnDialogueEnd === 'END_SHIFT') {
           executeEndShift();
           setActionOnDialogueEnd(null);
@@ -280,22 +246,22 @@ export default function HubPage() {
         setIsCinematic(false);
         
         if (caseToInject) {
-           const skinTones = ["#ffc0cb", "#8d5524", "#c68642", "#e0ac69", "#f1c27d", "#ffdbac"];
-           const shirtColors = ["#1f6feb", "#f87171", "#a3e635", "#facc15", "#c084fc"];
            addCase({
              id: `case_${Date.now()}`,
              caseDataId: caseToInject,
-             skinTone: skinTones[Math.floor(Math.random() * skinTones.length)],
-             shirtColor: shirtColors[Math.floor(Math.random() * shirtColors.length)],
+             skinTone: PATIENT_SKIN[caseToInject],
              receivedAt: Date.now(),
              expiresAt: Date.now() + 5 * 60 * 1000,
            });
+           useERStore.getState().markSpawned(caseToInject);
+           const who = patientFor(caseToInject);
+           if (who) setPagerMessage(`${who.name.th} ${who.age.th}\n${who.pager.th}`);
            setCaseToInject(null);
            audio.playPager();
         }
       }
-      return next;
-    });
+      setDialogueQueue(next);
+    }
   };
 
 
@@ -332,23 +298,23 @@ export default function HubPage() {
       if (state.clockMinutes === 200 && Math.random() < 0.3 && !isPowerOutage) {
          setIsPowerOutage(true);
          audio.playBump();
-         addLog("WARNING: POWER OUTAGE DETECTED! Emergency generators kicking in.");
+         addLog("ไฟดับ! เครื่องปั่นไฟสำรองติดแล้ว");
       }
       if (state.clockMinutes === 260 && isPowerOutage) {
          setIsPowerOutage(false);
          audio.playShiftStart();
-         addLog("Power restored.");
+         addLog("ไฟมาแล้ว");
       }
       
     }, tickRate);
 
-    const spawner = setInterval(() => {
+    const spawnTick = () => {
       const state = useERStore.getState();
       if (shiftMode === 'boss-battle') {
          // BOSS BATTLE SCRIPT
          if (state.activeCases.length === 0 && state.clockMinutes < 300) {
             audio.playPager();
-            addLog("BOSS BATTLE: INCOMING MASS CASUALTY!");
+            addLog("สอบเลื่อนขั้น: mass casualty กำลังมา!");
             
             addCase({
               id: `boss_asthma_${Date.now()}`,
@@ -382,47 +348,50 @@ export default function HubPage() {
             maxCases = 4; spawnChance = 0.7; possibleCases = ["case_06_trauma", "case_03_cardiac", "case_08", "case_09", "case_11"];
          }
 
-         const campaignData = STORY_CAMPAIGN[currentDay];
-         if (campaignData && campaignData.cases && campaignData.cases.length > 0) {
-            possibleCases = campaignData.cases;
+         const dayCases = getDayStory(currentDay, language).cases;
+         if (dayCases.length > 0) {
+            possibleCases = dayCases;
          }
-         
-         if (state.activeCases.length < maxCases && Math.random() < spawnChance) {
-            audio.playPager();
-            addLog("Triage: New patient arrived at ER!");
-            const selectedCase = possibleCases[Math.floor(Math.random() * possibleCases.length)];
-            
-            if (selectedCase === "case_01") setPagerMessage("*BEEP BEEP*\n28yo M - Toxicology");
-            else if (selectedCase === "case_02_fluids") setPagerMessage("*BEEP BEEP*\n45yo F - Hypovolemic Shock");
-            else if (selectedCase === "case_03_cardiac") setPagerMessage("*BEEP BEEP*\n55yo M - Cardiac Arrest");
-            else if (selectedCase === "case_04_svt") setPagerMessage("*BEEP BEEP*\n35yo F - Palpitations");
-            else if (selectedCase === "case_05_asthma") setPagerMessage("*BEEP BEEP*\n6yo M - Severe Wheezing");
-            else if (selectedCase === "case_06_trauma") setPagerMessage("*BEEP BEEP*\n22yo M - Motorcycle Crash");
-            else if (selectedCase === "case_07" || selectedCase === "case_07_vip") setPagerMessage("*BEEP BEEP*\n55yo M - Chest Pain (VIP)");
-            else if (selectedCase === "case_08") setPagerMessage("*BEEP BEEP*\n19yo F - DKA");
-            else if (selectedCase === "case_09") setPagerMessage("*BEEP BEEP*\nAnaphylaxis");
-            else if (selectedCase === "case_10") setPagerMessage("*BEEP BEEP*\nSepsis Protocol");
-            else if (selectedCase === "case_11") setPagerMessage("*BEEP BEEP*\nComplex Trauma");
-            else setPagerMessage(`*BEEP BEEP*\nNew Patient (${selectedCase})`);
+         const earlierCases = Array.from({ length: Math.max(0, currentDay - 1) }, (_, i) => getDayStory(i + 1, language).cases).flat();
+         const selectedCase = pickCase({
+            today: possibleCases,
+            earlier: earlierCases,
+            excluded: [...state.activeCases.map((c) => c.caseDataId), ...(state.shiftStats.spawned ?? [])],
+            met: Object.keys(state.patientLog),
+            // older saves have no lastSeen yet: fall back to the day each patient was first met
+            lastSeen: { ...Object.fromEntries(Object.entries(state.patientLog).map(([id, r]) => [id, r.day])), ...(state.lastSeen ?? {}) },
+         });
 
-            const skinTones = ["#ffc0cb", "#8d5524", "#c68642", "#e0ac69", "#f1c27d", "#ffdbac"];
-            const shirtColors = ["#1f6feb", "#f87171", "#a3e635", "#facc15", "#c084fc"];
+         // An empty ER fills at once, so nobody waits around for their first patient
+         const chance = state.activeCases.length === 0 ? 1 : spawnChance;
+         if (selectedCase && state.activeCases.length < maxCases && Math.random() < chance) {
+            audio.playPager();
+            addLog("คนไข้ใหม่เข้า ER");
+            state.markSpawned(selectedCase);
+            
+            const who = patientFor(selectedCase);
+            // Someone new with a condition the player has already met: a review case under their own name
+            const alias = state.patientLog[selectedCase] ? reviewName(selectedCase, currentDay * 7 + (state.shiftStats.spawned ?? []).length) : undefined;
+            setPagerMessage(who ? `${alias ?? who.name.th} ${who.age.th}\n${alias ? 'เคสทบทวน ' : ''}${who.pager.th}` : 'มีคนไข้ใหม่ค่ะหมอ');
 
             addCase({
               id: `case_${Date.now()}`,
               caseDataId: selectedCase,
-              skinTone: skinTones[Math.floor(Math.random() * skinTones.length)],
-              shirtColor: shirtColors[Math.floor(Math.random() * shirtColors.length)],
+              alias,
+              skinTone: PATIENT_SKIN[selectedCase],
               receivedAt: Date.now(),
               expiresAt: Date.now() + 5 * 60 * 1000, 
             });
          }
       }
-    }, spawnRate);
+    };
+    const spawner = setInterval(spawnTick, spawnRate);
+    const firstSpawn = activeCases.length === 0 ? setTimeout(spawnTick, 1500) : undefined;
 
     return () => {
       clearInterval(timer);
       clearInterval(spawner);
+      clearTimeout(firstSpawn);
     };
   }, [shiftMode, activeCases.length, currentEra, currentDay, isFastForwarding, dialogueQueue.length]);
 
@@ -431,33 +400,18 @@ export default function HubPage() {
     if (shiftMode === 'off-duty' || shiftMode === 'on-call') return;
     if (dialogueQueue.length > 0) return;
 
-    const campaignData = STORY_CAMPAIGN[currentDay];
-    if (campaignData?.midShiftEvents && campaignData.midShiftEvents.length > 0) {
-       let eventNode = null;
-       let targetCutscene: CutsceneNode[] = [];
-       let targetCase: string | undefined = undefined;
-
-       if ('text' in campaignData.midShiftEvents[0]) {
-          if (clockMinutes === 240) {
-             eventNode = true;
-             targetCutscene = campaignData.midShiftEvents as CutsceneNode[];
-          }
-       } else {
-          const event = (campaignData.midShiftEvents as any[]).find(e => e.triggerMinute === clockMinutes);
-          if (event) {
-             eventNode = event;
-             targetCutscene = event.cutscene;
-             targetCase = event.injectCase;
-          }
-       }
-
-       if (eventNode && !triggeredEvents.current.has(clockMinutes)) {
-          triggeredEvents.current.add(clockMinutes);
-          setDialogueQueue(targetCutscene);
-          if (targetCase) setCaseToInject(targetCase);
-       }
+    // A mid-shift scene plays at its minute, or when the player comes back from their first
+    // patient, whichever is sooner. Leaving early must not skip the story or the flags it sets.
+    const played = useERStore.getState().shiftStats.midPlayed ?? [];
+    const event = getDayStory(currentDay, language).mid.find(
+      (e) => !played.includes(e.triggerMinute) && (clockMinutes >= e.triggerMinute || shiftStats.casesTreated >= 1)
+    );
+    if (event) {
+       useERStore.getState().markMidPlayed(event.triggerMinute);
+       setDialogueQueue(playable(event.cutscene));
+       if (event.injectCase) setCaseToInject(event.injectCase);
     }
-  }, [clockMinutes, shiftMode, dialogueQueue.length, currentDay]);
+  }, [clockMinutes, shiftMode, dialogueQueue.length, currentDay, language, shiftStats.casesTreated]);
 
   // Handle End of Shift or Pass Out
   useEffect(() => {
@@ -472,26 +426,26 @@ export default function HubPage() {
            
            if (getRankFromXp(lifetimeXp) === 'Prof') {
              setDialogueQueue([
-               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: "You have reached the pinnacle of medicine. You are now the Chief of Medicine!" },
-               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: "Will you retire and start a new legacy, passing on your knowledge to the next generation?", choices: [
-                  { text: "Legacy of Wealth (Start with 5000 Cash)", nextId: "legacy_wealth", flagEffect: "prestige_wealth" },
-                  { text: "Legacy of Knowledge (Start with 5000 XP)", nextId: "legacy_knowledge", flagEffect: "prestige_knowledge" }
+               { speaker: "Prof. Somchai", text: "ขึ้นมาถึงจุดสูงสุดแล้วนะ ตอนนี้เป็นหัวหน้าภาควิชาเต็มตัว" },
+               { speaker: "Prof. Somchai", text: "จะเกษียณแล้วส่งต่อให้รุ่นน้องไหม เริ่มใหม่อีกรอบ แต่มีของติดตัวไปด้วย", choices: [
+                  { text: "ส่งต่อทรัพย์ (เริ่มใหม่พร้อม 5000 เหรียญ)", nextId: "legacy_wealth", flagEffect: "prestige_wealth" },
+                  { text: "ส่งต่อความรู้ (เริ่มใหม่พร้อม 5000 XP)", nextId: "legacy_knowledge", flagEffect: "prestige_knowledge" }
                ]}
              ]);
              setActionOnDialogueEnd('PRESTIGE');
            } else {
-             addLog(language === 'th' ? "เอาชนะบอสได้แล้ว! ปลดล็อกการเลื่อนขั้น!" : "BOSS DEFEATED! PROMOTION UNLOCKED!");
+             addLog("ผ่านสอบเลื่อนขั้นแล้ว!");
              setDialogueQueue([
-               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `ยอดเยี่ยมมากวันนี้ คุณรับมือกับเหตุการณ์ผู้ป่วยจำนวนมากได้อย่างไร้ที่ติ` : `Incredible work today. You handled that mass casualty event flawlessly.` },
-               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `ผมขออนุมัติการเลื่อนขั้นของคุณอย่างเป็นทางการ` : `I am officially authorizing your promotion.` },
-               { speaker: "Prof. Somchai", portrait: "/assets/doctor_sprite.png", text: language === 'th' ? `ขอแสดงความยินดีกับตำแหน่งใหม่ของคุณ!` : `Congratulations on your new rank!` },
+               { speaker: "Prof. Somchai", text: `วันนี้เยี่ยมมาก mass casualty แบบนี้คุมอยู่ทั้ง ER` },
+               { speaker: "Prof. Somchai", text: `ผมเซ็นเลื่อนขั้นให้แล้ว` },
+               { speaker: "Prof. Somchai", text: `ยินดีด้วยกับตำแหน่งใหม่นะ` },
              ]);
            }
         } else {
            // Normal shift ended
-           const campaignData = language === 'th' ? STORY_CAMPAIGN_TH[currentDay] : STORY_CAMPAIGN[currentDay];
-           if (campaignData && campaignData.endOfDayCutscene) {
-             setDialogueQueue(campaignData.endOfDayCutscene);
+           const endScene = getDayStory(currentDay, language).end;
+           if (endScene.length > 0) {
+             setDialogueQueue(playable(endScene));
              setActionOnDialogueEnd('END_SHIFT');
              return;
            }
@@ -514,9 +468,9 @@ export default function HubPage() {
 
   const startShift = () => {
     audio.playClick();
-    const campaignData = language === 'th' ? STORY_CAMPAIGN_TH[currentDay] : STORY_CAMPAIGN[currentDay];
-    if (campaignData && campaignData.startOfDayCutscene) {
-      setDialogueQueue(campaignData.startOfDayCutscene);
+    const startScene = getDayStory(currentDay, language).start;
+    if (startScene.length > 0) {
+      setDialogueQueue(playable(startScene));
       setActionOnDialogueEnd('START_SHIFT');
     } else {
       executeStartShift();
@@ -524,6 +478,7 @@ export default function HubPage() {
   };
 
   const executeStartShift = () => {
+    setDayCard(currentDay);
     audio.playShiftStart();
     audio.playAmbientHum();
     setClock(0);
@@ -533,18 +488,61 @@ export default function HubPage() {
     // Apply Upgrades
     if (hospitalUpgrades.includes('upg_espresso')) {
       restoreEnergy(10);
-      addLog(`${localizedRank} clocked in for Day ${currentDay}. (Espresso: +10 Energy)`);
+      addLog(`${localizedRank} เข้าเวรวันที่ ${currentDay} (เครื่องชงกาแฟใหม่ +10 พลังงาน)`);
     } else {
-      addLog(`${localizedRank} clocked in for Day ${currentDay}.`);
+      addLog(`${localizedRank} เข้าเวรวันที่ ${currentDay}`);
     }
   };
 
   const executeEndShift = () => {
+    // The closing scene says what time it is ("11:40 น."), so the shift ends then
+    const story = getDayStory(currentDay, language);
+    const end = timeInScene(story.end);
+    if (end !== null) {
+      const worked = (end - shiftStartMinutes(story) + 1440) % 1440;
+      if (worked > useERStore.getState().clockMinutes) setClock(worked);
+    }
     audio.playShiftEnd();
     audio.stopAmbientHum();
     setShiftMode('off-duty');
     incrementDay();
     router.push('/summary');
+  };
+
+  // Clocking out early still plays the end-of-day scene and advances the day.
+  // Surrendering the promotion exam returns to the summary without advancing.
+  // The story is the reward for the shift, so a shift has to have patients in it.
+  // Two taps to clock out, so a thumb aimed at a bed never ends the day.
+  const MIN_PATIENTS = 2;
+  const [endArmed, setEndArmed] = useState(false);
+  const patientsSeen = shiftStats.casesTreated;
+  const canClockOut = shiftMode === 'boss-battle' || patientsSeen >= MIN_PATIENTS || clockMinutes >= 540;
+  useEffect(() => {
+    if (!endArmed) return;
+    const t = setTimeout(() => setEndArmed(false), 3000);
+    return () => clearTimeout(t);
+  }, [endArmed]);
+
+  const requestEndShift = () => {
+    audio.playClick();
+    if (!canClockOut) {
+      showToast(`ดูคนไข้อีก ${MIN_PATIENTS - patientsSeen} คนก่อนออกเวรนะ`);
+      return;
+    }
+    if (!endArmed) { setEndArmed(true); return; }
+    setEndArmed(false);
+    if (shiftMode === 'boss-battle') {
+      setShiftMode('off-duty');
+      router.push('/summary');
+      return;
+    }
+    const endScene = getDayStory(currentDay, language).end;
+    if (endScene.length > 0) {
+      setDialogueQueue(playable(endScene));
+      setActionOnDialogueEnd('END_SHIFT');
+    } else {
+      executeEndShift();
+    }
   };
 
   const startBossBattle = () => {
@@ -553,355 +551,319 @@ export default function HubPage() {
     setClock(0);
     resetShiftStats();
     setShiftMode('boss-battle');
-    addLog(`PROMOTION EXAM STARTED! Good luck, ${localizedRank}.`);
+    addLog(`เริ่มสอบเลื่อนขั้น โชคดีนะ ${localizedRank}`);
   };
 
-  const handleInteract = (id: string, type: string) => {
-    if (type === 'bed') {
-      const bedIndex = parseInt(id.replace('bed_', '')) - 1;
-      const activeCase = activeCases.find(c => c.bedIndex === bedIndex);
-      if (activeCase) {
-        audio.playClick();
-        router.push(`/simulator/play/${activeCase.caseDataId}?instanceId=${activeCase.id}`);
-      } else {
-        addLog(`Bed is empty.`);
-      }
-    } else if (type === 'npc') {
-      audio.playClick();
-      
-      if (id === 'grump_npc') {
-         setDialogueQueue([
-           { speaker: "Dr. Grump", text: `Don't bother me, ${localizedRank}. I'm on my break. Go see patients!` }
-         ]);
-         return;
-      }
-      
-      const currentHearts = friendships['nurse_ann'] || 0;
-      
-      if (inventory.includes('special_coffee')) {
-         // Gift flow
-         removeFromInventory('special_coffee');
-         updateFriendship('nurse_ann', 1);
-         addLog(`You gave Nurse Ann a Specialty Coffee! (Hearts +1)`);
-         
-         const newHearts = currentHearts + 1;
-         
-         if (newHearts === 2) {
-           setIsCinematic(true);
-           setDialogueQueue([
-             { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: `This is exactly what I needed! You're really thoughtful.` },
-             { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: `I was actually having a really rough day... we lost a patient this morning.` },
-             { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: `But this helps. Thank you.` },
-             { speaker: "System", text: `Nurse Ann's friendship increased to ${newHearts} hearts!` }
-           ]);
-           addLog(`Heart Event Triggered: The Rough Day`);
-         } else if (newHearts === 4) {
-           setIsCinematic(true);
-           setDialogueQueue([
-             { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: `You always know how to cheer me up. I'm glad we're working together.` },
-             { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: `In this hospital, it's easy to burn out. But having someone like you around makes it bearable.` },
-             { speaker: "System", text: `Nurse Ann's friendship increased to ${newHearts} hearts!` }
-           ]);
-           addLog(`Heart Event Triggered: Close Coworkers!`);
-         } else {
-           setDialogueQueue([
-             { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: `Oh wow, is this coffee for me? Thank you so much, ${localizedRank}!` },
-             { speaker: "System", text: `Nurse Ann's friendship increased to ${newHearts} hearts!` }
-           ]);
-         }
-         
-         if (newHearts >= 2 && activeQuests.includes('q_social_butterfly')) {
-           completeQuest('q_social_butterfly');
-           addLog("Quest Completed: Social Butterfly!");
-         }
-      } else {
-         // Standard chat flow
-         let dialogText = `Oh, hi ${localizedRank}. It's so busy today!`;
-         if (currentHearts >= 2) dialogText = `Thanks for all your hard work today. We really appreciate it!`;
-         if (currentHearts >= 4) dialogText = `You're one of my favorite doctors to work with! Keep it up!`;
-         
-         setDialogueQueue([
-           { speaker: "Nurse Ann", portrait: "/assets/nurse_sprite.png", text: dialogText }
-         ]);
-      }
-      
-      if (currentHearts >= 2 && activeQuests.includes('q_social_butterfly')) {
-        completeQuest('q_social_butterfly');
-        addLog("Quest Completed: Social Butterfly!");
-      }
-    } else if (id === 'leaderboard') {
-      audio.playClick();
-      setIsLeaderboardOpen(true);
-    } else if (id === 'consults') {
-      audio.playClick();
-      setIsConsultsOpen(true);
-    }
-  };
+  const phase = phaseForDay(currentDay);
+  const showToast = useCallback((msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg((m) => (m === msg ? null : m)), 2600);
+  }, []);
+  const playScene = useCallback((q: CutsceneNode[]) => {
+    setDialogueQueue(q);
+    if (q.length === 0) setIsCinematic(false);
+  }, []);
 
-  const handleDoor = (target: string) => {
-    addLog(`Traveling to ${target}...`);
-    if (target === 'AMBULANCE_BAY') {
-      setSpawnPos({ x: 7, y: 1 });
-    } else if (target === 'ER_MAIN') {
-      setSpawnPos({ x: 7, y: 8 });
-    } else {
-      setSpawnPos(undefined);
+  // A nudge before the player runs dry and faints
+  const warnedLowEnergy = useRef(false);
+  useEffect(() => {
+    if (shiftMode !== 'on-shift') { warnedLowEnergy.current = false; return; }
+    if (energy > 0 && energy <= 25 && !warnedLowEnergy.current) {
+      warnedLowEnergy.current = true;
+      worldApi.current?.emote('player', 'sweat');
+      // the bench is soaked on rainy days, so only the kettle is worth suggesting
+      showToast(weatherFor(useERStore.getState().currentDay) === 'rain'
+        ? 'เริ่มหมดแรงแล้ว แวะชงชาร้อนๆ ที่มุมกาต้มน้ำก่อนนะ'
+        : 'เริ่มหมดแรงแล้ว แวะชงชาที่มุมกาต้มน้ำ หรือออกไปนั่งพักที่ม้านั่งก่อนนะ');
     }
+  }, [energy, shiftMode, language, showToast]);
+
+  // Quest completions get a little fanfare
+  useEffect(() => {
+    const onQuest = (e: Event) => {
+      const id = (e as CustomEvent).detail as string;
+      const q = QUEST_DATABASE[id];
+      if (!q) return;
+      audio.playCashRegister();
+      worldApi.current?.emote('player', 'star');
+      worldApi.current?.sparkle('player');
+      showToast(language === 'th' ? `ภารกิจสำเร็จ: ${q.title_th} (${q.rewardText})` : `Quest complete: ${q.title} (${q.rewardText})`);
+    };
+    window.addEventListener('questComplete', onQuest);
+    return () => window.removeEventListener('questComplete', onQuest);
+  }, [language, showToast]);
+
+  // Rain on rainy days, louder out in the courtyard than under the roof
+  const rainy = weatherFor(currentDay) === 'rain';
+  useEffect(() => {
+    if (!rainy) return;
+    audio.playRain(currentMap === 'AMBULANCE_BAY' ? 1 : 0.45);
+  }, [rainy, currentMap]);
+  useEffect(() => {
+    if (!rainy) return;
+    return () => audio.stopRain();
+  }, [rainy]);
+
+  // The notice-board request, when it is finished in the clinic
+  useEffect(() => {
+    const onRequest = (e: Event) => {
+      const r = requestFor((e as CustomEvent).detail as number);
+      if (!r) return;
+      audio.playCashRegister();
+      worldApi.current?.emote('player', 'star');
+      worldApi.current?.sparkle('player');
+      showToast(`งานจากบอร์ดสำเร็จ: ${r.goal} (+${r.cash} เหรียญ)`);
+    };
+    window.addEventListener('requestComplete', onRequest);
+    return () => window.removeEventListener('requestComplete', onRequest);
+  }, [showToast]);
+
+  // The clock starts when the day's story says the shift starts, and the light follows real time of day
+  const shiftStart = useMemo(() => shiftStartMinutes(getDayStory(currentDay, language)), [currentDay, language]);
+  const shiftLive = shiftMode === 'on-shift' || shiftMode === 'boss-battle';
+  // Off duty, the clock still holds the last shift's end; show the coming shift's start instead
+  const shownMinutes = shiftLive ? clockMinutes : 0;
+  const timeOfDay = Math.floor(shiftStart + shownMinutes) % 1440;
+
+  const social = useWorldSocial({
+    phase,
+    language,
+    currentDay,
+    minuteOfDay: timeOfDay,
+    setDialogueQueue: playScene,
+    setIsCinematic,
+    worldApi,
+    openLeaderboard: () => setIsLeaderboardOpen(true),
+    openConsults: () => setIsConsultsOpen(true),
+    openShop: () => router.push('/hub/shop'),
+    openLetters: () => { setLettersTab('letters'); setIsLettersOpen(true); },
+    openCase: (caseId, instanceId) => router.push(`/simulator/play/${caseId}?instanceId=${instanceId}`),
+    toast: showToast,
+    addLog,
+  });
+
+  const playerLook = useMemo(() => playerLookFrom(useERStore.getState().appearance, currentRankId), [currentRankId]);
+
+  const handleDoor = (target: MapId, spawn: { x: number; y: number }) => {
+    audio.playFootstep();
+    setSpawnPos(spawn);
     setCurrentMap(target);
   };
 
   const formatTime = (mins: number) => {
-    const hours = Math.floor(mins / 60) + 8;
-    const m = mins % 60;
+    const t = Math.floor(shiftStart + mins) % 1440;
+    const hours = Math.floor(t / 60);
+    const m = t % 60;
     return `${hours.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
   };
 
+  const tr = (en: string, th: string) => (language === 'th' ? th : en);
+  const onShift = shiftMode === 'on-shift' || shiftMode === 'boss-battle';
+  const casebookClaimed = useERStore((s) => s.casebookClaimed);
+  const requestsDone = useERStore((s) => s.requestsDone);
+  // The postbox bubble also means a casebook reward is waiting to be claimed
+  const hasMail = unreadLetters(patientLog, currentDay).length > 0
+    || claimableMilestones(Object.keys(patientLog).length, casebookClaimed ?? []).length > 0;
+  const openRequest = !!requestFor(currentDay) && !(requestsDone ?? []).includes(currentDay);
+  const anyModal = isQuestsOpen || isLettersOpen || isLeaderboardOpen || isConsultsOpen || isSettingsOpen || isFriendsOpen || activeTab === 'LOGS';
+
   return (
     <PageTransition>
-      <div 
-        className="w-full h-[100dvh] flex flex-col font-pixel relative select-none touch-none"
-        style={{
-          background: "radial-gradient(circle at 50% 50%, #29366f 0%, #1a1c2c 100%)",
-        }}
-      >
+      <div className="w-full h-[100dvh] flex flex-col font-pixel relative select-none touch-none cozy-night">
       <Pager message={pagerMessage} onClear={() => setPagerMessage(null)} />
 
-      {/* Top: Game Area */}
-      <div className="relative h-[60%] w-full border-b-[4px] border-[#30363d] overflow-hidden bg-black flex items-center justify-center">
-        <div className="absolute top-4 right-4 flex items-center gap-2 z-50">
-          <PixelButton onClick={() => router.push('/hub/shop')} variant="secondary" className="px-2.5 py-1.5 text-xs bg-black/80 border-amber-500/60 hover:border-amber-400 text-amber-300 shadow-md">
-            🛒 SHOP
-          </PixelButton>
-          <PixelButton onClick={() => router.push('/profile')} variant="secondary" className="px-2.5 py-1.5 text-xs bg-black/80 border-blue-500/60 hover:border-blue-400 text-blue-300 shadow-md">
-            🪪 BADGE
-          </PixelButton>
-          <PixelButton onClick={() => setIsSettingsOpen(true)} variant="secondary" className="px-2.5 py-1.5 text-xs bg-black/80 shadow-md">
-            ⚙️
-          </PixelButton>
+      {/* The clinic */}
+      <div className="relative flex-1 min-h-0 w-full overflow-hidden">
+        <ClinicWorld
+          mapId={currentMap}
+          phase={phase}
+          npcs={social.npcs}
+          playerLook={playerLook}
+          activeCases={activeCases}
+          mail={hasMail}
+          rain={rainy}
+          clockMinutes={worldLightMinutes(timeOfDay)}
+          onShift={onShift}
+          paused={dialogueQueue.length > 0 || anyModal || dayCard !== null}
+          fastForward={isFastForwarding}
+          spawn={spawnPos}
+          language={language}
+          onInteract={social.onInteract}
+          onDoor={handleDoor}
+          describe={social.describe}
+          onApi={(api) => { worldApi.current = api; }}
+        />
+
+        {/* Day and time plaque */}
+        <div className="absolute top-2 left-2 z-40 cozy-tag px-2 py-1 pointer-events-none" data-testid="hud-day">
+          <div className="flex items-center gap-1.5 text-[18px] leading-none">
+            <PixelIcon name={rainy ? 'rain' : timeOfDay >= 360 && timeOfDay < 1110 ? 'sun' : 'moon'} size={15} />
+            <span>{tr('Day', 'วันที่')} {currentDay}</span>
+            <span className="tabular-nums text-[#86522e]">{formatTime(shownMinutes)}</span>
+          </div>
+          <div className="text-[13px] leading-none mt-1 text-[#86522e] max-w-[11rem] truncate">
+            {currentMap === 'AMBULANCE_BAY' ? tr('Courtyard', 'ลานหน้าตึก') : LOCATION_NAMES[phase][language]}
+          </div>
         </div>
-        
-        <div className="w-full h-full bg-black overflow-hidden relative shadow-inner">
-            <PixiEngine2D 
-              mapData={MAPS[currentMap]} 
-              onInteract={handleInteract} 
-              onDoor={handleDoor} 
-              activeCases={activeCases} 
-              clockMinutes={clockMinutes}
-              spawnPos={spawnPos}
-              era={getEra(lifetimeXp)}
-              npcEmote={friendships['nurse_ann'] >= 4 ? "❤️" : null}
-              currentDay={currentDay}
-              isFastForwarding={isFastForwarding}
-            />
-            
-            {/* Power Outage Overlay */}
-            {isPowerOutage && (
-              <div className="absolute inset-0 pointer-events-none z-[60]" style={{
-                 background: `radial-gradient(circle at center, transparent 10%, rgba(0,0,0,0.9) 60%)`
-              }} />
-            )}
+
+        {/* Coins and energy */}
+        <div className="absolute top-2 right-2 z-40 flex flex-col items-end gap-1 pointer-events-none">
+          <div className="cozy-tag px-2 py-1 flex items-center gap-1.5" data-testid="hud-cash">
+            <PixelIcon name="coin" size={15} />
+            <span className="text-[18px] leading-none tabular-nums">{currency}</span>
+          </div>
+          <div className="cozy-tag px-1.5 py-1 flex items-center gap-1.5" data-testid="hud-energy">
+            <PixelIcon name="energy" size={13} />
+            <div className="cozy-bar w-20 h-3">
+              <span style={{ width: `${Math.max(0, Math.min(100, (energy / maxEnergy) * 100))}%`, background: energy > 50 ? '#86c35f' : energy > 20 ? '#ffd66b' : '#e06b72' }} />
+            </div>
+          </div>
         </div>
-        
-        {shiftMode !== 'on-shift' && shiftMode !== 'boss-battle' && (
-          <div className="absolute top-4 left-4 z-50 bg-black/70 backdrop-blur-md p-4 rounded-xl border-2 border-[#30363d] shadow-lg pointer-events-none">
-            <span className="text-4xl block mb-2 text-center animate-pulse">🏥</span>
-            <p className="text-white font-bold text-lg">Code Rama Hospital</p>
-            <p className="text-xs mt-1 text-[#8b949e]">Waiting for shift to begin...</p>
+
+        {/* Power outage */}
+        {isPowerOutage && (
+          <div className="absolute inset-0 pointer-events-none z-[35]" style={{ background: `radial-gradient(circle at center, transparent 15%, rgba(20,12,24,0.88) 65%)` }} />
+        )}
+
+        {/* Cinematic letterbox */}
+        <div className={`absolute top-0 left-0 w-full h-14 bg-[#1c1522] transition-transform duration-700 z-[45] ${isCinematic ? 'translate-y-0' : '-translate-y-full'}`} />
+        <div className={`absolute bottom-0 left-0 w-full h-14 bg-[#1c1522] transition-transform duration-700 z-[45] ${isCinematic ? 'translate-y-0' : 'translate-y-full'}`} />
+
+        {toastMsg && (
+          <div className="absolute top-16 left-1/2 -translate-x-1/2 z-50 cozy-tag px-3 py-1.5 text-[17px] text-center w-max max-w-[90%] animate-[cozyPop_0.2s_ease-out]" data-testid="toast">
+            {toastMsg}
           </div>
         )}
-        
+
         {dialogueQueue.length > 0 && (
-          <DialogueBox 
+          <DialogueBox
             speakerName={dialogueQueue[0].speaker}
             text={dialogueQueue[0].text}
             portraitUrl={dialogueQueue[0].portrait}
-            choices={dialogueQueue[0].choices}
+            choices={visibleChoices(dialogueQueue[0].choices, storyFlags)}
+            voice={dialogueQueue[0].voice}
             onComplete={handleDialogueComplete}
+            onSkip={canSkip ? skipScene : undefined}
           />
         )}
 
-        {/* Cinematic Letterbox */}
-        <div className={`absolute top-0 left-0 w-full h-24 bg-black transition-transform duration-1000 z-40 ${isCinematic ? 'translate-y-0' : '-translate-y-full'}`} />
-        <div className={`absolute bottom-0 left-0 w-full h-24 bg-black transition-transform duration-1000 z-40 ${isCinematic ? 'translate-y-0' : 'translate-y-full'}`} />
+        {dayCard !== null && <DayCard day={dayCard} phase={phase} language={language} onDone={() => setDayCard(null)} />}
       </div>
 
-      {/* Bottom 40%: The Dashboard */}
-      <div className="h-[40%] bg-[#0d1117] flex flex-col z-10 relative shadow-[0_-10px_30px_rgba(0,0,0,0.8)] border-t-4 border-[#30363d]">
-        <div className="flex justify-between items-center bg-[#161b22] px-4 py-3 border-b-4 border-[#21262d] shadow-inner">
-              <div className="flex flex-col gap-1 w-1/3">
-                <p className="text-xs text-[#d29922] drop-shadow-md">{translate('current_rank', language)}: <span className="text-white text-sm font-bold ml-1">{localizedRank}</span></p>
-                {isReadyForPromotion ? (
-                  <p className="text-xs text-[#da3633] animate-pulse font-bold tracking-widest">PROMOTION READY!</p>
-                ) : (
-                  <div className="w-full h-3 bg-black border-2 border-[#30363d] rounded-full cursor-pointer shadow-inner overflow-hidden" onClick={() => setIsQuestsOpen(true)}>
-                    <div className="h-full bg-gradient-to-r from-[#1f6feb] to-[#58a6ff] transition-all duration-300" style={{ width: `${progressPercent}%` }} />
-                  </div>
-                )}
-                <button 
-                  onClick={() => setIsQuestsOpen(true)}
-                  className="mt-1 text-[10px] text-gray-400 hover:text-white hover:underline text-left transition-colors"
-                >
-                  View Quests ({activeQuests.length})
-                </button>
-              </div>
-          
-          {/* Dashboard Tabs Toggle */}
-          <div className="flex gap-2 bg-black/50 p-1 rounded-lg border-2 border-[#30363d]">
-            <button 
-              onClick={() => setActiveTab('ACTIONS')}
-              className={`px-3 py-1 text-xs rounded font-bold transition-colors ${activeTab === 'ACTIONS' ? 'bg-[#1f6feb] text-white' : 'text-gray-400 hover:text-white'}`}
-            >
-              ACTIONS
-            </button>
-            <button 
-              onClick={() => setActiveTab('LOGS')}
-              className={`px-3 py-1 text-xs rounded font-bold transition-colors flex items-center gap-1 ${activeTab === 'LOGS' ? 'bg-[#2ea043] text-white' : 'text-gray-400 hover:text-white'}`}
-            >
-              LOGS
-              {logs.length > 0 && <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />}
-            </button>
-          </div>
-          
-          <div className="flex flex-col items-end w-1/3">
-            <span className="text-2xl text-white font-bold drop-shadow-md tracking-wider">{formatTime(clockMinutes)}</span>
-            <div className="flex items-center gap-2 w-28 mt-1">
-              <span className="text-xs text-[#8b949e] font-bold">EN</span>
-              <div className="w-full h-3 bg-black rounded-full border-2 border-[#30363d] shadow-inner overflow-hidden">
-                <div 
-                  className={`h-full transition-all duration-500 ${energy > 50 ? 'bg-gradient-to-r from-[#2ea043] to-[#3fb950]' : energy > 20 ? 'bg-gradient-to-r from-[#d29922] to-[#e3b341]' : 'bg-gradient-to-r from-[#da3633] to-[#ff7b72]'}`}
-                  style={{ width: `${(energy / maxEnergy) * 100}%` }}
-                />
-              </div>
+      {/* The desk */}
+      <div className="shrink-0 cozy-wood border-t-[3px] border-[#3a2a2f] px-3 pt-2.5 pb-[calc(0.6rem+var(--safe-bottom))] relative z-10 flex flex-col gap-2">
+        <div className="cozy-panel px-2.5 py-1.5 flex items-center gap-2.5">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-baseline justify-between gap-2">
+              <span className="text-[18px] leading-none truncate">{localizedRank}</span>
+              <span className="text-[15px] leading-none text-[#86522e] tabular-nums">XP {Math.round(xp)}</span>
             </div>
+            {isReadyForPromotion ? (
+              <p className="text-[15px] leading-none mt-1.5 text-[#a93c4b] animate-pulse">{'พร้อมสอบเลื่อนขั้นแล้ว!'}</p>
+            ) : chapterCapped ? (
+              <p className="text-[15px] leading-none mt-1.5 text-[#4f7a3a]" data-testid="chapter-capped">{'XP เต็มบทนี้แล้ว ที่ได้เพิ่มเอาไปอัปสกิลได้'}</p>
+            ) : (
+              <div className="cozy-bar h-3 mt-1.5"><span style={{ width: `${progressPercent}%`, background: '#7fc8d8' }} /></div>
+            )}
           </div>
+          <button onClick={() => { audio.playClick(); setIsQuestsOpen(true); }} className="cozy-btn cozy-btn-sun px-2 py-1 flex items-center gap-1 text-[17px] leading-none" aria-label="quests">
+            <PixelIcon name="quest" size={16} />{activeQuests.length + (openRequest ? 1 : 0)}
+          </button>
         </div>
 
-        <div className="flex-1 overflow-hidden p-4 bg-repeat relative bg-[url(/assets/carbon_fiber.png)]">
-          
-          {activeTab === 'ACTIONS' && (
-            <div className="w-full flex flex-col gap-4 max-w-md mx-auto">
-              <div className="flex gap-4">
-                <div className="flex-1 flex items-center justify-between bg-black/50 backdrop-blur-sm px-4 py-3 rounded-lg border-2 border-[#30363d] shadow-inner">
-                   <span className="text-[#8b949e] font-bold tracking-widest">XP</span>
-                   <span className="text-[#58a6ff] font-bold text-lg drop-shadow-[0_0_5px_rgba(88,166,255,0.8)]">{xp}</span>
-                </div>
-                <div className="flex-1 flex items-center justify-between bg-black/50 backdrop-blur-sm px-4 py-3 rounded-lg border-2 border-[#30363d] shadow-inner">
-                   <span className="text-[#8b949e] font-bold tracking-widest">CASH</span>
-                   <span className="text-[#3fb950] font-bold text-lg drop-shadow-[0_0_5px_rgba(63,185,80,0.8)]">${currency}</span>
-                </div>
-              </div>
-              
-              {shiftMode === 'on-shift' || shiftMode === 'boss-battle' ? (
-                <>
-                  {/* ER Beds Quick Status */}
-                  <div className="grid grid-cols-3 gap-2 w-full">
-                    {[0, 1, 2].map((bedIdx) => {
-                      const c = activeCases.find((item) => item.bedIndex === bedIdx);
-                      return (
-                        <button
-                          key={bedIdx}
-                          onClick={() => {
-                            if (c) {
-                              audio.playClick();
-                              router.push(`/simulator/play/${c.caseDataId}?instanceId=${c.id}`);
-                            }
-                          }}
-                          disabled={!c}
-                          className={`py-2 px-1 rounded-lg border-2 text-xs flex flex-col items-center justify-center transition-all ${
-                            c 
-                              ? 'bg-red-950/80 border-red-500 text-red-100 hover:bg-red-900 active:scale-95 shadow-[0_0_12px_rgba(255,0,0,0.4)] animate-pulse cursor-pointer' 
-                              : 'bg-black/40 border-[#30363d] text-gray-500 opacity-60 cursor-default'
-                          }`}
-                        >
-                          <span className="font-bold">BED {bedIdx + 1}</span>
-                          <span className="text-[10px] mt-0.5 truncate max-w-full font-mono">
-                            {c ? '🚨 TREAT' : 'EMPTY'}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  <div className="flex gap-2 w-full">
-                    <PixelButton onClick={() => { setShiftMode('off-duty'); router.push('/summary'); }} variant="alert" className="flex-1 py-3 text-base shadow-lg">
-                      {shiftMode === 'boss-battle' ? (language === 'th' ? 'ยอมแพ้' : 'SURRENDER') : translate('end_shift', language)}
-                    </PixelButton>
-                    
-                    {activeCases.length === 0 && (
-                       <PixelButton onClick={() => { setIsFastForwarding(true); fastForwardTarget.current = clockMinutes + 60; }} variant="secondary" className="flex-1 py-3 text-base shadow-lg animate-pulse text-[#d29922] border-[#d29922]">
-                         ⏩ +60m
-                       </PixelButton>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <div className="flex flex-col gap-2">
-                  {isReadyForPromotion && (
-                    <PixelButton onClick={() => { audio.playShiftStart(); setClock(0); resetShiftStats(); setShiftMode('boss-battle'); addLog(language === 'th' ? `เริ่มสอบเลื่อนขั้น! โชคดีนะ ${localizedRank}` : `END OF YEAR TEST STARTED! Good luck, ${localizedRank}.`); }} variant="alert" className="w-full py-4 text-base shadow-[0_0_15px_rgba(255,0,0,0.5)] animate-pulse">
-                      {language === 'th' ? 'สอบเลื่อนขั้นประจำปี' : 'END OF YEAR TEST'}
-                    </PixelButton>
-                  )}
-                  <div className="relative">
-                    <PixelButton onClick={startShift} variant="primary" className="w-full py-4 text-base shadow-lg">
-                      {translate('start_shift', language)}
-                    </PixelButton>
-                    {currentDay === 1 && !tutorialCompleted && dialogueQueue.length === 0 && (
-                      <div className="absolute top-1/2 -translate-y-1/2 -left-12 text-3xl animate-bounce drop-shadow-[0_0_10px_rgba(255,255,255,1)]">
-                         👉
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2 mt-1">
-                    <PixelButton 
-                      onClick={() => router.push('/hub/shop')} 
-                      variant="secondary" 
-                      className="py-2 text-xs border-amber-500/50 hover:border-amber-400 text-amber-300"
-                    >
-                      🛒 SUPPLY CLOSET
-                    </PixelButton>
-                    <PixelButton 
-                      onClick={() => router.push('/profile')} 
-                      variant="secondary" 
-                      className="py-2 text-xs border-blue-500/50 hover:border-blue-400 text-blue-300"
-                    >
-                      🪪 ID BADGE
-                    </PixelButton>
-                  </div>
-                </div>
-              )}
-              
-              <PixelButton 
-                onClick={toggleOnCall} 
-                variant="secondary" 
-                className="w-full py-2 text-base"
-                disabled={shiftMode !== 'off-duty' && shiftMode !== 'on-call'}
-              >
-                {shiftMode === 'on-call' ? translate('pager_off', language) : translate('pager_on', language)}
-              </PixelButton>
+        {onShift ? (
+          <>
+            <div className="grid grid-cols-3 gap-2" data-testid="bed-chips">
+              {[0, 1, 2].map((bedIdx) => {
+                const c = activeCases.find((item) => item.bedIndex === bedIdx);
+                return (
+                  <button
+                    key={bedIdx}
+                    onClick={() => { if (c) { audio.playClick(); router.push(`/simulator/play/${c.caseDataId}?instanceId=${c.id}`); } }}
+                    disabled={!c}
+                    className={`cozy-btn py-1.5 px-1 flex flex-col items-center leading-none ${c ? 'cozy-btn-berry animate-[cozyWiggle_1.2s_ease-in-out_infinite]' : 'opacity-70'}`}
+                  >
+                    <span className="flex items-center gap-1 text-[16px]"><PixelIcon name="bed" size={16} />{bedIdx + 1}</span>
+                    <span className="text-[14px] mt-1 max-w-full truncate px-0.5">{c ? (c.alias ?? patientFor(c.caseDataId)?.name.th ?? 'คนไข้') : tr('free', 'ว่าง')}</span>
+                  </button>
+                );
+              })}
             </div>
-          )}
-          
-          {activeTab === 'LOGS' && (
-            <div className="w-full h-full bg-black/80 backdrop-blur-md border-4 border-[#30363d] rounded-xl p-3 overflow-y-auto font-mono text-xs leading-relaxed flex flex-col shadow-inner">
+            <div className="flex gap-2">
+              <PixelButton onClick={requestEndShift} disabled={dialogueQueue.length > 0} variant={endArmed ? 'alert' : 'wood'} className="flex-1 py-1.5 text-[17px]" data-testid="end-shift">
+                {endArmed
+                  ? (activeCases.length ? `ยังมีคนไข้รอ ${activeCases.length} คน แตะอีกครั้ง` : 'แตะอีกครั้งเพื่อออกเวร')
+                  : shiftMode === 'boss-battle' ? 'ยอมแพ้'
+                  : canClockOut ? 'ออกเวร' : `ออกเวร (ดูอีก ${MIN_PATIENTS - patientsSeen} คน)`}
+              </PixelButton>
+              {activeCases.length === 0 && (
+                <PixelButton onClick={() => { setIsFastForwarding(true); fastForwardTarget.current = clockMinutes + 60; }} variant="gold" className="flex-1 py-2 text-[19px] flex items-center justify-center gap-1.5">
+                  <PixelIcon name="fastforward" size={16} />+1 ชม.
+                </PixelButton>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="flex flex-col gap-2">
+            {isReadyForPromotion && (
+              <PixelButton onClick={() => { audio.playShiftStart(); setClock(0); resetShiftStats(); setShiftMode('boss-battle'); addLog(`เริ่มสอบเลื่อนขั้น โชคดีนะ ${localizedRank}`); }} variant="alert" className="w-full py-2 text-[19px] animate-pulse">
+                {tr('End of year exam', 'สอบเลื่อนขั้นประจำปี')}
+              </PixelButton>
+            )}
+            <div className="relative">
+              <PixelButton onClick={startShift} variant="primary" className="w-full py-2.5 text-[22px]" data-testid="start-shift">
+                {tr('Start shift', 'เริ่มเวร')}
+              </PixelButton>
+              {currentDay === 1 && !tutorialCompleted && dialogueQueue.length === 0 && (
+                <div className="absolute top-1/2 -translate-y-1/2 right-3 text-2xl animate-[cozyBob_0.8s_ease-in-out_infinite] pointer-events-none">◀</div>
+              )}
+            </div>
+          </div>
+        )}
+
+        <div className="grid grid-cols-5 gap-2">
+          {[
+            { key: 'shop', icon: 'bag', label: tr('Shop', 'ร้าน'), onClick: () => router.push('/hub/shop') },
+            { key: 'friends', icon: 'friends', label: tr('Friends', 'เพื่อน'), onClick: () => setIsFriendsOpen(true) },
+            { key: 'badge', icon: 'badge', label: tr('Badge', 'บัตร'), onClick: () => router.push('/profile') },
+            { key: 'log', icon: 'log', label: tr('Log', 'บันทึก'), onClick: () => setActiveTab('LOGS') },
+            { key: 'settings', icon: 'gear', label: tr('Settings', 'ตั้งค่า'), onClick: () => setIsSettingsOpen(true) },
+          ].map((b) => (
+            <button key={b.key} onClick={() => { audio.playClick(); b.onClick(); }} className="cozy-btn py-1 flex flex-col items-center gap-0.5 leading-none" aria-label={b.key} data-testid={`btn-${b.key}`}>
+              <PixelIcon name={b.icon} size={18} />
+              <span className="text-[13px]">{b.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {activeTab === 'LOGS' && (
+        <div className="absolute inset-0 z-[150] bg-[#1c1522]/70 flex items-center justify-center p-4" onClick={() => setActiveTab('ACTIONS')}>
+          <div className="cozy-panel w-full max-w-sm max-h-[70%] flex flex-col p-3" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-2xl leading-none">{tr('Shift log', 'บันทึกเวร')}</h2>
+              <button className="cozy-btn px-2 py-0.5 text-lg leading-none" onClick={() => setActiveTab('ACTIONS')}>✕</button>
+            </div>
+            <div className="overflow-y-auto text-[16px] leading-snug flex flex-col gap-1">
               {logs.map((log, i) => (
-                <div key={i} className="mb-1.5 flex gap-2">
-                  <span className="text-[#1f6feb]">{`>`}</span>
-                  <span className={log.includes('Triage:') || log.includes('BOSS') ? 'text-[#ff7b72] font-bold' : 'text-[#c9d1d9]'}>{log}</span>
-                </div>
+                <div key={i} className={log.includes('คนไข้ใหม่') || log.includes('สอบเลื่อนขั้น') ? 'text-[#a93c4b]' : ''}>{log}</div>
               ))}
               <div ref={logEndRef} />
             </div>
-          )}
+            <button onClick={toggleOnCall} className="cozy-btn cozy-btn-sky mt-3 py-1 text-[17px]" disabled={shiftMode !== 'off-duty' && shiftMode !== 'on-call'}>
+              {shiftMode === 'on-call' ? tr('Turn pager off', 'ปิดเพจเจอร์') : 'เปิดเพจเจอร์ (on call)'}
+            </button>
+          </div>
         </div>
-      </div>
-      
-      {/* Modals */}
+      )}
+
       <AnimatePresence>
-        {isQuestsOpen && <QuestsModal onClose={() => setIsQuestsOpen(false)} />}
+        {isQuestsOpen && <QuestsModal onClose={() => setIsQuestsOpen(false)} onOpenCasebook={() => { setIsQuestsOpen(false); setLettersTab('casebook'); setIsLettersOpen(true); }} />}
+        {isLettersOpen && <LettersModal initialTab={lettersTab} onClose={() => setIsLettersOpen(false)} />}
         {isLeaderboardOpen && <LeaderboardModal onClose={() => setIsLeaderboardOpen(false)} />}
         {isConsultsOpen && <ConsultsModal onClose={() => setIsConsultsOpen(false)} />}
         {isSettingsOpen && <SettingsMenu isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />}
+        {isFriendsOpen && <FriendsModal phase={phase} onClose={() => setIsFriendsOpen(false)} />}
       </AnimatePresence>
       </div>
     </PageTransition>

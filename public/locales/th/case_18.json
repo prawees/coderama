@@ -1,0 +1,457 @@
+{
+  "title": "24yo F Postpartum Haemorrhage",
+  "age": "24",
+  "sex": "F",
+  "chiefComplaint": "เลือดออกทางช่องคลอดมาก 40 นาทีหลังคลอด",
+  "diagnoses": [
+    "Uterine atony",
+    "Retained placental fragments",
+    "Genital tract trauma",
+    "Uterine inversion",
+    "Coagulopathy"
+  ],
+  "background": "คลอดลูกชาย 4.1 kg ที่ รพ.สต. เมื่อ 40 นาทีก่อน หลัง second stage ยาวนาน แล้ว refer มาด้วยรถพยาบาล เลือดออกไม่หยุดตลอดทาง ครรภ์ที่ 4 (grand multipara) ได้ oxytocin เร่งคลอดมา 9 ชม. รกคลอดออกมาดูครบ เสียเลือดก่อนมาถึงอย่างน้อย 900 mL ผ้าปูเปียกชุ่ม ลูกแข็งแรงดี อยู่บนรถพยาบาลกับยาย",
+  "patientAppearance": {
+    "skinTone": "#e0b087",
+    "bmiFactor": 1.1,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 136,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 82,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 44,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 28,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.0,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 96,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 14,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Pale, cold and shivering, drowsy but rousable, repeatedly asking about the baby",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Marked conjunctival and palmar pallor, dry lips, no jaundice, capillary refill in the lips delayed",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia at 136/min, thready pulse, capillary refill 5 seconds. Note that a healthy young woman can lose 1500 mL before her blood pressure moves, so tachycardia is the early sign and hypotension is a late one",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Clear chest, tachypnoeic, no crackles, air hunger from anaemia",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Uterine fundus soft, boggy and above the umbilicus, poorly contracted, no rebound. A soft high fundus is the diagnosis, made with a hand and no equipment",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cold clammy mottled peripheries, temperature 36.0 C and falling, IV site oozing, no rash",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 14 (E4V4M6), anxious and slow, no focal deficit, no seizure. Consider eclampsia if there were hypertension, but her booking pressures were normal",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "hb1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Hb",
+      "value": "6.1",
+      "unit": "g/dL",
+      "normalRange": "12.0-15.5",
+      "abnormal": true,
+      "report": "Severe acute anemia Hb ตอนฝากครรภ์ 10.4 g/dL แปลว่าเสียเลือดมากซ้ำบนภาวะขาดธาตุเหล็กเดิม"
+    },
+    {
+      "id": "fib1",
+      "kind": "lab",
+      "category": "Coagulation",
+      "name": "Fibrinogen",
+      "value": "1.4",
+      "unit": "g/L",
+      "normalRange": "Pregnancy 4.0-6.0",
+      "abnormal": true,
+      "report": "Fibrinogen ต่ำกว่า 2 g/L ใน PPH ทำนายได้แรงว่าจะเลือดออกรุนแรงขึ้น ตอนตั้งครรภ์ fibrinogen ปกติขึ้นเป็นสองเท่า ค่าที่อยู่ในช่วงปกติของคนไม่ท้องก็อันตรายแล้ว"
+    },
+    {
+      "id": "coag2",
+      "kind": "lab",
+      "category": "Coagulation",
+      "name": "INR, platelet",
+      "value": "INR 1.5 / platelets 88 x10^9/L",
+      "unit": "-",
+      "normalRange": "INR 0.9-1.2",
+      "abnormal": true,
+      "report": "Dilutional coagulopathy ระยะแรก"
+    },
+    {
+      "id": "bg1",
+      "kind": "lab",
+      "category": "Blood bank",
+      "name": "G/M",
+      "value": "B Rh positive",
+      "unit": "-",
+      "normalRange": "-",
+      "abnormal": false,
+      "report": "Crossmatch ไว้ 4 unit Rh positive ไม่ต้องให้ anti-D"
+    },
+    {
+      "id": "us1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "US pelvis ข้างเตียง",
+      "report": "โพรงมดลูกขยาย มี echogenic material 3 cm เข้าได้กับรกค้างหรือ clot มี free fluid ใน pouch of Douglas ไม่เห็น uterine rupture หรือ inversion",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "lac1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Lactate",
+      "value": "5.2",
+      "unit": "mmol/L",
+      "normalRange": "0.5-2.0",
+      "abnormal": true,
+      "report": "Hemorrhagic shock"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "ตามคนช่วย เปิด 2 เส้น ชั่งผ้าอนามัย",
+          "distractors": [
+            {
+              "label": "กะปริมาณเลือดด้วยตาแล้วรอดู",
+              "feedback": "กะด้วยตาจะได้น้อยกว่าจริง ชั่งผ้า ตามคนช่วย และเปิดเส้นให้พร้อม"
+            },
+            {
+              "label": "เปิด IV เส้นเดียวแล้ว observe",
+              "feedback": "PPH ต้องมี IV เบอร์ใหญ่ 2 เส้นและ crossmatch ตั้งแต่แรก"
+            }
+          ],
+          "label": "ตามคนช่วย เปิด 2 เส้น และวัดปริมาณเลือดที่เสีย",
+          "actions": [
+            "เรียกทีมฉุกเฉินสูติฯ",
+            "เปิดเส้น 16G 2 เส้น",
+            "ชั่งผ้าซับและผ้าอนามัยแทนการกะด้วยตา",
+            "G/M 4 unit, coag, fibrinogen"
+          ],
+          "doseMap": {
+            "ชั่งผ้าซับและผ้าอนามัยแทนการกะด้วยตา": "กะด้วยตาได้น้อยกว่าจริง 30 ถึง 50% เป็นเหตุผลที่พบบ่อยที่สุดที่ PPH ถูกจับได้ช้า"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "Bimanual compression และสวนปัสสาวะ",
+          "distractors": [
+            {
+              "label": "รอให้ oxytocin ออกฤทธิ์ก่อนค่อยแตะมดลูก",
+              "feedback": "คลึงมดลูกกับ bimanual compression ช่วยซื้อเวลาระหว่างเตรียมยา"
+            },
+            {
+              "label": "Pack ช่องคลอดให้แน่น",
+              "feedback": "Pack ช่องคลอดไม่ได้แก้ uterine atony และอาจบังเลือดที่ยังออกอยู่"
+            }
+          ],
+          "label": "คลึงมดลูกและทำ bimanual compression ระหว่างเตรียมยา",
+          "actions": [
+            "Bimanual uterine compression",
+            "สวนปัสสาวะให้กระเพาะว่าง",
+            "คลึงมดลูกให้หดตัว"
+          ],
+          "doseMap": {
+            "Bimanual uterine compression": "การห้ามเลือดด้วยมือซื้อเวลา 3 ถึง 5 นาทีที่ยาต้องใช้ กระเพาะปัสสาวะเต็มทำให้มดลูกหดตัวไม่ได้"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "Methylergonovine IV push เร็วๆ ก่อน",
+              "feedback": "Oxytocin มาก่อน methylergonovine ให้ IM หรือ IV ช้าๆ ห้าม push เร็ว และห้ามให้ถ้ามี HT"
+            },
+            {
+              "label": "ไม่ต้องให้ TXA ใช้แค่ใน trauma",
+              "feedback": "TXA ลดการเสียชีวิตจาก PPH ถ้าให้เร็ว ให้เลย"
+            }
+          ],
+          "label": "ให้ uterotonic ตามลำดับ และ TXA",
+          "actions": [
+            "Oxytocin drip",
+            "Methylergonovine",
+            "Misoprostol",
+            "TXA IV"
+          ],
+          "doseMap": {
+            "Oxytocin drip": "10 ถึง 40 unit ใน 500 ถึง 1000 mL drip ต่อเนื่อง (แนวทาง PPH รามาธิบดี)",
+            "Methylergonovine": "0.2 mg IM หรือ IV ช้าๆ ซ้ำได้อีกครั้งที่ 15 นาที หลังจากนั้นทุก 4 ชม. ถ้ายังต้องให้ รวมไม่เกิน 5 dose (1 mg) ห้ามให้ถ้ามี HT หรือ pre-eclampsia",
+            "Misoprostol": "800 mcg อมใต้ลิ้นหรือเหน็บทวาร",
+            "TXA IV": "1 g ให้ช้าๆ 1 mL/นาที ภายใน 3 ชม. หลังคลอด ถ้ายังเลือดออกให้ซ้ำได้อีกครั้งหลัง 30 นาที"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ให้แค่ PRC ไม่ต้องให้ FFP หรือ cryo",
+              "feedback": "Fibrinogen ลดเร็วใน PPH ให้ทดแทนตามระดับ"
+            },
+            {
+              "label": "รอผล coag ก่อนให้เลือด",
+              "feedback": "เลือดกำลังออกอยู่ตอนนี้ เริ่มให้ blood product ระหว่างรอผล"
+            }
+          ],
+          "label": "ให้ blood product เร็ว ใช้ fibrinogen นำทาง",
+          "actions": [
+            "PRC O negative หรือ group specific ฉุกเฉิน",
+            "FFP",
+            "Cryoprecipitate ถ้า fibrinogen ต่ำกว่า 2 g/L",
+            "Warm แบบ active"
+          ],
+          "doseMap": {
+            "Cryoprecipitate ถ้า fibrinogen ต่ำกว่า 2 g/L": "หรือ fibrinogen concentrate ถ้ามี การแก้ fibrinogen เร็วเปลี่ยนทิศทางของเคสนี้ได้"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "ตอบสนองบางส่วน",
+          "outcomeType": "improved",
+          "narrative": "มดลูกแข็งขึ้นหลังได้ methylergonovine เลือดออกช้าลง แล้ว 10 นาทีต่อมาก็นิ่มลงอีก U/S เห็นของค้างในโพรงมดลูก ยาอย่างเดียวจบเคสนี้ไม่ได้",
+          "vitalChanges": {
+            "hr": 118,
+            "sbp": 96,
+            "dbp": 54,
+            "rr": 24,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "พาลูกมาให้แม่เห็น และบอกความจริงว่าจะเกิดอะไรต่อ (Empathy)",
+          "ethicalValue": 15,
+          "narrative": "แม่ถามถึงลูก 6 ครั้งแล้ว ไม่มีใครตอบเพราะทุกคนยุ่งกับมดลูก หมอให้พยาบาลอุ้มลูกมาที่ประตูให้แม่เห็น แล้วบอกตรงๆ ว่าเลือดกำลังออก ต้องเข้าห้องผ่าตัดเดี๋ยวนี้ และอาจต้องให้เลือด 40 วินาที แม่หยุดปัด mask O2 และเซ็น consent เอง ซึ่งสำคัญ เพราะทางเลือกอื่นคือ consent ฉุกเฉินที่สามีซึ่งอยู่ห่างไป 60 km ต้องเซ็น"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "choice": "EUA ในห้องผ่าตัด",
+          "distractors": [
+            {
+              "label": "ตัดมดลูกเป็นขั้นแรก",
+              "feedback": "EUA เอารกค้างออกและเย็บแผลฉีกขาดมาก่อน hysterectomy เป็นทางสุดท้าย"
+            },
+            {
+              "label": "ให้ uterotonic ต่อแล้ว observe",
+              "feedback": "ตอบสนองแค่บางส่วนและอาจมีรกค้าง ต้องเข้าห้องผ่าตัด"
+            }
+          ],
+          "label": "เข้าห้องผ่าตัด ตรวจภายใต้ยาสลบและ evacuate",
+          "actions": [
+            "ตรวจภายใต้ยาระงับความรู้สึก",
+            "ล้วงเศษรกที่ค้าง",
+            "ตรวจหาแผลฉีกขาดที่ปากมดลูกและช่องคลอด",
+            "ใส่ intrauterine balloon tamponade ถ้ามดลูกยังไม่หดตัว"
+          ],
+          "doseMap": {
+            "ใส่ intrauterine balloon tamponade ถ้ามดลูกยังไม่หดตัว": "ใส่ NSS อุ่น 300 ถึง 500 mL ถ้า tamponade test ผ่าน ส่วนใหญ่เลี่ยงการเปิดท้องได้",
+            "ตรวจภายใต้ยาระงับความรู้สึก": "แนวทางรามาธิบดีให้เข้าห้องผ่าตัดเมื่อมดลูกไม่ตอบสนองใน 15 นาที หรือ vital signs ยังผิดปกติ"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "หยุดเลือดได้",
+          "outcomeType": "improved",
+          "narrative": "เอาชิ้นรก 4 cm ออก เย็บ second degree vaginal tear มดลูกหดตัวแน่น ใส่ balloon ไว้แล้วเอาออกที่ 12 ชม. เสียเลือดรวม 2200 mL ได้ PRC 5 unit FFP 4 unit cryo 10 unit ไม่ต้องตัดมดลูก",
+          "vitalChanges": {
+            "hr": 94,
+            "sbp": 112,
+            "dbp": 66,
+            "rr": 18,
+            "temp": 36.6,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "Hb 8.9 g/dL หลังให้เลือด ให้นมลูกได้วันที่ 1 D/C วันที่ 4 พร้อมยาธาตุเหล็กและคำแนะนำเรื่องคุมกำเนิด ในเวชระเบียนมีบันทึกว่า grand multipara บวก oxytocin เร่งคลอด 9 ชม. บวกลูก 4.1 kg คือ risk factor ของ atony ที่ซ้อนกันอยู่ และควรมีแผนป้องกันไว้ก่อนคลอด",
+          "vitalChanges": {
+            "hr": 84,
+            "sbp": 116,
+            "dbp": 70,
+            "rr": 16,
+            "temp": 36.8,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e5",
+        "source": "req4",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

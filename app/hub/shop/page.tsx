@@ -1,177 +1,185 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useERStore, GEAR_DATABASE, GearItem, UPGRADES_DATABASE, UpgradeItem } from "@/lib/erStore";
-import { PixelPanel } from "@/components/ui/PixelPanel";
+import { useERStore, GEAR_DATABASE, GearItem, UPGRADES_DATABASE } from "@/lib/erStore";
 import { PixelButton } from "@/components/ui/PixelButton";
+import { PixelIcon } from "@/components/ui/PixelIcon";
+import { PixelPortrait } from "@/components/game/PixelPortrait";
 import { PageTransition } from "@/components/ui/PageTransition";
-import { Coffee, Stethoscope, Shirt, Footprints, Zap, Sofa } from "lucide-react";
+import { GIFTS } from "@/lib/gifts";
+import { GIFT_ICON } from "@/lib/pixel/icons";
 import { audio } from "@/lib/audio";
+
+type Tab = "gifts" | "treats" | "gear" | "upgrades";
+
+const GREETINGS = {
+  gifts: { en: "Gifts for the people who keep you upright. Everyone has a favourite.", th: "ของขวัญให้คนที่ช่วยประคองหนูไว้ ทุกคนมีของโปรดนะ" },
+  treats: { en: "Running on empty? Auntie has just the thing.", th: "หมดแรงแล้วเหรอ ป้ามีของดี" },
+  gear: { en: "A good stethoscope is a friend for life.", th: "หูฟังดีๆ เป็นเพื่อนไปตลอดชีวิต" },
+  upgrades: { en: "Fix up the department and everyone works happier.", th: "แต่งแผนกให้ดี ทุกคนก็ทำงานมีความสุขขึ้น" },
+};
 
 export default function ShopPage() {
   const router = useRouter();
-  const { currency, inventory, equipped, buyGear, equipGear, hospitalUpgrades, buyUpgrade } = useERStore();
+  const { currency, inventory, equipped, buyGear, equipGear, hospitalUpgrades, buyUpgrade, gifts, buyGift, language } = useERStore();
+  const [tab, setTab] = useState<Tab>("gifts");
+  const [flash, setFlash] = useState<string | null>(null);
+  const tr = (en: string, th: string) => (language === "th" ? th : en);
 
-  const handleBuy = (item: GearItem) => {
-    if (currency >= item.cost) {
-      audio.playCashRegister();
-      buyGear(item.id, item.cost);
-    }
+  const bought = (key: string) => {
+    audio.playCashRegister();
+    setFlash(key);
+    setTimeout(() => setFlash((f) => (f === key ? null : f)), 600);
   };
 
-  const handleEquip = (item: GearItem) => {
-    equipGear(item.id, item.type);
-  };
+  const gearIcon = (type: string) => (type === "stethoscope" ? "heart" : type === "scrubs" ? "badge" : "energy");
+  const upgradeIcon = (icon: string) => (icon === "coffee" ? "coffee" : icon === "zap" ? "coin" : "bed");
 
-  const getIcon = (type: string) => {
-    switch (type) {
-      case 'stethoscope': return <Stethoscope className="w-8 h-8 text-pixel-health" />;
-      case 'scrubs': return <Shirt className="w-8 h-8 text-pixel-gold" />;
-      case 'shoes': return <Footprints className="w-8 h-8 text-pixel-success" />;
-      case 'coffee': return <Coffee className="w-8 h-8 text-orange-400" />;
-      case 'zap': return <Zap className="w-8 h-8 text-yellow-400" />;
-      case 'sofa': return <Sofa className="w-8 h-8 text-purple-400" />;
-      default: return <Stethoscope className="w-8 h-8" />;
-    }
-  };
+  const tabs: { key: Tab; label: string; icon: string }[] = [
+    { key: "gifts", label: tr("Gifts", "ของขวัญ"), icon: "garland" },
+    { key: "treats", label: tr("Treats", "ของว่าง"), icon: "coffee" },
+    { key: "gear", label: tr("Gear", "อุปกรณ์"), icon: "badge" },
+    { key: "upgrades", label: tr("Upgrades", "ปรับปรุง"), icon: "bed" },
+  ];
+
+  const Card = ({ k, icon, title, sub, price, action }: { k: string; icon: string; title: string; sub: string; price?: number; action: React.ReactNode }) => (
+    <div className={`flex items-center gap-2.5 bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] p-2 ${flash === k ? "animate-[cozyWiggle_0.3s_ease-in-out_2]" : ""}`}>
+      <div className="w-11 h-11 shrink-0 flex items-center justify-center rounded-[4px] border-2 border-[#3a2a2f] bg-[#f1d9a7]">
+        <PixelIcon name={icon} size={26} />
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="text-[18px] leading-none">{title}</p>
+        <p className="text-[14px] leading-tight mt-1 text-[#86522e]">{sub}</p>
+      </div>
+      <div className="shrink-0 flex flex-col items-end gap-1">
+        {price !== undefined && (
+          <span className={`flex items-center gap-1 text-[17px] leading-none tabular-nums ${currency >= price ? "" : "text-[#a93c4b]"}`}>
+            <PixelIcon name="coin" size={13} />{price}
+          </span>
+        )}
+        {action}
+      </div>
+    </div>
+  );
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-[#0d1117] text-white font-pixel flex flex-col relative pb-[var(--safe-bottom)]">
-        
-        {/* Header */}
-        <div className="bg-[#161b22] border-b-4 border-[#30363d] p-4 flex justify-between items-center shadow-lg pt-[calc(1rem+var(--safe-top))] z-10 sticky top-0">
-          <PixelButton onClick={() => router.push('/hub')} className="text-sm px-4 py-2 bg-gray-800 border-2 border-gray-600 rounded active:bg-gray-700">
-            &larr; BACK
-          </PixelButton>
-          <div className="text-right">
-            <p className="text-xs text-gray-400">BALANCE</p>
-            <p className="text-xl text-pixel-success font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">${currency}</p>
+      <div className="h-[100dvh] cozy-night font-pixel flex flex-col p-3 gap-2 pt-[calc(0.75rem+var(--safe-top))]" data-testid="shop">
+        <div className="flex items-center justify-between">
+          <PixelButton onClick={() => router.push("/hub")} variant="wood" className="text-[18px] px-3 py-1">◀ {tr("Back", "กลับ")}</PixelButton>
+          <div className="cozy-tag px-2 py-1 flex items-center gap-1.5">
+            <PixelIcon name="coin" size={15} />
+            <span className="text-[20px] leading-none tabular-nums">{currency}</span>
           </div>
         </div>
 
-        {/* Shop Content */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-6">
-          <h1 className="text-3xl text-center text-pixel-gold drop-shadow-md mb-2">SUPPLY CLOSET</h1>
-
-          {/* Consumable: Coffee */}
-          <div className="bg-gradient-to-r from-[#2a1708] to-[#1a0f05] rounded-xl border-2 border-[#54341b] p-4 shadow-black shadow-lg relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-2 opacity-20">
-              <Coffee className="w-24 h-24" />
-            </div>
-            <div className="flex justify-between items-start relative z-10">
-              <div>
-                <h3 className="text-xl text-orange-200">Double Espresso</h3>
-                <p className="text-xs text-orange-400 mt-1">Consumable • Restores 50 Energy</p>
-              </div>
-              <div className={`text-lg font-bold ${currency >= 20 ? 'text-pixel-success' : 'text-pixel-alert'}`}>
-                $20
-              </div>
-            </div>
-            <div className="mt-4 relative z-10">
-              <PixelButton 
-                onClick={() => {
-                  if (currency >= 20) {
-                    audio.playCashRegister();
-                    useERStore.getState().addCurrency(-20);
-                    useERStore.getState().restoreEnergy(50);
-                  }
-                }} 
-                disabled={currency < 20}
-                className={`w-full py-3 text-lg ${currency < 20 ? 'opacity-50 grayscale' : 'bg-orange-600 border-orange-400 text-white'}`}
-              >
-                BUY & DRINK
-              </PixelButton>
-            </div>
+        <div className="cozy-panel p-2.5 flex gap-2.5 items-center">
+          <div className="w-14 h-14 shrink-0 rounded-[3px] overflow-hidden border-2 border-[#3a2a2f]">
+            <PixelPortrait speaker="Auntie Noi" className="w-full h-full" />
           </div>
-
-          <h2 className="text-2xl text-center text-pixel-accent drop-shadow-md mb-2 mt-8">HOSPITAL UPGRADES</h2>
-          <div className="grid grid-cols-1 gap-4 mb-8">
-            {Object.values(UPGRADES_DATABASE).map((item) => {
-              const isOwned = hospitalUpgrades.includes(item.id);
-              const canAfford = currency >= item.cost;
-              
-              return (
-                <div key={item.id} className={`flex items-center bg-[#161b22] border-2 rounded-lg p-4 shadow-md ${isOwned ? 'border-pixel-gold bg-[#262111]' : 'border-[#30363d]'}`}>
-                  <div className="p-3 bg-black rounded-xl border border-gray-700 shadow-inner mr-4">
-                    {getIcon(item.icon)}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg text-white font-bold">{item.name}</h3>
-                    <p className="text-xs text-gray-400 leading-tight">{item.description}</p>
-                  </div>
-                  <div className="flex flex-col items-end ml-4">
-                    <span className={`text-lg font-bold mb-2 ${isOwned ? 'text-pixel-gold' : canAfford ? 'text-pixel-success' : 'text-pixel-alert'}`}>
-                      {isOwned ? 'OWNED' : `$${item.cost}`}
-                    </span>
-                    {!isOwned && (
-                      <PixelButton 
-                        onClick={() => {
-                          if (canAfford) {
-                            audio.playCashRegister();
-                            buyUpgrade(item.id, item.cost);
-                          }
-                        }}
-                        disabled={!canAfford}
-                        className={`text-xs px-4 py-2 ${canAfford ? 'bg-pixel-success border-green-600' : 'opacity-50 grayscale'}`}
-                      >
-                        PURCHASE
-                      </PixelButton>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
+          <div>
+            <p className="text-[15px] leading-none text-[#86522e]">{tr("Auntie Noi, Supply Closet", "ป้าน้อย ห้องเก็บของ")}</p>
+            <p className="text-[17px] leading-snug mt-1">{GREETINGS[tab][language]}</p>
           </div>
+        </div>
 
-          <div className="h-1 bg-gray-800 rounded-full my-6" />
-          
-          <h2 className="text-2xl text-center text-pixel-accent drop-shadow-md mb-2">PERSONAL GEAR</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {Object.values(GEAR_DATABASE).map((item) => {
-              const isOwned = inventory.includes(item.id);
-              const isEquipped = equipped[item.type] === item.id;
-              const canAfford = currency >= item.cost;
+        <div className="flex gap-1 px-1">
+          {tabs.map((t) => (
+            <button
+              key={t.key}
+              onClick={() => { audio.playClick(); setTab(t.key); }}
+              className={`flex-1 flex items-center justify-center gap-1 py-1 text-[16px] leading-none rounded-t-[5px] border-[3px] border-b-0 border-[#3a2a2f] ${tab === t.key ? "bg-[#f8ecd0] text-[#3a2a2f] -mb-[3px] pb-[7px] relative z-10" : "bg-[#c48a52] text-[#fff3df]"}`}
+              data-testid={`shop-tab-${t.key}`}
+            >
+              <PixelIcon name={t.icon} size={13} />{t.label}
+            </button>
+          ))}
+        </div>
 
-              return (
-                <div key={item.id} className={`flex flex-col bg-[#161b22] border-2 rounded-lg p-3 shadow-md ${isEquipped ? 'border-pixel-gold bg-[#262111]' : 'border-[#30363d]'}`}>
-                  <div className="flex-1 flex flex-col items-center text-center">
-                    <div className="mb-2 p-3 bg-black rounded-full border border-gray-700 shadow-inner">
-                      {getIcon(item.type)}
-                    </div>
-                    <h3 className="text-sm text-white font-bold mb-1 leading-tight">{item.name}</h3>
-                    <p className="text-xs text-gray-400 mb-2">{item.statBonus.replace('_', ' ')}</p>
-                    
-                    {!isOwned && (
-                      <p className={`text-sm font-bold mt-auto mb-3 ${canAfford ? 'text-pixel-success' : 'text-pixel-alert'}`}>
-                        ${item.cost}
-                      </p>
-                    )}
-                  </div>
-                  
-                  <div className="mt-auto">
-                    {!isOwned ? (
-                      <PixelButton 
-                        onClick={() => handleBuy(item)} 
-                        disabled={!canAfford}
-                        className={`w-full text-xs py-2 ${!canAfford ? 'opacity-50' : 'bg-blue-600 border-blue-400'}`}
-                      >
-                        BUY
-                      </PixelButton>
-                    ) : (
-                      <PixelButton 
-                        onClick={() => handleEquip(item)}
-                        className={`w-full text-xs py-2 ${isEquipped ? 'bg-pixel-gold text-black border-yellow-300' : 'bg-gray-700 border-gray-500'}`}
-                        disabled={isEquipped}
-                      >
-                        {isEquipped ? 'EQUIPPED' : 'EQUIP'}
-                      </PixelButton>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+        <div className="flex-1 min-h-0 cozy-panel p-2.5 overflow-y-auto flex flex-col gap-2">
+          {tab === "gifts" && Object.values(GIFTS).map((g) => (
+            <Card
+              key={g.id}
+              k={g.id}
+              icon={GIFT_ICON[g.icon]}
+              title={g.name[language]}
+              sub={`${g.blurb[language]}${gifts[g.id] ? tr(` You have ${gifts[g.id]}.`, ` มีอยู่ ${gifts[g.id]}`) : ""}`}
+              price={g.cost}
+              action={
+                <button
+                  className="cozy-btn cozy-btn-leaf px-2.5 py-0.5 text-[16px]"
+                  disabled={currency < g.cost}
+                  onClick={() => { if (buyGift(g.id, g.cost)) bought(g.id); }}
+                  data-testid={`buy-${g.id}`}
+                >
+                  {tr("Buy", "ซื้อ")}
+                </button>
+              }
+            />
+          ))}
+
+          {tab === "treats" && (
+            <Card
+              k="espresso"
+              icon="coffee"
+              title={tr("Double Espresso", "เอสเพรสโซ่ช็อตคู่")}
+              sub={tr("Drink it now. Restores 50 energy.", "ดื่มทันที ฟื้นพลังงาน 50")}
+              price={20}
+              action={
+                <button
+                  className="cozy-btn cozy-btn-sun px-2.5 py-0.5 text-[16px]"
+                  disabled={currency < 20}
+                  onClick={() => { if (currency >= 20) { useERStore.getState().addCurrency(-20); useERStore.getState().restoreEnergy(50); bought("espresso"); } }}
+                >
+                  {tr("Drink", "ดื่ม")}
+                </button>
+              }
+            />
+          )}
+
+          {tab === "gear" && Object.values(GEAR_DATABASE).filter((g) => g.id !== "special_coffee").map((item: GearItem) => {
+            const owned = inventory.includes(item.id);
+            const isEquipped = equipped[item.type] === item.id;
+            const bonus = item.statBonus === "XP_BOOST" ? tr("+10% XP", "+10% XP") : item.statBonus === "CASH_BOOST" ? tr("+20% pay", "+20% ค่าตอบแทน") : tr("Time passes slower", "เวลาผ่านไปช้าลง");
+            return (
+              <Card
+                key={item.id}
+                k={item.id}
+                icon={gearIcon(item.type)}
+                title={item.name}
+                sub={bonus}
+                price={owned ? undefined : item.cost}
+                action={
+                  !owned ? (
+                    <button className="cozy-btn cozy-btn-leaf px-2.5 py-0.5 text-[16px]" disabled={currency < item.cost} onClick={() => { if (currency >= item.cost) { buyGear(item.id, item.cost); bought(item.id); } }}>{tr("Buy", "ซื้อ")}</button>
+                  ) : (
+                    <button className={`cozy-btn px-2.5 py-0.5 text-[16px] ${isEquipped ? "cozy-btn-sun" : ""}`} disabled={isEquipped} onClick={() => { audio.playClick(); equipGear(item.id, item.type); }}>
+                      {isEquipped ? tr("Worn", "ใส่อยู่") : tr("Wear", "ใส่")}
+                    </button>
+                  )
+                }
+              />
+            );
+          })}
+
+          {tab === "upgrades" && Object.values(UPGRADES_DATABASE).map((item) => {
+            const owned = hospitalUpgrades.includes(item.id);
+            return (
+              <Card
+                key={item.id}
+                k={item.id}
+                icon={upgradeIcon(item.icon)}
+                title={item.name}
+                sub={item.description}
+                price={owned ? undefined : item.cost}
+                action={
+                  owned ? <span className="cozy-tag !bg-[#c8ecb4] px-1.5 py-0.5 text-[14px] leading-none">{tr("Installed", "ติดตั้งแล้ว")}</span>
+                  : <button className="cozy-btn cozy-btn-leaf px-2.5 py-0.5 text-[16px]" disabled={currency < item.cost} onClick={() => { if (currency >= item.cost) { buyUpgrade(item.id, item.cost); bought(item.id); } }}>{tr("Buy", "ซื้อ")}</button>
+                }
+              />
+            );
+          })}
         </div>
       </div>
     </PageTransition>

@@ -1,0 +1,456 @@
+{
+  "title": "29yo M Severe Falciparum Malaria",
+  "age": "29",
+  "sex": "M",
+  "chiefComplaint": "ไข้ สับสน มา 6 วัน",
+  "diagnoses": [
+    "Severe Plasmodium falciparum malaria",
+    "Bacterial meningitis",
+    "Dengue",
+    "Leptospirosis",
+    "Typhoid fever"
+  ],
+  "background": "แรงงานข้ามชาติทำงานป่าไม้ มาจากชายแดนไทยพม่าที่จังหวัดตากเมื่อ 11 วันก่อน ตอนนี้ทำงานสวนยาง ไข้สูงเป็นพักๆ หนาวสั่นมา 6 วัน ไปร้านยาได้ paracetamol กับยาเม็ดไม่ทราบชื่อ เช้านี้เริ่มสับสน ชักเกร็งทั้งตัว 1 ครั้งบนรถ พูดไทยได้นิดหน่อย เพื่อนร่วมงานช่วยแปล ไม่มีสิทธิการรักษา กังวลเรื่องค่าใช้จ่าย",
+  "patientAppearance": {
+    "skinTone": "#a9713f",
+    "bmiFactor": 0.8,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 126,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 92,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 54,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 32,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 39.6,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 94,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 9,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Cachectic, hot to touch, drowsy and confused, deep acidotic breathing, unable to follow commands in any language",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Scleral icterus, pale conjunctivae, dry mucous membranes, no neck stiffness, no rash, retinal whitening and a single retinal haemorrhage on fundoscopy",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia, bounding then thready pulse, capillary refill 4 seconds, soft systolic flow murmur from anaemia",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Deep sighing Kussmaul respirations at 32/min, bibasal fine crackles suggesting early acute lung injury, no consolidation",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Tender splenomegaly 4 cm below the costal margin, hepatomegaly 2 cm, no ascites. Handle the spleen gently, splenic rupture is a recognised complication",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Jaundiced, hot dry skin, reduced turgor, no petechiae or purpura, no eschar found after a full search including axillae and groin",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 9 (E2V2M5), post-ictal, no focal deficit, no meningism, pupils equal and reactive, plantars downgoing. Cerebral malaria is a diagnosis of exclusion after hypoglycaemia is corrected",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "sm1",
+      "kind": "lab",
+      "category": "Micro",
+      "name": "Thick และ thin blood smear",
+      "value": "P. falciparum, 14% parasitaemia, schizonts present",
+      "unit": "-",
+      "normalRange": "No parasites",
+      "abnormal": true,
+      "report": "Parasitemia เกิน 10% เป็นเกณฑ์ severe malaria ได้ด้วยตัวเอง เจอ schizont ในเลือดบอกว่ามี sequestration หนัก ทำ smear ซ้ำทุก 12 ชม. ดู clearance"
+    },
+    {
+      "id": "rdt1",
+      "kind": "lab",
+      "category": "Micro",
+      "name": "Rapid diagnostic test (HRP2)",
+      "value": "Positive for P. falciparum",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": true,
+      "report": "Positive แต่ยังบวกต่ออีกหลายสัปดาห์หลังรักษา ใช้ยืนยันการวินิจฉัยได้ แต่ใช้ติดตามการตอบสนองไม่ได้"
+    },
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "DTX",
+      "value": "38",
+      "unit": "mg/dL",
+      "normalRange": "70-140",
+      "abnormal": true,
+      "report": "Profound hypoglycemia เป็นเกณฑ์ severe malaria เป็นสาเหตุของการชักและ coma และแก้ได้ใน 90 วินาที เจาะดูก่อนจะโทษว่าเป็น cerebral malaria"
+    },
+    {
+      "id": "hb1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Hb, platelet",
+      "value": "Hb 6.4 g/dL / platelets 34 x10^9/L",
+      "unit": "-",
+      "normalRange": "Hb 13.5-17.5 g/dL",
+      "abnormal": true,
+      "report": "Severe anemia (ต่ำกว่า 7 g/dL เป็นเกณฑ์ความรุนแรง) ร่วมกับ thrombocytopenia จาก hemolysis และ sequestration"
+    },
+    {
+      "id": "lac1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Lactate, bicarbonate",
+      "value": "Lactate 7.2 mmol/L / HCO3 11 mmol/L",
+      "unit": "-",
+      "normalRange": "Lactate 0.5-2.0 mmol/L",
+      "abnormal": true,
+      "report": "Metabolic acidosis และ lactate สูง acidosis เป็นตัวทำนายการเสียชีวิตที่แรงที่สุดตัวเดียวใน severe malaria"
+    },
+    {
+      "id": "cr1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Cr, bilirubin",
+      "value": "Creatinine 2.8 mg/dL / total bilirubin 5.6 mg/dL",
+      "unit": "-",
+      "normalRange": "Creatinine 0.7-1.3 mg/dL",
+      "abnormal": true,
+      "report": "AKI และ jaundice เป็นเกณฑ์ความรุนแรงอีกสองข้อ คนไข้รายนี้เข้าอย่างน้อย 6 ข้อ"
+    },
+    {
+      "id": "bc1",
+      "kind": "lab",
+      "category": "Micro",
+      "name": "H/C",
+      "value": "Pending",
+      "unit": "-",
+      "normalRange": "No growth",
+      "abnormal": false,
+      "report": "เจาะก่อนให้ antibiotic ใน severe malaria มี Gram negative bacteremia ร่วมได้ถึง 10% และพลาดง่าย"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "เจาะ DTX และให้ dextrose IV",
+          "distractors": [
+            {
+              "label": "ส่ง CT brain ก่อนเจาะน้ำตาล",
+              "feedback": "Hypoglycemia พบบ่อยใน severe malaria และแก้ได้เร็ว เจาะน้ำตาลก่อน"
+            },
+            {
+              "label": "ทำ LP ก่อนรักษาอะไร",
+              "feedback": "น้ำตาลกับยารักษามาลาเรียมาก่อน รอ LP เสี่ยงเสียชีวิต"
+            }
+          ],
+          "label": "คนไข้ไข้และซึมทุกคน เจาะน้ำตาลก่อน",
+          "actions": [
+            "DTX",
+            "Dextrose IV bolus"
+          ],
+          "doseMap": {
+            "Dextrose IV bolus": "50% glucose 50 mL IV ตามด้วย 10% dextrose drip เจาะซ้ำทุกชั่วโมง hypoglycemia กลับมาได้ โดยเฉพาะถ้าได้ quinine"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "label": "ระดับความรู้สึกตัวดีขึ้นบางส่วน",
+          "outcomeType": "improved",
+          "narrative": "GCS ขึ้นจาก 9 เป็น 12 ใน 10 นาทีหลังได้ dextrose ที่เหลือคือ cerebral malaria จริงๆ แต่ตอนนี้รู้แล้วว่าส่วนไหนเป็นแค่น้ำตาลต่ำที่แก้ได้",
+          "vitalChanges": {
+            "gcs": 12
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Smear และ rapid test โดยไม่เลื่อนการรักษา",
+          "distractors": [
+            {
+              "label": "รอผล smear ก่อนค่อยเริ่มรักษา",
+              "feedback": "Severe malaria เป็นภาวะฉุกเฉิน ทำ smear ได้แต่อย่าเลื่อน artesunate"
+            },
+            {
+              "label": "Rapid test negative ก็ D/C ได้",
+              "feedback": "Rapid test negative ไม่ได้ตัดมาลาเรียในแรงงานข้ามชาติที่มีไข้และสับสน ทำ smear ซ้ำ"
+            }
+          ],
+          "label": "ทำ thick และ thin smear กับ rapid test โดยไม่เลื่อนการรักษา",
+          "actions": [
+            "Thick และ thin blood smear",
+            "Rapid diagnostic test",
+            "H/C",
+            "ประเมิน severity criteria ให้ครบ"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "choice": "Artesunate IV 2.4 mg/kg",
+          "distractors": [
+            {
+              "label": "Chloroquine กิน",
+              "feedback": "Falciparum ที่ชายแดนไทยพม่าดื้อ chloroquine และ severe malaria ต้องรักษาทาง IV"
+            },
+            {
+              "label": "Quinine IV เป็นตัวแรก",
+              "feedback": "Artesunate IV มี mortality ต่ำกว่า quinine และเป็นยาตัวแรกสำหรับ severe malaria"
+            }
+          ],
+          "label": "Artesunate IV ยาตัวแรกที่ถูกต้องตัวเดียวสำหรับ severe malaria",
+          "actions": [
+            "Artesunate IV"
+          ],
+          "doseMap": {
+            "Artesunate IV": "2.4 mg/kg IV ที่ 0, 12 และ 24 ชม. แล้ววันละครั้ง artesunate ลด mortality ได้ราวหนึ่งในสามเทียบกับ quinine อย่าให้ยากินกับคนไข้ที่กลืนไม่ได้ และถ้าสงสัยมากอย่ารอผล smear"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "Bolus fluid ปริมาณมาก 40 mL/kg",
+              "feedback": "ให้ fluid หนักใน severe malaria เพิ่ม pulmonary edema และ mortality ให้อย่างระวัง"
+            },
+            {
+              "label": "ไม่ต้องให้ antibiotic มาลาเรียอธิบายได้หมดแล้ว",
+              "feedback": "การติดเชื้อแบคทีเรียร่วมพบบ่อยใน severe malaria ให้ empirical antibiotic"
+            }
+          ],
+          "label": "ให้ empirical antibiotic และ fluid อย่างระวัง",
+          "actions": [
+            "Antibiotic IV ครอบคลุมกว้าง",
+            "Crystalloid อย่างระมัดระวัง",
+            "หลีกเลี่ยงการให้ fluid แบบรุนแรง"
+          ],
+          "doseMap": {
+            "Antibiotic IV ครอบคลุมกว้าง": "Ceftriaxone 2 g IV วันละครั้ง จนกว่า H/C จะตัด bacteremia ร่วมออก",
+            "Crystalloid อย่างระมัดระวัง": "ให้ทีละน้อยแล้วประเมินซ้ำ ให้ fluid หนักใน severe malaria เพิ่ม pulmonary edema และ mortality"
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "หาล่ามที่ดีจริงๆ และรักษาก่อน เรื่องค่าใช้จ่ายค่อยว่ากัน (Empathy)",
+          "ethicalValue": 15,
+          "narrative": "เพื่อนร่วมงานที่แปลให้กลัวและแปลทุกอย่างให้เบาลง หมอไปหาแม่บ้านที่พูดพม่าได้ ทำงานที่นี่มา 9 ปี ให้ช่วยแปลจริงจัง consent ให้เลือดจะได้เป็น consent จริง ไม่ใช่แค่พยักหน้า หมอบอกเพื่อนร่วมงานด้วยว่าคืนนี้ไม่ต้องกังวลเรื่องเงิน เพราะการรักษาฉุกเฉินของแรงงานข้ามชาติที่ไม่มีสิทธิมีกองทุนรองรับที่คนส่วนใหญ่ไม่รู้ และคนที่ parasitemia 14% ไม่ควรต้องมาตัดสินใจเรื่องเงิน"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "Admit วอร์ดสามัญ ไม่ต้อง monitor",
+              "feedback": "เป็น cerebral malaria และ severe anemia ต้องดูแลใน ICU หรือ high dependency"
+            },
+            {
+              "label": "เปลี่ยนเป็นยากินหลัง IV dose แรก",
+              "feedback": "ให้ artesunate IV ต่ออย่างน้อย 24 ชม. และจนกว่าจะกินยาได้"
+            }
+          ],
+          "label": "ให้เลือด monitor และ admit ICU",
+          "actions": [
+            "ให้ PRC",
+            "Admit ICU หรือ high dependency",
+            "นับ parasite ทุก 12 ชม.",
+            "DTX และ neuro sign ทุกชั่วโมง"
+          ],
+          "doseMap": {
+            "ให้ PRC": "Hb ต่ำกว่า 7 g/dL ใน severe malaria ให้ช้าๆ ระวัง fluid overload"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "อาการดีขึ้น",
+          "outcomeType": "improved",
+          "narrative": "Parasitemia ลงเป็น 4% ที่ 24 ชม. และ 0.2% ที่ 48 ชม. GCS 15 วันที่ 3 acidosis หายโดยไม่ต้อง dialysis ระวัง delayed hemolysis หลัง artesunate ที่ 7 ถึง 21 วัน ถ้าไม่มีใครเตือนคนไข้จะกลับมาด้วยเรื่องนี้",
+          "vitalChanges": {
+            "hr": 92,
+            "sbp": 112,
+            "dbp": 68,
+            "rr": 20,
+            "temp": 37.4,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "กินยา ACT ครบคอร์ส ร่วมกับ primaquine ขนาดต่ำครั้งเดียว (0.25 mg/kg) เพื่อไม่ให้แพร่เชื้อสู่ยุง สำคัญมากในอำเภอที่กำลังจะกำจัดมาลาเรีย D/C วันที่ 7 พร้อมคำแนะนำอาการ delayed hemolysis เป็นภาษาพม่า แจ้งสวนยางให้คัดกรองคนงานอีก 12 คน เจอบวก 2 คนที่ยังไม่มีอาการ",
+          "vitalChanges": {
+            "hr": 82,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 16,
+            "temp": 36.8,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "out1"
+      },
+      {
+        "id": "e3",
+        "source": "out1",
+        "target": "req2"
+      },
+      {
+        "id": "e4",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e5",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e6",
+        "source": "req4",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e_skip",
+        "source": "req4",
+        "target": "req5"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

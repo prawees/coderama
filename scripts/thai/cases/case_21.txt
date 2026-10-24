@@ -1,0 +1,71 @@
+cc: ล้มในนา สับสน ไม่มีเหงื่อ
+bg: ทำนากลางแจ้งตั้งแต่ 6 โมงเช้า อุณหภูมิ 41 C ความชื้น 70% ไม่มีร่มเงา ใส่เสื้อแขนยาวกับหมวก ราวบ่ายสองครึ่งคนเห็นว่าเรียกไม่ตอบ ชักเกร็งทั้งตัวครู่หนึ่ง กิน hydrochlorothiazide รักษา HT ญาติเอาน้ำเย็นราดตัวแล้วขับรถพามา
+i.temp1: วัดทางทวารหรือหลอดอาหารเท่านั้น วัดทางหูหรือรักแร้ได้ต่ำกว่า core temperature ได้ถึง 2 C ใน heat stroke และเคยทำให้รักษาไม่พอจนเสียชีวิต
+i.ck1: Severe rhabdomyolysis exertional heat stroke ทำลายกล้ามเนื้อโดยตรง และเป็นตัวขับ AKI
+i.lft1: ตับบาดเจ็บร่วมกับ coagulopathy ระยะแรก ตับวายสูงสุดที่ 48 ถึง 96 ชม. และเป็นสาเหตุการเสียชีวิตช่วงหลังที่พบบ่อยที่สุดใน heat stroke
+i.cr1: AKI ร่วมกับ hyperkalemia จาก rhabdomyolysis และ hypernatremia จากเสียน้ำ thiazide มีส่วนด้วย
+i.abg1: Metabolic acidosis, lactate เกิน 4 ใน exertional heat stroke ทำนาย outcome ไม่ดี
+i.poc1: Hypoglycemia จาก glycogen ในตับหมด แก้ก่อนจะโทษว่า coma มาจากความร้อนอย่างเดียว
+i.ecg1: Sinus tachycardia 146/min, peaked T ที่ V2 ถึง V4 จาก hyperkalemia ไม่มี ischemic ST elevation, QTc 420 ms
+req1.l: วัด core temperature จริง และเริ่มลดอุณหภูมิในนาทีแรกๆ
+req1.c: Rectal probe ถอดเสื้อผ้า เริ่ม cooling
+req1.d0: ส่ง CT brain ก่อนตัด stroke ออก
+req1.f0: ทุกนาทีที่เกิน 40 C เพิ่มความเสียหายต่ออวัยวะ cooling มาก่อน imaging และ core temperature บอกได้ว่าเป็นอะไร
+req1.d1: ใช้ปรอทวัดทางหู
+req1.f1: วัดทางหูหรือปากได้ต่ำกว่า core temperature ใช้ rectal หรือ esophageal probe
+req1.m0: เวลาที่อยู่เกิน 40 C กำหนดความเสียหายต่ออวัยวะ เริ่ม cooling ใน 30 นาที mortality แทบเป็นศูนย์ ช้าเกิน 2 ชม. ราว 30%
+req1.a0: ใส่ probe วัดอุณหภูมิทางทวารหรือหลอดอาหาร
+req1.a1: ถอดเสื้อผ้าทั้งหมด
+req1.a2: เริ่ม cooling ทันที ก่อน imaging หรือเปิดเส้น
+req2.l: Active cooling หยุดที่ราว 38 C
+req2.d0: ให้ paracetamol กับพัดลม แล้วประเมินใหม่ใน 1 ชม.
+req2.f0: ยาลดไข้ไม่ได้ผลใน heat stroke เพราะ set point ของ hypothalamus ปกติ ลดอุณหภูมิแบบ active และเร็ว
+req2.d1: Cooling ต่อจนอุณหภูมิถึง 36 C
+req2.f1: ลดเกินทำให้ hypothermia หยุด active cooling ที่ราว 38 C
+req2.m0: วิธีแรกในแนวทาง cooling ของรามาธิบดี พ่นละอองน้ำราว 15 C ให้ทั่วผิว และให้ลมพัดผ่านตลอด
+req2.m1: เร็วที่สุดสำหรับ exertional heat stroke ราว 0.2 C ต่อนาที น้ำต่ำกว่า 14 C ติด monitor และมี defibrillator อยู่ใกล้มือ
+req2.m2: หยุด active cooling ทั้งหมดเมื่อ rectal temperature ถึงราว 38 C จะได้ไม่ลดเกินจน hypothermia
+req2.m3: NSS เย็น 4 C 20 mL/kg ห้ามให้ยาลดไข้ paracetamol กับ NSAID ไม่ได้ผลใน heat stroke เพราะ set point ปกติ และทั้งคู่ทำให้ตับกับไตบาดเจ็บมากขึ้น
+req2.a0: Evaporative cooling: ถอดเสื้อ พ่นละอองน้ำ เป่าพัดลม
+req2.a1: แช่น้ำเย็นถ้ามีอ่างพร้อม
+req2.a2: ประคบน้ำแข็งที่คอ รักแร้ และขาหนีบ
+req2.a3: IV fluid เย็น
+req3.l: Airway น้ำตาล และ benzodiazepine แก้หนาวสั่นหรือชัก
+req3.c: O2, dextrose และ midazolam แก้สั่น
+req3.d0: Chlorpromazine แก้สั่น
+req3.f0: Antipsychotic ลด seizure threshold และรบกวนการคุมอุณหภูมิ ใช้ benzodiazepine
+req3.d1: ไม่ต้องเจาะน้ำตาล ไม่ได้เป็นเบาหวาน
+req3.f1: Hypoglycemia เกิดได้ใน heat stroke และทำให้ชักกับสับสน เจาะดู
+req3.m0: หนาวสั่นสร้างความร้อนและทำให้ cooling ไม่ได้ผล midazolam 2 ถึง 5 mg IV titrate
+req3.a0: O2 และดูแล airway
+req3.a1: Dextrose แก้ hypoglycemia
+req3.a2: Diazepam หรือ midazolam แก้อาการสั่น
+out1.l: ลดเหลือ 38.1 C ใน 34 นาที
+out1.n: หยุด cooling ที่ 38.1 C GCS ดีขึ้นเป็น 12 ในชั่วโมงเดียว ยัง BP ต่ำและขาดน้ำมาก rhabdomyolysis เพิ่งเริ่มกลายเป็นปัญหาหลัก
+req4.l: รักษา rhabdomyolysis และ hyperkalemia
+req4.d0: จำกัด fluid เพราะเป็น HT
+req4.f0: Rhabdomyolysis ต้องได้ fluid ปริมาณมากเพื่อปกป้องไต monitor urine output ใกล้ชิด
+req4.d1: ให้ KCl แก้อ่อนแรง
+req4.f1: Rhabdomyolysis ทำให้ hyperkalemia ให้ K เพิ่มอาจถึงตาย
+req4.m0: เป้า urine output 2 mL/kg/h เป็นการรักษาเดียวที่มีหลักฐานดีว่าป้องกันไตวายจาก myoglobin ได้
+req4.m1: 10% 10 mL IV ใน 3 นาที ซ้ำได้ตามต้องการ
+req4.a0: Crystalloid IV ปริมาณมาก
+req4.a1: Calcium gluconate ถ้า EKG เปลี่ยน
+req4.a2: Insulin กับ dextrose
+req4.a3: Urine output ทุกชั่วโมง
+ethical_1.l: ถามเรื่องสภาพการทำงาน และทำอะไรกับคำตอบนั้น (Empathy)
+ethical_1.n: ลูกชายเล่าว่าในนาเดียวกันมีคนงานอีก 11 คน ไม่มีเพิงบังแดด มีขวดน้ำใช้ร่วมกันขวดเดียว ผู้รับเหมาจ่ายตามพื้นที่ที่เกี่ยว ไม่ใช่รายชั่วโมง การพักเลยเท่ากับเสียเงิน หมอเขียนลง chart แจ้งสาธารณสุขอำเภอ และบอกลูกชายตรงๆ ว่าอาการเริ่มต้นแบบไหนแปลว่าต้องหยุดทำงานเดี๋ยวนี้ เย็นนั้นสองในสิบเอ็ดคนมาด้วย heat exhaustion และกลับบ้านได้คืนเดียวกัน เรื่องนี้เกิดขึ้นได้เพราะมีคนถามคำถามที่ไม่ได้เกี่ยวกับคนไข้ตรงหน้า
+req5.l: Admit ICU และประคับประคองอวัยวะ
+req5.d0: D/C หลัง cooling ถ้าตื่นดี
+req5.f0: Heat stroke ทำให้ตับวาย coagulopathy และไตบาดเจ็บตามมาทีหลัง ต้อง monitor ใน ICU
+req5.d1: ให้ paracetamol ประจำให้สบายตัว
+req5.f1: ตับบาดเจ็บพบบ่อยหลัง heat stroke เลี่ยงยาที่เป็นพิษต่อตับ
+req5.m0: ไม่ให้ paracetamol ไม่ให้ NSAID ไม่ให้ aminoglycoside ถ้ายังมีทางเลือกอื่น
+req5.a0: Admit ICU
+req5.a1: LFT และ coag เป็นระยะ
+req5.a2: ส่งต่อ nephro อาจต้อง dialysis
+req5.a3: หลีกเลี่ยงยาที่เป็นพิษต่อไตและตับ
+out2.l: วันที่ 3
+out2.n: Transaminase สูงสุด 4100 ในวันที่ 3 INR 3.2 มี encephalopathy grade 2 Cr สูงสุด 5.1 mg/dL ต้อง HD สามครั้ง ฟื้นทั้งคู่ ตับวายที่ 48 ถึง 96 ชม. คือช่วงที่คนลืมไปหลัง resuscitate สำเร็จ
+out3.l: Disposition
+out3.n: D/C วันที่ 16 ยังเดินเซเล็กน้อย เป็นผลถาวรต่อ cerebellum ที่รู้จักกันของ heat stroke เปลี่ยนจาก thiazide เป็นยาอื่น ได้คำแนะนำว่าการทนร้อนจะยังแย่ไปอีกหลายเดือน และตอนนี้เสี่ยงเป็นซ้ำไปตลอดชีวิตมากขึ้น ซึ่งสำหรับคนที่ได้ค่าแรงตามพื้นที่ที่เกี่ยว นี่คือคำแนะนำ ไม่ใช่ทางแก้

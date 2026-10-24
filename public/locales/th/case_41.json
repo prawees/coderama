@@ -1,0 +1,466 @@
+{
+  "title": "71yo F Myxoedema Coma",
+  "age": "71",
+  "sex": "F",
+  "chiefComplaint": "พบนอนไม่รู้สึกตัว ตัวเย็น อยู่ที่บ้าน",
+  "diagnoses": [
+    "Myxoedema coma",
+    "Sepsis",
+    "Hypothermia from environmental exposure",
+    "Sedative overdose",
+    "Adrenal crisis"
+  ],
+  "background": "อยู่คนเดียว ผ่าตัด total thyroidectomy จากคอพอกเมื่อ 11 ปีก่อน levothyroxine หมดมาราว 7 สัปดาห์ ไม่ได้ไปรับยาเพราะคลินิกย้ายไป ที่ใหม่ต้องต่อรถเมล์สองต่อ เพื่อนบ้านพบนอนอยู่บนพื้น ตัวเย็น ปลุกไม่ตื่น หลังไม่เห็นหน้ามา 2 วัน ตอนนี้หน้าหนาว บ้านไม่มีเครื่องทำความร้อน ไอมาสัปดาห์หนึ่ง ซึ่งน่าจะเป็นตัวกระตุ้น mortality ยังสูง 20 ถึง 40% แม้ได้รับการรักษา",
+  "patientAppearance": {
+    "skinTone": "#e2c4a0",
+    "bmiFactor": 1.25,
+    "ageGroup": "elderly"
+  },
+  "vitals": {
+    "hr": {
+      "value": 42,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 84,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 52,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 8,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 31.8,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 88,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 7,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Unresponsive, profoundly cold to touch at 31.8 C, puffy and doughy in appearance, breathing slowly and shallowly",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Periorbital and facial non-pitting oedema, macroglossia, coarse dry skin, loss of the outer third of both eyebrows, hoarse quality to the little speech she produces, well-healed thyroidectomy scar across the neck",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Bradycardia at 42/min, hypotensive, distant muffled heart sounds suggesting pericardial effusion, non-pitting oedema of both legs, capillary refill 5 seconds",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Hypoventilating at 8 breaths per minute with shallow tidal volumes, right basal crackles suggesting pneumonia, reduced air entry at both bases from pleural effusions",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Distended with sluggish absent bowel sounds and clinical ileus, no peritonism, faecal loading on palpation, bladder palpable to the umbilicus from retention",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cold, dry, coarse and scaly with a yellowish tinge from carotenaemia, non-pitting myxoedematous swelling of the hands and face, no pressure sores despite the fall",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 7 (E1V2M4), delayed relaxation phase of the ankle reflexes which is close to specific for hypothyroidism, no focal deficit, no seizure activity, pupils sluggish",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "tft1",
+      "kind": "lab",
+      "category": "Endocrine",
+      "name": "TFT",
+      "value": "TSH 128 mIU/L / free T4 1.8 pmol/L",
+      "unit": "-",
+      "normalRange": "TSH 0.4-4.0 mIU/L",
+      "abnormal": true,
+      "report": "Profound primary hypothyroidism ต้องเริ่มรักษาตาม clinical เพราะการรอผลนี้หลายชั่วโมงในคนไข้แบบนี้ถึงตาย"
+    },
+    {
+      "id": "na1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "Na, glucose",
+      "value": "Na 118 mmol/L / glucose 44 mg/dL",
+      "unit": "-",
+      "normalRange": "Na 135-145 mmol/L",
+      "abnormal": true,
+      "report": "Severe hyponatremia จากขับน้ำไม่ได้ ร่วมกับ hypoglycemia แก้ Na ช้าๆ ไม่เกิน 8 ถึง 10 mmol/L ใน 24 ชม. เลี่ยง osmotic demyelination"
+    },
+    {
+      "id": "gas1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "ABG",
+      "value": "pH 7.21 / pCO2 78 / pO2 52 / HCO3 30",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Type 2 respiratory failure CO2 คั่งจาก central hypoventilation และกล้ามเนื้อหายใจอ่อนแรง นี่คือภัยต่อชีวิตเฉพาะหน้า"
+    },
+    {
+      "id": "cort1",
+      "kind": "lab",
+      "category": "Endocrine",
+      "name": "Random cortisol",
+      "value": "84",
+      "unit": "nmol/L",
+      "normalRange": ">400 in acute illness",
+      "abnormal": true,
+      "report": "ต่ำเกินไปเมื่อเทียบกับความเครียดทางร่างกายระดับนี้ คนไข้กลุ่มนี้ส่วนหนึ่งมี adrenal insufficiency ร่วม และการให้ thyroid hormone ก่อน steroid อาจกระตุ้น adrenal crisis"
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "EKG 12 lead",
+      "report": "Sinus bradycardia 42/min, low voltage ทุก lead, QTc ยาว 540 ms มี J wave ที่ inferior leads จาก hypothermia low voltage สนับสนุนว่ามี pericardial effusion",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CXR",
+      "report": "เงาหัวใจโตกลม เข้าได้กับ pericardial effusion มี pleural effusion เล็กน้อยทั้งสองข้าง และ RLL consolidation pneumonia คือตัวกระตุ้น",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "CK",
+      "value": "1240",
+      "unit": "U/L",
+      "normalRange": "30-200",
+      "abnormal": true,
+      "report": "สูง เป็นลักษณะที่รู้จักของ hypothyroidism รุนแรง และจากนอนอยู่บนพื้นนาน"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ให้ thyroid hormone ก่อน แล้วค่อยจัดการ airway",
+              "feedback": "Hypercapnic respiratory failure ฆ่าก่อน ช่วยหายใจและเจาะน้ำตาล"
+            },
+            {
+              "label": "Sedate ด้วย midazolam ให้สงบ",
+              "feedback": "ยา sedate ถูกขับช้ามากใน myxedema และกดการหายใจมากขึ้น"
+            }
+          ],
+          "label": "Airway กับการหายใจ แล้วเจาะน้ำตาล",
+          "actions": [
+            "ช่วยหายใจและ intubate สำหรับ hypercapnic failure",
+            "DTX และ dextrose",
+            "ติด monitor หัวใจ",
+            "ใส่ probe วัด core temperature"
+          ],
+          "doseMap": {
+            "ช่วยหายใจและ intubate สำหรับ hypercapnic failure": "RR 8 กับ pCO2 78 ให้ O2 อย่างเดียวไม่หาย hypoventilation คือสาเหตุการเสียชีวิตที่พบบ่อยที่สุดใน myxedema coma"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "Levothyroxine ก่อน hydrocortisone",
+              "feedback": "Thyroid hormone เพิ่มการกำจัด cortisol และอาจกระตุ้น adrenal crisis ให้ hydrocortisone ก่อน"
+            },
+            {
+              "label": "ไม่ต้องให้ steroid ไม่มีโรคต่อมหมวกไต",
+              "feedback": "อาจมี adrenal insufficiency ร่วมและอันตราย ให้ hydrocortisone ก่อน"
+            }
+          ],
+          "label": "Hydrocortisone ก่อน thyroid hormone",
+          "actions": [
+            "Hydrocortisone IV",
+            "เจาะ random cortisol ก่อนถ้าไม่ทำให้ช้า"
+          ],
+          "doseMap": {
+            "Hydrocortisone IV": "100 mg IV ทุก 8 ชม. ให้ก่อน levothyroxine thyroid hormone เพิ่ม metabolic demand และเร่งการกำจัด cortisol ถ้ามี adrenal insufficiency ร่วมอาจเกิด adrenal crisis ถึงตาย ลำดับนี้คือบทเรียนทั้งหมดของเคส"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "Levothyroxine กิน 50 mcg วันละครั้ง",
+              "feedback": "ขนาด maintenance โดยไม่ load น้อยและช้าเกินไปมาก ให้ loading 200 ถึง 400 mcg ทาง IV ถ้ามี หรือทาง NG tube ถ้าไม่มี"
+            },
+            {
+              "label": "รอผล TFT ก่อนให้ยา",
+              "feedback": "Myxedema coma วินิจฉัยทาง clinical และถึงตาย รักษาเลยไม่ต้องรอ"
+            }
+          ],
+          "label": "ให้ thyroid hormone ทางเส้นหรือทางสาย",
+          "actions": [
+            "Levothyroxine loading dose",
+            "ตามด้วย 50 ถึง 100 mcg ต่อวัน",
+            "พิจารณาเพิ่ม liothyronine ในรายที่รุนแรง"
+          ],
+          "doseMap": {
+            "Levothyroxine loading dose": "200 ถึง 400 mcg ลดขนาดในผู้สูงอายุและคนมี ischemic heart disease ถ้า รพ. มียาฉีดให้ IV รพ. ไทยหลายแห่งมีแต่ยาเม็ด บดให้ทาง NG tube ดูดซึมช้ากว่าแต่ได้ผล",
+            "ตามด้วย 50 ถึง 100 mcg ต่อวัน": "IV หรือทางสายในขนาดสูงกว่าเล็กน้อย เพราะลำไส้ดูดซึมได้ไม่หมด",
+            "พิจารณาเพิ่ม liothyronine ในรายที่รุนแรง": "5 ถึง 20 mcg แล้ว 2.5 ถึง 10 mcg ทุก 8 ชม. ถ้ามียา ออกฤทธิ์เร็วกว่า แต่เกิด arrhythmia ในหัวใจผู้สูงอายุได้มากกว่า"
+          },
+          "choice": "Levothyroxine 200 ถึง 400 mcg IV หรือทาง NG tube"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "Active rewarming ด้วยผ้าห่มลมร้อนอุณหภูมิสูง",
+              "feedback": "Active rewarming ทำให้หลอดเลือดขยายและ cardiovascular collapse ใช้ passive rewarming"
+            },
+            {
+              "label": "ไม่ต้องให้ antibiotic ไม่มีไข้",
+              "feedback": "Hypothermia บังไข้ รักษา pneumonia ที่น่าจะเป็นตัวกระตุ้น coma"
+            }
+          ],
+          "label": "Passive rewarming อย่างเดียว และรักษาตัวกระตุ้น",
+          "actions": [
+            "Rewarm แบบ passive ด้วยผ้าห่ม",
+            "IV fluid อุ่น",
+            "Antibiotic รักษา pneumonia",
+            "ให้ fluid อย่างระวัง"
+          ],
+          "doseMap": {
+            "Rewarm แบบ passive ด้วยผ้าห่ม": "ห้ามใช้ active external rewarming ทำให้หลอดเลือดส่วนปลายขยายในคนที่เพิ่ม cardiac output ไม่ได้ และทำให้ circulatory collapse warm ไม่เกิน 0.5 C ต่อชั่วโมง",
+            "ให้ fluid อย่างระวัง": "กล้ามเนื้อหัวใจทำงานไม่ดีและอาจมี pericardial effusion ให้ทีละน้อยและแก้ Na ช้าๆ"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "ดีขึ้นช้าๆ",
+          "outcomeType": "improved",
+          "narrative": "ใน 24 ชม. อุณหภูมิขึ้นเป็น 35.2 C HR 58 Na แก้ได้ถึง 124 ในอัตราที่ปลอดภัย ยังใช้ ventilator อยู่ การฟื้นจาก myxedema coma นับเป็นวัน ไม่ใช่ชั่วโมง ใจร้อนตรงนี้ทำให้เกิดอันตราย",
+          "vitalChanges": {
+            "hr": 58,
+            "sbp": 104,
+            "dbp": 62,
+            "rr": 14,
+            "temp": 35.2,
+            "spo2": 96,
+            "gcs": 9
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "ถามว่าทำไมยาที่กินมา 11 ปีถึงหมด (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "คำอธิบายง่ายๆ คือผู้สูงอายุไม่ร่วมมือกินยา เขียนลง chart ได้ในสามคำ แต่หมอไปถามเพื่อนบ้านแทน คลินิกย้าย ที่ใหม่ต้องต่อรถเมล์สองต่อที่ยายไปเองไม่ไหว ร้านยาไม่จ่ายถ้าไม่มีใบสั่งใหม่ ยายไม่ได้ไม่ร่วมมือ ยายแพ้เรื่องการเดินทาง หมอจัดให้รับยาซ้ำที่ร้านยาชุมชน ให้พยาบาลอำเภอไปเยี่ยมบ้าน และส่งต่อนักสังคมสงเคราะห์ พี่แอนบอกว่านี่คือความต่างระหว่างการรักษา myxedema coma ครั้งเดียวกับการรักษาสามครั้ง"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "แก้ Na เร็วๆ ด้วย 3% NaCl",
+              "feedback": "แก้เร็วเสี่ยง osmotic demyelination ไม่เกิน 8 ถึง 10 mmol/L ต่อ 24 ชม."
+            },
+            {
+              "label": "ให้ยานอนหลับแก้กระสับกระส่ายใน ICU",
+              "feedback": "ยา sedate ถูกขับช้ามากและทำให้อาการกลับมาได้ เลี่ยงไว้"
+            }
+          ],
+          "label": "ดูแลใน ICU แก้ไขช้าๆ อย่างใจเย็น",
+          "actions": [
+            "Admit ICU",
+            "Monitor arrhythmia ระหว่างให้ฮอร์โมน",
+            "แก้ Na ไม่เร็วกว่า 8 ถึง 10 mmol/L ต่อ 24 ชม.",
+            "Echo ดู pericardial effusion",
+            "หลีกเลี่ยงยา sedative ทุกตัว เพราะถูกกำจัดช้ามาก"
+          ],
+          "doseMap": {
+            "หลีกเลี่ยงยา sedative ทุกตัว เพราะถูกกำจัดช้ามาก": "การเผาผลาญยาช้าลงมาก ยา sedate และ opioid ขนาดปกติจะสะสม และเป็นสาเหตุที่หมอทำเองซึ่งพบบ่อยของการไม่ตื่น"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "ฟื้นตัว",
+          "outcomeType": "improved",
+          "narrative": "Extubate วันที่ 5 Na ปกติวันที่ 6 pericardial effusion หายเองโดยไม่ต้องเจาะเมื่อ thyroid hormone ออกฤทธิ์ ค่อยๆ ลด hydrocortisone หลัง short synacthen test ยืนยันว่า adrenal ทำงานปกติ",
+          "vitalChanges": {
+            "hr": 68,
+            "sbp": 118,
+            "dbp": 70,
+            "rr": 16,
+            "temp": 36.6,
+            "spo2": 97,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 14 ด้วย levothyroxine กิน ได้ยา 90 วันในมือ จัดรับยาซ้ำที่ร้านยาชุมชน พยาบาลอำเภอเยี่ยมบ้านทุกสัปดาห์ 1 เดือน เรื่องการรับยาคือพยาธิสภาพที่แท้จริง และเป็นสิ่งสุดท้ายที่มีคนดู",
+          "vitalChanges": {
+            "hr": 72,
+            "sbp": 124,
+            "dbp": 74,
+            "rr": 16,
+            "temp": 36.8,
+            "spo2": 98,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e5",
+        "source": "req4",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

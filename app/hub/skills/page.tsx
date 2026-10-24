@@ -9,20 +9,20 @@ import { PageTransition } from "@/components/ui/PageTransition";
 const SKILLS_DB = [
   {
     id: "IRON_BLADDER",
-    name: "Iron Bladder",
-    description: "Max Energy +50. Work longer hours without collapsing.",
+    name: "กระเพาะปัสสาวะเหล็ก",
+    description: "พลังงานสูงสุด +50 อยู่เวรได้นานขึ้นโดยไม่ล้ม",
     cost: 500,
   },
   {
     id: "CAFFEINE_ADDICT",
-    name: "Caffeine Addict",
-    description: "Coffee restores 75 NRG instead of 50. Jitters included.",
+    name: "ติดกาแฟ",
+    description: "กาแฟฟื้นพลังงาน 75 แทน 50 มือสั่นแถมให้ฟรี",
     cost: 750,
   },
   {
     id: "SPEED_READER",
-    name: "Speed Reader",
-    description: "+10% Cash payout on all treated cases. You scan charts at lightspeed.",
+    name: "อ่านเร็ว",
+    description: "ได้เงินจากทุกเคสที่รักษาเพิ่ม 10% กวาดตาอ่าน chart ได้เร็วปานแสง",
     cost: 1000,
   }
 ];
@@ -47,11 +47,11 @@ export default function SkillsPage() {
         {/* Header */}
         <PixelPanel className="flex justify-between items-center mb-6 z-10 sticky top-[var(--safe-top)]" variant="dark">
           <div>
-            <h1 className="text-2xl text-pixel-gold">SKILL TREE</h1>
-            <p className="text-sm text-gray-400">Available XP: {xp}</p>
+            <h1 className="text-2xl text-pixel-gold">ทักษะ</h1>
+            <p className="text-sm text-gray-400">XP ที่ใช้ได้: {xp}</p>
           </div>
           <PixelButton onClick={() => router.push('/hub')} variant="alert">
-            BACK TO HUB
+            กลับ
           </PixelButton>
         </PixelPanel>
 
@@ -63,12 +63,12 @@ export default function SkillsPage() {
             return (
               <PixelPanel 
                 key={skill.id} 
-                className={`flex flex-col gap-4 ${isUnlocked ? 'border-pixel-gold opacity-80 bg-black' : 'border-gray-600 bg-[#161b22]'}`}
+                className={`flex flex-col gap-4 ${isUnlocked ? 'border-pixel-gold opacity-80 bg-black' : 'border-gray-600 bg-[#3a2c3d]'}`}
                 variant="dark"
               >
                 <div className="flex justify-between items-start">
                   <h2 className="text-xl text-pixel-primary">{skill.name}</h2>
-                  {isUnlocked && <span className="text-pixel-gold text-sm animate-pulse">UNLOCKED</span>}
+                  {isUnlocked && <span className="text-pixel-gold text-sm animate-pulse">ปลดล็อกแล้ว</span>}
                 </div>
                 <p className="text-gray-400 flex-grow text-sm">{skill.description}</p>
                 
@@ -79,7 +79,7 @@ export default function SkillsPage() {
                     onClick={() => handleUnlock(skill.id, skill.cost)}
                     className={`w-full ${!canAfford ? 'opacity-50 grayscale' : ''}`}
                   >
-                    {canAfford ? `UNLOCK (${skill.cost} XP)` : `NEED ${skill.cost} XP`}
+                    {canAfford ? `ปลดล็อก (${skill.cost} XP)` : `ต้องมี ${skill.cost} XP`}
                   </PixelButton>
                 )}
               </PixelPanel>

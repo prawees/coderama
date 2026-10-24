@@ -1,0 +1,457 @@
+{
+  "title": "17yo F Meningococcal Septicaemia",
+  "age": "17",
+  "sex": "F",
+  "chiefComplaint": "ไข้ ปวดขา มีผื่น มา 9 ชม.",
+  "diagnoses": [
+    "Meningococcal septicaemia with meningitis",
+    "Dengue haemorrhagic fever",
+    "Toxic shock syndrome",
+    "Rickettsial infection",
+    "Acute leukaemia"
+  ],
+  "background": "นักเรียนประจำ มีไข้และปวดหัวตั้งแต่เที่ยงคืน ตีสี่ปวดน่องทั้งสองข้างมาก มือเท้าเย็น ตัวเองกับพยาบาลโรงเรียนคิดว่าเป็นไข้หวัดใหญ่ เห็นผื่นครั้งแรกตอน 7 โมงเช้า พอ 8 โมงครึ่งผื่นลามชัดขึ้น มาถึง 09:10 น. 9 ชม. หลังเริ่มอาการ สัปดาห์นี้นักเรียนในหอเดียวกันไม่สบายอีก 2 คน ปวดแขนขารุนแรง มือเท้าเย็น และสีผิวผิดปกติ มาก่อนผื่นคลาสสิกและ meningism โดยเฉลี่ย 8 ชม. และเป็น sign ที่ซื้อเวลาได้",
+  "patientAppearance": {
+    "skinTone": "#e9c199",
+    "bmiFactor": 0.9,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 142,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 84,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 44,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 32,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 39.4,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 95,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 13,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Ill, drowsy, mottled and grey, shivering, complaining bitterly of pain in both calves which is out of proportion to anything visible",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Photophobia, mild neck stiffness, dry mucous membranes, no papilloedema on fundoscopy, conjunctival petechiae present. Neck stiffness is absent in a substantial proportion of meningococcal disease and its absence excludes nothing",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Tachycardia at 142/min, hypotensive at 84/44, capillary refill 5 seconds, cold peripheries to the mid forearm and mid calf with a clear cold-warm demarcation line. Hypotension in a 17 year old is a very late sign of shock",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Tachypnoeic at 32/min compensating for metabolic acidosis, clear breath sounds, no crackles or focal signs",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, generally tender without guarding, no organomegaly, no rebound. Abdominal pain is a common early feature and has led to laparotomy in misdiagnosed cases",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Non-blanching purpuric rash over the trunk, both legs and the conjunctivae, with two lesions over 3 cm and dusky centres. New lesions appeared over the twenty minutes of assessment, which is confirmed by drawing around them. Cold mottled peripheries with a demarcation line",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 13 (E3V4M6), drowsy and irritable, no focal deficit, mild neck stiffness, no seizure. Deteriorating consciousness in this setting is cerebral hypoperfusion, raised intracranial pressure, or both",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "lac1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Lactate",
+      "value": "6.8",
+      "unit": "mmol/L",
+      "normalRange": "0.5-2.0",
+      "abnormal": true,
+      "report": "Severe tissue hypoperfusion ใน meningococcal disease lactate กับ capillary refill บอกว่าใกล้ตายแค่ไหนได้ดีกว่า BP เพราะวัยรุ่นรักษา BP ไว้ได้จนถึงวินาทีที่รักษาไม่ได้"
+    },
+    {
+      "id": "coag1",
+      "kind": "lab",
+      "category": "Coagulation",
+      "name": "INR, fibrinogen, platelet",
+      "value": "INR 2.2 / fibrinogen 0.9 g/L / platelets 48 x10^9/L",
+      "unit": "-",
+      "normalRange": "INR 0.9-1.2",
+      "abnormal": true,
+      "report": "DIC คือกระบวนการที่ทำให้เกิด purpura และเป็นเหตุผลที่ห้ามทำ LP ตอนนี้"
+    },
+    {
+      "id": "bc1",
+      "kind": "lab",
+      "category": "Micro",
+      "name": "H/C, meningococcal PCR",
+      "value": "Gram negative diplococci ใน film ที่ 6 ชม. PCR เป็น Neisseria meningitidis group B",
+      "unit": "-",
+      "normalRange": "No growth",
+      "abnormal": true,
+      "report": "Positive PCR ยังบวกต่ออีกหลายวันหลังเริ่ม antibiotic จึงควรส่งแม้ให้ยาไปแล้วและ culture น่าจะไม่ขึ้น"
+    },
+    {
+      "id": "gluc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "Glucose, Na, calcium",
+      "value": "Glucose 58 mg/dL / Na 128 mmol/L / ionised Ca 0.88 mmol/L",
+      "unit": "-",
+      "normalRange": "Glucose 70-140 mg/dL",
+      "abnormal": true,
+      "report": "Hypoglycemia, hyponatremia และ hypocalcemia ทั้งสามเกิดได้ใน severe meningococcal sepsis ทั้งสามทำให้หัวใจบีบตัวแย่ลง และทั้งสามแก้ได้ในไม่กี่นาที"
+    },
+    {
+      "id": "cbc1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "WBC, CRP",
+      "value": "WBC 2.4 x10^9/L left shift มาก / CRP 210 mg/L",
+      "unit": "-",
+      "normalRange": "WBC 4.0-11.0",
+      "abnormal": true,
+      "report": "Leukopenia ในบริบทนี้เป็นตัวบ่งความรุนแรงและ sepsis ที่ท่วมท้น ไม่ใช่เหตุผลให้สงสัยว่าไม่ใช่แบคทีเรีย"
+    },
+    {
+      "id": "cort1",
+      "kind": "lab",
+      "category": "Endocrine",
+      "name": "Random cortisol",
+      "value": "180",
+      "unit": "nmol/L",
+      "normalRange": ">400 in shock",
+      "abnormal": true,
+      "report": "ต่ำเกินไป ชวนนึกถึง adrenal hemorrhage (Waterhouse-Friderichsen syndrome) ซึ่งเป็น complication ที่รู้จักของ fulminant meningococcemia"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "Ceftriaxone 2 g IV, IO หรือ IM เดี๋ยวนี้",
+          "distractors": [
+            {
+              "label": "ทำ LP ก่อนยืนยันเชื้อ",
+              "feedback": "ห้ามเลื่อน antibiotic ห้ามทำ LP ใน septicemic shock"
+            },
+            {
+              "label": "รอเจาะ H/C ก่อนให้ antibiotic",
+              "feedback": "ช้าแล้ว mortality เพิ่ม เก็บ culture เฉพาะถ้าไม่ทำให้ช้า"
+            }
+          ],
+          "label": "Antibiotic ในนาทีแรกๆ ก่อนจัดการเรื่องอื่น",
+          "actions": [
+            "Ceftriaxone IV ทันที",
+            "H/C เฉพาะเมื่อไม่ทำให้ช้า",
+            "O2 และ monitor"
+          ],
+          "doseMap": {
+            "Ceftriaxone IV ทันที": "2 g IV ทุกชั่วโมงที่ช้า mortality เพิ่มขึ้นมาก ถ้าเปิดเส้นเกินไม่กี่นาที ให้ทาง IO หรือ IM แทนการรอ ความผิดพลาดที่ถึงตายบ่อยที่สุดในโรคนี้คือเลื่อน antibiotic เพื่อรอ imaging รอ LP หรือรอ staff"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "Balanced crystalloid bolus 20 mL/kg",
+          "distractors": [
+            {
+              "label": "จำกัด fluid กัน cerebral edema",
+              "feedback": "เป็น septicemic shock ร่วมกับ capillary leak ต้องได้ bolus"
+            },
+            {
+              "label": "Bolus ครั้งเดียวไม่ต้องประเมินซ้ำ",
+              "feedback": "ประเมินซ้ำหลังทุก bolus เพื่อกำหนด fluid ต่อ"
+            }
+          ],
+          "label": "Fluid resuscitation เต็มที่สำหรับ capillary leak",
+          "actions": [
+            "Balanced crystalloid bolus",
+            "ประเมิน perfusion ซ้ำหลังทุก bolus",
+            "แก้น้ำตาล Na และ calcium"
+          ],
+          "doseMap": {
+            "Balanced crystalloid bolus": "20 mL/kg (ราว 1200 mL) เร็วๆ ซ้ำได้ meningococcal septicemia ต้องการ fluid มหาศาลเพราะ capillary leak บ่อยครั้ง 60 ถึง 100 mL/kg ในชั่วโมงแรกๆ ตรงนี้ให้น้อยไปพบบ่อยกว่าให้มากไปมาก"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ให้ fluid เกิน 80 mL/kg ก่อนเริ่ม vasopressor",
+              "feedback": "ให้ fluid อย่างเดียวต่อไปทำให้ pulmonary edema เริ่ม vasoactive เร็ว"
+            },
+            {
+              "label": "รอ central line ก่อนเริ่ม adrenaline",
+              "feedback": "ให้ทาง peripheral หรือ IO ได้ระหว่างรอ central line"
+            }
+          ],
+          "label": "เริ่ม vasoactive เร็ว อย่าให้ fluid อย่างเดียวต่อไป",
+          "actions": [
+            "Adrenaline หรือ norepinephrine drip หลังให้ fluid 40 ถึง 60 mL/kg",
+            "ให้ทางเส้นส่วนปลายหรือ IO จนกว่าจะมี central line",
+            "Hydrocortisone สำหรับ catecholamine-resistant shock"
+          ],
+          "doseMap": {
+            "Adrenaline หรือ norepinephrine drip หลังให้ fluid 40 ถึง 60 mL/kg": "Cold shock ที่ capillary refill นานเหมาะกับ adrenaline อย่ารอ central line ให้แบบเจือจางทาง peripheral ปลอดภัยกว่าปล่อยช็อกไว้หนึ่งชั่วโมง",
+            "Hydrocortisone สำหรับ catecholamine-resistant shock": "50 mg IV ทุก 6 ชม. เพราะ cortisol ต่ำและอาจมี adrenal hemorrhage"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "choice": "ไม่ทำ LP ส่ง PCR จากเลือด",
+          "distractors": [
+            {
+              "label": "ส่ง CT brain ก่อนรักษา",
+              "feedback": "อย่าเลื่อนการรักษาเพื่อรอ imaging รักษา septicemia เดี๋ยวนี้"
+            },
+            {
+              "label": "ให้ dexamethasone สำหรับ meningitis",
+              "feedback": "Dexamethasone ไม่มี indication ใน meningococcal septicemia"
+            }
+          ],
+          "label": "ไม่ทำ LP และไม่เลื่อนการรักษาเพื่อรอ imaging",
+          "actions": [
+            "เลื่อน LP ไปก่อน",
+            "ส่ง meningococcal PCR จากเลือดแทน",
+            "ไม่มีข้อบ่งชี้ให้ dexamethasone ใน meningococcal septicemia"
+          ],
+          "doseMap": {
+            "เลื่อน LP ไปก่อน": "ห้ามทำในเคสนี้เพราะช็อก coagulopathy fibrinogen 0.9 platelet 48 และความรู้สึกตัวลดลง PCR จากเลือดได้เชื้อโดยไม่มีความเสี่ยง LP ในคนไข้รายนี้ทำให้ coning หรือ epidural hematoma ได้ และไม่ได้เปลี่ยนการรักษาคืนนี้เลย"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "แย่ลงทั้งที่รักษาแล้ว",
+          "outcomeType": "worsened",
+          "narrative": "หลังได้ crystalloid 3.5 ลิตรกับ adrenaline drip SBP ขึ้นถึง 92 แต่ purpura ยังลามต่อ นิ้วมือนิ้วเท้าคล้ำ ต้อง intubate เพราะความรู้สึกตัวลดลง ได้ antibiotic ที่ 14 นาทีหลังมาถึง โรคนี้ยังลุกลามต่ออีกหลายชั่วโมงหลังเริ่มการรักษาที่ถูก",
+          "vitalChanges": {
+            "hr": 148,
+            "sbp": 92,
+            "dbp": 48,
+            "rr": 16,
+            "spo2": 96,
+            "gcs": 3
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "โทรแจ้งสาธารณสุขเองตอน 09:40 น. ไม่โยนให้คนอื่น (Empathy)",
+          "ethicalValue": 25,
+          "narrative": "พ่อแม่อยู่ห่างไป 4 ชม. โรงเรียนมีนักเรียนประจำ 380 คน สองคนไม่สบายอยู่แล้ว ความรู้สึกคืออยากทุ่มทั้งหมดกับการ resuscitate แล้วให้วอร์ดแจ้งเรื่องโรค หมอโทรจากห้อง resus แจ้งงานควบคุมโรคติดต่อของอำเภอภายในชั่วโมง ระบุผู้สัมผัสใกล้ชิดรวมทั้งหอพักและนักเรียนสองคนที่ไม่สบายให้ได้ ciprofloxacin ป้องกัน และจัดวัคซีน บ่ายนั้นหนึ่งในสองคน admit ด้วย early meningococcemia และหายดี โทรศัพท์ครั้งนั้นใช้ 4 นาที และเป็นสิ่งที่คุ้มที่สุดที่ทำทั้งวัน"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "choice": "ICU, cryo ถ้าเลือดออก, แจ้งผู้สัมผัส",
+          "distractors": [
+            {
+              "label": "ให้ platelet กับ FFP ให้ตัวเลขปกติ",
+              "feedback": "Blood product ให้ตามเลือดออกและ fibrinogen ไม่ใช่ตามตัวเลขอย่างเดียว"
+            },
+            {
+              "label": "รอทีมเช้าแจ้งสาธารณสุข",
+              "feedback": "ผู้สัมผัสต้องได้ยาป้องกันเร็ว แจ้งสาธารณสุขเดี๋ยวนี้"
+            }
+          ],
+          "label": "ดูแลใน ICU จัดการ coagulopathy และแขนขาขาดเลือด",
+          "actions": [
+            "Admit ICU พร้อม invasive monitoring",
+            "ให้ blood product ตาม fibrinogen และเลือดที่ออก ไม่ใช่ตามตัวเลขอย่างเดียว",
+            "ให้ plastic และ vascular ดูนิ้วที่ขาดเลือด",
+            "แจ้งสาธารณสุขและจัดยาป้องกันให้ผู้สัมผัส"
+          ],
+          "doseMap": {
+            "ให้ blood product ตาม fibrinogen และเลือดที่ออก ไม่ใช่ตามตัวเลขอย่างเดียว": "Cryoprecipitate เมื่อ fibrinogen ต่ำกว่า 1.5 g/L ไม่ต้องแก้ platelet แบบป้องกันถ้าไม่มีเลือดออกหรือไม่ได้จะทำหัตถการ"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "รอดแต่เสียเนื้อเยื่อ",
+          "outcomeType": "improved",
+          "narrative": "ช็อกหายใน 48 ชม. purpura fulminans ทำให้นิ้วเท้าซ้ายสามนิ้วกับปลายนิ้วมือสองนิ้วตายทั้งความหนา extubate วันที่ 6 ไม่มีความผิดปกติทางระบบประสาท คัดกรองการได้ยินปกติ ซึ่งไม่ใช่เรื่องแน่นอนหลัง meningococcal disease",
+          "vitalChanges": {
+            "hr": 96,
+            "sbp": 112,
+            "dbp": 66,
+            "rr": 18,
+            "temp": 37.2,
+            "spo2": 98,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "ตัดนิ้วเท้าสามนิ้วสัปดาห์ที่ 3 แล้วฟื้นฟู D/C วันที่ 28 ตรวจคัดกรอง complement deficiency ซึ่งเป็นมาตรฐานหลัง invasive meningococcal disease ในวัยรุ่น ผลปกติ โรงเรียนจัดฉีดวัคซีนและไม่มีรายใหม่ 9 ชม. จากอาการแรกถึง antibiotic คือตัวเลขที่อธิบายนิ้วเท้าที่หายไป",
+          "vitalChanges": {
+            "hr": 82,
+            "sbp": 116,
+            "dbp": 70,
+            "rr": 16,
+            "temp": 36.8,
+            "spo2": 99,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e5",
+        "source": "req4",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

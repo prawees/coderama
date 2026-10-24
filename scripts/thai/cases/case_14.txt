@@ -1,0 +1,74 @@
+cc: มอเตอร์ไซค์ชนกระบะ มาถึงช็อก
+bg: คืนวันศุกร์บนถนนมิตรภาพ ไม่ใส่หมวก กระเด็นไปราว 15 เมตร รถเข้าไปอยู่ใต้กระบะ กู้ภัยยกด้วย scoop stretcher ให้ NSS 500 mL ระหว่างทาง ใช้เวลาเกิดเหตุถึง รพ. 35 นาที แม่กำลังขี่มอเตอร์ไซค์มาจากโนนสูง อีก 40 นาทีถึง น้องอายุ 17 เรื่อง consent ผ่าตัดเลยเป็นปัญหาจริง
+i.fast1: ไม่มี free fluid ใน Morison's pouch, splenorenal recess หรือ pelvis ไม่มี pericardial effusion มี lung sliding ทั้งสองข้าง FAST negative ไม่ได้ตัดเลือดออกใน retroperitoneum จาก pelvis ซึ่งคือที่ที่คนไข้รายนี้เสียเลือดอยู่
+i.pxr1: Symphysis แยก 4.5 cm SI joint กว้างทั้งสองข้าง APC injury, Young-Burgess type 2 แบบ open book มีที่ว่างใน retroperitoneum ให้เลือดไปขังได้มาก
+i.hb1: ต่ำแล้วทั้งที่ได้ crystalloid ก่อนถึง รพ. แค่ 500 mL แปลว่ากำลังเสียเลือดมาก
+i.abg1: Base deficit รุนแรงทำนายการต้องให้เลือดและการเสียชีวิตได้ดีกว่า BP ในคนไข้ trauma อายุน้อย ซึ่ง compensate ได้ดีจนวันหนึ่งไม่ไหวขึ้นมาทันที
+i.coag1: Acute traumatic coagulopathy lethal triad ทั้ง hypothermia, acidosis และ coagulopathy มาครบแล้ว
+i.ct1: Retroperitoneal hematoma ขนาดใหญ่ มี active arterial contrast extravasation จากแขนงของ internal iliac artery, pubic rami บนล่างหักทั้งสองข้าง ไม่มี solid organ injury มี bladder neck injury เล็กน้อย ไม่มี ICH
+req1.l: ใส่ pelvic binder ระดับ greater trochanter ทันที
+req1.c: Pelvic binder คร่อม greater trochanter
+req1.d0: ใส่ pelvic binder ระดับ iliac crest
+req1.f0: Binder ที่ iliac crest ไม่ได้ปิด pelvic ring และอาจทำให้แยกมากขึ้น ต้องคร่อม greater trochanter
+req1.d1: Spring pelvis ดูว่า unstable จริงก่อน
+req1.f1: Spring pelvis ทำให้ clot หลุดและเลือดออกมากขึ้น ใส่ binder ตามกลไกและภาวะช็อกได้เลย
+req1.m0: วางกึ่งกลางที่ greater trochanter ไม่ใช่ iliac crest binder ที่สูงเกินไปไม่ลดปริมาตร pelvis
+req1.a0: ใส่ pelvic binder
+req1.a1: หมุนขาเข้าด้านในแล้วมัดไว้
+req2.l: ห้ามเลือดที่ออกมากก่อน แล้วดู airway ให้ O2
+req2.c: กดแผลที่หนังศีรษะ ให้ O2 เปิด 2 เส้น
+req2.d0: ปล่อยแผลที่หนังศีรษะไว้ แผลเล็ก
+req2.f0: แผลหนังศีรษะเลือดออกเร็วและทำให้ช็อกได้มาก กดหรือเย็บ staple ห้ามเลือด
+req2.d1: ใส่ central line ก่อนเพื่อเปิดเส้น
+req2.f1: Peripheral เบอร์ใหญ่สองเส้นหรือ IO เร็วกว่า และให้ flow ได้สูงกว่า
+req2.a0: กดห้ามเลือดและเย็บ staple แผลที่หนังศีรษะ
+req2.a1: O2 15 L/min
+req2.a2: เปิดเส้นใหญ่ 2 เส้น หรือ IO
+req3.l: ให้เลือดแทน crystalloid ร่วมกับ TXA
+req3.d0: ให้ NSS อุ่นอีก 2 ลิตรก่อนให้เลือด
+req3.f0: Crystalloid เจือจาง clotting factor และทำให้ lethal triad แย่ลง ให้เลือดกับ plasma ร่วมกับ TXA
+req3.d1: รอผล Hb ก่อนค่อยให้เลือด
+req3.f1: Hb ตามหลังภาวะเสียเลือดเฉียบพลัน ให้เลือดตาม clinical shock
+req3.m0: PRC : FFP : platelet 1:1:1 ถ้า fibrinogen ต่ำกว่า 1.5 g/L เพิ่ม cryoprecipitate
+req3.m1: 1 g ใน 10 นาที แล้ว 1 g ใน 8 ชม. ให้เฉพาะถ้ายังไม่เกิน 3 ชม. หลังบาดเจ็บ
+req3.a0: เปิด massive transfusion protocol
+req3.a1: PRC O negative ฉุกเฉิน
+req3.a2: TXA IV
+req3.a3: หยุด crystalloid
+req4.l: Rewarm เต็มที่ แขนที่สามของ lethal triad
+req4.c: Forced air warmer และ fluid warmer
+req4.d0: ปล่อยให้ตัวเย็นไว้ ลด metabolic demand
+req4.f0: Hypothermia ทำให้ coagulopathy แย่ลง active rewarming เป็นส่วนหนึ่งของ damage control resuscitation
+req4.d1: ค่อย warm หลังกลับจาก angiography
+req4.f1: Hypothermia ทำให้เลือดออกมากขึ้นตั้งแต่ตอนนี้ เริ่ม warm เลยและทำต่อตลอด
+req4.a0: ผ้าห่มลมร้อน
+req4.a1: เครื่องอุ่นน้ำเกลือและเลือด
+req4.a2: ถอดเสื้อผ้าเปียก เพิ่มอุณหภูมิห้อง
+out1.l: Transient responder
+out1.n: หลังได้ PRC 4 unit และ FFP 4 unit SBP ขึ้นถึง 96 แล้วไหลลงเหลือ 84 ใน 10 นาที เลือดยังออกอยู่ และไม่มี blood product ไหนแก้ได้ ต้องหยุดเลือดที่ต้นเหตุ ไม่ใช่ resuscitate เพิ่ม
+ethical_1.l: ทำการรักษาตามหลักภาวะฉุกเฉิน และโทรหาแม่เองจากห้อง resus (Empathy)
+ethical_1.n: น้องยังไม่บรรลุนิติภาวะ แม่อยู่ห่างไป 40 นาที หมอไม่รอ เพราะการรักษาฉุกเฉินเพื่อรักษาชีวิตไม่ต้องรอ consent จากผู้ปกครอง แต่หมอก็ไม่ได้ทำเงียบๆ หมอใช้เวลา 60 วินาทีโทรหาแม่ตอนจอดข้างทาง บอกว่าลูกยังมีชีวิต บอกว่ากำลังจะทำอะไรและทำไมรอไม่ได้ แล้วบอกว่าให้มาประตูไหน พี่ใจบอกทีหลังว่าสายแบบนี้แหละที่ญาติจำไปตลอดชีวิต
+req5.l: หยุดเลือดที่ต้นเหตุ angioembolization หรือ preperitoneal packing
+req5.c: Angioembolization หรือ preperitoneal packing
+req5.d0: Explore lap หยุดเลือดจาก pelvis
+req5.f0: เลือดจาก pelvis อยู่ใน retroperitoneum เปิดท้องจะทำให้ tamponade หลุด ใช้ angioembolization หรือ preperitoneal packing
+req5.d1: ให้เลือดต่อและ observe ใน ER
+req5.f1: เป็น transient responder ต้องหยุดเลือดที่ต้นเหตุ
+req5.m0: ใน รพ. จังหวัดตอนตีสอง packing ในห้องผ่าตัดคือทางเลือกที่ทำได้จริง และเป็นทางเลือกที่ถูก
+req5.a0: Angioembolisation ทาง IR
+req5.a1: หรือ preperitoneal pelvic packing กับ external fixation ถ้าไม่มี IR
+req5.a2: ปรึกษา ortho และศัลย์ทั่วไป
+out2.l: หยุดเลือดได้
+out2.n: ทำ preperitoneal packing ร่วมกับ external fixation EBL 2.8 ลิตร ได้ PRC รวม 11 unit ไป ICU แบบ packed และ intubated นัด re-look 48 ชม. นี่คือ damage control ยังไม่ใช่การซ่อมจริง
+req6.l: ห้ามใส่ Foley ทาง urethra ใช้ suprapubic แทน
+req6.c: Suprapubic catheter ไม่ใส่ทาง urethra
+req6.d0: ใส่ Foley ดู urine output
+req6.f0: Pelvic fracture ที่อาจมี urethral injury ห้ามใส่ catheter แบบ blind ทาง urethra ส่ง imaging ก่อน หรือใช้ suprapubic
+req6.d1: ไม่ต้องระบายปัสสาวะเลย
+req6.f1: ต้อง monitor urine output suprapubic catheter ทำได้อย่างปลอดภัย
+req6.m0: เลือดที่ meatus ร่วมกับ pelvic fracture บอกว่ามี urethral injury ใส่ blind จะทำให้ partial tear กลายเป็น complete tear
+req6.a0: Retrograde urethrogram หรือปรึกษา uro
+req6.a1: Suprapubic catheter
+req6.a2: Admit ICU warm ต่อและแก้ coagulopathy
+out3.l: Disposition
+out3.n: เอา pack ออกวันที่ 3 ทำ definitive pelvic fixation วันที่ 6 เดินด้วย walker ได้ใน 3 สัปดาห์ น้องจะปวด SI joint เรื้อรัง และเกือบแน่นอนว่าจะกลับไปขี่มอเตอร์ไซค์โดยไม่ใส่หมวกอีก ซึ่งเป็นส่วนของงานนี้ที่ไม่เคยจบ

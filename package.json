@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "validate": "node scripts/validate-cases.mjs && npx --yes tsx scripts/check-story.ts",
     "pack-mac": "electron-builder --mac"
   },
   "build": {

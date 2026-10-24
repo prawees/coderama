@@ -22,12 +22,12 @@ export const getLocalizedRankTitle = (
   }
 
   // Thai Logic
-  const titlePrefix = gender === 'F' ? 'พญ.' : 'นพ.';
+  const titlePrefix = gender === 'F' ? 'พญ.' : gender === 'M' ? 'นพ.' : '';
 
   switch (rank) {
     case 'MS5': return `นศพ. ${name} ปี 5`;
-    case 'MS6': return `Ext. ${name}`;
-    case 'Intern': return `Int. ${name}`;
+    case 'MS6': return `extern ${name}`;
+    case 'Intern': return `intern ${name}`;
     case 'R1': return `R1 ${name}`;
     case 'R2': return `R2 ${name}`;
     case 'R3': return `R3 ${name}`;
@@ -37,6 +37,17 @@ export const getLocalizedRankTitle = (
     default: return `${rank} ${name}`;
   }
 };
+
+/** Rank as a ward would say it, without a name: "R1", "intern", "ผศ." */
+export const RANK_SHORT_TH: Record<string, string> = {
+  MS5: "นศพ. ปี 5", MS6: "extern", Intern: "intern", "Asst. Prof": "ผศ.", "Assoc. Prof": "รศ.", Prof: "ศ.",
+};
+
+/** Medical school as stored in the save, shown the way students say it */
+export const UNIVERSITY_TH: Record<string, string> = {
+  Rama: "รามาธิบดี", Siriraj: "ศิริราช", Chula: "จุฬาฯ", ChiangMai: "เชียงใหม่", KhonKaen: "ขอนแก่น", Other: "ที่อื่น",
+};
+export const universityTh = (u?: string) => (u ? UNIVERSITY_TH[u] ?? u : "");
 
 export const translate = (key: string, lang: 'en' | 'th'): string => {
   const dict: Record<string, { en: string, th: string }> = {

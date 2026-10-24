@@ -1,0 +1,14 @@
+cc: ใจสั่นเร็วทันที เวียนหัวมาก
+bg: คนไข้มา ER ด้วยใจสั่นเร็วขึ้นมาทันที ตอนนี้เวียนหัวมาก หน้าซีด
+i.ecg1: Narrow complex tachycardia rate 185 ไม่เห็น P wave regular
+start.n: EKG ยืนยัน SVT BP 80/50 เวียนหัว เหงื่อแตก แปลว่าเป็น unstable tachycardia ตาม ACLS
+start.o0: Synchronized cardioversion 50-100 J
+start.o1: Adenosine 6 mg IV rapid push
+start.o2: Unsynchronized defib 200 J
+start.o3: Vagal maneuver
+correct_cardioversion.n: Synchronized cardioversion ครั้งเดียว rhythm กลับเป็น sinus เลย BP ดีขึ้น หายเวียนหัว
+wrong_adenosine.n: ใน unstable regular narrow-complex tachycardia ลอง adenosine ได้แค่ระหว่างรอเตรียม cardioversion ไม่ใช่ให้แทน เคสนี้มันทำให้ shock ช้าไป คนไข้หมดสติ
+wrong_adenosine.o0: ไปทำ synchronized cardioversion
+wrong_defib.n: Shock แบบไม่ sync ไปตกช่วง relative refractory (R-on-T) คนไข้เข้า VF cardiac arrest
+wrong_vagal.n: Vagal maneuver ใช้เวลาและไม่ได้ผลในคนไข้ที่ unstable คนไข้แย่ลงเรื่อยๆ
+wrong_vagal.o0: ไปทำ synchronized cardioversion

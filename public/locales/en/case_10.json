@@ -197,6 +197,17 @@
           "y": 200
         },
         "data": {
+          "choice": "Suction, jaw thrust and bag-mask ventilation",
+          "distractors": [
+            {
+              "label": "Give naloxone 2 mg IV before touching the airway",
+              "feedback": "Hypoxia is what kills him. Open the airway and ventilate first. Large naloxone doses cause violent withdrawal and vomiting."
+            },
+            {
+              "label": "Place him in recovery position and wait",
+              "feedback": "He is hypoventilating with low saturations. He needs active airway support and bag-mask ventilation."
+            }
+          ],
           "label": "Airway first: suction, jaw thrust and bag-mask ventilation with oxygen",
           "actions": [
             "Suction airway",
@@ -216,6 +227,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Skip the glucose, the cause is obviously opioids",
+              "feedback": "Hypoglycaemia mimics or coexists with overdose and is quick to exclude. Always check glucose."
+            },
+            {
+              "label": "CT brain before any further treatment",
+              "feedback": "There is a clear toxidrome. Monitoring, glucose and access come first, and imaging can wait."
+            }
+          ],
           "label": "Check glucose and attach monitoring",
           "actions": [
             "Capillary glucose",
@@ -233,12 +254,23 @@
           "y": 200
         },
         "data": {
+          "choice": "Naloxone 0.04-0.4 mg IV, titrated to breathing",
+          "distractors": [
+            {
+              "label": "Naloxone until he is fully awake and talking",
+              "feedback": "The goal is adequate breathing, not full arousal. Titrating to consciousness precipitates severe withdrawal."
+            },
+            {
+              "label": "Flumazenil in case benzodiazepines are involved",
+              "feedback": "Flumazenil can trigger seizures in mixed overdoses or chronic benzodiazepine users. It is not routine."
+            }
+          ],
           "label": "Titrated naloxone to restore ventilation, not consciousness",
           "actions": [
             "Naloxone IV"
           ],
           "doseMap": {
-            "Naloxone IV": "0.04 to 0.4 mg IV, repeat every 2-3 min up to 2 mg. Aim for a respiratory rate above 12, not a fully awake patient. Use 0.4-0.8 mg IM if there is no IV access"
+            "Naloxone IV": "Start at 0.04 to 0.4 mg IV, repeat every 2-3 min and escalate as needed. Aim for a respiratory rate above 12, not a fully awake patient. No response after 10 mg in total means look for another cause. Use 0.4-0.8 mg IM if there is no IV access"
           }
         }
       },
@@ -284,6 +316,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Discharge as soon as he is awake after naloxone",
+              "feedback": "Naloxone wears off before many opioids do. Observe for re-sedation for at least 4 to 6 hours."
+            },
+            {
+              "label": "Ignore the CK, he is young and fit",
+              "feedback": "A long down time causes rhabdomyolysis. Check CK and give IV fluids to protect the kidneys."
+            }
+          ],
           "label": "Observe for re-sedation and treat rhabdomyolysis",
           "actions": [
             "Monitored observation at least 4-6 hours after the last naloxone dose",
@@ -326,15 +368,27 @@
           "y": 200
         },
         "data": {
-          "label": "Discharge planning with take-home naloxone and treatment linkage",
+          "choice": "Methadone clinic referral and an overdose plan",
+          "distractors": [
+            {
+              "label": "Discharge with a lecture about drug use and no follow-up",
+              "feedback": "Recent rehab discharge means lost tolerance and very high overdose risk. Link him to a methadone clinic and give an overdose plan."
+            },
+            {
+              "label": "Call the police before discharge",
+              "feedback": "Clinical care does not require police notification for drug use. It damages trust and deters future help seeking."
+            }
+          ],
+          "label": "Discharge planning with treatment linkage and an overdose plan",
           "actions": [
-            "Take-home naloxone kit with training for patient and brother",
-            "Buprenorphine initiation or addiction service referral",
+            "Methadone maintenance clinic referral",
+            "Naloxone through a harm reduction programme",
             "Hepatitis C and HIV screening offer",
-            "Written overdose prevention advice"
+            "Written overdose advice for him and his brother"
           ],
           "doseMap": {
-            "Buprenorphine initiation or addiction service referral": "Start when the Clinical Opiate Withdrawal Scale is above 12 to avoid precipitated withdrawal"
+            "Methadone maintenance clinic referral": "Many Thai government hospitals run methadone maintenance clinics. Buprenorphine programmes are not generally available in Thailand.",
+            "Naloxone through a harm reduction programme": "Take-home naloxone is not routine in Thai hospitals, but outreach programmes for people who inject drugs carry it."
           }
         }
       },
@@ -348,7 +402,7 @@
         "data": {
           "label": "Disposition",
           "outcomeType": "resolved",
-          "narrative": "After 12 hours he is off the infusion, ventilating normally, and creatine kinase is falling on fluids. He leaves with a naloxone kit, his brother has been trained to use it, and he has an appointment with the addiction service in two days.",
+          "narrative": "After 12 hours he is off the infusion, breathing normally, and his creatine kinase is falling on fluids. He leaves with a methadone clinic appointment in two days. His brother knows the recovery position and has the number of the outreach team, who carry naloxone.",
           "vitalChanges": {
             "hr": 76,
             "sbp": 116,

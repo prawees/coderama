@@ -1,0 +1,69 @@
+cc: ไข้ ใจสั่น กระสับกระส่าย
+bg: U/D Graves disease วินิจฉัยเมื่อ 2 ปีก่อน หยุด methimazole เองเมื่อ 4 เดือนก่อนตอนรู้ว่าตั้งครรภ์ เพราะอ่านในเน็ตว่ายาทำอันตรายต่อทารก และไม่ได้บอกใคร ตอนนี้ตั้งครรภ์ 22 สัปดาห์ เป็น UTI มา 4 วัน 36 ชม. ที่ผ่านมามีไข้ กระสับกระส่าย สับสน ญาติพามาตอนเริ่มพูดไม่รู้เรื่อง
+i.tft1: Thyrotoxicosis รุนแรงทาง biochemistry ระดับฮอร์โมนแยก storm จาก thyrotoxicosis ธรรมดาไม่ได้ thyroid storm วินิจฉัยทาง clinical จากการทำงานของอวัยวะที่ผิดปกติ และห้ามรอผลก่อนรักษา
+i.burch1: Temp 40.2 (30 คะแนน), กระสับกระส่ายรุนแรงและ delirium (20), ท้องเสีย (10), HR เกิน 140 (25), pulmonary congestion (10), มีตัวกระตุ้น (10) คะแนนเกิน 45 ชี้ไปทาง storm มาก
+i.ecg1: AF with rapid ventricular response 168/min ไม่มี ischemic ST change, AF เจอใน thyrotoxicosis 10 ถึง 35% และเป็นอาการนำที่พบบ่อยในวัยนี้
+i.lft1: Jaundice ร่วมกับตับทำงานผิดปกติจาก congestion ตัวเหลืองใน thyroid storm เป็นพยากรณ์ไม่ดี และทำให้ใช้ thionamide ยากขึ้นเพราะตัวยาเองก็เป็นพิษต่อตับ
+i.ua1: UTI เป็นตัวกระตุ้น thyroid storm แทบทุกครั้งมีตัวกระตุ้น ถ้าไม่หาและไม่รักษา storm จะไม่สงบ
+i.gluc1: Hyperglycemia และ hypercalcemia เป็นลักษณะที่รู้จักของ thyrotoxicosis จาก bone turnover ที่เพิ่มขึ้น
+req1.l: รักษาตาม clinical ไม่ต้องรอผล TFT
+req1.c: รักษาเลยตาม Burch-Wartofsky score
+req1.d0: รอผล TFT ก่อนรักษา
+req1.f0: Thyroid storm วินิจฉัยทาง clinical รักษาตาม Burch-Wartofsky score
+req1.d1: ให้ aspirin ลดไข้
+req1.f1: Aspirin แทนที่ thyroid hormone จาก binding protein ทำให้ storm แย่ลง ใช้ paracetamol
+req1.m0: Aspirin แทนที่ thyroid hormone จาก TBG ทำให้ free hormone สูงขึ้นและ storm แย่ลง เป็นความผิดพลาดเฉพาะที่เกิดบ่อย
+req1.a0: คำนวณ Burch-Wartofsky score
+req1.a1: ติด monitor หัวใจต่อเนื่อง
+req1.a2: เปิดเส้นและเจาะเลือดรวม TFT
+req1.a3: Cooling แบบ active กับ paracetamol ห้าม aspirin
+req2.l: Beta-blocker ก่อน คุม adrenergic storm
+req2.d0: ให้ iodine ก่อน block การหลั่งฮอร์โมน
+req2.f0: Beta-blocker ก่อนคุมฤทธิ์ adrenergic ส่วน iodine ต้องรอหลัง thionamide
+req2.d1: ห้ามใช้ beta-blocker เลยเพราะตั้งครรภ์
+req2.f1: ใช้ propranolol ในคนตั้งครรภ์ที่เป็น thyroid storm ได้ ระวังถ้ามี heart failure
+req2.m0: 1 mg IV ช้าๆ ซ้ำได้ หรือ 60 ถึง 80 mg กินทุก 4 ถึง 6 ชม. เลือก propranolol เพราะขนาดสูงยัง block การเปลี่ยน T4 เป็น T3 ที่ส่วนปลายด้วย
+req2.m1: เป็น high output failure ไม่ใช่ pump failure ยังมี indication ให้ beta-blocker แต่ titrate ด้วย esmolol drip จะได้หยุดทันถ้า output ตก
+req2.a0: Propranolol IV หรือกิน
+req2.a1: Esmolol drip ถ้าต้อง titrate
+req2.a2: ให้อย่างระวังเพราะมีหัวใจวาย
+req3.l: Thionamide ก่อน iodine ลำดับสำคัญ
+req3.c: PTU เดี๋ยวนี้ iodine อีก 1 ชม. และ hydrocortisone
+req3.d0: ให้ iodine ก่อน thionamide
+req3.f0: ให้ iodine ก่อน thionamide เท่ากับให้วัตถุดิบสร้างฮอร์โมนเพิ่ม thionamide ก่อน iodine อีก 1 ชม.
+req3.d1: ให้ hydrocortisone อย่างเดียว ไม่ต้องให้ thionamide
+req3.f1: Steroid ช่วย block การเปลี่ยนที่ส่วนปลาย แต่ไม่ได้หยุดการสร้างฮอร์โมน ต้องมี thionamide
+req3.m0: Loading 600 mg แล้ว 200 ถึง 250 mg ทุก 4 ชม. ใน storm ดีกว่า methimazole เพราะ block การเปลี่ยน T4 เป็น T3 ที่ส่วนปลายด้วย และเลือกใช้ในไตรมาสแรก แม้ตอนนี้จะ 22 สัปดาห์แล้ว
+req3.m1: Lugol's iodine หรือ potassium iodide อย่างน้อย 1 ชม. หลัง thionamide ให้ iodine ก่อนเท่ากับให้วัตถุดิบสร้างฮอร์โมนใหม่และทำให้ storm แย่ลง ลำดับนี้คือบทเรียนที่คุ้มที่สุดของเคส
+req3.m2: 100 mg IV ทุก 8 ชม. block การเปลี่ยนที่ส่วนปลายและรักษา relative adrenal insufficiency ใน storm
+req3.a0: PTU (เลือกตัวนี้ในเคสนี้)
+req3.a1: ตามด้วย iodine หลังอย่างน้อย 1 ชม.
+req3.a2: Hydrocortisone IV
+req4.l: รักษาตัวกระตุ้น และประคับประคอง
+req4.d0: ยังไม่ต้องสนใจ UTI จน storm สงบ
+req4.f0: การติดเชื้อคือตัวกระตุ้น รักษาเดี๋ยวนี้
+req4.d1: ยังไม่ต้อง consult สูติจนกว่าจะ stable
+req4.f1: ครรภ์ 22 สัปดาห์ การ monitor ทารกและ consult สูติเป็นส่วนหนึ่งของ resuscitation
+req4.m0: Metabolic rate สูงทำให้ glycogen หมด ต้องการ fluid มากจากไข้ เหงื่อ และท้องเสีย
+req4.a0: Antibiotic รักษา UTI
+req4.a1: IV fluid ที่มี dextrose
+req4.a2: ลดอุณหภูมิ
+req4.a3: Monitor ทารกในครรภ์และให้สูติฯ ร่วมดูแล
+out1.l: ตอบสนองช่วงแรก
+out1.n: HR ลดลงเป็น 118 ใน 4 ชม. ด้วย esmolol ไข้ลงเป็น 38.4 ด้วย cooling ยังมี delirium FHR ลงมานิ่งที่ 152 เมื่อแม่ดีขึ้น เป็นรูปแบบที่คาดไว้
+ethical_1.l: คุยเรื่องที่หยุดยาเองโดยไม่ทำให้เธอรู้สึกโง่ (Empathy)
+ethical_1.n: เธอหยุดยาที่ช่วยชีวิตเพราะสิ่งที่อ่านตอนตั้งครรภ์และกำลังกลัว และไม่ได้บอกหมอเพราะคิดว่าจะโดนดุ พอเธอรู้สึกตัวดี หมอบอกว่า thyrotoxicosis ที่ไม่ได้รักษาตอนตั้งครรภ์อันตรายต่อทารกมากกว่ายาหลายเท่า สัญชาตญาณที่อยากปกป้องลูกนั้นถูกแล้ว แม้ข้อสรุปจะผิด และสิ่งสำคัญตอนนี้คือเธอบอกหมอได้ทุกครั้งที่กังวลเรื่องยา หมอจัดนัด endocrine กับสูติร่วมกัน แทนที่จะเป็นสองคลินิกแยกที่เธอต้องเดินหาเอง
+req5.l: Admit ICU และวางแผนการรักษาระยะยาว
+req5.d0: หยุดยาทั้งหมดเมื่อ HR ลงแล้ว
+req5.f0: ค่อยๆ ลดยาภายใต้ endocrine เพื่อไม่ให้กลับเป็นซ้ำ
+req5.d1: ให้ radioactive iodine เป็นการรักษา definitive ตอนนี้
+req5.f1: Radioactive iodine ห้ามใช้ในคนตั้งครรภ์
+req5.m0: 4 g วันละ 4 ครั้ง ตัด enterohepatic recirculation ของ thyroid hormone มีประโยชน์ถ้าตอบสนองช้า
+req5.a0: Admit ICU หรือ high dependency
+req5.a1: ให้ยาสี่ตัวต่อแล้วค่อยๆ ลด
+req5.a2: Cholestyramine ถ้าระดับฮอร์โมนยังสูงมาก
+req5.a3: Endocrine และสูติฯ ดูแลร่วมกัน
+out2.l: หาย
+out2.n: ไข้ลงภายใน 36 ชม. delirium หายวันที่ 3 กลับเป็น sinus rhythm เองวันที่ 4 ไม่ต้องให้ anticoagulant free T4 ลงเหลือ 32 pmol/L วันที่ 5 ครรภ์ดำเนินต่อ U/S ดูความผิดปกติทารกปกติ
+out3.l: Disposition
+out3.n: D/C วันที่ 8 ด้วย PTU เจาะ TFT ทุกสัปดาห์ นัดคลินิกร่วม การรักษา definitive ด้วย radioiodine หรือผ่าตัดเลื่อนไปหลังคลอด เพราะ radioiodine ห้ามใช้เด็ดขาดในคนตั้งครรภ์ คลอดลูกแข็งแรงที่ 38 สัปดาห์

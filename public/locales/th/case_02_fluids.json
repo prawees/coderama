@@ -1,13 +1,16 @@
 {
-  "title": "45yo F - Fluids & Resuscitation",
+  "title": "45yo F Severe Hyponatraemia with Hypovolaemia",
   "age": "45",
   "sex": "F",
-  "chiefComplaint": "Severe vomiting, diarrhea, and confusion",
+  "chiefComplaint": "อาเจียน ถ่ายเหลว 3 วัน วันนี้สับสน",
   "diagnoses": [
-    "Hypovolemic Shock",
-    "Hyponatremia"
+    "Hypovolaemic hyponatraemia",
+    "Thiazide-associated hyponatraemia",
+    "Hypovolaemic shock",
+    "SIADH",
+    "Heart failure decompensation"
   ],
-  "background": "Patient has a history of congestive heart failure. She presents with severe dehydration from 3 days of gastroenteritis. She is lethargic and hypotensive. Caution: High risk of fluid overload and cerebral edema if fluids are aggressively mismanaged.",
+  "background": "U/D HFrEF กิน furosemide กับ HCTZ อยู่ 3 วันก่อนมารพ. อาเจียน ถ่ายเป็นน้ำ ดื่มแต่น้ำเปล่า วันนี้เริ่มสับสน มีกระตุกแป๊บหนึ่งบนแท็กซี่",
   "patientAppearance": {
     "skinTone": "#e2b88b",
     "bmiFactor": 1.1,
@@ -74,132 +77,232 @@
       "id": "chem1",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Sodium",
+      "name": "Na",
       "value": "118",
       "unit": "mmol/L",
       "normalRange": "135-145",
       "abnormal": true,
-      "report": "Severe Hyponatremia"
+      "report": "Severe hyponatremia"
     },
     {
       "id": "chem2",
       "kind": "lab",
       "category": "Elytes",
-      "name": "Potassium",
+      "name": "K",
       "value": "3.1",
       "unit": "mmol/L",
       "normalRange": "3.5-5.0",
       "abnormal": true,
       "report": "Hypokalemia"
+    },
+    {
+      "id": "osm1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Serum osmolality",
+      "value": "248",
+      "unit": "mOsm/kg",
+      "normalRange": "275-295",
+      "abnormal": true,
+      "report": "Hypotonic แปลว่าเป็น true hyponatremia ไม่ใช่ pseudohyponatremia"
+    },
+    {
+      "id": "osm2",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Urine Na",
+      "value": "12",
+      "unit": "mmol/L",
+      "normalRange": "-",
+      "abnormal": true,
+      "report": "Urine Na ต่ำ บอกว่า volume depletion และฤทธิ์ diuretic เริ่มหมดแล้ว"
+    },
+    {
+      "id": "osm3",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Urine osmolality",
+      "value": "520",
+      "unit": "mOsm/kg",
+      "normalRange": "-",
+      "abnormal": true,
+      "report": "Urine เข้มข้น ADH ถูกกระตุ้นจาก volume ต่ำ พอเติม volume กลับมา ADH จะปิดเอง"
     }
   ],
   "managementGraph": {
     "nodes": [
       {
-        "id": "start",
+        "id": "start1",
         "type": "start",
         "position": {
           "x": 0,
-          "y": 0
+          "y": 200
         },
         "data": {
           "label": "Start"
         }
       },
       {
-        "id": "fluids_normal",
-        "type": "intervention",
+        "id": "req1",
+        "type": "required",
         "position": {
-          "x": 200,
-          "y": 100
-        },
-        "data": {
-          "label": "Normal Saline 0.9%",
-          "actions": [
-            "Normal Saline (0.9% NaCl) IV"
-          ],
-          "requiredRank": "Intern"
-        }
-      },
-      {
-        "id": "fluids_hyper",
-        "type": "intervention",
-        "position": {
-          "x": 200,
+          "x": 240,
           "y": 200
         },
         "data": {
-          "label": "Hypertonic Saline 3%",
+          "label": "ให้ 3% NaCl bolus เพราะอาการรุนแรง",
           "actions": [
-            "Hypertonic Saline (3% NaCl) IV"
+            "3% NaCl 150 mL IV ใน 20 นาที",
+            "เจาะ Na ซ้ำหลัง bolus",
+            "ให้ซ้ำอีกครั้งถ้ายังมีอาการ"
           ],
-          "requiredRank": "R3"
+          "doseMap": {
+            "3% NaCl 150 mL IV ใน 20 นาที": "เป้าคือ Na ขึ้น 4 ถึง 6 mmol/L ในชั่วโมงแรกๆ แค่นี้ก็พอแก้ cerebral edema แล้ว จากนั้นหยุด 3% NaCl"
+          },
+          "distractors": [
+            {
+              "label": "Load NSS 2 ลิตรเร็วๆ แก้ทั้ง shock ทั้ง Na ไปพร้อมกัน",
+              "feedback": "พอ volume กลับมา ADH ปิด คนไข้จะฉี่น้ำออกมาเยอะ Na ขึ้นได้ 15 mmol/L ในคืนเดียว เสี่ยง osmotic demyelination ให้ 3% bolus เล็กๆ แก้สมองก่อน แล้วค่อยเติม volume ทีละนิด"
+            },
+            {
+              "label": "Fluid restriction 1 ลิตรต่อวัน แล้วเจาะซ้ำพรุ่งนี้",
+              "feedback": "Fluid restriction ใช้กับ euvolemic SIADH เคสนี้สับสน มีอาการคล้ายชัก แล้วก็ dry อาการรุนแรงแบบนี้ต้องให้ hypertonic saline เลย"
+            }
+          ],
+          "requiredRank": "R1"
         }
       },
       {
-        "id": "fluids_d5w",
-        "type": "intervention",
-        "position": {
-          "x": 200,
-          "y": 300
-        },
-        "data": {
-          "label": "D5W",
-          "actions": [
-            "D5W IV"
-          ],
-          "requiredRank": "Intern"
-        }
-      },
-      {
-        "id": "out_correct",
+        "id": "out1",
         "type": "outcome",
         "position": {
-          "x": 500,
-          "y": 100
+          "x": 480,
+          "y": 200
         },
         "data": {
-          "label": "Stabilized",
+          "label": "อาการทางสมองดีขึ้น",
           "outcomeType": "improved",
-          "narrative": "Fluid resuscitation with Normal Saline improves blood pressure. Sodium is correcting at a safe rate.",
+          "narrative": "Na ขึ้นจาก 118 เป็น 122 หลัง bolus เดียว หยุดกระตุก ตอบคำถามได้ 3% NaCl มีไว้แค่ 4 mmol/L นี้เท่านั้น",
           "vitalChanges": {
-            "hr": 105,
-            "sbp": 95,
+            "hr": 124,
+            "sbp": 80,
+            "dbp": 44,
             "gcs": 13
           }
         }
       },
       {
-        "id": "out_overload",
-        "type": "outcome",
+        "id": "ethical_1",
+        "type": "ethicalChoice",
         "position": {
-          "x": 500,
+          "x": 720,
+          "y": 400
+        },
+        "data": {
+          "label": "อธิบายลูกสาวว่าทำไมตั้งใจแก้ Na ช้าๆ",
+          "ethicalValue": 10,
+          "narrative": "ลูกสาวอยากให้ค่ากลับปกติภายในคืนนี้ หมออธิบายว่าสมองปรับตัวมาหลายวัน ก็ต้องให้เวลาปรับกลับหลายวันเหมือนกัน เธอเลิกขอให้เร่งน้ำเกลือ แล้วหยิบสมุดขึ้นมาจดเวลาแทน"
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 960,
           "y": 200
         },
         "data": {
-          "label": "Osmotic Demyelination",
-          "outcomeType": "critical",
-          "narrative": "Hypertonic saline caused overly rapid sodium correction in a chronic setting, risking osmotic demyelination syndrome.",
+          "choice": "NSS ทีละ 250 mL แล้ว reassess ทุกรอบ",
+          "label": "ให้ isotonic bolus ทีละน้อย แก้ hypovolemia แล้ว reassess ทุกครั้ง",
+          "actions": [
+            "NSS ทีละ 250 mL",
+            "Lung US และฟังปอดหลังให้ทุกครั้ง",
+            "หยุด furosemide และ thiazide",
+            "ให้ K ทดแทน"
+          ],
+          "doseMap": {
+            "NSS ทีละ 250 mL": "Reassess ทุก bolus หยุดเมื่อ perfusion ดีขึ้นหรือเริ่มเห็น B-lines HF ทำให้ margin แคบลง แต่ไม่ได้แปลว่าให้น้ำไม่ได้",
+            "ให้ K ทดแทน": "KCl 10 mmol/h IV และ K ก็ดัน serum Na ขึ้นด้วย ต้องนับรวมใน correction budget"
+          },
+          "distractors": [
+            {
+              "label": "งด IV fluid ทั้งหมดเพราะเป็น HF",
+              "feedback": "คนไข้ BP ต่ำ dry จาก loss มา 3 วัน ให้ bolus เล็กๆ แล้ว reassess ปลอดภัยและจำเป็น"
+            },
+            {
+              "label": "ให้ furosemide กันน้ำเกิน",
+              "feedback": "คนไข้ volume depleted อยู่ และ diuretic คือต้นเหตุ ให้ furosemide ยิ่ง shock หนัก หยุด diuretic ทั้งสองตัว"
+            }
+          ]
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "Perfusion กลับมา แล้วตามด้วย water diuresis",
+          "outcomeType": "improved",
+          "narrative": "หลังให้ไป 750 mL BP 104/62 แล้ว urine ก็พุ่ง ฉี่ใสๆ 250 mL ในชั่วโมงเดียว ADH ปิดแล้ว Na จะขึ้นเองต่อจากนี้",
           "vitalChanges": {
-            "gcs": 6
+            "hr": 98,
+            "sbp": 104,
+            "dbp": 62,
+            "gcs": 14
           }
         }
       },
       {
-        "id": "out_edema",
-        "type": "outcome",
+        "id": "req3",
+        "type": "required",
         "position": {
-          "x": 500,
-          "y": 300
+          "x": 1440,
+          "y": 200
         },
         "data": {
-          "label": "Cerebral Edema",
-          "outcomeType": "critical",
-          "narrative": "D5W (free water) exacerbated the severe hyponatremia, leading to rapid cellular swelling and cerebral edema.",
+          "choice": "เจาะ Na ทุก 2-4 ชม. ขึ้นไม่เกิน 8 ใน 24 ชม.",
+          "label": "เฝ้าระวัง overcorrection แล้วหยุดไว้ก่อนถึง limit",
+          "actions": [
+            "เจาะ Na ทุก 2 ถึง 4 ชม.",
+            "Urine output ทุกชั่วโมง",
+            "ให้ Na ขึ้นไม่เกิน 8 mmol/L ใน 24 ชม.",
+            "Desmopressin กับ D5W ถ้าใกล้ถึงเพดาน"
+          ],
+          "doseMap": {
+            "ให้ Na ขึ้นไม่เกิน 8 mmol/L ใน 24 ชม.": "คนไข้มี risk ของ osmotic demyelination 3 ข้อ: Na < 120, K ต่ำ และเป็นมาหลายวัน",
+            "Desmopressin กับ D5W ถ้าใกล้ถึงเพดาน": "Desmopressin 2 mcg IV หยุด water diuresis ได้ ถ้า Na ขึ้นเร็วเกินไปแล้วให้ D5W 3 mL/kg/h ดึงกลับลงมา"
+          },
+          "distractors": [
+            {
+              "label": "ตั้งเป้าให้ Na ถึง 135 ภายในวันนี้",
+              "feedback": "แก้ Na เกิน 8 ถึง 10 mmol/L ใน 24 ชม. เสี่ยง osmotic demyelination ซึ่งจะโผล่มาหลายวันให้หลัง และมักไม่หาย"
+            },
+            {
+              "label": "เจาะ Na ซ้ำพรุ่งนี้เช้า",
+              "feedback": "Water diuresis ดัน Na ขึ้นได้ชั่วโมงละ 2 mmol/L ต้องเจาะทุก 2 ถึง 4 ชม. ถึงจะจับ overcorrection ได้ทัน"
+            }
+          ]
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "แก้ Na ได้อย่างปลอดภัย",
+          "outcomeType": "resolved",
+          "narrative": "Na 125 ที่ 24 ชม. และ 131 ที่ 48 ชม. ให้ desmopressin หยุด water diuresis ไปตอนชั่วโมงที่ 10 ไม่มี neuro deficit หยุด thiazide ถาวร และส่งเรื่องให้คลินิก HF รู้เหตุผลด้วย",
           "vitalChanges": {
-            "gcs": 4,
-            "hr": 45,
-            "sbp": 160
+            "hr": 86,
+            "sbp": 112,
+            "dbp": 66,
+            "gcs": 15
           }
         }
       }
@@ -207,33 +310,43 @@
     "edges": [
       {
         "id": "e1",
-        "source": "start",
-        "target": "fluids_normal"
+        "source": "start1",
+        "target": "req1"
       },
       {
         "id": "e2",
-        "source": "start",
-        "target": "fluids_hyper"
+        "source": "req1",
+        "target": "out1"
       },
       {
         "id": "e3",
-        "source": "start",
-        "target": "fluids_d5w"
+        "source": "out1",
+        "target": "ethical_1"
       },
       {
         "id": "e4",
-        "source": "fluids_normal",
-        "target": "out_correct"
+        "source": "ethical_1",
+        "target": "req2"
       },
       {
         "id": "e5",
-        "source": "fluids_hyper",
-        "target": "out_overload"
+        "source": "out1",
+        "target": "req2"
       },
       {
         "id": "e6",
-        "source": "fluids_d5w",
-        "target": "out_edema"
+        "source": "req2",
+        "target": "out2"
+      },
+      {
+        "id": "e7",
+        "source": "out2",
+        "target": "req3"
+      },
+      {
+        "id": "e8",
+        "source": "req3",
+        "target": "out3"
       }
     ]
   }

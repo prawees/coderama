@@ -31,6 +31,8 @@ export interface CutsceneChoice {
   karmaEffect?: number;
   flagEffect?: string;
   xpEffect?: number;
+  /** hub-only: run this instead of following nextId (used by world chats and gifting) */
+  onPick?: () => void;
 }
 
 export interface CutsceneNode {
@@ -42,6 +44,8 @@ export interface CutsceneNode {
   nextId?: string;
   flagEffect?: string;
   xpEffect?: number;
+  /** dialogue blip pitch */
+  voice?: number;
 }
 
 export const STORY_CAMPAIGN: Record<number, {
@@ -86,7 +90,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd1_s_04',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "You are the new intern. Don't answer, I can smell it. New shoes. Nobody with two years in this place buys white shoes.",
+        text: "You are the new medical student. Don't answer, I can smell it. New shoes. Nobody with two years in this place buys white shoes.",
         nextId: 'd1_s_05',
       },
       {
@@ -191,14 +195,22 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd1_s_close',
         speaker: 'System',
-        text: "The monitor at the nursing station cycles through nine names. One of them is going to die tonight. The screen does not indicate which.",
+        text: "The monitor at the nursing station cycles through nine names. One of them is going to make this the shift you remember for the rest of your life. The screen does not indicate which.",
         nextId: 'd1_s_close_02',
       },
       {
         id: 'd1_s_close_02',
         speaker: 'System',
-        text: "SHIFT START.",
+        text: "You get halfway through Prasit's history before the pager goes. SHIFT START.",
       },
+    ],
+    midShiftEvents: [
+      { id: 'd1_m_01', speaker: "System", text: "On the way back from resus something soft winds round your ankles. A fat orange cat is sitting on the drug trolley as if it owns the building.", nextId: 'd1_m_02' },
+      { id: 'd1_m_02', speaker: "Nurse Ann", text: "That is Kanom. She has been here longer than Bob. Do not feed her, because everyone already has.", nextId: 'd1_m_03' },
+      { id: 'd1_m_03', speaker: "Dr. Bob", text: "I have never fed that cat. Not once.", nextId: 'd1_m_04' },
+      { id: 'd1_m_04', speaker: "System", text: "Kanom jumps straight into Bob's lap and pushes her head into his coat pocket, where half a crispy mackerel is sticking out.", choices: [{ text: "Scratch Kanom behind the ears.", nextId: 'd1_m_pet' }, { text: "Ask Bob about the mackerel.", nextId: 'd1_m_fish' }] },
+      { id: 'd1_m_pet', speaker: "Nurse Ann", text: "She is purring louder than the whole row of monitors. She has picked you. That usually takes six months. It took Bob three years." },
+      { id: 'd1_m_fish', speaker: "Dr. Bob", text: "She is the department's cat, and the department looks after its own. Write that down. It is the only free lesson you get tonight." },
     ],
     endOfDayCutscene: [
       {
@@ -239,7 +251,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd1_e_06',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "The chart needs a co-signature from the receiving intern. That is you. Sign it, the audit closes, everyone goes home.",
+        text: "You clerked him at three. Your name is in the admitting column, so the discharge note needs your signature too. Sign it, the audit closes, everyone goes home.",
         nextId: 'd1_e_07',
       },
       {
@@ -339,7 +351,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd1_e_refuse_02',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "I have been doing this for nine years and no intern has ever said no to me. Not one. Do you want to know why? Because the ones who say no get scheduled into the ground until they say yes.",
+        text: "I have been doing this for nine years and no student has ever said no to me. Not one. Do you want to know why? Because the ones who say no get scheduled into the ground until they say yes.",
         nextId: 'd1_e_refuse_03',
       },
       {
@@ -424,7 +436,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 1 COMPLETE.",
       },
     ],
-    cases: ['case_01', 'case_02_fluids', 'case_05_asthma'],
+    cases: ['case_01', 'case_02_fluids', 'case_05_asthma', 'case_07'],
   },
 
   /* ----------------------------------------------------------------------
@@ -530,7 +542,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd2_s_09',
         speaker: 'Prof. Somchai',
         portrait: '/assets/director.jpg',
-        text: "The step-down order requires an admitting physician's signature. I am asking the intern because the intern has not yet learned to be expensive.",
+        text: "The step-down needs a note saying she is fit to move. I am asking the new one to write it, because the new one has not yet learned to be expensive.",
         nextId: 'd2_s_10',
       },
       {
@@ -540,7 +552,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "Consider what a hospital is. It is a building that runs on money it does not have. Khun Wichai's family funds the dialysis programme. Nine hundred patients. Weigh nine hundred against one and tell me you are the ethical party in this conversation.",
         choices: [
           {
-            text: "Sign the step-down. Nine hundred is a real number.",
+            text: "Write the note. Nine hundred is a real number.",
             nextId: 'd2_s_obey_01',
             karmaEffect: -50,
             flagEffect: 'MOVED_MALAI',
@@ -554,7 +566,7 @@ export const STORY_CAMPAIGN: Record<number, {
             xpEffect: 2000,
           },
           {
-            text: "\"I'll sign it if you sign it with me. Director and intern, both names.\"",
+            text: "\"I'll write it if you countersign it. Director and student, both names.\"",
             nextId: 'd2_s_clever_01',
             karmaEffect: 25,
             flagEffect: 'FORCED_SOMCHAI_SIGNATURE',
@@ -649,6 +661,15 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "SHIFT START.",
       },
     ],
+    midShiftEvents: [
+      { id: 'd2_m_01', speaker: "Auntie Noi", text: "New doctor, over here. Hot khanom krok. Auntie makes them for the Tuesday evening shift every week, eleven years now.", nextId: 'd2_m_02' },
+      { id: 'd2_m_02', speaker: "Auntie Noi", text: "One left. You choose who gets it. Auntie can tell everything about a person in this building by who they give the last one to.", choices: [{ text: "Take it to Ann.", nextId: 'd2_m_ann' }, { text: "Take it to Bob.", nextId: 'd2_m_bob' }, { text: "Eat it yourself.", nextId: 'd2_m_self' }] },
+      { id: 'd2_m_ann', speaker: "Nurse Ann", text: "My favourite. I have not eaten anything today. Thank you.", nextId: 'd2_m_ann_02' },
+      { id: 'd2_m_ann_02', speaker: "System", text: "Ann eats half. She leaves the other half beside the drug cupboard for whoever is having a worse shift." },
+      { id: 'd2_m_bob', speaker: "Dr. Bob", text: "I do not like sweet things.", nextId: 'd2_m_bob_02' },
+      { id: 'd2_m_bob_02', speaker: "System", text: "The cup is empty within two seconds. Auntie Noi laughs so hard she has to hold the counter." },
+      { id: 'd2_m_self', speaker: "Auntie Noi", text: "Good. People who know how to look after themselves last in the ER. Auntie approves." },
+    ],
     endOfDayCutscene: [
       {
         id: 'd2_e_01',
@@ -689,7 +710,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd2_e_lost_02',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "She rearrested at 01:23. We got her back. She is intubated now, and she has been without adequate perfusion for long enough that we will be having a very different conversation with her family in the morning.",
+        text: "Her saturation fell to seventy at 01:23. I happened to be walking past. She is back in intensive care on double the noradrenaline, and she will live, but she lived because I was passing, not because anything here is built to catch her.",
         nextId: 'd2_e_lost_03',
       },
       {
@@ -757,7 +778,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd2_e_10',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "I have been building this for two years. I cannot take it to the medical council with a nurse's word and a photocopy. I need a physician. A physician's account of the register carries weight that mine never will, and I hate that sentence, and it is true.",
+        text: "I have been building this for two years. I cannot take it to the medical council with a nurse's word and a photocopy. I need someone from the medical side. Their account of the register carries weight that mine never will, even a student's, and I hate that sentence, and it is true.",
         nextId: 'd2_e_11',
       },
       {
@@ -774,7 +795,7 @@ export const STORY_CAMPAIGN: Record<number, {
             xpEffect: 4000,
           },
           {
-            text: "\"I'm an intern. I can't. Don't show me anything else.\"",
+            text: "\"I'm a student. I can't. Don't show me anything else.\"",
             nextId: 'd2_e_neutral_01',
             karmaEffect: -10,
             flagEffect: 'DECLINED_ANN',
@@ -874,7 +895,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 2 COMPLETE.",
       },
     ],
-    cases: ['case_03_cardiac', 'case_01', 'case_02_fluids'],
+    cases: ['case_03_cardiac', 'case_01', 'case_02_fluids', 'case_09', 'case_15'],
   },
 
   /* ----------------------------------------------------------------------
@@ -966,7 +987,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd3_s_quiet_02',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "For what it is worth, I have watched three interns learn to lie to me and every one of them thought they were the first. You are doing the thing where you agree too fast.",
+        text: "For what it is worth, I have watched three students learn to lie to me and every one of them thought they were the first. You are doing the thing where you agree too fast.",
         nextId: 'd3_s_join',
       },
 
@@ -1036,6 +1057,13 @@ export const STORY_CAMPAIGN: Record<number, {
         speaker: 'System',
         text: "SHIFT START. RESUSCITATION IN PROGRESS.",
       },
+    ],
+    midShiftEvents: [
+      { id: 'd3_m_01', speaker: "System", text: "The rain reaches the triage desk. A stray dog walks in out of it and sits in the queue, more politely than some of the patients.", nextId: 'd3_m_02' },
+      { id: 'd3_m_02', speaker: "Dr. Bob", text: "Triage green. Low acuity, very high morale value. Do not tell Kanom.", nextId: 'd3_m_03' },
+      { id: 'd3_m_03', speaker: "System", text: "From the top of the drug cupboard, Kanom hisses once. She knows.", choices: [{ text: "Fold a spare blanket into a bed for the dog.", nextId: 'd3_m_blanket' }, { text: "Share the bread from your night snack.", nextId: 'd3_m_bread' }] },
+      { id: 'd3_m_blanket', speaker: "Dr. Bob", text: "Do you know why I still work here? Because even on the worst night something like this walks in. Do not tell anyone I said that." },
+      { id: 'd3_m_bread', speaker: "Dr. Bob", text: "A student's night meal is one slice of bread and you just gave half to a dog. I am buying you chicken rice after this shift. You do not get a vote." },
     ],
     endOfDayCutscene: [
       {
@@ -1214,7 +1242,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 3 COMPLETE.",
       },
     ],
-    cases: ['case_04_svt', 'case_05_asthma', 'case_01'],
+    cases: ['case_04_svt', 'case_05_asthma', 'case_01', 'case_08', 'case_10'],
   },
 
   /* ----------------------------------------------------------------------
@@ -1326,7 +1354,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd4_s_shield_02',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "...And you are going to do it anyway, and Somchai will accept it in eleven seconds because a disposable intern is exactly the shape of hole he needs filled. Do you understand that he wins either way?",
+        text: "...And you are going to do it anyway, and Somchai will accept it in eleven seconds because a disposable student is exactly the shape of hole he needs filled. Do you understand that he wins either way?",
         nextId: 'd4_s_close',
       },
       {
@@ -1349,6 +1377,15 @@ export const STORY_CAMPAIGN: Record<number, {
         speaker: 'System',
         text: "SHIFT START.",
       },
+    ],
+    midShiftEvents: [
+      { id: 'd4_m_01', speaker: "System", text: "21:10. Ann is asleep on a pile of charts at the nursing station, pen still in her hand. Her first sleep in thirty-one hours.", nextId: 'd4_m_02' },
+      { id: 'd4_m_02', speaker: "Dr. Bob", text: "Nobody wakes her. Whoever wakes her writes the nursing notes for the rest of the night. I mean it.", choices: [{ text: "Put a coat over her shoulders.", nextId: 'd4_m_coat' }, { text: "Make a Thai tea and leave it by her hand.", nextId: 'd4_m_tea' }, { text: "Quietly finish the charts she was writing.", nextId: 'd4_m_chart' }] },
+      { id: 'd4_m_coat', speaker: "System", text: "The nearest coat is Bob's. An hour later Ann wakes up and sniffs her own shoulder.", nextId: 'd4_m_coat_02' },
+      { id: 'd4_m_coat_02', speaker: "Nurse Ann", text: "Who put a coat that smells of mackerel on me?", nextId: 'd4_m_coat_03' },
+      { id: 'd4_m_coat_03', speaker: "Dr. Bob", text: "No idea. I have never seen that coat before in my life." },
+      { id: 'd4_m_tea', speaker: "System", text: "When Ann wakes, the tea is still warm. She does not ask who made it, but she smiles at you every time you pass for the rest of the night." },
+      { id: 'd4_m_chart', speaker: "Dr. Bob", text: "Your handwriting is legible. In this building that counts as an act of rebellion." },
     ],
     endOfDayCutscene: [
       {
@@ -1389,7 +1426,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd4_e_06',
         speaker: 'Prof. Somchai',
         portrait: '/assets/director.jpg',
-        text: "The committee requires one physician to attest. Doctor. The floor is yours.",
+        text: "The committee requires one attestation from someone who was in resus that night. Doctor. The floor is yours.",
         choices: [
           {
             text: "\"The compound is KV-7. It came from this hospital's research programme. Director Somchai supplied it.\"",
@@ -1476,7 +1513,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd4_e_self_01',
         speaker: 'Prof. Somchai',
         portrait: '/assets/director.jpg',
-        text: "An intern, four days into service, independently obtained and administered an unlicensed compound. The committee accepts this account.",
+        text: "A medical student, four days into the rotation, independently obtained and administered an unlicensed compound. The committee accepts this account.",
         nextId: 'd4_e_self_02',
       },
       {
@@ -1525,7 +1562,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd4_e_ann_04',
         speaker: 'Prof. Somchai',
         portrait: '/assets/director.jpg',
-        text: "The committee has an attestation from the receiving physician. Yours is a retraction offered under emotional circumstances. It carries no weight. Sit down, Dr. Bob.",
+        text: "The committee has an attestation from a witness. Yours is a retraction offered under emotional circumstances. It carries no weight. Sit down, Dr. Bob.",
         nextId: 'd4_e_ann_05',
       },
       {
@@ -1555,7 +1592,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 4 COMPLETE.",
       },
     ],
-    cases: ['case_03_cardiac', 'case_06_trauma', 'case_02_fluids'],
+    cases: ['case_03_cardiac', 'case_06_trauma', 'case_02_fluids', 'case_11'],
   },
 
   /* ----------------------------------------------------------------------
@@ -1654,7 +1691,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd5_s_06',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "Twelve of them have your name on them. Your signature. The one you have been putting on forty pages of admission paperwork every night since Monday because that is what an intern does at four in the morning.",
+        text: "Twelve of them have your name on the witness line. Your signature. The one you have been putting on forty pages of admission paperwork every night since Monday because that is what a student does at four in the morning.",
         nextId: 'd5_s_07',
       },
       {
@@ -1676,6 +1713,14 @@ export const STORY_CAMPAIGN: Record<number, {
         speaker: 'System',
         text: "SHIFT START. 17:20.",
       },
+    ],
+    midShiftEvents: [
+      { id: 'd5_m_01', speaker: "System", text: "18:00. Auntie Noi walks into the doctors' room holding one banana with a birthday candle stuck in the middle.", nextId: 'd5_m_02' },
+      { id: 'd5_m_02', speaker: "Auntie Noi", text: "Happy birthday, Bob. I have known him since he was a student in white shoes, just like you. Sing, everyone.", nextId: 'd5_m_03' },
+      { id: 'd5_m_03', speaker: "Dr. Bob", text: "I do not celebrate birthdays. I am thirty-seven, and that is a banana.", choices: [{ text: "Sing happy birthday as loudly as you can.", nextId: 'd5_m_sing' }, { text: "\"It's nice and quiet tonight. Perfect for a party.\"", nextId: 'd5_m_jinx' }] },
+      { id: 'd5_m_sing', speaker: "System", text: "Three evening nurses join in. The patient in bed two claps along. Bob blows out the candle and turns away very quickly, red to the back of his neck." },
+      { id: 'd5_m_jinx', speaker: "Dr. Bob", text: "What did you just say?", nextId: 'd5_m_jinx_02' },
+      { id: 'd5_m_jinx_02', speaker: "System", text: "The whole room turns to look at you. Auntie Noi knocks on the wooden table three times. Bob blows out the candle and makes an unusually long wish." },
     ],
     endOfDayCutscene: [
       {
@@ -1841,7 +1886,7 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd5_e_final_01',
         speaker: 'System',
-        text: "06:30. The fire is out. Two technicians are dead. The department is running on a portable oxygen supply in a car park under a plastic canopy.",
+        text: "06:30. The fire is out. Two technicians were trapped on sub-level 2 for six minutes and the fire service carried them up in time. Burns and smoke inhalation, and both will live. The department is running on a portable oxygen supply in a car park under a plastic canopy.",
         nextId: 'd5_e_final_02',
       },
       {
@@ -1909,7 +1954,7 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd5_e_final_11',
         speaker: 'System',
-        text: "YEAR 1 COMPLETE.",
+        text: "YEAR FIVE COMPLETE.",
         nextId: 'd5_e_final_12',
       },
       {
@@ -1918,7 +1963,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "TWELVE MONTHS PASS.",
       },
     ],
-    cases: ['case_06_trauma', 'case_03_cardiac', 'case_01', 'case_06_trauma'],
+    cases: ['case_06_trauma', 'case_03_cardiac', 'case_01', 'case_42'],
   },
 
   /* =======================================================================
@@ -1935,7 +1980,7 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd6_s_01',
         speaker: 'System',
-        text: "YEAR 2. DAY 6. Twelve months after the fire.",
+        text: "YEAR SIX. DAY 6. Twelve months after the fire.",
         nextId: 'd6_s_02',
       },
       {
@@ -1947,7 +1992,7 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd6_s_03',
         speaker: 'System',
-        text: "You are a second-year resident. You have your own interns now. Two of them. They buy white shoes.",
+        text: "You are an extern now, with two fifth-year students of your own. They buy white shoes.",
         nextId: 'd6_s_check',
       },
       {
@@ -1964,14 +2009,14 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd6_s_ann_out_01',
         speaker: 'System',
-        text: "Nurse Ann was struck from the nursing register in February. She works nights at a private clinic in Nonthaburi that pays half what this one did.",
+        text: "Nurse Ann's registration was suspended for six months in February. She came back last week, on evening shifts only and barred from controlled drugs.",
         nextId: 'd6_s_ann_out_02',
       },
       {
         id: 'd6_s_ann_out_02',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "She sends me a message on the first of every month. Two words. The date of the hearing you testified at. Nothing else. Twelve of them now.",
+        text: "While she was suspended she messaged me on the first of every month. Two words: the date of the hearing you testified at. Six of them. Then last week she walked back in, and she has not said a word to you yet.",
         nextId: 'd6_s_join',
       },
       {
@@ -1990,7 +2035,7 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd6_s_bought_01',
         speaker: 'System',
-        text: "You are a named co-investigator on Protocol C. Two publications. An invited lecture in Singapore in November.",
+        text: "Your name is on Protocol C as a student co-investigator. Two publications. An invited presentation in Singapore in November.",
         nextId: 'd6_s_bought_02',
       },
       {
@@ -2060,6 +2105,15 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "SHIFT START.",
       },
     ],
+    midShiftEvents: [
+      { id: 'd6_m_01', speaker: "System", text: "Your two fifth-years, Fai and Captain, still buy white shoes. Fai is about to take her first ever blood sample.", nextId: 'd6_m_02' },
+      { id: 'd6_m_02', speaker: "System", text: "The needle has not touched skin when Fai goes pale and slides, very politely, down onto the floor.", nextId: 'd6_m_03' },
+      { id: 'd6_m_03', speaker: "Nong Fai", text: "I'm sorry. I didn't faint. I just sat down suddenly.", choices: [{ text: "Raise her legs and tell her you nearly fainted on your first day too.", nextId: 'd6_m_kind' }, { text: "Let her try again, with your hand steadying hers.", nextId: 'd6_m_again' }] },
+      { id: 'd6_m_kind', speaker: "Dr. Bob", text: "It's true. I was there. Three in the morning a year ago, brand new white shoes, paler than she is.", nextId: 'd6_m_kind_02' },
+      { id: 'd6_m_kind_02', speaker: "Nong Fai", text: "You are my favourite sixth-year now. I don't have many to choose from, but it's still you." },
+      { id: 'd6_m_again', speaker: "System", text: "Second try, the tube fills first time. Fai holds it up as if she has just won a Nobel prize.", nextId: 'd6_m_again_02' },
+      { id: 'd6_m_again_02', speaker: "Dr. Bob", text: "Last year you were buying white shoes. This year you are teaching. Slow down, I am not ready to be old." },
+    ],
     endOfDayCutscene: [
       {
         id: 'd6_e_01',
@@ -2076,7 +2130,7 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd6_e_03',
         speaker: 'System',
-        text: "Before you entered the room, an envelope was left in your locker. Inside is a single page: a Protocol C consent form dated eleven months ago, with your signature on the physician line, and a note in blue ink.",
+        text: "Before you entered the room, an envelope was left in your locker. Inside is a single page: a Protocol C consent form dated eleven months ago, with your signature on the witness line, and a note in blue ink.",
         nextId: 'd6_e_04',
       },
       {
@@ -2180,7 +2234,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 6 COMPLETE.",
       },
     ],
-    cases: ['case_01', 'case_03_cardiac', 'case_05_asthma'],
+    cases: ['case_01', 'case_03_cardiac', 'case_05_asthma', 'case_46', 'case_07_vip'],
   },
 
   /* ----------------------------------------------------------------------
@@ -2199,7 +2253,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd7_s_02',
         speaker: 'Prof. Somchai',
         portrait: '/assets/director.jpg',
-        text: "Chief resident. From September. The post is mine to give and I am giving it to a second-year, which will cause a great deal of noise that I will absorb.",
+        text: "A Rama Central sponsorship. Finish your internship and come back to a residency in emergency medicine, guaranteed. It is mine to give and I am giving it to an extern, which will cause a great deal of noise that I will absorb.",
         nextId: 'd7_s_03',
       },
       {
@@ -2227,17 +2281,17 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd7_s_06',
         speaker: 'Prof. Somchai',
         portrait: '/assets/director.jpg',
-        text: "The programme needs a site principal investigator with clinical credibility. I am fifty-eight and I am radioactive. You are twenty-eight and you have a ministry deposition on file, which paradoxically makes you the cleanest signature in the building.",
+        text: "The programme needs someone with clinical credibility on the site safety review. I am fifty-eight and I am radioactive. You are twenty-three and you have a ministry deposition on file, which paradoxically makes you the cleanest name in the building.",
         nextId: 'd7_s_07',
       },
       {
         id: 'd7_s_07',
         speaker: 'Prof. Somchai',
         portrait: '/assets/director.jpg',
-        text: "Say yes and you control the dosing protocol, the exclusion criteria, and the stopping rules. Say no and it goes to a man in Chiang Rai who has never seen a patient bleed out in front of him.",
+        text: "Say yes and you sit in the room where the dosing protocol, the exclusion criteria and the stopping rules are written, with a vote. Say no and the seat goes to a man in Chiang Rai who has never seen a patient bleed out in front of him.",
         choices: [
           {
-            text: "Accept. Take control of the protocol from the inside.",
+            text: "Accept. Change the protocol from the inside.",
             nextId: 'd7_s_accept_01',
             karmaEffect: -20,
             flagEffect: 'TOOK_THE_PROGRAMME',
@@ -2311,6 +2365,13 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "SHIFT START.",
       },
     ],
+    midShiftEvents: [
+      { id: 'd7_m_01', speaker: "System", text: "A woman is waiting at triage with a big bag of nam dok mai mangoes, the first of the season.", nextId: 'd7_m_02' },
+      { id: 'd7_m_02', speaker: "Prasit's Daughter", text: "I'm Prasit's daughter. Dad told me to bring these for the doctor in the white shoes. That's all he could remember. [IF_FLAG:CALLED_BACK_PRASIT] He says if you hadn't called him back that night, he would have just gone to sleep.", nextId: 'd7_m_03' },
+      { id: 'd7_m_03', speaker: "Prasit's Daughter", text: "He walks round the house now. Slowly, and complaining every lap that the doctors banned salt.", choices: [{ text: "Share the mangoes with the whole department.", nextId: 'd7_m_share' }, { text: "Tell her to say you miss him, and to eat even less salt.", nextId: 'd7_m_send' }] },
+      { id: 'd7_m_share', speaker: "Nurse Ann", text: "The first mangoes of the year, in a department with no beds. That makes it a good day." },
+      { id: 'd7_m_send', speaker: "Prasit's Daughter", text: "He'll be so pleased he'll complain less for two whole days." },
+    ],
     endOfDayCutscene: [
       {
         id: 'd7_e_01',
@@ -2322,14 +2383,14 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd7_e_02',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "Chief resident. Congratulations. I mean that in about sixty percent of the available senses.",
+        text: "A sponsorship and a seat on the safety review. Congratulations. I mean that in about sixty percent of the available senses.",
         nextId: 'd7_e_03',
       },
       {
         id: 'd7_e_03',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "I applied for it. Four years running. Last year he told me in this room that I lacked the temperament, and he was correct, which is the only reason it still hurts.",
+        text: "I asked for a seat in that room four years running. Last year he told me in this room that I lacked the temperament, and he was correct, which is the only reason it still hurts.",
         nextId: 'd7_e_04',
       },
       {
@@ -2343,7 +2404,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd7_e_05',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "The chief resident signs the controlled drug register. Forty pages. Every Friday.",
+        text: "The resident on call signs the controlled drug register. Forty pages. Every Friday. In a few years that will be you.",
         nextId: 'd7_e_06',
       },
       {
@@ -2363,21 +2424,21 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd7_e_08',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "Pharmacy stock reconciliation. Ketamine. Forty ampoules unaccounted for over six weeks, all from the resus cupboard, all on nights.",
+        text: "Badge records. Six weeks. Someone badges out of here at eight in the morning, badges into a private clinic in Nonthaburi at eight forty, and badges back into this department at four in the afternoon.",
         nextId: 'd7_e_09',
       },
       {
         id: 'd7_e_09',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "The cupboard requires two staff to open. On thirty-one of those occasions the second staff member was the same person.",
+        text: "Thirty-one days out of forty-two. That person has not been sleeping. Not sleeping badly. Not sleeping.",
         nextId: 'd7_e_10',
       },
       {
         id: 'd7_e_10',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "Say it in the room, Ann. Do not make the chief resident read it off a page.",
+        text: "Say it in the room, Ann. Do not make them read it off a page.",
         nextId: 'd7_e_11',
       },
       {
@@ -2400,7 +2461,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 7 COMPLETE.",
       },
     ],
-    cases: ['case_04_svt', 'case_02_fluids', 'case_06_trauma'],
+    cases: ['case_04_svt', 'case_02_fluids', 'case_06_trauma', 'case_47'],
   },
 
   /* ----------------------------------------------------------------------
@@ -2419,42 +2480,42 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd8_s_02',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "It started after the suspension. Not for fun. I want that to be clear, and I am aware that everyone says it.",
+        text: "It started after the fire. My mother's dialysis went up by twenty thousand a month and the rota here does not stretch that far. It was never for savings. I want that to be clear.",
         nextId: 'd8_s_03',
       },
       {
         id: 'd8_s_03',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "Twenty minutes of not being here. That is all it is. Twenty minutes where the manifold does not go off and the technicians are still alive and I am not the man whose signature is on eleven months of a register.",
+        text: "It is a vitamin drip clinic. Nobody is ill. Eight hours where nobody nearly dies, and I am not the man whose signature is on eleven months of a register. Then I come back here and stay awake on coffee and habit.",
         nextId: 'd8_s_04',
       },
       {
         id: 'd8_s_04',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "I have never worked impaired. I know that is exactly what an impaired doctor says. Check the shift log. Check every one of them. I have been very careful and being careful about it is its own kind of full-time job.",
+        text: "I have not missed a single case. I know that is exactly what a doctor who has not slept says. Check the charts. Check every one of them. I check everything twice, and checking everything twice is its own kind of full-time job.",
         nextId: 'd8_s_05',
       },
       {
         id: 'd8_s_05',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "There is a formal pathway. Occupational health, monitored recovery, a suspension of registration for six to twelve months, and a return to practice. Around forty percent make it back.",
+        text: "There is a formal pathway. Tell the department chair under the fatigue policy. Nights come off the rota, the hospital has a financial counsellor, and there is a staff hardship fund that nobody has ever applied to.",
         nextId: 'd8_s_06',
       },
       {
         id: 'd8_s_06',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "Forty percent. And the ones who do not make it back, where do they go, Ann? Because I have looked, and there is nothing after this. There is no second thing I am.",
+        text: "Nobody applies because the names go up on a board, Ann. A resident asking for help with his mother's dialysis. There is no second thing I am, apart from the doctor who never asked anyone for anything.",
         nextId: 'd8_s_07',
       },
       {
         id: 'd8_s_07',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "The chief resident has to decide. That is not me avoiding it. It is genuinely, procedurally, your signature.",
+        text: "I cannot decide this. That is not me avoiding it. You were on nine of those nights with him, your name is on every rota, and you are the only one he will listen to.",
         nextId: 'd8_s_08',
       },
       {
@@ -2464,14 +2525,14 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "Fourteen months ago I asked you to cover a chart for me. Whatever you did that night, you now get to find out what it feels like from this side of the desk.",
         choices: [
           {
-            text: "Report it through occupational health. Today, properly, with your name on it.",
+            text: "Tell the department chair. Today, properly, with your name on it.",
             nextId: 'd8_s_report_01',
             karmaEffect: 50,
             flagEffect: 'REPORTED_BOB_DIVERSION',
             xpEffect: 8000,
           },
           {
-            text: "Cover it. Rewrite the stock count yourself and get him quietly into treatment.",
+            text: "Cover it. Say nothing and quietly swap shifts so he can sleep.",
             nextId: 'd8_s_cover_01',
             karmaEffect: -40,
             flagEffect: 'COVERED_BOB_DIVERSION',
@@ -2497,7 +2558,7 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd8_s_report_02',
         speaker: 'System',
-        text: "Occupational health accepts the referral at 09:00. Bob is off the rota by noon. The department is four doctors short and stays that way for six weeks.",
+        text: "The department chair accepts it at 09:00. Bob is off nights by noon. The department is four doctors short for six weeks, and Bob sleeps eight hours for the first time in a year.",
         nextId: 'd8_s_join',
       },
 
@@ -2505,7 +2566,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd8_s_cover_01',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "Then I am not signing the count. If you alter it, you alter it alone, and you should understand that a pharmacy reconciliation is audited externally every quarter.",
+        text: "Then I am not signing the rota. If you bury it, you bury it alone, and you should understand that the badge system is audited externally every quarter.",
         nextId: 'd8_s_cover_02',
       },
       {
@@ -2520,7 +2581,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd8_s_selfreport_01',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "If I walk in there myself it goes on my registration as a voluntary disclosure. Do you know what the difference is? About four years of restriction.",
+        text: "If I walk in there myself it becomes a fatigue plan, not a disciplinary file. Do you know what the difference is? About a whole career.",
         nextId: 'd8_s_selfreport_02',
       },
       {
@@ -2542,6 +2603,15 @@ export const STORY_CAMPAIGN: Record<number, {
         speaker: 'System',
         text: "SHIFT START.",
       },
+    ],
+    midShiftEvents: [
+      { id: 'd8_m_01', speaker: "System", text: "Three in the afternoon. The vending machine eats two of Bob's coins. He kicks it gently and then apologises to it.", nextId: 'd8_m_02' },
+      { id: 'd8_m_02', speaker: "Dr. Bob", text: "My mother is video calling. She has never believed I have a friend at work. Stand in the frame. Three seconds.", choices: [{ text: "Wai to his mother and tell her Bob is the best teacher in the building.", nextId: 'd8_m_praise' }, { text: "Tell his mother that Bob needs more sleep.", nextId: 'd8_m_sleep' }] },
+      { id: 'd8_m_praise', speaker: "Bob's Mother", text: "Really, dear? Is he strict with you? He has been strict since he was small, but he has a good heart.", nextId: 'd8_m_praise_02' },
+      { id: 'd8_m_praise_02', speaker: "Dr. Bob", text: "Mum. You can hang up now." },
+      { id: 'd8_m_sleep', speaker: "Bob's Mother", text: "There, I told you. Did you hear that, Bob? The doctor says so.", nextId: 'd8_m_sleep_02' },
+      { id: 'd8_m_sleep_02', speaker: "Dr. Bob", text: "They are not even a doctor yet, Mum. They are a student.", nextId: 'd8_m_sleep_03' },
+      { id: 'd8_m_sleep_03', speaker: "Bob's Mother", text: "Well, they're cleverer than you." },
     ],
     endOfDayCutscene: [
       {
@@ -2650,7 +2720,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 8 COMPLETE.",
       },
     ],
-    cases: ['case_06_trauma', 'case_03_cardiac', 'case_04_svt'],
+    cases: ['case_06_trauma', 'case_03_cardiac', 'case_04_svt', 'case_37'],
   },
 
   /* ----------------------------------------------------------------------
@@ -2738,7 +2808,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd9_s_08',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "Fourteen patients received KV-7 between month nine and the night my brother was admitted. Four of them died. I could have stopped it at fourteen and I chose the case.",
+        text: "Fourteen patients received KV-7 between month nine and the night my brother was admitted. Four of them bled badly enough to need intensive care, and one of them nearly did not come back. I could have stopped it at fourteen and I chose the case.",
         nextId: 'd9_s_09',
       },
       {
@@ -2760,6 +2830,13 @@ export const STORY_CAMPAIGN: Record<number, {
         speaker: 'System',
         text: "SHIFT START.",
       },
+    ],
+    midShiftEvents: [
+      { id: 'd9_m_01', speaker: "System", text: "Loy Krathong night. The evening nurses have made a krathong from a kidney dish and marigolds from the spirit house out front, and floated it in the hand-washing sink.", nextId: 'd9_m_02' },
+      { id: 'd9_m_02', speaker: "Nurse Ann", text: "Make a wish. The sink is a river for one night only. Tomorrow it goes back to seven-step hand washing.", choices: [{ text: "Wish that this team is still together, all of it.", nextId: 'd9_m_team', flagEffect: 'WISH_TEAM' }, { text: "Wish for eight hours of sleep.", nextId: 'd9_m_sleep', flagEffect: 'WISH_SLEEP' }, { text: "Wish that the truth comes out, every page of it.", nextId: 'd9_m_truth', flagEffect: 'WISH_TRUTH' }] },
+      { id: 'd9_m_team', speaker: "Nurse Ann", text: "That is a hard one. I will wish it with you." },
+      { id: 'd9_m_sleep', speaker: "Dr. Bob", text: "The most realistic wish in the history of emergency medicine, and it will never come true." },
+      { id: 'd9_m_truth', speaker: "Nurse Ann", text: "Including page 61." },
     ],
     endOfDayCutscene: [
       {
@@ -2828,7 +2905,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd9_e_10',
         speaker: 'Prof. Somchai',
         portrait: '/assets/director.jpg',
-        text: "The report has one carve-out available. A named clinician at a named site can petition for continuity of supply for existing enrolled patients only. It requires a physician with standing, which is now you, and it requires it before the fourteenth.",
+        text: "The report has one carve-out available. The treating team at a named site can petition for continuity of supply for existing enrolled patients only. I cannot sign it. Bob cannot sign it. It needs a name on the team that is still clean, which is now you, and it requires it before the fourteenth.",
         nextId: 'd9_e_11',
       },
       {
@@ -2902,7 +2979,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 9 COMPLETE.",
       },
     ],
-    cases: ['case_02_fluids', 'case_05_asthma', 'case_01'],
+    cases: ['case_02_fluids', 'case_05_asthma', 'case_01', 'case_48'],
   },
 
   /* ----------------------------------------------------------------------
@@ -2940,7 +3017,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd10_s_05',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "Chief resident runs the floor. That is you. I will take resus 2 and I will do exactly what you tell me, which is a sentence I have waited a year to be able to say without choking on it.",
+        text: "I run the floor. You see everyone who comes through the door and you tell me. Tonight I will listen to every word you say. [IF_FLAG:NAMED_BOB_AT_REVIEW] As for the rule that I may not run nights, nobody has time to check it tonight.",
         nextId: 'd10_s_06',
       },
       {
@@ -2999,7 +3076,7 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd10_s_14',
         speaker: 'System',
-        text: "The decision is the chief resident's. The laboratory is holding.",
+        text: "Bob turns to you. You examined both of them. What do you say? The laboratory is holding.",
         choices: [
           {
             text: "Follow the clinical rule. Somchai to the laboratory.",
@@ -3064,11 +3141,17 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "SHIFT START. MASS CASUALTY PROTOCOL ACTIVE.",
       },
     ],
+    midShiftEvents: [
+      { id: 'd10_m_01', speaker: "System", text: "19:40. Between the third patient and the fourth, one of the porters walks round handing everyone a bottle of water. Nobody asked him. He just knows.", nextId: 'd10_m_02' },
+      { id: 'd10_m_02', speaker: "Dr. Bob", text: "Drink. Thirty seconds, then back in. And thank you for examining properly tonight. I will only say it once.", nextId: 'd10_m_03' },
+      { id: 'd10_m_03', speaker: "Nurse Ann", text: "Five more to come. [IF_FLAG:WISH_TEAM] And the whole team is still standing, like you wished last night.", nextId: 'd10_m_04' },
+      { id: 'd10_m_04', speaker: "Dr. Bob", text: "[IF_FLAG:WISH_SLEEP] And no, your eight hours of sleep are not happening tonight." },
+    ],
     endOfDayCutscene: [
       {
         id: 'd10_e_01',
         speaker: 'System',
-        text: "04:30. Nine patients. Eight alive. The one who is not was dead at the roadside and everybody in the department knows it and three of them will still lie awake about it.",
+        text: "04:30. Nine patients. Nine alive. At handover somebody claps, once, and then the whole room is embarrassed about it.",
         nextId: 'd10_e_02',
       },
       {
@@ -3206,7 +3289,7 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd10_e_press_01',
         speaker: 'System',
-        text: "08:00. Forty-one names. Four of them sit on the national ethics committee. One of them is a ministry inspector. One of them is a nurse who has been struck off, reinstated, and struck off again inside eighteen months.",
+        text: "08:00. Forty-one names. Four of them sit on the national ethics committee. One of them is a ministry inspector. One of them is a nurse who signed an informant agreement with the ministry.",
         nextId: 'd10_e_press_02',
       },
       {
@@ -3282,38 +3365,38 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd10_e_final_01',
         speaker: 'System',
-        text: "09:00. The ministry report publishes. Rama Central is on every screen in the country.",
+        text: "09:00. The ministry report publishes. The final version is forty pages shorter than the draft. Rama Central is on the news for two days.",
         nextId: 'd10_e_final_02',
       },
       {
         id: 'd10_e_final_02',
         speaker: 'System',
-        text: "11:15. The hospital board meets in emergency session and appoints an acting director for the interim period.",
+        text: "A contractor is named. The programme is paused. Professor Somchai receives one letter of reprimand about governance. Nobody is referred for prosecution.",
         nextId: 'd10_e_final_03',
       },
       {
         id: 'd10_e_final_03',
         speaker: 'System',
-        text: "12:40. An email arrives. Eleven recipients. Subject line: INTERIM CLINICAL GOVERNANCE.",
+        text: "A month later the northern floods take every headline. Somchai is back at his desk, with a stent, and the guest chairs are still lower than his.",
         nextId: 'd10_e_final_04',
       },
       {
         id: 'd10_e_final_04',
         speaker: 'System',
-        text: "With the suspension of the director and the departure of the medical superintendent, the board has appointed an interim clinical governance lead for the emergency department, effective immediately.",
+        text: "12:40. An email to the whole extern year. Subject line: PROVINCIAL PLACEMENTS.",
         nextId: 'd10_e_final_05',
       },
       {
         id: 'd10_e_final_05',
         speaker: 'System',
-        text: "The name in the email is yours.",
+        text: "Your name is on the Korat list. Two hundred and sixty kilometres from Bangkok. Exactly that far from the director's office.",
         nextId: 'd10_e_final_06',
       },
       {
         id: 'd10_e_final_06',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "Two years. You came in with white shoes and now you sign the register.",
+        text: "Two years. You came in with white shoes, and in a few years you will be the one who signs that register.",
         nextId: 'd10_e_final_07',
       },
       {
@@ -3333,22 +3416,22 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd10_e_final_09',
         speaker: 'System',
-        text: "13:02. The first stack arrives. Forty pages. Somebody has already left it on the desk.",
+        text: "13:02. Friday. A new stack of forty pages is already on the on-call resident's desk. Like every week. For thirty years.",
         nextId: 'd10_e_final_10',
       },
       {
         id: 'd10_e_final_10',
         speaker: 'System',
-        text: "YEAR 2 COMPLETE.",
+        text: "THE RAMA YEARS COMPLETE.",
         nextId: 'd10_e_final_11',
       },
       {
         id: 'd10_e_final_11',
         speaker: 'System',
-        text: "YEAR 3: 'PAGE 61' ...",
+        text: "NEXT: KORAT.",
       },
     ],
-    cases: ['case_06_trauma', 'case_03_cardiac', 'case_04_svt', 'case_02_fluids'],
+    cases: ['case_06_trauma', 'case_03_cardiac', 'case_04_svt', 'case_02_fluids', 'case_34'],
   },
 
   11: {
@@ -3631,7 +3714,7 @@ export const STORY_CAMPAIGN: Record<number, {
     startShiftEvents: [
       { id: 'd22_start_01', speaker: 'Dr. Napassorn (Pi Nam)', portrait: '/assets/napassorn.jpg', text: 'Storage room, second basement, twenty minutes. Do not bring your hospital phone.', nextId: 'd22_start_02' },
       { id: 'd22_start_02', speaker: 'Dr. Napassorn (Pi Nam)', portrait: '/assets/napassorn.jpg', text: 'Eleven months. Billing codes, clinical notes, and the referral commissions. The commissions are the important part. Every executive package sold generates a payment to a consultancy in Singapore, and the consultancy has one director.', nextId: 'd22_start_03' },
-      { id: 'd22_start_03', speaker: 'Dr. Napassorn (Pi Nam)', portrait: '/assets/napassorn.jpg', text: 'Somchai Rattanaporn. Director of Ramathibodi. Your future employer, if I read your file correctly.', nextId: 'd22_start_04' },
+      { id: 'd22_start_03', speaker: 'Dr. Napassorn (Pi Nam)', portrait: '/assets/napassorn.jpg', text: "Somchai Rattanaporn. Director of Rama Central. Your future employer, if I read your file correctly.", nextId: 'd22_start_04' },
       { id: 'd22_start_04', speaker: 'Narrator', portrait: '', text: 'She holds out the drive. She has not let go of it.', choices: [
         { text: 'Take it. Whatever this costs.', nextId: 'd22_start_05a', karmaEffect: 20, xpEffect: 25, flagEffect: 'WHISTLEBLOWER' },
         { text: 'Take it, but tell her you will decide later.', nextId: 'd22_start_05b', karmaEffect: 5, xpEffect: 15, flagEffect: 'HAS_LEDGER' },
@@ -3720,7 +3803,7 @@ export const STORY_CAMPAIGN: Record<number, {
     ],
     endShiftEvents: [
       { id: 'd25_end_01', speaker: 'Nurse Kanyarat (Pi Kai)', portrait: '/assets/kanyarat.jpg', text: 'The nurses signed this. Forty-one of us. It is not a petition, we are not allowed to file one. It is just a card. We wanted the number on it to be visible.', nextId: 'd25_end_02' },
-      { id: 'd25_end_02', speaker: 'Narrator', portrait: '', text: 'Internship ends. The residency match list is posted at 18:00. Ramathibodi, Emergency Medicine. The building where all of this actually began, and where the director is a man whose name you have just written on a Medical Council complaint.', nextId: 'd25_end_03' },
+      { id: 'd25_end_02', speaker: 'Narrator', portrait: '', text: "Internship ends. The residency match list is posted at 18:00. Rama Central, Emergency Medicine. The building where all of this actually began, and where the director is a man whose name you have just written on a Medical Council complaint.", nextId: 'd25_end_03' },
       { id: 'd25_end_03', speaker: 'Dr. Ekkarat (Pi Ek) (phone)', portrait: '/assets/ekkarat.jpg', text: 'Pi Jai told me. So you are going back there, with his name on a form. I said the cost was real. I never said it was not worth paying. Call me when it gets bad, and it will get bad in about your fourth month.', nextId: undefined },
     ],
     cases: ['case_42', 'case_25', 'case_43'],
@@ -3734,11 +3817,11 @@ export const STORY_CAMPAIGN: Record<number, {
       { id: 'd26_start_01', speaker: 'Dr. Pimchanok (Pi Pim)', portrait: '/assets/pimchanok.jpg', text: 'I am chief resident. I have been awake for twenty-six hours and I have read your file, which took eleven minutes and was more interesting than the last forty files combined.', nextId: 'd26_start_02' },
       { id: 'd26_start_02', speaker: 'Dr. Pimchanok (Pi Pim)', portrait: '/assets/pimchanok.jpg', text: 'I do not care what you did at Lovely. In this department you will be judged on three things. Whether you show up. Whether your students are safe with you. And whether you can be honest at M and M when your own decision killed someone.', nextId: 'd26_start_03' },
       { id: 'd26_start_03', speaker: 'Dr. Bob', portrait: '/assets/doctor.jpg', text: 'The whistleblower. Excellent. My rota just became a political event. Do you know what I want from a first year resident? Nothing philosophical. Two working hands and no opinions before 04:00.', nextId: 'd26_start_04' },
-      { id: 'd26_start_04', speaker: 'Nurse Ann', portrait: '/assets/nurse.jpg', text: 'Ignore Bob. He argued for three hours to get you onto his team and he will deny that for the rest of his life. Welcome back.', nextId: undefined },
+      { id: 'd26_start_04', speaker: 'Nurse Ann', portrait: '/assets/nurse.jpg', text: 'Ignore Bob. He argued for three hours to get you onto his team and he will deny that for the rest of his life. Welcome back. [IF_FLAG:SCAPEGOATED_ANN] I have not forgotten that committee room. I have forgiven it.', nextId: undefined },
     ],
     midShiftEvents: [
       { id: 'd26_mid_01', speaker: 'Tawan (Nong Wan)', portrait: '/assets/tawan.jpg', text: 'Doctor, I am the year five student on your team. I have not slept and I have not eaten and I do not know what I am supposed to be doing.', nextId: 'd26_mid_02' },
-      { id: 'd26_mid_02', speaker: 'Narrator', portrait: '', text: 'He is exactly where you stood on day one. Fourteen days ago in game time. A geological age in every other sense.', choices: [
+      { id: 'd26_mid_02', speaker: 'Narrator', portrait: '', text: "He is exactly where you stood on day one. Twenty-five days ago in game time. A geological age in every other sense.", choices: [
         { text: 'Give him one patient and stand behind him while he does it.', nextId: 'd26_mid_03a', karmaEffect: 15, xpEffect: 20, flagEffect: 'MENTORING_WAN' },
         { text: 'Tell him to observe and stay out of the way tonight.', nextId: 'd26_mid_03b', karmaEffect: 0, xpEffect: 5 },
       ] },
@@ -3857,7 +3940,7 @@ export const STORY_CAMPAIGN: Record<number, {
   // ===========================================================
   31: {
     startShiftEvents: [
-      { id: 'd31_start_01', speaker: 'Narrator', portrait: '', text: 'Six years. New badge. Same department, three renovations later. Consultant, Emergency Medicine, Faculty of Medicine Ramathibodi Hospital.', nextId: 'd31_start_02' },
+      { id: 'd31_start_01', speaker: 'Narrator', portrait: '', text: "Six years. New badge. Same department, three renovations later. Consultant, Emergency Medicine, Rama Central Hospital.", nextId: 'd31_start_02' },
       { id: 'd31_start_02', speaker: 'Dr. Tawan', portrait: '/assets/tawan.jpg', text: 'Ajarn. I am your senior resident tonight. You probably do not remember, but you gave me my first patient on a night when I was going to quit, and you stood behind me instead of taking the syringe.', nextId: 'd31_start_03' },
       { id: 'd31_start_03', speaker: 'Nurse Ann', portrait: '/assets/nurse.jpg', text: 'Your extern is on her way. Rama year six, terrified, arrived forty minutes early. Sound familiar?', nextId: undefined },
     ],

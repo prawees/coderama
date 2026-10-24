@@ -1,0 +1,457 @@
+{
+  "title": "34yo M 45% Burn with Inhalational Injury",
+  "age": "34",
+  "sex": "M",
+  "chiefComplaint": "ไฟลวกจากถังแก๊สระเบิดในครัวปิด",
+  "diagnoses": [
+    "45% TBSA mixed depth burn with inhalational injury",
+    "Carbon monoxide poisoning",
+    "Cyanide toxicity",
+    "Blast injury",
+    "Circumferential chest burn with restrictive ventilation"
+  ],
+  "background": "ถังแก๊ส LPG ระเบิดในครัวร้านอาหารที่ปิดทึบเมื่อ 40 นาทีก่อน ติดอยู่ในห้องหลายนาทีก่อนถูกดึงออกมา เพื่อนร่วมงานเอาน้ำมันพืชราดแผล น้ำหนัก 70 kg เฟอร์นิเจอร์ครัววัสดุสังเคราะห์ไหม้ในพื้นที่ปิด",
+  "patientAppearance": {
+    "skinTone": "#c98d5f",
+    "bmiFactor": 1.0,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 138,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 96,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 58,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 32,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 35.6,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 99,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 12,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Confused and agitated, soot-covered, oil smeared over the burn surfaces, shivering, in severe pain over the partial thickness areas and none over the full thickness areas",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Singed eyebrows and nasal hairs, soot in the nostrils and oropharynx, hoarse voice, carbonaceous sputum, early facial and lip oedema, no stridor yet. Every one of these predicts airway loss within hours",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia at 138/min, blood pressure 96/58, capillary refill 4 seconds in unburnt skin. Hypotension in the first hour after a burn is not from the burn and means you should look for haemorrhage or blast injury",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Tachypnoeic at 32/min with a circumferential full thickness burn across the chest wall restricting expansion. Coarse crackles and wheeze. Oxygen saturation reads 99% and is unreliable, because pulse oximetry cannot distinguish carboxyhaemoglobin from oxyhaemoglobin",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, no guarding, no evidence of blast abdominal injury, bowel sounds present, no circumferential abdominal burn compromising ventilation",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Burns to the face (4%), anterior chest and abdomen (18%), both arms circumferentially (18%) and patchy anterior thighs (5%), giving approximately 45% total body surface area by the Rule of Nines, excluding areas of simple erythema. Mixed partial and full thickness. Both arms have circumferential leathery eschar with weak radial pulses",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 12 (E3V4M5), confused and agitated. In an enclosed space fire, confusion is carbon monoxide or cyanide until proven otherwise, and not simply pain or fear",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "co1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Co-oximetry (COHb)",
+      "value": "COHb 28%",
+      "unit": "%",
+      "normalRange": "<3% non-smoker",
+      "abnormal": true,
+      "report": "Severe CO poisoning วัดได้ด้วย co-oximetry เท่านั้น pulse oximeter ธรรมดาอ่าน carboxyhemoglobin เป็น oxyhemoglobin และโชว์ 99% ให้วางใจผิดๆ"
+    },
+    {
+      "id": "lac1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Lactate",
+      "value": "12.4",
+      "unit": "mmol/L",
+      "normalRange": "0.5-2.0",
+      "abnormal": true,
+      "report": "Lactate เกิน 10 ในคนไข้ไฟไหม้ในพื้นที่ปิด สูงเกินสัดส่วนของภาวะช็อก เป็นตัวบ่งชี้แทนที่แรงของ cyanide toxicity การตรวจ cyanide ใช้เวลานานเกินจะมีประโยชน์ และรักษาแบบ empirical"
+    },
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "ABG",
+      "value": "pH 7.18 / pCO2 44 / pO2 96 / HCO3 14",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Severe metabolic acidosis PaO2 ปกติ O2 ปกติร่วมกับ acidosis รุนแรงและ lactate สูง คือรูปแบบของ cellular asphyxiant"
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CXR",
+      "report": "ปอดใสในช่วงแรก CXR มักปกติใน 24 ชม. แรกของ inhalation injury film ปกติจึงไม่ได้ทำให้วางใจได้เลย",
+      "imageUrl": "",
+      "abnormal": false
+    },
+    {
+      "id": "hb1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Hb, Hct",
+      "value": "Hb 17.8 g/dL / Hct 54%",
+      "unit": "-",
+      "normalRange": "Hb 13.5-17.5 g/dL",
+      "abnormal": true,
+      "report": "Hemoconcentration จากเสีย plasma ปริมาณมากเข้าเนื้อเยื่อที่ไหม้ Hb สูงตรงนี้แปลว่าขาดน้ำ ไม่ใช่ว่าพอ"
+    },
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "CK, Cr",
+      "value": "CK 8400 U/L / creatinine 1.6 mg/dL",
+      "unit": "-",
+      "normalRange": "CK 30-200 U/L",
+      "abnormal": true,
+      "report": "กล้ามเนื้อลึกบาดเจ็บ เริ่มมี AKI"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "Observe airway ถ้ามี stridor ค่อย intubate",
+              "feedback": "Airway บวมเร็วหลัง inhalation injury intubate เร็วก่อนจะปิด"
+            },
+            {
+              "label": "ใช้ tube เล็กให้พอดีกับ airway ที่บวม",
+              "feedback": "ใช้ tube ใหญ่ที่สุดที่ใส่ได้ tube เล็กตันด้วยเขม่าและทำ bronchoscopy ได้จำกัด"
+            }
+          ],
+          "label": "Intubate เร็วก่อน airway จะปิด",
+          "actions": [
+            "Rapid sequence intubation ทันที",
+            "ใช้ tube ใหญ่ที่สุดที่มี",
+            "ไม่ตัด tube และยึดด้วยเชือกแทนเทป"
+          ],
+          "doseMap": {
+            "Rapid sequence intubation ทันที": "เสียงแหบ มีเขม่าใน oropharynx และหน้าไหม้ แปลว่า airway จะบวมปิดในไม่กี่ชั่วโมง intubate ตอนนี้ที่ยังง่าย รอ stridor แปลว่าต้องทำ surgical airway ผ่านเนื้อที่ไหม้",
+            "ไม่ตัด tube และยึดด้วยเชือกแทนเทป": "หน้าบวมจะดัน tube ที่ตัดสั้นให้เลื่อน และเทปไม่ติดบนผิวที่ไหม้"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "เชื่อค่า pulse oximeter 98%",
+              "feedback": "Pulse oximetry อ่าน carboxyhemoglobin เป็น oxyhemoglobin ใช้ co-oximetry"
+            },
+            {
+              "label": "ให้ sodium nitrite แก้ cyanide",
+              "feedback": "Nitrite ทำให้ methemoglobinemia และส่ง O2 แย่ลงเมื่อมี CO ร่วม ใช้ hydroxocobalamin"
+            }
+          ],
+          "label": "O2 100% และให้ยาแก้ cyanide แบบ empirical",
+          "actions": [
+            "O2 100% ทาง ventilator",
+            "Hydroxocobalamin IV",
+            "วัดด้วย co-oximetry ไม่ใช่ pulse oximetry"
+          ],
+          "doseMap": {
+            "O2 100% ทาง ventilator": "ลด half life ของ carboxyhemoglobin จากราว 4 ชม. ใน room air เหลือต่ำกว่า 1 ชม.",
+            "Hydroxocobalamin IV": "5 g IV ใน 15 นาที ให้แบบ empirical ในไฟไหม้พื้นที่ปิดที่ lactate เกิน 8 และความรู้สึกตัวเปลี่ยน ปลอดภัยแม้ไม่มี cyanide ต่างจากชุดยา nitrite ที่ทำให้ methemoglobinemia และอันตรายเมื่อมี CO ร่วม"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Rule of nines และ Parkland",
+          "distractors": [
+            {
+              "label": "นับรอยแดงรวมในพื้นที่แผลไหม้",
+              "feedback": "ไม่นับรอยแดง นับรวมแล้วจะประเมิน fluid เกิน"
+            },
+            {
+              "label": "ทิ้งน้ำมันไว้ช่วยปกป้องแผล",
+              "feedback": "น้ำมันกักความร้อนและบังแผล เอาออกแล้วทำให้เย็น"
+            }
+          ],
+          "label": "คำนวณพื้นที่แผลไหม้และเริ่ม fluid resuscitation",
+          "actions": [
+            "ประเมินด้วย rule of nines ไม่นับรอยแดง",
+            "ล้างน้ำมันออกและทำแผลให้เย็น",
+            "Modified Parkland",
+            "ใส่สายสวนปัสสาวะ วัด output ทุกชั่วโมง"
+          ],
+          "doseMap": {
+            "Modified Parkland": "Ringer's lactate 2 ถึง 4 mL x kg x %TBSA ใน 24 ชม. (2 x 70 x 45 = 6300 mL) ครึ่งแรกใน 8 ชม. นับจากเวลาบาดเจ็บ ไม่ใช่เวลามาถึง titrate ให้ urine output 0.5 mL/kg/h และเลิกไล่ตามสูตรเมื่อปัสสาวะออกพอแล้ว",
+            "ล้างน้ำมันออกและทำแผลให้เย็น": "น้ำไหลเย็น 20 นาทีถ้ายังไม่เกิน 3 ชม. แล้ว warm คนไข้แบบ active ทำแผลให้เย็นและทำตัวคนไข้ให้อุ่นพร้อมกันคือจุดสมดุล"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "choice": "Escharotomy หน้าอกและแขนขาเดี๋ยวนี้",
+          "distractors": [
+            {
+              "label": "รอศูนย์แผลไหม้ทำ escharotomy",
+              "feedback": "แผลไหม้รอบหน้าอกจำกัดการหายใจตอนนี้ escharotomy ด่วน"
+            },
+            {
+              "label": "ไม่ต้องให้ยาแก้ปวดเพราะ eschar ไม่มีความรู้สึก",
+              "feedback": "เนื้อเยื่อรอบๆ ยังปวด ให้ยาแก้ปวด"
+            }
+          ],
+          "label": "Escharotomy ที่หน้าอกและแขนขาที่ไหม้รอบวง",
+          "actions": [
+            "Escharotomy หน้าอก",
+            "Escharotomy แขนสองข้าง",
+            "ให้ยาแก้ปวด แม้ eschar full thickness จะไม่มีความรู้สึก"
+          ],
+          "doseMap": {
+            "Escharotomy หน้าอก": "แผลไหม้ full thickness รอบหน้าอกทำให้อกขยายไม่ได้ เกิด ventilatory failure ที่ตั้ง ventilator ยังไงก็แก้ไม่ได้ กรีดตาม anterior axillary line ทั้งสองข้างและขวางตาม costal margin",
+            "Escharotomy แขนสองข้าง": "กรีดตรงกลางด้าน medial และ lateral ชีพจรหายเป็น sign ช่วงหลัง ลงมือเมื่อ eschar ตึงและ compartment pressure เพิ่ม"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "Stable แล้ว",
+          "outcomeType": "improved",
+          "narrative": "หลัง escharotomy หน้าอก ventilation ดีขึ้นมาก peak pressure ลดจาก 42 เป็น 28 cmH2O คลำ radial pulse ได้หลัง escharotomy แขน lactate ลดเหลือ 4.2 ใน 2 ชม. หลังได้ hydroxocobalamin carboxyhemoglobin ลดเหลือ 8% บน O2 100%",
+          "vitalChanges": {
+            "hr": 116,
+            "sbp": 108,
+            "dbp": 64,
+            "rr": 16,
+            "temp": 36.4,
+            "gcs": 3
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "บอกพยากรณ์โรคตามจริงกับครอบครัว และให้เห็นหน้ากันก่อนส่งตัว (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "ภรรยามาถึงตอนกำลังเตรียมส่งตัว ทางที่มีประสิทธิภาพคือรีบออกไป หมอใช้ 4 นาที บอกว่าแผลไหม้ราว 45% ของร่างกาย ร่วมกับ inhalation injury มีโอกาสเสียชีวิตสูง ศูนย์แผลไหม้อยู่ห่างไป 2 ชม. และเธอนั่งรถพยาบาลไปด้วยไม่ได้ ตอนนี้เขาได้ยานอนหลับและไม่เจ็บ แล้วให้เธอได้ยืนข้างเขา พี่พิมบอกว่าครอบครัวที่รับมือได้แย่ที่สุดไม่ใช่คนที่ได้ข่าวร้าย แต่เป็นคนที่ถูกกันออกไปอย่างมีประสิทธิภาพ"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ทำแผลแบบเปียกระหว่างส่งตัว",
+              "feedback": "ผ้าเปียกทำให้ hypothermia ใช้แผ่นฟิล์มห่ออาหารและ warm แบบ active"
+            },
+            {
+              "label": "ให้ prophylactic antibiotic IV ระหว่างส่งตัว",
+              "feedback": "ไม่แนะนำ prophylactic antibiotic ในแผลไหม้"
+            }
+          ],
+          "label": "ส่งต่อศูนย์แผลไหม้พร้อมเตรียมตัวคนไข้ให้ถูก",
+          "actions": [
+            "ส่งต่อศูนย์แผลไหม้",
+            "ปิดแผลด้วยแผ่นฟิล์มห่ออาหาร ไม่ใช่ผ้าเปียก",
+            "Warm แบบ active ระหว่างส่งตัว",
+            "ใส่ NG tube และเริ่มให้อาหารทางสายเร็ว",
+            "ป้องกันบาดทะยัก ไม่ให้ antibiotic แบบ prophylactic"
+          ],
+          "doseMap": {
+            "ปิดแผลด้วยแผ่นฟิล์มห่ออาหาร ไม่ใช่ผ้าเปียก": "ผ้าเปียกบนแผลไหม้ขนาดใหญ่ทำให้ hypothermia รุนแรงระหว่างส่งตัว 2 ชม.",
+            "ป้องกันบาดทะยัก ไม่ให้ antibiotic แบบ prophylactic": "Prophylactic systemic antibiotic คัดเลือกเชื้อดื้อยาโดยไม่ได้ลด burn wound sepsis"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "ที่ศูนย์แผลไหม้",
+          "outcomeType": "improved",
+          "narrative": "ทำ excision และ graft เป็นระยะตั้งแต่วันที่ 3 เกิด VAP วันที่ 9 รักษาได้ AKI ต้อง dialysis 5 ครั้ง extubate วันที่ 22 อยู่ ICU 34 วัน",
+          "vitalChanges": {
+            "hr": 98,
+            "sbp": 114,
+            "dbp": 68,
+            "rr": 20,
+            "temp": 37.2,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "ส่งต่อ rehab ที่ 4 เดือน graft เป็นวงกว้าง แผลเป็นนูนต้องใส่ชุดรัด 2 ปี และมี restrictive ventilatory defect การ intubate เร็วกับ escharotomy หน้าอกคือสองการตัดสินใจที่ทำให้ที่เหลือเป็นไปได้",
+          "vitalChanges": {
+            "hr": 84,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 18,
+            "temp": 36.8,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e5",
+        "source": "req4",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

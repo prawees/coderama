@@ -1,0 +1,455 @@
+{
+  "title": "31yo F Amniotic Fluid Embolism",
+  "age": "31",
+  "sex": "F",
+  "chiefComplaint": "ล้มหมดสติทันทีระหว่างรอคลอด",
+  "diagnoses": [
+    "Amniotic fluid embolism",
+    "Pulmonary thromboembolism",
+    "Eclampsia",
+    "Anaphylaxis to anaesthetic agent",
+    "Total spinal anaesthesia",
+    "Placental abruption"
+  ],
+  "background": "ครรภ์ที่ 3 GA 39+4 สัปดาห์ อยู่ใน active labour ปากมดลูกเปิด 8 cm ได้ oxytocin เร่งคลอด เจาะถุงน้ำคร่ำเมื่อ 11 นาทีก่อน บอกว่ารู้สึกหนาวและกลัวขึ้นมาทันที แล้วชักครู่หนึ่งและหมดสติ ความรู้สึกว่ากำลังจะเกิดเรื่องร้ายก่อนล้มพบในเคสส่วนใหญ่ และมักเป็นสัญญาณเตือนเดียว ประกาศ obstetric emergency ตอน 03:14 น.",
+  "patientAppearance": {
+    "skinTone": "#eec39c",
+    "bmiFactor": 1.2,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 148,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 62,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 32,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 38,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.5,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 72,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 6,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Unresponsive, cyanosed, gasping, in extremis within four minutes of feeling unwell. The speed of deterioration is itself diagnostic",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Central cyanosis of the lips and tongue, frothy blood-stained secretions at the mouth, no facial or airway swelling and no urticaria, which argues against anaphylaxis",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Tachycardia at 148/min, profound hypotension, impalpable radial pulses with a weak central pulse, capillary refill over 6 seconds. Initial right ventricular failure from acute pulmonary vasoconstriction, followed within minutes by left ventricular failure",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Widespread coarse crackles, saturations 72% on 15 L/min, poor air entry, no wheeze, no unilateral absence of breath sounds",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Gravid uterus, hypertonic and firm, fetal heart rate 68 bpm and falling on the cardiotocograph. Torrential fresh vaginal bleeding beginning about eight minutes after collapse as the coagulopathy establishes",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cyanosed and mottled, bleeding freely from the intravenous cannula site and from the epidural insertion site, no rash. Oozing from every puncture site is the visible marker of disseminated intravascular coagulation",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 6, post-ictal, pupils 4 mm and sluggish. Neurological injury here is hypoxic and is determined by how fast circulation is restored",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "coag1",
+      "kind": "lab",
+      "category": "Coagulation",
+      "name": "Fibrinogen, INR, platelet",
+      "value": "Fibrinogen <0.5 g/L / INR 3.8 / platelets 42 x10^9/L",
+      "unit": "-",
+      "normalRange": "Fibrinogen 4.0-6.0 in pregnancy",
+      "abnormal": true,
+      "report": "Fulminant DIC fibrinogen ที่ร่วงจาก baseline ตอนตั้งครรภ์ 4 ถึง 6 g/L เหลือต่ำกว่า 0.5 ในไม่กี่นาที เกือบจำเพาะต่อ AFE ในบรรดาภาวะวิกฤตทางสูติกรรม"
+    },
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "ABG",
+      "value": "pH 6.98 / pCO2 62 / pO2 38 / lactate 12.4",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Profound mixed acidosis ร่วมกับ severe hypoxemia"
+    },
+    {
+      "id": "echo1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "Echo ข้างเตียง",
+      "report": "RV โตมาก บีบตัวแย่ septum โป่งเข้า LV LV เล็กและเลือดเข้าไม่พอ ไม่มี pericardial effusion รูปแบบ RV failure นี้นำการรักษา ต้องใช้ vasopressor และ pulmonary vasodilator และแปลว่าการ load fluid หนักจะทำให้แย่ลง",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "hb1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Hb (เป็นระยะ)",
+      "value": "10.4 แล้วลดเหลือ 6.2 g/dL ใน 25 นาที",
+      "unit": "g/dL",
+      "normalRange": "11.0-14.0 in pregnancy",
+      "abnormal": true,
+      "report": "ลดเร็วจาก PPH บนภาวะ coagulopathy เต็มรูปแบบ"
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "EKG 12 lead",
+      "report": "Sinus tachycardia 146/min, right axis deviation, S1Q3T3 และ T inversion V1 ถึง V4 acute right heart strain ดูจาก EKG อย่างเดียวแยกจาก massive PE ไม่ได้",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "ca1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "iCa",
+      "value": "0.82",
+      "unit": "mmol/L",
+      "normalRange": "1.15-1.30",
+      "abnormal": true,
+      "report": "Hypocalcemia จากให้เลือดปริมาณมากที่มี citrate calcium จำเป็นทั้งต่อการแข็งตัวของเลือดและการบีบตัวของหัวใจ และถูกลืมซ้ำแล้วซ้ำเล่าระหว่าง massive transfusion"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "ประกาศ emergency ดันมดลูก ให้ O2",
+          "distractors": [
+            {
+              "label": "ให้ oxytocin drip ต่อ",
+              "feedback": "คนไข้กำลังทรุด ตามทีมฉุกเฉิน ตะแคงซ้าย และช่วย airway"
+            },
+            {
+              "label": "จับนอนราบเตรียม CPR เลย",
+              "feedback": "ยังมี output อยู่ ดันมดลูกไปทางซ้ายลดการกด vena cava"
+            }
+          ],
+          "label": "ประกาศ obstetric emergency ดันมดลูกไปทางซ้าย airway และ O2",
+          "actions": [
+            "เรียกทีมฉุกเฉินสูติฯ และทีมทารกแรกเกิด",
+            "ดันมดลูกไปทางซ้ายด้วยมือ",
+            "O2 100% และเตรียม intubate",
+            "เปิดเส้นใหญ่ 2 เส้น"
+          ],
+          "doseMap": {
+            "ดันมดลูกไปทางซ้ายด้วยมือ": "ดีกว่าเอียงเตียง เพราะการกดหน้าอกที่ได้ผลต้องทำบนพื้นราบ มดลูกครบกำหนดกด aorta และ vena cava จน cardiac output ระหว่าง CPR ลดลงครึ่งหนึ่งได้"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "มีดผ่าตัดข้างเตียงและคนจับเวลา",
+          "distractors": [
+            {
+              "label": "เตรียมย้ายไปห้องผ่าตัดทำ C/S ถ้า arrest",
+              "feedback": "Perimortem C/S ทำตรงที่ arrest ภายใน 4 นาที เตรียมมีดไว้ข้างเตียง"
+            },
+            {
+              "label": "CPR ให้ครบ 15 นาทีก่อนคลอด",
+              "feedback": "คลอดภายใน 4 ถึง 5 นาทีหลัง arrest เพิ่มการรอดของทั้งแม่และลูก"
+            }
+          ],
+          "label": "เตรียม perimortem C/S ภายใน 4 นาทีถ้า arrest",
+          "actions": [
+            "มีดผ่าตัดอยู่ข้างเตียง",
+            "มอบคนจับเวลาและประกาศนาทีที่ผ่านไปดังๆ",
+            "ทีมทารกแรกเกิดพร้อม"
+          ],
+          "doseMap": {
+            "มีดผ่าตัดอยู่ข้างเตียง": "ถ้า arrest ที่อายุครรภ์เกิน 20 สัปดาห์ ต้องเริ่มคลอดภายใน 4 นาทีและเสร็จภายใน 5 นาที ทำข้างเตียง ไม่ใช่ในห้องผ่าตัด และทำเพื่อช่วย resuscitate แม่เป็นหลัก โดยลดการกด aorta และ vena cava"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ให้ fluid 2 ลิตรเร็วๆ แก้ BP ต่ำ",
+              "feedback": "RV กำลังล้มเหลว fluid เกินทำให้แย่ลง ใช้ vasopressor และ inotrope"
+            },
+            {
+              "label": "ให้ heparin คิดว่าเป็น PE",
+              "feedback": "นี่คือ AFE ที่เสี่ยง DIC heparin จะทำให้เลือดออกมากขึ้น"
+            }
+          ],
+          "label": "พยุง RV อย่าท่วมมัน",
+          "actions": [
+            "Norepinephrine drip",
+            "Inotrope ช่วย RV",
+            "Fluid อย่างระวังเท่านั้น",
+            "Echo ข้างเตียงช่วยตัดสินใจ"
+          ],
+          "doseMap": {
+            "Norepinephrine drip": "เริ่มเร็วสำหรับ vasoplegia",
+            "Inotrope ช่วย RV": "Dobutamine หรือ milrinone พิจารณา inhaled nitric oxide หรือ pulmonary vasodilator ถ้ามี",
+            "Fluid อย่างระวังเท่านั้น": "RV ที่ล้มเหลวและโตจะแย่ลงเมื่อได้ volume นี่ตรงข้ามกับปฏิกิริยาอัตโนมัติเมื่อคนไข้สูติล้มพร้อมเลือดออก และเป็นเหตุผลที่ echo สำคัญ"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ให้ PRC อย่างเดียว",
+              "feedback": "AFE ทำให้ DIC กิน fibrinogen ให้ cryo หรือ fibrinogen ตั้งแต่เนิ่นๆ"
+            },
+            {
+              "label": "รอผล coag ก่อนให้ blood product",
+              "feedback": "DIC เกิดเร็ว เปิด MTP เดี๋ยวนี้"
+            }
+          ],
+          "label": "Massive transfusion โดยเล็งที่ fibrinogen",
+          "actions": [
+            "เปิด massive transfusion protocol",
+            "Cryoprecipitate หรือ fibrinogen concentrate ให้เร็ว",
+            "TXA IV",
+            "ให้ calcium ทดแทน"
+          ],
+          "doseMap": {
+            "Cryoprecipitate หรือ fibrinogen concentrate ให้เร็ว": "เป้า fibrinogen เกิน 2 g/L ใน AFE coagulopathy มักฆ่าเร็วกว่าเหตุการณ์ทางหัวใจ และไม่ตอบสนองต่อ PRC อย่างเดียว",
+            "ให้ calcium ทดแทน": "10% calcium chloride 10 mL ซ้ำได้ ตามระดับ ionized calcium"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "Cardiac arrest และ perimortem delivery",
+          "outcomeType": "worsened",
+          "narrative": "Arrest เป็น PEA ที่นาทีที่ 6 เริ่ม perimortem C/S ที่ 4 นาทีหลัง arrest ทารกคลอดที่ 4 นาที 40 วินาที Apgar 3 แล้ว 7 หลัง resuscitate ROSC ของแม่กลับมา 90 วินาทีหลังคลอด ซึ่งคือผลที่หัตถการนี้ออกแบบมาให้เกิด",
+          "vitalChanges": {
+            "hr": 132,
+            "sbp": 78,
+            "dbp": 44,
+            "rr": 14,
+            "spo2": 88,
+            "gcs": 3
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "จัดคนดูแลสามี และ debrief ทีมหลังจบ (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "สามีเห็นท้องภรรยาถูกเปิดบนเตียงคลอด หมอจัดพยาบาลผดุงครรภ์อาวุโสอยู่กับเขาตั้งแต่วินาทีนั้น แทนที่จะปล่อยไว้ที่ทางเดินสองชั่วโมงอย่างที่มักเกิด หลังจบหมอยืนยันให้ debrief ทีมตอน 8 โมงเช้า ไม่ปล่อยให้ทุกคนกลับบ้าน น้องผดุงครรภ์ที่ถือ fetal monitor อยู่อายุ 23 และเพิ่งเห็น perimortem C/S เธอจะจำได้ว่ามีใครคุยกับเธอหรือเปล่า พี่พิมนำ debrief และบอกว่าแผนกเสียคนไปเพราะคืนแบบนี้ที่ไม่ได้คุยกันมากกว่าเพราะเงินเดือน"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ย้ายไปวอร์ดสามัญหลังคลอด",
+              "feedback": "รอดจาก arrest แต่เลือดยังออก ต้องอยู่ ICU และหยุดเลือด"
+            },
+            {
+              "label": "หยุดให้เลือดเมื่อถึง ICU",
+              "feedback": "ให้ blood product ตามผลต่อไปตราบที่เลือดยังออก"
+            }
+          ],
+          "label": "ดูแลหลัง arrest ใน ICU และหยุดเลือด",
+          "actions": [
+            "Admit ICU ทำ targeted temperature management",
+            "ห้ามเลือดที่มดลูก: balloon tamponade หรือเย็บ B-Lynch",
+            "ให้เลือดตามผล product ต่อ",
+            "พิจารณาส่งต่อ ECMO ถ้าไม่ตอบสนอง"
+          ],
+          "doseMap": {
+            "ห้ามเลือดที่มดลูก: balloon tamponade หรือเย็บ B-Lynch": "ตัดมดลูกถ้าคุมเลือดไม่ได้ แต่ต้องแก้ fibrinogen ก่อน ผ่าตัดเข้าไปใน coagulopathy ที่ยังไม่แก้ทำให้เลือดออกมากขึ้น"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "รอดด้วยการพยุงอวัยวะ",
+          "outcomeType": "improved",
+          "narrative": "ให้เลือดรวม PRC 14 unit FFP 12 unit cryo 20 unit platelet 3 pool เก็บมดลูกไว้ได้ด้วย balloon extubate วันที่ 4 มี cognitive impairment เล็กน้อยจากช่วง hypoxia ดีขึ้นที่ 3 เดือน อัตรารอดที่รายงานดีขึ้นมากเมื่อจับได้เร็วและให้ blood product เต็มที่",
+          "vitalChanges": {
+            "hr": 96,
+            "sbp": 108,
+            "dbp": 62,
+            "rr": 18,
+            "spo2": 96,
+            "gcs": 14
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 16 พร้อมลูกสาว ส่งข้อมูลเข้าทะเบียน AFE ระดับชาติ ได้คำปรึกษาว่ามีรายงานการเป็นซ้ำในครรภ์หน้า แต่ไม่ชัดว่าเสี่ยงเพิ่ม ซึ่งเป็นคำตอบตามจริงมากกว่าคำปลอบใจ หน่วยทบทวนความพร้อม perimortem C/S และย้ายชุดมีดผ่าตัดเข้าไปไว้ทุกห้องคลอด",
+          "vitalChanges": {
+            "hr": 84,
+            "sbp": 116,
+            "dbp": 70,
+            "rr": 16,
+            "spo2": 98,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e5",
+        "source": "req4",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

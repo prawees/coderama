@@ -1,0 +1,449 @@
+{
+  "title": "28yo M High-Voltage Electrical Injury",
+  "age": "28",
+  "sex": "M",
+  "chiefComplaint": "ถูกไฟดูดระหว่างทำงานบนหลังคา กระเด็นออกมา",
+  "diagnoses": [
+    "High-voltage electrical injury with rhabdomyolysis",
+    "Compartment syndrome",
+    "Cardiac arrhythmia",
+    "Blunt trauma from the fall",
+    "Thermal burns"
+  ],
+  "background": "ช่างติดแอร์ บันไดอะลูมิเนียมไปแตะสายไฟแรงสูง 11 kV คนที่เห็นเล่าว่าตัวแข็งไปหลายวินาที แล้วกระเด็นไปราว 2 เมตรบนหลังคาคอนกรีต ตกลงมาอีก 3 เมตร หมดสติไปครู่หนึ่ง เพื่อนเริ่มกดหน้าอกก่อนจะรู้ว่ายังมีชีพจร น้ำหนัก 76 kg ในไฟแรงสูง แผลที่ผิวหนังเป็นแค่ส่วนน้อยของความเสียหาย เพราะกระแสไฟวิ่งผ่านทางที่ต้านน้อยที่สุด คือเส้นประสาท หลอดเลือด และกล้ามเนื้อใต้ผิว",
+  "patientAppearance": {
+    "skinTone": "#c08a56",
+    "bmiFactor": 1.0,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 124,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 104,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 64,
+      "abnormal": false
+    },
+    "rr": {
+      "value": 26,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.0,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 96,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 14,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Alert but agitated and confused, in severe pain in the right arm, smell of burnt tissue, clothing charred at the right hand and left foot",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Occipital scalp haematoma from the fall, no facial burns, no singed nasal hairs and no soot in the oropharynx so no inhalational injury, cervical collar in place, tympanic membranes intact",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia at 124/min with occasional ventricular ectopics, blood pressure maintained, radial pulse present on the left but not palpable on the right, capillary refill 2 seconds centrally",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Equal air entry, tender right ribs 6 to 8 from the fall, no surgical emphysema, no flail segment, tachypnoeic from pain and acidosis",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, mildly tender in the right upper quadrant, no rebound, no seatbelt sign, pelvis stable. Blunt abdominal injury from the fall must be excluded separately from the electrical injury",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Deep charred contact wound over the right palm (entry) measuring 4 cm, and a similar exit wound over the left heel. Total burn surface area under 3%, which is deceptive. Right forearm is tense, swollen and hard with pain on passive finger extension",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 14 (E4V4M6), confused, no focal deficit centrally. Right hand is insensate over the median distribution with weak finger flexion. Peripheral nerve injury is common and may be immediate or delayed by days to weeks",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "CK",
+      "value": "42000",
+      "unit": "U/L",
+      "normalRange": "30-200",
+      "abnormal": true,
+      "report": "Massive rhabdomyolysis ในไฟแรงสูงค่ามักสูงกว่าที่แผลภายนอกบอกมาก เพราะกล้ามเนื้อเสียหายลึกและกว้าง"
+    },
+    {
+      "id": "ua1",
+      "kind": "lab",
+      "category": "Urine",
+      "name": "UA",
+      "value": "ปัสสาวะสีชาเข้ม dipstick blood 4+ ไม่มี RBC ใน microscopy",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": true,
+      "report": "Myoglobinuria dipstick blood บวกแต่ไม่มี RBC ในกล้อง เป็น finding คลาสสิก ยืนยันความเสี่ยง pigment nephropathy"
+    },
+    {
+      "id": "k1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "K, Cr",
+      "value": "K 6.1 mmol/L / creatinine 2.2 mg/dL",
+      "unit": "-",
+      "normalRange": "K 3.5-5.0 mmol/L",
+      "abnormal": true,
+      "report": "Hyperkalemia จากกล้ามเนื้อสลายร่วมกับ AKI K จะสูงขึ้นอีกหลังทำ fasciotomy ปล่อย compartment ที่เสียหาย"
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "EKG 12 lead",
+      "report": "Sinus tachycardia มี ventricular ectopic บ่อย peaked T เข้าได้กับ hyperkalemia ไม่มี ST elevation arrhythmia คือสาเหตุการเสียชีวิตทันทีในไฟดูด ต้อง monitor 24 ชม. หลังโดนไฟแรงสูงหรือหมดสติ",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "gas1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Blood gas, lactate",
+      "value": "pH 7.22 / HCO3 16 / lactate 5.8",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Metabolic acidosis จากกล้ามเนื้อตายและ hypoperfusion"
+    },
+    {
+      "id": "ct1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CT head, C-spine และลำตัว",
+      "report": "Right frontal contusion เล็ก ไม่มี mass effect ไม่มี C-spine injury rib 6 ถึง 8 ขวาหัก มี pulmonary contusion เล็กน้อย ไม่มี intra-abdominal injury การตกต้อง work up เป็น blunt trauma ด้วยตัวมันเอง",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "รักษาเป็นแผลไฟไหม้จากไฟฟ้าอย่างเดียว ไม่ต้องทำ trauma imaging",
+              "feedback": "กระเด็นแล้วตกลงมา 5 เมตร ต้องดูแลเป็น blunt trauma ด้วย"
+            },
+            {
+              "label": "EKG แรกปกติก็ไม่ต้อง monitor หัวใจ",
+              "feedback": "ไฟแรงสูงต้อง monitor arrhythmia ต่อเนื่อง"
+            }
+          ],
+          "label": "ดูแลเป็น blunt trauma ด้วย ไม่ใช่แค่ไฟดูด",
+          "actions": [
+            "Primary survey พร้อมระวัง C-spine",
+            "ติด monitor หัวใจต่อเนื่อง",
+            "EKG 12 lead",
+            "Imaging trauma ให้ครบ"
+          ],
+          "doseMap": {
+            "Treat as blunt trauma as well as electrical injury": "การตกและกล้ามเนื้อเกร็งค้างทำให้กระดูกหักและบาดเจ็บภายในโดยไม่เกี่ยวกับกระแสไฟ ดูแค่แผลไหม้จะพลาดกระดูกสันหลังกับศีรษะ"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "Fluid ให้ urine output 1.5 ถึง 2 mL/kg/h",
+          "distractors": [
+            {
+              "label": "ใช้สูตร Parkland จาก burn surface area",
+              "feedback": "แผลที่ผิวประเมินความเสียหายกล้ามเนื้อลึกในไฟแรงสูงต่ำไปมาก titrate ตาม urine output"
+            },
+            {
+              "label": "จำกัด fluid เพราะแผลไหม้ดูเล็ก",
+              "feedback": "Deep tissue injury ทำให้ rhabdomyolysis ต้องได้ fluid ปริมาณมาก"
+            }
+          ],
+          "label": "ให้ fluid เต็มที่ เกินสูตรตาม burn surface area ไปมาก",
+          "actions": [
+            "Crystalloid ปริมาณมาก",
+            "ใส่สายสวนปัสสาวะ วัด output ทุกชั่วโมง",
+            "ห้ามใช้สูตร Parkland ในเคสนี้"
+          ],
+          "doseMap": {
+            "Crystalloid ปริมาณมาก": "เป้า urine output 1.5 ถึง 2 mL/kg/h (ราว 115 ถึง 150 mL/h) ประมาณสองเท่าของเป้าในแผลไหม้จากความร้อน",
+            "ห้ามใช้สูตร Parkland ในเคสนี้": "สูตรตามพื้นที่ผิวประเมินความต้องการในไฟแรงสูงต่ำไปมาก เพราะมองไม่เห็นกล้ามเนื้อที่เสียหาย titrate ตาม urine output ไม่ใช่ตามการคำนวณ"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Calcium IV, insulin กับ dextrose, monitor",
+          "distractors": [
+            {
+              "label": "ให้ K แก้กล้ามเนื้ออ่อนแรง",
+              "feedback": "กล้ามเนื้อสลายปล่อย K ออกมา ให้ K เพิ่มอันตราย"
+            },
+            {
+              "label": "รักษา K เฉพาะเมื่อเกิน 7",
+              "feedback": "EKG เปลี่ยนจาก hyperkalemia ต้องให้ calcium ทันทีไม่ว่าค่าเท่าไร"
+            }
+          ],
+          "label": "รักษา hyperkalemia และ monitor arrhythmia",
+          "actions": [
+            "Calcium gluconate ถ้า EKG เปลี่ยน",
+            "Insulin กับ dextrose",
+            "Monitor หัวใจต่อเนื่องอย่างน้อย 24 ชม.",
+            "เจาะ K ซ้ำทุก 2 ชม."
+          ],
+          "doseMap": {
+            "Calcium gluconate ถ้า EKG เปลี่ยน": "10% 10 mL IV ใน 3 นาที ซ้ำได้ตามต้องการ",
+            "Monitor หัวใจต่อเนื่องอย่างน้อย 24 ชม.": "มี indication หลังโดนไฟแรงสูง หมดสติ หรือ EKG แรกผิดปกติ เขามีครบทั้งสาม"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "Compartment syndrome ที่แขนขวา",
+          "outcomeType": "worsened",
+          "narrative": "แขนตึงแข็งเหมือนไม้ ชามากขึ้นเรื่อยๆ ปวดเมื่อ passive stretch คลำ radial pulse ไม่ได้ ซึ่งเป็น sign ช่วงหลัง กล้ามเนื้อลึกตายใต้ผิวหนังที่ดูปกติเป็นลักษณะเฉพาะ และประเมินไม่ได้เลยถ้าไม่เปิด compartment",
+          "vitalChanges": {
+            "hr": 132,
+            "sbp": 98,
+            "dbp": 60,
+            "rr": 28
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "choice": "Fasciotomy พร้อม calcium และ insulin",
+          "distractors": [
+            {
+              "label": "รอ refer ศูนย์แผลไหม้ก่อน fasciotomy",
+              "feedback": "Compartment syndrome ต้อง decompress ทันที"
+            },
+            {
+              "label": "Fasciotomy โดยไม่เตรียมรับ K พุ่ง",
+              "feedback": "Reperfusion ปล่อย K ออกมา เตรียมการรักษาไว้ก่อนเปิด"
+            }
+          ],
+          "label": "Fasciotomy ด่วน เตรียมรับ K พุ่ง",
+          "actions": [
+            "Fasciotomy ปลายแขนและ carpal tunnel release ด่วน",
+            "เตรียมรับ hyperkalemia จาก reperfusion",
+            "ให้ ortho และศัลย์แผลไหม้ร่วมดูแล"
+          ],
+          "doseMap": {
+            "เตรียมรับ hyperkalemia จาก reperfusion": "การเปิด compartment ที่กล้ามเนื้อตายจะชะ K และ myoglobin เข้ากระแสเลือด เตรียม calcium, insulin, dextrose และ defibrillator ไว้ก่อนลงมีด"
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "รายงานสถานที่ทำงานที่ไม่ปลอดภัย และบอกว่าเขาได้รับการรักษาไม่ว่าจะมีเอกสารหรือไม่ (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "เขาอายุ 28 ไม่มีสัญญาจ้าง คำถามแรกที่พูดรู้เรื่องคือต้องจ่ายเงินไหม และนายจ้างจะรู้ไหม หมอบอกว่าการรักษาฉุกเฉินมีสิทธิครอบคลุม การรายงานเหตุไม่กระทบการรักษา และบันไดอะลูมิเนียมในระยะเอื้อมถึงสาย 11 kV คือการจัดงานที่ฆ่าคนได้ และจะฆ่าช่างคนต่อไปถ้าไม่มีใครบันทึก หมอยื่นรายงานการบาดเจ็บจากการทำงานเอง พรุ่งนี้เพื่อนเขาสามคนต้องทำงานที่ตึกเดียวกัน"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "choice": "ส่งต่อศูนย์แผลไหม้และนัดตรวจตา",
+          "distractors": [
+            {
+              "label": "D/C เมื่อปัสสาวะใสแล้ว",
+              "feedback": "Complication ที่ตามมาทีหลังมีทั้งกล้ามเนื้อตาย ต้อกระจก และ neuropathy ส่งต่อศูนย์แผลไหม้"
+            },
+            {
+              "label": "ไม่ต้องนัดตรวจตา",
+              "feedback": "ไฟแรงสูงทำให้เกิดต้อกระจกตามมาภายหลัง นัดจักษุ"
+            }
+          ],
+          "label": "ส่งต่อศูนย์แผลไหม้และติดตามต่อ",
+          "actions": [
+            "ส่งต่อศูนย์แผลไหม้",
+            "Debride กล้ามเนื้อตายเป็นระยะ",
+            "Renal support ถ้า myoglobinuria ยังอยู่",
+            "ให้จักษุแพทย์ดูต้อกระจกที่เกิดช้า",
+            "นัด neuro ติดตาม neuropathy ที่เกิดช้า"
+          ],
+          "doseMap": {
+            "ให้จักษุแพทย์ดูต้อกระจกที่เกิดช้า": "ผู้รอดจากไฟแรงสูงส่วนหนึ่งเกิดต้อกระจก บางครั้งหลายเดือนต่อมา ต้องบันทึก baseline ไว้ตอนนี้"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "ระหว่าง admit",
+          "outcomeType": "improved",
+          "narrative": "Fasciotomy เจอกล้ามเนื้อ flexor ตายเป็นวงกว้าง ต้อง debride วันที่ 2 และ 4 CK สูงสุด 68000 วันที่ 2 Cr สูงสุด 3.8 mg/dL ต้อง dialysis สองครั้ง แล้วไตฟื้น เก็บมือไว้ได้ แต่ median nerve deficit ยังอยู่",
+          "vitalChanges": {
+            "hr": 96,
+            "sbp": 116,
+            "dbp": 70,
+            "rr": 18
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "ส่งต่อ rehab สัปดาห์ที่ 5 ทำ skin graft ที่แขน median nerve deficit ยังอยู่ ต้องทำ tendon transfer ที่ 6 เดือน ไตกลับมาปกติ รายงานการบาดเจ็บนำไปสู่การตรวจสถานที่ และเก็บบันไดออกอีกสองอันจากไซต์งานของผู้รับเหมาเดียวกัน",
+          "vitalChanges": {
+            "hr": 82,
+            "sbp": 120,
+            "dbp": 74,
+            "rr": 16
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e6",
+        "source": "req4",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e_skip",
+        "source": "req4",
+        "target": "req5"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

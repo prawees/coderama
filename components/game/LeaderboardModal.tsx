@@ -1,108 +1,110 @@
 import { useEffect, useState } from "react";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
-import { getRankFromXp } from "@/lib/erStore";
+import { PixelIcon } from "@/components/ui/PixelIcon";
+import { getRankFromXp, useERStore } from "@/lib/erStore";
+import { RANK_SHORT_TH, universityTh } from "@/lib/localization";
 
 interface LeaderboardModalProps {
   onClose: () => void;
 }
 
+const MEDAL = ["#e8b84f", "#c9c3bd", "#d08a5a"];
+
 export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
+  const language = useERStore((s) => s.language);
+  const tr = (en: string, th: string) => (language === "th" ? th : en);
   const [leaders, setLeaders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState<'individual' | 'university'>('individual');
+  const [failed, setFailed] = useState(false);
+  const [tab, setTab] = useState<"individual" | "university">("individual");
 
   useEffect(() => {
-    const fetchLeaders = async () => {
+    let alive = true;
+    (async () => {
       try {
-        // Fetch more for aggregation
         const q = query(collection(db, "leaderboards"), orderBy("xp", "desc"), limit(50));
-        const querySnapshot = await getDocs(q);
-        const fetched = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setLeaders(fetched);
+        const snap = await getDocs(q);
+        if (alive) setLeaders(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
       } catch (e) {
-        console.error("Failed to fetch leaderboard", e);
+        console.warn("Leaderboard unavailable", e);
+        if (alive) setFailed(true);
       } finally {
-        setLoading(false);
+        if (alive) setLoading(false);
       }
-    };
-    fetchLeaders();
+    })();
+    return () => { alive = false; };
   }, []);
 
   const universityScores = leaders.reduce((acc, curr) => {
-    const uni = curr.university || 'Unknown';
-    acc[uni] = (acc[uni] || 0) + curr.xp;
+    const uni = universityTh(curr.university) || "ไม่ระบุ";
+    acc[uni] = (acc[uni] || 0) + (curr.xp || 0);
     return acc;
   }, {} as Record<string, number>);
-
   const sortedUniversities = Object.entries(universityScores)
     .sort(([, a], [, b]) => (b as number) - (a as number))
     .map(([name, xp]) => ({ name, xp: xp as number }));
 
+  const Row = ({ i, name, sub, right, right2 }: { i: number; name: string; sub?: string; right: string; right2?: string }) => (
+    <div className="flex items-center gap-2 bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] px-2 py-1.5">
+      <span
+        className="w-7 h-7 shrink-0 flex items-center justify-center rounded-full border-2 border-[#3a2a2f] text-[16px] leading-none"
+        style={{ background: MEDAL[i] ?? "#f1d9a7" }}
+      >
+        {i + 1}
+      </span>
+      <div className="flex-1 min-w-0">
+        <p className="text-[18px] leading-none truncate">{name}</p>
+        {sub && <p className="text-[14px] leading-none mt-1 text-[#86522e] truncate">{sub}</p>}
+      </div>
+      <div className="text-right">
+        <p className="text-[17px] leading-none tabular-nums">{right}</p>
+        {right2 && <p className="text-[13px] leading-none mt-1 text-[#86522e]">{right2}</p>}
+      </div>
+    </div>
+  );
+
   return (
-    <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-      <PixelPanel className="w-full max-w-lg max-h-[80vh] flex flex-col" variant="dark">
-        <h2 className="text-3xl text-pixel-gold font-bold text-center mb-4 uppercase">Global Leaderboard</h2>
-        
-        <div className="flex gap-2 mb-2">
-          <PixelButton onClick={() => setTab('individual')} variant={tab === 'individual' ? 'primary' : 'secondary'} className="flex-1 text-xs py-1">
-            Doctors
-          </PixelButton>
-          <PixelButton onClick={() => setTab('university')} variant={tab === 'university' ? 'primary' : 'secondary'} className="flex-1 text-xs py-1">
-            Universities
-          </PixelButton>
-        </div>
-        
-        <div className="flex-1 overflow-y-auto pr-2 space-y-2">
-          {loading ? (
-            <div className="text-center text-gray-400 py-8 animate-pulse">Loading top doctors...</div>
-          ) : tab === 'individual' ? (
-            leaders.slice(0, 10).map((leader, index) => (
-              <div key={leader.id} className="bg-gray-900 border-2 border-gray-700 p-2 rounded flex items-center gap-2">
-                <div className={`text-xl font-bold w-6 text-center ${index === 0 ? 'text-yellow-400' : index === 1 ? 'text-gray-300' : index === 2 ? 'text-orange-400' : 'text-gray-500'}`}>
-                  #{index + 1}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-white font-bold truncate text-sm">{leader.displayName || "Unknown Doctor"}</div>
-                  <div className="text-[10px] text-gray-400 truncate">
-                    {leader.university !== 'Unknown' ? `${leader.university} • ` : ''} 
-                    {getRankFromXp(leader.xp || 0)}
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="text-pixel-success font-bold text-sm">{leader.xp || 0} XP</div>
-                  <div className="text-[10px] text-gray-500">Day {leader.day || 1}</div>
-                </div>
-              </div>
-            ))
-          ) : (
-            sortedUniversities.map((uni, index) => (
-              <div key={uni.name} className="bg-gray-900 border-2 border-gray-700 p-2 rounded flex items-center gap-2">
-                <div className={`text-xl font-bold w-6 text-center ${index === 0 ? 'text-yellow-400' : index === 1 ? 'text-gray-300' : index === 2 ? 'text-orange-400' : 'text-gray-500'}`}>
-                  #{index + 1}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-white font-bold truncate text-sm">{uni.name}</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-pixel-success font-bold text-sm">{uni.xp.toLocaleString()} XP</div>
-                </div>
-              </div>
-            ))
-          )}
-          {!loading && leaders.length === 0 && (
-            <div className="text-center text-gray-400 py-8">No doctors found. The ER is empty!</div>
-          )}
+    <div className="fixed inset-0 bg-[#1c1522]/70 z-[150] flex items-center justify-center p-4 font-pixel" onClick={onClose}>
+      <div className="cozy-panel w-full max-w-sm max-h-[80vh] flex flex-col p-3" onClick={(e) => e.stopPropagation()} data-testid="leaderboard">
+        <div className="flex items-center justify-between mb-2">
+          <h2 className="text-[26px] leading-none flex items-center gap-2"><PixelIcon name="badge" size={20} />{tr("Hall of fame", "ทำเนียบหมอ")}</h2>
+          <button className="cozy-btn px-2 py-0.5 text-lg leading-none" onClick={onClose}>✕</button>
         </div>
 
-        <div className="mt-4 pt-4 border-t-2 border-gray-800">
-          <PixelButton onClick={onClose} variant="secondary" className="w-full">
-            Close
+        <div className="flex gap-1.5 mb-2">
+          <PixelButton onClick={() => setTab("individual")} variant={tab === "individual" ? "gold" : "secondary"} className="flex-1 text-[17px] py-1">
+            {tr("Doctors", "หมอ")}
+          </PixelButton>
+          <PixelButton onClick={() => setTab("university")} variant={tab === "university" ? "gold" : "secondary"} className="flex-1 text-[17px] py-1">
+            {tr("Schools", "มหาวิทยาลัย")}
           </PixelButton>
         </div>
-      </PixelPanel>
+
+        <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-1.5">
+          {loading ? (
+            <p className="text-center text-[18px] text-[#86522e] py-8 animate-pulse">{tr("Dusting off the plaques...", "กำลังเช็ดป้ายรายชื่อ...")}</p>
+          ) : failed || leaders.length === 0 ? (
+            <p className="text-center text-[18px] text-[#86522e] py-8">
+              {failed ? tr("The board is offline. Sign in from Settings to post your name.", "บอร์ดออฟไลน์อยู่ ลงชื่อเข้าใช้ในหน้าตั้งค่าเพื่อขึ้นป้าย") : tr("No names yet. Yours could be first.", "ยังไม่มีใครเลย ชื่อแรกอาจเป็นของหมอ")}
+            </p>
+          ) : tab === "individual" ? (
+            leaders.slice(0, 10).map((l, i) => (
+              <Row
+                key={l.id}
+                i={i}
+                name={l.displayName || tr("Mystery doctor", "หมอนิรนาม")}
+                sub={`${l.university && l.university !== "Unknown" ? `${universityTh(l.university)}, ` : ""}${RANK_SHORT_TH[getRankFromXp(l.xp || 0)] ?? getRankFromXp(l.xp || 0)}`}
+                right={`${l.xp || 0} XP`}
+                right2={tr(`Day ${l.day || 1}`, `วันที่ ${l.day || 1}`)}
+              />
+            ))
+          ) : (
+            sortedUniversities.map((u, i) => <Row key={u.name} i={i} name={u.name} right={`${u.xp.toLocaleString()} XP`} />)
+          )}
+        </div>
+      </div>
     </div>
   );
 }

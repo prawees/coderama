@@ -1,0 +1,20 @@
+cc: เจ็บหน้าอก แล้วหมดสติในห้องรอตรวจ
+bg: คนไข้กุมหน้าอกแล้วล้มลงในห้องรอตรวจ คลำ pulse ไม่ได้
+i.ecg1: Chaotic irregular deflections ขนาดไม่เท่ากัน ไม่เห็น P wave, QRS หรือ T wave
+start.n: คนไข้ pulseless, apnea monitor ขึ้น VF
+start.o0: เริ่ม CPR และ defib 200 J
+start.o1: Push adrenaline 1 mg IV
+start.o2: Push amiodarone 300 mg IV
+start.o3: Intubate ทันที
+cpr_shock.n: เริ่ม CPR และ shock ไป 1 ครั้ง กดหน้าอกครบ 2 นาที rhythm check ยังเป็น VF
+cpr_shock.o0: Shock อีกครั้ง 200 J กดต่อทันที แล้วให้ adrenaline 1 mg IV
+cpr_shock.o1: Shock ติดกันอีก 2 ครั้งโดยไม่กดหน้าอกคั่น
+epi_early.n: ให้ adrenaline ไปแล้ว แต่ถ้าไม่มี high-quality CPR กับ defib ก็ไม่ convert rhythm
+amio_early.n: Amiodarone ไม่ใช่สิ่งแรกที่ทำใน VF ก่อน shock คนไข้ยังเป็น VF อยู่
+intubate_early.n: Intubate ตอนนี้ทำให้ CPR กับ defib ช้าลง ซึ่งสองอย่างนี้สำคัญที่สุดในช่วงแรกของ VF
+correct_epi.n: Shock ครั้งที่สอง กดต่อทันที ให้ adrenaline 1 mg ระหว่างรอบ rhythm check ที่ 2 นาที ยัง VF
+correct_epi.o0: Shock อีกครั้ง กด CPR ต่อ แล้วให้ amiodarone 300 mg IV
+correct_epi.o1: Push atropine 1 mg IV
+shock_again.n: Shock ติดกันโดยไม่กดหน้าอก กล้ามเนื้อหัวใจไม่มีเลือดไปเลี้ยงระหว่างนั้น rhythm กลายเป็น asystole
+correct_amio.n: Shock ครั้งที่สาม แล้วให้ amiodarone 300 mg ในรอบถัดไป rhythm check เห็น organized rhythm คลำ carotid ได้ ROSC แล้ว เตรียม post-cardiac arrest care และทำ EKG 12 leads
+wrong_atropine.n: Atropine ไม่มีที่ใช้ใน VF คนไข้แย่ลงเป็น asystole

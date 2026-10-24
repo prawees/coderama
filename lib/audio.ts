@@ -3,7 +3,6 @@ import { useERStore } from './erStore';
 class AudioEngine {
   private ctx: AudioContext | null = null;
   public isMuted: boolean = false;
-  private ambientOsc: OscillatorNode | null = null;
   private ambientGain: GainNode | null = null;
 
   private initContext() {
@@ -23,83 +22,154 @@ class AudioEngine {
     this.isMuted = muted;
     if (muted) {
       this.stopAmbientHum();
+      this.stopRain();
     }
   }
+
+  private ambientNoise: AudioBufferSourceNode | null = null;
+  private beepTimer: ReturnType<typeof setTimeout> | null = null;
+  private currentIntensity = 0;
 
   public stopAmbientHum() {
+    if (this.beepTimer) { clearTimeout(this.beepTimer); this.beepTimer = null; }
     if (this.ambientGain && this.ctx) {
-      this.ambientGain.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 1);
-      setTimeout(() => {
-        if (this.ambientOsc) {
-          this.ambientOsc.stop();
-          this.ambientOsc.disconnect();
-          this.ambientOsc = null;
-        }
-        if (this.ambientOsc2) {
-          this.ambientOsc2.stop();
-          this.ambientOsc2.disconnect();
-          this.ambientOsc2 = null;
-        }
-        if (this.ambientFilter) {
-          this.ambientFilter.disconnect();
-          this.ambientFilter = null;
-        }
-        if (this.ambientGain) {
-          this.ambientGain.disconnect();
-          this.ambientGain = null;
-        }
-      }, 1100);
+      const g = this.ambientGain, src = this.ambientNoise;
+      g.gain.cancelScheduledValues(this.ctx.currentTime);
+      g.gain.setValueAtTime(g.gain.value, this.ctx.currentTime);
+      g.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 1);
+      setTimeout(() => { try { src?.stop(); } catch {} g.disconnect(); }, 1100);
+      this.ambientGain = null;
+      this.ambientNoise = null;
     }
   }
 
-  private ambientOsc2: OscillatorNode | null = null;
-  private ambientFilter: BiquadFilterNode | null = null;
-  private currentIntensity: number = 0;
-
+  /** The room under the music: soft air and, now and then, a monitor down the corridor */
   public playAmbientHum(intensity: number = 0) {
     this.initContext();
-    if (!this.ctx || this.isMuted || this.ambientOsc) return;
-
+    if (!this.ctx || this.isMuted || this.ambientGain) return;
+    const ctx = this.ctx;
     this.currentIntensity = intensity;
-
-    this.ambientOsc = this.ctx.createOscillator();
-    this.ambientOsc2 = this.ctx.createOscillator();
-    this.ambientGain = this.ctx.createGain();
-    this.ambientFilter = this.ctx.createBiquadFilter();
-
-    // Base sub-bass sine wave
-    this.ambientOsc.type = 'sine';
-    this.ambientOsc.frequency.setValueAtTime(55, this.ctx.currentTime); // Low A
-
-    // Higher gritty sawtooth wave for intensity
-    this.ambientOsc2.type = 'sawtooth';
-    this.ambientOsc2.frequency.setValueAtTime(110, this.ctx.currentTime); // A2
-
-    // Low pass filter to keep the sawtooth muffled unless intense
-    this.ambientFilter.type = 'lowpass';
-    const filterFreq = 100 + (intensity * 1000); // 0 -> 100Hz, 1 -> 1100Hz
-    this.ambientFilter.frequency.setValueAtTime(filterFreq, this.ctx.currentTime);
-    
-    // Mix the two
-    this.ambientOsc.connect(this.ambientGain);
-    this.ambientOsc2.connect(this.ambientFilter);
-    this.ambientFilter.connect(this.ambientGain);
-
-    this.ambientGain.gain.setValueAtTime(0, this.ctx.currentTime);
-    this.ambientGain.gain.linearRampToValueAtTime(0.03 + (intensity * 0.05), this.ctx.currentTime + 2); // Fade in
-
-    this.ambientGain.connect(this.ctx.destination);
-
-    this.ambientOsc.start();
-    this.ambientOsc2.start();
+    const len = ctx.sampleRate * 2;
+    const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    let lp = 0;
+    for (let i = 0; i < len; i++) { lp = lp * 0.97 + (Math.random() * 2 - 1) * 0.03; d[i] = lp; }
+    const src = ctx.createBufferSource();
+    src.buffer = buf; src.loop = true;
+    const filt = ctx.createBiquadFilter();
+    filt.type = 'lowpass'; filt.frequency.value = 500;
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0, ctx.currentTime);
+    g.gain.linearRampToValueAtTime(0.25 * useERStore.getState().sfxVolume, ctx.currentTime + 2);
+    src.connect(filt).connect(g).connect(ctx.destination);
+    src.start();
+    this.ambientNoise = src;
+    this.ambientGain = g;
+    const beep = () => {
+      if (!this.ambientGain || !this.ctx) return;
+      const t = this.ctx.currentTime;
+      for (const k of [0, 0.5]) this.chime(960, t + k, 0.012, 0.09, 'sine');
+      this.beepTimer = setTimeout(beep, (7 - this.currentIntensity * 3 + Math.random() * 5) * 1000);
+    };
+    this.beepTimer = setTimeout(beep, 4000);
   }
 
   public setAmbientIntensity(intensity: number) {
-    if (!this.ctx || !this.ambientFilter || !this.ambientGain) return;
     this.currentIntensity = intensity;
-    const filterFreq = 100 + (intensity * 1000);
-    this.ambientFilter.frequency.linearRampToValueAtTime(filterFreq, this.ctx.currentTime + 1);
-    this.ambientGain.gain.linearRampToValueAtTime(0.03 + (intensity * 0.05), this.ctx.currentTime + 1);
+  }
+
+  private rainGain: GainNode | null = null;
+  private rainSrc: AudioBufferSourceNode | null = null;
+  private rainLevel = 1;
+  private dripTimer: ReturnType<typeof setTimeout> | null = null;
+
+  private rainVolume() {
+    return 0.22 * this.rainLevel * useERStore.getState().sfxVolume;
+  }
+
+  /** Rain on the roof: a soft high hiss and now and then a drip from the gutter. Level 1 outside, lower indoors. */
+  public playRain(level = 1) {
+    this.initContext();
+    if (!this.ctx || this.isMuted) return;
+    if (this.rainGain) { this.setRainLevel(level); return; }
+    this.rainLevel = level;
+    const ctx = this.ctx;
+    const len = ctx.sampleRate * 3;
+    const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    // pink noise, Paul Kellet's economy filter
+    let b0 = 0, b1 = 0, b2 = 0;
+    for (let i = 0; i < len; i++) {
+      const w = Math.random() * 2 - 1;
+      b0 = 0.99765 * b0 + w * 0.099046;
+      b1 = 0.963 * b1 + w * 0.2965164;
+      b2 = 0.57 * b2 + w * 1.0526913;
+      d[i] = (b0 + b1 + b2 + w * 0.1848) * 0.1;
+    }
+    const src = ctx.createBufferSource();
+    src.buffer = buf; src.loop = true;
+    const hp = ctx.createBiquadFilter();
+    hp.type = 'highpass'; hp.frequency.value = 800;
+    const lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass'; lp.frequency.value = 6500;
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0, ctx.currentTime);
+    g.gain.linearRampToValueAtTime(this.rainVolume(), ctx.currentTime + 3);
+    src.connect(hp).connect(lp).connect(g).connect(ctx.destination);
+    src.start();
+    this.rainSrc = src;
+    this.rainGain = g;
+    const drip = () => {
+      if (!this.rainGain || !this.ctx) return;
+      this.chime(1300 + Math.random() * 900, this.ctx.currentTime, 0.012 * this.rainLevel, 0.07);
+      this.dripTimer = setTimeout(drip, 700 + Math.random() * 2600);
+    };
+    this.dripTimer = setTimeout(drip, 1500);
+  }
+
+  public setRainLevel(level: number) {
+    this.rainLevel = level;
+    if (!this.rainGain || !this.ctx) return;
+    const g = this.rainGain.gain, t = this.ctx.currentTime;
+    g.cancelScheduledValues(t);
+    g.setValueAtTime(g.value, t);
+    g.linearRampToValueAtTime(this.rainVolume(), t + 0.8);
+  }
+
+  public stopRain() {
+    if (this.dripTimer) { clearTimeout(this.dripTimer); this.dripTimer = null; }
+    if (this.rainGain && this.ctx) {
+      const g = this.rainGain, src = this.rainSrc;
+      g.gain.cancelScheduledValues(this.ctx.currentTime);
+      g.gain.setValueAtTime(g.gain.value, this.ctx.currentTime);
+      g.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 1.5);
+      setTimeout(() => { try { src?.stop(); } catch {} g.disconnect(); }, 1600);
+      this.rainGain = null;
+      this.rainSrc = null;
+    }
+  }
+
+  /** A soft struck tone with a natural decay, the building block of the cosy sounds */
+  private chime(freq: number, at: number, vol: number, decay: number, type: OscillatorType = 'sine') {
+    if (!this.ctx) return;
+    const ctx = this.ctx;
+    const v = vol * useERStore.getState().sfxVolume;
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = type;
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(Math.max(0.0002, v), at + 0.006);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + decay);
+    o.connect(g).connect(ctx.destination);
+    o.start(at);
+    o.stop(at + decay + 0.05);
+  }
+
+  /** Bell: fundamental plus a quieter inharmonic partial */
+  private bell(freq: number, at: number, vol: number, decay = 1.2) {
+    this.chime(freq, at, vol, decay);
+    this.chime(freq * 2.76, at, vol * 0.25, decay * 0.4);
   }
 
   public playTone(freq: number, type: OscillatorType, duration: number, vol = 0.1) {
@@ -194,8 +264,14 @@ class AudioEngine {
   }
 
   public playClick() {
-    this.playTone(800, 'square', 0.05, 0.05);
+    // a light wooden tick
+    this.initContext();
+    if (!this.ctx || this.isMuted) return;
+    const t = this.ctx.currentTime;
+    this.chime(1250, t, 0.05, 0.05, 'triangle');
+    this.chime(620, t, 0.03, 0.04, 'sine');
   }
+
 
   public playPAChime() {
     this.initContext();
@@ -228,8 +304,13 @@ class AudioEngine {
   }
 
   public playBump() {
-    this.playTone(150, 'square', 0.1, 0.1);
+    this.initContext();
+    if (!this.ctx || this.isMuted) return;
+    const t = this.ctx.currentTime;
+    this.chime(160, t, 0.12, 0.12, 'sine');
+    this.chime(95, t + 0.01, 0.1, 0.14, 'sine');
   }
+
 
   public playFootstep() {
     this.initContext();
@@ -255,93 +336,69 @@ class AudioEngine {
   }
 
   public playBuzzer() {
+    // a gentle "not quite": two falling woody notes
     this.initContext();
     if (!this.ctx || this.isMuted) return;
-
-    // Dissonant sawtooth buzzer
-    this.playTone(300, 'sawtooth', 0.4, 0.15);
-    this.playTone(315, 'sawtooth', 0.4, 0.15);
+    const t = this.ctx.currentTime;
+    this.chime(330, t, 0.07, 0.18, 'triangle');
+    this.chime(262, t + 0.12, 0.07, 0.25, 'triangle');
   }
+
 
   public playPager() {
+    // the pager: two bright dings, twice
     this.initContext();
     if (!this.ctx || this.isMuted) return;
-
-    // Repeating high pitch pulse
-    for (let i = 0; i < 4; i++) {
-      setTimeout(() => this.playTone(1200, 'triangle', 0.1, 0.1), i * 200);
-    }
+    const t = this.ctx.currentTime;
+    [0, 0.16, 0.5, 0.66].forEach((k, i) => this.bell(i % 2 ? 1568 : 1319, t + k, 0.07, 0.35));
   }
+
 
   public playCashRegister() {
+    // coins into the jar
     this.initContext();
     if (!this.ctx || this.isMuted) return;
-
-    // Arpeggio up for cha-ching
-    const notes = [880, 1108.73, 1318.51, 1760]; // A5, C#6, E6, A6
-    notes.forEach((freq, i) => {
-      setTimeout(() => this.playTone(freq, 'square', 0.15, 0.15), i * 60);
-    });
+    const t = this.ctx.currentTime;
+    [1319, 1568, 2093, 2637].forEach((f, i) => this.bell(f, t + i * 0.07, 0.06, 0.6));
   }
+
 
   public playShiftStart() {
+    // a warm rising chime: the day begins
     this.initContext();
     if (!this.ctx || this.isMuted) return;
-
-    // Suspenseful 8-bit FNAF descending chimes
-    // Notes in Hz: C4, G3, D#3, C3
-    const notes = [261.63, 196.00, 155.56, 130.81];
-    
-    notes.forEach((freq, i) => {
-      // Long haunting square waves
-      setTimeout(() => {
-        this.playTone(freq, 'square', 1.5, 0.1);
-        // Add a slight detuned sawtooth for eerie dissonance
-        this.playTone(freq * 0.98, 'sawtooth', 1.5, 0.05);
-      }, i * 800);
-    });
+    const t = this.ctx.currentTime;
+    [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => this.bell(f, t + i * 0.18, 0.08, 1.6));
+    this.chime(261.63, t, 0.05, 2.4, 'triangle');
   }
 
+
   public playShiftEnd() {
+    // settling home: a falling chime that lands softly
     this.initContext();
     if (!this.ctx || this.isMuted) return;
+    const t = this.ctx.currentTime;
+    [1046.5, 783.99, 659.25, 523.25].forEach((f, i) => this.bell(f, t + i * 0.22, 0.07, 1.8));
+    this.chime(196, t + 0.66, 0.05, 2.6, 'triangle');
+  }
 
-    // Relief ascending 6AM chimes
-    const notes = [196.00, 261.63, 329.63, 392.00]; // G3, C4, E4, G4
-    
-    notes.forEach((freq, i) => {
-      setTimeout(() => {
-        this.playTone(freq, 'square', 1.5, 0.1);
-      }, i * 800);
-    });
+
+  /** A letter or a gift: paper, then a little shimmer */
+  public playSparkle() {
+    this.initContext();
+    if (!this.ctx || this.isMuted) return;
+    const t = this.ctx.currentTime;
+    [1568, 1976, 2349, 3136].forEach((f, i) => this.bell(f, t + 0.05 + i * 0.09, 0.045, 0.9));
   }
 
   public playDialogueBark(pitch: number = 800) {
+    // a soft voice blip, pitched per speaker
     this.initContext();
     if (!this.ctx || this.isMuted) return;
-
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-
-    // Randomize pitch slightly for variation
-    const variedPitch = pitch + (Math.random() * 50 - 25);
-    
-    osc.type = 'square'; // Classic retro text blip
-    osc.frequency.setValueAtTime(variedPitch, this.ctx.currentTime);
-    
-    const sfxVolume = useERStore.getState().sfxVolume;
-
-    // Very short, snappy envelope
-    gain.gain.setValueAtTime(0, this.ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.03 * sfxVolume, this.ctx.currentTime + 0.01);
-    gain.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 0.05);
-
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-
-    osc.start();
-    osc.stop(this.ctx.currentTime + 0.05);
+    const f = pitch * (0.97 + Math.random() * 0.06);
+    this.chime(f, this.ctx.currentTime, 0.035, 0.06, 'triangle');
   }
+
 }
 
 export const audio = new AudioEngine();

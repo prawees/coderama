@@ -1,0 +1,470 @@
+{
+  "title": "26yo M Status Epilepticus",
+  "age": "26",
+  "sex": "M",
+  "chiefComplaint": "ชักต่อเนื่อง 25 นาที",
+  "diagnoses": [
+    "Convulsive status epilepticus",
+    "Neurocysticercosis",
+    "Meningoencephalitis",
+    "Alcohol withdrawal seizure",
+    "Psychogenic non-epileptic seizure"
+  ],
+  "background": "U/D epilepsy ตั้งแต่อายุ 19 กิน phenytoin ยาหมดมา 8 วันตอนไปทำงานต่างจังหวัด คนที่เห็นเล่าว่าชักเกร็งกระตุกทั้งตัวต่อเนื่องเริ่มราว 25 นาทีก่อนมาถึง มีหยุดสั้นๆ สองครั้งแค่ไม่กี่วินาที กู้ภัยให้ midazolam IM ระหว่างทาง 1 dose ไม่ได้ผล โตมาในฟาร์มหมูที่นครพนม",
+  "patientAppearance": {
+    "skinTone": "#c99763",
+    "bmiFactor": 0.95,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 152,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 168,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 96,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 30,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 38.4,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 84,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 3,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Actively convulsing with generalised tonic-clonic activity, cyanosed, incontinent of urine, drenched in sweat",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Clenched jaw preventing oral airway insertion, frothy blood-stained saliva, lateral tongue laceration, no head injury palpable, no neck stiffness assessable during the seizure",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Tachycardia at 152/min, hypertensive at 168/96 from the catecholamine surge, warm and well perfused peripherally",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Ineffective irregular respiration during tonic phases, saturations 84%, coarse crackles suggesting aspiration, chest wall rigidity",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Rigid during tonic phases, no organomegaly assessable, no evidence of trauma, incontinent",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cyanosed centrally, diaphoretic, a small palpable subcutaneous nodule over the left forearm which may represent a cysticercus, no rash or petechiae, no needle marks",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 3 with continuous convulsive activity. Pupils 5 mm and unreactive during the seizure. After 30 minutes the motor activity may become subtle or stop entirely while electrical seizure continues, which is non-convulsive status and is easily mistaken for a post-ictal state",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "DTX",
+      "value": "68",
+      "unit": "mg/dL",
+      "normalRange": "70-140",
+      "abnormal": true,
+      "report": "ต่ำก้ำกึ่ง เจาะน้ำตาลในคนไข้ชักทุกคนภายในนาทีแรก hypoglycemia คือสาเหตุที่แก้ได้เร็วที่สุด และพลาดเพราะทุกคนรีบหยิบ benzodiazepine ก่อน"
+    },
+    {
+      "id": "phen1",
+      "kind": "lab",
+      "category": "Therapeutic drug",
+      "name": "Phenytoin level",
+      "value": "<2",
+      "unit": "mcg/mL",
+      "normalRange": "10-20",
+      "abnormal": true,
+      "report": "ตรวจไม่พบ เข้าได้กับขาดยา 8 วัน การไม่กินยาและยาขาดเป็นตัวกระตุ้น status ที่พบบ่อยที่สุดในคนที่เป็น epilepsy อยู่เดิม"
+    },
+    {
+      "id": "gas1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "ABG",
+      "value": "pH 6.96 / pCO2 58 / pO2 48 / lactate 14.2",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Severe mixed acidosis lactate สูงมากจากกล้ามเนื้อทำงาน lactate ระดับนี้หลังชักเกร็งเป็นเรื่องที่คาดได้และหายเร็ว ตัวมันเองไม่ได้บอกว่ามี sepsis หรือ ischemia"
+    },
+    {
+      "id": "ct1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CT brain ไม่ฉีดสี",
+      "report": "Calcified lesion เล็กๆ หลายจุดในสมองทั้งสองซีก มี ring-enhancing lesion หนึ่งจุดที่ left parietal มี edema รอบๆ เข้าได้กับ neurocysticercosis หลายระยะ ไม่มีเลือดออก ไม่มี midline shift",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "na1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "Na, calcium, Mg",
+      "value": "Na 138 / corrected Ca 9.2 mg/dL / Mg 0.78 mmol/L",
+      "unit": "-",
+      "normalRange": "Na 135-145 mmol/L",
+      "abnormal": false,
+      "report": "ปกติ ตัดตัวกระตุ้นทาง metabolic ที่พบบ่อยออก"
+    },
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "CK",
+      "value": "4800",
+      "unit": "U/L",
+      "normalRange": "30-200",
+      "abnormal": true,
+      "report": "Rhabdomyolysis จากกล้ามเนื้อทำงานนาน เริ่ม fluid และ monitor renal function"
+    },
+    {
+      "id": "eeg1",
+      "kind": "imaging",
+      "category": "Neurophysiology",
+      "name": "EEG",
+      "report": "มี epileptiform discharge ต่อเนื่องที่ left parietal หลังหยุดชักให้เห็นแล้ว ยืนยันว่ายังมี non-convulsive status ถ้าไม่มี EEG คนไข้จะถูกคิดว่าอยู่ใน post-ictal และไม่ได้รักษาไปหลายชั่วโมง",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "Nasal airway, O2, DTX และคนจับเวลา",
+          "distractors": [
+            {
+              "label": "รอให้หยุดชักเอง",
+              "feedback": "Status epilepticus ทำลายเซลล์ประสาท ลงมือภายในนาทีแรก"
+            },
+            {
+              "label": "เอาอะไรใส่ปากกันกัดลิ้น",
+              "feedback": "ทำให้ฟันกับ airway บาดเจ็บ ใช้ nasopharyngeal airway และ suction"
+            }
+          ],
+          "label": "Airway, O2, น้ำตาล และจับเวลา ทั้งหมดใน 60 วินาทีแรก",
+          "actions": [
+            "Nasopharyngeal airway และ suction",
+            "High flow O2",
+            "DTX",
+            "จดเวลาเริ่มชักและมอบคนจับเวลา"
+          ],
+          "doseMap": {
+            "Nasopharyngeal airway และ suction": "ขากรรไกรเกร็งอยู่ อย่าฝืนใส่ oral airway ใช้ nasopharyngeal airway ได้ผล",
+            "จดเวลาเริ่มชักและมอบคนจับเวลา": "Status นิยามที่ชักต่อเนื่อง 5 นาที ถ้าไม่มีคนจับเวลา benzodiazepine จะให้ช้า และยา second line จะให้ช้าไปมาก"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "Diazepam 10 mg IV ซ้ำได้ 1 ครั้งที่ 5 นาที",
+          "distractors": [
+            {
+              "label": "Diazepam 2 mg IV แล้วรอ 20 นาที",
+              "feedback": "ให้น้อยไปคือความผิดพลาดที่พบบ่อยที่สุด ให้ขนาดเต็มแล้วซ้ำ 1 ครั้งหลัง 5 นาที"
+            },
+            {
+              "label": "ข้ามไป phenytoin เลยโดยไม่ให้ benzodiazepine",
+              "feedback": "Benzodiazepine คือ first line ยา second line ให้หลัง benzodiazepine สอง dose"
+            }
+          ],
+          "label": "ให้ benzodiazepine ขนาดพอ ความผิดพลาดที่พบบ่อยที่สุดคือให้น้อยไป",
+          "actions": [
+            "Diazepam IV หรือ midazolam IM",
+            "ซ้ำอีกครั้งหลัง 5 นาทีถ้ายังชัก",
+            "Thiamine ถ้าอาจเกี่ยวกับแอลกอฮอล์"
+          ],
+          "doseMap": {
+            "Diazepam IV หรือ midazolam IM": "Diazepam 0.15 ถึง 0.2 mg/kg IV ไม่เกิน 10 mg ต่อ dose หรือ midazolam 10 mg IM ถ้าไม่มี IV (แนวทาง status epilepticus รามาธิบดี) ได้มาแล้วหนึ่ง dose ก่อนถึง รพ. ให้ dose ที่สองเต็มขนาดเลย",
+            "ซ้ำอีกครั้งหลัง 5 นาทีถ้ายังชัก": "ไม่เกินสอง dose การให้ benzodiazepine น้อยไป แล้วให้ dose ที่สามที่สี่แทนการไปขั้นต่อไป คือความผิดพลาดที่พบบ่อยที่สุดใน status"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Levetiracetam 60 mg/kg IV",
+          "distractors": [
+            {
+              "label": "Benzodiazepine dose ที่สามและสี่",
+              "feedback": "หลังสอง dose แล้ว benzodiazepine เพิ่มกดการหายใจโดยไม่มีประโยชน์ ให้ยา second line"
+            },
+            {
+              "label": "Phenytoin กินทาง NG tube",
+              "feedback": "Load ทางปากช้าเกินไปใน status epilepticus ใช้ยา second line ทาง IV"
+            }
+          ],
+          "label": "ยากันชัก second line หลัง benzodiazepine สอง dose",
+          "actions": [
+            "Levetiracetam IV",
+            "หรือ valproate IV",
+            "หรือ phenytoin IV พร้อม monitor หัวใจ"
+          ],
+          "doseMap": {
+            "Levetiracetam IV": "60 mg/kg ไม่เกิน 4500 mg ใน 10 นาที levetiracetam, valproate และ phenytoin ได้ผลพอกันใน ESETT trial เลือกตามผลข้างเคียงและสิ่งที่มีบนชั้นยา",
+            "หรือ valproate IV": "40 mg/kg ไม่เกิน 3000 mg",
+            "หรือ phenytoin IV พร้อม monitor หัวใจ": "15 ถึง 20 mg/kg ไม่เร็วกว่า 50 mg/min ติด EKG ตลอด ให้เร็วเกิดความดันต่ำและ arrhythmia รั่วออกนอกเส้นเกิด tissue necrosis ระดับยาตรวจไม่พบ ถือเหมือนไม่เคยได้ phenytoin"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "Refractory status",
+          "outcomeType": "worsened",
+          "narrative": "ยังชักอยู่ที่ 42 นาทีหลังเริ่ม ทั้งที่ได้ benzodiazepine สอง dose และ levetiracetam แล้ว นี่คือ refractory status epilepticus เซลล์ประสาทเริ่มบาดเจ็บหลังชักต่อเนื่องราว 30 นาที ตอนนี้คือสมองบาดเจ็บที่แข่งกับเวลา ไม่ใช่เกมรอ",
+          "vitalChanges": {
+            "hr": 158,
+            "sbp": 142,
+            "dbp": 84,
+            "rr": 26,
+            "spo2": 88,
+            "temp": 38.8
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "choice": "RSI และ propofol drip พร้อม EEG",
+          "distractors": [
+            {
+              "label": "ลองยา second line ตัวอื่นต่อบนวอร์ด",
+              "feedback": "Refractory status ต้อง intubate ให้ยาสลบ drip และ monitor EEG"
+            },
+            {
+              "label": "Paralyze ด้วย rocuronium แล้วจบแค่นั้น",
+              "feedback": "Paralysis บังการชักแต่ไม่ได้หยุดคลื่นสมอง ต้องให้ยาสลบและ EEG"
+            }
+          ],
+          "label": "Intubate และให้ยาสลบสำหรับ refractory status",
+          "actions": [
+            "Rapid sequence intubation",
+            "Propofol หรือ midazolam drip",
+            "Monitor EEG ต่อเนื่อง",
+            "Vasopressor"
+          ],
+          "doseMap": {
+            "Rapid sequence intubation": "เลี่ยง paralysis ที่ออกฤทธิ์นาน ซึ่งบังการชักที่ยังเกิดอยู่ ใช้ตัวออกฤทธิ์สั้นและติด EEG ให้เร็วที่สุด",
+            "Propofol หรือ midazolam drip": "Titrate จนกดการชักได้หรือได้ burst suppression บน EEG thiopental เป็นทางเลือก"
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "หาว่าทำไมยาหมด และแก้ตรงนั้น ไม่ใช่แค่การชัก (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "พี่ชายเล่าว่าเขาทำงานก่อสร้างอีกจังหวัด สิทธิการรักษาอยู่ที่ รพ. ที่ห่างไป 8 ชม. และลางาน 3 วันไปรับยาไม่ได้ เขียนว่าไม่ร่วมมือกินยาใน discharge summary ก็ถูก แต่ไม่มีประโยชน์ หมอจัดย้ายการรับยาไป รพ. ใกล้ที่ทำงาน ให้ยา 90 วัน และเขียนบัตรให้ยื่นที่ร้านยาไหนก็ได้ น้องวันถามว่าเรื่องนี้สำคัญยังไงในเมื่อการชักคือเรื่องฉุกเฉิน คำตอบคือการชักเป็นแค่อาการของระบบการรับยา"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ทำ LP ก่อน CT",
+              "feedback": "ทำ imaging ก่อน ตัด mass lesion หรือความดันในสมองสูงก่อน LP"
+            },
+            {
+              "label": "D/C ด้วย phenytoin ขนาดเดิม",
+              "feedback": "หาและรักษาสาเหตุ และแก้เรื่องที่ทำให้ยาหมด"
+            }
+          ],
+          "label": "หาและรักษาสาเหตุ",
+          "actions": [
+            "CT brain",
+            "LP เมื่อคุมชักได้และ imaging บอกว่าปลอดภัย",
+            "รักษา neurocysticercosis ด้วย albendazole ร่วมกับ steroid",
+            "Fluid สำหรับ rhabdomyolysis"
+          ],
+          "doseMap": {
+            "รักษา neurocysticercosis ด้วย albendazole ร่วมกับ steroid": "ให้ corticosteroid พร้อมหรือก่อนยาฆ่าพยาธิทุกครั้ง การฆ่า cyst กระตุ้นการอักเสบที่ทำให้ edema และการชักแย่ลงได้"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "คุมการชักได้",
+          "outcomeType": "improved",
+          "narrative": "ได้ burst suppression ด้วย propofol drip EEG ยังมี electrographic seizure ต่ออีก 6 ชม. ก่อนคุมได้ wean และ extubate วันที่ 3 มี expressive dysphasia เล็กน้อย ดีขึ้นใน 2 สัปดาห์ เป็นผลจากระยะเวลาของ status ไม่ใช่การตัดสินใจครั้งใดครั้งหนึ่ง",
+          "vitalChanges": {
+            "hr": 92,
+            "sbp": 118,
+            "dbp": 70,
+            "rr": 16,
+            "spo2": 97,
+            "temp": 37.2,
+            "gcs": 14
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 12 ด้วย levetiracetam เลือกแทน phenytoin เพราะติดตามง่ายกว่า ได้ยา 90 วัน และย้ายสิทธิรับยาไป รพ. ใกล้ที่ทำงาน กิน albendazole ครบพร้อม steroid แนะนำให้งดขับรถ 1 ปี และที่มีประโยชน์กว่าคือบอกชัดๆ ว่าจะรับยาครั้งหน้ายังไงโดยไม่เสียค่าแรง 3 วัน",
+          "vitalChanges": {
+            "hr": 78,
+            "sbp": 120,
+            "dbp": 74,
+            "rr": 16,
+            "spo2": 98,
+            "temp": 36.8,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e6",
+        "source": "req4",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e_skip",
+        "source": "req4",
+        "target": "req5"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

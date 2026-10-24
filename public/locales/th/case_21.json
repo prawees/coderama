@@ -1,0 +1,466 @@
+{
+  "title": "56yo M Exertional Heat Stroke",
+  "age": "56",
+  "sex": "M",
+  "chiefComplaint": "ล้มในนา สับสน ไม่มีเหงื่อ",
+  "diagnoses": [
+    "Exertional heat stroke",
+    "Heat exhaustion",
+    "Sepsis",
+    "Anticholinergic toxidrome",
+    "Thyroid storm"
+  ],
+  "background": "ทำนากลางแจ้งตั้งแต่ 6 โมงเช้า อุณหภูมิ 41 C ความชื้น 70% ไม่มีร่มเงา ใส่เสื้อแขนยาวกับหมวก ราวบ่ายสองครึ่งคนเห็นว่าเรียกไม่ตอบ ชักเกร็งทั้งตัวครู่หนึ่ง กิน hydrochlorothiazide รักษา HT ญาติเอาน้ำเย็นราดตัวแล้วขับรถพามา",
+  "patientAppearance": {
+    "skinTone": "#a06a3a",
+    "bmiFactor": 0.95,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 148,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 86,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 44,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 34,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 41.6,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 94,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 8,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Unresponsive to voice, hot to touch, agitated when stimulated, core temperature 41.6 C measured rectally. Central nervous system dysfunction plus core temperature above 40 C is the definition, and no other feature is required",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Dry mucous membranes, no neck stiffness, no papilloedema, pupils 4 mm and reactive, no tongue laceration despite the reported seizure",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia at 148/min, hyperdynamic precordium, bounding then weak pulses, capillary refill 4 seconds, hypotensive from vasodilatation and volume loss",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Tachypnoeic at 34/min, clear breath sounds, no crackles at present. Watch for ARDS at 24 to 48 hours",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, non-tender, bowel sounds sluggish, no organomegaly, no rigidity",
+      "abnormal": false
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Hot, flushed and dry with no sweating over the trunk. Anhidrosis is a late and ominous sign, and its absence never excludes heat stroke, since half of exertional cases are still sweating",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 8 (E2V2M4), post-ictal, no focal deficit, no meningism, cerebellar signs may emerge later as a permanent sequela",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "temp1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "อุณหภูมิทางทวาร",
+      "value": "41.6",
+      "unit": "C",
+      "normalRange": "36.5-37.5",
+      "abnormal": true,
+      "report": "วัดทางทวารหรือหลอดอาหารเท่านั้น วัดทางหูหรือรักแร้ได้ต่ำกว่า core temperature ได้ถึง 2 C ใน heat stroke และเคยทำให้รักษาไม่พอจนเสียชีวิต"
+    },
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "CK",
+      "value": "18400",
+      "unit": "U/L",
+      "normalRange": "30-200",
+      "abnormal": true,
+      "report": "Severe rhabdomyolysis exertional heat stroke ทำลายกล้ามเนื้อโดยตรง และเป็นตัวขับ AKI"
+    },
+    {
+      "id": "lft1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "AST, ALT, INR",
+      "value": "AST 620 / ALT 410 / INR 2.1",
+      "unit": "-",
+      "normalRange": "AST <40 U/L",
+      "abnormal": true,
+      "report": "ตับบาดเจ็บร่วมกับ coagulopathy ระยะแรก ตับวายสูงสุดที่ 48 ถึง 96 ชม. และเป็นสาเหตุการเสียชีวิตช่วงหลังที่พบบ่อยที่สุดใน heat stroke"
+    },
+    {
+      "id": "cr1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Cr, K, Na",
+      "value": "Creatinine 2.6 mg/dL / K 5.8 / Na 149 mmol/L",
+      "unit": "-",
+      "normalRange": "Creatinine 0.7-1.3 mg/dL",
+      "abnormal": true,
+      "report": "AKI ร่วมกับ hyperkalemia จาก rhabdomyolysis และ hypernatremia จากเสียน้ำ thiazide มีส่วนด้วย"
+    },
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "ABG, lactate",
+      "value": "pH 7.24 / lactate 6.8 / HCO3 15",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Metabolic acidosis, lactate เกิน 4 ใน exertional heat stroke ทำนาย outcome ไม่ดี"
+    },
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "DTX",
+      "value": "62",
+      "unit": "mg/dL",
+      "normalRange": "70-140",
+      "abnormal": true,
+      "report": "Hypoglycemia จาก glycogen ในตับหมด แก้ก่อนจะโทษว่า coma มาจากความร้อนอย่างเดียว"
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "EKG 12 lead",
+      "report": "Sinus tachycardia 146/min, peaked T ที่ V2 ถึง V4 จาก hyperkalemia ไม่มี ischemic ST elevation, QTc 420 ms",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "Rectal probe ถอดเสื้อผ้า เริ่ม cooling",
+          "distractors": [
+            {
+              "label": "ส่ง CT brain ก่อนตัด stroke ออก",
+              "feedback": "ทุกนาทีที่เกิน 40 C เพิ่มความเสียหายต่ออวัยวะ cooling มาก่อน imaging และ core temperature บอกได้ว่าเป็นอะไร"
+            },
+            {
+              "label": "ใช้ปรอทวัดทางหู",
+              "feedback": "วัดทางหูหรือปากได้ต่ำกว่า core temperature ใช้ rectal หรือ esophageal probe"
+            }
+          ],
+          "label": "วัด core temperature จริง และเริ่มลดอุณหภูมิในนาทีแรกๆ",
+          "actions": [
+            "ใส่ probe วัดอุณหภูมิทางทวารหรือหลอดอาหาร",
+            "ถอดเสื้อผ้าทั้งหมด",
+            "เริ่ม cooling ทันที ก่อน imaging หรือเปิดเส้น"
+          ],
+          "doseMap": {
+            "เริ่ม cooling ทันที ก่อน imaging หรือเปิดเส้น": "เวลาที่อยู่เกิน 40 C กำหนดความเสียหายต่ออวัยวะ เริ่ม cooling ใน 30 นาที mortality แทบเป็นศูนย์ ช้าเกิน 2 ชม. ราว 30%"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ให้ paracetamol กับพัดลม แล้วประเมินใหม่ใน 1 ชม.",
+              "feedback": "ยาลดไข้ไม่ได้ผลใน heat stroke เพราะ set point ของ hypothalamus ปกติ ลดอุณหภูมิแบบ active และเร็ว"
+            },
+            {
+              "label": "Cooling ต่อจนอุณหภูมิถึง 36 C",
+              "feedback": "ลดเกินทำให้ hypothermia หยุด active cooling ที่ราว 38 C"
+            }
+          ],
+          "label": "Active cooling หยุดที่ราว 38 C",
+          "actions": [
+            "Evaporative cooling: ถอดเสื้อ พ่นละอองน้ำ เป่าพัดลม",
+            "แช่น้ำเย็นถ้ามีอ่างพร้อม",
+            "ประคบน้ำแข็งที่คอ รักแร้ และขาหนีบ",
+            "IV fluid เย็น"
+          ],
+          "doseMap": {
+            "Evaporative cooling: ถอดเสื้อ พ่นละอองน้ำ เป่าพัดลม": "วิธีแรกในแนวทาง cooling ของรามาธิบดี พ่นละอองน้ำราว 15 C ให้ทั่วผิว และให้ลมพัดผ่านตลอด",
+            "แช่น้ำเย็นถ้ามีอ่างพร้อม": "เร็วที่สุดสำหรับ exertional heat stroke ราว 0.2 C ต่อนาที น้ำต่ำกว่า 14 C ติด monitor และมี defibrillator อยู่ใกล้มือ",
+            "ประคบน้ำแข็งที่คอ รักแร้ และขาหนีบ": "หยุด active cooling ทั้งหมดเมื่อ rectal temperature ถึงราว 38 C จะได้ไม่ลดเกินจน hypothermia",
+            "IV fluid เย็น": "NSS เย็น 4 C 20 mL/kg ห้ามให้ยาลดไข้ paracetamol กับ NSAID ไม่ได้ผลใน heat stroke เพราะ set point ปกติ และทั้งคู่ทำให้ตับกับไตบาดเจ็บมากขึ้น"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "O2, dextrose และ midazolam แก้สั่น",
+          "distractors": [
+            {
+              "label": "Chlorpromazine แก้สั่น",
+              "feedback": "Antipsychotic ลด seizure threshold และรบกวนการคุมอุณหภูมิ ใช้ benzodiazepine"
+            },
+            {
+              "label": "ไม่ต้องเจาะน้ำตาล ไม่ได้เป็นเบาหวาน",
+              "feedback": "Hypoglycemia เกิดได้ใน heat stroke และทำให้ชักกับสับสน เจาะดู"
+            }
+          ],
+          "label": "Airway น้ำตาล และ benzodiazepine แก้หนาวสั่นหรือชัก",
+          "actions": [
+            "O2 และดูแล airway",
+            "Dextrose แก้ hypoglycemia",
+            "Diazepam หรือ midazolam แก้อาการสั่น"
+          ],
+          "doseMap": {
+            "Diazepam หรือ midazolam แก้อาการสั่น": "หนาวสั่นสร้างความร้อนและทำให้ cooling ไม่ได้ผล midazolam 2 ถึง 5 mg IV titrate"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "ลดเหลือ 38.1 C ใน 34 นาที",
+          "outcomeType": "improved",
+          "narrative": "หยุด cooling ที่ 38.1 C GCS ดีขึ้นเป็น 12 ในชั่วโมงเดียว ยัง BP ต่ำและขาดน้ำมาก rhabdomyolysis เพิ่งเริ่มกลายเป็นปัญหาหลัก",
+          "vitalChanges": {
+            "hr": 118,
+            "sbp": 98,
+            "dbp": 56,
+            "rr": 26,
+            "temp": 38.1,
+            "gcs": 12
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "จำกัด fluid เพราะเป็น HT",
+              "feedback": "Rhabdomyolysis ต้องได้ fluid ปริมาณมากเพื่อปกป้องไต monitor urine output ใกล้ชิด"
+            },
+            {
+              "label": "ให้ KCl แก้อ่อนแรง",
+              "feedback": "Rhabdomyolysis ทำให้ hyperkalemia ให้ K เพิ่มอาจถึงตาย"
+            }
+          ],
+          "label": "รักษา rhabdomyolysis และ hyperkalemia",
+          "actions": [
+            "Crystalloid IV ปริมาณมาก",
+            "Calcium gluconate ถ้า EKG เปลี่ยน",
+            "Insulin กับ dextrose",
+            "Urine output ทุกชั่วโมง"
+          ],
+          "doseMap": {
+            "Crystalloid IV ปริมาณมาก": "เป้า urine output 2 mL/kg/h เป็นการรักษาเดียวที่มีหลักฐานดีว่าป้องกันไตวายจาก myoglobin ได้",
+            "Calcium gluconate ถ้า EKG เปลี่ยน": "10% 10 mL IV ใน 3 นาที ซ้ำได้ตามต้องการ"
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "ถามเรื่องสภาพการทำงาน และทำอะไรกับคำตอบนั้น (Empathy)",
+          "ethicalValue": 10,
+          "narrative": "ลูกชายเล่าว่าในนาเดียวกันมีคนงานอีก 11 คน ไม่มีเพิงบังแดด มีขวดน้ำใช้ร่วมกันขวดเดียว ผู้รับเหมาจ่ายตามพื้นที่ที่เกี่ยว ไม่ใช่รายชั่วโมง การพักเลยเท่ากับเสียเงิน หมอเขียนลง chart แจ้งสาธารณสุขอำเภอ และบอกลูกชายตรงๆ ว่าอาการเริ่มต้นแบบไหนแปลว่าต้องหยุดทำงานเดี๋ยวนี้ เย็นนั้นสองในสิบเอ็ดคนมาด้วย heat exhaustion และกลับบ้านได้คืนเดียวกัน เรื่องนี้เกิดขึ้นได้เพราะมีคนถามคำถามที่ไม่ได้เกี่ยวกับคนไข้ตรงหน้า"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "D/C หลัง cooling ถ้าตื่นดี",
+              "feedback": "Heat stroke ทำให้ตับวาย coagulopathy และไตบาดเจ็บตามมาทีหลัง ต้อง monitor ใน ICU"
+            },
+            {
+              "label": "ให้ paracetamol ประจำให้สบายตัว",
+              "feedback": "ตับบาดเจ็บพบบ่อยหลัง heat stroke เลี่ยงยาที่เป็นพิษต่อตับ"
+            }
+          ],
+          "label": "Admit ICU และประคับประคองอวัยวะ",
+          "actions": [
+            "Admit ICU",
+            "LFT และ coag เป็นระยะ",
+            "ส่งต่อ nephro อาจต้อง dialysis",
+            "หลีกเลี่ยงยาที่เป็นพิษต่อไตและตับ"
+          ],
+          "doseMap": {
+            "หลีกเลี่ยงยาที่เป็นพิษต่อไตและตับ": "ไม่ให้ paracetamol ไม่ให้ NSAID ไม่ให้ aminoglycoside ถ้ายังมีทางเลือกอื่น"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "วันที่ 3",
+          "outcomeType": "worsened",
+          "narrative": "Transaminase สูงสุด 4100 ในวันที่ 3 INR 3.2 มี encephalopathy grade 2 Cr สูงสุด 5.1 mg/dL ต้อง HD สามครั้ง ฟื้นทั้งคู่ ตับวายที่ 48 ถึง 96 ชม. คือช่วงที่คนลืมไปหลัง resuscitate สำเร็จ",
+          "vitalChanges": {
+            "hr": 104,
+            "sbp": 106,
+            "dbp": 62,
+            "temp": 37.2,
+            "gcs": 13
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 16 ยังเดินเซเล็กน้อย เป็นผลถาวรต่อ cerebellum ที่รู้จักกันของ heat stroke เปลี่ยนจาก thiazide เป็นยาอื่น ได้คำแนะนำว่าการทนร้อนจะยังแย่ไปอีกหลายเดือน และตอนนี้เสี่ยงเป็นซ้ำไปตลอดชีวิตมากขึ้น ซึ่งสำหรับคนที่ได้ค่าแรงตามพื้นที่ที่เกี่ยว นี่คือคำแนะนำ ไม่ใช่ทางแก้",
+          "vitalChanges": {
+            "hr": 84,
+            "sbp": 124,
+            "dbp": 76,
+            "rr": 16,
+            "temp": 36.8,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e6",
+        "source": "req4",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e_skip",
+        "source": "req4",
+        "target": "req5"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

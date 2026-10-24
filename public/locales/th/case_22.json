@@ -1,0 +1,453 @@
+{
+  "title": "41yo M Leptospirosis with Pulmonary Haemorrhage",
+  "age": "41",
+  "sex": "M",
+  "chiefComplaint": "ไข้ ตัวเหลือง ไอเป็นเลือด",
+  "diagnoses": [
+    "Severe leptospirosis (Weil's disease) with pulmonary haemorrhage",
+    "Dengue",
+    "Scrub typhus",
+    "Melioidosis",
+    "Acute viral hepatitis"
+  ],
+  "background": "ชาวนา เดินเท้าเปล่าในนาน้ำท่วมมา 2 สัปดาห์หลังฝนหนัก มีแผลถลอกกำลังหายที่หน้าแข้งซ้าย ไข้สูงมา 6 วัน ปวดน่องและต้นขามาก ปวดหัว ตั้งแต่วันที่ 4 ปัสสาวะสีเข้ม ตาเหลือง เช้านี้ไอเป็นเลือดสดสองครั้ง รอบนามีควายหลายตัวและหนูเยอะ ฝนปีนี้หนักที่สุดในรอบ 9 ปี",
+  "patientAppearance": {
+    "skinTone": "#c9a55c",
+    "bmiFactor": 0.9,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 124,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 88,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 50,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 34,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 38.9,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 85,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 14,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Deeply jaundiced with an orange rather than lemon hue, tachypnoeic, coughing frank blood into a bowl, anxious and exhausted",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Marked conjunctival suffusion without discharge, a red eye with no exudate that is close to pathognomonic in the right setting. Scleral icterus, dry lips, no neck stiffness, no eschar found on full skin survey",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia at 124/min, hypotensive, capillary refill 4 seconds, no murmur, JVP not raised. Myocarditis occurs and can cause arrhythmia",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Coarse crackles throughout both lung fields, frank haemoptysis, saturations 85% on 15 L/min. Pulmonary haemorrhage carries mortality above 50% and is now the thing that will kill him, not the liver",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Tender hepatomegaly 3 cm below the costal margin, no splenomegaly, no ascites, exquisite tenderness on squeezing the calf muscles",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Jaundiced, healing abrasion over the left shin as the likely entry point, no rash, no petechiae, no eschar in the axillae, groin or under the waistband",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 14 (E4V4M6), mildly confused, severe muscle tenderness limiting examination, no focal deficit, no meningism",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CXR portable",
+      "report": "Diffuse patchy alveolar opacity ทั้งสองข้าง ชัดที่ lower และ mid zone หัวใจขนาดปกติ เป็น alveolar hemorrhage ไม่ใช่ pulmonary edema และไม่ใช่ lobar pneumonia",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "bili1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Bilirubin, AST, ALT",
+      "value": "Total bilirubin 18.4 mg/dL / AST 180 / ALT 140",
+      "unit": "-",
+      "normalRange": "Bilirubin <1.2 mg/dL",
+      "abnormal": true,
+      "report": "Bilirubin สูงมากแต่ transaminase สูงเล็กน้อย ความไม่สัมพันธ์กันนี้แยก leptospirosis จาก viral hepatitis ที่ transaminase เป็นหลักพัน"
+    },
+    {
+      "id": "cr1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Cr, K",
+      "value": "Creatinine 4.2 mg/dL / K 3.0 mmol/L",
+      "unit": "-",
+      "normalRange": "Creatinine 0.7-1.3 mg/dL",
+      "abnormal": true,
+      "report": "AKI ร่วมกับ hypokalemia ไตวายแบบ non-oliguric hypokalemic เป็นลักษณะของ leptospirosis และไม่ค่อยเจอใน AKI จากสาเหตุอื่น"
+    },
+    {
+      "id": "cbc1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "WBC, platelet",
+      "value": "WBC 18.4 neutrophil เด่น / platelet 42 x10^9/L",
+      "unit": "-",
+      "normalRange": "WBC 4.0-11.0",
+      "abnormal": true,
+      "report": "Neutrophilic leukocytosis ร่วมกับ thrombocytopenia WBC สูงไม่สนับสนุน dengue ที่มักมี leukopenia"
+    },
+    {
+      "id": "sero1",
+      "kind": "lab",
+      "category": "Serology",
+      "name": "Leptospira IgM rapid test, PCR",
+      "value": "IgM positive, blood PCR positive",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": true,
+      "report": "IgM อาจ negative ในสัปดาห์แรก ผล negative จึงไม่ใช่เหตุผลให้งด antibiotic รักษาตามระบาดวิทยาและ clinical"
+    },
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "CK",
+      "value": "1850",
+      "unit": "U/L",
+      "normalRange": "30-200",
+      "abnormal": true,
+      "report": "CK สูงร่วมกับตัวเหลืองและไตวาย ช่วยแยก leptospirosis จาก viral hepatitis"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "O2 high flow จัดท่านั่ง crossmatch",
+          "distractors": [
+            {
+              "label": "คิดว่าไอเป็นเลือดจาก TB แยกห้อง",
+              "feedback": "ประวัติสัมผัสชี้ไปที่ leptospirosis ร่วมกับ pulmonary hemorrhage ให้ O2 และจับให้ได้เร็วก่อน"
+            },
+            {
+              "label": "ให้ O2 เฉพาะเมื่อ SpO2 ต่ำกว่า 85%",
+              "feedback": "Pulmonary hemorrhage แย่ลงเร็ว ให้ O2 high flow เดี๋ยวนี้และเตรียม escalate"
+            }
+          ],
+          "label": "Oxygenation และจับ alveolar hemorrhage ได้เร็ว",
+          "actions": [
+            "High flow O2",
+            "CXR portable",
+            "นั่งตัวตรง",
+            "G/M เลือด"
+          ],
+          "doseMap": {
+            "High flow O2": "15 L/min ทาง NRB เตรียม intubate และตั้ง lung protective"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "รอผล leptospira serology ยืนยันก่อนให้ antibiotic",
+              "feedback": "Serology ใช้เวลาหลายวันและมัก negative ช่วงแรก เริ่ม antibiotic ตาม clinical"
+            },
+            {
+              "label": "ให้ amoxicillin กินแบบผู้ป่วยนอก",
+              "feedback": "Severe leptospirosis ที่มีตัวเหลืองและไอเป็นเลือดต้องได้ ceftriaxone หรือ penicillin IV และ admit"
+            }
+          ],
+          "label": "เริ่ม antibiotic ทันที ไม่ต้องรอ serology",
+          "actions": [
+            "Ceftriaxone IV",
+            "หรือ PGS IV"
+          ],
+          "doseMap": {
+            "Ceftriaxone IV": "1 ถึง 2 g IV วันละครั้ง 7 วัน",
+            "หรือ PGS IV": "1.5 ล้าน unit IV ทุก 6 ชม. เตือนเรื่อง Jarisch-Herxheimer reaction ในชั่วโมงแรกๆ"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Fluid ทีละน้อย ให้ K ทดแทน",
+          "distractors": [
+            {
+              "label": "Bolus fluid ปริมาณมาก flush ไต",
+              "feedback": "Fluid overload ทำให้ pulmonary hemorrhage แย่ลง bolus อย่างระวังแล้วประเมินซ้ำ"
+            },
+            {
+              "label": "งด K เพราะไตวาย",
+              "feedback": "Leptospirosis มักทำให้ AKI แบบ non-oliguric hypokalemic เจาะดูแล้วให้ K ทดแทน"
+            }
+          ],
+          "label": "Fluid อย่างระวัง และให้ K ทดแทน",
+          "actions": [
+            "Crystalloid bolus อย่างระวัง ประเมินซ้ำทุกครั้ง",
+            "ให้ KCl ทดแทน",
+            "Vasopressor ถ้าไม่ตอบสนองต่อ fluid"
+          ],
+          "doseMap": {
+            "Crystalloid bolus อย่างระวัง ประเมินซ้ำทุกครั้ง": "ครั้งละ 250 ถึง 500 mL ให้ fluid หนักทำให้ pulmonary hemorrhage แย่ลง ใช้ปริมาณน้อยและเริ่ม norepinephrine เร็ว"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "การหายใจแย่ลง",
+          "outcomeType": "worsened",
+          "narrative": "SpO2 ตกเหลือ 80% ทั้งที่ให้ O2 เต็มที่ ไอเป็นเลือดมากขึ้น intubate ตั้ง lung protective ventilation PEEP 12 ตอนนี้ภัยเฉพาะหน้าคือ alveolar hemorrhage ไม่ใช่ตับหรือไต",
+          "vitalChanges": {
+            "hr": 138,
+            "sbp": 82,
+            "dbp": 46,
+            "rr": 18,
+            "spo2": 90,
+            "gcs": 3
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 420
+        },
+        "data": {
+          "label": "คุยกับภรรยาตามจริงก่อน intubate ไม่ใช่หลัง (Empathy)",
+          "ethicalValue": 15,
+          "narrative": "หมอมีเวลา 4 นาทีก่อนใส่ tube และคนไข้ยังพูดได้ หมอพาภรรยาเข้ามา บอกทั้งสองคนว่า pulmonary hemorrhage จาก leptospirosis คร่าชีวิตคนที่เป็นมากกว่าครึ่ง แล้วปล่อยให้สองคนได้พูดสิ่งที่ต้องพูดกัน เสียเวลา preoxygenate ไป 4 นาที พี่ใจบอกทีหลังว่าญาติให้อภัยได้แทบทุกผลลัพธ์ ยกเว้นการไม่ได้คุยกันครั้งสุดท้าย"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "Admit วอร์ดสามัญ พรุ่งนี้เช้าค่อยตรวจซ้ำ",
+              "feedback": "กำลังแย่ลงทั้ง respiratory failure และไต ต้อง ICU และ dialysis"
+            },
+            {
+              "label": "Steroid ขนาดสูงเป็นการรักษาหลัก",
+              "feedback": "Steroid ยังไม่มีหลักฐานใน pulmonary hemorrhage จาก leptospirosis หลักคือดูแลใน ICU และ dialysis"
+            }
+          ],
+          "label": "ICU ทำ dialysis และให้ blood product",
+          "actions": [
+            "Admit ICU ตั้ง ventilator แบบ lung protective",
+            "Hemodialysis เร็วสำหรับ AKI",
+            "Platelet และ blood product ถ้ามีเลือดออก",
+            "ปรึกษา nephro"
+          ],
+          "doseMap": {
+            "Hemodialysis เร็วสำหรับ AKI": "Dialysis เร็วลด mortality ใน severe leptospirosis ไม่ต้องรอ indication ตามเกณฑ์คลาสสิก"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "จุดเปลี่ยนวันที่ 5",
+          "outcomeType": "improved",
+          "narrative": "ไอเป็นเลือดหยุดที่ 60 ชม. ได้ dialysis 5 ครั้ง bilirubin สูงสุด 26 mg/dL แล้วลดลง extubate วันที่ 9 ไตใน leptospirosis มักฟื้นได้ครบ ซึ่งเป็นข้อดีข้อเดียวของโรคนี้",
+          "vitalChanges": {
+            "hr": 96,
+            "sbp": 112,
+            "dbp": 66,
+            "rr": 20,
+            "spo2": 96,
+            "temp": 37.2,
+            "gcs": 14
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "รักษาคนไข้ ส่วนสาธารณสุขให้คนอื่นจัดการ",
+              "feedback": "Leptospirosis เป็นโรคที่ต้องรายงาน คนอื่นในหมู่บ้านก็สัมผัสแบบเดียวกัน แจ้งและให้คำแนะนำ"
+            },
+            {
+              "label": "ให้ doxycycline ทุกคนในหมู่บ้าน 1 เดือน",
+              "feedback": "Prophylaxis สำหรับคนทำงานที่สัมผัสความเสี่ยงสูง ไม่ใช่ทุกคน แจ้งและแนะนำแบบเจาะกลุ่ม"
+            }
+          ],
+          "label": "แจ้งและป้องกันคนอื่นในหมู่บ้าน",
+          "actions": [
+            "แจ้งงานควบคุมโรคติดต่อของอำเภอ",
+            "แนะนำใส่บูทและปิดแผลช่วงน้ำท่วม",
+            "พิจารณา doxycycline ป้องกันในคนงานที่เสี่ยงสูง"
+          ],
+          "doseMap": {
+            "พิจารณา doxycycline ป้องกันในคนงานที่เสี่ยงสูง": "200 mg สัปดาห์ละครั้งช่วงที่สัมผัสมาก หลักฐานปานกลาง แต่ราคาถูกและการระบาดนี้มีแหล่งชัดเจน"
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 21 Cr 1.3 mg/dL ไม่ต้องใช้ O2 สัปดาห์นั้นมีอีกสองรายจากตำบลเดียวกันมา ได้รักษาตั้งแต่วันที่ 2 แทนวันที่ 6 และไม่มีใครเลือดออกเลย",
+          "vitalChanges": {
+            "hr": 82,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 16,
+            "spo2": 98,
+            "temp": 36.8,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "out2",
+        "target": "req5"
+      },
+      {
+        "id": "e9",
+        "source": "req5",
+        "target": "out3"
+      }
+    ]
+  }
+}

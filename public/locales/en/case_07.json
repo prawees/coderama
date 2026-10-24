@@ -198,6 +198,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "IV chlorpheniramine and hydrocortisone first",
+              "feedback": "Antihistamines and steroids do not reverse airway oedema or shock. IM adrenaline is first line and must not be delayed."
+            },
+            {
+              "label": "IV adrenaline 1 mg bolus",
+              "feedback": "1 mg IV is the cardiac arrest dose and can cause arrhythmia or myocardial ischaemia in a patient with a pulse. Give 0.5 mg IM into the thigh."
+            }
+          ],
           "label": "IM adrenaline to the anterolateral thigh",
           "actions": [
             "Adrenaline (epinephrine) 1 mg/mL IM"
@@ -215,6 +225,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Sit her upright and walk her to the bathroom to vomit",
+              "feedback": "Standing or sitting up a hypotensive anaphylaxis patient can precipitate cardiac arrest from empty ventricle. Keep her supine with legs raised."
+            },
+            {
+              "label": "Nasal cannula at 2 L/min to avoid oxygen toxicity",
+              "feedback": "She has throat tightness and hypotension. Give high flow oxygen by non-rebreather mask."
+            }
+          ],
           "label": "High flow oxygen and position supine with legs raised",
           "actions": [
             "Oxygen via non-rebreather mask",
@@ -233,6 +253,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "One small IV line and maintenance fluid at 80 mL/h",
+              "feedback": "Anaphylactic shock involves massive vasodilation and capillary leak. She needs two large bore lines and a rapid crystalloid bolus."
+            },
+            {
+              "label": "Hold fluids to avoid pulmonary oedema",
+              "feedback": "Her problem is distributive shock, not fluid overload. Withholding fluid worsens hypotension."
+            }
+          ],
           "label": "Two large bore IV lines and rapid crystalloid bolus",
           "actions": [
             "IV access 18G x2",
@@ -272,6 +302,17 @@
           "y": 80
         },
         "data": {
+          "choice": "Repeat IM adrenaline 0.5 mg now",
+          "distractors": [
+            {
+              "label": "Wait 30 minutes for the antihistamine to work",
+              "feedback": "Persistent hypotension after one dose of adrenaline needs a repeat IM dose at 5 minutes, not waiting on adjuncts."
+            },
+            {
+              "label": "Start a dopamine infusion instead of more adrenaline",
+              "feedback": "Adrenaline is the drug of choice and a second IM dose comes first. Refractory cases get an adrenaline infusion."
+            }
+          ],
           "label": "Second IM adrenaline dose at 5 minutes for persistent hypotension",
           "actions": [
             "Adrenaline (epinephrine) 1 mg/mL IM (repeat)"
@@ -289,6 +330,16 @@
           "y": 320
         },
         "data": {
+          "distractors": [
+            {
+              "label": "IV aminophylline bolus for the wheeze",
+              "feedback": "Aminophylline is not first line and adds arrhythmia risk on top of adrenaline. Use nebulised salbutamol."
+            },
+            {
+              "label": "Ignore the wheeze, it will settle with the antihistamine",
+              "feedback": "Antihistamines do not treat bronchospasm. Ongoing wheeze after adrenaline needs a nebulised bronchodilator."
+            }
+          ],
           "label": "Nebulised bronchodilator for ongoing wheeze",
           "actions": [
             "Salbutamol nebuliser"
@@ -306,6 +357,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Stop the adrenaline now that steroids have been given",
+              "feedback": "Steroids act over hours and do not replace adrenaline. Adjuncts are add-ons only."
+            },
+            {
+              "label": "Skip all adjuncts, they are never useful",
+              "feedback": "Chlorpheniramine helps the itch and urticaria once she is stable. Steroids do not treat the acute reaction, but Siriraj's protocol still adds hydrocortisone 200 mg, and with her asthma it is reasonable."
+            }
+          ],
           "label": "Adjuncts after adrenaline, never instead of it",
           "actions": [
             "Chlorpheniramine IV",
@@ -346,6 +407,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Discharge home now since she looks well",
+              "feedback": "Biphasic reactions can occur hours later, especially after hypotension and two doses of adrenaline. Observe for 6 to 12 hours."
+            },
+            {
+              "label": "Discharge with oral antihistamine only, no autoinjector",
+              "feedback": "She has had life threatening anaphylaxis. She needs adrenaline autoinjectors, an action plan and allergy referral."
+            }
+          ],
           "label": "Admit for observation and arrange discharge safety net",
           "actions": [
             "Monitored observation 6-12 hours",

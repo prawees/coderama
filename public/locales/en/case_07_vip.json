@@ -34,7 +34,7 @@
     "nodes": [
       { "id": "start1", "type": "start", "position": { "x": 0, "y": 0 }, "data": { "label": "Start" } },
       { "id": "ethical_1", "type": "ethicalChoice", "position": { "x": 100, "y": 100 }, "data": { "label": "Reassure and listen (Empathy)", "ethicalValue": 20, "narrative": "The VIP calms down significantly. He promises to fund the new ICU wing." } },
-      { "id": "req1", "type": "required", "position": { "x": 200, "y": 0 }, "data": { "label": "Give Aspirin & Nitro", "actions": ["Aspirin PO", "Nitroglycerin SL"], "doseMap": { "Aspirin PO": "324 mg", "Nitroglycerin SL": "0.4 mg" } } },
+      { "id": "req1", "type": "required", "position": { "x": 200, "y": 0 }, "data": { "distractors": [{"label": "Give streptokinase now, he is a VIP and we cannot take risks", "feedback": "There is no ST elevation, so thrombolysis carries bleeding risk with no benefit. Status does not change the indication."}, {"label": "Discharge with reassurance because the first troponin is normal", "feedback": "A single early troponin cannot exclude an acute coronary syndrome. He needs serial troponins and a repeat ECG."}], "label": "Give Aspirin & Nitro", "actions": ["Aspirin PO", "Nitroglycerin SL"], "doseMap": { "Aspirin PO": "324 mg", "Nitroglycerin SL": "0.4 mg" } } },
       { "id": "out1", "type": "outcome", "position": { "x": 400, "y": 0 }, "data": { "label": "Outcome", "outcomeType": "improved", "narrative": "Chest pain resolved. VIP is very happy.", "vitalChanges": { "hr": 85, "sbp": 130, "dbp": 80 } } }
     ],
     "edges": [

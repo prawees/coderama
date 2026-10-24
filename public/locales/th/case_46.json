@@ -1,0 +1,473 @@
+{
+  "title": "26yo M Acute Behavioural Disturbance",
+  "age": "26",
+  "sex": "M",
+  "chiefComplaint": "อาละวาดรุนแรง พูดไม่รู้เรื่อง ตำรวจควบคุมตัวมา",
+  "diagnoses": [
+    "Acute behavioural disturbance with sympathomimetic toxicity",
+    "Hypoglycaemia",
+    "Hypoxic delirium",
+    "Traumatic brain injury",
+    "Acute psychosis",
+    "Meningoencephalitis"
+  ],
+  "background": "พบวิ่งเข้าไปกลางถนนพระราม 4 ตะโกน ถอดเสื้อ ดูเหมือนตอบสนองกับสิ่งที่คนอื่นมองไม่เห็น ตำรวจกดตัวคว่ำไว้ข้างถนนราว 8 นาทีก่อนรถพยาบาลมาถึง แล้วนำส่งในท่าคว่ำพร้อมใส่กุญแจมือ เพื่อนที่อยู่ด้วยบอกว่าใช้ยาบ้าในงานปาร์ตี้และไม่ได้นอนมา 2 วัน น้ำหนัก 82 kg แรงเยอะมาก ยังไม่มีใครเจาะน้ำตาล วัดไข้ หรือวัด SpO2 เพราะไม่มีใครเข้าใกล้ได้",
+  "patientAppearance": {
+    "skinTone": "#c78f5c",
+    "bmiFactor": 1.05,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 158,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 176,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 98,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 36,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 40.1,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 92,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 13,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Extreme agitation with apparently undiminished strength against four people, incoherent shouting, drenched in sweat, no response to verbal de-escalation. This combination of extreme agitation, hyperthermia and exhaustion is the presentation that precedes sudden cardiac arrest in custody",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Pupils 7 mm and sluggish, dry mucous membranes, abrasions to the forehead and left cheek from the roadside restraint, no obvious skull deformity, no blood from the ears or nose, no neck stiffness assessable",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Tachycardia at 158/min, hypertensive, warm and flushed peripheries, bounding pulses, capillary refill under 2 seconds",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Tachypnoeic at 36/min with shallow ineffective breaths. Saturations 92% despite hyperventilation. Prolonged prone restraint mechanically limits chest and diaphragmatic excursion, and this is the mechanism of restraint-associated death",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft on the limited examination possible, no distension, no guarding, no external evidence of abdominal trauma from the restraint",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Hot, flushed and profusely diaphoretic. Abrasions over both wrists from handcuffs, grazes over both knees and the anterior chest from the roadside. No needle marks, no rash, no petechiae",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 13 but unassessable in detail because of the agitation. No lateralising weakness observed during struggling. Moving all four limbs. Any patient with an unexplained agitated delirium has a head injury and a metabolic cause until both are excluded",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "DTX",
+      "value": "62",
+      "unit": "mg/dL",
+      "normalRange": "70-140",
+      "abnormal": true,
+      "report": "ต่ำ hypoglycemia มาด้วยอาละวาดก้าวร้าวอย่างเดียวโดยไม่มีอาการอื่นได้ แก้ได้หมดใน 90 วินาที และเป็นสาเหตุที่แก้ได้ซึ่งพลาดบ่อยที่สุดในคนไข้ที่ถูกคิดว่าเมายาหรือ psychosis เจาะในคนไข้อาละวาดทุกคนก่อนอย่างอื่น"
+    },
+    {
+      "id": "temp1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "อุณหภูมิทางทวาร",
+      "value": "40.1",
+      "unit": "C",
+      "normalRange": "36.5-37.5",
+      "abnormal": true,
+      "report": "Hyperthermia จากกล้ามเนื้อทำงานต่อเนื่องร่วมกับ sympathomimetic core temperature เกิน 40 C ในคนไข้อาละวาดเป็นภาวะฉุกเฉินในตัวเอง และทำนาย rhabdomyolysis, coagulopathy และ arrest"
+    },
+    {
+      "id": "gas1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "VBG, lactate",
+      "value": "pH 6.98 / pCO2 52 / HCO3 12 / lactate 15.8",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Profound mixed acidosis การออกแรงสุดกำลังต่อเนื่องต้านการกดตัวทำให้ lactate ระดับนี้ และเมื่อการกดตัวจำกัดการหายใจด้วย การ compensate ทางหายใจก็ล้มเหลว blood gas นี้คือ physiology ของการเสียชีวิตจากการควบคุมตัวที่เขียนออกมา"
+    },
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "CK",
+      "value": "9800",
+      "unit": "U/L",
+      "normalRange": "30-200",
+      "abnormal": true,
+      "report": "Rhabdomyolysis กำลังขึ้น จะสูงสุดที่ 24 ถึง 72 ชม."
+    },
+    {
+      "id": "k1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "K, Cr",
+      "value": "K 6.4 mmol/L / creatinine 2.1 mg/dL",
+      "unit": "-",
+      "normalRange": "K 3.5-5.0 mmol/L",
+      "abnormal": true,
+      "report": "Hyperkalemia ร่วมกับ AKI จาก myoglobinuria รวมกับ acidosis เป็นภาวะที่เกิด arrhythmia ได้ง่าย"
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "EKG 12 lead (หลังให้ยานอนหลับ)",
+      "report": "Sinus tachycardia 152/min มี peaked T และ QRS 118 ms จาก hyperkalemia และ acidosis ไม่มี ST elevation, QTc 470 ms",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "ct1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CT brain (หลังให้ยาและ stable)",
+      "report": "ไม่มีเลือดออกในสมอง ไม่มี contusion ไม่มีกะโหลกร้าวแม้มีแผลถลอกที่หน้า ปกติ ทำเพราะตัดประวัติศีรษะกระแทกระหว่างควบคุมตัวทาง clinical ไม่ได้",
+      "imageUrl": "",
+      "abnormal": false
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "พลิกนอนหงาย เอาน้ำหนักออกจากตัว",
+          "distractors": [
+            {
+              "label": "ให้นอนคว่ำและมัดไว้จนยา sedate ออกฤทธิ์",
+              "feedback": "การกดตัวท่าคว่ำทำให้ positional asphyxia และ cardiac arrest พลิกนอนหงายหรือตะแคงเดี๋ยวนี้"
+            },
+            {
+              "label": "นั่งทับหลังไว้ไม่ให้ขยับ",
+              "feedback": "น้ำหนักบนหลังจำกัดการหายใจ เป็นสาเหตุการเสียชีวิตที่รู้จักกันดี"
+            }
+          ],
+          "label": "พลิกตัวขึ้นจากท่าคว่ำ ทันทีและก่อนอย่างอื่น",
+          "actions": [
+            "เลิกให้นอนคว่ำ พลิกนอนหงายหรือตะแคง",
+            "เอาน้ำหนักที่กดหลังและอกออก",
+            "ปลดกุญแจมือที่ล็อกไว้ข้างหลัง",
+            "O2 15 L/min"
+          ],
+          "doseMap": {
+            "เลิกให้นอนคว่ำ พลิกนอนหงายหรือตะแคง": "การกดตัวท่าคว่ำพร้อมน้ำหนักบนหลังคือกลไกการเสียชีวิตจากการควบคุมตัว ทำให้อกขยายไม่ได้ในคนที่ขาด O2 อย่างหนัก ไม่ควรปล่อยคนไข้คว่ำไว้นานกว่าเวลาที่ใช้คุมแขนขาแม้แต่วินาทีเดียว"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "Ketamine 4 ถึง 5 mg/kg IM",
+          "distractors": [
+            {
+              "label": "Haloperidol IV อย่างเดียวแล้วรอ 30 นาที",
+              "feedback": "ต้องคุมให้ได้เร็ว ketamine IM หรือ midazolam ร่วมกับ droperidol ได้ผลเร็วกว่า"
+            },
+            {
+              "label": "ควบคุมทางกายต่อ เลี่ยงยา",
+              "feedback": "การดิ้นต่อเนื่องเร่ง acidosis และ hyperthermia ต้อง sedate ด้วยยาให้เร็ว"
+            }
+          ],
+          "label": "Sedate ด้วยยาให้เร็ว เพราะการควบคุมทางกายคือสิ่งที่กำลังฆ่าเขา",
+          "actions": [
+            "Ketamine IM",
+            "หรือ midazolam ร่วมกับ droperidol IM ถ้าไม่มี ketamine",
+            "เตรียมอุปกรณ์ airway ก่อนให้ยา"
+          ],
+          "doseMap": {
+            "Ketamine IM": "4 ถึง 5 mg/kg IM (ราว 350 mg) สำหรับอาละวาดรุนแรง ออกฤทธิ์ใน 3 ถึง 5 นาที รักษา airway reflex และ respiratory drive ไว้ และไม่ทำให้ BP ตก เป็นยาที่เลือกเมื่อเป้าหมายคือหยุดกล้ามเนื้อให้เร็ว",
+            "หรือ midazolam ร่วมกับ droperidol IM ถ้าไม่มี ketamine": "Midazolam 5 ถึง 10 mg IM ร่วมกับ droperidol 10 mg IM ออกฤทธิ์ช้ากว่าและกดการหายใจมากกว่า",
+            "เตรียมอุปกรณ์ airway ก่อนให้ยา": "เตรียม suction, bag-valve-mask และยา intubate ไว้ข้างเตียง คนไข้ส่วนหนึ่งที่ได้ ketamine ขนาด dissociative ต้องช่วย airway และ laryngospasm เกิดไม่บ่อยแต่เกิดจริง"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "DTX, core temperature, gas และ EKG",
+          "distractors": [
+            {
+              "label": "สงบแล้วส่งจิตเวชได้เลย",
+              "feedback": "Sedation เผยภาวะฉุกเฉินทางกาย เจาะน้ำตาล วัดอุณหภูมิ และเจาะ gas"
+            },
+            {
+              "label": "ปล่อยไว้ห้องแยกให้นอนจนสร่าง",
+              "feedback": "Hyperthermia กับ acidosis ฆ่าคนได้ monitor เต็มที่"
+            }
+          ],
+          "label": "ทันทีที่ sedate ได้ ให้ดูแลเป็นภาวะฉุกเฉินทางกาย ไม่ใช่ปัญหาพฤติกรรม",
+          "actions": [
+            "DTX",
+            "วัด core temperature ทางทวาร",
+            "Monitor ครบ EKG และ VBG",
+            "Dextrose แก้ hypoglycemia"
+          ],
+          "doseMap": {
+            "DTX": "ใช้ 90 วินาที และเป็นการวินิจฉัยจริงในคนไข้กลุ่มนี้ส่วนน้อยที่สำคัญ sedate คนไข้อาละวาดที่น้ำตาลต่ำโดยไม่แก้น้ำตาล คือวิธีที่คนเสียชีวิตในห้องตรวจ",
+            "Dextrose แก้ hypoglycemia": "50% glucose 50 mL IV เจาะซ้ำที่ 30 นาที"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ให้ paracetamol ลดไข้",
+              "feedback": "Hyperthermia ในเคสนี้ไม่ใช่ไข้ ต้อง active cooling"
+            },
+            {
+              "label": "จำกัด fluid กัน pulmonary edema",
+              "feedback": "มี rhabdomyolysis และ acidosis ต้องได้ crystalloid ปริมาณมาก"
+            }
+          ],
+          "label": "ลดอุณหภูมิเต็มที่ และ fluid resuscitation",
+          "actions": [
+            "Cooling แบบ active ให้ต่ำกว่า 38.5 C",
+            "Crystalloid ปริมาณมาก",
+            "Calcium gluconate สำหรับ EKG ที่เปลี่ยนจาก hyperkalemia",
+            "Insulin กับ dextrose",
+            "NaHCO3 สำหรับ acidosis รุนแรง"
+          ],
+          "doseMap": {
+            "Cooling แบบ active ให้ต่ำกว่า 38.5 C": "Ice pack ที่คอ รักแร้ ขาหนีบ ร่วมกับพ่นละอองน้ำและเป่าลม เหมือน heat stroke ยาลดไข้ไม่ได้ผลเพราะ set point ปกติ",
+            "Crystalloid ปริมาณมาก": "เริ่ม 2 ลิตร แล้วเป้า urine output 2 mL/kg/h สำหรับ rhabdomyolysis"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "Physiology เริ่มกลับมา",
+          "outcomeType": "improved",
+          "narrative": "กล้ามเนื้อหยุดทำงานใน 4 นาทีหลังได้ ketamine ชั่วโมงต่อมาอุณหภูมิลดเหลือ 38.6 C lactate 6.2 pH ขึ้นเป็น 7.24 ต้องช่วย airway ด้วย nasopharyngeal airway กับ jaw thrust แต่ไม่ต้อง intubate การหยุดกล้ามเนื้อคือการรักษา acidosis, hyperthermia และ hyperkalemia ไปพร้อมกัน",
+          "vitalChanges": {
+            "hr": 122,
+            "sbp": 138,
+            "dbp": 78,
+            "rr": 20,
+            "temp": 38.6,
+            "spo2": 97,
+            "gcs": 9
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "บันทึกการควบคุมตัวตามจริง และคุยกับเขาทีหลังในฐานะคนไข้ (Empathy)",
+          "ethicalValue": 25,
+          "narrative": "หมอเขียนเรื่องการกดตัวท่าคว่ำ 8 นาที ท่าระหว่างนำส่ง และการที่ไม่มีใครเจาะน้ำตาลหรือวัดอุณหภูมิก่อนมาถึง ไม่ใช่เพื่อกล่าวหา แต่เป็นข้อเท็จจริงพร้อมเวลา วันที่สองตอนเขารู้ตัวดี อาย และรอให้ถูกพูดด้วยเหมือนเป็นตัวปัญหา หมอบอกว่าร่างกายเขาเจออะไรจริงๆ ว่าเขาเกือบเสียชีวิตจากมัน และนี่คือโรคที่รักษาได้ ไม่ใช่คำตัดสินนิสัย เขาขอส่งต่อคลินิกบำบัดยาเสพติดเอง พี่พิมเอาเคสนี้ไปสอน และ 9 เดือนต่อมาหน่วยรถพยาบาลเปลี่ยนนโยบายท่านำส่ง"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "choice": "CT brain และ septic screen",
+          "distractors": [
+            {
+              "label": "ตื่นแล้วส่งตัวให้ตำรวจ",
+              "feedback": "ยังไม่ได้ตัดสาเหตุทางกายออก ต้องทำ imaging, septic screen และติดตาม CK"
+            },
+            {
+              "label": "ไม่ต้อง CT ชัดอยู่แล้วว่าเป็นจากยา",
+              "feedback": "อาจมีบาดเจ็บที่ศีรษะหรือติดเชื้อ ทำ imaging สมอง"
+            }
+          ],
+          "label": "ตัดสาเหตุทางกายที่ตัดไม่ได้ตอนเขายังดิ้นอยู่",
+          "actions": [
+            "CT brain",
+            "Septic workup ให้ครบถ้ายังมีไข้หลัง cooling",
+            "CK และ renal function เป็นระยะ",
+            "ติด monitor หัวใจต่อเนื่อง"
+          ],
+          "doseMap": {
+            "Septic workup ให้ครบถ้ายังมีไข้หลัง cooling": "อย่าโทษยากระตุ้นไปหมด meningoencephalitis มาด้วย agitated delirium ได้ และคนที่วินิจฉัยได้คือคนที่ยังถามต่อหลังจากมีคำตอบที่ชัดเจนแล้ว"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "ระหว่าง admit",
+          "outcomeType": "improved",
+          "narrative": "CK สูงสุด 31000 วันที่ 2 Cr สูงสุด 3.2 mg/dL ปัสสาวะออกดีด้วย fluid เต็มที่ ไม่ต้อง dialysis ตื่นรู้เรื่องที่ 14 ชม. CT brain และ CSF ปกติทั้งคู่",
+          "vitalChanges": {
+            "hr": 88,
+            "sbp": 122,
+            "dbp": 74,
+            "rr": 16,
+            "temp": 37.0,
+            "spo2": 98,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 5 ไตปกติ จิตแพทย์ประเมินแล้วไม่มี primary psychotic illness ยอมรับการส่งต่อคลินิกยาเสพติด สองการตัดสินใจที่สำคัญคือพลิกตัวเขาขึ้นจากท่าคว่ำใน 30 วินาทีแรก และเจาะน้ำตาลก่อนจะเชื่อว่าการวินิจฉัยเขียนไว้แล้วในใบนำส่ง",
+          "vitalChanges": {
+            "hr": 78,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 16,
+            "temp": 36.8,
+            "spo2": 99,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e5",
+        "source": "req4",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}
