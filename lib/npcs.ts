@@ -464,6 +464,10 @@ const OTHER_SPEAKERS: Record<string, string> = {
   "eldest son": "ลูกชายคนโต",
   "dr. tawan": "หมอตะวัน",
   "lung suk (ambulance)": "ลุงสุข (กู้ภัย)",
+  "auntie noi": "ป้าน้อย",
+  "prasit's daughter": "ลูกสาวลุงประสิทธิ์",
+  "bob's mother": "แม่พี่บ๊อบ",
+  "nong fai": "น้องฝ้าย",
 };
 
 /**

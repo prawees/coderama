@@ -35,7 +35,10 @@ function inventedLook(name: string): Look {
   };
   if (/nurse|พยาบาล/.test(lower)) { look.outfit = "nurse"; look.cap = "nurse"; look.main = "#9fd3e6"; look.accent = "#e07aa3"; }
   else if (/^dr|doctor|prof|หมอ|extern/.test(lower)) { look.outfit = "coat"; look.main = "#ffffff"; look.accent = "#5f9e8e"; }
+  else if (/^nong|student/.test(lower)) { look.outfit = "coat"; look.main = "#ffffff"; look.accent = "#5b7fbf"; }
   else if (/son|daughter|wife|mother|father|villager/.test(lower)) { look.outfit = "casual"; }
+  // older women: grey hair in a bun
+  if (/mother|auntie|grand/.test(lower)) { look.hair = "#b9b4b0"; look.hairStyle = "bun"; }
   return look;
 }
 

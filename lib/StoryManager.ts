@@ -195,7 +195,7 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd1_s_close',
         speaker: 'System',
-        text: "The monitor at the nursing station cycles through nine names. One of them is going to die tonight. The screen does not indicate which.",
+        text: "The monitor at the nursing station cycles through nine names. One of them is going to make this the shift you remember for the rest of your life. The screen does not indicate which.",
         nextId: 'd1_s_close_02',
       },
       {
@@ -203,6 +203,14 @@ export const STORY_CAMPAIGN: Record<number, {
         speaker: 'System',
         text: "You get halfway through Prasit's history before the pager goes. SHIFT START.",
       },
+    ],
+    midShiftEvents: [
+      { id: 'd1_m_01', speaker: "System", text: "On the way back from resus something soft winds round your ankles. A fat orange cat is sitting on the drug trolley as if it owns the building.", nextId: 'd1_m_02' },
+      { id: 'd1_m_02', speaker: "Nurse Ann", text: "That is Kanom. She has been here longer than Bob. Do not feed her, because everyone already has.", nextId: 'd1_m_03' },
+      { id: 'd1_m_03', speaker: "Dr. Bob", text: "I have never fed that cat. Not once.", nextId: 'd1_m_04' },
+      { id: 'd1_m_04', speaker: "System", text: "Kanom jumps straight into Bob's lap and pushes her head into his coat pocket, where half a crispy mackerel is sticking out.", choices: [{ text: "Scratch Kanom behind the ears.", nextId: 'd1_m_pet' }, { text: "Ask Bob about the mackerel.", nextId: 'd1_m_fish' }] },
+      { id: 'd1_m_pet', speaker: "Nurse Ann", text: "She is purring louder than the whole row of monitors. She has picked you. That usually takes six months. It took Bob three years." },
+      { id: 'd1_m_fish', speaker: "Dr. Bob", text: "She is the department's cat, and the department looks after its own. Write that down. It is the only free lesson you get tonight." },
     ],
     endOfDayCutscene: [
       {
@@ -653,6 +661,15 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "SHIFT START.",
       },
     ],
+    midShiftEvents: [
+      { id: 'd2_m_01', speaker: "Auntie Noi", text: "New doctor, over here. Hot khanom krok. Auntie makes them for the Tuesday evening shift every week, eleven years now.", nextId: 'd2_m_02' },
+      { id: 'd2_m_02', speaker: "Auntie Noi", text: "One left. You choose who gets it. Auntie can tell everything about a person in this building by who they give the last one to.", choices: [{ text: "Take it to Ann.", nextId: 'd2_m_ann' }, { text: "Take it to Bob.", nextId: 'd2_m_bob' }, { text: "Eat it yourself.", nextId: 'd2_m_self' }] },
+      { id: 'd2_m_ann', speaker: "Nurse Ann", text: "My favourite. I have not eaten anything today. Thank you.", nextId: 'd2_m_ann_02' },
+      { id: 'd2_m_ann_02', speaker: "System", text: "Ann eats half. She leaves the other half beside the drug cupboard for whoever is having a worse shift." },
+      { id: 'd2_m_bob', speaker: "Dr. Bob", text: "I do not like sweet things.", nextId: 'd2_m_bob_02' },
+      { id: 'd2_m_bob_02', speaker: "System", text: "The cup is empty within two seconds. Auntie Noi laughs so hard she has to hold the counter." },
+      { id: 'd2_m_self', speaker: "Auntie Noi", text: "Good. People who know how to look after themselves last in the ER. Auntie approves." },
+    ],
     endOfDayCutscene: [
       {
         id: 'd2_e_01',
@@ -693,7 +710,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd2_e_lost_02',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "She rearrested at 01:23. We got her back. She is intubated now, and she has been without adequate perfusion for long enough that we will be having a very different conversation with her family in the morning.",
+        text: "Her saturation fell to seventy at 01:23. I happened to be walking past. She is back in intensive care on double the noradrenaline, and she will live, but she lived because I was passing, not because anything here is built to catch her.",
         nextId: 'd2_e_lost_03',
       },
       {
@@ -1041,6 +1058,13 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "SHIFT START. RESUSCITATION IN PROGRESS.",
       },
     ],
+    midShiftEvents: [
+      { id: 'd3_m_01', speaker: "System", text: "The rain reaches the triage desk. A stray dog walks in out of it and sits in the queue, more politely than some of the patients.", nextId: 'd3_m_02' },
+      { id: 'd3_m_02', speaker: "Dr. Bob", text: "Triage green. Low acuity, very high morale value. Do not tell Kanom.", nextId: 'd3_m_03' },
+      { id: 'd3_m_03', speaker: "System", text: "From the top of the drug cupboard, Kanom hisses once. She knows.", choices: [{ text: "Fold a spare blanket into a bed for the dog.", nextId: 'd3_m_blanket' }, { text: "Share the bread from your night snack.", nextId: 'd3_m_bread' }] },
+      { id: 'd3_m_blanket', speaker: "Dr. Bob", text: "Do you know why I still work here? Because even on the worst night something like this walks in. Do not tell anyone I said that." },
+      { id: 'd3_m_bread', speaker: "Dr. Bob", text: "A student's night meal is one slice of bread and you just gave half to a dog. I am buying you chicken rice after this shift. You do not get a vote." },
+    ],
     endOfDayCutscene: [
       {
         id: 'd3_e_01',
@@ -1353,6 +1377,15 @@ export const STORY_CAMPAIGN: Record<number, {
         speaker: 'System',
         text: "SHIFT START.",
       },
+    ],
+    midShiftEvents: [
+      { id: 'd4_m_01', speaker: "System", text: "21:10. Ann is asleep on a pile of charts at the nursing station, pen still in her hand. Her first sleep in thirty-one hours.", nextId: 'd4_m_02' },
+      { id: 'd4_m_02', speaker: "Dr. Bob", text: "Nobody wakes her. Whoever wakes her writes the nursing notes for the rest of the night. I mean it.", choices: [{ text: "Put a coat over her shoulders.", nextId: 'd4_m_coat' }, { text: "Make a Thai tea and leave it by her hand.", nextId: 'd4_m_tea' }, { text: "Quietly finish the charts she was writing.", nextId: 'd4_m_chart' }] },
+      { id: 'd4_m_coat', speaker: "System", text: "The nearest coat is Bob's. An hour later Ann wakes up and sniffs her own shoulder.", nextId: 'd4_m_coat_02' },
+      { id: 'd4_m_coat_02', speaker: "Nurse Ann", text: "Who put a coat that smells of mackerel on me?", nextId: 'd4_m_coat_03' },
+      { id: 'd4_m_coat_03', speaker: "Dr. Bob", text: "No idea. I have never seen that coat before in my life." },
+      { id: 'd4_m_tea', speaker: "System", text: "When Ann wakes, the tea is still warm. She does not ask who made it, but she smiles at you every time you pass for the rest of the night." },
+      { id: 'd4_m_chart', speaker: "Dr. Bob", text: "Your handwriting is legible. In this building that counts as an act of rebellion." },
     ],
     endOfDayCutscene: [
       {
@@ -1681,6 +1714,14 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "SHIFT START. 17:20.",
       },
     ],
+    midShiftEvents: [
+      { id: 'd5_m_01', speaker: "System", text: "18:00. Auntie Noi walks into the doctors' room holding one banana with a birthday candle stuck in the middle.", nextId: 'd5_m_02' },
+      { id: 'd5_m_02', speaker: "Auntie Noi", text: "Happy birthday, Bob. I have known him since he was a student in white shoes, just like you. Sing, everyone.", nextId: 'd5_m_03' },
+      { id: 'd5_m_03', speaker: "Dr. Bob", text: "I do not celebrate birthdays. I am thirty-seven, and that is a banana.", choices: [{ text: "Sing happy birthday as loudly as you can.", nextId: 'd5_m_sing' }, { text: "\"It's nice and quiet tonight. Perfect for a party.\"", nextId: 'd5_m_jinx' }] },
+      { id: 'd5_m_sing', speaker: "System", text: "Three evening nurses join in. The patient in bed two claps along. Bob blows out the candle and turns away very quickly, red to the back of his neck." },
+      { id: 'd5_m_jinx', speaker: "Dr. Bob", text: "What did you just say?", nextId: 'd5_m_jinx_02' },
+      { id: 'd5_m_jinx_02', speaker: "System", text: "The whole room turns to look at you. Auntie Noi knocks on the wooden table three times. Bob blows out the candle and makes an unusually long wish." },
+    ],
     endOfDayCutscene: [
       {
         id: 'd5_e_01',
@@ -1845,7 +1886,7 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd5_e_final_01',
         speaker: 'System',
-        text: "06:30. The fire is out. Two technicians are dead. The department is running on a portable oxygen supply in a car park under a plastic canopy.",
+        text: "06:30. The fire is out. Two technicians were trapped on sub-level 2 for six minutes and the fire service carried them up in time. Burns and smoke inhalation, and both will live. The department is running on a portable oxygen supply in a car park under a plastic canopy.",
         nextId: 'd5_e_final_02',
       },
       {
@@ -1968,14 +2009,14 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd6_s_ann_out_01',
         speaker: 'System',
-        text: "Nurse Ann was struck from the nursing register in February. She works nights at a private clinic in Nonthaburi that pays half what this one did.",
+        text: "Nurse Ann's registration was suspended for six months in February. She came back last week, on evening shifts only and barred from controlled drugs.",
         nextId: 'd6_s_ann_out_02',
       },
       {
         id: 'd6_s_ann_out_02',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "She sends me a message on the first of every month. Two words. The date of the hearing you testified at. Nothing else. Twelve of them now.",
+        text: "While she was suspended she messaged me on the first of every month. Two words: the date of the hearing you testified at. Six of them. Then last week she walked back in, and she has not said a word to you yet.",
         nextId: 'd6_s_join',
       },
       {
@@ -2063,6 +2104,15 @@ export const STORY_CAMPAIGN: Record<number, {
         speaker: 'System',
         text: "SHIFT START.",
       },
+    ],
+    midShiftEvents: [
+      { id: 'd6_m_01', speaker: "System", text: "Your two fifth-years, Fai and Captain, still buy white shoes. Fai is about to take her first ever blood sample.", nextId: 'd6_m_02' },
+      { id: 'd6_m_02', speaker: "System", text: "The needle has not touched skin when Fai goes pale and slides, very politely, down onto the floor.", nextId: 'd6_m_03' },
+      { id: 'd6_m_03', speaker: "Nong Fai", text: "I'm sorry. I didn't faint. I just sat down suddenly.", choices: [{ text: "Raise her legs and tell her you nearly fainted on your first day too.", nextId: 'd6_m_kind' }, { text: "Let her try again, with your hand steadying hers.", nextId: 'd6_m_again' }] },
+      { id: 'd6_m_kind', speaker: "Dr. Bob", text: "It's true. I was there. Three in the morning a year ago, brand new white shoes, paler than she is.", nextId: 'd6_m_kind_02' },
+      { id: 'd6_m_kind_02', speaker: "Nong Fai", text: "You are my favourite sixth-year now. I don't have many to choose from, but it's still you." },
+      { id: 'd6_m_again', speaker: "System", text: "Second try, the tube fills first time. Fai holds it up as if she has just won a Nobel prize.", nextId: 'd6_m_again_02' },
+      { id: 'd6_m_again_02', speaker: "Dr. Bob", text: "Last year you were buying white shoes. This year you are teaching. Slow down, I am not ready to be old." },
     ],
     endOfDayCutscene: [
       {
@@ -2315,6 +2365,13 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "SHIFT START.",
       },
     ],
+    midShiftEvents: [
+      { id: 'd7_m_01', speaker: "System", text: "A woman is waiting at triage with a big bag of nam dok mai mangoes, the first of the season.", nextId: 'd7_m_02' },
+      { id: 'd7_m_02', speaker: "Prasit's Daughter", text: "I'm Prasit's daughter. Dad told me to bring these for the doctor in the white shoes. That's all he could remember. [IF_FLAG:CALLED_BACK_PRASIT] He says if you hadn't called him back that night, he would have just gone to sleep.", nextId: 'd7_m_03' },
+      { id: 'd7_m_03', speaker: "Prasit's Daughter", text: "He walks round the house now. Slowly, and complaining every lap that the doctors banned salt.", choices: [{ text: "Share the mangoes with the whole department.", nextId: 'd7_m_share' }, { text: "Tell her to say you miss him, and to eat even less salt.", nextId: 'd7_m_send' }] },
+      { id: 'd7_m_share', speaker: "Nurse Ann", text: "The first mangoes of the year, in a department with no beds. That makes it a good day." },
+      { id: 'd7_m_send', speaker: "Prasit's Daughter", text: "He'll be so pleased he'll complain less for two whole days." },
+    ],
     endOfDayCutscene: [
       {
         id: 'd7_e_01',
@@ -2367,14 +2424,14 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd7_e_08',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "Pharmacy stock reconciliation. Ketamine. Forty ampoules unaccounted for over six weeks, all from the resus cupboard, all on nights.",
+        text: "Badge records. Six weeks. Someone badges out of here at eight in the morning, badges into a private clinic in Nonthaburi at eight forty, and badges back into this department at four in the afternoon.",
         nextId: 'd7_e_09',
       },
       {
         id: 'd7_e_09',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "The cupboard requires two staff to open. On thirty-one of those occasions the second staff member was the same person.",
+        text: "Thirty-one days out of forty-two. That person has not been sleeping. Not sleeping badly. Not sleeping.",
         nextId: 'd7_e_10',
       },
       {
@@ -2423,42 +2480,42 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd8_s_02',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "It started after the suspension. Not for fun. I want that to be clear, and I am aware that everyone says it.",
+        text: "It started after the fire. My mother's dialysis went up by twenty thousand a month and the rota here does not stretch that far. It was never for savings. I want that to be clear.",
         nextId: 'd8_s_03',
       },
       {
         id: 'd8_s_03',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "Twenty minutes of not being here. That is all it is. Twenty minutes where the manifold does not go off and the technicians are still alive and I am not the man whose signature is on eleven months of a register.",
+        text: "It is a vitamin drip clinic. Nobody is ill. Eight hours where nobody nearly dies, and I am not the man whose signature is on eleven months of a register. Then I come back here and stay awake on coffee and habit.",
         nextId: 'd8_s_04',
       },
       {
         id: 'd8_s_04',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "I have never worked impaired. I know that is exactly what an impaired doctor says. Check the shift log. Check every one of them. I have been very careful and being careful about it is its own kind of full-time job.",
+        text: "I have not missed a single case. I know that is exactly what a doctor who has not slept says. Check the charts. Check every one of them. I check everything twice, and checking everything twice is its own kind of full-time job.",
         nextId: 'd8_s_05',
       },
       {
         id: 'd8_s_05',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "There is a formal pathway. Occupational health, monitored recovery, a suspension of registration for six to twelve months, and a return to practice. Around forty percent make it back.",
+        text: "There is a formal pathway. Tell the department chair under the fatigue policy. Nights come off the rota, the hospital has a financial counsellor, and there is a staff hardship fund that nobody has ever applied to.",
         nextId: 'd8_s_06',
       },
       {
         id: 'd8_s_06',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "Forty percent. And the ones who do not make it back, where do they go, Ann? Because I have looked, and there is nothing after this. There is no second thing I am.",
+        text: "Nobody applies because the names go up on a board, Ann. A resident asking for help with his mother's dialysis. There is no second thing I am, apart from the doctor who never asked anyone for anything.",
         nextId: 'd8_s_07',
       },
       {
         id: 'd8_s_07',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "I cannot decide this. That is not me avoiding it. You were on nine of those thirty-one nights, your name is on every rota, and you are the only one he will listen to.",
+        text: "I cannot decide this. That is not me avoiding it. You were on nine of those nights with him, your name is on every rota, and you are the only one he will listen to.",
         nextId: 'd8_s_08',
       },
       {
@@ -2468,14 +2525,14 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "Fourteen months ago I asked you to cover a chart for me. Whatever you did that night, you now get to find out what it feels like from this side of the desk.",
         choices: [
           {
-            text: "Report it through occupational health. Today, properly, with your name on it.",
+            text: "Tell the department chair. Today, properly, with your name on it.",
             nextId: 'd8_s_report_01',
             karmaEffect: 50,
             flagEffect: 'REPORTED_BOB_DIVERSION',
             xpEffect: 8000,
           },
           {
-            text: "Cover it. Say nothing and get him quietly into treatment.",
+            text: "Cover it. Say nothing and quietly swap shifts so he can sleep.",
             nextId: 'd8_s_cover_01',
             karmaEffect: -40,
             flagEffect: 'COVERED_BOB_DIVERSION',
@@ -2501,7 +2558,7 @@ export const STORY_CAMPAIGN: Record<number, {
       {
         id: 'd8_s_report_02',
         speaker: 'System',
-        text: "Occupational health accepts the referral at 09:00. Bob is off the rota by noon. The department is four doctors short and stays that way for six weeks.",
+        text: "The department chair accepts it at 09:00. Bob is off nights by noon. The department is four doctors short for six weeks, and Bob sleeps eight hours for the first time in a year.",
         nextId: 'd8_s_join',
       },
 
@@ -2509,7 +2566,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd8_s_cover_01',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "Then I am not signing the count. If you bury it, you bury it alone, and you should understand that a pharmacy reconciliation is audited externally every quarter.",
+        text: "Then I am not signing the rota. If you bury it, you bury it alone, and you should understand that the badge system is audited externally every quarter.",
         nextId: 'd8_s_cover_02',
       },
       {
@@ -2524,7 +2581,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd8_s_selfreport_01',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "If I walk in there myself it goes on my registration as a voluntary disclosure. Do you know what the difference is? About four years of restriction.",
+        text: "If I walk in there myself it becomes a fatigue plan, not a disciplinary file. Do you know what the difference is? About a whole career.",
         nextId: 'd8_s_selfreport_02',
       },
       {
@@ -2546,6 +2603,15 @@ export const STORY_CAMPAIGN: Record<number, {
         speaker: 'System',
         text: "SHIFT START.",
       },
+    ],
+    midShiftEvents: [
+      { id: 'd8_m_01', speaker: "System", text: "Three in the afternoon. The vending machine eats two of Bob's coins. He kicks it gently and then apologises to it.", nextId: 'd8_m_02' },
+      { id: 'd8_m_02', speaker: "Dr. Bob", text: "My mother is video calling. She has never believed I have a friend at work. Stand in the frame. Three seconds.", choices: [{ text: "Wai to his mother and tell her Bob is the best teacher in the building.", nextId: 'd8_m_praise' }, { text: "Tell his mother that Bob needs more sleep.", nextId: 'd8_m_sleep' }] },
+      { id: 'd8_m_praise', speaker: "Bob's Mother", text: "Really, dear? Is he strict with you? He has been strict since he was small, but he has a good heart.", nextId: 'd8_m_praise_02' },
+      { id: 'd8_m_praise_02', speaker: "Dr. Bob", text: "Mum. You can hang up now." },
+      { id: 'd8_m_sleep', speaker: "Bob's Mother", text: "There, I told you. Did you hear that, Bob? The doctor says so.", nextId: 'd8_m_sleep_02' },
+      { id: 'd8_m_sleep_02', speaker: "Dr. Bob", text: "They are not even a doctor yet, Mum. They are a student.", nextId: 'd8_m_sleep_03' },
+      { id: 'd8_m_sleep_03', speaker: "Bob's Mother", text: "Well, they're cleverer than you." },
     ],
     endOfDayCutscene: [
       {
@@ -2742,7 +2808,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd9_s_08',
         speaker: 'Nurse Ann',
         portrait: '/assets/nurse.jpg',
-        text: "Fourteen patients received KV-7 between month nine and the night my brother was admitted. Four of them died. I could have stopped it at fourteen and I chose the case.",
+        text: "Fourteen patients received KV-7 between month nine and the night my brother was admitted. Four of them bled badly enough to need intensive care, and one of them nearly did not come back. I could have stopped it at fourteen and I chose the case.",
         nextId: 'd9_s_09',
       },
       {
@@ -2764,6 +2830,13 @@ export const STORY_CAMPAIGN: Record<number, {
         speaker: 'System',
         text: "SHIFT START.",
       },
+    ],
+    midShiftEvents: [
+      { id: 'd9_m_01', speaker: "System", text: "Loy Krathong night. The evening nurses have made a krathong from a kidney dish and marigolds from the spirit house out front, and floated it in the hand-washing sink.", nextId: 'd9_m_02' },
+      { id: 'd9_m_02', speaker: "Nurse Ann", text: "Make a wish. The sink is a river for one night only. Tomorrow it goes back to seven-step hand washing.", choices: [{ text: "Wish that this team is still together, all of it.", nextId: 'd9_m_team', flagEffect: 'WISH_TEAM' }, { text: "Wish for eight hours of sleep.", nextId: 'd9_m_sleep', flagEffect: 'WISH_SLEEP' }, { text: "Wish that the truth comes out, every page of it.", nextId: 'd9_m_truth', flagEffect: 'WISH_TRUTH' }] },
+      { id: 'd9_m_team', speaker: "Nurse Ann", text: "That is a hard one. I will wish it with you." },
+      { id: 'd9_m_sleep', speaker: "Dr. Bob", text: "The most realistic wish in the history of emergency medicine, and it will never come true." },
+      { id: 'd9_m_truth', speaker: "Nurse Ann", text: "Including page 61." },
     ],
     endOfDayCutscene: [
       {
@@ -2944,7 +3017,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd10_s_05',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "I run the floor. You see everyone who comes through the door and you tell me. Tonight I will listen to every word you say, which is a sentence I have waited a year to be able to say without choking on it.",
+        text: "I run the floor. You see everyone who comes through the door and you tell me. Tonight I will listen to every word you say. [IF_FLAG:NAMED_BOB_AT_REVIEW] As for the rule that I may not run nights, nobody has time to check it tonight.",
         nextId: 'd10_s_06',
       },
       {
@@ -3068,11 +3141,17 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "SHIFT START. MASS CASUALTY PROTOCOL ACTIVE.",
       },
     ],
+    midShiftEvents: [
+      { id: 'd10_m_01', speaker: "System", text: "19:40. Between the third patient and the fourth, one of the porters walks round handing everyone a bottle of water. Nobody asked him. He just knows.", nextId: 'd10_m_02' },
+      { id: 'd10_m_02', speaker: "Dr. Bob", text: "Drink. Thirty seconds, then back in. And thank you for examining properly tonight. I will only say it once.", nextId: 'd10_m_03' },
+      { id: 'd10_m_03', speaker: "Nurse Ann", text: "Five more to come. [IF_FLAG:WISH_TEAM] And the whole team is still standing, like you wished last night.", nextId: 'd10_m_04' },
+      { id: 'd10_m_04', speaker: "Dr. Bob", text: "[IF_FLAG:WISH_SLEEP] And no, your eight hours of sleep are not happening tonight." },
+    ],
     endOfDayCutscene: [
       {
         id: 'd10_e_01',
         speaker: 'System',
-        text: "04:30. Nine patients. Eight alive. The one who is not was dead at the roadside and everybody in the department knows it and three of them will still lie awake about it.",
+        text: "04:30. Nine patients. Nine alive. At handover somebody claps, once, and then the whole room is embarrassed about it.",
         nextId: 'd10_e_02',
       },
       {
@@ -3738,7 +3817,7 @@ export const STORY_CAMPAIGN: Record<number, {
       { id: 'd26_start_01', speaker: 'Dr. Pimchanok (Pi Pim)', portrait: '/assets/pimchanok.jpg', text: 'I am chief resident. I have been awake for twenty-six hours and I have read your file, which took eleven minutes and was more interesting than the last forty files combined.', nextId: 'd26_start_02' },
       { id: 'd26_start_02', speaker: 'Dr. Pimchanok (Pi Pim)', portrait: '/assets/pimchanok.jpg', text: 'I do not care what you did at Lovely. In this department you will be judged on three things. Whether you show up. Whether your students are safe with you. And whether you can be honest at M and M when your own decision killed someone.', nextId: 'd26_start_03' },
       { id: 'd26_start_03', speaker: 'Dr. Bob', portrait: '/assets/doctor.jpg', text: 'The whistleblower. Excellent. My rota just became a political event. Do you know what I want from a first year resident? Nothing philosophical. Two working hands and no opinions before 04:00.', nextId: 'd26_start_04' },
-      { id: 'd26_start_04', speaker: 'Nurse Ann', portrait: '/assets/nurse.jpg', text: 'Ignore Bob. He argued for three hours to get you onto his team and he will deny that for the rest of his life. Welcome back. [IF_FLAG:SCAPEGOATED_ANN] I got my licence back in January. The appeal took two years. It still counts.', nextId: undefined },
+      { id: 'd26_start_04', speaker: 'Nurse Ann', portrait: '/assets/nurse.jpg', text: 'Ignore Bob. He argued for three hours to get you onto his team and he will deny that for the rest of his life. Welcome back. [IF_FLAG:SCAPEGOATED_ANN] I have not forgotten that committee room. I have forgiven it.', nextId: undefined },
     ],
     midShiftEvents: [
       { id: 'd26_mid_01', speaker: 'Tawan (Nong Wan)', portrait: '/assets/tawan.jpg', text: 'Doctor, I am the year five student on your team. I have not slept and I have not eaten and I do not know what I am supposed to be doing.', nextId: 'd26_mid_02' },

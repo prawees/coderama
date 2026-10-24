@@ -47,6 +47,17 @@ all 51 cases, patients, hub, case screen, creator, settings, summary, chapter pa
   the hour with one waiting patient, tightens at two and drives at three.
 - Sound effects are soft bells, wooden ticks and coin chimes; the shift drone is now quiet room tone.
 
+## Tone pass (days 1 to 10)
+- Softer, same stakes: nobody dies in the day 5 fire, Malai is saved by luck, the day 10 crash has nine
+  survivors, day 9's KV-7 harm is ICU bleeds rather than deaths. Bob's secret is now overwork (a second
+  job to pay for his mother's dialysis) instead of stealing ketamine. Ann's suspension lasts six months,
+  so she is back, and cold to you, in year 6 on that branch.
+- Each of days 1 to 10 has a lighter mid-shift scene with a small choice (Thai and English, ids dN_m_*):
+  Kanom the cat, Auntie Noi's khanom krok, a stray dog in the rain, Ann asleep on the charts, Bob's
+  banana birthday cake, your junior fainting, Prasit's daughter with mangoes, Bob's mother on video,
+  a krathong in the hand basin (sets WISH_TEAM, WISH_SLEEP or WISH_TRUTH), water during the crash
+  (calls back the wish).
+
 Checks: `npx tsc --noEmit`, `npm run validate`, `npm run build`. The playtest bots are not in the repo.
 The last headless pass covered: title to first patient (17 taps, first patient at about 1 s), cases 01,
 02, 03 (CPR fast and correct), 04, 05, 07, 23, 27, 43, the end-shift gate and the summary.
