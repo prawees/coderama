@@ -2418,7 +2418,8 @@ export const STORY_CAMPAIGN_TH: Record<number, {
       "case_01",
       "case_03_cardiac",
       "case_05_asthma",
-      "case_46"
+      "case_46",
+      "case_07_vip"
     ]
   },
   "7": {

@@ -2234,7 +2234,7 @@ export const STORY_CAMPAIGN: Record<number, {
         text: "DAY 6 COMPLETE.",
       },
     ],
-    cases: ['case_01', 'case_03_cardiac', 'case_05_asthma', 'case_46'],
+    cases: ['case_01', 'case_03_cardiac', 'case_05_asthma', 'case_46', 'case_07_vip'],
   },
 
   /* ----------------------------------------------------------------------

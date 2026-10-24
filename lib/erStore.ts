@@ -220,6 +220,8 @@ interface ERState {
   requestsDone: number[];
   /** Casebook milestones already claimed, by page count */
   casebookClaimed: number[];
+  /** Day each case was last brought in, so review cases rotate (lib/schedule.ts) */
+  lastSeen: Record<string, number>;
 
   // Actions
   setShiftMode: (mode: ShiftMode) => void;
@@ -298,6 +300,7 @@ export const useERStore = create<ERState>()(
       patientLog: {},
       requestsDone: [],
       casebookClaimed: [],
+      lastSeen: {},
 
       friendships: {},
       karma: 0,
@@ -563,13 +566,15 @@ export const useERStore = create<ERState>()(
         propDaily: {},
         patientLog: {},
         requestsDone: [],
-        casebookClaimed: []
+        casebookClaimed: [],
+        lastSeen: {}
       }),
       resetShiftStats: () => set((state) => ({
         shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] }
       })),
       markSpawned: (caseId) => set((state) => ({
-        shiftStats: { ...state.shiftStats, spawned: [...(state.shiftStats.spawned ?? []), caseId] }
+        shiftStats: { ...state.shiftStats, spawned: [...(state.shiftStats.spawned ?? []), caseId] },
+        lastSeen: { ...(state.lastSeen ?? {}), [caseId]: state.currentDay }
       })),
       markMidPlayed: (minute) => set((state) => ({
         shiftStats: { ...state.shiftStats, midPlayed: [...(state.shiftStats.midPlayed ?? []), minute] }
@@ -698,6 +703,7 @@ export const useERStore = create<ERState>()(
          activeQuests: [],
          completedQuests: [],
          requestsDone: [],
+         lastSeen: {},
          friendships: {},
          isPendingPromotion: false,
          clockMinutes: 0
@@ -756,6 +762,7 @@ export const useERStore = create<ERState>()(
         patientLog: state.patientLog,
         requestsDone: state.requestsDone,
         casebookClaimed: state.casebookClaimed,
+        lastSeen: state.lastSeen,
       })
     }
   )

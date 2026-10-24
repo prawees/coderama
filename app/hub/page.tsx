@@ -358,6 +358,8 @@ export default function HubPage() {
             earlier: earlierCases,
             excluded: [...state.activeCases.map((c) => c.caseDataId), ...(state.shiftStats.spawned ?? [])],
             met: Object.keys(state.patientLog),
+            // older saves have no lastSeen yet: fall back to the day each patient was first met
+            lastSeen: { ...Object.fromEntries(Object.entries(state.patientLog).map(([id, r]) => [id, r.day])), ...(state.lastSeen ?? {}) },
          });
 
          // An empty ER fills at once, so nobody waits around for their first patient
