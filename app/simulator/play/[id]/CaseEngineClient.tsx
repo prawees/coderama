@@ -446,11 +446,11 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     }
   };
 
-  /** Today's notice-board request asks for one patient with every step right, unsupervised */
+  /** Today's notice-board request asks for one patient with every step right (above-rank steps done under supervision still count) */
   const meetsBoardRequest = (grade: Grade) => {
     const st = useERStore.getState();
     const r = requestFor(st.currentDay);
-    return !!r && r.kind === 'clean' && grade === 'clean' && !supervised && !(st.requestsDone ?? []).includes(st.currentDay);
+    return !!r && r.kind === 'clean' && grade === 'clean' && !(st.requestsDone ?? []).includes(st.currentDay);
   };
 
   const rewardFor = (grade: Grade) => {

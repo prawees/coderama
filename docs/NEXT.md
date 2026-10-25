@@ -60,7 +60,7 @@ all 51 cases, patients, hub, case screen, creator, settings, summary, chapter pa
 
 ## Farm-game pass (things to do between patients)
 - Notice board request each day from day 2 (lib/requests.ts): bring someone a gift, one case with every
-  step right and no attending, chat with the whole team, or feed Kanom. Shown on the board and at the top
+  step right, chat with the whole team, or feed Kanom. Shown on the board and at the top
   of the quest log; pays coins, sometimes XP, and friendship with whoever pinned it.
 - Casebook (postbox, second tab, or the button in the quest log; lib/casebook.ts): all 51 patients as a
   collection, locked pages as ???, a star for a case run well (every step right or one slip), and each
