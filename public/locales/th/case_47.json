@@ -1,0 +1,479 @@
+{
+  "title": "66yo F Acute Ischaemic Stroke (Thrombolysis Window)",
+  "age": "66",
+  "sex": "F",
+  "chiefComplaint": "แขนขาขวาอ่อนแรงทันที พูดไม่ได้ เมื่อ 70 นาทีก่อน",
+  "diagnoses": [
+    "Acute ischaemic stroke, left middle cerebral artery territory",
+    "Intracerebral haemorrhage",
+    "Hypoglycaemia",
+    "Todd's paresis after seizure",
+    "Functional neurological disorder"
+  ],
+  "background": "Last known well 07:10 น. ตอนลูกสาวออกไปทำงาน พบตอน 07:40 น. พูดไม่ได้ ปากเบี้ยวขวา แขนขวาตก มาถึง 08:20 น. เป็น AF ได้ DOAC แต่หยุดเองเมื่อ 4 เดือนก่อนหลังเลือดกำเดาไหล ไม่ได้บอกใคร เป็น HT และ DM type 2 ด้วย น้ำหนักราว 62 kg ลูกสาวอยู่ด้วยและยืนยันเวลาได้แม่นยำ",
+  "patientAppearance": {
+    "skinTone": "#dcb187",
+    "bmiFactor": 1.1,
+    "ageGroup": "elderly"
+  },
+  "vitals": {
+    "hr": {
+      "value": 96,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 192,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 104,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 18,
+      "abnormal": false
+    },
+    "temp": {
+      "value": 36.9,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 96,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 13,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Awake, distressed, frightened, trying to speak and producing only fragments. She is fully aware of what is happening to her, which is worth remembering before anyone talks across her",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Right facial droop sparing the forehead, indicating an upper motor neurone lesion. Forced gaze deviation to the left. Tongue deviates to the right on protrusion. No head injury, no tongue laceration to suggest a seizure",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Irregularly irregular pulse at 96/min consistent with atrial fibrillation, hypertensive at 192/104, no murmur, no carotid bruit, peripheries warm",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Clear breath sounds, normal effort, no aspiration. Swallow not yet tested and she must be kept nil by mouth until it is",
+      "abnormal": false
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, non-tender, no organomegaly, bladder not palpable, no evidence of occult bleeding",
+      "abnormal": false
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Warm and well perfused, no bruising, no petechiae, no recent puncture sites, no signs of trauma anywhere. Relevant because any of these would raise the bleeding risk from thrombolysis",
+      "abnormal": false
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "Global aphasia with no comprehension and no meaningful output. Right hemiplegia with power 0/5 in the arm and 2/5 in the leg. Right homonymous hemianopia. Right sided sensory inattention. NIHSS 19",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "poc1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "DTX",
+      "value": "116",
+      "unit": "mg/dL",
+      "normalRange": "70-140",
+      "abnormal": false,
+      "report": "ปกติ hypoglycemia คือโรคเลียนแบบ stroke ที่สำคัญที่สุด ทำให้อ่อนแรงครึ่งซีกร่วมกับพูดไม่ได้ได้ และแก้ได้หมด เจาะก่อน CT ไม่ใช่หลัง"
+    },
+    {
+      "id": "ct1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CT brain ไม่ฉีดสี",
+      "report": "ไม่มีเลือดออก มี hyperdense left MCA sign มี early ischemic change คือ insular ribbon หายไป และแยก grey-white ไม่ได้ที่ left basal ganglia ASPECTS 8 คำถามเดียวที่ scan นี้ต้องตอบก่อน thrombolysis คือมีเลือดหรือไม่",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "cta1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CTA ศีรษะและคอ",
+      "report": "Left M1 MCA occlusion collateral ดี large vessel occlusion ทำให้เป็น candidate ของ mechanical thrombectomy นอกจาก thrombolysis และการรู้เรื่องนี้เปลี่ยนว่าเธอต้องไปอยู่ที่ไหนในชั่วโมงหน้า",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "coag1",
+      "kind": "lab",
+      "category": "Coagulation",
+      "name": "INR, platelet, APTT",
+      "value": "INR 1.1 / platelets 234 x10^9/L / APTT 30 s",
+      "unit": "-",
+      "normalRange": "INR 0.9-1.2",
+      "abnormal": false,
+      "report": "ปกติ หยุด anticoagulant มา 4 เดือนแล้ว ไม่มีฤทธิ์ค้าง ถ้ากิน DOAC ภายใน 48 ชม. จะห้าม thrombolysis ถ้าไม่มีแผน reverse เฉพาะ"
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "EKG 12 lead",
+      "report": "AF 94/min ไม่มี acute ischemic change ยืนยันกลไก cardioembolic ที่น่าจะเป็น ซึ่งคือสิ่งที่ anticoagulant ที่หยุดไปเคยป้องกันอยู่",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "cbc1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Hb, BUN/Cr",
+      "value": "Hb 12.8 g/dL / creatinine 1.0 mg/dL",
+      "unit": "-",
+      "normalRange": "Hb 12.0-15.5 g/dL",
+      "abnormal": false,
+      "report": "ปกติ ไตทำงานพอสำหรับ contrast"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "Stroke fast track, DTX, last known well",
+          "distractors": [
+            {
+              "label": "ใช้เวลาที่พบเป็นเวลาเริ่มอาการ",
+              "feedback": "เวลาเริ่มอาการคือ last known well ซึ่งกำหนดว่าให้ thrombolysis ได้ไหม"
+            },
+            {
+              "label": "ไม่ต้องเจาะน้ำตาล อาการชัดว่าเป็น stroke",
+              "feedback": "Hypoglycemia เลียนแบบ stroke ได้ เจาะน้ำตาลก่อน thrombolysis"
+            }
+          ],
+          "label": "Stroke fast track เจาะน้ำตาล และหา last known well ให้แม่นถึงนาที",
+          "actions": [
+            "Activate stroke fast track ตั้งแต่มาถึง",
+            "DTX",
+            "ให้คะแนน NIHSS",
+            "หา last known well จากพยาน"
+          ],
+          "doseMap": {
+            "หา last known well จากพยาน": "ไม่ใช่เวลาที่พบว่าอ่อนแรง แต่เป็นเวลาสุดท้ายที่เห็นว่าปกติ ตัวเลขเดียวนี้ตัดสินว่าจะได้รักษาไหม และพอลูกสาวออกไปจอดรถ อาจไม่มีใครบอกได้อีก"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ทำ MRI brain ก่อนตัดสินใจ thrombolysis",
+              "feedback": "CT ไม่ฉีดสีเร็วกว่าและพอสำหรับตัดเลือดออก"
+            },
+            {
+              "label": "รอผลเลือดครบก่อน CT",
+              "feedback": "ถ้าไม่มีประวัติเลือดออก อย่าเลื่อน imaging หรือ thrombolysis เพื่อรอผลเลือด"
+            }
+          ],
+          "label": "CT ไม่ฉีดสีทันที แล้วตามด้วย CTA",
+          "actions": [
+            "CT brain ไม่ฉีดสีภายใน 20 นาทีหลังมาถึง",
+            "CTA ศีรษะและคอ",
+            "ไม่ต้องรอผลเลือดครบถ้าไม่มีประวัติเลือดออก"
+          ],
+          "doseMap": {
+            "ไม่ต้องรอผลเลือดครบถ้าไม่มีประวัติเลือดออก": "ในคนที่ไม่ได้กิน anticoagulant และไม่มีประวัติเลือดออก การรอผล coag เสียสมองไป 30 ถึง 45 นาที large vessel occlusion เสียเซลล์ประสาทราว 1.9 ล้านเซลล์ต่อนาที"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Labetalol IV ให้ต่ำกว่า 185/110",
+          "distractors": [
+            {
+              "label": "ลด BP ลงถึง 140/90 ก่อน thrombolysis",
+              "feedback": "ลดมากเกินทำให้ penumbra ขาดเลือด เป้าต่ำกว่า 185/110"
+            },
+            {
+              "label": "อม nifedipine ลด BP",
+              "feedback": "ทำให้ BP ตกแบบคาดเดาไม่ได้ ใช้ labetalol หรือ nicardipine IV"
+            }
+          ],
+          "label": "ลด BP ให้ต่ำกว่า 185/110 ก่อน thrombolysis และไม่ต่ำกว่านั้น",
+          "actions": [
+            "Labetalol IV",
+            "หรือ nicardipine drip",
+            "เป้าต่ำกว่า 185/110 ก่อน thrombolysis และต่ำกว่า 180/105 นาน 24 ชม. หลังให้"
+          ],
+          "doseMap": {
+            "Labetalol IV": "10 ถึง 20 mg IV ใน 1 ถึง 2 นาที ซ้ำได้ 1 ครั้งหลัง 10 นาที",
+            "เป้าต่ำกว่า 185/110 ก่อน thrombolysis และต่ำกว่า 180/105 นาน 24 ชม. หลังให้": "อย่าแก้เกิน ใน occlusion ที่ยังไม่ได้รักษา BP สูงกำลังเลี้ยง penumbra ผ่าน collateral ลดแรงจะทำให้ infarct ขยาย ถ้าไม่ใช่ candidate ของ thrombolysis permissive hypertension ถึง 220/120 คือสิ่งที่ถูก"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ให้ aspirin 300 mg แทน thrombolysis",
+              "feedback": "ยังอยู่ใน window thrombolysis ทำให้ outcome ดีขึ้น ห้ามให้ antiplatelet 24 ชม. หลังให้"
+            },
+            {
+              "label": "รอ neuro มาดูก่อน thrombolysis",
+              "feedback": "ทุกนาทีมีค่า door to needle ควรไม่เกิน 60 นาที"
+            }
+          ],
+          "label": "Thrombolysis IV ภายใน window",
+          "actions": [
+            "Alteplase IV",
+            "หรือ tenecteplase bolus ครั้งเดียวถ้ามี",
+            "ไม่ให้ antiplatelet หรือ anticoagulant 24 ชม. หลังให้"
+          ],
+          "doseMap": {
+            "Alteplase IV": "0.9 mg/kg (56 mg) 10% bolus ใน 1 นาที ที่เหลือใน 60 นาที ไม่เกิน 90 mg",
+            "หรือ tenecteplase bolus ครั้งเดียวถ้ามี": "0.25 mg/kg bolus ครั้งเดียว non-inferior ต่อ alteplase และให้เร็วกว่ามาก สำคัญที่สุดตอนต้องส่งต่อไป thrombectomy",
+            "ไม่ให้ antiplatelet หรือ anticoagulant 24 ชม. หลังให้": "และทำ CT ซ้ำที่ 24 ชม. ก่อนเริ่มยาตัวไหน"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "Door to needle 41 นาที",
+          "outcomeType": "improved",
+          "narrative": "เริ่ม thrombolysis ที่ 111 นาทีหลังเริ่มอาการ NIHSS ดีขึ้นจาก 19 เป็น 15 ระหว่างให้ยา M1 occlusion ไม่น่าจะสลายได้ด้วยยาอย่างเดียว CTA จึงสำคัญ เธอต้องได้เอา clot ออกด้วยเครื่องมือ",
+          "vitalChanges": {
+            "hr": 88,
+            "sbp": 168,
+            "dbp": 92,
+            "gcs": 14
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "คุยกับคนไข้ ไม่ใช่แค่ลูกสาว และอธิบายความเสี่ยงต่อหน้า (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "เธอมี global aphasia ทุกคนเลยหันไปคุยกับลูกสาวโดยอัตโนมัติ aphasia ไม่ใช่การหมดสติ และหลายครั้งยังเข้าใจน้ำเสียง สถานการณ์ และเจตนา หมอยืนตรงที่เธอมองเห็น บอกเธอตรงๆ ว่ากำลังเกิดอะไรขึ้นและยาทำอะไร รวมถึงโอกาสเลือดออกในสมองราว 6% แล้วให้เธอบีบมือตอบใช่หรือไม่ ก่อนหันไปคุยเรื่อง consent กับลูกสาว พี่แอนบอกว่าคนในแผนกส่วนใหญ่คุยข้ามหัวคนไข้ stroke เหมือนห้องว่างเปล่า และคนไข้จำได้ไปอีกหลายปี"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "รอ alteplase หยดหมดก่อนส่งต่อ",
+              "feedback": "ส่งต่อทำ thrombectomy โดยไม่ต้องรอยาหยดหมด"
+            },
+            {
+              "label": "Thrombolysis อย่างเดียวพอสำหรับ large vessel occlusion",
+              "feedback": "Thrombectomy เพิ่มประโยชน์มากใน large vessel occlusion"
+            }
+          ],
+          "label": "Mechanical thrombectomy สำหรับ large vessel occlusion",
+          "actions": [
+            "ส่งต่อทีม neurointervention ทันที",
+            "ส่งตัวโดยไม่ต้องรอ alteplase หยดหมด",
+            "คุมและ monitor BP ต่อระหว่างส่งตัว"
+          ],
+          "doseMap": {
+            "ส่งตัวโดยไม่ต้องรอ alteplase หยดหมด": "Thrombectomy มี indication ได้ถึง 24 ชม. หลังเริ่มอาการในคนที่เลือกแล้วว่ามี large vessel occlusion ยิ่งเร็วยิ่งดี ยาหยดต่อระหว่างส่งตัว"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "Reperfusion",
+          "outcomeType": "improved",
+          "narrative": "Thrombectomy ได้ TICI 2b ที่ 3 ชม. 20 นาทีหลังเริ่มอาการ ใช้สอง pass NIHSS 8 ที่ 24 ชม. CT ซ้ำเห็น infarct ที่ left basal ganglia ขนาดไม่ใหญ่ ไม่มี hemorrhagic transformation",
+          "vitalChanges": {
+            "hr": 84,
+            "sbp": 152,
+            "dbp": 86,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "req6",
+        "type": "required",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "choice": "Swallow screen, rehab และแผน anticoagulant",
+          "distractors": [
+            {
+              "label": "เริ่ม anticoagulant ใหม่วันเดียวกัน",
+              "feedback": "เริ่ม anticoagulant เร็วหลัง infarct เสี่ยง hemorrhagic transformation เริ่มใหม่ตามช่วงเวลาที่เหมาะสม"
+            },
+            {
+              "label": "ให้ดื่มน้ำทดสอบการกลืน",
+              "feedback": "ต้องประเมินการกลืนอย่างเป็นทางการก่อนให้อะไรทางปาก"
+            }
+          ],
+          "label": "Secondary prevention และคุยเรื่อง anticoagulant",
+          "actions": [
+            "เริ่ม anticoagulant ใหม่ตามช่วงเวลาที่เหมาะสมหลัง infarct",
+            "ประเมินการกลืนก่อนให้อะไรทางปาก",
+            "เริ่มฝึกพูดและกายภาพเร็ว",
+            "คุยเรื่องที่ทำไมเธอหยุด anticoagulant"
+          ],
+          "doseMap": {
+            "คุยเรื่องที่ทำไมเธอหยุด anticoagulant": "เธอหยุดยาหลังเลือดกำเดาไหลและไม่บอกใคร เพราะคิดว่าจะโดนดุ ความเงียบนั้นทำให้เกิด stroke ครั้งนี้ ทางแก้คือบอกเธอชัดๆ ว่าให้โทรมาแทนการหยุดยา และให้เบอร์ที่มีคนรับสายจริง"
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2400,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "mRS 2 ที่ 90 วัน เดินเองได้ นึกคำพูดลำบากเล็กน้อย เริ่ม anticoagulant ใหม่วันที่ 6 เธอเก็บบัตรนัดที่มีเบอร์ตรงของพยาบาล stroke ไว้ ซึ่งเป็นสิ่งที่น่าจะป้องกัน stroke ครั้งที่สองได้มากที่สุด",
+          "vitalChanges": {
+            "hr": 78,
+            "sbp": 132,
+            "dbp": 78,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e5",
+        "source": "req4",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "req6"
+      },
+      {
+        "id": "e10",
+        "source": "req6",
+        "target": "out3"
+      }
+    ]
+  }
+}

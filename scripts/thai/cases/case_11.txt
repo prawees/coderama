@@ -1,0 +1,66 @@
+cc: ปวดท้องน้อยทันที แล้วล้มหมดสติ
+bg: ปวดท้องน้อยขวารุนแรงทันทีเมื่อ 2 ชม. ก่อนขณะทำงาน แล้วเป็นลมหมดสติต่อหน้าคนอื่น มีเลือดออกกะปริบกะปรอยทางช่องคลอด 3 วัน คิดว่าประจำเดือนมาช้า LMP 7 สัปดาห์ก่อน ปกติรอบเดือนสม่ำเสมอ ใส่ห่วงอนามัยชนิดทองแดงมา 18 เดือน เคยเป็น chlamydia รักษาแล้วเมื่อ 3 ปีก่อน ยังไม่ได้ตรวจการตั้งครรภ์ เริ่มปวดปลายไหล่ขวาบนรถพยาบาล
+i.hcg1: Positive ผู้หญิงวัยเจริญพันธุ์ที่ปวดท้องและช็อกเป็น ectopic pregnancy จนกว่าจะพิสูจน์ได้ว่าไม่ใช่ และการใส่ห่วงไม่ได้ตัดการตั้งครรภ์
+i.us1: Free fluid ใน Morison's pouch และ pelvis มี echogenic material หมุนวนบ่งว่าเป็นก้อนเลือด มดลูกว่าง endometrium บาง มีห่วงอยู่ในโพรง มี heterogeneous mass ที่ right adnexa 34 mm แยกจากรังไข่ มี fluid รอบๆ ไม่มี intrauterine gestational sac
+i.hb1: Acute anemia จากเลือดออกในช่องท้อง Hb แรกปกติก็ไม่ได้ตัดโรคนี้
+i.shcg1: เกิน discriminatory zone มดลูกว่างที่ระดับนี้ร่วมกับ free fluid บ่งชี้ ectopic pregnancy ในคนไข้ unstable ผลนี้ไม่ควรทำให้เข้าห้องผ่าตัดช้า
+i.bg1: Rh negative crossmatch ไว้ 4 unit ต้องให้ anti-D immunoglobulin
+i.lac1: Hemorrhagic shock และ tissue hypoperfusion
+i.coag1: Dilutional และ consumptive coagulopathy ระยะแรก ให้ blood product ตามสัดส่วนแทน crystalloid
+req1.l: ตรวจ UPT เปิด IV เบอร์ใหญ่ 2 เส้น เจาะเลือด
+req1.d0: ส่งไปห้อง U/S ทำ scan เต็มรูปแบบ
+req1.f0: คนไข้ unstable ห้ามออกจากห้อง resus ตรวจการตั้งครรภ์ เปิดเส้น crossmatch มาก่อน
+req1.d1: รอผล serum beta-hCG ก่อนทำอะไร
+req1.f1: UPT ได้คำตอบในไม่กี่นาที serum ใช้เวลาหลายชั่วโมงและไม่ได้เปลี่ยนอะไรตอนนี้
+req1.a0: Urine beta-hCG
+req1.a1: เปิดเส้น 16G 2 เส้น
+req1.a2: CBC, coag, lactate, G/M 4 unit
+req2.l: FAST ข้างเตียงและ transvaginal U/S โดยไม่ออกจากห้อง resus
+req2.c: FAST และ TVS ข้างเตียงในห้อง resus
+req2.d0: CT ท้องหา appendicitis
+req2.f0: ผู้หญิงวัยเจริญพันธุ์ที่ช็อกและ UPT บวกต้องทำ U/S ข้างเตียงในห้อง resus ไม่ใช่พาไป CT
+req2.d1: ไม่ต้องทำ imaging admit วอร์ดนรีเวช
+req2.f1: FAST ข้างเตียงยืนยัน hemoperitoneum ได้เร็ว และทำให้ตัดสินใจเข้าห้องผ่าตัดเร็วขึ้น
+req2.a0: FAST ข้างเตียง
+req2.a1: Transvaginal US
+req3.l: เปิด MTP และให้เลือด ไม่ใช่ crystalloid หลายลิตร
+req3.c: เลือด O negative และ MTP
+req3.d0: ให้ NSS 3 ลิตรจน BP ปกติ
+req3.f0: Crystalloid ปริมาณมากเจือจาง clotting factor และทำให้เลือดออกมากขึ้น ให้ blood product เร็ว
+req3.d1: รอเลือด crossmatch ก่อนให้
+req3.f1: Crossmatch ใช้เวลานานเกินไปใน hemorrhagic shock ใช้ O negative ฉุกเฉินและเปิด MTP
+req3.m0: 2 unit ทันทีระหว่างรอเลือด crossmatch
+req3.m1: PRC : FFP : platelet 1:1:1
+req3.m2: 1 g ใน 10 นาที
+req3.m3: ไม่เกิน 1000 mL ใช้ permissive hypotension จนกว่าจะหยุดเลือดได้
+req3.a0: PRC O negative ฉุกเฉิน
+req3.a1: เปิด massive transfusion protocol
+req3.a2: TXA IV
+req3.a3: จำกัด crystalloid
+out1.l: ตอบสนองชั่วคราว
+out1.n: PRC 2 unit ทำให้ BP ขึ้นครู่เดียวแล้วเริ่มตกอีก เป็น transient responder เลือดออกแบบที่ต้องผ่าตัด blood product เท่าไรก็แก้ไม่ได้ใน ER
+ethical_1.l: บอกเธอว่าตั้งครรภ์และรักษาครรภ์ไว้ไม่ได้ ก่อนเข้าห้องผ่าตัด (Empathy)
+ethical_1.n: หมอใช้ 40 วินาทีบอกว่าเธอตั้งครรภ์ ครรภ์อยู่ผิดที่และอยู่รอดไม่ได้ และการผ่าตัดเดี๋ยวนี้คือสิ่งที่จะช่วยชีวิตเธอ หมอถามว่ามีใครที่อยากให้โทรหาไหม เธอขอให้โทรหาพี่สาว การบอกก่อนดมยาแทนที่จะบอกหลัง คือความต่างระหว่าง informed consent กับการที่คนไข้ตื่นมาเจอข่าวที่ไม่มีใครเตรียมเธอไว้
+req4.l: Consult สูติ-นรีเวชเข้าห้องผ่าตัดทันที
+req4.d0: Admit วอร์ดให้ methotrexate
+req4.f0: Methotrexate สำหรับ ectopic ที่ยังไม่แตกและ stable เธอเป็น ruptured ectopic กับช็อก ต้องผ่าตัด
+req4.d1: Observe ใน ER จนกว่าจะ stable
+req4.f1: เป็น transient responder การหยุดเลือดอยู่ในห้องผ่าตัด
+req4.a0: ปรึกษาสูติฯ ด่วน
+req4.a1: NPO และให้วิสัญญีประเมิน
+req4.a2: Consent ทำ laparoscopy หรือ laparotomy อาจตัดท่อนำไข่
+out2.l: เข้าห้องผ่าตัด
+out2.n: เข้าห้องผ่าตัด 28 นาทีหลังมาถึง laparoscopy เจอเลือดในช่องท้อง 1200 mL กับ ruptured right tubal pregnancy ทำ right salpingectomy เลือดหยุด
+req5.l: ดูแลหลังผ่าตัด รวมถึง anti-D เพราะ Rh negative
+req5.c: Anti-D เจาะเลือดซ้ำ และนัดคลินิกครรภ์
+req5.d0: D/C โดยไม่ให้ anti-D เพราะไม่ได้ตั้งครรภ์แล้ว
+req5.f0: เธอ Rh negative ต้องให้ anti-D กัน sensitization ที่จะกระทบการตั้งครรภ์ครั้งหน้า
+req5.d1: ให้ anti-D เฉพาะถ้าอยากมีลูกอีก
+req5.f1: Sensitization กระทบทั้งการตั้งครรภ์และการให้เลือดในอนาคต เสนอ anti-D ให้ผู้หญิง Rh negative ทุกคนหลังผ่าตัด ectopic
+req5.m0: 250 IU (50 mcg) IM ภายใน 72 ชม.
+req5.a0: Anti-D immunoglobulin
+req5.a1: Hb และ coag ซ้ำ
+req5.a2: ยาแก้ปวดและป้องกัน VTE
+req5.a3: นัดคลินิกฝากครรภ์ระยะแรกและให้คำปรึกษา
+out3.l: Disposition
+out3.n: Hb 9.6 g/dL หลังได้เลือด 4 unit extubate แล้ว stable อยู่วอร์ดนรีเวช ได้คำปรึกษาเรื่องการมีลูกต่อด้วยท่อนำไข่ที่เหลือข้างเดียว และความเสี่ยง ectopic ซ้ำที่สูงขึ้น พี่สาวมานั่งอยู่ข้างเตียง

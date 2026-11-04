@@ -1,0 +1,455 @@
+{
+  "title": "57yo M Necrotising Fasciitis (Vibrio vulnificus)",
+  "age": "57",
+  "sex": "M",
+  "chiefComplaint": "ปวดขารุนแรง มีไข้ 20 ชม. หลังจับอาหารทะเล",
+  "diagnoses": [
+    "Necrotising fasciitis (Vibrio vulnificus)",
+    "Cellulitis",
+    "Deep vein thrombosis",
+    "Gout",
+    "Compartment syndrome"
+  ],
+  "background": "พ่อค้าส่งอาหารทะเลที่ตลาดปลา เมื่อวานเช้าโดนลังหอยนางรมบาดหน้าแข้งขวา ล้างแผลด้วยน้ำทะเล 20 ชม. ต่อมาปวดขาทรมานมาก หนาวสั่น อาเจียน เป็น cirrhosis จาก chronic hepatitis B ไม่มียาประจำ",
+  "patientAppearance": {
+    "skinTone": "#cfa261",
+    "bmiFactor": 1.0,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 134,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 78,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 42,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 32,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 39.2,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 94,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 13,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Toxic, agitated, sweating, in pain that is grossly out of proportion to the visible skin changes. Pain far exceeding what the skin explains is the single most important early sign and it appears before anything looks bad",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Mildly icteric sclerae from underlying cirrhosis, dry mucous membranes, no oral lesions, no neck stiffness",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia at 134/min, hypotensive at 78/42, warm peripheries with a bounding pulse and a wide pulse pressure, typical of early distributive septic shock",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Tachypnoeic at 32/min compensating for metabolic acidosis, clear breath sounds, no crackles",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Moderate ascites and splenomegaly consistent with known cirrhosis, non-tender, no peritonism",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Right shin with a small healing laceration surrounded by dusky violaceous discolouration extending to the knee, three tense haemorrhagic bullae, skin anaesthesia over a 10 cm patch, crepitus on deep palpation, and a woody hard feel to the subcutaneous tissue. The border is indistinct rather than sharply demarcated, unlike cellulitis",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 13 (E3V4M6), confused from sepsis, no focal deficit. Cutaneous anaesthesia over the affected area from destruction of superficial nerves is an early and highly specific sign",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "lric1",
+      "kind": "lab",
+      "category": "Scoring",
+      "name": "ค่าที่ใช้คิด LRINEC score",
+      "value": "CRP 340, WBC 22.4, Hb 10.8, Na 128, creatinine 2.4, glucose 210. Score 11",
+      "unit": "-",
+      "normalRange": "Score <6 low risk",
+      "abnormal": true,
+      "report": "Score 11 ความเสี่ยงสูง LRINEC ต่ำไม่ได้ตัด necrotizing fasciitis และเคยทำให้ล่าช้าจนเสียชีวิต score ใช้สนับสนุนความสงสัยทาง clinical ไม่เคยใช้ล้มมันได้"
+    },
+    {
+      "id": "lac1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Lactate",
+      "value": "7.8",
+      "unit": "mmol/L",
+      "normalRange": "0.5-2.0",
+      "abnormal": true,
+      "report": "Severe septic shock และ tissue hypoperfusion"
+    },
+    {
+      "id": "ct1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CT ขาฉีดสี",
+      "report": "มี gas ตาม deep fascial plane ของ anterior และ lateral compartment, fascia หนาและไม่ enhance, มี fat stranding สนับสนุน necrotizing fasciitis imaging มีประโยชน์เฉพาะเมื่อไม่ทำให้ผ่าตัดช้า และ scan ปกติก็ไม่ได้ตัดการวินิจฉัย",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "bc1",
+      "kind": "lab",
+      "category": "Micro",
+      "name": "H/C, wound Gram stain",
+      "value": "Curved Gram negative rods ต่อมายืนยันเป็น Vibrio vulnificus",
+      "unit": "-",
+      "normalRange": "No growth",
+      "abnormal": true,
+      "report": "Positive ที่ 9 ชม. Gram negative bacilli รูปโค้งในคนไข้ cirrhosis ที่สัมผัสน้ำทะเลแทบจะวินิจฉัยได้เลย และเปลี่ยนการเลือก antibiotic เพราะต้องใช้ doxycycline ร่วมกับ 3rd generation cephalosporin โดยเฉพาะ"
+    },
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "CK",
+      "value": "6200",
+      "unit": "U/L",
+      "normalRange": "30-200",
+      "abnormal": true,
+      "report": "กล้ามเนื้อถูกกระทบ CK สูงร่วมกับปวดเกินสัดส่วนเพิ่มความกังวลว่าเป็น necrotizing infection มากกว่า cellulitis ธรรมดา"
+    },
+    {
+      "id": "coag1",
+      "kind": "lab",
+      "category": "Coagulation",
+      "name": "INR, platelet",
+      "value": "INR 2.0 / platelets 62 x10^9/L",
+      "unit": "-",
+      "normalRange": "INR 0.9-1.2",
+      "abnormal": true,
+      "report": "Coagulopathy จาก sepsis บน cirrhosis แก้ก่อนเข้าห้องผ่าตัด แต่อย่าให้การแก้ทำให้ผ่าตัดช้า"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "ขีดขอบผิวหนัง ตามศัลย์เดี๋ยวนี้",
+          "distractors": [
+            {
+              "label": "รอ CT ยืนยัน necrotizing fasciitis ก่อน",
+              "feedback": "Imaging ทำให้ผ่าตัดช้า ปวดเกินสัดส่วนร่วมกับ systemic toxicity ต้อง consult ศัลย์ทันที"
+            },
+            {
+              "label": "รักษาเป็น cellulitis ธรรมดาด้วยยากิน",
+              "feedback": "ปวดรุนแรง ไข้ และ cirrhosis หลังสัมผัสน้ำทะเล ชวนนึกถึง Vibrio necrotizing infection"
+            }
+          ],
+          "label": "จับได้ว่าปวดเกินสัดส่วน และตามศัลย์ทันที",
+          "actions": [
+            "ขีดขอบผิวหนังด้วยปากกาและเขียนเวลา",
+            "ทดสอบว่าผิวหนังชาไหม",
+            "ปรึกษาศัลย์ทันที",
+            "ไม่ต้องรอ imaging หรือ score"
+          ],
+          "doseMap": {
+            "ขีดขอบผิวหนังด้วยปากกาและเขียนเวลา": "ลามหลาย cm ต่อชั่วโมง แยกจาก cellulitis ได้ใน 30 นาที และไม่เสียเงินเลย"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "จำกัด fluid เพราะเป็น cirrhosis",
+              "feedback": "คนไข้ septic shock อยู่ resuscitate ด้วย balanced crystalloid และเพิ่ม vasopressor"
+            },
+            {
+              "label": "ไม่ต้องเก็บ culture จะได้ไม่ช้า",
+              "feedback": "เก็บ culture ได้เร็วและไม่ควรทำให้ antibiotic ช้า แต่สำคัญ"
+            }
+          ],
+          "label": "Resuscitate ด้วย fluid เต็มที่ และเก็บ culture",
+          "actions": [
+            "Balanced crystalloid 30 mL/kg",
+            "H/C และย้อม Gram จากแผล",
+            "Lactate",
+            "Norepinephrine ถ้าไม่ตอบสนองต่อ fluid"
+          ],
+          "doseMap": {
+            "Balanced crystalloid 30 mL/kg": "ราว 2 ลิตร แล้วประเมินซ้ำ ถ้าเปิดเส้นยากอย่ารอเก็บ culture จนให้ antibiotic ช้า"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Meropenem, doxycycline และ clindamycin IV",
+          "distractors": [
+            {
+              "label": "Cloxacillin อย่างเดียว",
+              "feedback": "Vibrio vulnificus ต้องครอบคลุมเฉพาะ เช่น doxycycline ร่วมกับ cephalosporin หรือ carbapenem และยับยั้ง toxin"
+            },
+            {
+              "label": "รอผล culture ก่อนให้ antibiotic",
+              "feedback": "Vibrio necrotizing fasciitis ฆ่าคนไข้ได้ในไม่กี่ชั่วโมง รักษาทันที"
+            }
+          ],
+          "label": "Broad spectrum antibiotic ที่ครอบคลุม Vibrio และยับยั้ง toxin",
+          "actions": [
+            "Meropenem IV",
+            "Doxycycline IV",
+            "Clindamycin IV"
+          ],
+          "doseMap": {
+            "Meropenem IV": "1 g IV ทุก 8 ชม. ครอบคลุมกว้าง",
+            "Doxycycline IV": "100 mg ทุก 12 ชม. จำเป็นสำหรับ Vibrio vulnificus โดยเฉพาะ ใช้ร่วมกับ 3rd generation cephalosporin หรือ carbapenem เพิ่มอัตรารอด",
+            "Clindamycin IV": "900 mg ทุก 8 ชม. เพิ่มเพื่อยับยั้ง toxin ผ่านการยับยั้งการสร้างโปรตีนของแบคทีเรีย ซึ่งแยกจากฤทธิ์ฆ่าเชื้อ"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "ลุกลามเร็ว",
+          "outcomeType": "worsened",
+          "narrative": "ใน 45 นาที ขอบผิวที่เปลี่ยนสีลามเลยเส้นปากกาไป 6 cm ถึงกลางต้นขา BP ตกเหลือ 70/38 ทั้งที่ได้ fluid 2 ลิตรและ norepinephrine antibiotic เข้าเนื้อตายไม่ได้ มีแต่มีดผ่าตัดที่เปลี่ยนทิศทางนี้ได้",
+          "vitalChanges": {
+            "hr": 148,
+            "sbp": 70,
+            "dbp": 38,
+            "rr": 36,
+            "spo2": 91,
+            "gcs": 11
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 420
+        },
+        "data": {
+          "label": "บอกคนไข้และญาติว่ามีแนวโน้มต้องตัดขา ก่อนเขาจะตัดสินใจเองไม่ได้ (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "ตอนนี้เขายังรู้ตัวพอจะเซ็น consent แต่อีกชั่วโมงอาจไม่ใช่แล้ว หมอไม่โยนเรื่องนี้ให้ศัลย์ไปบอกระหว่างทางไปห้องผ่าตัด หมอบอกเขาเองตอนนี้ตรงๆ ว่าการผ่าตัดอาจจบที่ตัดขาเหนือเข่า ว่านี่คือโอกาสรอดคืนนี้ที่ดีที่สุด และรู้ว่างานของเขาต้องยืนทั้งวัน ลูกชายก็ขายปลาเหมือนกัน หมอทำให้แน่ใจว่าลูกชายได้ยินเรื่องน้ำทะเลกับ cirrhosis ด้วย เพราะเขามีปัจจัยเสี่ยงทั้งสองอย่าง พี่พิมบอกทีหลังว่าครึ่งหลังนั้นคืองานสาธารณสุขที่ทำข้างเตียง"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "choice": "เข้าห้องผ่าตัด radical debridement เดี๋ยวนี้",
+          "distractors": [
+            {
+              "label": "ให้ antibiotic ต่อแล้วดูเส้นที่ขีดไว้",
+              "feedback": "Antibiotic เข้าเนื้อตายไม่ได้ surgical debridement คือ definitive"
+            },
+            {
+              "label": "Hyperbaric oxygen ก่อนผ่าตัด",
+              "feedback": "Hyperbaric oxygen ต้องไม่ทำให้ debridement ช้า"
+            }
+          ],
+          "label": "ผ่าตัด debride ด่วน นี่คือการรักษา definitive อย่างเดียว",
+          "actions": [
+            "เข้าห้องผ่าตัดทันทีเพื่อ radical debridement",
+            "ตัดจนถึงเนื้อดีที่มีเลือดออก",
+            "วางแผน re-look ที่ 24 ชม.",
+            "ตัดขาถ้าคุมการติดเชื้อไม่ได้"
+          ],
+          "doseMap": {
+            "เข้าห้องผ่าตัดทันทีเพื่อ radical debridement": "ทุกชั่วโมงที่ debride ครั้งแรกช้า mortality เพิ่มขึ้นอย่างวัดได้ ต้อง debride ถึงเนื้อดีที่เลือดออก debride ครั้งแรกไม่พอคือความผิดพลาดทางศัลยกรรมที่พบบ่อยที่สุด"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "ในห้องผ่าตัด",
+          "outcomeType": "improved",
+          "narrative": "Deep fascia ตายเป็นวงกว้าง มีน้ำสีน้ำล้างจาน ใช้นิ้วเซาะแยก tissue plane ได้ง่าย ซึ่งเป็น hallmark ระหว่างผ่าตัด radical debridement ตั้งแต่ข้อเท้าถึงกลางต้นขาโดยเก็บกล้ามเนื้อไว้ debride ซ้ำอีกสองครั้งที่ 24 และ 48 ชม. เก็บขาไว้ได้",
+          "vitalChanges": {
+            "hr": 118,
+            "sbp": 96,
+            "dbp": 54,
+            "rr": 24,
+            "temp": 38.4,
+            "gcs": 3
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "เย็บปิดแผลเลยหลัง debride ครั้งแรก",
+              "feedback": "มักต้อง debride ซ้ำหลายครั้ง ใช้ negative pressure therapy จนแผลสะอาด"
+            },
+            {
+              "label": "ย้ายไปวอร์ดสามัญหลังผ่าตัด",
+              "feedback": "ยังต้องใช้ vasopressor ต้องดูแลใน ICU"
+            }
+          ],
+          "label": "ดูแลใน ICU และวางแผน reconstruction",
+          "actions": [
+            "ICU พร้อม vasopressor",
+            "Debride ซ้ำจนแผลสะอาด",
+            "Negative pressure wound therapy",
+            "Plastic ทำ graft ภายหลัง",
+            "ดูแลโภชนาการ"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "ทำ split thickness skin graft วันที่ 16 ส่งต่อ rehab สัปดาห์ที่ 6 ขาใช้งานได้แต่มีแผลเป็นและข้อติด mortality ของ Vibrio vulnificus necrotizing infection ในคนไข้ cirrhosis มีรายงานเกิน 50% ที่ต่างคือเวลาจากประตูถึงมีด 94 นาที ตอนนี้ลูกชายใส่ถุงมือที่ตลาดแล้ว",
+          "vitalChanges": {
+            "hr": 86,
+            "sbp": 116,
+            "dbp": 70,
+            "rr": 16,
+            "temp": 36.9,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "out2",
+        "target": "req5"
+      },
+      {
+        "id": "e9",
+        "source": "req5",
+        "target": "out3"
+      }
+    ]
+  }
+}

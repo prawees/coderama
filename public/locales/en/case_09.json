@@ -221,6 +221,17 @@
           "y": 200
         },
         "data": {
+          "choice": "IV access, glucose, ketones and venous gas",
+          "distractors": [
+            {
+              "label": "Start insulin immediately based on the glucometer reading",
+              "feedback": "Insulin before fluids and before a potassium result risks fatal hypokalaemia and cardiovascular collapse."
+            },
+            {
+              "label": "Send her for an abdominal CT for the pain first",
+              "feedback": "Abdominal pain is common in DKA and usually resolves with treatment. Bedside gas, glucose, ketones and potassium come first."
+            }
+          ],
           "label": "IV access, point of care glucose, ketones and venous gas with potassium",
           "actions": [
             "IV access 18G x2",
@@ -239,6 +250,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Give 10 units of insulin IV as a bolus now",
+              "feedback": "Fluids come first. A bolus is not recommended, and insulin before volume restoration worsens hypotension."
+            },
+            {
+              "label": "Give sodium bicarbonate for the acidosis",
+              "feedback": "Bicarbonate is not indicated unless pH is below about 6.9. It worsens hypokalaemia and can cause cerebral oedema."
+            }
+          ],
           "label": "Fluid resuscitation first, before any insulin",
           "actions": [
             "Normal saline bolus"
@@ -289,13 +310,23 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Start insulin and check the potassium later",
+              "feedback": "Insulin drives potassium into cells. Starting it before knowing the level can cause cardiac arrest."
+            },
+            {
+              "label": "Add 40 mmol/h of potassium now, since total body potassium is always depleted",
+              "feedback": "Her potassium is 5.4, above 5.0. Give none yet, recheck in 2 hours, and add 20 to 30 mmol/L to the fluid once it falls below 5.0 with good urine output."
+            }
+          ],
           "label": "Check potassium before starting insulin and replace as needed",
           "actions": [
             "Serum potassium",
             "Potassium chloride in maintenance fluid"
           ],
           "doseMap": {
-            "Potassium chloride in maintenance fluid": "If K 3.3-5.3 mmol/L add 20-30 mmol/L to the fluid. If K below 3.3 mmol/L hold insulin and replace first. If above 5.3 mmol/L give no potassium and recheck in 2 hours"
+            "Potassium chloride in maintenance fluid": "If K 3.5-5.0 mmol/L add 20-30 mmol/L to the fluid to keep K at 4-5. If K below 3.5 mmol/L hold insulin and give potassium at 10 mmol/h first. If above 5.0 mmol/L give no potassium and recheck in 2 hours"
           }
         }
       },
@@ -307,6 +338,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Subcutaneous insulin every 4 hours",
+              "feedback": "Subcutaneous absorption is unreliable in a shocked, acidotic patient. Use a fixed rate IV infusion."
+            },
+            {
+              "label": "Insulin bolus 0.3 units/kg then double the infusion",
+              "feedback": "Large boluses drop glucose and potassium too fast. A fixed rate infusion of about 0.1 units/kg/h is standard."
+            }
+          ],
           "label": "Fixed rate insulin infusion, no bolus",
           "actions": [
             "Regular insulin IV infusion"
@@ -324,6 +365,17 @@
           "y": 200
         },
         "data": {
+          "choice": "Hourly glucose, add dextrose below 250 mg/dL",
+          "distractors": [
+            {
+              "label": "Stop the insulin infusion once glucose is below 250 mg/dL",
+              "feedback": "Insulin is needed to clear ketones. Add dextrose and continue insulin until ketoacidosis resolves."
+            },
+            {
+              "label": "Check glucose and potassium every 6 hours",
+              "feedback": "Glucose and potassium can shift quickly. Monitor glucose hourly and potassium and gas every 2 hours."
+            }
+          ],
           "label": "Hourly monitoring and add dextrose when glucose falls below 250 mg/dL",
           "actions": [
             "Hourly capillary glucose",
@@ -364,6 +416,17 @@
           "y": 200
         },
         "data": {
+          "choice": "Overlap SC basal insulin before stopping the drip",
+          "distractors": [
+            {
+              "label": "Stop the infusion and give subcutaneous insulin at the same time",
+              "feedback": "Without a 1 to 2 hour overlap, ketoacidosis can rebound. Overlap before stopping the infusion."
+            },
+            {
+              "label": "Switch to oral metformin since she is eating",
+              "feedback": "This is new type 1 diabetes. She needs insulin for life, not metformin."
+            }
+          ],
           "label": "Transition to subcutaneous insulin only after resolution criteria are met",
           "actions": [
             "Long acting subcutaneous insulin",
@@ -371,7 +434,7 @@
             "Endocrinology and diabetes educator referral"
           ],
           "doseMap": {
-            "Long acting subcutaneous insulin": "Give 1-2 hours before stopping the drip. Resolution means anion gap under 12, bicarbonate at least 15 and beta-hydroxybutyrate under 0.6 with the patient eating"
+            "Long acting subcutaneous insulin": "Give 1-2 hours before stopping the drip. Resolution means beta-hydroxybutyrate under 0.6 mmol/L with venous pH at least 7.3 or bicarbonate at least 18 mmol/L, and the patient eating"
           }
         }
       },

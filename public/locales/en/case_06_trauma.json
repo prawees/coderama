@@ -49,11 +49,13 @@
         ]
       },
       "wrong_ct": {
+        "slip": true,
         "vitals": { "bp": "70/30", "hr": 150, "o2": "85%" },
         "narrative": "Never send an unstable, unprotected airway patient to the CT scanner! The patient aspirates in the scanner and dies from hypoxia.",
         "options": null
       },
       "wrong_splint": {
+        "slip": true,
         "vitals": { "bp": "75/35", "hr": 140, "o2": "88%" },
         "narrative": "While the femur is broken, ATLS dictates A (Airway) and B (Breathing) come before C (Circulation/Bleeding control). The patient's airway compromises while you are distracted by the leg.",
         "options": [
@@ -61,6 +63,7 @@
         ]
       },
       "wrong_mtp_first": {
+        "slip": true,
         "vitals": { "bp": "95/50", "hr": 120, "o2": "86%" },
         "narrative": "Blood is running, but the patient's GCS of 8 means they cannot protect their airway. They begin to aspirate their own vomit.",
         "options": [
@@ -68,6 +71,7 @@
         ]
       },
       "wrong_fluids": {
+        "slip": true,
         "vitals": { "bp": "85/40", "hr": 135, "o2": "100%" },
         "narrative": "Current ATLS guidelines advise against large volumes of clear crystalloids (dilutes clotting factors, causes hypothermia). The patient needs blood products (1:1:1 ratio) for hemorrhagic shock.",
         "options": [

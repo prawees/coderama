@@ -194,6 +194,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Send her to the ultrasound department for a formal scan",
+              "feedback": "An unstable patient must not leave resus. Pregnancy test, IV access and crossmatch come first."
+            },
+            {
+              "label": "Wait for the serum beta-hCG before doing anything else",
+              "feedback": "A urine test gives the answer in minutes. Serum levels take hours and change nothing now."
+            }
+          ],
           "label": "Urine pregnancy test and two large bore IV lines with bloods",
           "actions": [
             "Urine beta-hCG",
@@ -211,6 +221,17 @@
           "y": 200
         },
         "data": {
+          "choice": "Bedside FAST and transvaginal scan in resus",
+          "distractors": [
+            {
+              "label": "Formal CT abdomen to look for appendicitis",
+              "feedback": "A shocked woman of childbearing age with a positive test needs bedside ultrasound in resus, not a CT trip."
+            },
+            {
+              "label": "Skip imaging and admit to gynaecology ward",
+              "feedback": "Bedside FAST quickly confirms haemoperitoneum and speeds the decision for theatre."
+            }
+          ],
           "label": "Bedside FAST and transvaginal ultrasound without leaving the resuscitation area",
           "actions": [
             "Bedside FAST",
@@ -227,6 +248,17 @@
           "y": 200
         },
         "data": {
+          "choice": "O negative blood and massive transfusion",
+          "distractors": [
+            {
+              "label": "Give 3 litres of normal saline until the pressure is normal",
+              "feedback": "Large crystalloid volumes dilute clotting factors and worsen bleeding. Give blood products early."
+            },
+            {
+              "label": "Wait for crossmatched blood before transfusing",
+              "feedback": "Crossmatch takes too long in haemorrhagic shock. Use emergency O negative and activate massive transfusion."
+            }
+          ],
           "label": "Activate massive transfusion and give blood, not litres of crystalloid",
           "actions": [
             "Emergency O negative red cells",
@@ -283,6 +315,16 @@
           "y": 200
         },
         "data": {
+          "distractors": [
+            {
+              "label": "Admit to the ward for methotrexate",
+              "feedback": "Methotrexate is for stable, unruptured ectopics. She has a ruptured ectopic in shock and needs surgery."
+            },
+            {
+              "label": "Observe in the emergency department until she stabilises",
+              "feedback": "She is a transient responder. Definitive haemorrhage control is in theatre."
+            }
+          ],
           "label": "Immediate obstetrics and gynaecology referral for theatre",
           "actions": [
             "Emergency gynaecology consult",
@@ -320,6 +362,17 @@
           "y": 200
         },
         "data": {
+          "choice": "Anti-D, repeat bloods and pregnancy unit follow-up",
+          "distractors": [
+            {
+              "label": "Discharge without anti-D because the pregnancy is over",
+              "feedback": "She is Rh negative. Anti-D is needed to prevent sensitisation that would affect future pregnancies."
+            },
+            {
+              "label": "Give anti-D only if she wants more children",
+              "feedback": "Sensitisation affects future pregnancies and transfusions. Anti-D is offered to all Rh negative women after an ectopic treated surgically."
+            }
+          ],
           "label": "Post-operative care including anti-D for this Rh negative patient",
           "actions": [
             "Anti-D immunoglobulin",
@@ -328,7 +381,7 @@
             "Early pregnancy unit follow up and counselling"
           ],
           "doseMap": {
-            "Anti-D immunoglobulin": "250-300 mcg IM within 72 hours"
+            "Anti-D immunoglobulin": "250 IU (50 micrograms) IM within 72 hours"
           }
         }
       },

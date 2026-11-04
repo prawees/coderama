@@ -72,7 +72,10 @@ node_modules/
 # macOS
 .DS_Store
 out/
+out-pages/
 dist-desktop/
 scratch/
 tsconfig.tsbuildinfo
 *.tsbuildinfo
+
+__pycache__/

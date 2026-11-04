@@ -7,6 +7,7 @@ import { PixelButton } from "@/components/ui/PixelButton";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { getRankFromXp } from "@/lib/erStore";
+import { RANK_SHORT_TH } from "@/lib/localization";
 
 interface LeaderboardEntry {
   uid: string;
@@ -46,7 +47,7 @@ export default function LeaderboardPage() {
   }, []);
 
   const universityScores = leaders.reduce((acc, curr) => {
-    const uni = curr.university || 'Unknown';
+    const uni = curr.university || 'ไม่ระบุ';
     acc[uni] = (acc[uni] || 0) + curr.xp;
     return acc;
   }, {} as Record<string, number>);
@@ -57,7 +58,7 @@ export default function LeaderboardPage() {
 
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col p-4">
-      <h1 className="text-4xl text-emerald-400 mb-6 text-center drop-shadow-md">Global Rankings</h1>
+      <h1 className="text-4xl text-emerald-400 mb-6 text-center drop-shadow-md">อันดับ</h1>
       
       <div className="flex gap-4 mb-4">
         <PixelButton 
@@ -65,22 +66,22 @@ export default function LeaderboardPage() {
           variant={tab === 'individual' ? 'primary' : 'secondary'} 
           className="flex-1 text-xl"
         >
-          Doctors
+          หมอ
         </PixelButton>
         <PixelButton 
           onClick={() => setTab('university')} 
           variant={tab === 'university' ? 'primary' : 'secondary'} 
           className="flex-1 text-xl"
         >
-          Universities
+          มหาวิทยาลัย
         </PixelButton>
       </div>
       
       <PixelPanel className="flex-1 flex flex-col gap-4 overflow-y-auto bg-slate-800/80 p-4">
         {loading ? (
-          <div className="text-center text-slate-400 text-2xl">Loading network data...</div>
+          <div className="text-center text-slate-400 text-2xl">กำลังโหลด...</div>
         ) : leaders.length === 0 ? (
-          <div className="text-center text-slate-400 text-2xl">No data found.</div>
+          <div className="text-center text-slate-400 text-2xl">ยังไม่มีข้อมูล</div>
         ) : tab === 'individual' ? (
           leaders.slice(0, 20).map((leader, index) => (
             <div key={leader.uid} className="flex justify-between items-center p-3 border-b-4 border-slate-700 bg-slate-800 rounded">
@@ -89,8 +90,8 @@ export default function LeaderboardPage() {
                 <div>
                   <div className="text-2xl text-white">{leader.displayName}</div>
                   <div className="text-lg text-emerald-300">
-                    {leader.university !== 'Unknown' ? `${leader.university} • ` : ''} 
-                    {getRankFromXp(leader.xp)} - Day {leader.day}
+                    {leader.university && leader.university !== 'Unknown' ? `${leader.university}, ` : ''}
+                    {RANK_SHORT_TH[getRankFromXp(leader.xp)] ?? getRankFromXp(leader.xp)} วันที่ {leader.day}
                   </div>
                 </div>
               </div>
@@ -120,7 +121,7 @@ export default function LeaderboardPage() {
           variant="secondary"
           className="w-full text-2xl py-4"
         >
-          BACK TO HUB
+          กลับ
         </PixelButton>
       </div>
     </div>

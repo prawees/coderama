@@ -1,5 +1,6 @@
 "use client";
 
+import { withBase } from "@/lib/basePath";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { 
@@ -131,12 +132,12 @@ export default function LoginPage() {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-[#0d1117] flex flex-col items-center justify-center p-4 font-pixel relative overflow-hidden">
+      <div className="min-h-screen bg-[#2b2133] flex flex-col items-center justify-center p-4 font-pixel relative overflow-hidden">
         {/* Animated Background */}
-        <div className="absolute inset-0 bg-cover bg-center opacity-20 blur-sm pointer-events-none bg-[url(/assets/er_bg.jpg)]" />
+        <div className="absolute inset-0 bg-cover bg-center opacity-20 blur-sm pointer-events-none" style={{ backgroundImage: `url(${withBase("/assets/er_bg.jpg")})` }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black pointer-events-none" />
 
-        <PixelPanel variant="dark" className="w-full max-w-md relative z-10 border-4 border-[#30363d] shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+        <PixelPanel variant="dark" className="w-full max-w-md relative z-10 border-4 border-[#6b4a3a] shadow-[0_0_30px_rgba(0,0,0,0.5)]">
           <div className="text-center mb-8">
             <h1 className="text-4xl text-pixel-gold font-bold drop-shadow-md mb-2">CODE RAMA</h1>
             <p className="text-xs text-gray-400">Department of Emergency Medicine</p>

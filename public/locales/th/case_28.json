@@ -1,0 +1,460 @@
+{
+  "title": "63yo M Generalised Tetanus",
+  "age": "63",
+  "sex": "M",
+  "chiefComplaint": "ขากรรไกรแข็ง เกร็งกระตุกทั้งตัวแบบเจ็บปวด",
+  "diagnoses": [
+    "Generalised tetanus",
+    "Strychnine poisoning",
+    "Dystonic reaction to metoclopramide",
+    "Neuroleptic malignant syndrome",
+    "Meningitis"
+  ],
+  "background": "เหยียบตะปูขึ้นสนิมในบ่อปลาเมื่อ 9 วันก่อน ล้างแผลด้วยเหล้าขาวเอง ไม่ได้มา รพ. 5 วันก่อนเริ่มรู้สึกขากรรไกรแข็ง ต่อมากลืนลำบาก แล้วเกร็งกระตุกทั้งตัว เจ็บมาก เวลามีเสียงหรือมีคนแตะตัว ไม่มีประวัติฉีดวัคซีนบาดทะยัก เมื่อวานคลินิกเอกชนให้ metoclopramide แก้อาเจียน ทำให้ภาพไม่ชัด เพราะ dystonic reaction ดูคล้ายกันผิวเผินและตอบสนองต่อ diphenhydramine แต่บาดทะยักไม่ตอบสนอง",
+  "patientAppearance": {
+    "skinTone": "#b07a48",
+    "bmiFactor": 0.85,
+    "ageGroup": "elderly"
+  },
+  "vitals": {
+    "hr": {
+      "value": 132,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 186,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 104,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 28,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 38.2,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 91,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 15,
+      "abnormal": false
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Rigid, sweating profusely, fully conscious and terrified throughout every spasm. Consciousness is preserved in tetanus, which means every one of these spasms is experienced in full",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Trismus with mouth opening limited to 12 mm, risus sardonicus with fixed grimacing facial muscles, difficulty swallowing saliva, no oropharyngeal abscess or dental source found",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Tachycardia at 132/min with wide blood pressure swings between 186/104 and 92/50 over minutes. Autonomic instability appears in the second week and is now the leading cause of death in treated tetanus",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Shallow respirations, laryngeal spasm during examination causing transient desaturation, chest wall rigidity limiting expansion, no consolidation on auscultation",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Board-like rigidity of the abdominal wall without tenderness on palpation and with normal bowel sounds. Rigidity without peritonism is the point: this is muscle, not peritoneum",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Healed puncture wound on the right sole with surrounding induration and a small amount of purulent discharge. Profuse diaphoresis. Ten percent of tetanus cases never have an identifiable wound",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 15 throughout. Opisthotonic posturing during spasms triggered by light touch and by the sound of a trolley. Reflexes brisk, no focal deficit, no meningism. This is the clinical picture that separates it from meningitis",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "clin1",
+      "kind": "lab",
+      "category": "Clinical",
+      "name": "Spatula test",
+      "value": "Positive (reflex masseter spasm)",
+      "unit": "-",
+      "normalRange": "Gag reflex with expulsion",
+      "abnormal": true,
+      "report": "เอาไม้กดลิ้นแตะ posterior pharynx แล้วคนไข้กัดแทนที่จะ gag sensitivity ราว 94% specificity ราว 100% และไม่เสียเงิน บาดทะยักวินิจฉัยทาง clinical ไม่มี lab ยืนยัน"
+    },
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "CK",
+      "value": "8600",
+      "unit": "U/L",
+      "normalRange": "30-200",
+      "abnormal": true,
+      "report": "Rhabdomyolysis จากเกร็งต่อเนื่อง monitor renal function"
+    },
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "ABG",
+      "value": "pH 7.28 / pCO2 54 / pO2 62 / lactate 4.2",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Mixed acidosis ร่วมกับ hypoventilation จากผนังอกแข็งและ laryngospasm แนวโน้มนี้จบที่ respiratory arrest ระหว่างเกร็ง"
+    },
+    {
+      "id": "cbc1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "WBC",
+      "value": "14.2",
+      "unit": "x10^9/L",
+      "normalRange": "4.0-11.0",
+      "abnormal": true,
+      "report": "Leukocytosis เล็กน้อย ไม่จำเพาะ WBC ปกติก็ไม่ได้ตัดการวินิจฉัย"
+    },
+    {
+      "id": "cr1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Cr, K",
+      "value": "Creatinine 1.7 mg/dL / K 5.2 mmol/L",
+      "unit": "-",
+      "normalRange": "Creatinine 0.7-1.3 mg/dL",
+      "abnormal": true,
+      "report": "AKI จาก rhabdomyolysis เริ่มมี hyperkalemia"
+    },
+    {
+      "id": "tox1",
+      "kind": "lab",
+      "category": "Toxicology",
+      "name": "Strychnine screen",
+      "value": "Negative",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": false,
+      "report": "Negative พิษ strychnine ทำให้เกร็งแทบเหมือนกัน แต่กล้ามเนื้อคลายเต็มที่ระหว่างครั้ง ส่วนบาดทะยักยังแข็งค้างพื้นฐานอยู่ การแยกข้างเตียงเชื่อได้มากกว่า test"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "ย้ายไปห้องแยกที่มืดและเงียบ",
+          "distractors": [
+            {
+              "label": "ตรวจซ้ำบ่อยๆ ติดตามการเกร็ง",
+              "feedback": "การแตะตัว แสง และเสียงกระตุ้นการเกร็ง กระตุ้นให้น้อยที่สุด รวมการดูแลไว้ทำทีเดียว"
+            },
+            {
+              "label": "ให้อยู่ใน resus bay หลักเพื่อ observe",
+              "feedback": "Resus bay ที่เสียงดังกระตุ้นการเกร็ง ย้ายไปห้องมืดและเงียบ"
+            }
+          ],
+          "label": "ย้ายไปห้องมืด เงียบ กระตุ้นน้อยที่สุดทันที",
+          "actions": [
+            "ห้องเดี่ยว มืด เงียบ",
+            "รวบงานพยาบาลทั้งหมดทำในรอบเดียว",
+            "เตือนทุกคนว่าการสัมผัส แสง และเสียงกระตุ้นการเกร็ง"
+          ],
+          "doseMap": {
+            "ห้องเดี่ยว มืด เงียบ": "นี่คือการรักษา ไม่ใช่แค่ให้สบาย ทุกสิ่งกระตุ้นที่เลี่ยงได้คือการเกร็งที่เลี่ยงได้ และการเกร็งทำให้ hypoxia, rhabdomyolysis และกระดูกหัก"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "Elective intubation ภายใต้ยาสลบเดี๋ยวนี้",
+          "distractors": [
+            {
+              "label": "รอจนจำเป็นต้อง intubate",
+              "feedback": "Laryngospasm เกิดได้ทันทีและถึงตาย secure airway เร็วแบบ elective"
+            },
+            {
+              "label": "ลอง awake fiberoptic intubation",
+              "feedback": "การจับ airway ตอนคนไข้บาดทะยักยังตื่นกระตุ้น laryngospasm intubate ภายใต้ยาสลบ"
+            }
+          ],
+          "label": "Secure airway เร็ว ก่อน laryngospasm จะบังคับให้ทำ",
+          "actions": [
+            "Intubate แบบ elective เร็ว",
+            "วางแผน tracheostomy",
+            "หลีกเลี่ยงการทำ laryngoscopy ตอนตื่น"
+          ],
+          "doseMap": {
+            "Intubate แบบ elective เร็ว": "ทำแบบ elective และเร็ว การ intubate ฉุกเฉินตอนมี laryngospasm และ trismus แทบเป็นไปไม่ได้ คนไข้กลุ่มนี้มักต้องใช้ ventilator 2 ถึง 3 สัปดาห์ tracheostomy จึงควรวางแผนไว้ ไม่ใช่ทำแบบฉุกละหุก"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Tetanus immunoglobulin, debride, metronidazole",
+          "distractors": [
+            {
+              "label": "ให้ tetanus toxoid อย่างเดียว",
+              "feedback": "Toxoid ไม่ได้ neutralize toxin ที่อยู่ในกระแสเลือด ต้องให้ human tetanus immunoglobulin ด้วย"
+            },
+            {
+              "label": "ไม่ต้องให้ antibiotic toxin อยู่ในกระแสเลือดแล้ว",
+              "feedback": "Antibiotic กำจัดเชื้อที่ยังผลิต toxin อยู่ในแผล ให้ metronidazole ร่วมกับ immunoglobulin และ debridement"
+            }
+          ],
+          "label": "ให้ human tetanus immunoglobulin ดูแลแผล และ antibiotic",
+          "actions": [
+            "Human tetanus immunoglobulin IM",
+            "Debride แผลหลังให้ immunoglobulin",
+            "Metronidazole IV",
+            "Tetanus toxoid คนละตำแหน่ง"
+          ],
+          "doseMap": {
+            "Human tetanus immunoglobulin IM": "3000 ถึง 6000 unit IM ให้ก่อน debride เพื่อ neutralize toxin ที่หลุดออกมาจากการผ่าตัด immunoglobulin จับได้แค่ toxin ที่ยังไม่จับกับปลายประสาท แก้ toxin ที่จับแล้วไม่ได้",
+            "Metronidazole IV": "500 mg ทุก 8 ชม. 7 ถึง 10 วัน ดีกว่า penicillin ซึ่งเป็น GABA antagonist เองและทำให้เกร็งมากขึ้นได้",
+            "Tetanus toxoid คนละตำแหน่ง": "การเป็นโรคไม่ได้ทำให้มีภูมิ ยังต้องฉีดวัคซีน"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "choice": "Benzodiazepine drip และ magnesium drip",
+          "distractors": [
+            {
+              "label": "Diazepam ขนาดต่ำเวลามีอาการ",
+              "feedback": "Generalized tetanus มักต้องใช้ benzodiazepine ขนาดสูงต่อเนื่องร่วมกับ magnesium"
+            },
+            {
+              "label": "Succinylcholine drip คุมการเกร็ง",
+              "feedback": "Succinylcholine ทำให้ hyperkalemia ได้ ใช้ benzodiazepine, magnesium และ non-depolarizing blocker"
+            }
+          ],
+          "label": "คุมการเกร็งด้วย benzodiazepine ขนาดสูงและ magnesium",
+          "actions": [
+            "Diazepam หรือ midazolam drip",
+            "MgSO4 drip",
+            "Neuromuscular blockade ถ้ายังเกร็ง"
+          ],
+          "doseMap": {
+            "Diazepam หรือ midazolam drip": "ขนาดสูงกว่าปกติมากเป็นเรื่องที่คาดได้ บ่อยครั้ง 100 ถึง 500 mg diazepam equivalent ต่อวัน titrate ให้คุมเกร็งได้",
+            "MgSO4 drip": "Loading 4 g แล้ว 2 ถึง 3 g/h เป้าระดับในเลือด 2 ถึง 4 mmol/L ลดความถี่การเกร็งและช่วย autonomic instability",
+            "Neuromuscular blockade ถ้ายังเกร็ง": "Rocuronium drip ร่วมกับ sedation ที่พอ ห้าม paralyze คนไข้ที่รู้สึกตัวเต็มที่โดยไม่ sedate ลึก"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "คุมเกร็งได้ แต่ autonomic storm เริ่ม",
+          "outcomeType": "worsened",
+          "narrative": "การเกร็งสงบลงวันที่ 2 ด้วย magnesium และ sedation drip ตั้งแต่วันที่ 6 BP แกว่งระหว่าง 210/120 HR 160 กับ 80/40 HR 45 ภายในไม่กี่นาที autonomic instability นี้แหละที่ฆ่าคนไข้บาดทะยักที่ได้รับการรักษาแล้ว ไม่ใช่การเกร็ง",
+          "vitalChanges": {
+            "hr": 158,
+            "sbp": 210,
+            "dbp": 118,
+            "rr": 16,
+            "temp": 38.8,
+            "gcs": 3
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "อธิบายญาติว่าคนไข้ตื่นและได้ยิน และให้ความสำคัญกับยาแก้ปวด (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "ก่อน sedate หมออธิบายภรรยาว่าเขารู้สึกตัวเต็มที่ทุกครั้งที่เกร็ง ซึ่งโหดร้ายกว่าโรควิกฤตอื่นๆ และการคุมปวดกับ sedation ได้รับความสำคัญเป็นอันดับต้น ไม่ใช่เรื่องรอง หมอบอกทีมพยาบาลด้วยให้คุยกับเขาระหว่างดูแล แม้หลัง paralyze แล้ว พี่พิมใช้เคสนี้สอนทีหลังว่าคนไข้ที่ถูก paralyze คือคนไข้ที่รู้สึกตัว จนกว่าจะพิสูจน์ได้ว่า sedate พอ และบาปที่พบบ่อยที่สุดใน ICU บาดทะยักคือ paralyze โดย sedate ไม่พอ"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "รักษา BP สูงด้วย labetalol drip ขนาดสูง",
+              "feedback": "Autonomic instability แกว่งเร็ว ยาออกฤทธิ์นานทำให้ BP ตกรุนแรงได้ ใช้ magnesium และยาออกฤทธิ์สั้น"
+            },
+            {
+              "label": "วางแผน D/C ในสัปดาห์เดียวเมื่อหายเกร็ง",
+              "feedback": "บาดทะยักเป็นโรคที่ใช้เวลานานและมี autonomic storm ต้องอยู่ ICU นาน"
+            }
+          ],
+          "label": "จัดการ autonomic instability และการอยู่ ICU นาน",
+          "actions": [
+            "ให้ Mg ต่อ",
+            "ยาออกฤทธิ์สั้นสำหรับ autonomic ที่แกว่ง",
+            "ดูแลโภชนาการ ต้องการพลังงานสูง",
+            "ป้องกัน VTE และดูแลแผลกดทับ"
+          ],
+          "doseMap": {
+            "ยาออกฤทธิ์สั้นสำหรับ autonomic ที่แกว่ง": "Esmolol สำหรับ BP พุ่ง เพราะปิดได้ในไม่กี่นาทีเมื่อ BP แกว่งลง เลี่ยง beta-blocker ออกฤทธิ์นาน ซึ่งสัมพันธ์กับการเสียชีวิตกะทันหันในบาดทะยัก",
+            "ดูแลโภชนาการ ต้องการพลังงานสูง": "การเกร็งต่อเนื่องทำให้ใช้พลังงานเพิ่มเป็นสองเท่าได้ เริ่ม enteral feeding เร็ว"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "ฟื้นตัวช้า",
+          "outcomeType": "improved",
+          "narrative": "Autonomic instability สงบตั้งแต่วันที่ 18 wean ออกจาก tracheostomy วันที่ 26 อยู่ ICU รวม 31 วัน มี ICU-acquired weakness มาก ต้องฟื้นฟูอีกหลายเดือน",
+          "vitalChanges": {
+            "hr": 88,
+            "sbp": 128,
+            "dbp": 78,
+            "rr": 18,
+            "temp": 37.0,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "ส่งต่อ rehab สัปดาห์ที่ 7 ฉีดวัคซีนชุดแรกครบ เพราะรอดจากบาดทะยักไม่ได้ทำให้มีภูมิเลย ทั้ง 5 สัปดาห์นี้ และค่าใช้จ่ายทั้งหมด ป้องกันได้ด้วยวัคซีนราคาไม่ถึง 50 บาท",
+          "vitalChanges": {
+            "hr": 80,
+            "sbp": 124,
+            "dbp": 76,
+            "rr": 16,
+            "temp": 36.8,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e5",
+        "source": "req4",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

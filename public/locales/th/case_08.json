@@ -1,0 +1,451 @@
+{
+  "title": "32yo M Tension Pneumothorax",
+  "age": "32",
+  "sex": "M",
+  "chiefComplaint": "เจ็บหน้าอก หอบเหนื่อยมากหลังมอเตอร์ไซค์ล้ม",
+  "diagnoses": [
+    "Tension pneumothorax",
+    "Haemothorax",
+    "Cardiac tamponade",
+    "Flail chest with pulmonary contusion"
+  ],
+  "background": "มอเตอร์ไซค์ชนกระบะ ความเร็วราว 60 km/h เมื่อ 25 นาทีก่อน ใส่หมวก ไม่สลบ ล้มตะแคงซ้ายกระแทกขอบฟุตบาท กู้ภัยบอกว่าหอบมากขึ้นเรื่อยๆ และ SpO2 ตกระหว่างทางทั้งที่ on NRB mask ไม่มีโรคประจำตัว ไม่มียาประจำ ไม่สูบบุหรี่",
+  "patientAppearance": {
+    "skinTone": "#c98d63",
+    "bmiFactor": 1.05,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 134,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 78,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 46,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 36,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 36.2,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 84,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 13,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Agitated, air hungry, unable to lie flat, diaphoretic, in obvious distress",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Trachea deviated to the right at the suprasternal notch, distended neck veins, helmet abrasion over left zygoma, no midface instability, cervical collar in place",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia, heart sounds displaced to the right and distant, radial pulse thready and absent on inspiration, capillary refill 5 seconds",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Absent breath sounds over the entire left hemithorax, hyperresonant to percussion on the left, left chest wall lagging on inspiration, tenderness and crepitus over left ribs 4 to 7",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, mildly tender in the left upper quadrant, no rebound or guarding, pelvis stable, no seatbelt sign",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Cool, pale and mottled peripheries, subcutaneous emphysema over the left chest wall and supraclavicular fossa, road rash over left shoulder and hip, no external haemorrhage",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 13 (E3V4M6), restless and confused from hypoxia, pupils 3 mm equal and reactive, moves all four limbs",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "us1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "eFAST",
+      "report": "Left anterior chest: ไม่มี lung sliding ไม่มี B-lines, barcode sign บน M-mode เจอ lung point ด้านข้าง ไม่มี pericardial effusion ไม่มี free fluid ใน Morison's pouch, splenorenal recess หรือ pelvis ทำข้างเตียง 90 วินาทีโดยไม่ทำให้ decompress ช้า",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CXR portable (หลัง decompress)",
+      "report": "Left ICD tip ชี้ขึ้น apex ยังเหลือ apical pneumothorax ซ้าย 10% rib 5 และ 6 ซ้ายหัก mediastinum อยู่กลาง ไม่มี hemothorax ปอดส่วนอื่นใส",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "abg1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "ABG (O2 15 L/min)",
+      "value": "pH 7.22 / pCO2 52 / pO2 51 / HCO3 18",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Mixed respiratory และ metabolic acidosis ร่วมกับ severe hypoxemia เจาะก่อน decompress"
+    },
+    {
+      "id": "lac1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Lactate",
+      "value": "5.6",
+      "unit": "mmol/L",
+      "normalRange": "0.5-2.0",
+      "abnormal": true,
+      "report": "Obstructive shock จาก venous return ลดลง"
+    },
+    {
+      "id": "hb1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Hb",
+      "value": "13.4",
+      "unit": "g/dL",
+      "normalRange": "13.5-17.5",
+      "abnormal": false,
+      "report": "เกือบปกติ ไม่สนับสนุนว่าช็อกจากเสียเลือดเป็นหลัก แต่ Hb ช่วงแรกอาจหลอกให้วางใจได้"
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "EKG 12 lead",
+      "report": "Sinus tachycardia 132/min, low voltage ที่ left precordial leads ไม่มี electrical alternans ไม่มี ischemic change",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "tns1",
+      "kind": "lab",
+      "category": "Blood bank",
+      "name": "G/M",
+      "value": "O Rh positive",
+      "unit": "-",
+      "normalRange": "-",
+      "abnormal": false,
+      "report": "Crossmatch ไว้ 2 unit ยังไม่เปิด MTP"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "O2 high flow ใส่ collar ติด monitor",
+          "distractors": [
+            {
+              "label": "ส่ง CT ทันทีจะได้รู้ว่าบาดเจ็บตรงไหน",
+              "feedback": "คนไข้ unstable ห้ามออกจากห้อง resus ทำ primary survey กับให้ O2 ก่อน"
+            },
+            {
+              "label": "ถอด collar ออกจะได้ตรวจคอให้ละเอียด",
+              "feedback": "กลไกการบาดเจ็บแรงสูง ต้อง protect C-spine ตลอด primary survey"
+            }
+          ],
+          "label": "Primary survey ให้ O2 high flow และ protect C-spine",
+          "actions": [
+            "O2 ทาง non-rebreather mask",
+            "Manual in-line stabilisation และใส่ collar",
+            "ติด monitor หัวใจและ SpO2"
+          ],
+          "doseMap": {
+            "O2 ทาง non-rebreather mask": "15 L/min"
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 480,
+          "y": 400
+        },
+        "data": {
+          "label": "บอกคนไข้ก่อนทำ needle decompression และขอความยินยอมด้วยวาจา (Empathy)",
+          "ethicalValue": 10,
+          "narrative": "คนไข้กลัวและดิ้นปัด mask หมอบอกสั้นๆ ประโยคเดียวว่าจะทำอะไรและทำไม แล้ววางมือบนไหล่ คนไข้หยุดดิ้นและให้ทำ พี่แอนสังเกตว่าหมอไม่ต้อง sedate เลย"
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Needle decompression ข้างซ้ายเดี๋ยวนี้",
+          "distractors": [
+            {
+              "label": "ถ่าย portable CXR ยืนยันก่อน",
+              "feedback": "Tension pneumothorax วินิจฉัยทาง clinical รอ film อาจเสียชีวิตได้ decompress เลย"
+            },
+            {
+              "label": "Intubate และ ventilate ก่อนอย่างอื่น",
+              "feedback": "Positive pressure ทำให้ tension pneumothorax แย่ลงจน arrest ได้ decompress ก่อน"
+            }
+          ],
+          "label": "Needle หรือ finger decompression ทันที ไม่ต้องรอ film",
+          "actions": [
+            "Needle thoracostomy ซ้าย ICS 5 แนว anterior axillary line"
+          ],
+          "doseMap": {
+            "Needle thoracostomy ซ้าย ICS 5 แนว anterior axillary line": "Cannula 14G ยาวอย่างน้อย 5 cm หรือทำ finger thoracostomy ถ้าผนังอกหนา"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "ตอบสนองทันที",
+          "outcomeType": "improved",
+          "narrative": "ลมพุ่งออกมา trachea กลับมาอยู่กลางในนาทีเดียว neck vein แฟบลง คนไข้สงบลงขณะที่ SpO2 ค่อยๆ ขึ้น",
+          "vitalChanges": {
+            "hr": 112,
+            "sbp": 98,
+            "dbp": 60,
+            "rr": 28,
+            "spo2": 93,
+            "gcs": 14
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "คา needle ไว้แล้วส่งขึ้นวอร์ด",
+              "feedback": "Needle เป็นแค่การประคอง หักงอและอุดตันได้ ต้องใส่ ICD"
+            },
+            {
+              "label": "ใส่ ICD ที่ 2nd ICS, MCL",
+              "feedback": "ICD ใส่ที่ 5th ICS หน้าต่อ MAL ใน safe triangle"
+            }
+          ],
+          "label": "ใส่ ICD ข้างซ้ายเป็น definitive",
+          "actions": [
+            "ใส่ ICD ซ้าย ICS 5",
+            "ฉีดยาชาเฉพาะที่"
+          ],
+          "doseMap": {
+            "ใส่ ICD ซ้าย ICS 5": "ICD 28 Fr ต่อ underwater seal ห้าม clamp",
+            "ฉีดยาชาเฉพาะที่": "1% lidocaine 10 ถึง 20 mL"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ฉีด pethidine IM แก้ปวด ไม่ต้องเปิด IV",
+              "feedback": "คนไข้ trauma ต้องมี IV access ให้ opioid IV แบบ titrate คุมระดับยาได้"
+            },
+            {
+              "label": "ไม่ให้ยาแก้ปวดจนกว่า surgeon จะมาตรวจ",
+              "feedback": "ยาแก้ปวดไม่ได้บัง surgical sign จนมีผล การงดยาเป็นแนวคิดเก่าและไม่ใจดีกับคนไข้"
+            }
+          ],
+          "label": "เปิด IV ให้ยาแก้ปวด และถ่าย CXR ยืนยัน",
+          "actions": [
+            "เปิดเส้น 16G 2 เส้น",
+            "Fentanyl IV titrate",
+            "CXR portable"
+          ],
+          "doseMap": {
+            "Fentanyl IV titrate": "25 ถึง 50 mcg IV ทุก 5 นาทีจนได้ผล monitor RR"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "Stable แล้ว",
+          "outcomeType": "improved",
+          "narrative": "ICD มี swing และมี bubble ตอนหายใจออก film ซ้ำปอดเกือบขยายเต็ม คนไข้ปวดน้อยลงพอจะหายใจลึกๆ ได้",
+          "vitalChanges": {
+            "hr": 94,
+            "sbp": 118,
+            "dbp": 72,
+            "rr": 20,
+            "spo2": 97,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ใส่ ICD แล้ว film ดีขึ้นก็ D/C ได้",
+              "feedback": "กลไกแรงสูงต้อง secondary survey ครบและส่ง imaging หา occult injury"
+            },
+            {
+              "label": "ส่ง imaging แค่ chest ที่เหลือตรวจปกติ",
+              "feedback": "บาดแผลที่เจ็บมากบังบาดแผลอื่นได้ ส่ง imaging หัวถึง pelvis ตามกลไก"
+            }
+          ],
+          "label": "ทำ secondary survey ให้ครบ และส่ง trauma imaging",
+          "actions": [
+            "Secondary survey ตั้งแต่หัวถึง pelvis",
+            "CT chest, abdomen และ pelvis ฉีดสี",
+            "Admit ศัลย์ trauma"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "CT ยืนยัน rib 4 ถึง 7 ซ้ายหัก มี pulmonary contusion เล็กน้อย ไม่มี intra-abdominal injury admit วอร์ดศัลย์พร้อม ICD, incentive spirometry และแผนทำ regional block",
+          "vitalChanges": {
+            "hr": 88,
+            "sbp": 124,
+            "dbp": 76,
+            "rr": 18,
+            "spo2": 98,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e3",
+        "source": "ethical_1",
+        "target": "req2"
+      },
+      {
+        "id": "e_skip",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e4",
+        "source": "req2",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "req3"
+      },
+      {
+        "id": "e6",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "out2"
+      },
+      {
+        "id": "e8",
+        "source": "out2",
+        "target": "req5"
+      },
+      {
+        "id": "e9",
+        "source": "req5",
+        "target": "out3"
+      }
+    ]
+  }
+}

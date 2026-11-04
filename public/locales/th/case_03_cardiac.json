@@ -2,12 +2,12 @@
   "title": "55yo M - Code Blue (V-Fib)",
   "age": "55",
   "sex": "M",
-  "chiefComplaint": "Crushing chest pain, unresponsive",
+  "chiefComplaint": "เจ็บหน้าอก แล้วหมดสติในห้องรอตรวจ",
   "diagnoses": [
     "Acute Myocardial Infarction",
     "Ventricular Fibrillation"
   ],
-  "background": "Patient clutched his chest in the waiting room and collapsed. No pulse is palpable. Time is tissue.",
+  "background": "คนไข้กุมหน้าอกแล้วล้มลงในห้องรอตรวจ คลำ pulse ไม่ได้",
   "patientAppearance": {
     "skinTone": "#ffc0cb",
     "bmiFactor": 1.2,
@@ -74,8 +74,8 @@
       "id": "ecg1",
       "kind": "imaging",
       "category": "Imaging",
-      "name": "Rhythm Strip",
-      "report": "Chaotic, irregular deflections of varying amplitude. No identifiable P waves, QRS complexes, or T waves.",
+      "name": "Rhythm strip",
+      "report": "Chaotic irregular deflections ขนาดไม่เท่ากัน ไม่เห็น P wave, QRS หรือ T wave",
       "imageUrl": "",
       "abnormal": true
     }
@@ -88,29 +88,29 @@
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "Patient is pulseless and apneic. The monitor shows Ventricular Fibrillation.",
+        "narrative": "คนไข้ pulseless, apnea monitor ขึ้น VF",
         "options": [
           {
             "id": "opt1",
-            "text": "Begin CPR & Defibrillate (200J)",
+            "text": "เริ่ม CPR และ defib 200 J",
             "targetNode": "cpr_shock",
             "requiredRank": "Intern"
           },
           {
             "id": "opt2",
-            "text": "Push Epinephrine 1mg IV",
+            "text": "Push adrenaline 1 mg IV",
             "targetNode": "epi_early",
             "requiredRank": "R1"
           },
           {
             "id": "opt3",
-            "text": "Push Amiodarone 300mg IV",
+            "text": "Push amiodarone 300 mg IV",
             "targetNode": "amio_early",
             "requiredRank": "R3"
           },
           {
             "id": "opt4",
-            "text": "Intubate immediately",
+            "text": "Intubate ทันที",
             "targetNode": "intubate_early",
             "requiredRank": "R2"
           }
@@ -122,47 +122,50 @@
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "CPR initiated and shock delivered. Rhythm check shows persistent V-Fib.",
+        "narrative": "เริ่ม CPR และ shock ไป 1 ครั้ง กดหน้าอกครบ 2 นาที rhythm check ยังเป็น VF",
         "options": [
           {
             "id": "opt1",
-            "text": "Resume CPR & Push Epinephrine 1mg IV",
+            "text": "Shock อีกครั้ง 200 J กดต่อทันที แล้วให้ adrenaline 1 mg IV",
             "targetNode": "correct_epi",
-            "requiredRank": "R1"
+            "requiredRank": "Intern"
           },
           {
             "id": "opt2",
-            "text": "Defibrillate again immediately",
+            "text": "Shock ติดกันอีก 2 ครั้งโดยไม่กดหน้าอกคั่น",
             "targetNode": "shock_again",
             "requiredRank": "Intern"
           }
         ]
       },
       "epi_early": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "Epinephrine given, but without high-quality CPR and defibrillation, it does not convert the rhythm.",
+        "narrative": "ให้ adrenaline ไปแล้ว แต่ถ้าไม่มี high-quality CPR กับ defib ก็ไม่ convert rhythm",
         "options": null
       },
       "amio_early": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "Amiodarone is not the first-line action for V-Fib before a shock. Patient remains in V-Fib.",
+        "narrative": "Amiodarone ไม่ใช่สิ่งแรกที่ทำใน VF ก่อน shock คนไข้ยังเป็น VF อยู่",
         "options": null
       },
       "intubate_early": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "Intubation delays high-quality CPR and defibrillation, which are the most critical early interventions for V-Fib.",
+        "narrative": "Intubate ตอนนี้ทำให้ CPR กับ defib ช้าลง ซึ่งสองอย่างนี้สำคัญที่สุดในช่วงแรกของ VF",
         "options": null
       },
       "correct_epi": {
@@ -171,29 +174,30 @@
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "Epinephrine pushed and CPR continued for 2 minutes. Rhythm check shows persistent V-Fib.",
+        "narrative": "Shock ครั้งที่สอง กดต่อทันที ให้ adrenaline 1 mg ระหว่างรอบ rhythm check ที่ 2 นาที ยัง VF",
         "options": [
           {
             "id": "opt1",
-            "text": "Defibrillate (200J) & Push Amiodarone 300mg IV",
+            "text": "Shock อีกครั้ง กด CPR ต่อ แล้วให้ amiodarone 300 mg IV",
             "targetNode": "correct_amio",
-            "requiredRank": "R3"
+            "requiredRank": "R1"
           },
           {
             "id": "opt2",
-            "text": "Push Atropine 1mg IV",
+            "text": "Push atropine 1 mg IV",
             "targetNode": "wrong_atropine",
             "requiredRank": "Intern"
           }
         ]
       },
       "shock_again": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "Sequential shocks without CPR do not allow the heart to refill. Patient deteriorates to Asystole.",
+        "narrative": "Shock ติดกันโดยไม่กดหน้าอก กล้ามเนื้อหัวใจไม่มีเลือดไปเลี้ยงระหว่างนั้น rhythm กลายเป็น asystole",
         "options": null
       },
       "correct_amio": {
@@ -202,16 +206,17 @@
           "hr": 85,
           "o2": "96%"
         },
-        "narrative": "ROSC achieved! Patient has a palpable pulse and blood pressure improves. Prepare for post-cardiac arrest care.",
+        "narrative": "Shock ครั้งที่สาม แล้วให้ amiodarone 300 mg ในรอบถัดไป rhythm check เห็น organized rhythm คลำ carotid ได้ ROSC แล้ว เตรียม post-cardiac arrest care และทำ EKG 12 leads",
         "options": null
       },
       "wrong_atropine": {
+        "slip": true,
         "vitals": {
           "bp": "0/0",
           "hr": 0,
           "o2": "0%"
         },
-        "narrative": "Atropine is not indicated for V-Fib. Patient deteriorates to Asystole.",
+        "narrative": "Atropine ไม่มีที่ใช้ใน VF คนไข้แย่ลงเป็น asystole",
         "options": null
       }
     }

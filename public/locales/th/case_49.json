@@ -1,0 +1,469 @@
+{
+  "title": "45yo M Crush Syndrome (Building Collapse)",
+  "age": "45",
+  "sex": "M",
+  "chiefComplaint": "ขาสองข้างถูกแผ่นคอนกรีตทับนาน 6 ชม.",
+  "diagnoses": [
+    "Crush syndrome with rhabdomyolysis",
+    "Hyperkalaemic cardiac arrest risk",
+    "Compartment syndrome",
+    "Hypovolaemic shock",
+    "Acute kidney injury"
+  ],
+  "background": "คนงานก่อสร้าง ติดอยู่ในตึกที่ถล่มบางส่วนระหว่างรื้อถอน รู้สึกตัวและคุยกับทีมกู้ภัยตลอด ขาทั้งสองข้างใต้เข่าถูกแผ่นคอนกรีตทับราว 6 ชม. น้ำหนัก 78 kg ทีมรถพยาบาลเปิดเส้นให้ NSS 1 ลิตรตั้งแต่ยังติดอยู่ ยกออกมาได้เมื่อ 25 นาทีก่อน ดูภายนอกปกติดี",
+  "patientAppearance": {
+    "skinTone": "#bd8552",
+    "bmiFactor": 1.0,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 118,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 98,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 58,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 24,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 35.4,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 96,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 15,
+      "abnormal": false
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Fully alert, dusty, cold, calm and cooperative, complaining mainly of thirst. The mismatch between how well a crush victim looks immediately after extrication and what is about to happen to their potassium is the central trap of this presentation",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Dry mucous membranes, dust in the nose and mouth, no facial injury, no soot or airway burn, cervical collar applied at scene, no neck tenderness",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Sinus tachycardia at 118/min with occasional ventricular ectopics, borderline hypotension, capillary refill 4 seconds in the arms. The ectopics are the warning that reperfusion potassium is already reaching the heart",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Clear breath sounds bilaterally, no chest wall injury, no flail segment, tachypnoeic from acidosis rather than from a chest problem",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, non-tender, no seatbelt or compression mark, pelvis stable, no evidence of intra-abdominal injury from the collapse",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Both lower legs are grossly swollen, tense, woody hard and cold below the knee, with extensive bruising and blistering. Pulses are absent in both feet. Sensation is absent below both knees. Core temperature 35.4 C from six hours on concrete",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 15 throughout and fully orientated. Dense sensory loss and no motor function below both knees. Upper limbs entirely normal. He has been conscious for the whole six hours and is going to remember all of it",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "k1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "K (ข้างเตียง)",
+      "value": "7.2",
+      "unit": "mmol/L",
+      "normalRange": "3.5-5.0",
+      "abnormal": true,
+      "report": "Hyperkalemia ที่คุกคามชีวิตจาก reperfusion ของกล้ามเนื้อที่ถูกบด นี่คือตัวเลขที่ฆ่าคนไข้ crush และมักพุ่งสูงสุดในไม่กี่นาทีถึงชั่วโมงหลังยกของหนักออก ไม่ใช่ตอนที่ยังติดอยู่"
+    },
+    {
+      "id": "ecg1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "EKG 12 lead",
+      "report": "Peaked tented T ที่ V2 ถึง V5 P wave แบน QRS 132 ms เปลี่ยนเป็น sine wave แล้ว arrest ได้ในไม่กี่นาที ต้องติด monitor ก่อนยกออก ไม่ใช่หลัง",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "ck1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "CK",
+      "value": "88000",
+      "unit": "U/L",
+      "normalRange": "30-200",
+      "abnormal": true,
+      "report": "Massive rhabdomyolysis ค่าเกิน 5000 ทำนาย AKI เกิน 75000 ทำนายว่ามีโอกาสสูงต้อง dialysis"
+    },
+    {
+      "id": "ua1",
+      "kind": "lab",
+      "category": "Urine",
+      "name": "UA",
+      "value": "ปัสสาวะสีน้ำตาลเข้ม dipstick blood 4+ ไม่มี RBC ใน microscopy, pH 5.2",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": true,
+      "report": "Myoglobinuria myoglobin เป็นพิษต่อไตในปัสสาวะที่เป็นกรด จึงเป็นเหตุผลของการทำให้ปัสสาวะเป็นด่าง"
+    },
+    {
+      "id": "gas1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Blood gas, calcium, lactate",
+      "value": "pH 7.18 / HCO3 13 / ionised Ca 0.82 mmol/L / lactate 5.6",
+      "unit": "-",
+      "normalRange": "pH 7.35-7.45",
+      "abnormal": true,
+      "report": "Metabolic acidosis ร่วมกับ hypocalcemia hypocalcemia ทำให้ผลต่อหัวใจของ hyperkalemia แย่ลง และ acidosis ดัน K ออกนอกเซลล์มากขึ้น"
+    },
+    {
+      "id": "cr1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Cr, phosphate, urate",
+      "value": "Creatinine 2.8 mg/dL / phosphate 2.4 mmol/L / urate 12 mg/dL",
+      "unit": "-",
+      "normalRange": "Creatinine 0.7-1.3 mg/dL",
+      "abnormal": true,
+      "report": "AKI ร่วมกับ hyperphosphatemia และ hyperuricemia ภาพ biochemistry ครบของการสลายเซลล์จำนวนมาก"
+    },
+    {
+      "id": "ct1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CT trauma series",
+      "report": "Comminuted tibia และ fibula หักทั้งสองข้าง กล้ามเนื้อบวมมากทั้งสี่ compartment ของขาทั้งสองข้าง ไม่มีบาดเจ็บที่ศีรษะ C-spine อก ท้อง หรือ pelvis",
+      "imageUrl": "",
+      "abnormal": true
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "Monitor ติด pad เจาะ K ข้างเตียง",
+          "distractors": [
+            {
+              "label": "ยกแผ่นคอนกรีตออกก่อน แล้วค่อยติด monitor",
+              "feedback": "การยกออกปล่อย K ท่วมกระแสเลือด monitor และเตรียมพร้อมก่อนยก"
+            },
+            {
+              "label": "รอผล K จากแล็บ",
+              "feedback": "ผลข้างเตียงหรือ EKG ที่เปลี่ยนก็พอจะลงมือแล้ว"
+            }
+          ],
+          "label": "ติด monitor และเจาะ K ข้างเตียงก่อนอย่างอื่น",
+          "actions": [
+            "ติด monitor หัวใจต่อเนื่อง",
+            "EKG 12 lead",
+            "K และ blood gas ข้างเตียง",
+            "ติด pad defibrillator"
+          ],
+          "doseMap": {
+            "ติด monitor หัวใจต่อเนื่อง": "ควรติดก่อนยกออก arrhythmia ที่ถึงตายมากับ reperfusion วินาทีที่ของหนักถูกยกออกคือวินาทีที่เสี่ยงที่สุด และไม่ควรปล่อยไว้โดยไม่มี monitor"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "Calcium IV, insulin กับ dextrose, bicarbonate",
+          "distractors": [
+            {
+              "label": "รอผล K จากแล็บก่อนรักษา",
+              "feedback": "EKG เปลี่ยนให้ calcium ทันที"
+            },
+            {
+              "label": "ให้ยาขับปัสสาวะชนิดเก็บ K",
+              "feedback": "จะทำให้ K สูงขึ้นอีก"
+            }
+          ],
+          "label": "รักษา hyperkalemia ทันทีตาม EKG ไม่ต้องรอผล",
+          "actions": [
+            "Calcium gluconate หรือ chloride IV",
+            "Insulin กับ dextrose",
+            "พ่น salbutamol",
+            "NaHCO3"
+          ],
+          "doseMap": {
+            "Calcium gluconate หรือ chloride IV": "10% calcium chloride 10 mL IV ใน 3 นาที ซ้ำได้ตามต้องการ stabilize กล้ามเนื้อหัวใจในไม่กี่นาที ไม่ได้ลด K ต้องตามด้วยยาที่ลด K",
+            "Insulin กับ dextrose": "RI 10 unit ใน 50% glucose 50 mL IV ใน 15 นาที เจาะน้ำตาลทุกชั่วโมง",
+            "NaHCO3": "1 ถึง 2 mEq/kg ดัน K เข้าเซลล์และทำให้ปัสสาวะเป็นด่าง ทำสองหน้าที่พร้อมกันในเคสนี้"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "NSS 1 ถึง 1.5 L/h ปัสสาวะ 200 ถึง 300 mL/h",
+          "distractors": [
+            {
+              "label": "ให้ Hartmann's rate สูง",
+              "feedback": "Hartmann's มี K ใช้ NSS"
+            },
+            {
+              "label": "จำกัด fluid จนกว่าจะยกออก",
+              "feedback": "ควรเริ่ม fluid ก่อนยกออก ป้องกันไตบาดเจ็บและ arrest"
+            }
+          ],
+          "label": "Fluid ปริมาณมากมาก และเริ่มก่อนยกออกถ้าทำได้",
+          "actions": [
+            "NSS rate สูง",
+            "ใส่สายสวนปัสสาวะ วัด output ทุกชั่วโมง",
+            "หลีกเลี่ยง fluid ที่มี K",
+            "พิจารณาทำให้ปัสสาวะเป็นด่าง"
+          ],
+          "doseMap": {
+            "NSS rate สูง": "เริ่ม 1 ถึง 1.5 ลิตรต่อชั่วโมง เป้า urine output 200 ถึง 300 mL/h ใน 24 ชม. แรกมักต้องใช้ถึง 10 ถึง 12 ลิตร นี่คือการรักษาเดียวที่ป้องกันไตวายจนต้อง dialysis",
+            "หลีกเลี่ยง fluid ที่มี K": "ห้ามใช้ Ringer's lactate และ Hartmann's ใน crush syndrome เพราะมี K ทั้งคู่"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "label": "Ventricular arrhythmia ระหว่าง reperfusion",
+          "outcomeType": "worsened",
+          "narrative": "12 นาทีหลังมาถึงเกิด broad complex tachycardia QRS 160 ms SBP 70 ให้ calcium กับ bicarbonate เพิ่มกลับเป็น sinus rhythm K ซ้ำ 6.4 เขาต้องได้ calcium ก่อนที่ผลแล็บจะออกมาด้วยซ้ำ",
+          "vitalChanges": {
+            "hr": 168,
+            "sbp": 70,
+            "dbp": 40,
+            "rr": 28,
+            "spo2": 93,
+            "gcs": 13
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1200,
+          "y": 420
+        },
+        "data": {
+          "label": "บอกเรื่องขาตอนที่เขายังร่วมตัดสินใจได้ (Empathy)",
+          "ethicalValue": 25,
+          "narrative": "ขาทั้งสองข้างคลำชีพจรไม่ได้ ไม่มีความรู้สึก แข็งเหมือนไม้หลังถูกทับ 6 ชม. มีโอกาสต้องตัดขาจริง ตอนนี้เขารู้ตัวเต็มที่ และอีกชั่วโมงจะไม่ใช่แล้ว หมอบอกสิ่งที่ตรวจเจอ บอกว่าขั้นต่อไปคือ fasciotomy อาจตามด้วยการตัดขา และทางเลือกอื่นของการไม่เอากล้ามเนื้อที่ตายออกคือตายจากมัน เขาขอให้โทรหาภรรยา และบอกลูกชายอย่าเข้ามาในห้อง resus หมอทำทั้งสองอย่าง พี่เอกบอกทางโทรศัพท์ทีหลังว่าคนไข้ที่รู้ตัว บาดเจ็บแบบรอดได้แต่ขารอดไม่ได้ ควรได้ยินจากคนที่ตรวจเขา และแทบไม่เคยได้ยิน"
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "choice": "ให้ศัลย์ประเมินว่ากล้ามเนื้อยังรอดไหม",
+          "distractors": [
+            {
+              "label": "Fasciotomy ขาทั้งสองข้างแบบ routine",
+              "feedback": "Fasciotomy ในกล้ามเนื้อที่ตายแล้วเพิ่มการติดเชื้อโดยไม่มีประโยชน์ ตัดสินเป็นรายๆ"
+            },
+            {
+              "label": "ปล่อยขาไว้ observe สัปดาห์หนึ่ง",
+              "feedback": "กล้ามเนื้อตายเป็นตัวขับ sepsis และ hyperkalemia ให้ศัลย์ประเมินเดี๋ยวนี้"
+            }
+          ],
+          "label": "ตัดสินใจเรื่อง fasciotomy ซึ่งไม่ได้ทำทุกราย",
+          "actions": [
+            "ให้ ortho และ vascular ประเมิน",
+            "Fasciotomy เมื่อกล้ามเนื้อยังรอดและมี compartment syndrome",
+            "ตัดขาเลยถ้ากล้ามเนื้อตายแล้ว",
+            "ป้องกันบาดทะยักและให้ antibiotic"
+          ],
+          "doseMap": {
+            "Fasciotomy เมื่อกล้ามเนื้อยังรอดและมี compartment syndrome": "Fasciotomy ผ่านกล้ามเนื้อที่ตายมา 6 ชม. เปิดแผลติดเชื้อขนาดใหญ่ เพิ่ม sepsis และ mortality โดยไม่ได้ช่วยขา การตัดสินใจขึ้นกับว่ากล้ามเนื้อยังรอดไหม ซึ่งเป็นการตัดสินใจทางศัลยกรรมในห้องผ่าตัด ไม่ใช่ในห้อง resus"
+          }
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "รอ Cr ขึ้นก่อนค่อย dialysis",
+              "feedback": "Hyperkalemia และ myoglobinuria อาจต้อง dialysis เร็ว"
+            },
+            {
+              "label": "K ปกติแล้วย้ายไปวอร์ด",
+              "feedback": "K ขึ้นซ้ำได้ ต้อง monitor ใน ICU"
+            }
+          ],
+          "label": "Dialysis เร็วและดูแลใน ICU",
+          "actions": [
+            "Admit ICU",
+            "Hemodialysis หรือ CRRT เร็ว",
+            "เจาะ K ซ้ำทุก 1 ถึง 2 ชม. จน stable",
+            "Rewarm แบบ active",
+            "CK และ calcium เป็นระยะ"
+          ],
+          "doseMap": {
+            "Hemodialysis หรือ CRRT เร็ว": "มี indication เมื่อ hyperkalemia ดื้อการรักษา ปัสสาวะออกน้อย หรือ acidosis รุนแรง ใน crush syndrome มักต้อง dialysis เพื่อคุม K มากกว่าเพื่อ uremia และอาจต้องทำภายในไม่กี่ชั่วโมง"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "ระหว่าง admit",
+          "outcomeType": "worsened",
+          "narrative": "ในห้องผ่าตัด anterior และ deep posterior compartment ของขาทั้งสองข้างมีกล้ามเนื้อตายชัดเจน ไม่หดตัว ตัดขาซ้ายใต้เข่า ขาขวาทำ fasciotomy และเก็บไว้ได้ CK สูงสุด 210000 วันที่ 2 ต้อง dialysis 9 ครั้งใน 3 สัปดาห์ก่อนไตจะเริ่มฟื้น",
+          "vitalChanges": {
+            "hr": 104,
+            "sbp": 108,
+            "dbp": 62,
+            "rr": 20,
+            "temp": 36.6,
+            "gcs": 3
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "ไม่ต้อง dialysis แล้วในสัปดาห์ที่ 5 Cr 1.6 mg/dL ส่งต่อ rehab สัปดาห์ที่ 7 เพื่อใส่ขาเทียม เก็บขาขวาไว้ได้แต่ใช้งานได้จำกัดมาก NSS 1 ลิตรที่รถพยาบาลให้ตอนยังอยู่ใต้แผ่นคอนกรีต ตามหลักฐานแล้วคือเหตุผลที่เขายังมีไตเหลืออยู่",
+          "vitalChanges": {
+            "hr": 84,
+            "sbp": 122,
+            "dbp": 74,
+            "rr": 16,
+            "temp": 36.8,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "out1"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e6",
+        "source": "ethical_1",
+        "target": "req4"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req4"
+      },
+      {
+        "id": "e7",
+        "source": "req4",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

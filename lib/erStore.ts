@@ -1,15 +1,23 @@
+import { useEffect as _useEffect, useState as _useState } from 'react';
 import { create } from 'zustand';
 import { persist, StateStorage, createJSONStorage } from 'zustand/middleware';
 import { Preferences } from '@capacitor/preferences';
 import { QUEST_DATABASE } from './quests';
+import { requestFor } from './requests';
+import { CASEBOOK_MILESTONES } from './casebook';
 
-// Custom Capacitor Storage Engine for Zustand Persist
+// Custom Capacitor Storage Engine for Zustand Persist.
+// Writes are ignored until the saved game has been read back: Capacitor storage is async,
+// and any state change before that (cloud sync reporting "signed out", a quest starting)
+// would otherwise overwrite the player's save with the default state.
+let saveLoaded = false;
 const capacitorStorage: StateStorage = {
   getItem: async (name: string): Promise<string | null> => {
     const { value } = await Preferences.get({ key: name });
     return value || null;
   },
   setItem: async (name: string, value: string): Promise<void> => {
+    if (!saveLoaded) return;
     await Preferences.set({ key: name, value });
   },
   removeItem: async (name: string): Promise<void> => {
@@ -21,13 +29,17 @@ export type ShiftMode = 'off-duty' | 'on-call' | 'on-shift' | 'boss-battle';
 
 export type Era = 'MED_Y5' | 'MED_Y6' | 'INTERN' | 'RESIDENT' | 'PROFESSOR';
 
+/** Training stage by story day: year five and six at Rama, the year-six externship
+ *  at Korat, internship at Lovely, residency back at Rama, then attending. */
 export const getEra = (day: number): Era => {
   if (day <= 5) return 'MED_Y5';
-  if (day <= 10) return 'MED_Y6';
-  if (day <= 15) return 'INTERN';
+  if (day <= 15) return 'MED_Y6';
+  if (day <= 25) return 'INTERN';
   if (day <= 30) return 'RESIDENT';
   return 'PROFESSOR';
 };
+
+export interface ShiftPatient { caseId: string; grade: string; mistakes: number; /** review patients go by their own name */ name?: string }
 
 export type Rank = 'MS5' | 'MS6' | 'Intern' | 'R1' | 'R2' | 'R3' | 'Asst. Prof' | 'Assoc. Prof' | 'Prof';
 
@@ -55,6 +67,23 @@ export const getRankFromXp = (xp: number): Rank => {
   return 'MS5';
 };
 
+const RANK_ORDER: Rank[] = ['MS5', 'MS6', 'Intern', 'R1', 'R2', 'R3', 'Asst. Prof', 'Assoc. Prof', 'Prof'];
+
+/** The rank the story says you hold on a given day. Reaching a chapter promotes you to at least this. */
+export const rankFloorForDay = (day: number): Rank =>
+  day >= 31 ? 'Asst. Prof' : day >= 26 ? 'R1' : day >= 16 ? 'Intern' : day >= 6 ? 'MS6' : 'MS5';
+
+/** The highest rank XP can earn before the story moves you on. From day 31 the promotion exam takes over. */
+export const rankCeilingForDay = (day: number): Rank =>
+  day >= 31 ? 'Prof' : day >= 26 ? 'R3' : day >= 16 ? 'Intern' : day >= 6 ? 'MS6' : 'MS5';
+
+/** Lifetime XP cap for the story chapter, one point below the next rank. Infinity once the campaign is over. */
+export const chapterXpCap = (day: number): number => {
+  if (day >= 31) return Infinity;
+  const next = RANK_ORDER[RANK_ORDER.indexOf(rankCeilingForDay(day)) + 1];
+  return RANK_THRESHOLDS[next] - 1;
+};
+
 export interface ActiveCase {
   id: string;
   caseDataId: string; // e.g., 'case_02_fluids'
@@ -63,6 +92,8 @@ export interface ActiveCase {
   bedIndex?: number; // Added to spawn them in specific beds
   skinTone?: string;
   shirtColor?: string;
+  /** A review case: someone new with a condition already met, under their own name (lib/review.ts) */
+  alias?: string;
 }
 
 export type GearType = 'stethoscope' | 'scrubs' | 'shoes';
@@ -78,10 +109,10 @@ export interface GearItem {
 }
 
 export const GEAR_DATABASE: Record<string, GearItem> = {
-  'littmann_classic': { id: 'littmann_classic', name: 'Littmann Classic', type: 'stethoscope', statBonus: 'XP_BOOST', bonusValue: 1.1, cost: 500 },
-  'neon_scrubs': { id: 'neon_scrubs', name: 'Neon Scrubs', type: 'scrubs', statBonus: 'CASH_BOOST', bonusValue: 1.2, cost: 800 },
-  'running_shoes': { id: 'running_shoes', name: 'Running Shoes', type: 'shoes', statBonus: 'TIME_EXTENSION', bonusValue: 60, cost: 300 }, // +60 seconds to shift
-  'special_coffee': { id: 'special_coffee', name: 'Specialty Coffee', type: 'shoes', statBonus: 'TIME_EXTENSION', bonusValue: 0, cost: 50 }, // Used as a gift
+  'littmann_classic': { id: 'littmann_classic', name: 'หูฟัง Littmann Classic', type: 'stethoscope', statBonus: 'XP_BOOST', bonusValue: 1.1, cost: 500 },
+  'neon_scrubs': { id: 'neon_scrubs', name: 'ชุดสครับสีนีออน', type: 'scrubs', statBonus: 'CASH_BOOST', bonusValue: 1.2, cost: 800 },
+  'running_shoes': { id: 'running_shoes', name: 'รองเท้าวิ่ง', type: 'shoes', statBonus: 'TIME_EXTENSION', bonusValue: 60, cost: 300 }, // +60 seconds to shift
+  'special_coffee': { id: 'special_coffee', name: 'กาแฟพิเศษ', type: 'shoes', statBonus: 'TIME_EXTENSION', bonusValue: 0, cost: 50 }, // Used as a gift
 };
 
 export interface UpgradeItem {
@@ -93,9 +124,9 @@ export interface UpgradeItem {
 }
 
 export const UPGRADES_DATABASE: Record<string, UpgradeItem> = {
-  'upg_espresso': { id: 'upg_espresso', name: 'Espresso Machine', description: 'Restores 10 Energy at the start of every shift.', cost: 800, icon: 'coffee' },
-  'upg_pager': { id: 'upg_pager', name: 'Premium Pager', description: 'Earn 10% more Cash from all cases.', cost: 1500, icon: 'zap' },
-  'upg_lounge': { id: 'upg_lounge', name: 'Staff Lounge Sofa', description: 'Sleeping restores an extra 20 Energy.', cost: 1200, icon: 'sofa' },
+  'upg_espresso': { id: 'upg_espresso', name: 'เครื่องชงเอสเพรสโซ่', description: 'เริ่มเวรทุกครั้งได้พลังงานคืน 10', cost: 800, icon: 'coffee' },
+  'upg_pager': { id: 'upg_pager', name: 'เพจเจอร์รุ่นพรีเมียม', description: 'ได้เงินจากทุกเคสเพิ่ม 10%', cost: 1500, icon: 'zap' },
+  'upg_lounge': { id: 'upg_lounge', name: 'โซฟาห้องพักเจ้าหน้าที่', description: 'นอนแล้วได้พลังงานคืนเพิ่มอีก 20', cost: 1200, icon: 'sofa' },
 };
 
 export interface PlayerAppearance {
@@ -106,6 +137,15 @@ export interface PlayerAppearance {
   shoeColor: string;
   hairStyle: string;
   topStyle: string;
+}
+
+export interface PatientRecord {
+  /** Day of the first recorded outcome */
+  day: number;
+  good: boolean;
+  letterRead: boolean;
+  /** Casebook star: the patient was cared for well (every step right, or one slip) at least once */
+  star?: boolean;
 }
 
 interface ERState {
@@ -142,6 +182,12 @@ interface ERState {
     casesTreated: number;
     xpEarned: number;
     cashEarned: number;
+    /** Patients finished this shift, for the end-of-day wrap-up */
+    patients?: ShiftPatient[];
+    /** Cases brought in this shift, so nobody arrives twice */
+    spawned?: string[];
+    /** Mid-shift scenes already played (by trigger minute), so leaving the hub never replays one */
+    midPlayed?: number[];
   };
 
   // RPG State
@@ -161,6 +207,21 @@ interface ERState {
   // Prestige System
   prestigeCount: number;
   legacyPerks: string[];
+
+  // Social: gifts and friendships
+  gifts: Record<string, number>; // gift id -> count owned
+  npcDaily: Record<string, { talkDay?: number; giftDay?: number }>;
+  knownTastes: Record<string, Record<string, string>>; // npc -> gift -> taste discovered by giving it
+  heartEventsSeen: string[];
+  propDaily: Record<string, number>; // prop or activity -> day last used
+  /** Patients you have treated, first good or bad outcome per case, and whether their letter was read */
+  patientLog: Record<string, PatientRecord>;
+  /** Days whose notice-board request was done */
+  requestsDone: number[];
+  /** Casebook milestones already claimed, by page count */
+  casebookClaimed: number[];
+  /** Day each case was last brought in, so review cases rotate (lib/schedule.ts) */
+  lastSeen: Record<string, number>;
 
   // Actions
   setShiftMode: (mode: ShiftMode) => void;
@@ -184,6 +245,9 @@ interface ERState {
   setPendingPromotion: (status: boolean) => void;
   resetGame: () => void;
   resetShiftStats: () => void;
+  logShiftPatient: (p: ShiftPatient) => void;
+  markSpawned: (caseId: string) => void;
+  markMidPlayed: (minute: number) => void;
   updateFriendship: (npcId: string, amount: number) => void;
   addKarma: (amount: number) => void;
   startQuest: (questId: string) => void;
@@ -197,6 +261,20 @@ interface ERState {
   setMusicVolume: (vol: number) => void;
   setPlayerName: (name: string) => void;
   prestige: (perk: string) => void;
+  buyGift: (giftId: string, cost: number) => boolean;
+  /** A gift that arrived for free, such as one sent with a patient's letter */
+  receiveGift: (giftId: string) => void;
+  /** A review case only ever adds the casebook star; the letter belongs to the first patient */
+  recordPatient: (caseId: string, good: boolean, star?: boolean, review?: boolean) => void;
+  readLetter: (caseId: string) => void;
+  useGift: (giftId: string) => boolean;
+  markNpc: (npcId: string, field: 'talkDay' | 'giftDay', day: number) => void;
+  learnTaste: (npcId: string, giftId: string, taste: string) => void;
+  markHeartEvent: (key: string) => void;
+  useProp: (key: string, day: number) => void;
+  /** Finish today's notice-board request and pay it out. False if there is none or it was done. */
+  completeRequest: (day: number) => boolean;
+  claimCasebook: (count: number) => boolean;
 }
 
 export const useERStore = create<ERState>()(
@@ -214,11 +292,17 @@ export const useERStore = create<ERState>()(
       isPendingPromotion: false,
       prestigeCount: 0,
       legacyPerks: [],
+      gifts: {},
+      npcDaily: {},
+      knownTastes: {},
+      heartEventsSeen: [],
+      propDaily: {},
+      patientLog: {},
+      requestsDone: [],
+      casebookClaimed: [],
+      lastSeen: {},
 
-      friendships: {
-        nurse_ann: 0,
-        dr_bob: 0
-      },
+      friendships: {},
       karma: 0,
       activeQuests: [],
       completedQuests: [],
@@ -256,6 +340,8 @@ export const useERStore = create<ERState>()(
         casesTreated: 0,
         xpEarned: 0,
         cashEarned: 0,
+        patients: [],
+        spawned: [],
       },
 
       setPlayerName: (name) => set({ playerName: name }),
@@ -308,9 +394,21 @@ export const useERStore = create<ERState>()(
         const nextThreshold = nextThresholds.length > 0 ? Math.min(...nextThresholds) : Infinity;
         
         const newLifetimeXp = state.lifetimeXp + (amount * boost);
-        
-        // Cap lifetimeXp at nextThreshold - 1 so they don't promote automatically.
-        // They must take the End of Year test to push it to the nextThreshold!
+
+        // During the campaign the story sets the pace: rank can rise within the chapter,
+        // but not past it. Spendable XP keeps accumulating for skills either way.
+        if (state.currentDay <= 30) {
+          return {
+            xp: state.xp + (amount * boost),
+            lifetimeXp: Math.max(state.lifetimeXp, Math.min(newLifetimeXp, chapterXpCap(state.currentDay))),
+            shiftStats: {
+              ...state.shiftStats,
+              xpEarned: state.shiftStats.xpEarned + (amount * boost)
+            }
+          };
+        }
+
+        // After the campaign, cap lifetimeXp at nextThreshold - 1 so promotion needs the end-of-year exam.
         if (newLifetimeXp >= nextThreshold && currentRank !== 'Prof') {
           return {
             xp: state.xp + (amount * boost),
@@ -378,13 +476,13 @@ export const useERStore = create<ERState>()(
         
         return { 
           currency: state.currency + earned,
-          shiftStats: { ...state.shiftStats, cashEarned: amount > 0 ? state.shiftStats.cashEarned + earned : state.shiftStats.cashEarned, casesTreated: amount > 0 ? state.shiftStats.casesTreated + 1 : state.shiftStats.casesTreated }
+          shiftStats: { ...state.shiftStats, cashEarned: amount > 0 ? state.shiftStats.cashEarned + earned : state.shiftStats.cashEarned }
         };
       }),
-      setupPlayer: (name, gender, language, appearance, university) => set({ 
+      setupPlayer: (name, gender, _language, appearance, university) => set({ 
         playerName: name, 
         playerGender: gender,
-        language,
+        language: 'th',
         appearance,
         university
       }),
@@ -453,10 +551,36 @@ export const useERStore = create<ERState>()(
         activeQuests: [],
         storyFlags: {},
         shiftMode: 'off-duty',
-        isPendingPromotion: false
+        isPendingPromotion: false,
+        hospitalUpgrades: [],
+        unlockedSkills: [],
+        maxEnergy: 100,
+        clockMinutes: 0,
+        completedQuests: [],
+        tutorialCompleted: false,
+        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] },
+        gifts: {},
+        npcDaily: {},
+        knownTastes: {},
+        heartEventsSeen: [],
+        propDaily: {},
+        patientLog: {},
+        requestsDone: [],
+        casebookClaimed: [],
+        lastSeen: {}
       }),
       resetShiftStats: () => set((state) => ({
-        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 }
+        shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] }
+      })),
+      markSpawned: (caseId) => set((state) => ({
+        shiftStats: { ...state.shiftStats, spawned: [...(state.shiftStats.spawned ?? []), caseId] },
+        lastSeen: { ...(state.lastSeen ?? {}), [caseId]: state.currentDay }
+      })),
+      markMidPlayed: (minute) => set((state) => ({
+        shiftStats: { ...state.shiftStats, midPlayed: [...(state.shiftStats.midPlayed ?? []), minute] }
+      })),
+      logShiftPatient: (p) => set((state) => ({
+        shiftStats: { ...state.shiftStats, patients: [...(state.shiftStats.patients ?? []), p] }
       })),
       updateFriendship: (npcId, amount) => set((state) => ({
         friendships: { ...state.friendships, [npcId]: (state.friendships[npcId] || 0) + amount }
@@ -481,10 +605,16 @@ export const useERStore = create<ERState>()(
           activeQuests: state.activeQuests.filter(q => q !== questId),
           completedQuests: [...state.completedQuests, questId]
         }));
+        if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('questComplete', { detail: questId }));
       },
       completeTutorial: () => set({ tutorialCompleted: true }),
       setSyncEnabled: (sync: boolean) => set({ syncEnabled: sync }),
-      incrementDay: () => set((state) => ({ currentDay: state.currentDay + 1 })),
+      incrementDay: () => set((state) => {
+        const currentDay = state.currentDay + 1;
+        // A new chapter brings the promotion the story describes
+        const floor = RANK_THRESHOLDS[rankFloorForDay(currentDay)];
+        return { currentDay, lifetimeXp: Math.max(state.lifetimeXp, floor) };
+      }),
       setStoryFlag: (key, value) => set((state) => ({
         storyFlags: { ...state.storyFlags, [key]: value }
       })),
@@ -501,6 +631,67 @@ export const useERStore = create<ERState>()(
           window.dispatchEvent(new CustomEvent('volumeChanged', { detail: { sfxVolume: get().sfxVolume, musicVolume: vol } }));
         }
       },
+      buyGift: (giftId, cost) => {
+        const { currency } = get();
+        if (currency < cost) return false;
+        set((state) => ({ currency: state.currency - cost, gifts: { ...state.gifts, [giftId]: (state.gifts[giftId] || 0) + 1 } }));
+        if (get().activeQuests.includes('q_gear_up')) get().completeQuest('q_gear_up');
+        return true;
+      },
+      receiveGift: (giftId) => set((state) => ({ gifts: { ...state.gifts, [giftId]: (state.gifts[giftId] || 0) + 1 } })),
+      useGift: (giftId) => {
+        const n = get().gifts[giftId] || 0;
+        if (n <= 0) return false;
+        set((state) => ({ gifts: { ...state.gifts, [giftId]: n - 1 } }));
+        return true;
+      },
+      markNpc: (npcId, field, day) => set((state) => ({
+        npcDaily: { ...state.npcDaily, [npcId]: { ...state.npcDaily[npcId], [field]: day } }
+      })),
+      learnTaste: (npcId, giftId, taste) => set((state) => ({
+        knownTastes: { ...state.knownTastes, [npcId]: { ...state.knownTastes[npcId], [giftId]: taste } }
+      })),
+      recordPatient: (caseId, good, star = false, review = false) => set((state) => {
+        const prev = state.patientLog[caseId];
+        if (review) {
+          return prev && star && !prev.star ? { patientLog: { ...state.patientLog, [caseId]: { ...prev, star: true } } } : {};
+        }
+        // Keep the first good outcome. A later good result can replace an earlier bad one,
+        // and a later well-run case earns the star without moving the letter.
+        if (prev && (prev.good || !good)) {
+          return star && !prev.star ? { patientLog: { ...state.patientLog, [caseId]: { ...prev, star: true } } } : {};
+        }
+        return { patientLog: { ...state.patientLog, [caseId]: { day: state.currentDay, good, letterRead: false, star } } };
+      }),
+      readLetter: (caseId) => set((state) => {
+        const rec = state.patientLog[caseId];
+        if (!rec || rec.letterRead) return {};
+        return { patientLog: { ...state.patientLog, [caseId]: { ...rec, letterRead: true } } };
+      }),
+      markHeartEvent: (key) => set((state) => ({ heartEventsSeen: [...state.heartEventsSeen, key] })),
+      useProp: (key, day) => set((state) => ({ propDaily: { ...state.propDaily, [key]: day } })),
+      completeRequest: (day) => {
+        const st = get();
+        const r = requestFor(day);
+        if (!r || r.day !== st.currentDay || (st.requestsDone ?? []).includes(day)) return false;
+        set((state) => ({ requestsDone: [...(state.requestsDone ?? []), day] }));
+        if (r.cash > 0) st.addCurrency(r.cash);
+        if (r.xp > 0) st.addXp(r.xp);
+        if (r.friend > 0) st.updateFriendship(r.npcId, r.friend);
+        if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('requestComplete', { detail: day }));
+        return true;
+      },
+      claimCasebook: (count) => {
+        const st = get();
+        const m = CASEBOOK_MILESTONES.find((x) => x.count === count);
+        if (!m || (st.casebookClaimed ?? []).includes(count)) return false;
+        const filled = Object.keys(st.patientLog).length;
+        if (filled < count) return false;
+        set((state) => ({ casebookClaimed: [...(state.casebookClaimed ?? []), count] }));
+        st.addCurrency(m.cash);
+        if (m.giftId) st.receiveGift(m.giftId);
+        return true;
+      },
       prestige: (perk) => set(state => ({
          prestigeCount: state.prestigeCount + 1,
          legacyPerks: [...state.legacyPerks, perk],
@@ -511,6 +702,8 @@ export const useERStore = create<ERState>()(
          storyFlags: {},
          activeQuests: [],
          completedQuests: [],
+         requestsDone: [],
+         lastSeen: {},
          friendships: {},
          isPendingPromotion: false,
          clockMinutes: 0
@@ -519,6 +712,16 @@ export const useERStore = create<ERState>()(
     {
       name: 'code-rama-storage',
       storage: createJSONStorage(() => capacitorStorage),
+      // The game speaks one language now: Thai the way it is spoken on the ward.
+      // Older saves that picked English are moved over when they load.
+      merge: (persisted, current) => ({ ...current, ...(persisted as object), language: 'th' }),
+      onRehydrateStorage: () => (_state, error) => {
+        if (error || typeof window === 'undefined') return;
+        saveLoaded = true;
+        // persist what we have now that the save is merged in
+        const s = useERStore.getState();
+        useERStore.setState({ lastSaved: s.lastSaved });
+      },
       partialize: (state) => ({
         shiftMode: state.shiftMode,
         activeCases: state.activeCases,
@@ -543,7 +746,34 @@ export const useERStore = create<ERState>()(
         storyFlags: state.storyFlags,
         prestigeCount: state.prestigeCount,
         legacyPerks: state.legacyPerks,
+        // Purchases and progression that were previously lost on reload
+        hospitalUpgrades: state.hospitalUpgrades,
+        unlockedSkills: state.unlockedSkills,
+        maxEnergy: state.maxEnergy,
+        karma: state.karma,
+        shiftStats: state.shiftStats,
+        sfxVolume: state.sfxVolume,
+        musicVolume: state.musicVolume,
+        gifts: state.gifts,
+        npcDaily: state.npcDaily,
+        knownTastes: state.knownTastes,
+        heartEventsSeen: state.heartEventsSeen,
+        propDaily: state.propDaily,
+        patientLog: state.patientLog,
+        requestsDone: state.requestsDone,
+        casebookClaimed: state.casebookClaimed,
+        lastSeen: state.lastSeen,
       })
     }
   )
 );
+
+/** True once the saved game has been loaded from storage (Capacitor storage is async) */
+export function useHydrated(): boolean {
+  const [hydrated, setHydrated] = _useState(() => useERStore.persist.hasHydrated());
+  _useEffect(() => {
+    if (useERStore.persist.hasHydrated()) setHydrated(true);
+    return useERStore.persist.onFinishHydration(() => setHydrated(true));
+  }, []);
+  return hydrated;
+}

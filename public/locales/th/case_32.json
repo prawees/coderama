@@ -1,0 +1,457 @@
+{
+  "title": "5mo M Severe Bronchiolitis",
+  "age": "0.42",
+  "sex": "M",
+  "chiefComplaint": "หายใจแรง ไม่ยอมกินนม",
+  "diagnoses": [
+    "RSV bronchiolitis",
+    "Viral-induced wheeze",
+    "Bacterial pneumonia",
+    "Congenital heart disease with failure",
+    "Pertussis"
+  ],
+  "background": "อายุ 5 เดือน เกิดก่อนกำหนดที่ 34 สัปดาห์ น้ำหนัก 5.8 kg มีน้ำมูก 4 วัน แล้วไอและหายใจเสียงดังมากขึ้นเรื่อยๆ วันนี้กินนมได้ไม่ถึงหนึ่งในสามของปกติ หยุดหายใจสั้นๆ 2 ครั้งจนแม่ตกใจ ผ้าอ้อมเปียก 4 ผืนใน 24 ชม. จากปกติ 8 พี่สาว 2 ขวบเป็นหวัด ตอนนี้เป็นช่วงพีคของฤดูกาล สัปดาห์นี้แผนกเจอเด็กแบบเดียวกันมาแล้ว 19 คน ส่วนใหญ่ไม่ต้องทำอะไร แต่รายนี้ต้อง",
+  "patientAppearance": {
+    "skinTone": "#f2caa4",
+    "bmiFactor": 0.9,
+    "ageGroup": "child"
+  },
+  "vitals": {
+    "hr": {
+      "value": 182,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 78,
+      "abnormal": false
+    },
+    "dbp": {
+      "value": 46,
+      "abnormal": false
+    },
+    "rr": {
+      "value": 72,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 38.1,
+      "abnormal": true
+    },
+    "spo2": {
+      "value": 86,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 14,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Miserable, exhausted rather than agitated, which is the more worrying of the two. Grunting intermittently. Too breathless to feed",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Profuse clear nasal secretions blocking both nostrils (infants are obligate nasal breathers, so this alone worsens the work of breathing), head bobbing, nasal flaring, dry mucous membranes, anterior fontanelle slightly sunken",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Tachycardia at 182/min, capillary refill 3 seconds, femoral pulses present and equal, no murmur, no hepatomegaly to suggest cardiac failure",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Respiratory rate 72 with marked subcostal, intercostal and sternal recession, tracheal tug. Widespread fine inspiratory crackles with expiratory wheeze in all zones. Prolonged expiratory phase. Observed apnoeic pause of 12 seconds during examination",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Soft, mildly distended from air swallowing, liver edge palpable 1 cm below the costal margin which is normal at this age and displaced by hyperinflation, no masses",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Perioral cyanosis during coughing episodes, mottled peripheries, reduced turgor, capillary refill 3 seconds, no rash",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 14, drowsy and less responsive than his mother describes as normal, normal tone, anterior fontanelle sunken. Drowsiness in bronchiolitis means carbon dioxide retention and exhaustion, and it is the sign that predicts intubation",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "sat1",
+      "kind": "lab",
+      "category": "POCT",
+      "name": "SpO2 ที่ room air",
+      "value": "86",
+      "unit": "%",
+      "normalRange": "94-100",
+      "abnormal": true,
+      "report": "Hypoxemia ต่อเนื่อง SpO2 คือค่าที่มีประโยชน์ที่สุดค่าเดียวใน bronchiolitis และเป็นไม่กี่ค่าที่ควรเปลี่ยนการตัดสินใจ"
+    },
+    {
+      "id": "gas1",
+      "kind": "lab",
+      "category": "ABG",
+      "name": "Capillary blood gas",
+      "value": "pH 7.26 / pCO2 68 / HCO3 28",
+      "unit": "-",
+      "normalRange": "pH 7.32-7.42",
+      "abnormal": true,
+      "report": "Respiratory acidosis มี CO2 คั่ง ยืนยันว่าเด็กหมดแรง ไม่ทำ routine ใน bronchiolitis ทำในเคสนี้เพราะมี apnea และซึม"
+    },
+    {
+      "id": "rsv1",
+      "kind": "lab",
+      "category": "Micro",
+      "name": "Respiratory viral PCR (NP swab)",
+      "value": "RSV positive",
+      "unit": "-",
+      "normalRange": "Negative",
+      "abnormal": true,
+      "report": "Positive ไม่เปลี่ยนการรักษาเด็กคนนี้ แต่ใช้ตัดสินเรื่องจัดกลุ่มและแยกห้อง จึงคุ้มที่จะตรวจในเด็กที่ admit และไม่คุ้มในเด็กที่กลับบ้าน"
+    },
+    {
+      "id": "cxr1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CXR",
+      "report": "Hyperinflation กะบังลมแบน peribronchial thickening และ patchy atelectasis ที่ RML ไม่มี lobar consolidation ไม่มี effusion การถ่าย CXR routine ใน bronchiolitis เพิ่มการสั่ง antibiotic โดยไม่ทำให้ outcome ดีขึ้น เพราะ atelectasis ถูกอ่านผิดเป็น pneumonia ซ้ำแล้วซ้ำเล่า เคสนี้ทำได้เพราะอาการหนักและต้องใช้ O2",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "na1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "Na",
+      "value": "131",
+      "unit": "mmol/L",
+      "normalRange": "135-145",
+      "abnormal": true,
+      "report": "Hyponatremia เล็กน้อย พบบ่อยใน bronchiolitis จาก SIADH ใช้ isotonic fluid และจำกัดที่สองในสามของ maintenance"
+    },
+    {
+      "id": "cbc1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "WBC, CRP",
+      "value": "WBC 11.2 / CRP 14 mg/L",
+      "unit": "-",
+      "normalRange": "WBC 6.0-17.0",
+      "abnormal": false,
+      "report": "ไม่มีอะไรผิดปกติ เข้าได้กับไวรัส การติดเชื้อแบคทีเรียร่วมที่รุนแรงพบในเด็ก bronchiolitis ทั่วไปไม่ถึง 1%"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "Deep nasopharyngeal suction ทุกชั่วโมง",
+              "feedback": "Suction ลึกแรงๆ ทำให้บวมและบาดเจ็บ ใช้ nasal suction เบาๆ"
+            },
+            {
+              "label": "ให้ O2 เป้า SpO2 100%",
+              "feedback": "เป้า 92% ขึ้นไปก็พอ เป้าสูงกว่าทำให้นอน รพ. นานขึ้น"
+            }
+          ],
+          "label": "Suction จมูก และให้ O2",
+          "actions": [
+            "Suction จมูกเบาๆ",
+            "O2 เป้า SpO2 92% ขึ้นไป",
+            "จับต้องตัวให้น้อยที่สุด",
+            "Monitor SpO2 และ apnea ต่อเนื่อง"
+          ],
+          "doseMap": {
+            "Suction จมูกเบาๆ": "ถูก ได้ผลทันที และถูกลืมซ้ำแล้วซ้ำเล่า เด็กเล็กหายใจทางจมูกเป็นหลัก แค่ทำให้จมูกโล่งก็ลด RR ได้มาก",
+            "O2 เป้า SpO2 92% ขึ้นไป": "อย่าไล่ให้ถึง 100% เป้าสูงกว่าทำให้นอน รพ. นานขึ้นโดยไม่มีประโยชน์"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "High flow nasal cannula 2 L/kg/min",
+          "distractors": [
+            {
+              "label": "รอดูว่าคืนนี้จะดีขึ้นไหม",
+              "feedback": "Apnea และหมดแรงเป็น indication ให้เพิ่มการช่วยหายใจเดี๋ยวนี้"
+            },
+            {
+              "label": "Intubate ทันที",
+              "feedback": "High flow nasal cannula แล้ว CPAP มักเลี่ยงการ intubate ได้ เพิ่มทีละขั้น"
+            }
+          ],
+          "label": "เพิ่มการช่วยหายใจเพราะมี apnea และหมดแรง",
+          "actions": [
+            "High flow nasal cannula",
+            "เตรียม CPAP ถ้าไม่ดีขึ้น",
+            "ให้กุมารแพทย์อาวุโสประเมิน"
+          ],
+          "doseMap": {
+            "High flow nasal cannula": "2 L/kg/min (ราว 12 L/min สำหรับ 5.8 kg) อุ่นและชื้น ประเมินซ้ำที่ 60 ถึง 90 นาที ถ้าไม่ดีขึ้นทำนายว่าจะต้อง CPAP หรือ intubate"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "IV isotonic fluid สองในสามของ maintenance",
+          "distractors": [
+            {
+              "label": "IV hypotonic fluid เต็ม maintenance",
+              "feedback": "Bronchiolitis ทำให้ ADH เกิน hypotonic fluid เต็ม rate เสี่ยง hyponatremia ใช้ isotonic สองในสาม"
+            },
+            {
+              "label": "ให้ดูดขวดต่อทั้งที่หายใจแรง",
+              "feedback": "เด็กหายใจแรงและมี apnea กินทางปากเสี่ยงสำลัก ใช้ NG หรือ IV"
+            }
+          ],
+          "label": "ให้น้ำด้วยทางที่รุกล้ำน้อยที่สุดที่ได้ผล",
+          "actions": [
+            "ให้นมทาง NG tube หรือ IV fluid",
+            "จำกัดที่สองในสามของ maintenance ด้วย isotonic fluid",
+            "บันทึก I/O เคร่งครัด เจาะ Na ทุกวัน"
+          ],
+          "doseMap": {
+            "ให้นมทาง NG tube หรือ IV fluid": "ถ้า RR พอไหว NG feeding ดีกว่า เพราะรักษาการทำงานของลำไส้และไม่ต้องเปิดเส้น ที่ RR 72 เสี่ยงสำลักมาก คืนนี้ IV ปลอดภัยกว่า",
+            "จำกัดที่สองในสามของ maintenance ด้วย isotonic fluid": "เต็ม maintenance ราว 23 mL/h สำหรับ 5.8 kg (4 mL/kg/h) จึงให้ราว 15 mL/h จำกัด fluid เพราะเสี่ยง SIADH"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "choice": "ไม่ให้ salbutamol, steroid หรือ antibiotic",
+          "distractors": [
+            {
+              "label": "พ่น salbutamol ทุก 4 ชม.",
+              "feedback": "Bronchodilator ไม่ได้ทำให้ outcome ใน bronchiolitis ดีขึ้น"
+            },
+            {
+              "label": "ให้ prednisolone กิน 3 วัน",
+              "feedback": "Steroid ไม่ช่วย bronchiolitis"
+            }
+          ],
+          "label": "งดการรักษาที่ไม่ได้ผล",
+          "actions": [
+            "ไม่ให้ salbutamol",
+            "ไม่พ่น adrenaline แบบ routine",
+            "ไม่ให้ steroid",
+            "ไม่ให้ antibiotic ถ้าไม่มีหลักฐานติดเชื้อแบคทีเรีย",
+            "ไม่ทำกายภาพทรวงอก"
+          ],
+          "doseMap": {
+            "ไม่ให้ salbutamol": "หลาย trial ไม่พบประโยชน์ใน bronchiolitis อายุต่ำกว่า 12 เดือน wheeze ดีขึ้นชั่วคราวไม่เหมือนกับนอน รพ. สั้นลงหรือใช้ O2 น้อยลง การสั่งยานี้คือความผิดพลาดที่พบบ่อยที่สุดของโรคนี้"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "ตอบสนองต่อ high flow",
+          "outcomeType": "improved",
+          "narrative": "90 นาทีบน high flow RR ลดลงเป็น 54 retraction น้อยลง SpO2 94% apnea หยุด gas ซ้ำ pCO2 52 pH 7.32 ไม่ต้อง intubate",
+          "vitalChanges": {
+            "hr": 158,
+            "sbp": 82,
+            "dbp": 48,
+            "rr": 54,
+            "spo2": 94,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "อธิบายว่าทำไมตั้งใจไม่จ่ายยาอะไร และหมายความตามนั้นจริงๆ (Empathy)",
+          "ethicalValue": 15,
+          "narrative": "แม่พาไปคลินิกมาแล้วสองแห่ง ทั้งสองให้ salbutamol กับยาฆ่าเชื้อ แม่เลยสรุปอย่างมีเหตุผลว่า รพ. นี้ทำให้ลูกที่ป่วยหนักกว่าน้อยกว่า หมออธิบายว่า O2 การดูดน้ำมูก และการให้นมคือการรักษา ยาที่ได้มาไม่ได้ผลกับโรคนี้ และที่ลูกดีขึ้นตอนนี้เพราะการพยุง ไม่ใช่เพราะใบสั่งยา แล้วชี้ให้ดูตัวเลขบน monitor ที่กำลังดีขึ้น พี่บ๊อบบอกว่าเสียเวลา 8 นาที 4 เดือนต่อมาแม่พาลูกสาวมาแผนกนี้แทนคลินิก ตั้งแต่วันแรกแทนวันที่สี่"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "choice": "Admit HDU แยกห้อง",
+          "distractors": [
+            {
+              "label": "D/C กลับบ้านพร้อม O2",
+              "feedback": "มี apnea และต้องใช้ high flow admit พร้อมเกณฑ์ escalate ที่ชัดเจน"
+            },
+            {
+              "label": "Admit ไม่ต้องแยกห้อง",
+              "feedback": "RSV แพร่ง่าย ใช้ contact และ droplet precaution"
+            }
+          ],
+          "label": "Admit พร้อมเกณฑ์ escalate ที่ชัดเจน",
+          "actions": [
+            "Admit วอร์ดเด็กหรือ HDU",
+            "ค่อยๆ wean high flow ตามที่ทนได้",
+            "Contact และ droplet precaution",
+            "เกณฑ์ D/C: SpO2 ปกติใน room air และกินได้เกิน 75% ของปกติ"
+          ],
+          "doseMap": {}
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "ระหว่าง admit",
+          "outcomeType": "improved",
+          "narrative": "อาการหนักสุดที่วันที่ 5 ของโรค ตามแบบฉบับ wean high flow ได้วันที่ 3 ของการ admit off O2 วันที่ 4 กินนมได้เต็มที่วันที่ 5",
+          "vitalChanges": {
+            "hr": 140,
+            "sbp": 84,
+            "dbp": 50,
+            "rr": 40,
+            "spo2": 97,
+            "temp": 37.0,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 5 พร้อมคำแนะนำว่าไอจะยังมีอีก 2 ถึง 4 สัปดาห์ ซึ่งกันการกลับมาโดยไม่จำเป็นได้ 3 ครั้ง บันทึกว่าคลอดก่อนกำหนด 34 สัปดาห์เป็นปัจจัยเสี่ยงสำหรับฤดูหน้า ตลอดการรักษาไม่ได้ให้ antibiotic, salbutamol หรือ steroid เลย",
+          "vitalChanges": {
+            "hr": 132,
+            "sbp": 86,
+            "dbp": 52,
+            "rr": 36,
+            "spo2": 98,
+            "temp": 36.8,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e5",
+        "source": "req4",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

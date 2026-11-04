@@ -1,0 +1,69 @@
+cc: พบนอนไม่รู้สึกตัว ตัวเย็น อยู่ที่บ้าน
+bg: อยู่คนเดียว ผ่าตัด total thyroidectomy จากคอพอกเมื่อ 11 ปีก่อน levothyroxine หมดมาราว 7 สัปดาห์ ไม่ได้ไปรับยาเพราะคลินิกย้ายไป ที่ใหม่ต้องต่อรถเมล์สองต่อ เพื่อนบ้านพบนอนอยู่บนพื้น ตัวเย็น ปลุกไม่ตื่น หลังไม่เห็นหน้ามา 2 วัน ตอนนี้หน้าหนาว บ้านไม่มีเครื่องทำความร้อน ไอมาสัปดาห์หนึ่ง ซึ่งน่าจะเป็นตัวกระตุ้น mortality ยังสูง 20 ถึง 40% แม้ได้รับการรักษา
+i.tft1: Profound primary hypothyroidism ต้องเริ่มรักษาตาม clinical เพราะการรอผลนี้หลายชั่วโมงในคนไข้แบบนี้ถึงตาย
+i.na1: Severe hyponatremia จากขับน้ำไม่ได้ ร่วมกับ hypoglycemia แก้ Na ช้าๆ ไม่เกิน 8 ถึง 10 mmol/L ใน 24 ชม. เลี่ยง osmotic demyelination
+i.gas1: Type 2 respiratory failure CO2 คั่งจาก central hypoventilation และกล้ามเนื้อหายใจอ่อนแรง นี่คือภัยต่อชีวิตเฉพาะหน้า
+i.cort1: ต่ำเกินไปเมื่อเทียบกับความเครียดทางร่างกายระดับนี้ คนไข้กลุ่มนี้ส่วนหนึ่งมี adrenal insufficiency ร่วม และการให้ thyroid hormone ก่อน steroid อาจกระตุ้น adrenal crisis
+i.ecg1: Sinus bradycardia 42/min, low voltage ทุก lead, QTc ยาว 540 ms มี J wave ที่ inferior leads จาก hypothermia low voltage สนับสนุนว่ามี pericardial effusion
+i.cxr1: เงาหัวใจโตกลม เข้าได้กับ pericardial effusion มี pleural effusion เล็กน้อยทั้งสองข้าง และ RLL consolidation pneumonia คือตัวกระตุ้น
+i.ck1: สูง เป็นลักษณะที่รู้จักของ hypothyroidism รุนแรง และจากนอนอยู่บนพื้นนาน
+req1.l: Airway กับการหายใจ แล้วเจาะน้ำตาล
+req1.d0: ให้ thyroid hormone ก่อน แล้วค่อยจัดการ airway
+req1.f0: Hypercapnic respiratory failure ฆ่าก่อน ช่วยหายใจและเจาะน้ำตาล
+req1.d1: Sedate ด้วย midazolam ให้สงบ
+req1.f1: ยา sedate ถูกขับช้ามากใน myxedema และกดการหายใจมากขึ้น
+req1.m0: RR 8 กับ pCO2 78 ให้ O2 อย่างเดียวไม่หาย hypoventilation คือสาเหตุการเสียชีวิตที่พบบ่อยที่สุดใน myxedema coma
+req1.a0: ช่วยหายใจและ intubate สำหรับ hypercapnic failure
+req1.a1: DTX และ dextrose
+req1.a2: ติด monitor หัวใจ
+req1.a3: ใส่ probe วัด core temperature
+req2.l: Hydrocortisone ก่อน thyroid hormone
+req2.d0: Levothyroxine ก่อน hydrocortisone
+req2.f0: Thyroid hormone เพิ่มการกำจัด cortisol และอาจกระตุ้น adrenal crisis ให้ hydrocortisone ก่อน
+req2.d1: ไม่ต้องให้ steroid ไม่มีโรคต่อมหมวกไต
+req2.f1: อาจมี adrenal insufficiency ร่วมและอันตราย ให้ hydrocortisone ก่อน
+req2.m0: 100 mg IV ทุก 8 ชม. ให้ก่อน levothyroxine thyroid hormone เพิ่ม metabolic demand และเร่งการกำจัด cortisol ถ้ามี adrenal insufficiency ร่วมอาจเกิด adrenal crisis ถึงตาย ลำดับนี้คือบทเรียนทั้งหมดของเคส
+req2.a0: Hydrocortisone IV
+req2.a1: เจาะ random cortisol ก่อนถ้าไม่ทำให้ช้า
+req3.l: ให้ thyroid hormone ทางเส้นหรือทางสาย
+req3.c: Levothyroxine 200 ถึง 400 mcg IV หรือทาง NG tube
+req3.d0: Levothyroxine กิน 50 mcg วันละครั้ง
+req3.f0: ขนาด maintenance โดยไม่ load น้อยและช้าเกินไปมาก ให้ loading 200 ถึง 400 mcg ทาง IV ถ้ามี หรือทาง NG tube ถ้าไม่มี
+req3.d1: รอผล TFT ก่อนให้ยา
+req3.f1: Myxedema coma วินิจฉัยทาง clinical และถึงตาย รักษาเลยไม่ต้องรอ
+req3.m0: 200 ถึง 400 mcg ลดขนาดในผู้สูงอายุและคนมี ischemic heart disease ถ้า รพ. มียาฉีดให้ IV รพ. ไทยหลายแห่งมีแต่ยาเม็ด บดให้ทาง NG tube ดูดซึมช้ากว่าแต่ได้ผล
+req3.m1: IV หรือทางสายในขนาดสูงกว่าเล็กน้อย เพราะลำไส้ดูดซึมได้ไม่หมด
+req3.m2: 5 ถึง 20 mcg แล้ว 2.5 ถึง 10 mcg ทุก 8 ชม. ถ้ามียา ออกฤทธิ์เร็วกว่า แต่เกิด arrhythmia ในหัวใจผู้สูงอายุได้มากกว่า
+req3.a0: Levothyroxine loading dose
+req3.a1: ตามด้วย 50 ถึง 100 mcg ต่อวัน
+req3.a2: พิจารณาเพิ่ม liothyronine ในรายที่รุนแรง
+req4.l: Passive rewarming อย่างเดียว และรักษาตัวกระตุ้น
+req4.d0: Active rewarming ด้วยผ้าห่มลมร้อนอุณหภูมิสูง
+req4.f0: Active rewarming ทำให้หลอดเลือดขยายและ cardiovascular collapse ใช้ passive rewarming
+req4.d1: ไม่ต้องให้ antibiotic ไม่มีไข้
+req4.f1: Hypothermia บังไข้ รักษา pneumonia ที่น่าจะเป็นตัวกระตุ้น coma
+req4.m0: ห้ามใช้ active external rewarming ทำให้หลอดเลือดส่วนปลายขยายในคนที่เพิ่ม cardiac output ไม่ได้ และทำให้ circulatory collapse warm ไม่เกิน 0.5 C ต่อชั่วโมง
+req4.m1: กล้ามเนื้อหัวใจทำงานไม่ดีและอาจมี pericardial effusion ให้ทีละน้อยและแก้ Na ช้าๆ
+req4.a0: Rewarm แบบ passive ด้วยผ้าห่ม
+req4.a1: IV fluid อุ่น
+req4.a2: Antibiotic รักษา pneumonia
+req4.a3: ให้ fluid อย่างระวัง
+out1.l: ดีขึ้นช้าๆ
+out1.n: ใน 24 ชม. อุณหภูมิขึ้นเป็น 35.2 C HR 58 Na แก้ได้ถึง 124 ในอัตราที่ปลอดภัย ยังใช้ ventilator อยู่ การฟื้นจาก myxedema coma นับเป็นวัน ไม่ใช่ชั่วโมง ใจร้อนตรงนี้ทำให้เกิดอันตราย
+ethical_1.l: ถามว่าทำไมยาที่กินมา 11 ปีถึงหมด (Empathy)
+ethical_1.n: คำอธิบายง่ายๆ คือผู้สูงอายุไม่ร่วมมือกินยา เขียนลง chart ได้ในสามคำ แต่หมอไปถามเพื่อนบ้านแทน คลินิกย้าย ที่ใหม่ต้องต่อรถเมล์สองต่อที่ยายไปเองไม่ไหว ร้านยาไม่จ่ายถ้าไม่มีใบสั่งใหม่ ยายไม่ได้ไม่ร่วมมือ ยายแพ้เรื่องการเดินทาง หมอจัดให้รับยาซ้ำที่ร้านยาชุมชน ให้พยาบาลอำเภอไปเยี่ยมบ้าน และส่งต่อนักสังคมสงเคราะห์ พี่แอนบอกว่านี่คือความต่างระหว่างการรักษา myxedema coma ครั้งเดียวกับการรักษาสามครั้ง
+req5.l: ดูแลใน ICU แก้ไขช้าๆ อย่างใจเย็น
+req5.d0: แก้ Na เร็วๆ ด้วย 3% NaCl
+req5.f0: แก้เร็วเสี่ยง osmotic demyelination ไม่เกิน 8 ถึง 10 mmol/L ต่อ 24 ชม.
+req5.d1: ให้ยานอนหลับแก้กระสับกระส่ายใน ICU
+req5.f1: ยา sedate ถูกขับช้ามากและทำให้อาการกลับมาได้ เลี่ยงไว้
+req5.m0: การเผาผลาญยาช้าลงมาก ยา sedate และ opioid ขนาดปกติจะสะสม และเป็นสาเหตุที่หมอทำเองซึ่งพบบ่อยของการไม่ตื่น
+req5.a0: Admit ICU
+req5.a1: Monitor arrhythmia ระหว่างให้ฮอร์โมน
+req5.a2: แก้ Na ไม่เร็วกว่า 8 ถึง 10 mmol/L ต่อ 24 ชม.
+req5.a3: Echo ดู pericardial effusion
+req5.a4: หลีกเลี่ยงยา sedative ทุกตัว เพราะถูกกำจัดช้ามาก
+out2.l: ฟื้นตัว
+out2.n: Extubate วันที่ 5 Na ปกติวันที่ 6 pericardial effusion หายเองโดยไม่ต้องเจาะเมื่อ thyroid hormone ออกฤทธิ์ ค่อยๆ ลด hydrocortisone หลัง short synacthen test ยืนยันว่า adrenal ทำงานปกติ
+out3.l: Disposition
+out3.n: D/C วันที่ 14 ด้วย levothyroxine กิน ได้ยา 90 วันในมือ จัดรับยาซ้ำที่ร้านยาชุมชน พยาบาลอำเภอเยี่ยมบ้านทุกสัปดาห์ 1 เดือน เรื่องการรับยาคือพยาธิสภาพที่แท้จริง และเป็นสิ่งสุดท้ายที่มีคนดู

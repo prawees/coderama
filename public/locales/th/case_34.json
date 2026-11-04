@@ -1,0 +1,466 @@
+{
+  "title": "22yo F Eclampsia at 34 Weeks",
+  "age": "22",
+  "sex": "F",
+  "chiefComplaint": "ชักที่บ้าน ตั้งครรภ์ 34 สัปดาห์",
+  "diagnoses": [
+    "Eclampsia",
+    "HELLP syndrome",
+    "Intracranial haemorrhage",
+    "Cerebral venous sinus thrombosis",
+    "Epilepsy in pregnancy"
+  ],
+  "background": "ครรภ์แรก GA 34+2 สัปดาห์ ฝากครรภ์ช้า ไปตรวจแค่ 2 ครั้งที่ รพ.สต. วัด BP ได้ 148/96 และ 156/98 แต่ถูกบอกว่าเป็นเพราะกังวล 3 วันที่ผ่านมาปวดหัวด้านหน้ามาก เห็นแสงแวบๆ ปวดจุกลิ้นปี่ ตัวเองกับครอบครัวคิดว่าอาหารไม่ย่อย ชักเกร็งกระตุกทั้งตัวที่บ้านราว 90 วินาทีต่อหน้าคนอื่น และชักอีกครั้งบนรถพยาบาล ลูกยังดิ้น สามีเป็นชาวประมง ตอนนี้อยู่กลางทะเล",
+  "patientAppearance": {
+    "skinTone": "#e8bd93",
+    "bmiFactor": 1.25,
+    "ageGroup": "adult"
+  },
+  "vitals": {
+    "hr": {
+      "value": 108,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 186,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 118,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 22,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 37.0,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 94,
+      "abnormal": true
+    },
+    "gcs": {
+      "value": 11,
+      "abnormal": true
+    }
+  },
+  "exam": [
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Post-ictal, drowsy, agitated when roused, obviously pregnant with a fundal height consistent with 34 weeks, generalised oedema",
+      "abnormal": true
+    },
+    {
+      "id": "hent1",
+      "system": "HENT",
+      "finding": "Facial and periorbital oedema, tongue laceration from the seizure, no neck stiffness, fundoscopy shows retinal arteriolar spasm without papilloedema or haemorrhage",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Severe hypertension at 186/118 on repeated measurement with an appropriately sized cuff, tachycardia, no murmur, peripheries warm",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Bibasal crackles suggesting early pulmonary oedema, saturations 94% on room air, no wheeze. Pulmonary oedema is a leading cause of death in severe pre-eclampsia and is worsened by careless fluid administration",
+      "abnormal": true
+    },
+    {
+      "id": "abd1",
+      "system": "Abdomen",
+      "finding": "Gravid uterus, fundal height 33 cm, right upper quadrant and epigastric tenderness from hepatic capsular stretch, uterus soft and non-tender with no evidence of abruption, no vaginal bleeding. Fetal heart rate 132 with reduced variability and occasional late decelerations",
+      "abnormal": true
+    },
+    {
+      "id": "skin1",
+      "system": "Skin",
+      "finding": "Marked pitting oedema to the thighs, facial puffiness, no petechiae or bruising, no jaundice, capillary refill normal",
+      "abnormal": true
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "GCS 11 (E3V3M5), post-ictal, hyperreflexic at the knees with 4 beats of ankle clonus, no focal deficit, pupils equal and reactive. Clonus is the sign that this is neurologically active and that seizures will recur",
+      "abnormal": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "plt1",
+      "kind": "lab",
+      "category": "CBC",
+      "name": "Platelet",
+      "value": "68",
+      "unit": "x10^9/L",
+      "normalRange": "150-400",
+      "abnormal": true,
+      "report": "Thrombocytopenia รวมกับ hemolysis และ transaminase สูงคือ HELLP syndrome platelet ต่ำกว่า 75 ยังจำกัดทางเลือกการดมยาสำหรับการคลอดด้วย"
+    },
+    {
+      "id": "lft1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "AST, ALT, LDH",
+      "value": "AST 340 / ALT 290 / LDH 820",
+      "unit": "U/L",
+      "normalRange": "AST <40",
+      "abnormal": true,
+      "report": "ตับบาดเจ็บ LDH สูงบ่ง hemolysis ยืนยัน HELLP syndrome ระวัง subcapsular hepatic hematoma ซึ่งมาด้วยปวดใต้ชายโครงขวาแบบเดียวกันและแตกได้"
+    },
+    {
+      "id": "ua1",
+      "kind": "lab",
+      "category": "Urine",
+      "name": "UPCR",
+      "value": "480",
+      "unit": "mg/mmol",
+      "normalRange": "<30",
+      "abnormal": true,
+      "report": "Proteinuria มาก proteinuria ไม่จำเป็นสำหรับการวินิจฉัย pre-eclampsia ถ้ามีอวัยวะทำงานผิดปกติ และ eclampsia เกิดได้โดยไม่มี proteinuria"
+    },
+    {
+      "id": "cr1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Cr, uric acid",
+      "value": "Creatinine 1.3 mg/dL / uric acid 8.4 mg/dL",
+      "unit": "-",
+      "normalRange": "Creatinine 0.5-1.0 mg/dL in pregnancy",
+      "abnormal": true,
+      "report": "AKI ค่า Cr ที่ปกติในคนไม่ตั้งครรภ์ถือว่าผิดปกติในคนตั้งครรภ์ ซึ่ง baseline ต่ำกว่า"
+    },
+    {
+      "id": "ctg1",
+      "kind": "imaging",
+      "category": "Obstetric",
+      "name": "Cardiotocography",
+      "report": "Baseline 132 bpm variability ลดลง (ต่ำกว่า 5 bpm) มี late deceleration ซ้ำๆ fetal compromise น่าจะจาก placental insufficiency และ hypoxia ของแม่ช่วงชัก ดีขึ้นหลังแม่ stable ซึ่งเป็นเหตุผลให้ stabilize แม่ก่อน",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "ct1",
+      "kind": "imaging",
+      "category": "Imaging",
+      "name": "CT brain ไม่ฉีดสี",
+      "report": "ไม่มีเลือดออกในสมอง ไม่มี mass ไม่มี infarct มี low attenuation ที่ posterior white matter เข้าได้กับ PRES ทำ imaging ในเคสนี้เพราะคำบอกเล่าว่าชักแบบ focal onset และซึมนาน ไม่ใช่ routine ใน eclampsia ทั่วไป",
+      "imageUrl": "",
+      "abnormal": true
+    },
+    {
+      "id": "coag1",
+      "kind": "lab",
+      "category": "Coagulation",
+      "name": "Fibrinogen, INR",
+      "value": "Fibrinogen 2.2 g/L / INR 1.2",
+      "unit": "-",
+      "normalRange": "Fibrinogen 4.0-6.0 in pregnancy",
+      "abnormal": true,
+      "report": "Fibrinogen ต่ำสำหรับคนตั้งครรภ์ ระวังลุกลามเป็น DIC โดยเฉพาะถ้าเกิด abruption"
+    }
+  ],
+  "managementGraph": {
+    "nodes": [
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "choice": "Left lateral tilt, O2 และ suction",
+          "distractors": [
+            {
+              "label": "จับมัดแน่นๆ ให้หยุดชัก",
+              "feedback": "การมัดทำให้บาดเจ็บ จัด left lateral tilt กันอันตราย และ secure airway"
+            },
+            {
+              "label": "จับนอนหงายราบ",
+              "feedback": "นอนหงายทำให้มดลูกกด vena cava ใช้ left lateral tilt"
+            }
+          ],
+          "label": "จัดท่าตะแคงซ้าย airway, O2 และกันไม่ให้บาดเจ็บ",
+          "actions": [
+            "นอนตะแคงซ้าย",
+            "O2 15 L/min",
+            "Suction และป้องกัน airway",
+            "บุราวเตียง ไม่ผูกมัด"
+          ],
+          "doseMap": {
+            "นอนตะแคงซ้าย": "ลดการกด aorta และ vena cava จากมดลูก นอนหงายอย่างเดียวทำให้ BP ตกรุนแรงและเลือดไปเลี้ยงทารกแย่ลงได้"
+          }
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "choice": "MgSO4 4 g IV",
+          "distractors": [
+            {
+              "label": "Diazepam IV หยุดชัก",
+              "feedback": "MgSO4 ดีกว่า diazepam ในการกันชักซ้ำจาก eclampsia"
+            },
+            {
+              "label": "Load phenytoin",
+              "feedback": "ยาที่เลือกใน eclampsia คือ MgSO4 ไม่ใช่ phenytoin"
+            }
+          ],
+          "label": "MgSO4 ไม่ใช่ diazepam สำหรับการชักจาก eclampsia",
+          "actions": [
+            "MgSO4 IV loading dose",
+            "MgSO4 maintenance drip",
+            "ดู reflex, RR และ urine output"
+          ],
+          "doseMap": {
+            "MgSO4 IV loading dose": "4 g IV ใน 5 ถึง 15 นาที magnesium ดีกว่า diazepam และ phenytoin ทั้งรักษาและกันชักจาก eclampsia เป็นหนึ่งในหลักฐานที่แน่นที่สุดของสูติศาสตร์",
+            "MgSO4 maintenance drip": "1 g/h อย่างน้อย 24 ชม. หลังชักครั้งสุดท้ายหรือหลังคลอด แล้วแต่อันไหนช้ากว่า",
+            "ดู reflex, RR และ urine output": "Patellar reflex หายเป็น sign แรกของ toxicity ตามด้วยการหายใจถูกกด antidote คือ calcium gluconate 1 g IV ควรอยู่ข้างเตียง"
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 720,
+          "y": 200
+        },
+        "data": {
+          "choice": "Labetalol IV เป้า SBP 140 ถึง 150",
+          "distractors": [
+            {
+              "label": "ลด BP ลงถึง 110/70 เร็วๆ",
+              "feedback": "ลดเร็วทำให้เลือดไปรกน้อยลงและเป็นอันตรายต่อทารก ลดทีละน้อย"
+            },
+            {
+              "label": "กัดแคปซูล nifedipine อมใต้ลิ้น",
+              "feedback": "กัดแคปซูลทำให้ BP ตกเร็วแบบคาดเดาไม่ได้ ใช้ labetalol, hydralazine หรือ nifedipine กิน"
+            }
+          ],
+          "label": "คุม BP โดยไม่ลดเร็วเกิน",
+          "actions": [
+            "Labetalol IV",
+            "หรือ hydralazine IV",
+            "หรือ nifedipine กิน"
+          ],
+          "doseMap": {
+            "Labetalol IV": "20 mg IV ถ้า BP ยังสูงที่ 10 นาทีให้ 40 mg แล้วต่อด้วย 80 mg ทุก 10 นาที รวมไม่เกิน 300 mg เป้า SBP 140 ถึง 150 DBP 90 ถึง 100",
+            "หรือ hydralazine IV": "5 mg IV ทุก 20 นาที ทำให้แม่ BP ตกและ fetal distress มากกว่า labetalol อย่าลด BP แบบทันที เพราะเลือดไปรกไม่มี autoregulation ลดเร็วทำให้ทารกแย่"
+          }
+        }
+      },
+      {
+        "id": "req4",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "choice": "Fluid 80 mL/h และ betamethasone",
+          "distractors": [
+            {
+              "label": "ให้ IV fluid เยอะๆ เพิ่มเลือดไปรก",
+              "feedback": "Pre-eclampsia มี capillary รั่ว fluid เกินทำให้ pulmonary edema จำกัดที่ 80 mL/h"
+            },
+            {
+              "label": "ไม่ต้องให้ steroid เพราะจะคลอดแล้ว",
+              "feedback": "ที่ 34 สัปดาห์ steroid ช่วยให้ปอดทารกพร้อมขึ้น ให้ถ้ามีเวลา"
+            }
+          ],
+          "label": "จำกัด fluid และให้ antenatal corticosteroid",
+          "actions": [
+            "จำกัด IV fluid รวม 80 mL/h",
+            "บันทึก I/O เคร่งครัด urine output ทุกชั่วโมง",
+            "Betamethasone IM กระตุ้นปอดทารก"
+          ],
+          "doseMap": {
+            "จำกัด IV fluid รวม 80 mL/h": "Fluid overload จนเกิด pulmonary edema เป็นสาเหตุการเสียชีวิตของแม่ที่สำคัญใน pre-eclampsia อดใจอย่า bolus เพราะปัสสาวะน้อย",
+            "Betamethasone IM กระตุ้นปอดทารก": "12 mg IM สอง dose ห่างกัน 24 ชม. ให้ dose แรกตอนนี้ แต่อย่าเลื่อนการคลอดเพื่อรอ dose ที่สองถ้าแม่แย่ลง"
+          }
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "แม่ stable",
+          "outcomeType": "improved",
+          "narrative": "ไม่ชักอีกหลังได้ magnesium BP ลดลงเป็น 152/96 ใน 40 นาทีด้วย labetalol GCS ดีขึ้นเป็น 14 FHR variability ดีขึ้นเมื่อแม่ stable ซึ่งแสดงหลักการ stabilize แม่ แล้วลูกมักตามมา",
+          "vitalChanges": {
+            "hr": 94,
+            "sbp": 152,
+            "dbp": 96,
+            "rr": 18,
+            "spo2": 97,
+            "gcs": 14
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 1440,
+          "y": 420
+        },
+        "data": {
+          "label": "อธิบายการตัดสินใจเรื่องคลอดกับคนไข้โดยตรง และไม่โทษ รพ.สต. ต่อหน้าเธอ (Empathy)",
+          "ethicalValue": 20,
+          "narrative": "BP ของเธอถูกบันทึกว่าสูงสองครั้งที่ รพ.สต. แต่ถูกบอกว่าเป็นความกังวล แม่ของเธออยู่ที่ทางเดินและอยากรู้ว่าใครผิด พอเธอรู้สึกตัวดี หมอบอกเธอเองว่าการคลอดคือการรักษาเดียวของภาวะนี้ ลูกจะคลอดที่ 34 สัปดาห์และมีแนวโน้มจะดีมาก และนี่ไม่ใช่เรื่องที่เธอทำเพราะกินอะไรผิด กับครอบครัวหมอบอกว่าค่า BP ที่พลาดไปจะได้รับการทบทวนอย่างเหมาะสม และหมอยื่นเรื่องทบทวนเองวันรุ่งขึ้น แทนการกล่าวหากันที่ทางเดิน พี่พิมสังเกตว่าทั้งสองส่วนถูกต้อง และคนส่วนใหญ่ทำได้แค่ส่วนเดียว"
+        }
+      },
+      {
+        "id": "req5",
+        "type": "required",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "distractors": [
+            {
+              "label": "ตั้งครรภ์ต่อถึง 37 สัปดาห์พร้อม monitor",
+              "feedback": "Eclampsia เป็น indication ให้คลอดเมื่อแม่ stable แล้ว"
+            },
+            {
+              "label": "หยุด magnesium ทันทีหลังคลอด",
+              "feedback": "ความเสี่ยงชักยังมีหลังคลอด ให้ magnesium ต่อ 24 ชม."
+            }
+          ],
+          "label": "คลอด การรักษา definitive อย่างเดียว",
+          "actions": [
+            "เรียกทีมสูติฯ และทีมทารกแรกเกิดด่วน",
+            "คลอดเมื่อแม่ stable แล้ว",
+            "ให้ Mg ต่อระหว่างและหลังคลอด",
+            "ให้วิสัญญีประเมิน platelet ต่ำจำกัดทางเลือก neuraxial"
+          ],
+          "doseMap": {
+            "คลอดเมื่อแม่ stable แล้ว": "Stabilize ก่อนแล้วค่อยคลอด การคลอดตอนแม่ยังชักและ BP สูงมากเพิ่มการเสียชีวิตของแม่ ที่ 34 สัปดาห์ร่วมกับ HELLP และ fetal compromise การรอคลอดไม่ใช่ทางเลือก"
+          }
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1920,
+          "y": 200
+        },
+        "data": {
+          "label": "คลอดและช่วงหลังคลอดทันที",
+          "outcomeType": "improved",
+          "narrative": "C/S ภายใต้ GA เพราะ platelet ต่ำ ทารกชายมีชีพ 1980 g Apgar 6 และ 9 admit NICU platelet ต่ำสุด 42 วันที่ 2 แล้วกลับขึ้น ให้ magnesium ต่อ 24 ชม. หลังคลอด ซึ่งเป็นช่วงที่การชักจาก eclampsia เกิดจริงราวหนึ่งในสาม",
+          "vitalChanges": {
+            "hr": 88,
+            "sbp": 142,
+            "dbp": 88,
+            "rr": 16,
+            "spo2": 98,
+            "gcs": 15
+          }
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 2160,
+          "y": 200
+        },
+        "data": {
+          "label": "Disposition",
+          "outcomeType": "resolved",
+          "narrative": "D/C วันที่ 6 ด้วยยาลด BP ชนิดกิน นัดตรวจหลังคลอด 6 สัปดาห์ ได้คำปรึกษาเรื่องโอกาสเป็นซ้ำราว 15% และให้ aspirin ตั้งแต่ 12 สัปดาห์ในครรภ์หน้า ลูกกลับบ้านที่ 3 สัปดาห์ ค่า BP สองครั้งที่ถูกมองข้ามได้รับการทบทวนอย่างเป็นทางการ และ รพ.สต. ปรับเกณฑ์การส่งต่อ",
+          "vitalChanges": {
+            "hr": 82,
+            "sbp": 132,
+            "dbp": 82,
+            "rr": 16,
+            "spo2": 99,
+            "gcs": 15
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "req2"
+      },
+      {
+        "id": "e3",
+        "source": "req2",
+        "target": "req3"
+      },
+      {
+        "id": "e4",
+        "source": "req3",
+        "target": "req4"
+      },
+      {
+        "id": "e5",
+        "source": "req4",
+        "target": "out1"
+      },
+      {
+        "id": "e6",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e7",
+        "source": "ethical_1",
+        "target": "req5"
+      },
+      {
+        "id": "e_skip",
+        "source": "out1",
+        "target": "req5"
+      },
+      {
+        "id": "e8",
+        "source": "req5",
+        "target": "out2"
+      },
+      {
+        "id": "e9",
+        "source": "out2",
+        "target": "out3"
+      }
+    ]
+  }
+}

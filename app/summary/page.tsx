@@ -5,138 +5,154 @@ import { useRouter } from "next/navigation";
 import { useERStore } from "@/lib/erStore";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { PixelButton } from "@/components/ui/PixelButton";
+import { PixelIcon } from "@/components/ui/PixelIcon";
+import { PixelPortrait } from "@/components/game/PixelPortrait";
 import { audio } from "@/lib/audio";
 import { music } from "@/lib/music";
 import { motion } from "framer-motion";
+import { NPCS } from "@/lib/npcs";
+import { phaseForDay, Phase } from "@/lib/world/maps";
+import { patientFor } from "@/lib/patients";
+import { requestFor } from "@/lib/requests";
+
+/** Whoever is looking out for you at this point in the story signs off the day */
+const MENTOR: Record<Phase, string> = { rama1: "bob", korat: "ek", lovely: "kit", rama2: "pim" };
+
+const GRADE_TH: Record<string, { text: string; good: boolean }> = {
+  clean: { text: "ถูกทุกขั้น", good: true },
+  minor: { text: "พลาด 1", good: true },
+  poor: { text: "รอด แต่ดูแลได้ดีกว่านี้", good: false },
+  critical: { text: "อาการแย่ลง", good: false },
+};
+
+const SIGNOFF = {
+  none: { en: "A quiet day, or a hiding day? Tomorrow, find me before lunch.", th: "วันนี้ไม่เห็นรับเคสเลยนะ พรุ่งนี้มาหาพี่ก่อนเที่ยง เดี๋ยวพาดูเอง" },
+  some: { en: "Your patients went home in good shape. Sleep, and come back tomorrow.", th: "คนไข้วันนี้เรียบร้อยดี กลับไปนอนเถอะ พรุ่งนี้เจอกัน" },
+  many: { en: "That was a real shift. Go eat something warm.", th: "เวรนี้หนักจริง แวะหาอะไรอุ่นๆ กินก่อนนอนนะ" },
+  fainted: { en: "We found you asleep on the supply shelf. Tea from the kettle and a sit on the bench both help.", th: "เจอน้องหลับอยู่บนชั้นวางของ พรุ่งนี้แวะชงชาหรือออกไปนั่งพักบ้างนะ อย่าฝืน" },
+};
+
+function CountUp({ to, prefix = "", delay = 0 }: { to: number; prefix?: string; delay?: number }) {
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const start = performance.now() + delay;
+    const step = (now: number) => {
+      const t = Math.max(0, Math.min(1, (now - start) / 700));
+      setN(Math.round(to * (1 - Math.pow(1 - t, 3))));
+      if (t < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [to, delay]);
+  return <>{prefix}{n}</>;
+}
 
 export default function SummaryPage() {
   const router = useRouter();
-  const { shiftStats, energy, clockMinutes, restoreEnergy, activeQuests, completeQuest, currentDay, language } = useERStore();
+  const { shiftStats, clockMinutes, restoreEnergy, activeQuests, completeQuest, currentDay, language } = useERStore();
   const [showNext, setShowNext] = useState(false);
-  const [showRoast, setShowRoast] = useState(false);
-  const isEndOfEpisode = currentDay === 6 || currentDay === 11 || currentDay === 16 || currentDay === 31;
+  const [showNote, setShowNote] = useState(false);
+  // Read before the overnight rest refills it: an empty tank means the shift ended in a faint.
+  const [fainted] = useState(() => useERStore.getState().energy <= 0);
+  const isEndOfEpisode = [6, 11, 16, 26, 31].includes(currentDay);
+  const tr = (en: string, th: string) => (language === "th" ? th : en);
+  const finishedDay = Math.max(1, currentDay - 1);
+  const mentor = NPCS[MENTOR[phaseForDay(finishedDay)]];
 
   useEffect(() => {
-    // Fade to the comforting 'home' track on shift end
-    music.fadeToTrack('home', 3.0);
-
-    // Play cash register sound when summary loads
-    if (shiftStats.cashEarned > 0 || shiftStats.xpEarned > 0) {
-      setTimeout(() => audio.playCashRegister(), 500);
-    }
-    
-    // Automatically restore energy fully after sleeping/ending shift
+    music.fadeToTrack("home", 3.0);
+    if (shiftStats.cashEarned > 0 || shiftStats.xpEarned > 0) setTimeout(() => audio.playCashRegister(), 700);
     setTimeout(() => {
-      // Check if lounge upgrade is owned to restore 120 instead of 100
-      const hasLounge = useERStore.getState().hospitalUpgrades.includes('upg_lounge');
-      restoreEnergy(hasLounge ? 120 : 100); 
+      const hasLounge = useERStore.getState().hospitalUpgrades.includes("upg_lounge");
+      restoreEnergy(hasLounge ? 120 : 100);
     }, 100);
+    if (shiftStats.casesTreated > 0 && activeQuests.includes("q_first_shift")) completeQuest("q_first_shift");
+    const a = setTimeout(() => setShowNote(true), 1400);
+    const b = setTimeout(() => setShowNext(true), 2200);
+    return () => { clearTimeout(a); clearTimeout(b); };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    // Trigger First Shift Quest
-    if (shiftStats.casesTreated > 0 && activeQuests.includes('q_first_shift')) {
-      completeQuest('q_first_shift');
-    }
+  const hours = Math.floor(clockMinutes / 60);
+  const tier = fainted ? "fainted" : shiftStats.casesTreated === 0 ? "none" : shiftStats.casesTreated <= 2 ? "some" : "many";
 
-    setTimeout(() => setShowRoast(true), 1500);
-    setTimeout(() => setShowNext(true), 3500);
-  }, [shiftStats, restoreEnergy, activeQuests, completeQuest]);
-
-  const shiftDurationHours = Math.floor(clockMinutes / 60);
+  const rows = [
+    { icon: "sun", label: "อยู่เวร", value: <><CountUp to={hours} delay={300} /> {tr("h", "ชม.")}</> },
+    { icon: "bed", label: "คนไข้ที่ดู", value: <CountUp to={shiftStats.casesTreated} delay={600} /> },
+    { icon: "quest", label: "XP ที่ได้", value: <CountUp to={Math.round(shiftStats.xpEarned)} prefix="+" delay={900} /> },
+    { icon: "coin", label: "เหรียญที่ได้", value: <CountUp to={shiftStats.cashEarned} prefix="+" delay={1200} /> },
+  ];
+  // The day's notice-board request, done or let go
+  if (requestFor(finishedDay)) {
+    const done = (useERStore.getState().requestsDone ?? []).includes(finishedDay);
+    rows.push({ icon: "log", label: "งานจากบอร์ด", value: <span className={done ? "text-[#3f8a48]" : "text-[#86522e] text-[18px]"}>{done ? "✓" : "ไม่ทัน"}</span> });
+  }
 
   return (
     <PageTransition>
-      <div className="w-full h-[100dvh] bg-[#0d1117] text-white font-pixel flex flex-col items-center justify-center p-6 relative">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900 to-black pointer-events-none" />
-        
-        <motion.div 
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="bg-black border-4 border-[#30363d] rounded-xl p-8 shadow-[0_0_30px_rgba(0,0,0,0.8)] w-full max-w-sm relative z-10"
-        >
-          <h1 className="text-3xl text-center text-pixel-gold mb-8 drop-shadow-md">{language === 'th' ? 'สรุปผลเข้าเวร' : 'SHIFT SUMMARY'}</h1>
+      <div className="w-full h-[100dvh] cozy-night text-pixel-text font-pixel flex flex-col items-center justify-center p-5 relative" data-testid="summary">
+        <motion.div initial={{ scale: 0.92, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.35 }} className="cozy-panel w-full max-w-sm p-4">
+          <h1 className="text-center text-[34px] leading-tight">จบเวรวันที่ {finishedDay}</h1>
 
-          <div className="space-y-6">
-            <motion.div 
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="flex justify-between items-center border-b border-gray-700 pb-2"
-            >
-              <span className="text-gray-400">{language === 'th' ? 'ระยะเวลาเวร:' : 'Shift Duration:'}</span>
-              <span className="text-lg">{shiftDurationHours} {language === 'th' ? 'ชั่วโมง' : 'Hours'}</span>
-            </motion.div>
-
-            <motion.div 
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 1.0 }}
-              className="flex justify-between items-center border-b border-gray-700 pb-2"
-            >
-              <span className="text-gray-400">{language === 'th' ? 'ผู้ป่วยที่รับรักษา:' : 'Patients Treated:'}</span>
-              <span className="text-lg text-pixel-primary">{shiftStats.casesTreated}</span>
-            </motion.div>
-
-            <motion.div 
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 1.5 }}
-              className="flex justify-between items-center border-b border-gray-700 pb-2"
-            >
-              <span className="text-gray-400">{language === 'th' ? 'XP ที่ได้:' : 'XP Gained:'}</span>
-              <span className="text-xl text-blue-400">+{shiftStats.xpEarned} XP</span>
-            </motion.div>
-
-            <motion.div 
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 2.0 }}
-              className="flex justify-between items-center"
-            >
-              <span className="text-gray-400">{language === 'th' ? 'ค่าตอบแทน:' : 'Paycheck:'}</span>
-              <span className="text-2xl text-pixel-success font-bold">${shiftStats.cashEarned}</span>
-            </motion.div>
+          <div className="mt-4 flex flex-col">
+            {rows.map((r, i) => (
+              <motion.div
+                key={r.label}
+                initial={{ x: -12, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.25 + i * 0.3 }}
+                className="flex items-center justify-between py-1.5 border-b-2 border-dashed border-[#e7d3a8] last:border-0"
+              >
+                <span className="flex items-center gap-2 text-[18px]"><PixelIcon name={r.icon} size={16} />{r.label}</span>
+                <span className="text-[24px] leading-none tabular-nums">{r.value}</span>
+              </motion.div>
+            ))}
           </div>
 
-          {showRoast && (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="mt-8 bg-gray-900 border-2 border-red-900 rounded p-4 relative"
-            >
-              <div className="flex gap-4">
-                <div className="w-16 h-16 bg-black border-2 border-red-500 rounded-md shadow-inner shrink-0 relative overflow-hidden">
-                  <div className="w-full h-full bg-[url(/assets/nurse.jpg)] bg-[length:300%_400%] bg-[-48px_-144px]" />
-                  <div className="absolute inset-0 bg-red-600/40 mix-blend-multiply" />
-                </div>
-                <div>
-                  <h3 className="text-red-500 font-bold mb-1">{language === 'th' ? 'อ.หมอ Grump' : 'Ajarn Grump'}</h3>
-                  <p className="text-sm text-gray-300 leading-tight">
-                    {shiftStats.casesTreated === 0 
-                      ? (language === 'th' ? "แอบไปนอนที่ห้องพักแพทย์มาทั้งคืนหรือไง? ไร้ประโยชน์จริงๆ หมอที่แท้จริงเขาไม่นอนกันหรอก" : "Did you sleep in the on-call room all night? Pathetic. Real doctors don't sleep.")
-                      : shiftStats.casesTreated <= 2 
-                      ? (language === 'th' ? "ทำได้แค่ผ่านเกณฑ์ขั้นต่ำเองเหรอ ฉันหวังว่าจะเห็นความตั้งใจมากกว่านี้จากนักศึกษาของรามาฯ นะ" : "You barely did the bare minimum. I expected more hustle from a Rama student.")
-                      : (language === 'th' ? "หึ... ก็ไม่เลว แต่ก็อย่าเพิ่งได้ใจไป ยังมีอีกหลายอย่างที่เธอไม่รู้" : "Hmph. Not terrible. But don't let it go to your head, there's a lot you still don't know.")}
-                  </p>
-                </div>
+          {(shiftStats.patients ?? []).length > 0 && (
+            <div className="mt-3 max-h-40 overflow-y-auto flex flex-col gap-1" data-testid="summary-patients">
+              <p className="text-[15px] leading-none text-[#86522e]">คนไข้วันนี้</p>
+              {(shiftStats.patients ?? []).map((sp, i) => {
+                const who = patientFor(sp.caseId);
+                const g = GRADE_TH[sp.grade] ?? GRADE_TH.poor;
+                return (
+                  <div key={i} className="flex items-baseline justify-between gap-2 text-[15px] leading-snug border-b border-dashed border-[#e7d3a8] last:border-0 py-0.5">
+                    <span className="min-w-0">
+                      <span>{sp.name ?? who?.name.th ?? sp.caseId}</span>
+                      <span className="block text-[13px] text-[#5b4148]">{who?.dx.th}</span>
+                    </span>
+                    <span className={`shrink-0 text-[13px] ${g.good ? "text-[#3f8a48]" : "text-[#a93c4b]"}`}>{g.text}</span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          {showNote && mentor && (
+            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-4 flex gap-2.5 items-start bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] p-2">
+              <div className="w-12 h-12 shrink-0 rounded-[3px] overflow-hidden border-2 border-[#3a2a2f]">
+                <PixelPortrait speaker={mentor.name.en} className="w-full h-full" />
+              </div>
+              <div>
+                <p className="text-[15px] leading-none text-[#86522e]">{mentor.name.th}</p>
+                <p className="text-[17px] leading-snug mt-1">{SIGNOFF[tier].th}</p>
               </div>
             </motion.div>
           )}
 
-          {showNext && (
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-10"
-            >
-              <PixelButton 
-                onClick={() => isEndOfEpisode ? router.push('/summary/year-end') : router.push('/hub')} 
-                className={`w-full py-4 text-xl shadow-lg ${isEndOfEpisode ? 'bg-purple-600 border-purple-400' : 'bg-blue-600 border-blue-400'}`}
-              >
-                {isEndOfEpisode ? (language === 'th' ? 'เลื่อนขึ้นปีใหม่' : 'CONTINUE TO NEXT YEAR') : (language === 'th' ? 'เลิกงาน' : 'CLOCK OUT')}
-              </PixelButton>
-            </motion.div>
-          )}
+          <div className="mt-4 h-12">
+            {showNext && (
+              <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+                <PixelButton
+                  onClick={() => (isEndOfEpisode ? router.push("/summary/year-end") : router.push("/hub"))}
+                  variant={isEndOfEpisode ? "plum" : "primary"}
+                  className="w-full py-2 text-[22px]"
+                  data-testid="summary-next"
+                >
+                  {isEndOfEpisode ? "เก็บกระเป๋า" : "กลับบ้าน"}
+                </PixelButton>
+              </motion.div>
+            )}
+          </div>
         </motion.div>
       </div>
     </PageTransition>

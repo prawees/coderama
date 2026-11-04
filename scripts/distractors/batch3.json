@@ -1,0 +1,792 @@
+{
+  "case_36": {
+    "req1": [
+      [
+        "Send her to CT pulmonary angiogram right away",
+        "She is shocked. A bedside echocardiogram can show right ventricular strain without moving an unstable patient."
+      ],
+      [
+        "Check a D-dimer and wait for the result",
+        "D-dimer cannot rule in PE and wastes time in a shocked patient. Use bedside echo."
+      ]
+    ],
+    "req2": [
+      [
+        "Give 2 litres of crystalloid rapidly",
+        "A failing right ventricle dilates further with large fluid volumes. Use a small bolus and early noradrenaline."
+      ],
+      [
+        "Give a GTN infusion to reduce afterload",
+        "Nitrates drop preload and worsen hypotension in massive PE."
+      ]
+    ],
+    "req3": [
+      [
+        "Wait for the CT before anticoagulating",
+        "With a high probability of massive PE and no contraindication, anticoagulate immediately."
+      ],
+      [
+        "Start warfarin tonight",
+        "Warfarin takes days to work and is prothrombotic at first. Use IV unfractionated heparin."
+      ]
+    ],
+    "req4": [
+      [
+        "Continue heparin alone and observe",
+        "Persistent shock in massive PE is an indication for systemic thrombolysis."
+      ],
+      [
+        "Insert an IVC filter as the main treatment",
+        "Filters do not treat the existing clot or the shock. Thrombolysis restores perfusion."
+      ]
+    ],
+    "req5": [
+      [
+        "Discharge on 2 weeks of enoxaparin",
+        "Provoked PE still needs at least 3 months of anticoagulation, and she needs ICU monitoring after thrombolysis."
+      ],
+      [
+        "Stop anticoagulation once she stabilises",
+        "Stopping early risks recurrence. Plan long-term anticoagulation."
+      ]
+    ]
+  },
+  "case_37": {
+    "req1": [
+      [
+        "Give aspirin 300 mg for presumed ACS",
+        "Tearing pain radiating to the back suggests dissection. Check bilateral blood pressures and pulses before antiplatelets."
+      ],
+      [
+        "Send him straight to the cath lab",
+        "Coronary angiography in dissection delays surgery and can be fatal. Confirm the diagnosis first."
+      ]
+    ],
+    "req2": [
+      [
+        "Start heparin for ACS",
+        "Anticoagulation in aortic dissection increases bleeding and death. Withhold it."
+      ],
+      [
+        "Thrombolyse for the ST changes",
+        "Thrombolysis in dissection is often fatal. ST changes can reflect coronary ostial involvement."
+      ]
+    ],
+    "req3": [
+      [
+        "Hydralazine alone to lower the pressure",
+        "A vasodilator alone causes reflex tachycardia, increasing shear stress. Beta blockade comes first."
+      ],
+      [
+        "No analgesia so that pain can be monitored",
+        "Pain drives catecholamines and blood pressure. Treat it aggressively."
+      ]
+    ],
+    "req4": [
+      [
+        "Medical management only for a type A dissection",
+        "Type A dissection is a surgical emergency with high mortality without surgery."
+      ],
+      [
+        "Wait for the dual antiplatelet effect to wear off before surgery",
+        "Delay increases mortality. Operate now and correct coagulation."
+      ]
+    ],
+    "req5": [
+      [
+        "Discharge with blood pressure target of 160 systolic",
+        "Strict control below 120 systolic reduces progression of the residual dissection."
+      ],
+      [
+        "No follow-up imaging needed after repair",
+        "The residual descending dissection needs serial imaging."
+      ]
+    ]
+  },
+  "case_38": {
+    "req1": [
+      [
+        "Lay him flat and give sedation for agitation",
+        "Lying flat with sedation risks aspiration of blood. Sit upright and consider early intubation."
+      ],
+      [
+        "Insert a nasogastric tube to lavage blood",
+        "Lavage does not help and risks variceal trauma. Protect the airway."
+      ]
+    ],
+    "req2": [
+      [
+        "Transfuse to a haemoglobin of 12 g/dL",
+        "Liberal transfusion raises portal pressure and increases rebleeding and mortality. Target 7 to 8 g/dL."
+      ],
+      [
+        "Give 4 litres of saline to restore the pressure",
+        "Large crystalloid volumes raise portal pressure and worsen bleeding. Transfuse restrictively."
+      ]
+    ],
+    "req3": [
+      [
+        "Propranolol IV for the varices",
+        "Beta blockers are for secondary prevention, not acute bleeding. They worsen hypotension. Use terlipressin or octreotide."
+      ],
+      [
+        "Skip antibiotics, there is no sign of infection",
+        "Prophylactic antibiotics reduce infection, rebleeding and death in cirrhotic GI bleeding."
+      ]
+    ],
+    "req4": [
+      [
+        "Endoscopy electively in 48 hours",
+        "Variceal bleeding needs endoscopy within 12 hours."
+      ],
+      [
+        "Sengstaken tube as first-line definitive treatment",
+        "Balloon tamponade is a temporary bridge if endoscopy fails, not definitive therapy."
+      ]
+    ],
+    "req5": [
+      [
+        "Sedate him with benzodiazepines for the confusion",
+        "Benzodiazepines worsen hepatic encephalopathy. Use lactulose."
+      ],
+      [
+        "No ascitic tap needed if he has no abdominal pain",
+        "SBP is often silent. A diagnostic tap is recommended in every cirrhotic admission."
+      ]
+    ]
+  },
+  "case_39": {
+    "req1": [
+      [
+        "Wait for a CT to confirm necrotising fasciitis",
+        "Imaging delays surgery. Pain out of proportion with systemic toxicity needs an immediate surgical consult."
+      ],
+      [
+        "Treat as simple cellulitis with oral antibiotics",
+        "Severe pain, fever and cirrhosis after seawater exposure suggest Vibrio necrotising infection."
+      ]
+    ],
+    "req2": [
+      [
+        "Restrict fluids because of the cirrhosis",
+        "He is in septic shock. Resuscitate with balanced crystalloid and add vasopressors."
+      ],
+      [
+        "Withhold cultures to avoid delaying antibiotics",
+        "Cultures can be taken quickly and should not delay antibiotics, but they matter."
+      ]
+    ],
+    "req3": [
+      [
+        "Flucloxacillin alone",
+        "Vibrio vulnificus needs specific cover such as doxycycline with a cephalosporin or carbapenem, plus toxin suppression."
+      ],
+      [
+        "Wait for culture results before antibiotics",
+        "Vibrio necrotising fasciitis kills within hours. Treat immediately."
+      ]
+    ],
+    "req4": [
+      [
+        "Continue antibiotics and observe the skin markings",
+        "Antibiotics cannot penetrate necrotic tissue. Surgical debridement is definitive."
+      ],
+      [
+        "Hyperbaric oxygen before surgery",
+        "Hyperbaric oxygen must not delay surgical debridement."
+      ]
+    ],
+    "req5": [
+      [
+        "Close the wound primarily after the first debridement",
+        "Serial debridement is usually needed. Use negative pressure therapy until clean."
+      ],
+      [
+        "Transfer to the general ward after theatre",
+        "He is on vasopressors and needs ICU support."
+      ]
+    ]
+  },
+  "case_40": {
+    "req1": [
+      [
+        "Wait for thyroid function tests before treating",
+        "Thyroid storm is a clinical diagnosis. Treat on the Burch-Wartofsky score."
+      ],
+      [
+        "Give aspirin for the fever",
+        "Aspirin displaces thyroid hormone from binding proteins and worsens the storm. Use paracetamol."
+      ]
+    ],
+    "req2": [
+      [
+        "Give iodine first to block hormone release",
+        "Beta blockade first controls adrenergic effects. Iodine must wait until after a thionamide."
+      ],
+      [
+        "Avoid beta blockers completely because she is pregnant",
+        "Propranolol is used in pregnancy for thyroid storm, with caution in cardiac failure."
+      ]
+    ],
+    "req3": [
+      [
+        "Iodine before the thionamide",
+        "Iodine before a thionamide provides substrate for more hormone synthesis. Thionamide first, iodine an hour later."
+      ],
+      [
+        "Hydrocortisone alone, skip the thionamide",
+        "Steroids help block peripheral conversion but do not stop hormone synthesis. A thionamide is essential."
+      ]
+    ],
+    "req4": [
+      [
+        "Ignore the urine infection until the storm settles",
+        "Infection is the precipitant. Treat it now."
+      ],
+      [
+        "No obstetric involvement until she is stable",
+        "At 22 weeks, fetal monitoring and obstetric involvement are part of resuscitation."
+      ]
+    ],
+    "req5": [
+      [
+        "Stop all drugs once the heart rate settles",
+        "Taper the regimen gradually under endocrinology to avoid relapse."
+      ],
+      [
+        "Radioactive iodine as definitive treatment now",
+        "Radioactive iodine is contraindicated in pregnancy."
+      ]
+    ]
+  },
+  "case_41": {
+    "req1": [
+      [
+        "Give thyroid hormone first, then manage the airway",
+        "Hypercapnic respiratory failure kills first. Support ventilation and check glucose."
+      ],
+      [
+        "Sedate with midazolam to settle her",
+        "Sedatives are cleared very slowly in myxoedema and worsen respiratory depression."
+      ]
+    ],
+    "req2": [
+      [
+        "Levothyroxine before hydrocortisone",
+        "Thyroid hormone increases cortisol clearance and can precipitate adrenal crisis. Give hydrocortisone first."
+      ],
+      [
+        "Skip steroids, she has no adrenal disease",
+        "Coexisting adrenal insufficiency is possible and dangerous. Give hydrocortisone first."
+      ]
+    ],
+    "req3": [
+      [
+        "Oral levothyroxine 50 micrograms daily",
+        "Gut absorption is unreliable in myxoedema coma. Use IV loading."
+      ],
+      [
+        "Wait for thyroid results before replacement",
+        "Myxoedema coma is clinical and lethal. Treat without delay."
+      ]
+    ],
+    "req4": [
+      [
+        "Active rewarming with a forced air blanket at high temperature",
+        "Active rewarming causes vasodilation and cardiovascular collapse. Use passive rewarming."
+      ],
+      [
+        "Withhold antibiotics, the fever is absent",
+        "Hypothermia masks fever. Treat the pneumonia that likely precipitated the coma."
+      ]
+    ],
+    "req5": [
+      [
+        "Correct sodium rapidly with hypertonic saline",
+        "Fast correction risks osmotic demyelination. Limit to 8 to 10 mmol/L per 24 hours."
+      ],
+      [
+        "Give sleeping tablets for agitation in ICU",
+        "Sedatives are cleared very slowly and can cause relapse. Avoid them."
+      ]
+    ]
+  },
+  "case_42": {
+    "req1": [
+      [
+        "Wait for the seizure to stop on its own",
+        "Status epilepticus causes neuronal damage. Act within the first minute."
+      ],
+      [
+        "Put something in his mouth to stop tongue biting",
+        "This causes dental and airway injury. Use a nasopharyngeal airway and suction."
+      ]
+    ],
+    "req2": [
+      [
+        "Diazepam 2 mg IV and wait 20 minutes",
+        "Underdosing is the commonest failure. Give a full dose and repeat once after 5 minutes."
+      ],
+      [
+        "Go straight to phenytoin without a benzodiazepine",
+        "Benzodiazepines are first line. Second line drugs follow two benzodiazepine doses."
+      ]
+    ],
+    "req3": [
+      [
+        "A third and fourth benzodiazepine dose",
+        "After two doses, more benzodiazepines add respiratory depression without benefit. Give a second line drug."
+      ],
+      [
+        "Oral phenytoin via nasogastric tube",
+        "Oral loading is too slow in status epilepticus. Use an IV second line agent."
+      ]
+    ],
+    "req4": [
+      [
+        "Keep trying more second line drugs on the ward",
+        "Refractory status needs intubation and anaesthetic infusion with EEG monitoring."
+      ],
+      [
+        "Paralyse with rocuronium and stop there",
+        "Paralysis hides the seizure but does not stop brain activity. You need anaesthesia and EEG."
+      ]
+    ],
+    "req5": [
+      [
+        "Lumbar puncture before the CT",
+        "Imaging first to exclude a mass lesion or raised pressure before LP."
+      ],
+      [
+        "Discharge on his old phenytoin dose",
+        "Find and treat the cause, and fix why he ran out."
+      ]
+    ]
+  },
+  "case_43": {
+    "req1": [
+      [
+        "Give the pethidine first, then examine",
+        "Red flags must be excluded before any decision. Opioids also blunt the exam."
+      ],
+      [
+        "Refuse to examine him because he is drug seeking",
+        "Patients with substance use disorder still get cauda equina and spinal infection. Examine properly."
+      ]
+    ],
+    "req2": [
+      [
+        "Give a smaller dose of pethidine as a compromise",
+        "Pethidine has toxic metabolites and no role here. Negotiating reinforces the pattern."
+      ],
+      [
+        "Prescribe tramadol to take home",
+        "A take-away opioid prescription feeds the pattern and risks harm. Decline clearly."
+      ]
+    ],
+    "req3": [
+      [
+        "Strict bed rest for 2 weeks",
+        "Bed rest worsens back pain outcomes. Encourage movement."
+      ],
+      [
+        "Prescribe diazepam as a muscle relaxant",
+        "Benzodiazepines have little benefit for back pain and add dependence risk with opioids."
+      ]
+    ],
+    "req4": [
+      [
+        "Ban him from the department",
+        "Bans push risk elsewhere. Refer to addiction and pain services."
+      ],
+      [
+        "Discharge with no referral",
+        "He likely has opioid use disorder. Offer agonist therapy and naloxone."
+      ]
+    ]
+  },
+  "case_44": {
+    "req1": [
+      [
+        "Treat as an electrical burn only and skip trauma imaging",
+        "He fell 5 metres after being thrown. Treat as blunt trauma as well."
+      ],
+      [
+        "No cardiac monitoring if the first ECG is normal",
+        "High voltage injury needs continuous monitoring for arrhythmia."
+      ]
+    ],
+    "req2": [
+      [
+        "Use the Parkland formula from the burn surface area",
+        "Surface burns grossly underestimate deep muscle damage in high voltage injury. Titrate to urine output."
+      ],
+      [
+        "Restrict fluids because the burns look small",
+        "Deep tissue injury causes rhabdomyolysis. He needs large volume fluid."
+      ]
+    ],
+    "req3": [
+      [
+        "Give potassium for the muscle weakness",
+        "Muscle breakdown releases potassium. Adding potassium is dangerous."
+      ],
+      [
+        "Treat the potassium only if above 7",
+        "ECG changes from hyperkalaemia need immediate calcium regardless of the exact level."
+      ]
+    ],
+    "req4": [
+      [
+        "Wait for burns centre transfer before fasciotomy",
+        "Compartment syndrome needs immediate decompression."
+      ],
+      [
+        "Fasciotomy without preparing for a potassium surge",
+        "Reperfusion releases potassium. Prepare treatment before release."
+      ]
+    ],
+    "req5": [
+      [
+        "Discharge once the urine clears",
+        "Delayed complications include necrotic muscle, cataract and neuropathy. Transfer to a burns centre."
+      ],
+      [
+        "No eye follow-up needed",
+        "High voltage injury causes delayed cataracts. Arrange ophthalmology review."
+      ]
+    ]
+  },
+  "case_45": {
+    "req1": [
+      [
+        "Observe the airway and intubate if stridor develops",
+        "Airway oedema progresses rapidly after inhalation injury. Intubate early before it closes."
+      ],
+      [
+        "Use a small tube to fit the swollen airway",
+        "Use the largest tube possible. Small tubes block with soot and limit bronchoscopy."
+      ]
+    ],
+    "req2": [
+      [
+        "Trust the pulse oximeter reading of 98%",
+        "Pulse oximetry reads carboxyhaemoglobin as oxyhaemoglobin. Use co-oximetry."
+      ],
+      [
+        "Give sodium nitrite for cyanide",
+        "Nitrites cause methaemoglobinaemia and worsen oxygen delivery with carbon monoxide. Use hydroxocobalamin."
+      ]
+    ],
+    "req3": [
+      [
+        "Include the erythema in the burn area estimate",
+        "Erythema is not counted. Including it overestimates fluid needs."
+      ],
+      [
+        "Leave the cooking oil on to protect the burns",
+        "Oil traps heat and hides the wounds. Remove it and cool."
+      ]
+    ],
+    "req4": [
+      [
+        "Wait for the burns centre to perform escharotomy",
+        "Circumferential chest burns restrict ventilation now. Escharotomy is urgent."
+      ],
+      [
+        "No analgesia because the eschar is insensate",
+        "Surrounding tissue is painful. Provide analgesia."
+      ]
+    ],
+    "req5": [
+      [
+        "Wet dressings during transfer",
+        "Wet dressings cause hypothermia. Use cling film and active warming."
+      ],
+      [
+        "Prophylactic IV antibiotics for transfer",
+        "Prophylactic antibiotics are not recommended for burns."
+      ]
+    ]
+  },
+  "case_46": {
+    "req1": [
+      [
+        "Keep him prone and restrained until sedation works",
+        "Prone restraint causes positional asphyxia and cardiac arrest. Turn him supine or lateral now."
+      ],
+      [
+        "Sit on his back to stop him moving",
+        "Weight on the back restricts breathing. This is a known cause of death."
+      ]
+    ],
+    "req2": [
+      [
+        "Haloperidol IV alone and wait 30 minutes",
+        "Rapid control is needed. Ketamine IM or midazolam plus droperidol works faster."
+      ],
+      [
+        "Continue physical restraint and avoid drugs",
+        "Ongoing struggle drives acidosis and hyperthermia. Rapid chemical sedation is needed."
+      ]
+    ],
+    "req3": [
+      [
+        "Send him to psychiatry now that he is calm",
+        "Sedation reveals a medical emergency. Check glucose, temperature and gas."
+      ],
+      [
+        "Leave him in a side room to sleep it off",
+        "Hyperthermia and acidosis can kill. Monitor fully."
+      ]
+    ],
+    "req4": [
+      [
+        "Give paracetamol for the temperature",
+        "Hyperthermia here is not a fever. It needs active cooling."
+      ],
+      [
+        "Restrict fluids to avoid pulmonary oedema",
+        "He has rhabdomyolysis and acidosis. He needs large volume crystalloid."
+      ]
+    ],
+    "req5": [
+      [
+        "Discharge to police custody when awake",
+        "Organic causes have not been excluded. Imaging, septic screen and CK monitoring are needed."
+      ],
+      [
+        "Skip the CT, it was clearly drugs",
+        "Head injury and infection are possible. Image the brain."
+      ]
+    ]
+  },
+  "case_47": {
+    "req1": [
+      [
+        "Use the time she was found as the onset time",
+        "Onset is the last known well time, which determines thrombolysis eligibility."
+      ],
+      [
+        "Skip glucose, the signs are clearly a stroke",
+        "Hypoglycaemia mimics stroke. Check glucose before thrombolysis."
+      ]
+    ],
+    "req2": [
+      [
+        "MRI brain before deciding on thrombolysis",
+        "Non-contrast CT is faster and sufficient to exclude haemorrhage."
+      ],
+      [
+        "Wait for full blood results before CT",
+        "Without a bleeding history, do not delay imaging or thrombolysis for blood results."
+      ]
+    ],
+    "req3": [
+      [
+        "Lower the pressure to 140/90 before thrombolysis",
+        "Overlowering reduces penumbra perfusion. Target below 185/110."
+      ],
+      [
+        "Sublingual nifedipine for the pressure",
+        "This causes unpredictable drops. Use IV labetalol or nicardipine."
+      ]
+    ],
+    "req4": [
+      [
+        "Give aspirin 300 mg instead of thrombolysis",
+        "She is within the window. Thrombolysis improves outcome. No antiplatelet for 24 hours after."
+      ],
+      [
+        "Wait for neurology review before thrombolysis",
+        "Every minute counts. Door to needle should be under 60 minutes."
+      ]
+    ],
+    "req5": [
+      [
+        "Wait for the alteplase infusion to finish before referral",
+        "Transfer for thrombectomy without waiting for the infusion to finish."
+      ],
+      [
+        "Thrombolysis alone is enough for a large vessel occlusion",
+        "Thrombectomy adds major benefit in large vessel occlusion."
+      ]
+    ],
+    "req6": [
+      [
+        "Restart the anticoagulant the same day",
+        "Early anticoagulation after infarct risks haemorrhagic transformation. Restart at the right interval."
+      ],
+      [
+        "Give her water to test swallowing",
+        "She needs a formal swallow assessment before any oral intake."
+      ]
+    ]
+  },
+  "case_48": {
+    "req1": [
+      [
+        "Lumbar puncture first to confirm the organism",
+        "Antibiotics must not be delayed. LP is contraindicated in septicaemic shock."
+      ],
+      [
+        "Wait for blood cultures before antibiotics",
+        "Delay increases mortality. Take cultures only if they cost no delay."
+      ]
+    ],
+    "req2": [
+      [
+        "Restrict fluids to prevent cerebral oedema",
+        "She has septicaemic shock with capillary leak. She needs bolus resuscitation."
+      ],
+      [
+        "Single bolus and no reassessment",
+        "Reassess after each bolus to guide further fluid."
+      ]
+    ],
+    "req3": [
+      [
+        "Keep giving fluid beyond 80 mL/kg before vasopressors",
+        "Persisting with fluid alone causes pulmonary oedema. Start vasoactive support early."
+      ],
+      [
+        "Wait for central access before starting adrenaline",
+        "Peripheral or intraosseous infusion is acceptable until central access."
+      ]
+    ],
+    "req4": [
+      [
+        "CT brain before treating",
+        "Do not delay treatment for imaging. Treat septicaemia now."
+      ],
+      [
+        "Give dexamethasone for meningitis",
+        "Dexamethasone is not indicated in meningococcal septicaemia."
+      ]
+    ],
+    "req5": [
+      [
+        "Give platelets and plasma to normalise the numbers",
+        "Blood products are guided by bleeding and fibrinogen, not numbers alone."
+      ],
+      [
+        "Leave public health notification for the morning team",
+        "Contacts need prophylaxis quickly. Notify public health now."
+      ]
+    ]
+  },
+  "case_49": {
+    "req1": [
+      [
+        "Lift the slab first, then attach monitoring",
+        "Release floods the circulation with potassium. Monitor and prepare before release."
+      ],
+      [
+        "Wait for the formal lab potassium",
+        "A point of care result or ECG changes are enough to act."
+      ]
+    ],
+    "req2": [
+      [
+        "Wait for the lab potassium before treating",
+        "Treat ECG changes immediately with calcium."
+      ],
+      [
+        "Give a potassium-sparing diuretic",
+        "This would raise potassium further."
+      ]
+    ],
+    "req3": [
+      [
+        "Hartmann's solution at high rate",
+        "Hartmann's contains potassium. Use normal saline."
+      ],
+      [
+        "Restrict fluids until extrication",
+        "Fluids should start before release to prevent kidney injury and arrest."
+      ]
+    ],
+    "req4": [
+      [
+        "Routine fasciotomy of both legs",
+        "Fasciotomy in necrotic muscle increases infection without benefit. Decide case by case."
+      ],
+      [
+        "Leave the legs and observe for a week",
+        "Necrotic muscle drives sepsis and hyperkalaemia. Surgical review now."
+      ]
+    ],
+    "req5": [
+      [
+        "Wait for creatinine to rise before dialysis",
+        "Hyperkalaemia and myoglobinuria may need early dialysis."
+      ],
+      [
+        "Discharge to the ward once potassium is normal",
+        "Potassium can rebound. He needs ICU monitoring."
+      ]
+    ]
+  },
+  "case_50": {
+    "req1": [
+      [
+        "Go and treat the first critical patient yourself",
+        "In a mass casualty incident, someone must command. Declare the incident and take a role."
+      ],
+      [
+        "Keep all current patients in the department",
+        "Clear the department to make room for incoming casualties."
+      ]
+    ],
+    "req2": [
+      [
+        "Fully resuscitate each patient at the door",
+        "Triage at the door does only lifesaving interventions. Full resuscitation blocks the flow."
+      ],
+      [
+        "Triage by arrival order",
+        "Use a fixed triage system based on physiology."
+      ]
+    ],
+    "req3": [
+      [
+        "Give theatre to the first patient who arrived",
+        "Resources go to those with the greatest expected benefit. Allocate explicitly."
+      ],
+      [
+        "Keep the blood for the most injured patient",
+        "Allocate blood by survival benefit, and call for regional supply."
+      ]
+    ],
+    "req4": [
+      [
+        "Triage once and do not repeat",
+        "Patients deteriorate. Retriage every 15 minutes."
+      ],
+      [
+        "Accept every ambulance that arrives",
+        "Once capacity is reached, divert to protect patients already here."
+      ]
+    ],
+    "req5": [
+      [
+        "Definitive repair of all injuries in the first operation",
+        "Damage control surgery saves lives when resources are scarce. Stage definitive care."
+      ],
+      [
+        "Fix all fractures on the first night",
+        "Stage orthopaedic fixation. Life threatening injuries take priority."
+      ]
+    ],
+    "req6": [
+      [
+        "Send everyone home without a debrief",
+        "A structured hot debrief identifies system failures and supports staff."
+      ],
+      [
+        "Debrief only to find who made mistakes",
+        "Debriefs focus on systems, not blame."
+      ]
+    ]
+  }
+}

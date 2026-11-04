@@ -3,111 +3,109 @@
 import { useEffect, useState, useRef } from "react";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { audio } from "@/lib/audio";
-
 import { CutsceneChoice } from "@/lib/StoryManager";
+import { PixelPortrait, hasPortrait } from "@/components/game/PixelPortrait";
+import { NPCS, npcIdForSpeaker, speakerLabel } from "@/lib/npcs";
+import { useERStore } from "@/lib/erStore";
+import { inVoice } from "@/lib/voice";
 
 interface DialogueBoxProps {
   speakerName?: string;
   portraitUrl?: string;
   text: string;
   choices?: CutsceneChoice[];
+  voice?: number;
   onComplete: (choice?: CutsceneChoice) => void;
+  /** Jump ahead to the next decision. Shown only when there is something to skip. */
+  onSkip?: () => void;
 }
 
-export function DialogueBox({ speakerName, portraitUrl, text, choices, onComplete }: DialogueBoxProps) {
-  const [displayedText, setDisplayedText] = useState("");
-  const [isFinished, setIsFinished] = useState(false);
-  const textIndex = useRef(0);
+/** Parchment dialogue card with a wooden portrait frame and a name ribbon. Text types out with a per-character voice. */
+export function DialogueBox({ speakerName, text: rawText, choices, voice, onComplete, onSkip }: DialogueBoxProps) {
+  const { playerName, playerGender, currentDay } = useERStore();
+  const text = inVoice(rawText, playerGender, currentDay);
+  const label = speakerLabel(speakerName, playerName);
+  const [shown, setShown] = useState(0);
+  const finished = shown >= text.length;
+  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const pitch = voice ?? (() => {
+    const id = npcIdForSpeaker(speakerName);
+    if (id && NPCS[id]) return NPCS[id].voice;
+    if (speakerName === "System" || speakerName === "Narrator") return 620;
+    return 800;
+  })();
 
   useEffect(() => {
-    // Reset state when text changes
-    setDisplayedText("");
-    setIsFinished(false);
-    textIndex.current = 0;
-
-    const timer = setInterval(() => {
-      if (textIndex.current < text.length) {
-        const currentIndex = textIndex.current;
-        setDisplayedText((prev) => prev + text.charAt(currentIndex));
-        textIndex.current++;
-        // Play blip sound occasionally
-        if (textIndex.current % 3 === 0) {
-           let pitch = 800; // default medium pitch
-           if (speakerName === 'Nurse Ann') pitch = 1200; // higher pitch
-           else if (speakerName === 'Attending') pitch = 400; // low pitch
-           else if (speakerName === 'System') pitch = 600; // robot-ish
-           audio.playDialogueBark(pitch);
-        }
-      } else {
-        setIsFinished(true);
-        clearInterval(timer);
-      }
-    }, 40); // typing speed
-
-    return () => clearInterval(timer);
-  }, [text]);
+    setShown(0);
+    if (timer.current) clearInterval(timer.current);
+    timer.current = setInterval(() => {
+      setShown((n) => {
+        if (n >= text.length) { if (timer.current) clearInterval(timer.current); return n; }
+        if (n % 3 === 0 && text.charAt(n).trim()) audio.playDialogueBark(pitch + ((n * 37) % 120) - 60);
+        return n + 1;
+      });
+    }, 28);
+    return () => { if (timer.current) clearInterval(timer.current); };
+  }, [text, pitch]);
 
   const handleNext = () => {
-    if (!isFinished) {
-      // Skip typing animation
-      setDisplayedText(text);
-      setIsFinished(true);
-      textIndex.current = text.length;
-    } else if (!choices || choices.length === 0) {
-      Haptics.impact({ style: ImpactStyle.Light });
+    if (!finished) { setShown(text.length); return; }
+    if (!choices || choices.length === 0) {
+      Haptics.impact({ style: ImpactStyle.Light }).catch(() => {});
       onComplete();
     }
   };
 
-  const handleChoice = (c: CutsceneChoice, e: React.MouseEvent) => {
-    e.stopPropagation();
-    Haptics.impact({ style: ImpactStyle.Heavy });
-    onComplete(c);
-  };
+  const isNarration = !label;
 
   return (
-    <div 
-      className="absolute bottom-4 left-4 right-4 bg-[#0d1117]/95 border-4 border-[#30363d] rounded-2xl p-4 flex gap-4 z-[100] shadow-[0_10px_30px_rgba(0,0,0,0.8)] cursor-pointer backdrop-blur-md transition-all"
+    <div
+      className="absolute bottom-2 left-2 right-2 z-[100] cursor-pointer animate-[cozyPop_0.18s_ease-out]"
       onClick={handleNext}
+      data-testid="dialogue"
     >
-      {portraitUrl && (
-        <div className="w-20 h-20 bg-gray-900 border-4 border-[#1f6feb] rounded-xl flex-shrink-0 shadow-[inset_0_0_10px_rgba(0,0,0,1)] overflow-hidden relative">
-          <img 
-            src={portraitUrl} 
-            alt={speakerName || 'Speaker'} 
-            className="absolute max-w-none pixelated" 
-            style={{ 
-              width: "300%", // 3 columns
-              height: "400%", // 4 rows
-              left: "-100%", // second column (index 1)
-              top: "0%" // first row (index 0)
-            }} 
-          />
+      {!isNarration && (
+        <div className="absolute -top-4 left-[5.5rem] z-10 cozy-tag px-2 py-0.5 text-base leading-none !bg-[#ffd66b]" data-testid="dialogue-speaker">
+          {label}
         </div>
       )}
-      
-      <div className="flex-1 flex flex-col justify-center font-pixel text-white pt-1">
-        {speakerName && (
-          <div className="text-[#58a6ff] text-lg mb-1 drop-shadow-md font-bold uppercase tracking-widest">{speakerName}</div>
-        )}
-        <div className="text-xl leading-relaxed tracking-wide min-h-[3rem] text-gray-200">
-          {displayedText}
-          {isFinished && (!choices || choices.length === 0) && <span className="animate-bounce inline-block ml-2 text-[#58a6ff]">▼</span>}
-        </div>
-        
-        {isFinished && choices && choices.length > 0 && (
-          <div className="mt-4 flex flex-col gap-2">
-            {choices.map((c, idx) => (
-              <button 
-                key={idx}
-                onClick={(e) => handleChoice(c, e)}
-                className="bg-[#21262d] hover:bg-[#30363d] border-2 border-[#58a6ff] text-white px-4 py-3 rounded-lg text-left transition-colors font-bold shadow-md active:bg-[#1f6feb]"
-              >
-                {c.text}
-              </button>
-            ))}
+      {onSkip && !(choices && choices.length) && (
+        <button
+          onClick={(e) => { e.stopPropagation(); audio.playClick(); onSkip(); }}
+          className="absolute -top-4 right-2 z-10 cozy-tag px-2 py-0.5 text-[15px] leading-none"
+          data-testid="dialogue-skip"
+        >
+          ข้าม ▸▸
+        </button>
+      )}
+      <div className="cozy-panel flex gap-3 p-3">
+        {hasPortrait(speakerName) && (
+          <div className="w-[4.5rem] h-[4.5rem] shrink-0 rounded-[4px] overflow-hidden border-[3px] border-[#3a2a2f] shadow-[inset_0_0_0_2px_#b47640]">
+            <PixelPortrait speaker={speakerName} className="w-full h-full" />
           </div>
         )}
+        <div className="flex-1 min-w-0 flex flex-col justify-center">
+          <p className={`text-[19px] leading-[1.15] min-h-[3.2rem] ${isNarration ? "text-[#5b4148]" : "text-[#3a2a2f]"}`} data-testid="dialogue-text">
+            {text.slice(0, shown)}
+            {finished && (!choices || choices.length === 0) && (
+              <span className="inline-block ml-1 text-[#d95763] animate-[cozyBob_0.8s_ease-in-out_infinite]">▼</span>
+            )}
+          </p>
+          {finished && choices && choices.length > 0 && (
+            <div className="mt-2 flex flex-col gap-1.5" data-testid="dialogue-choices">
+              {choices.map((c, idx) => (
+                <button
+                  key={idx}
+                  onClick={(e) => { e.stopPropagation(); Haptics.impact({ style: ImpactStyle.Heavy }).catch(() => {}); audio.playClick(); onComplete(c); }}
+                  className="cozy-btn cozy-btn-sun text-left px-3 py-1.5 text-[17px] leading-tight"
+                >
+                  <span className="text-[#d95763] mr-1">▸</span>{inVoice(c.text, playerGender, currentDay)}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
