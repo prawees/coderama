@@ -1,4 +1,32 @@
-# Handoff, 25 October 2026
+# Handoff, 4 November 2026
+
+## Decision 1 is settled: option (a)
+
+The user had already asked for customizable cases, real EKG and investigation images, and hopping from the 2D
+world into the 3D view, so this was built without merging the remaster engine. Everything below is additive.
+
+- **Designer** at `/designer` (`components/designer/`, Porames' editor). Saves on the device first
+  (`lib/customCases.ts`), and to Firestore `simulations` when signed in. Exports and imports `.coderama.json`.
+  Any story case opens as a template. Required and intervention nodes gained "What the player sees": button text,
+  teaching summary and wrong options. The designer's own labels are still English: authors only, not players.
+- **Adapter** `lib/customCase.ts`: `normalizeForDesigner`, `toGameCase`, `checkCase`. `npm run validate` now also
+  pushes all 51 story cases through the round trip (`scripts/check-custom.ts`). Timer nodes are dropped because the
+  bedside has no running clock, so a designer timer does nothing in play yet.
+- **Case library** at `/cases`, linked from the title menu: my cases, shared cases, and story cases to practise or
+  copy. Practice runs (`?practice=1`, or any custom case) give no XP, cost no energy and never change the save.
+- **Case screen.** PE is now tap-to-examine, one system at a time, in ABCDE order (`lib/examOrder.ts`). Designer
+  history graphs appear as questions that unlock follow-ups. `imageUrl` on an investigation or exam finding shows
+  the picture with tap to zoom: put the file in `public/` and write the path from the root, for example
+  `"imageUrl": "/cases/case_12/ecg.png"` in the English case JSON, then rebuild the case.
+- **3D bedside** (`components/exam3d/`), on by default with a `3D` toggle remembered per device. Tapping the patient
+  or a region button examines those systems. It draws in the clinic's colours, its monitor follows the case's
+  vitals, and if WebGL fails the case still plays without it. The CPR minigame does not jolt the 3D patient.
+
+**Not done:** the continuous 31-day run. It was stopped at game day 3 to free the machine, and that run was on the
+build before this port. Run `scripts/playtest/long.js 32` next, with nothing else heavy running: under load the old
+bot's start-shift click landed on the quest modal's fading backdrop. The bot now waits for it and retries. Serve the
+export with something sturdier than `python3 -m http.server`, which reset connections during testing.
+The 3D camera was reframed from the bed's side; have a person look at it and try it on a real phone.
 
 From the cloud sessions to local Claude Code. Everything below is committed on `claude/eloquent-dirac-6pegy7`
 and mirrored to `fix/playable-loop` (PR #1, prawees/coderama). The PR description is the long-form changelog.

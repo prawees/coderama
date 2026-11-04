@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, Suspense } from "react";
+import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useERStore } from "@/lib/erStore";
 import { CASE_DATA } from "@/lib/caseIndex";
@@ -18,24 +19,45 @@ import { PixelIcon } from "@/components/ui/PixelIcon";
 import { audio } from "@/lib/audio";
 import { PatientPortrait } from "@/components/game/PixelPortrait";
 import { patientFor } from "@/lib/patients";
+import { withBase } from "@/lib/basePath";
+import { toGameCase } from "@/lib/customCase";
+import { getLocalCase, getCloudCase } from "@/lib/customCases";
+import { sectionOf, regionOf, SECTION_LABEL, SECTION_ORDER, REGIONS, REGION_LABEL, BodyRegion } from "@/lib/examOrder";
+import type { LiveVitals } from "@/components/exam3d/BedsideScene";
 
-function CaseEngineContent({ params }: { params: { id: string } }) {
+// Loaded only when a case opens, so the clinic itself stays light on phones
+const Bedside3D = dynamic(() => import("@/components/exam3d/Bedside3D"), { ssr: false });
+
+const VIEW_KEY = "coderama.bedside3d";
+/** Image paths in case files are written from the site root; data: and https: links pass through */
+const imageSrc = (url: string) => (url.startsWith("/") ? withBase(url) : url);
+
+function CaseEngineContent({ params, customCase }: { params: { id: string }; customCase?: any }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const instanceId = searchParams.get('instanceId');
-  
-  const { activeCases, removeCase, addXp, addCurrency, lifetimeXp, deductEnergy, language } = useERStore();
+  // Practice runs (custom cases, or a story case from the library) never touch the save
+  const practice = !!customCase || searchParams.get('practice') === '1';
+  const home = practice ? '/cases' : '/hub';
+
+  const store = useERStore();
+  const { activeCases, removeCase, lifetimeXp, language } = store;
+  const noop = () => {};
+  const addXp = practice ? noop : store.addXp;
+  const addCurrency = practice ? noop : store.addCurrency;
+  const deductEnergy = practice ? noop : store.deductEnergy;
   const { RANK_THRESHOLDS } = require('@/lib/erStore');
   
   // Resolve active case and case definition key (supports both instanceId in URL and params.id)
-  const activeCase = activeCases.find(c => c.id === params.id || c.id === instanceId)
+  // A practice run never picks up a patient waiting in the saved shift
+  const activeCase = practice ? undefined : activeCases.find(c => c.id === params.id || c.id === instanceId)
     || activeCases.find(c => c.caseDataId === params.id);
   const currentInstanceId = activeCase ? activeCase.id : (instanceId || params.id);
   const caseKey = activeCase ? activeCase.caseDataId : params.id;
 
   // Dynamically load case data based on selected language
-  const caseData = CASE_DATA[caseKey];
-  const patient = patientFor(caseKey);
+  const caseData = customCase ?? CASE_DATA[caseKey];
+  const patient = customCase ? undefined : patientFor(caseKey);
   // A review case is someone new with a condition already met, under their own name
   const alias = activeCase?.alias;
   const patientName = alias ?? patient?.name.th;
@@ -54,7 +76,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   const [testSlips, setTestSlips] = useState(0);
   const slipTotal = mistakes + testSlips;
   const [supervised, setSupervised] = useState(false);
-  const isAboveRank = (rank: string) => (lifetimeXp || 0) < (RANK_THRESHOLDS[rank] ?? 0);
+  const isAboveRank = (rank: string) => !practice && (lifetimeXp || 0) < (RANK_THRESHOLDS[rank] ?? 0);
   const [triedWrong, setTriedWrong] = useState<Record<string, string[]>>({});
   const [feedback, setFeedback] = useState<{ kind: 'good' | 'bad'; title: string; body?: string } | null>(null);
   // Steps taken, with the slip count at each, so vitals carry forward and the debrief can replay the case
@@ -63,6 +85,19 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   // Tests are ordered, not handed out. Results on file (brought by the patient) need no order.
   const [ordered, setOrdered] = useState<string[]>([]);
   const [labNote, setLabNote] = useState<{ title: string; body?: string } | null>(null);
+  // Physical exam is done system by system, from the PE tab or from the patient in the 3D view
+  const [examined, setExamined] = useState<string[]>([]);
+  const [asked, setAsked] = useState<string[]>([]);
+  const [zoomed, setZoomed] = useState<{ src: string; alt: string } | null>(null);
+  const [show3D, setShow3D] = useState(true);
+  useEffect(() => {
+    try { if (localStorage.getItem(VIEW_KEY) === "off") setShow3D(false); } catch {}
+  }, []);
+  const toggle3D = () => {
+    audio.playClick();
+    setShow3D((on) => { try { localStorage.setItem(VIEW_KEY, on ? "off" : "on"); } catch {} return !on; });
+  };
+  const vitalsRef = useRef<LiveVitals>({ hr: 80, sbp: 120, dbp: 80, rr: 16, spo2: 98, temp: 37 });
 
   const addFloatingText = (text: string, type: 'good' | 'bad', x: number, y: number) => {
     const id = textIdCounter.current++;
@@ -122,6 +157,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
           vitals: normalizeVitals(caseData.vitals, n.data?.vitalChanges),
           // Steps without their own vitals keep whatever the monitor showed last
           ownVitals: Boolean(n.data?.vitalChanges && Object.keys(n.data.vitalChanges).length),
+          slip: n.data?.slip,
           narrative: n.data?.narrative || n.data?.label || '',
           label: n.data?.label || '',
           distractors: Array.isArray(n.data?.distractors) ? n.data.distractors : [],
@@ -177,18 +213,18 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   const currentNode = nodesMap[effectiveNodeId];
 
   useEffect(() => {
-    // If neither case definition nor active case is found, navigate back to hub
+    // If neither case definition nor active case is found, navigate back
     const hasData = Boolean(caseData);
     if (!hasData) {
-      router.push('/hub');
+      router.push(home);
     }
-  }, [caseData, router]);
+  }, [caseData, router, home]);
 
   if (!caseData) {
     return (
       <div className="p-8 text-center text-white font-pixel">
         <p className="text-xl text-yellow-400 mb-4">หาเคสนี้ไม่เจอ</p>
-        <PixelButton onClick={() => router.push('/hub')}>กลับ ER</PixelButton>
+        <PixelButton onClick={() => router.push(home)}>กลับ</PixelButton>
       </div>
     );
   }
@@ -256,7 +292,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
       deductEnergy(2);
       setIsShaking(true);
       setTimeout(() => setIsShaking(false), 500);
-      addFloatingText("-2 พลังงาน", "bad", window.innerWidth / 2, window.innerHeight / 2);
+      if (!practice) addFloatingText("-2 พลังงาน", "bad", window.innerWidth / 2, window.innerHeight / 2);
       setFeedback({ kind: 'bad', title: choice.text, body: choice.feedback });
       await Haptics.vibrate();
       return;
@@ -271,9 +307,10 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     if (!nextNode) return;
     let slipped = 0;
 
-    if (isDecision) {
+    // A branch that leads somewhere worse is judged below, even when the step also has wrong options
+    if (isDecision && !offPath(nextNode)) {
       const firstTry = !(triedWrong[effectiveNodeId]?.length);
-      if (firstTry) {
+      if (firstTry && !practice) {
         addFloatingText("+15 XP", "good", window.innerWidth / 2, window.innerHeight / 2);
         addXp(15);
       }
@@ -304,14 +341,14 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
           setIsShaking(true);
           await Haptics.vibrate();
           setTimeout(() => setIsShaking(false), 500);
-      } else if (nextSystolic > currentSystolic) {
+      } else if (nextSystolic > currentSystolic && !practice) {
           addFloatingText("+15 XP", "good", window.innerWidth / 2, window.innerHeight / 2);
           addXp(15);
       }
     }
 
     // Ethical choices shift karma
-    if (nextNode.type === 'ethicalChoice' || nextNode.ethicalValue !== undefined) {
+    if (!practice && (nextNode.type === 'ethicalChoice' || nextNode.ethicalValue !== undefined)) {
       const karmaChange = nextNode.ethicalValue || 0;
       if (karmaChange > 0) {
         addFloatingText(language === 'th' ? "คณะกรรมการโรงพยาบาลจะจำเรื่องนี้ไว้" : "The Hospital Board will remember that.", "good", window.innerWidth / 2, window.innerHeight / 2);
@@ -448,6 +485,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
 
   /** Today's notice-board request asks for one patient with every step right (above-rank steps done under supervision still count) */
   const meetsBoardRequest = (grade: Grade) => {
+    if (practice) return false;
     const st = useERStore.getState();
     const r = requestFor(st.currentDay);
     return !!r && r.kind === 'clean' && grade === 'clean' && !(st.requestsDone ?? []).includes(st.currentDay);
@@ -459,6 +497,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   };
 
   const finishCase = async (grade: Grade) => {
+    if (practice) { router.push(home); return; }
     const reward = rewardFor(grade);
     if (grade !== 'critical') {
       await Haptics.impact({ style: ImpactStyle.Heavy });
@@ -511,6 +550,24 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
     };
   })();
   const shownSystolic = parseInt(String(shownVitals.bp).split('/')[0]);
+  {
+    const [sys, dia] = String(shownVitals.bp).split('/').map((x: string) => parseInt(x) || 0);
+    vitalsRef.current = { hr: Number(shownVitals.hr) || 0, sbp: sys, dbp: dia, rr: Number(shownVitals.rr ?? 16), spo2: parseInt(String(shownVitals.o2)) || 0, temp: Number(shownVitals.temp ?? 37) };
+  }
+
+  const examFindings: any[] = Array.isArray(caseData.exam) ? caseData.exam : [];
+  const examRegions = Array.from(new Set(examFindings.filter((e) => examined.includes(e.id)).map((e) => regionOf(e.system))));
+  const examineRegion = (r: BodyRegion) => {
+    audio.playClick();
+    const ids = examFindings.filter((e) => regionOf(e.system) === r).map((e) => e.id);
+    setExamined((prev) => Array.from(new Set([...prev, ...ids])));
+    setActiveTab('exam');
+  };
+  // History questions from the designer unlock follow-ups; story cases show the written background instead
+  const history = caseData.historyGraph;
+  const historyNodes: any[] = history?.nodes || [];
+  const historyEdges: any[] = history?.edges || [];
+  const openQuestions = historyNodes.filter((n) => !historyEdges.some((e) => e.target === n.id) || historyEdges.some((e) => e.target === n.id && asked.includes(e.source)));
 
   const { choices } = buildChoices(effectiveNodeId, currentNode);
 
@@ -535,6 +592,11 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
 
   return (
     <>
+      {zoomed && (
+        <button onClick={() => setZoomed(null)} className="fixed inset-0 z-[300] bg-[#1c1522]/95 flex items-center justify-center p-3" aria-label="close image" data-testid="image-zoom">
+          <img src={zoomed.src} alt={zoomed.alt} className="max-w-full max-h-full rounded-[3px] border-[3px] border-[#3a2a2f]" style={{ imageRendering: 'auto' }} />
+        </button>
+      )}
       {activeMinigame && (
         <MinigameOverlay
           interventionName={activeMinigame.name}
@@ -584,6 +646,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                 {patient ? `${patientName} ${patient.age.th}` : caseData.title}
               </p>
               {alias && <span className="shrink-0 cozy-tag !bg-[#cfe6f0] px-1.5 py-0.5 text-[13px] leading-none" data-testid="review-tag">เคสทบทวน</span>}
+              {practice && <span className="shrink-0 cozy-tag !bg-[#ffd66b] px-1.5 py-0.5 text-[13px] leading-none" data-testid="practice-tag">ฝึก</span>}
               {slipTotal > 0 && (
                 <span className="shrink-0 cozy-tag !bg-[#f6c3c6] px-1.5 py-0.5 text-[13px] leading-none" data-testid="slip-count">{`พลาด ${slipTotal}`}</span>
               )}
@@ -597,7 +660,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
               <p className="text-[15px] leading-tight mt-1 line-clamp-2">{caseData.chiefComplaint}</p>
             )}
           </div>
-          <button onClick={() => router.push('/hub')} className="cozy-btn px-2 py-0.5 text-[15px] leading-none self-start" aria-label="back">✕</button>
+          <button onClick={() => router.push(home)} className="cozy-btn px-2 py-0.5 text-[15px] leading-none self-start" aria-label="back">✕</button>
         </div>
 
         {/* Bedside monitor */}
@@ -618,9 +681,24 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
           </div>
         </div>
 
+        {/* 3D bedside: optional, tap a body region to examine it */}
+        {show3D && (
+          <div className="relative flex-shrink-0 rounded-[6px] border-[3px] border-[#3a2a2f] overflow-hidden bg-[#f3e3c3]" style={{ height: 'min(210px, 26dvh)' }} data-testid="bedside-3d">
+            <Bedside3D vitalsRef={vitalsRef} appearance={caseData.patientAppearance} examined={examRegions} onRegion={examineRegion} />
+            <div className="absolute left-1 right-1 bottom-1 grid grid-cols-4 gap-1">
+              {REGIONS.map((r) => (
+                <button key={r} onClick={() => examineRegion(r)} data-testid={`region-${r}`}
+                  className={`cozy-btn py-1 px-0.5 text-[13px] leading-none ${examRegions.includes(r) ? 'cozy-btn-leaf' : ''}`}>{REGION_LABEL[r]}</button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Clipboard */}
         <div className="flex-1 min-h-0 flex flex-col relative">
           <div className="flex gap-1 px-1 relative z-10">
+            <button onClick={toggle3D} aria-pressed={show3D} data-testid="toggle-3d"
+              className={`flex-shrink-0 px-1.5 py-1 text-[14px] leading-none rounded-t-[5px] border-[3px] border-b-0 border-[#3a2a2f] ${show3D ? 'bg-[#ffd66b] text-[#4a3410]' : 'bg-[#6b4f78] text-[#fbf3e2]'}`}>3D</button>
             {tabs.map((tb) => (
               <button
                 key={tb.key}
@@ -636,17 +714,53 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
               <div className="space-y-3 text-[17px] leading-snug">
                 {caseData.chiefComplaint && <p><span className="text-[#86522e]">CC </span>{caseData.chiefComplaint}</p>}
                 <p>{caseData.background || 'ยังไม่มีใครจดอะไรไว้เลย'}</p>
+                {openQuestions.length > 0 && (
+                  <div className="space-y-1.5 pt-1" data-testid="history-questions">
+                    <p className="text-[15px] leading-snug text-[#86522e]">ซักประวัติเพิ่ม แตะคำถามทีละข้อ</p>
+                    {openQuestions.map((q) => asked.includes(q.id) ? (
+                      <div key={q.id} className="p-2 rounded-[4px] border-2 bg-[#fff6e3] border-[#e7d3a8]" data-testid="history-answer">
+                        <p className="text-[14px] leading-snug text-[#3f6f80]">{q.data?.question}</p>
+                        <p className="text-[16px] leading-snug mt-0.5">{q.data?.answer}</p>
+                      </div>
+                    ) : (
+                      <button key={q.id} onClick={() => { audio.playClick(); setAsked((p) => [...p, q.id]); }} className="cozy-btn w-full py-1.5 px-2.5 text-left text-[16px] leading-tight" data-testid="history-question">{q.data?.question}</button>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
             {activeTab === 'exam' && (
-              <div className="space-y-2">
-                {caseData.exam ? caseData.exam.map((e: any) => (
-                  <div key={e.id} className="p-2 rounded-[4px] border-2 bg-[#fff6e3] border-[#e7d3a8]">
-                    <h4 className="text-[15px] leading-none mb-1 text-[#86522e]">{e.system}</h4>
-                    <p className="text-[17px] leading-snug">{e.finding}</p>
+              <div className="space-y-2" data-testid="exam-tab">
+                {examFindings.length > 0 && (
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-[15px] leading-snug text-[#86522e]">แตะเพื่อตรวจทีละระบบ เรียงตาม ABCDE</p>
+                    {examined.length < examFindings.length && (
+                      <button onClick={() => { audio.playClick(); setExamined(examFindings.map((e) => e.id)); }} className="cozy-btn shrink-0 px-2 py-1 text-[14px] leading-none" data-testid="exam-all">ตรวจทั้งหมด</button>
+                    )}
                   </div>
-                )) : <p>{'ยังไม่ได้ตรวจร่างกาย'}</p>}
+                )}
+                {SECTION_ORDER.map((sec) => {
+                  const items = examFindings.filter((e) => sectionOf(e.system) === sec);
+                  if (!items.length) return null;
+                  return (
+                    <div key={sec} className="space-y-1.5">
+                      <h3 className="text-[15px] leading-none text-[#3f6f80] pt-1">{SECTION_LABEL[sec]}</h3>
+                      {items.map((e: any) => examined.includes(e.id) ? (
+                        <div key={e.id} className="p-2 rounded-[4px] border-2 bg-[#fff6e3] border-[#e7d3a8]" data-testid={`finding-${e.id}`}>
+                          <h4 className="text-[15px] leading-none mb-1 text-[#86522e]">{e.system}</h4>
+                          <p className="text-[17px] leading-snug">{e.finding}</p>
+                          {e.imageUrl && <button onClick={() => setZoomed({ src: imageSrc(e.imageUrl), alt: e.system })} className="block mt-1.5 w-full"><img src={imageSrc(e.imageUrl)} alt={e.system} className="max-h-32 w-auto rounded-[3px] border-2 border-[#3a2a2f]" style={{ imageRendering: 'auto' }} /></button>}
+                        </div>
+                      ) : (
+                        <button key={e.id} onClick={() => { audio.playClick(); setExamined((p) => [...p, e.id]); }} className="cozy-btn w-full py-1.5 px-2.5 text-left text-[16px] leading-tight flex items-center justify-between gap-2" data-testid={`examine-${e.id}`}>
+                          <span>{e.system}</span><span className="shrink-0 text-[13px] leading-none text-[#86522e]">ตรวจ</span>
+                        </button>
+                      ))}
+                    </div>
+                  );
+                })}
+                {examFindings.length === 0 && <p>{'ยังไม่ได้ตรวจร่างกาย'}</p>}
               </div>
             )}
 
@@ -686,6 +800,12 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                       ) : (
                         <p className="text-[16px] leading-snug mt-1">{inv.report}</p>
                       )}
+                      {/* Real ECG, film or scan when the case has one: set imageUrl in the case file or the designer */}
+                      {inv.imageUrl && (
+                        <button onClick={() => setZoomed({ src: imageSrc(inv.imageUrl), alt: inv.name })} className="block mt-1.5 w-full" data-testid={`image-${inv.id}`}>
+                          <img src={imageSrc(inv.imageUrl)} alt={inv.name} className="max-h-40 w-auto rounded-[3px] border-2 border-[#3a2a2f]" style={{ imageRendering: 'auto' }} />
+                        </button>
+                      )}
                     </div>
                   );
                 }) : <p>{'ไม่มีอะไรให้สั่งตรวจในเคสนี้'}</p>}
@@ -722,7 +842,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                         );
                       })}
 
-                      {effectiveNodeId === startNodeId && (
+                      {effectiveNodeId === startNodeId && !practice && (
                         <div className="grid grid-cols-2 gap-2 mt-1 pt-2 border-t-2 border-dashed border-[#e7d3a8]">
                           <button className="cozy-btn cozy-btn-berry py-1.5 px-1 text-[15px] leading-tight" onClick={callAttending}>
                             {'ตามอาจารย์มาช่วย (XP ครึ่งเดียว)'}
@@ -787,12 +907,17 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                             </div>
                           )}
                         </div>
+                        {!patient && caseData.diagnoses?.[0] && (
+                          <div className="mb-1 rounded-[4px] border-2 border-[#e7d3a8] bg-[#fff6e3] px-2.5 py-2 text-center" data-testid="diagnosis">
+                            <p className="text-[19px] leading-tight"><span className="text-[#86522e]">Dx </span>{caseData.diagnoses[0]}</p>
+                          </div>
+                        )}
                         {patient && (
                           <div className="mb-1 rounded-[4px] border-2 border-[#e7d3a8] bg-[#fff6e3] px-2.5 py-2 text-center" data-testid="diagnosis">
                             <p className="text-[19px] leading-tight"><span className="text-[#86522e]">Dx </span>{patient.dx.th}</p>
                             {alias ? (
                               <p className="text-[15px] leading-snug mt-1 text-[#3f6f80]">เคสทบทวน อาการเดียวกับที่หมอเคยเจอ ทำได้ดีจะได้ดาวในสมุดเคส</p>
-                            ) : grade !== 'critical' && patient.letter && (
+                            ) : !practice && grade !== 'critical' && patient.letter && (
                               <p className="text-[15px] leading-snug mt-1 text-[#86522e]">
                                 {`${patient.name.th} อาจเขียนจดหมายมาหาหมอตอนกลับถึงบ้าน`}
                               </p>
@@ -814,7 +939,7 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
                         >
                           <span className="block text-[21px] leading-none">{LABELS[grade].th}</span>
                           <span className="block text-[15px] leading-none mt-1.5 opacity-90">
-                            {`+${reward.xp} XP และ ${coins}`}{supervised ? ' (อาจารย์คุม)' : ''}
+                            {practice ? 'ฝึกซ้อม ไม่นับ XP และไม่กระทบเซฟ' : `+${reward.xp} XP และ ${coins}${supervised ? ' (อาจารย์คุม)' : ''}`}
                           </span>
                         </button>
                       </>
@@ -830,10 +955,35 @@ function CaseEngineContent({ params }: { params: { id: string } }) {
   );
 }
 
+/** A designer case, from this device first, then from the shared collection */
+function CustomCaseLoader({ params }: { params: { id: string } }) {
+  const router = useRouter();
+  const caseId = useSearchParams().get('caseId');
+  const [state, setState] = useState<{ game?: any; missing?: boolean }>({});
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      const raw = caseId ? (getLocalCase(caseId)?.data ?? await getCloudCase(caseId)) : null;
+      if (alive) setState(raw ? { game: toGameCase(raw) } : { missing: true });
+    })();
+    return () => { alive = false; };
+  }, [caseId]);
+  if (state.missing) {
+    return (
+      <div className="h-[100dvh] sm:h-full cozy-night flex flex-col items-center justify-center gap-3 p-6 text-center font-pixel" data-testid="case-missing">
+        <p className="cozy-tag px-3 py-1.5 text-[18px]">หาเคสนี้ไม่เจอ</p>
+        <button onClick={() => router.push('/cases')} className="cozy-btn px-4 py-2 text-[17px]">กลับคลังเคส</button>
+      </div>
+    );
+  }
+  if (!state.game) return <div className="h-[100dvh] sm:h-full cozy-night flex items-center justify-center font-pixel text-[#fff3df]">กำลังโหลด...</div>;
+  return <CaseEngineContent params={params} customCase={state.game} />;
+}
+
 export function CaseEngineClient({ params }: { params: { id: string } }) {
   return (
     <Suspense fallback={<div className="min-h-screen bg-pixel-bg text-pixel-text flex items-center justify-center font-pixel">กำลังโหลด...</div>}>
-      <CaseEngineContent params={params} />
+      {params.id === 'custom' ? <CustomCaseLoader params={params} /> : <CaseEngineContent params={params} />}
     </Suspense>
   );
 }

@@ -85,8 +85,13 @@ const T0 = Date.now(); const log = (...a) => fs.appendFileSync(LOG, ((Date.now()
     if (!(await p.getByTestId('start-shift').count())) { log('  NO START BUTTON'); await snap(`d${day}_nostart`); }
     await p.getByRole('button', { name: 'quests' }).click({ force: true }).catch(() => {}); await p.waitForTimeout(400);
     log(`  REQUEST ${(await p.getByTestId('daily-request').innerText().catch(() => '-')).replace(/\n/g, ' / ')}`);
-    await p.mouse.click(5, 5); await p.waitForTimeout(300);
-    await p.getByTestId('start-shift').click({ force: true }).catch(() => {}); await p.waitForTimeout(900);
+    await p.mouse.click(5, 5);
+    // The modal's backdrop swallows clicks while it fades out, so wait for it to go and confirm the shift began
+    await p.getByRole('button', { name: 'close' }).waitFor({ state: 'detached', timeout: 5000 }).catch(() => {});
+    for (let i = 0; i < 6 && await p.getByTestId('start-shift').count() && !(await p.getByTestId('dialogue').count()); i++) {
+      await p.getByTestId('start-shift').click({ timeout: 3000 }).catch(() => {}); await p.waitForTimeout(900);
+    }
+    if (await p.getByTestId('start-shift').count() && !(await p.getByTestId('dialogue').count())) log('  START SHIFT DID NOT RESPOND');
     const card2 = await p.getByTestId('day-card').innerText().catch(() => '');
     if (card2) log(`  DAYCARD ${card2.replace(/\n/g, ' / ')}`);
     await scene(`d${day}start`);

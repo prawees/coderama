@@ -11,14 +11,17 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
 
 - Work happens on `claude/eloquent-dirac-6pegy7` and is mirrored to `fix/playable-loop`, which is PR #1
   (prawees/coderama, base `main`). Push both: `git push origin HEAD && git push origin HEAD:fix/playable-loop`.
-- `remaster/clinical-engine` is a separate, unmerged branch with a 3D exam view and a case designer. Not part of PR #1.
+- On the local clone the remote is named `coderama` (`origin` there is Porames' toxico-learning, never push to it).
+- `remaster/clinical-engine` is a separate, unmerged branch with an older real-time engine. Not part of PR #1.
+  Its designer and 3D view have been ported to this branch; its engine has not.
 
 ## Commands
 
 - `npm run dev` for local play at http://localhost:3000 (the game starts at `/`, the clinic is `/hub`).
 - `npx tsc --noEmit` type check.
-- `npm run validate` checks every case graph, the review-name sex table, and walks every story scene
-  (31 days, 2 languages, 5 flag sets). Must print `0 error(s)` and `0 problem(s)`.
+- `npm run validate` checks every case graph, the review-name sex table, walks every story scene
+  (31 days, 2 languages, 5 flag sets), and pushes all 51 cases through the designer round trip.
+  Must print `0 error(s)` and `0 problem(s)` on every line.
 - `npm run build` writes the static export to `out/`. To play the export: `cd out && python3 -m http.server 8765`.
 - Playtest bots (Playwright, headless phone size) are in `scripts/playtest/`, see the section below.
 
@@ -35,6 +38,9 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
   letters. `lib/caseIndex.ts` (generated) imports all Thai case JSON.
 - Farm-game systems: `lib/requests.ts` (daily board request), `lib/casebook.ts`, `lib/weather.ts`,
   `BIRTHDAYS`/`ABSENT`/`ROSTER` in `lib/npcs.ts`, `lib/gifts.ts`, `lib/quests.ts`, `lib/letters.ts`.
+- Custom cases: `app/designer/` and `components/designer/` (Porames' editor), `app/cases/` (library),
+  `lib/customCase.ts` (designer format to game format, plus author checks), `lib/customCases.ts` (local and Firestore
+  storage). `components/exam3d/` is the 3D bedside. `lib/examOrder.ts` maps exam systems to ABCDE and body regions.
 - Music is written code, not audio files: `lib/musicCore.ts`, `lib/music.ts`. Sound effects and rain: `lib/audio.ts`.
 
 ## Editing content
