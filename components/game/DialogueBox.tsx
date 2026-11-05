@@ -93,7 +93,7 @@ export function DialogueBox({ speakerName, text: rawText, choices, voice, onComp
             )}
           </p>
           {finished && choices && choices.length > 0 && (
-            <div className="mt-2 flex flex-col gap-1.5" data-testid="dialogue-choices">
+            <div className="mt-2 flex flex-col gap-1.5 max-h-[38vh] overflow-y-auto" data-testid="dialogue-choices">
               {choices.map((c, idx) => (
                 <button
                   key={idx}

@@ -8,6 +8,10 @@ interface MinigameOverlayProps {
   interventionName: string;
   /** rate is the average compressions per minute the player kept */
   onComplete: (success: boolean, rate: number) => void;
+  /** Each compression, so the 3D patient behind the panel can move with it */
+  onCompress?: () => void;
+  /** Sit low and dim less, leaving the bedside view at the top of the screen in sight */
+  showBedside?: boolean;
 }
 
 /** Compressions to deliver, and how many at the start are warm-up and not scored */
@@ -24,7 +28,7 @@ const gaugePct = (rate: number) => Math.max(0, Math.min(100, ((rate - 60) / 100)
  * the rate from the gaps between them. Pass is an average of 100 to 120 per minute with most
  * compressions inside that window, the number every ACLS course drills.
  */
-export function MinigameOverlay({ interventionName, onComplete }: MinigameOverlayProps) {
+export function MinigameOverlay({ interventionName, onComplete, onCompress, showBedside }: MinigameOverlayProps) {
   const [taps, setTaps] = useState<number[]>([]);
   const [press, setPress] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; rate: number } | null>(null);
@@ -38,6 +42,7 @@ export function MinigameOverlay({ interventionName, onComplete }: MinigameOverla
     if (done.current) return;
     setPress(true);
     setTimeout(() => setPress(false), 90);
+    onCompress?.();
     audio.playClick();
     Haptics.impact({ style: ImpactStyle.Light }).catch(() => {});
     setTaps((prev) => {
@@ -71,7 +76,7 @@ export function MinigameOverlay({ interventionName, onComplete }: MinigameOverla
   const count = Math.min(taps.length, TOTAL);
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-[#1c1522]/75 font-pixel" data-testid="cpr-minigame">
+    <div className={`fixed inset-0 z-[200] flex justify-center font-pixel ${showBedside ? 'items-end pb-3 bg-[#1c1522]/25' : 'items-center bg-[#1c1522]/75'}`} data-testid="cpr-minigame">
       <div className="w-[90%] max-w-sm">
         <div className="cozy-panel flex flex-col items-center p-4 gap-3">
           <div className="w-full flex justify-between items-center text-[15px] leading-none text-[#86522e]">

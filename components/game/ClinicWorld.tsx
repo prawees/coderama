@@ -199,14 +199,14 @@ export function ClinicWorld(props: ClinicWorldProps) {
   const press = useCallback((d: Dir, on: boolean) => engineRef.current?.press(d, on), []);
   const releaseAll = useCallback(() => engineRef.current?.releaseAll(), []);
 
-  const padBtn = "w-11 h-11 flex items-center justify-center text-lg cozy-key active:translate-y-[2px]";
+  const padBtn = "pointer-events-auto w-11 h-11 flex items-center justify-center text-lg cozy-key active:translate-y-[2px]";
 
   return (
     <div className="relative w-full h-full overflow-hidden touch-none select-none" style={{ background: "#2a2030" }}>
       <div ref={containerRef} className="absolute inset-0 z-0" data-testid="world" />
 
-      {/* D-pad (keyboard and tap-to-walk also work) */}
-      <div className="absolute bottom-3 left-3 z-30 grid grid-cols-3 gap-1 opacity-90" onMouseLeave={releaseAll}>
+      {/* D-pad (keyboard and tap-to-walk also work). The gaps between the keys let taps through to the world. */}
+      <div className="pointer-events-none absolute bottom-3 left-3 z-30 grid grid-cols-3 gap-1 opacity-90">
         <div />
         <button aria-label="up" className={padBtn} onPointerDown={() => press("up", true)} onPointerUp={releaseAll} onPointerLeave={releaseAll}>▲</button>
         <div />
@@ -994,6 +994,10 @@ function createEngine(
     api,
     press: (d: Dir, on: boolean) => { keys[d] = on; if (on) { player.path = []; pendingInteract = null; } },
     releaseAll: () => { (Object.keys(keys) as Dir[]).forEach((k) => (keys[k] = false)); },
-    dispose: () => { app.ticker.remove(tick); app.renderer.off("resize", onResize); },
+    dispose: () => {
+      app.ticker.remove(tick);
+      app.renderer.off("resize", onResize);
+      if (typeof window !== "undefined") delete (window as any).__codeRamaWorld;
+    },
   };
 }

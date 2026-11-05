@@ -20,9 +20,9 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
 - `npm run dev` for local play at http://localhost:3000 (the game starts at `/`, the clinic is `/hub`).
 - `npx tsc --noEmit` type check.
 - `npm run validate` checks every case graph, the review-name sex table, walks every story scene
-  (31 days, 2 languages, 5 flag sets), and pushes all 51 cases through the designer round trip.
+  (31 days, 2 languages, 5 flag sets), and pushes all 51 cases through the designer round trip, and checks every board request and birthday can happen.
   Must print `0 error(s)` and `0 problem(s)` on every line.
-- `npm run build` writes the static export to `out/`. To play the export: `cd out && python3 -m http.server 8765`.
+- `npm run build` writes the static export to `out/`. To play the export: `node scripts/playtest/serve.js out 8765`.
 - Playtest bots (Playwright, headless phone size) are in `scripts/playtest/`, see the section below.
 
 ## Where things live
@@ -57,14 +57,20 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
 ## Playtest bots
 
 `scripts/playtest/long.js N` plays N days from a fresh save and logs every line, case and summary to
-`scripts/playtest/out/long/log.txt` (about 2 minutes a day). `features.js` checks the request, casebook, review
+`scripts/playtest/out/long/log.txt` (about a minute a day). `features.js` checks the request, casebook, review
 patient and birthdays on a seeded rain day. `rain_out.js` screenshots the courtyard on a rain and a dry day.
-They need a running export (`npm run build`, then serve `out/` on port 8765) and Playwright
+`custom.js` checks the case library, practice mode, the 3D bedside, the designer and custom-case play.
+`requests.js` plays the board requests and a birthday by tapping people in the world (it uses the read-only
+`window.__codeRamaWorld` hook for where they are on screen). `ONLY=gift|birthday|social|cat|menu` runs one scene,
+`TRACE=1` logs every tap.
+They need a running export (`npm run build`, then `node scripts/playtest/serve.js out 8765`) and Playwright
 (`npm i -D playwright && npx playwright install chromium`, or set `PW_MODULE` and `PW_CHROMIUM`).
 `BASE_URL` overrides the address.
 
 ## Gotchas
 
+- Do not use `python3 -m http.server` for bots: it resets connections under load and has no clean URLs.
+- Run `long.js` with the machine idle. It takes about 40 minutes for a full campaign.
 - Do not run `npm run build` while a bot is playing: it replaces `out/` under the server. Rebuild, then restart
   the server.
 - `pkill -f "pattern"` also kills the shell that runs it if the same command line contains the pattern.

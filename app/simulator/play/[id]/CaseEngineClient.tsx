@@ -98,6 +98,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
     setShow3D((on) => { try { localStorage.setItem(VIEW_KEY, on ? "off" : "on"); } catch {} return !on; });
   };
   const vitalsRef = useRef<LiveVitals>({ hr: 80, sbp: 120, dbp: 80, rr: 16, spo2: 98, temp: 37 });
+  const compressRef = useRef(-1e6);
 
   const addFloatingText = (text: string, type: 'good' | 'bad', x: number, y: number) => {
     const id = textIdCounter.current++;
@@ -600,6 +601,8 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
       {activeMinigame && (
         <MinigameOverlay
           interventionName={activeMinigame.name}
+          showBedside={show3D}
+          onCompress={() => { compressRef.current = performance.now(); }}
           onComplete={async (success, rate) => {
             setActiveMinigame(null);
             if (success) {
@@ -684,7 +687,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
         {/* 3D bedside: optional, tap a body region to examine it */}
         {show3D && (
           <div className="relative flex-shrink-0 rounded-[6px] border-[3px] border-[#3a2a2f] overflow-hidden bg-[#f3e3c3]" style={{ height: 'min(210px, 26dvh)' }} data-testid="bedside-3d">
-            <Bedside3D vitalsRef={vitalsRef} appearance={caseData.patientAppearance} examined={examRegions} onRegion={examineRegion} />
+            <Bedside3D vitalsRef={vitalsRef} compressRef={compressRef} appearance={caseData.patientAppearance} examined={examRegions} onRegion={examineRegion} />
             <div className="absolute left-1 right-1 bottom-1 grid grid-cols-4 gap-1">
               {REGIONS.map((r) => (
                 <button key={r} onClick={() => examineRegion(r)} data-testid={`region-${r}`}

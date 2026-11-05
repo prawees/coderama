@@ -185,6 +185,7 @@ export function toGameCase(input: any): any {
     patientAppearance: raw.patientAppearance, vitals,
     exam: raw.exam || [], investigations: raw.investigations || [],
     historyGraph: raw.historyGraph, managementGraph: { nodes: finalNodes, edges: finalEdges },
+    droppedTimers: srcNodes.filter((n) => n.type === "timer").length,
   };
 }
 
@@ -200,6 +201,7 @@ export function checkCase(game: any): CaseProblems {
   const byId = new Map(nodes.map((n) => [n.id, n]));
 
   if (!game?.title?.trim?.()) errors.push("ยังไม่ได้ตั้งชื่อเคส");
+  if (game?.droppedTimers) warnings.push(`Timer ${game.droppedTimers} อันไม่มีผลตอนเล่น เพราะข้างเตียงไม่มีนาฬิกาเดิน`);
   if (!game?.chiefComplaint?.trim?.()) warnings.push("ยังไม่มี chief complaint");
   if (!game?.diagnoses?.length) warnings.push("ยังไม่ได้ใส่ diagnosis ตอนจบเคสจะไม่มีเฉลย");
 

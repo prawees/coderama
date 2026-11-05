@@ -1,4 +1,4 @@
-# Handoff, 4 November 2026
+# Handoff, 6 November 2026
 
 ## Decision 1 is settled: option (a)
 
@@ -22,11 +22,33 @@ world into the 3D view, so this was built without merging the remaster engine. E
   or a region button examines those systems. It draws in the clinic's colours, its monitor follows the case's
   vitals, and if WebGL fails the case still plays without it. The CPR minigame does not jolt the 3D patient.
 
-**Not done:** the continuous 31-day run. It was stopped at game day 3 to free the machine, and that run was on the
-build before this port. Run `scripts/playtest/long.js 32` next, with nothing else heavy running: under load the old
-bot's start-shift click landed on the quest modal's fading backdrop. The bot now waits for it and retries. Serve the
-export with something sturdier than `python3 -m http.server`, which reset connections during testing.
-The 3D camera was reframed from the bed's side; have a person look at it and try it on a real phone.
+## Tested since
+
+- **Full campaign, first time on this build.** `long.js 32` played days 1 to 31 plus day 32 after the finale in one
+  sitting, about 38 minutes: 96 patients, all 51 cases seen, 45 of them as review patients, every summary and chapter
+  card reached, no page errors, no stray tags or dashes in the text. That run predates the gift, CPR and D-pad changes
+  below. Those were covered by the bots below rather than by another full run.
+- **Board requests and birthdays in play.** `requests.js` taps people in the world and passes 37 checks: buying at the
+  supply closet, gift, social and cat requests, exact payouts, birthday triple points, no tripling on a hated gift,
+  Ann off the floor on day 5. `npm run validate` now also checks that all 30 requests and 13 birthdays can happen.
+- **Custom cases.** `custom.js` passes: library, practice leaves the save alone, 3D view, designer, history, images,
+  wrong and harmful branches.
+
+## Fixed by testing
+
+- The gift menu listed only the three kinds you held most of, so a request for a fourth kind could not be completed.
+  It now lists every kind, the requested one on top, and scrolls.
+- The D-pad's empty corners swallowed taps. They now reach the world. A sleeping cat can still sit under a D-pad key;
+  walking next to it and pressing A works.
+- The world's debug hook is removed when the world unmounts, so it no longer throws on other screens.
+
+## Added
+
+- The 3D patient moves with each CPR compression, and the CPR panel sits low so the patient and monitor stay in view.
+- The designer warns that a timer node does nothing in play. Timers are still dropped: the bedside has no running clock.
+
+**Still needs a person:** try the 3D view and the CPR screen on a real phone. All of this was headless at phone size,
+with software WebGL. Nobody has heard the music or rain in these runs either.
 
 From the cloud sessions to local Claude Code. Everything below is committed on `claude/eloquent-dirac-6pegy7`
 and mirrored to `fix/playable-loop` (PR #1, prawees/coderama). The PR description is the long-form changelog.
@@ -55,14 +77,7 @@ final build) finished every day, both chapter cards and every summary with no pa
 
 ## Open decisions (need the user or the department)
 
-1. **3D view and designer cases.** The three.js scene and Porames' case designer (Firestore `simulations`)
-   are in `_legacy_v1/`, excluded from the build. The game plays only the 51 static cases. Options put to the
-   user, no answer yet:
-   - (a) Port the designer page, the adapter (`lib/clinical/model.ts`, `lib/clinical/customCases.ts` on
-     `remaster/clinical-engine`) and a runtime Firestore loader into this game, with `ExamSuite3D` as an
-     optional exam view. Recommended if the department will write its own cases.
-   - (b) Merge the remaster engine instead (heavy conflicts).
-   - (c) Leave both out and remove the unused three.js packages and STL assets.
+1. **3D view and designer cases.** Settled, see the top of this file.
 2. **DKA thresholds.** Case 9 uses the 2024 international numbers (K 3.5 and 5.0). If the department teaches
    the Thai CPG, change three lines in `scripts/thai/cases/case_09.txt` and rebuild that case.
 3. **Tuning that is a first guess:** rain days, birthdays, request rewards, casebook milestones, review-name
@@ -73,9 +88,5 @@ final build) finished every day, both chapter cards and every summary with no pa
 
 ## Good next steps
 
-- Whatever the user picks for decision 1.
-- Have a bot actually do the board requests (walk to an NPC and give a gift) and check birthdays in play. The bot
-  now only reads the request and plays cases. Tapping an NPC needs world coordinates from `ClinicWorld`.
-- Days 14 to 31 have not been played continuously since these changes. Run `scripts/playtest/long.js 31`.
 - Only the four worried-well cases flag unneeded tests (`"indicated": false`). Flagging low-value tests in the
   acute cases would make the lab-stewardship teaching real. That is a teaching call for the department.

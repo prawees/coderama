@@ -14,6 +14,8 @@ export interface BedsideProps {
   appearance?: { skinTone?: string; bmiFactor?: number; ageGroup?: string };
   examined: BodyRegion[];
   onRegion: (r: BodyRegion) => void;
+  /** performance.now() of the last chest compression */
+  compressRef?: React.MutableRefObject<number>;
 }
 
 const SPOTS: { id: BodyRegion; pos: [number, number, number]; r: number }[] = [
@@ -78,7 +80,7 @@ function Bed() {
   );
 }
 
-function Patient({ appearance, examined, onRegion, vitalsRef }: BedsideProps) {
+function Patient({ appearance, examined, onRegion, vitalsRef, compressRef }: BedsideProps) {
   const group = useRef<THREE.Group>(null);
   const t = useRef(0);
   const body = useLoader(STLLoader, withBase("/assets/standard_male_lowpoly.stl"));
@@ -98,7 +100,11 @@ function Patient({ appearance, examined, onRegion, vitalsRef }: BedsideProps) {
     if (!group.current) return;
     // The chest rises with the respiratory rate; no breathing at RR 0
     const rr = Math.max(0, vitalsRef.current.rr);
-    group.current.position.y = 0.4 + (rr > 0 ? Math.sin(t.current * (rr / 60) * Math.PI * 2) * 0.007 : 0);
+    const breath = rr > 0 ? Math.sin(t.current * (rr / 60) * Math.PI * 2) * 0.007 : 0;
+    // Each compression pushes the body into the mattress
+    const since = (performance.now() - (compressRef?.current ?? -1e6)) / 200;
+    const push = since >= 0 && since < 1 ? Math.sin(since * Math.PI) * 0.035 : 0;
+    group.current.position.y = 0.4 + breath - push;
   });
 
   return (

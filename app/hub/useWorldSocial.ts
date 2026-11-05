@@ -76,10 +76,13 @@ export function useWorldSocial(opts: {
   }
 
   function giftChoices(onGive: (giftId: string) => void, onSkip: () => void): CutsceneChoice[] | undefined {
-    const owned = Object.entries(useERStore.getState().gifts).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]);
+    // Every kind you own, with whatever the board is asking for on top: the list scrolls if it gets long
+    const wanted = requestFor(day)?.giftId;
+    const owned = Object.entries(useERStore.getState().gifts).filter(([, n]) => n > 0)
+      .sort((a, b) => Number(b[0] === wanted) - Number(a[0] === wanted) || b[1] - a[1]);
     if (!owned.length) return undefined;
     return [
-      ...owned.slice(0, 3).map(([id, n]) => ({
+      ...owned.map(([id, n]) => ({
         text: t(lang, `Give ${GIFTS[id]?.name.en ?? id} (${n})`, `ให้${GIFTS[id]?.name.th ?? id} (${n})`),
         onPick: () => onGive(id),
       })),
