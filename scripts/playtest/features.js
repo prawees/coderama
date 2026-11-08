@@ -4,6 +4,7 @@ const { chromium } = require(process.env.PW_MODULE || 'playwright');
 const LAUNCH = process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {};
 const BASE = process.env.BASE_URL || 'http://localhost:8765';
 const fs = require('fs');
+const { workup, pickDx } = require('./workup');
 const OUT = __dirname + '/out/feat'; fs.rmSync(OUT, { recursive: true, force: true }); fs.mkdirSync(OUT, { recursive: true });
 const base = JSON.parse(fs.readFileSync(__dirname + '/seed-state.json', 'utf8'));
 const LOC = __dirname + '/../../public/locales/th/';
@@ -87,8 +88,10 @@ function correctTexts(caseId) {
   await p.screenshot({ path: `${OUT}/8_review_case.png` });
   // play it right
   const good = correctTexts(caseId);
+  await workup(p);
   await p.getByRole('button', { name: 'รักษา', exact: true }).click({ force: true });
   for (let s = 0; s < 40 && !(await p.getByTestId('finish-case').count()); s++) {
+    if (await p.getByTestId('dx-option').count()) { log('DX', await pickDx(p, caseId)); continue; }
     if (await p.getByTestId('cpr-minigame').count()) { for (let i = 0; i < 16; i++) { await p.getByTestId('cpr-press').click({ force: true }).catch(() => {}); await p.waitForTimeout(545); } await p.waitForTimeout(1500); continue; }
     const btns = p.getByTestId('action-tab').locator('button.cozy-btn:not(.cozy-btn-berry):not(.cozy-btn-sky)');
     const texts = (await btns.allInnerTexts()).map((t) => t.replace(/อาจารย์คุม/, '').trim());

@@ -656,7 +656,8 @@ export default function HubPage() {
     addLog,
   });
 
-  const playerLook = useMemo(() => playerLookFrom(useERStore.getState().appearance, currentRankId), [currentRankId]);
+  const myStethoscope = useERStore((s) => s.myStethoscope);
+  const playerLook = useMemo(() => playerLookFrom(useERStore.getState().appearance, currentRankId), [currentRankId, myStethoscope]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleDoor = (target: MapId, spawn: { x: number; y: number }) => {
     audio.playFootstep();

@@ -1,5 +1,31 @@
 # Handoff, 8 November 2026
 
+## Workup before treatment, first meetings, the stethoscope (8 November, evening)
+
+- **Cases ask you to think first** (from Porames' playtest: "players just pick from the MCQ"). A case opens on the
+  history tab. When the case's `diagnoses` is a real differential (4 or more names, the answer first; 44 of 51 cases),
+  the treatment tab waits until the player has gathered two things (history, an exam system or a test) and picked a
+  working diagnosis from that list, shuffled. A wrong first pick is one slip and the player thinks again (the answer
+  is not shown); right first time is +20 XP. The debrief shows the first call and the other differentials. A case that
+  starts in arrest (BP 0/0 or HR 0) treats first and asks after the first step. Cases with a short problem list
+  (case_01 to case_07_vip) play as before. Numeric results already showed only the number; text reports (ECG, films)
+  still describe findings, and a few may name the diagnosis. Worth a pass by a clinician.
+- **Ten lines per character.** `lib/npcMore.ts` adds lines (10 at the first friendship level, 5 at each warmer
+  level) and a different line when you talk again the same day. The awkward ones from the user were rewritten
+  (Bob "อยู่แต่กายหยาบนะ", Somchai's door line, the day 1 automatic door).
+- **First meetings.** Talking to someone for the first time plays a short exchange and usually gives a welcome gift
+  (Ann a Thai tea, Ek his pocket handbook, Lung Suk dried fish for the cat...). Remembered as `<id>:meet` in
+  `heartEventsSeen`.
+- **The stethoscope.** Prof. Somchai's first meeting on day 1 sends you to the supply room (two new guide steps).
+  `components/game/StethoscopeStudio.tsx`: pick one of eight tubing colours and engrave up to 14 characters; the
+  camera zooms onto the chestpiece and a laser writes the name round the rim. Saved as `myStethoscope`; the sprite's
+  stethoscope appears only once you own one, in its colour (saves past day 1 keep a plain one). 500 coins.
+- **iPhone magnifier on the D-pad** fixed: the keys cancel the touch itself (a plain non-passive listener) and carry
+  `game-key` (no selection, callout or zoom).
+- **Tested:** `scripts/playtest/dx.js` (17 checks), `ONLY=meet node scripts/playtest/requests.js` (17 checks).
+  Bots that play cases share `scripts/playtest/workup.js`. Timing checks (cold-open CPR rate in `hook.js`) fail when
+  the Mac is under heavy load (load average over 50); rerun when it is idle.
+
 ## Getting friends in from the first minute (8 November, later)
 
 - **Link preview.** `app/layout.tsx` now has Thai Open Graph and X tags and `public/og.jpg` (1200x630, real

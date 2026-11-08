@@ -4,6 +4,7 @@ const { chromium } = require(process.env.PW_MODULE || 'playwright');
 const LAUNCH = { args: ['--use-gl=swiftshader', '--enable-webgl', '--ignore-gpu-blocklist'], ...(process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {}) };
 const BASE = process.env.BASE_URL || 'http://localhost:8765';
 const fs = require('fs');
+const { workup, pickDx } = require('./workup');
 const OUT = __dirname + '/out/hook'; fs.rmSync(OUT, { recursive: true, force: true }); fs.mkdirSync(OUT, { recursive: true });
 const seed = JSON.parse(fs.readFileSync(__dirname + '/seed-state.json', 'utf8'));
 const KEY = 'CapacitorStorage.code-rama-storage';
@@ -230,8 +231,10 @@ const LONG = 'กิตติพิชญ์ภูมิวัฒน';
   for (const id of (process.env.CASES || 'case_01,case_05_asthma,case_33').split(',')) {
     const p = await seeded(b, { currentDay: 9 });
     await p.goto(`${BASE}/simulator/play/${id}?practice=1`);
+    await workup(p);
     await p.getByRole('button', { name: 'รักษา', exact: true }).click({ force: true });
     for (let s = 0; s < 40 && !(await p.getByTestId('finish-case').count()); s++) {
+      if (await p.getByTestId('dx-option').count()) { await pickDx(p, id); continue; }
       if (await p.getByTestId('cpr-minigame').count()) { for (let i = 0; i < 16; i++) { await p.getByTestId('cpr-press').click({ force: true }).catch(() => {}); await p.waitForTimeout(545); } await p.waitForTimeout(1500); continue; }
       const btns = p.getByTestId('action-tab').locator('button.cozy-btn:not(.cozy-btn-berry):not(.cozy-btn-sky)');
       if (!(await btns.count())) { await p.waitForTimeout(300); continue; }

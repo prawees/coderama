@@ -71,14 +71,18 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   
   const [isShaking, setIsShaking] = useState(false);
   const [floatingTexts, setFloatingTexts] = useState<{id: number, text: string, type: 'good' | 'bad', x: number, y: number}[]>([]);
-  const [activeTab, setActiveTab] = useState<'info' | 'exam' | 'labs' | 'action'>('action');
+  // A case starts at the bedside with the history, not at the treatment list
+  const [activeTab, setActiveTab] = useState<'info' | 'exam' | 'labs' | 'action'>('info');
   const textIdCounter = useRef(0);
 
   // Scoring: wrong choices made this case, and which wrong options were already tried at the current step
   const [mistakes, setMistakes] = useState(0);
   // Unneeded tests count against the grade but do not make the patient sicker
   const [testSlips, setTestSlips] = useState(0);
-  const slipTotal = mistakes + testSlips;
+  // Working diagnosis: chosen from the case's own differential before treating (see dxGate below)
+  const [dxPicks, setDxPicks] = useState<string[]>([]);
+  const dxSlip = dxPicks.length > 0 && dxPicks[0] !== (caseData?.diagnoses?.[0] ?? '') ? 1 : 0;
+  const slipTotal = mistakes + testSlips + dxSlip;
   const [supervised, setSupervised] = useState(false);
   const isAboveRank = (rank: string) => !practice && rankBelow(storyRank(store.currentDay, lifetimeXp || 0), rank);
   const [triedWrong, setTriedWrong] = useState<Record<string, string[]>>({});
@@ -500,7 +504,9 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   };
 
   const rewardFor = (grade: Grade) => {
-    const r = GRADE_REWARDS[grade];
+    const base = GRADE_REWARDS[grade];
+    // A working diagnosis right the first time is worth a little extra
+    const r = grade !== 'critical' && dxPicks.length > 0 && dxPicks[0] === caseData?.diagnoses?.[0] ? { ...base, xp: base.xp + 20 } : base;
     return supervised ? { xp: Math.round(r.xp * 0.6), cash: Math.round(r.cash * 0.6) } : r;
   };
 
@@ -579,6 +585,33 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   const openQuestions = historyNodes.filter((n) => !historyEdges.some((e) => e.target === n.id) || historyEdges.some((e) => e.target === n.id && asked.includes(e.source)));
 
   const { choices } = buildChoices(effectiveNodeId, currentNode);
+
+  // Working diagnosis. When a case's `diagnoses` is a real differential (four or more, the answer first), treatment
+  // waits until the player has gathered something and committed to one. An arrest is treated first: the question
+  // comes after the first step. A wrong first pick is one slip; the player thinks again rather than being told.
+  const differential: string[] = Array.isArray(caseData.diagnoses) && caseData.diagnoses.length >= 4 ? caseData.diagnoses.slice(0, 6) : [];
+  const dxAnswer = differential[0] ?? '';
+  const startVitals = nodesMap[startNodeId]?.vitals ?? caseData.vitals ?? {};
+  const arrest = String(startVitals.bp ?? '').startsWith('0/') || Number(startVitals.hr) === 0;
+  const dxSolved = !!dxAnswer && dxPicks.includes(dxAnswer);
+  const gathered = asked.length + examined.length + ordered.length;
+  const canGather = openQuestions.length + examFindings.length + investigations.filter((i: any) => !i.onFile).length;
+  const needGathered = Math.min(2, canGather);
+  const dxGate = differential.length > 0 && !dxSolved && choices.length > 0 && (!arrest || path.length >= 1);
+  const dxOptions = [...differential].sort((a, b) => seededOrder(`dx:${caseKey}:${a}`) - seededOrder(`dx:${caseKey}:${b}`));
+  const pickDx = (d: string) => {
+    if (dxPicks.includes(d)) return;
+    const first = dxPicks.length === 0;
+    setDxPicks((p) => [...p, d]);
+    if (d === dxAnswer) {
+      audio.playSparkle();
+      setFeedback({ kind: 'good', title: `Working diagnosis: ${d}`, body: first ? 'ตรงตั้งแต่ครั้งแรก ได้ XP เพิ่ม ไปต่อที่การรักษาได้เลย' : 'เจอแล้ว ไปต่อที่การรักษาได้เลย' });
+    } else {
+      haptic.vibrate();
+      if (first) deductEnergy(2);
+      setFeedback({ kind: 'bad', title: `ยังไม่ใช่ ${d}`, body: `ดูอาการกับผลตรวจอีกครั้ง อะไรเข้ากับ ${d} และอะไรที่ไม่เข้า` });
+    }
+  };
 
   const promptText = (() => {
     if (currentNode.type === 'start' && (!currentNode.narrative || currentNode.narrative === 'Start')) {
@@ -718,6 +751,10 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                 className={`flex-1 flex items-center justify-center gap-1 py-1 text-[16px] leading-none rounded-t-[5px] border-[3px] border-b-0 border-[#3a2a2f] ${activeTab === tb.key ? 'bg-[#f8ecd0] text-[#3a2a2f] -mb-[3px] pb-[7px]' : 'bg-[#c48a52] text-[#fff3df]'}`}
               >
                 <PixelIcon name={tb.icon} size={13} />{tb.label}
+                {/* While the case waits for a workup, the places to look pulse */}
+                {dxGate && gathered < needGathered && tb.key !== 'action' && activeTab !== tb.key && (
+                  <span className="relative -mt-3 -ml-0.5 w-2 h-2 rounded-full bg-[#ff6b6b] animate-ping" data-testid={`tab-hint-${tb.key}`} />
+                )}
               </button>
             ))}
           </div>
@@ -835,10 +872,35 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                   </div>
                 )}
 
-                <p className="text-[20px] leading-tight mb-2">{promptText}</p>
+                <p className="text-[20px] leading-tight mb-2" data-testid="case-prompt">{dxGate ? (gathered < needGathered ? 'ยังไม่รู้ว่าคนไข้เป็นอะไร' : 'คิดว่าคนไข้เป็นอะไร') : promptText}</p>
 
                 <div className="flex flex-col gap-2 mt-auto">
-                  {choices.length > 0 ? (
+                  {dxGate ? (
+                    <div className="flex flex-col gap-2" data-testid="dx-gate">
+                      {gathered < needGathered ? (
+                        <>
+                          <p className="text-[16px] leading-snug text-[#5b4148]">ซักประวัติ ตรวจร่างกาย หรือส่งแล็บก่อน แล้วค่อยตั้ง working diagnosis</p>
+                          <p className="text-[15px] leading-none text-[#86522e]" data-testid="dx-progress">เก็บข้อมูลแล้ว {gathered}/{needGathered}</p>
+                          <div className="grid grid-cols-3 gap-1.5">
+                            {([['info', 'ซักประวัติ'], ['exam', 'ตรวจร่างกาย'], ['labs', 'ส่งแล็บ']] as const).map(([k, l]) => (
+                              <button key={k} onClick={() => { audio.playClick(); setActiveTab(k); }} className="cozy-btn cozy-btn-sky py-1.5 text-[16px] leading-none" data-testid={`dx-go-${k}`}>{l}</button>
+                            ))}
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-[15px] leading-snug text-[#86522e]">เลือก working diagnosis ก่อนเริ่มรักษา</p>
+                          {dxOptions.map((d) => {
+                            const tried = dxPicks.includes(d);
+                            return (
+                              <button key={d} disabled={tried} onClick={() => pickDx(d)} data-testid="dx-option"
+                                className={`cozy-btn w-full py-2 px-2.5 text-left text-[17px] leading-tight ${tried ? 'opacity-40 line-through' : ''}`}>{d}</button>
+                            );
+                          })}
+                        </>
+                      )}
+                    </div>
+                  ) : choices.length > 0 ? (
                     <>
                       {choices.map((opt) => {
                         const needsSupervision = isAboveRank(opt.requiredRank);
@@ -905,6 +967,13 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                               <ul className="list-disc pl-4 space-y-1">{slips.map((sl, i) => (
                                 <li key={i}><span className="text-[#a93c4b]">{sl.text}</span>{sl.why ? <span className="block whitespace-pre-line text-[#5b4148]">{sl.why}</span> : null}</li>
                               ))}</ul>
+                            </div>
+                          )}
+                          {dxPicks.length > 0 && (
+                            <div data-testid="dx-debrief">
+                              <p className="text-[16px] text-[#3f6f80] mb-0.5">Working diagnosis ของคุณ</p>
+                              <p>{dxPicks[0] === dxAnswer ? `✓ ${dxAnswer} ตั้งแต่ครั้งแรก` : `เริ่มจาก ${dxPicks[0]} แล้วแก้เป็น ${dxAnswer}`}</p>
+                              {differential.length > 1 && <p className="text-[#5b4148] mt-0.5">differential อื่นที่ควรนึกถึง: {differential.slice(1).join(', ')}</p>}
                             </div>
                           )}
                           {readings.length > 0 && (

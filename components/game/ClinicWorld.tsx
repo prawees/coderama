@@ -205,14 +205,26 @@ export function ClinicWorld(props: ClinicWorldProps) {
   const press = useCallback((d: Dir, on: boolean) => engineRef.current?.press(d, on), []);
   const releaseAll = useCallback(() => engineRef.current?.releaseAll(), []);
 
-  const padBtn = "pointer-events-auto w-11 h-11 flex items-center justify-center text-lg cozy-key active:translate-y-[2px]";
+  const padBtn = "game-key pointer-events-auto w-11 h-11 flex items-center justify-center text-lg cozy-key active:translate-y-[2px]";
+
+  // Holding a key on iPhone brings up the text magnifier and selection unless the touch itself is cancelled.
+  // React's touch handlers are passive and cannot do that, so it is a plain listener. Pointer events still arrive.
+  const padRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = padRef.current;
+    if (!el) return;
+    const stop = (e: Event) => { if ((e.target as HTMLElement)?.closest("button")) e.preventDefault(); };
+    el.addEventListener("touchstart", stop, { passive: false });
+    el.addEventListener("contextmenu", stop);
+    return () => { el.removeEventListener("touchstart", stop); el.removeEventListener("contextmenu", stop); };
+  }, []);
 
   return (
     <div className="relative w-full h-full overflow-hidden touch-none select-none" style={{ background: "#2a2030" }}>
       <div ref={containerRef} className="absolute inset-0 z-0" data-testid="world" />
 
       {/* D-pad (keyboard and tap-to-walk also work). The gaps between the keys let taps through to the world. */}
-      <div className="pointer-events-none absolute bottom-3 left-3 z-30 grid grid-cols-3 gap-1 opacity-90">
+      <div ref={padRef} className="pointer-events-none absolute bottom-3 left-3 z-30 grid grid-cols-3 gap-1 opacity-90" data-testid="dpad">
         <div />
         <button aria-label="up" className={padBtn} onPointerDown={() => press("up", true)} onPointerUp={releaseAll} onPointerLeave={releaseAll}><PixelArrow dir="up" size={14} /></button>
         <div />
@@ -234,7 +246,8 @@ export function ClinicWorld(props: ClinicWorldProps) {
         <button
           aria-label="action"
           data-testid="action"
-          className="w-16 h-16 cozy-action text-2xl active:translate-y-[2px]"
+          className="game-key w-16 h-16 cozy-action text-2xl active:translate-y-[2px]"
+          onContextMenu={(e) => e.preventDefault()}
           onClick={() => engineRef.current?.interact()}
         >
           A

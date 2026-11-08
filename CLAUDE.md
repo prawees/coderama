@@ -63,6 +63,10 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
 - Haptics: always `haptic` from `lib/haptics.ts`, never `@capacitor/haptics` directly. Safari on iPhone has no vibration
   API and the plugin throws there; awaited, it silently broke taps. `hook.js` and `custom.js` run without vibration.
 - Rank: always read it with `storyRank(day, lifetimeXp)` in `lib/erStore.ts`, never from XP during the campaign.
+- Case reasoning: the working-diagnosis gate in `CaseEngineClient.tsx` (`dxGate`, `pickDx`) uses each case's
+  `diagnoses` (first = answer, 4+ = a differential). Bots that play cases use `scripts/playtest/workup.js`.
+- Characters: `lib/npcMore.ts` (extra lines, first meetings with a welcome gift). Stethoscope studio:
+  `components/game/StethoscopeStudio.tsx`, saved as `myStethoscope`, drawn by `lib/playerLook.ts`.
 - Growth: `lib/invite.ts` (cold-open dare links `/?vf=&cpr=&n=`, `shareLink`), `components/game/FeedbackModal.tsx` with
   `lib/feedback.ts` (Firestore `feedback`, create only), link preview in `app/layout.tsx` with `public/og.jpg`.
 - Extras: `lib/luck.ts` with `components/game/LuckyModal.tsx` (capsule machine in the shop, เซียมซี at the courtyard
@@ -88,12 +92,14 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
 patient and birthdays on a seeded rain day. `rain_out.js` screenshots the courtyard on a rain and a dry day.
 `custom.js` checks the case library, practice mode, the 3D bedside, the designer and custom-case play.
 `requests.js` plays the board requests and a birthday by tapping people in the world (it uses the read-only
-`window.__codeRamaWorld` hook for where they are on screen). `ONLY=gift|birthday|social|cat|menu|luck` runs one scene,
+`window.__codeRamaWorld` hook for where they are on screen). `ONLY=gift|birthday|social|cat|menu|meet|luck` runs one scene,
 `ONLY=luck` checks the HUD share button, the doctors' room PC, the fortune tree and the gacha. `TRACE=1` logs every tap. `START_DAY=11 long.js 3` plays days 11 to 13 from a seeded save. `hook.js` checks the first minute (cold open, setup, returning player) and renders every
 Story card with awkward data into `out/hook`: look at those pictures after changing `lib/shareCard.ts`.
 They need a running export (`npm run build`, then `node scripts/playtest/serve.js out 8765`) and Playwright
 (`npm i -D playwright && npx playwright install chromium`, or set `PW_MODULE` and `PW_CHROMIUM`).
 `BASE_URL` overrides the address.
+`dx.js` checks the workup and working diagnosis on a case. `ONLY=meet` in `requests.js` plays first meetings and the
+stethoscope studio.
 `growth.js` checks the link preview tags, the cold-open dare from both sides, invites and feedback (feedback needs the
 emulator build below; `FEEDBACK=0` skips it).
 `account.js` tests sign-in, cloud saves, a second phone, a save conflict, the leaderboard and the security rules

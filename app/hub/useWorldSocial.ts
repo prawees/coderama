@@ -4,6 +4,10 @@ import { useMemo, MutableRefObject } from "react";
 import { useERStore } from "@/lib/erStore";
 import { NPCS, CAT, rosterOn, heartsFor, tasteOf, lineFor, birthdayOn, NpcDef } from "@/lib/npcs";
 import { GIFTS, TASTE_POINTS, Taste } from "@/lib/gifts";
+import { FIRST_MEET } from "@/lib/npcMore";
+
+/** Talking to someone again the same day moves on to their next line */
+const talksToday = new Map<string, number>();
 import type { CutsceneNode, CutsceneChoice } from "@/lib/StoryManager";
 import type { WorldApi, WorldNpc, WorldTarget } from "@/components/game/ClinicWorld";
 import type { Phase } from "@/lib/world/maps";
@@ -106,10 +110,32 @@ export function useWorldSocial(opts: {
     }
     const after = before + (firstToday ? 2 : 0);
     opts.worldApi.current?.emote(id, heartsFor(after) >= 6 ? "heart" : firstToday ? "note" : "dots");
+    // The first time you meet someone: a short exchange, and usually a welcome gift
+    const meetKey = `${id}:meet`;
+    const meet = FIRST_MEET[id];
+    if (meet && !st.heartEventsSeen.includes(meetKey)) {
+      st.markHeartEvent(meetKey);
+      let lines = meet.lines;
+      // Prof. Somchai only sends you shopping if you have nothing round your neck
+      const hasSteth = !!st.myStethoscope || st.currentDay > 1;
+      if (id === "somchai" && hasSteth) lines = [lines[0], { text: { en: "Good. You came with a stethoscope. Keep it that way.", th: "ดี มี stethoscope ติดตัวมาด้วย รักษามาตรฐานนี้ไว้" } }];
+      const nodes: CutsceneNode[] = lines.map((m) => (m.you ? { speaker: "You", text: m.text[lang] } : speakerNode(def, m.text[lang])));
+      if (meet.gift && GIFTS[meet.gift]) {
+        st.receiveGift(meet.gift);
+        audio.playSparkle();
+        nodes.push({ speaker: "System", text: t(lang, `You got ${GIFTS[meet.gift].name.en} from ${def.name.en}.`, `ได้รับ${GIFTS[meet.gift].name.th}จาก${def.name.th} เก็บไว้ในกระเป๋าแล้ว`) });
+      }
+      if (id === "somchai" && !hasSteth) nodes.push({ speaker: "System", text: t(lang, "New task: buy your stethoscope at the supply room.", "งานใหม่: ไปเลือก stethoscope ของตัวเองที่ห้องเก็บของ") });
+      opts.setDialogueQueue(nodes);
+      return;
+    }
+    const nthKey = `${id}:${day}`;
+    const nth = talksToday.get(nthKey) ?? 0;
+    talksToday.set(nthKey, nth + 1);
     const birthday = birthdayOn(day, phase) === id;
     const node = speakerNode(def, birthday && firstToday
       ? "วันนี้วันเกิดเรานะ ไม่ต้องร้องเพลง ขอแค่คืนนี้ไม่มีใครโค้ดก็พอ"
-      : lineFor(def, heartsFor(after), day, lang));
+      : lineFor(def, heartsFor(after), day, lang, nth));
     const scenes = heartScenes(def, heartsFor(after));
     if (daily.giftDay !== day) {
       node.choices = giftChoices((g) => give(id, g), () => opts.setDialogueQueue(scenes));

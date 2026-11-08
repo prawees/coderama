@@ -24,6 +24,8 @@ export interface Look {
   beard?: boolean;
   cap?: "nurse" | "baseball" | null;
   stethoscope?: boolean;
+  /** tubing colour of the stethoscope; metal grey when not set */
+  stethoscopeColor?: string;
   /** White coat cut: "short" ends at the waist (extern), long reaches the thigh */
   coatLength?: "short" | "long";
   /** Sleeves on a white coat; short unless said otherwise */
@@ -172,7 +174,7 @@ function outfitDetails({ g, look, dir }: Ctx) {
         }
       }
       if (look.stethoscope !== false && dir !== "up") {
-        const m = C.metalShade;
+        const m = look.stethoscopeColor ?? C.metalShade;
         if (dir === "down") { g.set(5, 11, m); g.set(5, 12, m); g.set(10, 11, m); g.set(10, 12, m); g.set(6, 13, m); g.set(6, 14, C.metal); }
         else { g.set(9, 11, m); g.set(9, 12, m); g.set(9, 13, C.metal); }
       }

@@ -1,7 +1,7 @@
 import type { HairStyle, Look } from "@/lib/pixel/characters";
 import { uniformFor } from "@/lib/uniform";
 import { shade } from "@/lib/pixel/grid";
-import type { PlayerAppearance, Rank } from "@/lib/erStore";
+import { useERStore, type PlayerAppearance, type Rank } from "@/lib/erStore";
 
 /**
  * The player's sprite comes from the character creator, and their outfit grows with them:
@@ -25,8 +25,18 @@ export function playerLookFrom(appearance: PlayerAppearance | undefined, rank: R
     accent: scrubs ? shade(scrubColor, 0.8) : "#e6ebf2",
     pants: scrubs ? scrubColor : normalise(a.bottomColor, "#2c2328"),
     shoes: normalise(a.shoeColor, "#3b2a2f"),
-    stethoscope: !scrubs || rank !== "MS5",
+    ...stethoscopeLook(),
   };
+}
+
+/**
+ * The stethoscope is bought on day 1 (Prof. Somchai sends you to the supply room) and drawn in its tubing colour.
+ * Saves from before that existed, past day 1, keep a plain dark one.
+ */
+function stethoscopeLook(): { stethoscope: boolean; stethoscopeColor?: string } {
+  const st = useERStore.getState();
+  if (st.myStethoscope) return { stethoscope: true, stethoscopeColor: st.myStethoscope.color };
+  return { stethoscope: (st.currentDay ?? 1) > 1, stethoscopeColor: undefined };
 }
 
 const STYLES: HairStyle[] = ["short", "sidepart", "spiky", "curly", "long", "bob", "bun", "ponytail"];

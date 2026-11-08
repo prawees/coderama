@@ -12,6 +12,7 @@ import { GIFT_ICON } from "@/lib/pixel/icons";
 import { audio } from "@/lib/audio";
 import { PixelArrow } from "@/components/ui/PixelArrow";
 import { GachaMachine } from "@/components/game/LuckyModal";
+import { StethoscopeStudio } from "@/components/game/StethoscopeStudio";
 
 type Tab = "gifts" | "gacha" | "treats" | "gear" | "upgrades";
 
@@ -28,6 +29,8 @@ export default function ShopPage() {
   const { currency, inventory, equipped, buyGear, equipGear, hospitalUpgrades, buyUpgrade, gifts, buyGift, language } = useERStore();
   const [tab, setTab] = useState<Tab>("gifts");
   const [flash, setFlash] = useState<string | null>(null);
+  const [studio, setStudio] = useState(false);
+  const myStethoscope = useERStore((s) => s.myStethoscope);
   const tr = (en: string, th: string) => (language === "th" ? th : en);
 
   const bought = (key: string) => {
@@ -87,6 +90,15 @@ export default function ShopPage() {
             <p className="text-[17px] leading-snug mt-1">{GREETINGS[tab][language]}</p>
           </div>
         </div>
+
+        {/* Day 1: Prof. Somchai sent you here for a stethoscope */}
+        {!myStethoscope && (
+          <button onClick={() => { audio.playClick(); setStudio(true); }}
+            className="cozy-btn cozy-btn-sun w-full px-3 py-2 flex items-center justify-between gap-2 text-left animate-[cozyBob_2s_ease-in-out_infinite]" data-testid="steth-banner">
+            <span className="text-[18px] leading-tight">ยังไม่มี stethoscope<br /><span className="text-[15px] text-[#86522e]">เลือกสีและสลักชื่อของตัวเอง</span></span>
+            <span className="text-[19px] leading-none shrink-0">เลือกเลย</span>
+          </button>
+        )}
 
         <div className="flex gap-1 px-1">
           {tabs.map((t) => (
@@ -157,7 +169,11 @@ export default function ShopPage() {
                 sub={bonus}
                 price={owned ? undefined : item.cost}
                 action={
-                  !owned ? (
+                  item.type === "stethoscope" ? (
+                    <button className="cozy-btn cozy-btn-sun px-2.5 py-0.5 text-[16px]" onClick={() => { audio.playClick(); setStudio(true); }} data-testid="steth-open">
+                      {owned ? tr("Restyle", "แต่งใหม่") : tr("Choose", "เลือกสี")}
+                    </button>
+                  ) : !owned ? (
                     <button className="cozy-btn cozy-btn-leaf px-2.5 py-0.5 text-[16px]" disabled={currency < item.cost} onClick={() => { if (currency >= item.cost) { buyGear(item.id, item.cost); bought(item.id); } }}>{tr("Buy", "ซื้อ")}</button>
                   ) : (
                     <button className={`cozy-btn px-2.5 py-0.5 text-[16px] ${isEquipped ? "cozy-btn-sun" : ""}`} disabled={isEquipped} onClick={() => { audio.playClick(); equipGear(item.id, item.type); }}>
@@ -188,6 +204,7 @@ export default function ShopPage() {
           })}
         </div>
       </div>
+      {studio && <StethoscopeStudio onClose={() => setStudio(false)} />}
     </PageTransition>
   );
 }

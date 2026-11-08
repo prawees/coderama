@@ -1,6 +1,7 @@
 import type { Look } from "@/lib/pixel/characters";
 import type { MapId, Phase } from "@/lib/world/maps";
 import type { Taste } from "@/lib/gifts";
+import { MORE_LINES } from "@/lib/npcMore";
 
 /**
  * The cast you can walk up to and talk to. Each location has its own people, taken
@@ -68,10 +69,10 @@ export const NPCS: Record<string, NpcDef> = {
     loves: ["coffee", "durian"], likes: ["energy_drink", "khanom_krok"], hates: ["garland", "orchid"],
     lines: [
       [l("Rule one: never trust a quiet ER. Rule two: never say the word quiet.", "กฎข้อแรก อย่าไว้ใจ ER ที่เงียบ กฎข้อสอง ห้ามพูดคำว่าเงียบ"),
-       l("If anyone asks, I've been here since six. Spiritually.", "ถ้าใครถาม พี่อยู่ตั้งแต่หกโมง ทางจิตวิญญาณ"),
+       l("I'm still here. Well, my body is.", "พี่ยังอยู่ครับ... อยู่แต่กายหยาบนะ"),
        l("The coffee machine and I are both running on fumes.", "พี่กับเครื่องชงกาแฟ ตอนนี้ทำงานด้วยไอระเหยเหมือนกัน")],
       [l("You're slower than me. You're also right more often. Annoying.", "น้องช้ากว่าพี่ แต่ถูกบ่อยกว่า น่ารำคาญจริง"),
-       l("Don't copy my notes. Copy Ann's. Mine are mostly arrows.", "อย่าลอกโน้ตพี่ ลอกของแอนน์ ของพี่มีแต่ลูกศร"),
+       l("Don't copy my notes. Copy Ann's. Mine are mostly arrows.", "อย่าลอกโน้ตพี่ ลอกของพี่แอน ของพี่มีแต่ลูกศร"),
        l("Some days I remember why I picked this. Usually around 4 a.m.", "บางวันพี่ก็จำได้ว่าทำไมเลือกอาชีพนี้ ส่วนใหญ่ประมาณตีสี่")],
       [l("If they ever make me pick a favourite junior, don't tell the others.", "ถ้าให้เลือกน้องคนโปรด อย่าไปบอกคนอื่นนะ"),
        l("I signed things I shouldn't have. You don't have to. Remember that.", "พี่เคยเซ็นสิ่งที่ไม่ควรเซ็น น้องไม่จำเป็นต้องทำตาม จำไว้"),
@@ -85,7 +86,7 @@ export const NPCS: Record<string, NpcDef> = {
     },
     heartEvents: [{ hearts: 3, lines: [
       l("Want to know a secret?", "อยากรู้ความลับไหม"),
-      l("I almost quit in my second year. Ann talked me out of it with a bowl of khao tom at 4 a.m.", "ปีสองพี่เกือบลาออก แอนน์เกลี้ยกล่อมด้วยข้าวต้มชามเดียวตอนตีสี่"),
+      l("I almost quit in my second year. Ann talked me out of it with a bowl of khao tom at 4 a.m.", "ปีสองพี่เกือบลาออก พี่แอนกล่อมด้วยข้าวต้มชามเดียวตอนตีสี่"),
       l("So if you ever want to quit, find someone with khao tom first.", "ถ้าวันไหนอยากลาออก หาคนที่มีข้าวต้มก่อนนะ"),
     ] }],
   },
@@ -98,7 +99,7 @@ export const NPCS: Record<string, NpcDef> = {
     lines: [
       [l("Stand up straight. Patients can smell uncertainty.", "ยืนตัวตรง คนไข้ได้กลิ่นความลังเลนะ"),
        l("Excellence is a habit. So is paperwork.", "ความเป็นเลิศเป็นนิสัย งานเอกสารก็เช่นกัน"),
-       l("My door is always open. My calendar is not.", "ประตูห้องผมเปิดเสมอ แต่ตารางงานไม่")],
+       l("My door is always open. Book through my secretary; the queue runs to next month.", "ห้องผมยินดีต้อนรับคุณเสมอ แค่นัดผ่านเลขาก่อน คิวยาวถึงเดือนหน้า")],
       [l("You show promise. Promise is a currency. Spend it wisely.", "คุณมีแววนะ แววก็คือสกุลเงิน ใช้ให้ฉลาด"),
        l("Every hospital runs on two things: trust and budgets.", "โรงพยาบาลทุกแห่งขับเคลื่อนด้วยสองสิ่ง ความไว้ใจกับงบประมาณ"),
        l("I was once a junior who asked too many questions.", "ผมเองก็เคยเป็นหมอใหม่ที่ถามมากเกินไป")],
@@ -369,6 +370,12 @@ export const NPCS: Record<string, NpcDef> = {
   },
 };
 
+// Each character's extra everyday lines (lib/npcMore.ts)
+for (const [id, tiers] of Object.entries(MORE_LINES)) {
+  const npc = NPCS[id];
+  if (npc) tiers.forEach((more, i) => { npc.lines[i] = [...npc.lines[i], ...more]; });
+}
+
 export const CAT = {
   name: l("Kanom", "ขนม"),
   loves: ["dried_fish"],
@@ -458,10 +465,11 @@ export function tasteOf(npc: { loves: string[]; likes?: string[]; hates: string[
 }
 
 /** A line for today: tier by hearts, rotating by day so it changes each visit */
-export function lineFor(npc: NpcDef, hearts: number, day: number, lang: "en" | "th"): string {
+/** A different line each day, and the next one along if you talk again the same day (`nth`) */
+export function lineFor(npc: NpcDef, hearts: number, day: number, lang: "en" | "th", nth = 0): string {
   const tier = hearts >= 6 ? 2 : hearts >= 3 ? 1 : 0;
   const pool = npc.lines[tier];
-  return pool[(day + npc.id.length) % pool.length][lang];
+  return pool[(day * 3 + npc.id.length + nth) % pool.length][lang];
 }
 
 /** Story speakers and world NPCs share faces. Map a story speaker name to a cast member. */

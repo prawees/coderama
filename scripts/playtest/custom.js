@@ -1,6 +1,7 @@
 // Checks the case library, practice mode, the 3D bedside, the designer and custom-case play.
 // Needs a served export (`npm run build`, `node scripts/playtest/serve.js out 8765`) and Playwright. Prints PASS or FAIL per check.
 const { chromium } = require(process.env.PW_MODULE || 'playwright');
+const { workup, pickDx } = require('./workup');
 const LAUNCH = { ...(process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {}), args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] };
 const BASE = process.env.BASE_URL || 'http://localhost:8765';
 const OUT = __dirname + '/out/custom'; require('fs').mkdirSync(OUT, { recursive: true });
@@ -42,8 +43,11 @@ const SEEDED = {
   };
   const tab = (p, name) => p.getByRole('button', { name, exact: true });
   const playToDebrief = async (p) => {
+    await workup(p);
     await tab(p, 'รักษา').click(); await p.waitForTimeout(300);
+    const caseId = p.url().split('/play/')[1]?.split('?')[0];
     for (let i = 0; i < 80 && !(await p.getByTestId('finish-case').count()); i++) {
+      if (await p.getByTestId('dx-option').count()) { await pickDx(p, caseId); continue; }
       const btns = p.locator('[data-testid=action-tab] button.cozy-btn'); const n = await btns.count();
       if (!n) break;
       await btns.nth(i % n).click({ force: true }); await p.waitForTimeout(200);

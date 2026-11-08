@@ -13,6 +13,8 @@ const GIFT_ID = Object.fromEntries([...fs.readFileSync(__dirname + '/../../lib/g
 const GIFT_COST = Object.fromEntries([...fs.readFileSync(__dirname + '/../../lib/gifts.ts', 'utf8').matchAll(/id: "(\w+)".*?cost: (\d+)/g)].map((m) => [m[1], +m[2]]));
 const want = (tag) => !process.env.ONLY || process.env.ONLY === tag;
 const NAME = { ann: 'แอน', bob: 'บ๊อบ', somchai: 'สมชาย', cat: 'ขนม' };
+// Scenes start with everyone already met, so a first meeting does not replace the line under test
+const MET = ['ann', 'bob', 'somchai', 'jai', 'ek', 'beam', 'suk', 'kit', 'nam', 'mali', 'kai', 'pim', 'wan'].map((id) => `${id}:meet`);
 
 let fails = 0;
 const check = (ok, what, extra = '') => { console.log(`${ok ? 'ok  ' : 'FAIL'} ${what}${extra ? ' | ' + extra : ''}`); if (!ok) fails++; };
@@ -24,7 +26,7 @@ async function open(b, day, extra = {}) {
   p.errors = [];
   p.on('pageerror', (e) => p.errors.push(String(e)));
   const st = { ...seed, state: { ...seed.state, currentDay: day, shiftMode: 'off-duty', clockMinutes: 0, activeCases: [], tutorialCompleted: true,
-    energy: 100, currency: 500, activeQuests: [], completedQuests: ['q_first_shift', 'q_kanom', 'q_social_butterfly', 'q_favourite', 'q_gear_up'], friendships: {}, npcDaily: {}, propDaily: {}, gifts: {}, requestsDone: [], heartEventsSeen: [],
+    energy: 100, currency: 500, activeQuests: [], completedQuests: ['q_first_shift', 'q_kanom', 'q_social_butterfly', 'q_favourite', 'q_gear_up'], friendships: {}, npcDaily: {}, propDaily: {}, gifts: {}, requestsDone: [], heartEventsSeen: MET,
     storyFlags: { FIRST_SHIFT_TIP: true }, shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] }, ...extra } };
   await p.addInitScript(([k, v]) => { if (!sessionStorage.getItem('seeded')) { localStorage.setItem(k, v); sessionStorage.setItem('seeded', '1'); } }, [KEY, JSON.stringify(st)]);
   await p.goto(BASE + '/hub');
@@ -52,22 +54,24 @@ const canvasPoint = (p, pt) => p.evaluate((pt) => {
   const on = x > r.left + 8 && x < r.right - 8 && y > r.top + 8 && y < r.bottom - 8;
   return { x, y, on, clear: on && document.elementFromPoint(x, y)?.tagName === 'CANVAS', edge: { l: r.left + 24, r: r.right - 24, t: r.top + 90, b: r.bottom - 24 } };
 }, pt);
-const playerTile = (p) => p.evaluate(() => window.__codeRamaWorld.actors().find((a) => a.id === 'player').tile);
+// null once a walk has opened another page (the shop), which is the world going away under us
+const playerTile = (p) => p.evaluate(() => window.__codeRamaWorld?.actors().find((a) => a.id === 'player')?.tile ?? null);
 
 /** The camera follows the player, so someone across the room is off screen: tap floor on that side and walk */
 async function walkToward(p, pt) {
   const from = await playerTile(p);
+  if (!from) return false;
   for (const dy of [0, -64, 64, -128, 128, -192, 192]) {
     const x = Math.min(pt.edge.r, Math.max(pt.edge.l, pt.x));
     const y = Math.min(pt.edge.b, Math.max(pt.edge.t, pt.y + dy));
     // A floor tap must not land on someone else, or it starts the wrong conversation
     const blocked = await p.evaluate(([x, y]) => document.elementFromPoint(x, y)?.tagName !== 'CANVAS'
-      || window.__codeRamaWorld.actors().some((a) => a.id !== 'player' && Math.hypot(a.x - x, a.y - y) < 50), [x, y]);
+      || !window.__codeRamaWorld || window.__codeRamaWorld.actors().some((a) => a.id !== 'player' && Math.hypot(a.x - x, a.y - y) < 50), [x, y]);
     if (blocked) continue;
     await p.mouse.click(x, y);
     await p.waitForTimeout(1200);
     const now = await playerTile(p);
-    if (now.x !== from.x || now.y !== from.y) return true;
+    if (!now || now.x !== from.x || now.y !== from.y) return true;
   }
   return false;
 }
@@ -114,6 +118,10 @@ async function talkTo(p, id) {
 
 /** Finish the conversation, ignoring any gift menu */
 async function closeTalk(p) { await clearStory(p); }
+
+/** The whole line on screen, even while it is still typing */
+const fullLine = async (p) => (await p.getByTestId('dialogue-text').locator('[data-text]').first().getAttribute('data-text', { timeout: 1500 }).catch(() => null))
+  ?? (await p.getByTestId('dialogue-text').innerText().catch(() => ''));
 
 async function pick(p, text) {
   const btn = p.getByTestId('dialogue-choices').locator('button').filter({ hasText: text });
@@ -261,6 +269,67 @@ async function goal(p) {
     await p.getByTestId('dialogue-choices').locator('button').last().click();
     await p.waitForTimeout(400);
     check(!(await p.getByTestId('dialogue').count()), 'the way out is reachable');
+    await p.context().close();
+  }
+
+  // Day 1 from scratch: Ann's welcome, Prof. Somchai's errand, and the stethoscope studio
+  if (want('meet')) {
+    const p = await open(b, 1, { heartEventsSeen: [], myStethoscope: null, inventory: [], equipped: { stethoscope: null, scrubs: null, shoes: null }, currency: 1000 });
+    const before = await save(p);
+    check(!before.myStethoscope, 'a new player has no stethoscope');
+    check(await tapActor(p, 'ann'), 'tapped Ann');
+    const lines = [];
+    for (let i = 0; i < 12 && await p.getByTestId('dialogue').count(); i++) {
+      lines.push(((await p.getByTestId('dialogue-speaker').innerText().catch(() => '~')) + ': ' + await fullLine(p)).replace(/\n/g, ' '));
+      await p.getByTestId('dialogue').click({ force: true }); await p.waitForTimeout(450);
+      await p.getByTestId('dialogue').click({ force: true }).catch(() => {}); await p.waitForTimeout(250);
+    }
+    console.log('  ' + lines.join('\n  '));
+    const afterAnn = await save(p);
+    check((afterAnn.gifts?.thai_tea ?? 0) === 1, 'Ann welcomes you with a Thai tea', JSON.stringify(afterAnn.gifts));
+    check(afterAnn.heartEventsSeen.includes('ann:meet'), 'the meeting is remembered');
+    check(await tapActor(p, 'ann'), 'tapped Ann again');
+    const again = await fullLine(p);
+    check(!/ชาเย็นแก้วนี้/.test(again), 'the second talk is an ordinary line', again.slice(0, 60));
+    await closeTalk(p);
+
+    check(await tapActor(p, 'somchai'), 'tapped Prof. Somchai');
+    const said = [];
+    for (let i = 0; i < 12 && await p.getByTestId('dialogue').count(); i++) {
+      said.push(await fullLine(p));
+      await p.getByTestId('dialogue').click({ force: true }); await p.waitForTimeout(450);
+      await p.getByTestId('dialogue').click({ force: true }).catch(() => {}); await p.waitForTimeout(250);
+    }
+    check(said.some((t) => /stethoscope ของคุณอยู่ไหน/.test(t)), 'he asks where your stethoscope is');
+    check(said.some((t) => /งานใหม่/.test(t)), 'and gives you the errand');
+    const guide = await p.getByTestId('guide').innerText().catch(() => '');
+    check(/stethoscope/.test(guide), 'the guide points to the supply room', guide.replace(/\n/g, ' / ').slice(0, 120));
+
+    const reached = await tapWorld(p, () => p.evaluate(() => window.__codeRamaWorld?.tileToScreen(14, 7)), async () => p.url().includes('/hub/shop'));
+    check(reached, 'walked to the supply room');
+    await p.getByTestId('steth-banner').click({ force: true }); // it bobs, so it is never 'stable'
+    await p.getByTestId('steth-studio').waitFor();
+    await p.getByTestId('steth-color-e98aa5').click();
+    await p.getByTestId('steth-engrave-input').fill('ต้นข้าว');
+    await p.screenshot({ path: `${OUT}/11_steth_pick.png` });
+    await p.getByTestId('steth-engrave').click();
+    await p.waitForTimeout(1300);
+    await p.screenshot({ path: `${OUT}/12_steth_engraving.png` });
+    await p.getByTestId('steth-done').waitFor({ timeout: 8000 });
+    await p.screenshot({ path: `${OUT}/13_steth_done.png` });
+    const eng = await p.getByTestId('steth-engraving').textContent();
+    check(eng === 'ต้นข้าว', 'the name is engraved in full', eng);
+    const after = await save(p);
+    check(after.myStethoscope?.color === '#e98aa5' && after.myStethoscope?.engraving === 'ต้นข้าว', 'colour and engraving are saved', JSON.stringify(after.myStethoscope));
+    check(after.currency === 500 && after.equipped.stethoscope === 'littmann_classic', 'paid 500 and it is worn', `${after.currency} ${after.equipped.stethoscope}`);
+    await p.getByTestId('steth-wear').click();
+    check(!(await p.getByTestId('steth-banner').count()), 'the supply room stops asking');
+    await p.goBack(); await p.waitForFunction(() => window.__codeRamaWorld && window.__codeRamaWorld.actors().length > 1);
+    await clearStory(p);
+    const guide2 = await p.getByTestId('guide').innerText().catch(() => '');
+    check(!/stethoscope/.test(guide2), 'the guide moves on', guide2.replace(/\n/g, ' / ').slice(0, 100));
+    await p.screenshot({ path: `${OUT}/14_steth_world.png` });
+    check(p.errors.length === 0, 'no page errors', p.errors.join(' '));
     await p.context().close();
   }
 

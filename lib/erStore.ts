@@ -218,6 +218,9 @@ export interface ERState {
   /** Guide steps done and things the guide watches for ("ev:board") */
   guide: string[];
   markGuide: (id: string) => void;
+  /** The player's own stethoscope from the supply room: tubing colour and the name engraved on it */
+  myStethoscope: { color: string; engraving: string } | null;
+  setMyStethoscope: (s: { color: string; engraving: string }) => void;
   currentDay: number; // For campaign progression
   storyFlags: Record<string, boolean | number | string>; // For narrative branching consequences
   
@@ -341,6 +344,8 @@ export const useERStore = create<ERState>()(
       syncEnabled: false,
       leaderboardOptIn: true,
       guide: [],
+      myStethoscope: null,
+      setMyStethoscope: (m) => set({ myStethoscope: { color: m.color, engraving: m.engraving.slice(0, 14) } }),
       markGuide: (id) => set((s) => ((s.guide ?? []).includes(id) ? {} : { guide: [...(s.guide ?? []), id] })),
       currentDay: 1,
       storyFlags: {},
@@ -605,7 +610,8 @@ export const useERStore = create<ERState>()(
         savedTotal: 0,
         goodStreak: 0,
         bestStreak: 0,
-        guide: []
+        guide: [],
+        myStethoscope: null
       }),
       resetShiftStats: () => set((state) => ({
         shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] }
@@ -813,6 +819,7 @@ export const useERStore = create<ERState>()(
         requestsDone: state.requestsDone,
         leaderboardOptIn: state.leaderboardOptIn,
         guide: state.guide,
+        myStethoscope: state.myStethoscope,
         savedTotal: state.savedTotal,
         goodStreak: state.goodStreak,
         bestStreak: state.bestStreak,

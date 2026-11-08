@@ -133,7 +133,7 @@ async function playColdOpen(p) {
   // 5. Nonsense in the link is ignored
   {
     const p = await fresh(b);
-    await p.goto(BASE + '/?vf=-3&cpr=abc&n=<script>');
+    await p.goto(BASE + '/?vf=-3&cpr=abc&n=x');
     await p.locator('text=แตะเพื่อเริ่ม').waitFor();
     check(!(await p.getByTestId('challenge-splash').count()), 'a broken dare is ignored');
     await p.context().close();

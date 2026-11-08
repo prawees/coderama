@@ -23,6 +23,10 @@ const ev = (st: ERState, id: string) => (st.guide ?? []).includes(`ev:${id}`);
 export const GUIDE: GuideStep[] = [
   { id: "ann", days: [1, 1], when: "off", text: "ทักพี่แอน หัวหน้าเวร แตะที่ตัวพี่เขาได้เลย",
     target: () => ({ npc: "ann" }), done: (st, d) => talked(st, "ann", d) || (st.friendships?.ann ?? 0) > 0 },
+  { id: "somchai", days: [1, 1], when: "off", text: "อ.สมชาย ยืนรออยู่ แวะไปสวัสดีอาจารย์หน่อย",
+    target: () => ({ npc: "somchai" }), done: (st) => (st.heartEventsSeen ?? []).includes("somchai:meet") || !!st.myStethoscope },
+  { id: "steth", days: [1, 1], when: "off", text: "ไปห้องเก็บของ เลือกสีและสลักชื่อ stethoscope ของตัวเอง",
+    target: () => ({ tile: [14, 7] }), done: (st) => !!st.myStethoscope },
   { id: "start", days: [1, 1], when: "off", text: "พร้อมแล้ว กดปุ่ม เริ่มเวร ด้านล่าง",
     done: (st) => st.shiftMode !== "off-duty" || (st.shiftStats?.casesTreated ?? 0) > 0 },
   { id: "patient", days: [1, 1], when: "on", text: "เพจเจอร์ดังแล้ว แตะชื่อคนไข้ที่แถบเตียงด้านล่าง",

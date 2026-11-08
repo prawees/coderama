@@ -4,6 +4,7 @@ const { chromium } = require(process.env.PW_MODULE || 'playwright');
 const LAUNCH = process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {};
 const BASE = process.env.BASE_URL || 'http://localhost:8765';
 const fs = require('fs');
+const { workup, pickDx } = require('./workup');
 const OUT = __dirname + '/out/long'; fs.mkdirSync(OUT, { recursive: true });
 const LOG = OUT + '/log.txt'; fs.writeFileSync(LOG, '');
 const DAYS = +(process.argv[2] || 13);
@@ -49,8 +50,12 @@ const T0 = Date.now(); const log = (...a) => fs.appendFileSync(LOG, ((Date.now()
     const orders = p.locator('[data-testid^="order-"]');
     const n0 = await orders.count();
     for (let i = 0; i < Math.min(2, n0); i++) { await orders.first().click({ force: true }).catch(() => {}); await p.waitForTimeout(150); }
+    await workup(p);
     await p.getByRole('button', { name: 'รักษา', exact: true }).click({ force: true });
+    const caseId = p.url().split('/play/')[1]?.split('?')[0];
     for (let s = 0; s < 50 && !(await p.getByTestId('finish-case').count()); s++) {
+      // Every third case starts with a wrong working diagnosis, to keep that path played
+      if (await p.getByTestId('dx-option').count()) { const d = await pickDx(p, caseId, (day + k) % 3 !== 0); log(`  DX pick ${d}`); continue; }
       if (await p.getByTestId('cpr-minigame').count()) { for (let i = 0; i < 16; i++) { await p.getByTestId('cpr-press').click({ force: true }).catch(() => {}); await p.waitForTimeout(525); } await p.waitForTimeout(1500); continue; }
       const btns = p.getByTestId('action-tab').locator('button.cozy-btn:not(.cozy-btn-berry):not(.cozy-btn-sky)');
       const n = await btns.count(); if (n) await btns.nth((s + day) % n).click({ force: true }); await p.waitForTimeout(350);
