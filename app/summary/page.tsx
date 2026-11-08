@@ -19,6 +19,7 @@ import { teaserAfter } from "@/lib/teasers";
 import { shiftTitle } from "@/lib/shiftTitle";
 import { shiftCard } from "@/lib/shareSpecs";
 import { ShareSheet } from "@/components/game/ShareSheet";
+import { RichText } from "@/components/game/RichText";
 import type { CardSpec } from "@/lib/shareCard";
 
 /** Whoever is looking out for you at this point in the story signs off the day */
@@ -167,14 +168,14 @@ export default function SummaryPage() {
               </div>
               <div>
                 <p className="text-[15px] leading-none text-[#86522e]">{mentor.name.th}</p>
-                <p className="text-[15px] leading-snug mt-1">{SIGNOFF[tier].th}</p>
+                <RichText text={SIGNOFF[tier].th} className="text-[15px] leading-snug mt-1" />
               </div>
             </motion.div>
           )}
           {showNote && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mt-1.5 rounded-[4px] border-2 border-[#3a2a2f] bg-[#2b2133] px-2.5 py-1.5" data-testid="teaser">
               <p className="text-[13px] leading-none text-[#ffd66b]">เวรหน้า</p>
-              <p className="text-[15px] leading-snug mt-1 text-[#fbf3e2]">{teaserAfter(finishedDay)}</p>
+              <RichText text={teaserAfter(finishedDay)} tone="dark" className="text-[15px] leading-snug mt-1 text-[#fbf3e2]" />
             </motion.div>
           )}
 

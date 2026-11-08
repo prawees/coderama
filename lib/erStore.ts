@@ -164,7 +164,7 @@ export interface PatientRecord {
   star?: boolean;
 }
 
-interface ERState {
+export interface ERState {
   shiftMode: ShiftMode;
   activeCases: ActiveCase[];
   lastSaved: number;
@@ -215,6 +215,9 @@ interface ERState {
   syncEnabled: boolean;
   /** Show this player on the public leaderboard when signed in */
   leaderboardOptIn: boolean;
+  /** Guide steps done and things the guide watches for ("ev:board") */
+  guide: string[];
+  markGuide: (id: string) => void;
   currentDay: number; // For campaign progression
   storyFlags: Record<string, boolean | number | string>; // For narrative branching consequences
   
@@ -337,6 +340,8 @@ export const useERStore = create<ERState>()(
       tutorialCompleted: false,
       syncEnabled: false,
       leaderboardOptIn: true,
+      guide: [],
+      markGuide: (id) => set((s) => ((s.guide ?? []).includes(id) ? {} : { guide: [...(s.guide ?? []), id] })),
       currentDay: 1,
       storyFlags: {},
       sfxVolume: 0.5,
@@ -599,7 +604,8 @@ export const useERStore = create<ERState>()(
         lastSeen: {},
         savedTotal: 0,
         goodStreak: 0,
-        bestStreak: 0
+        bestStreak: 0,
+        guide: []
       }),
       resetShiftStats: () => set((state) => ({
         shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] }
@@ -806,6 +812,7 @@ export const useERStore = create<ERState>()(
         patientLog: state.patientLog,
         requestsDone: state.requestsDone,
         leaderboardOptIn: state.leaderboardOptIn,
+        guide: state.guide,
         savedTotal: state.savedTotal,
         goodStreak: state.goodStreak,
         bestStreak: state.bestStreak,

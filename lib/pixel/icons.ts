@@ -10,6 +10,18 @@ const K: Key = {
 };
 
 const ICONS: Record<string, string[]> = {
+  brain: [
+    "  kkkk kkk  ",
+    " kppppkpppk ",
+    "kppwpppkpppk",
+    "kpppkppppPpk",
+    "kppppppkpppk",
+    "kpkpppppkpPk",
+    " kpppkppppk ",
+    "  kPPPPPPk  ",
+    "    kPPk    ",
+    "     kk     ",
+  ],
   star: [
     "     kk     ",
     "    kyyk    ",

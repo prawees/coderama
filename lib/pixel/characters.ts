@@ -24,6 +24,10 @@ export interface Look {
   beard?: boolean;
   cap?: "nurse" | "baseball" | null;
   stethoscope?: boolean;
+  /** White coat cut: "short" ends at the waist (extern), long reaches the thigh */
+  coatLength?: "short" | "long";
+  /** Sleeves on a white coat; short unless said otherwise */
+  sleeves?: "short" | "long";
   blush?: boolean;
   eyes?: string;
 }
@@ -70,7 +74,8 @@ function legs({ g, look, dir, frame }: Ctx) {
 function torsoAndArms({ g, look, dir, frame }: Ctx) {
   const main = look.outfit === "coat" ? "#f7f2e8" : look.main;
   const mainShade = cozyShadow(main, 0.84);
-  const shortSleeves = look.outfit === "casual" || look.outfit === "scrubs" || look.outfit === "gown" || look.outfit === "nurse";
+  const shortSleeves = look.outfit === "casual" || look.outfit === "scrubs" || look.outfit === "gown" || look.outfit === "nurse"
+    || (look.outfit === "coat" && look.sleeves === "short");
   const sleeve = main;
   const hand = look.skin;
 
@@ -149,16 +154,22 @@ function outfitDetails({ g, look, dir }: Ctx) {
         g.set(6, 11, whiteShade); g.set(9, 11, whiteShade);
         g.set(6, 12, whiteShade); g.set(9, 12, whiteShade);
         g.set(5, 14, whiteShade); g.set(10, 14, whiteShade); // pockets
-        g.rect(4, 17, 6, 18, white); g.rect(9, 17, 11, 18, white); // coat tails, open in front
-        g.hline(4, 6, 18, whiteShade); g.hline(9, 11, 18, whiteShade);
+        if (look.coatLength !== "short") {
+          g.rect(4, 17, 6, 18, white); g.rect(9, 17, 11, 18, white); // coat tails, open in front
+          g.hline(4, 6, 18, whiteShade); g.hline(9, 11, 18, whiteShade);
+        }
       } else if (dir === "up") {
-        g.rect(4, 17, 11, 18, white);
-        g.vline(7, 13, 18, whiteShade);
-        g.hline(4, 11, 18, whiteShade);
+        if (look.coatLength !== "short") {
+          g.rect(4, 17, 11, 18, white);
+          g.vline(7, 13, 18, whiteShade);
+          g.hline(4, 11, 18, whiteShade);
+        } else g.vline(7, 13, 16, whiteShade);
       } else {
         g.rect(10, 11, 10, 14, look.accent);
-        g.rect(5, 17, 10, 18, white);
-        g.hline(5, 10, 18, whiteShade);
+        if (look.coatLength !== "short") {
+          g.rect(5, 17, 10, 18, white);
+          g.hline(5, 10, 18, whiteShade);
+        }
       }
       if (look.stethoscope !== false && dir !== "up") {
         const m = C.metalShade;

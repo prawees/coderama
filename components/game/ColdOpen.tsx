@@ -8,6 +8,7 @@ import { audio } from "@/lib/audio";
 import { PixelPortrait } from "@/components/game/PixelPortrait";
 import { PixelLogo } from "@/components/game/PixelLogo";
 import { PixelIcon } from "@/components/ui/PixelIcon";
+import { RichText } from "@/components/game/RichText";
 import type { LiveVitals } from "@/components/exam3d/BedsideScene";
 
 const Bedside3D = dynamic(() => import("@/components/exam3d/Bedside3D"), { ssr: false });
@@ -21,34 +22,30 @@ const Bedside3D = dynamic(() => import("@/components/exam3d/Bedside3D"), { ssr: 
 type Beat = "arrive" | "order" | "cpr1" | "charge" | "shock" | "cpr2" | "later" | "rosc" | "back" | "title";
 type Rhythm = "vf" | "cpr" | "flat" | "sinus";
 
-const CPR_FIRST = 10, CPR_SECOND = 8;
-/** The target is 100 to 120 a minute; only a rate clearly outside it is sent back */
-const RATE_LOW = 90, RATE_HIGH = 135;
+/**
+ * CPR here teaches the rhythm without punishing it. There is no count to restart: each compression fills a
+ * meter of blood reaching the brain, a good one (100 to 120 a minute, measured over the last few) fills it
+ * fastest, an off one still helps a little. So a bad rhythm only takes a few more presses, never a do-over.
+ */
+const RATE_LOW = 95, RATE_HIGH = 130;
+const FILL = { cpr1: { good: 0.17, off: 0.08 }, cpr2: { good: 0.26, off: 0.12 } };
 
-/** Compressions a minute from tap times, skipping the first taps while the hands find the rhythm */
-function rateOf(taps: number[], warmup: number) {
-  const t = taps.slice(warmup);
+/** Compressions a minute over the last few taps */
+function rateOf(taps: number[]) {
+  const t = taps.slice(-5);
   if (t.length < 3) return 0;
   return Math.round(60000 / ((t[t.length - 1] - t[0]) / (t.length - 1)));
 }
 
-/** Text that types itself out, one Thai character cluster at a time. data-text holds the whole line. */
-function Typed({ text, className, testid, speed = 18 }: { text: string; className?: string; testid?: string; speed?: number }) {
-  const parts = useMemo(() => {
-    const Seg = (Intl as any).Segmenter;
-    return Seg ? Array.from(new Seg("th", { granularity: "grapheme" }).segment(text) as Iterable<{ segment: string }>).map((x) => x.segment) : Array.from(text);
-  }, [text]);
+/** A line that types itself out, laid out sentence by sentence. data-text holds the whole line. */
+function Typed({ text, className, testid, speed = 16, tone = "light" }: { text: string; className?: string; testid?: string; speed?: number; tone?: "light" | "dark" }) {
   const [n, setN] = useState(0);
   useEffect(() => {
     setN(0);
-    const id = setInterval(() => setN((k) => { if (k >= parts.length) { clearInterval(id); return k; } return k + 1; }), speed);
+    const id = setInterval(() => setN((k) => { if (k >= text.length) { clearInterval(id); return k; } return k + 1; }), speed);
     return () => clearInterval(id);
-  }, [parts, speed]);
-  return (
-    <p className={className} data-testid={testid} data-text={text}>
-      {parts.slice(0, n).join("")}<span className="opacity-0">{parts.slice(n).join("")}</span>
-    </p>
-  );
+  }, [text, speed]);
+  return <RichText text={text} shown={n} tone={tone} className={className} testid={testid} />;
 }
 
 const ORDERS: { text: string; right?: boolean; why?: string }[] = [
@@ -60,7 +57,7 @@ const ORDERS: { text: string; right?: boolean; why?: string }[] = [
 const ANN: Partial<Record<Beat, string>> = {
   arrive: "อาจารย์คะ! ลุงอายุ 58 ล้มหน้าห้องตรวจ คลำ pulse ไม่ได้ค่ะ",
   order: "monitor เป็น VF ค่ะ สั่งเลยค่ะอาจารย์",
-  cpr1: "กดเลยค่ะ! ลึก 5 ถึง 6 cm เร็ว 100 ถึง 120 ครั้ง/นาที",
+  cpr1: "กดเลยค่ะ! ลึก 5 ถึง 6 cm เร็ว 100 ถึง 120 ครั้ง/นาที กดตาม PUSH ได้เลยค่ะ",
   charge: "ชาร์จ 200 J แล้วค่ะ ทุกคนถอยออกจากเตียง!",
   cpr2: "ช็อกแล้ว! กดต่อทันทีค่ะ อย่าเพิ่งเช็ค pulse",
   rosc: "sinus rhythm ค่ะ คลำ pulse ได้แล้ว กลับมาแล้วค่ะอาจารย์!",
@@ -126,6 +123,10 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
   const taps = useRef<number[]>([]);
   const [rate, setRate] = useState(0);
   const [coach, setCoach] = useState<string | null>(null);
+  const [perfusion, setPerfusion] = useState(0);
+  const fill = useRef(0);
+  const [pulses, setPulses] = useState<number[]>([]);
+  const [cue, setCue] = useState(0);
   const [wrong, setWrong] = useState<string | null>(null);
   const [flash, setFlash] = useState(false);
   const [shake, setShake] = useState(false);
@@ -153,30 +154,36 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
     return () => clearInterval(alarm);
   }, [alarming]);
 
-  const resetCpr = () => { counted.current = 0; taps.current = []; setCount(0); setRate(0); };
+  const resetCpr = () => { counted.current = 0; taps.current = []; fill.current = 0; setCount(0); setRate(0); setPerfusion(0); };
 
-  const compress = (goal: number, warmup: number, next: () => void) => {
+  // On-beat cues at 110 a minute while compressing: PUSH! PUSH!
+  const compressing = beat === "cpr1" || beat === "cpr2";
+  useEffect(() => {
+    if (!compressing) return;
+    const id = setInterval(() => setCue((c) => c + 1), 545);
+    return () => clearInterval(id);
+  }, [compressing]);
+
+  const compress = (phase: "cpr1" | "cpr2", next: () => void) => {
     const now = performance.now();
     pressRef.current = now;
     compressRef.current = now;
     rhythmRef.current = "cpr";
     audio.playTone(150, "square", 0.05, 0.12);
     haptic.impact("medium");
-    if (counted.current >= goal) return;
+    if (fill.current >= 1) return;
     counted.current += 1;
     taps.current.push(now);
     setCount(counted.current);
-    const r = rateOf(taps.current, warmup);
+    setPulses((p) => [...p.slice(-4), now]);
+    const r = rateOf(taps.current);
     setRate(r);
-    // Coach along the way only when it is clearly off, never for a few beats either side of the target
-    setCoach(r && r < RATE_LOW ? "ช้าไปนิดค่ะ เร็วขึ้นอีก" : r > RATE_HIGH ? "เร็วไปค่ะ ใจเย็นๆ ให้หน้าอกคืนตัว" : null);
-    if (counted.current === goal) {
-      if (r >= RATE_LOW && r <= RATE_HIGH) { setCoach(null); later(next, 200); return; }
-      audio.playBump();
-      haptic.vibrate();
-      setCoach(`เฉลี่ย ${r} ครั้ง/นาที ${r < RATE_LOW ? "ช้า" : "เร็ว"}ไปค่ะ เอาใหม่ ให้ได้ 100 ถึง 120 ตามจังหวะปุ่ม`);
-      later(resetCpr, 250);
-    }
+    const good = r >= RATE_LOW && r <= RATE_HIGH;
+    fill.current = Math.min(1, fill.current + (r === 0 ? FILL[phase].off : good ? FILL[phase].good : FILL[phase].off));
+    setPerfusion(fill.current);
+    // Coach only when the rhythm is clearly off, and praise it once it settles
+    setCoach(!r ? null : r < RATE_LOW ? "เร็วขึ้นอีกนิดค่ะ" : r > RATE_HIGH ? "ช้าลงหน่อย ให้หน้าอก fully recoil ก่อนค่ะ" : "ดีมากค่ะ จังหวะนี้แหละ");
+    if (fill.current >= 1) later(next, 350);
   };
 
   const order = (o: (typeof ORDERS)[number]) => {
@@ -194,6 +201,7 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
   };
 
   const toCharge = () => {
+    setCoach(null);
     rhythmRef.current = "vf";
     setBeat("charge");
     [392, 523, 659, 784].forEach((f, i) => later(() => audio.playTone(f, "square", 0.1, 0.06), i * 140));
@@ -213,6 +221,7 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
   };
 
   const toLater = () => {
+    setCoach(null);
     setBeat("later");
     rhythmRef.current = "flat";
     later(() => {
@@ -250,15 +259,50 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
         <div className="absolute inset-0">
           <Bedside3D vitalsRef={vitalsRef} compressRef={compressRef} examined={[]} onRegion={() => {}} appearance={{ skinTone: "#d19a6e" }} quietFallback />
         </div>
+        {(compressing || beat === "charge" || beat === "shock") && (
+          // A small indicator in the top corner, clear of the patient: heart to brain, filling as you press
+          <div className="absolute left-1.5 top-1.5 flex items-center gap-1 rounded-[6px] border-2 border-[#3a2a2f] bg-[#fff8ea]/90 px-1 py-0.5" data-testid="perfusion">
+            <span className="animate-[heartbeat_0.545s_ease-out_infinite] leading-none"><PixelIcon name="heart" size={13} /></span>
+            <div className="relative w-[46px] h-[8px] rounded-[2px] bg-[#f2dfc0] overflow-hidden border border-[#5c4340]">
+              <div className="absolute inset-y-0 left-0 bg-[#e8737f] transition-[width] duration-300" style={{ width: `${perfusion * 100}%` }} />
+              {pulses.map((t) => (
+                <motion.span key={t} initial={{ left: "-15%", opacity: 1 }} animate={{ left: "100%", opacity: 0.3 }} transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="absolute top-0 bottom-0 w-[7px] rounded-full bg-[#c4374a]" />
+              ))}
+            </div>
+            <span className={`leading-none transition-[filter] duration-300 ${perfusion > 0.5 ? "" : "grayscale"}`}><PixelIcon name="brain" size={15} /></span>
+          </div>
+        )}
       </div>
 
       <div className="shrink-0 flex flex-col gap-2 justify-end min-h-[220px]">
+        {compressing && (
+          <div className="relative rounded-[6px] border-[3px] border-[#3a2a2f] bg-[#241c2b] px-2.5 pt-1.5 pb-2" data-testid="cpr-hud">
+            <div className="flex items-end justify-between leading-none">
+              <span className="text-[14px] text-[#cfc3dc]">อัตรากดหน้าอก</span>
+              <span className="flex items-baseline gap-1">
+                <span className={`text-[30px] tabular-nums ${!rate ? "text-[#cfc3dc]" : rate >= RATE_LOW && rate <= RATE_HIGH ? "text-[#a5ecc0]" : "text-[#ffb3b8]"}`} data-testid="cold-open-rate">{rate || "..."}</span>
+                <span className="text-[13px] text-[#cfc3dc]">ครั้ง/นาที</span>
+              </span>
+            </div>
+            {/* 60 to 160 a minute, the 100 to 120 target shaded green */}
+            <div className="relative h-3 mt-1.5 rounded-[2px] bg-[#43355a] overflow-hidden">
+              <div className="absolute inset-y-0 bg-[#5fa96a]" style={{ left: "40%", width: "20%" }} />
+              {rate > 0 && <div className="absolute inset-y-[-2px] w-[4px] bg-[#ffe08a] transition-[left] duration-150" style={{ left: `calc(${Math.max(0, Math.min(100, rate - 60))}% - 2px)` }} />}
+            </div>
+            <div className="flex justify-between text-[11px] leading-none mt-1 text-[#9d90ae]"><span>60</span><span>100</span><span>120</span><span>160</span></div>
+            <AnimatePresence>
+              <motion.span key={cue} initial={{ scale: 1.5, opacity: 1, rotate: cue % 2 ? 6 : -6 }} animate={{ scale: 1, opacity: 0 }} transition={{ duration: 0.5, ease: "easeOut" }}
+                className={`pointer-events-none absolute -top-6 px-2 py-0.5 rounded-[4px] border-[3px] border-[#3a2a2f] bg-[#ffe08a] text-[24px] leading-none text-[#7a3f24] ${cue % 2 ? "right-5" : "left-5"}`} data-testid="push-cue">PUSH!</motion.span>
+            </AnimatePresence>
+          </div>
+        )}
         {line && (
           <div className="cozy-panel flex gap-2 items-center p-2">
             <div className="w-12 h-12 shrink-0 rounded-[3px] overflow-hidden border-2 border-[#3a2a2f]"><PixelPortrait speaker="Nurse Ann" className="w-full h-full" /></div>
             <div className="min-w-0">
               <p className="text-[14px] leading-none text-[#86522e]">พี่แอน</p>
-              <Typed text={coach ?? wrong ?? line} className="text-[18px] leading-tight mt-1" testid="cold-open-line" />
+              <Typed text={coach ?? wrong ?? line} className="text-[19px] leading-[1.3] mt-1 text-[#3a2a2f]" testid="cold-open-line" />
             </div>
           </div>
         )}
@@ -268,14 +312,13 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
             onClick={() => order(o)} className="cozy-btn w-full py-2 text-[19px] leading-tight" data-testid={o.right ? "cold-open-right" : "cold-open-wrong"}>{o.text}</motion.button>
         ))}
 
-        {(beat === "cpr1" || beat === "cpr2") && (
+        {compressing && (
           <button
-            onClick={() => (beat === "cpr1" ? compress(CPR_FIRST, 2, toCharge) : compress(CPR_SECOND, 1, toLater))}
-            className="cozy-btn cozy-btn-berry w-full py-5 leading-none animate-[cozyBeat_0.545s_ease-in-out_infinite]"
+            onClick={() => (beat === "cpr1" ? compress("cpr1", toCharge) : compress("cpr2", toLater))}
+            className="cozy-btn w-full py-6 text-[32px] leading-none text-white animate-[cprPump_0.545s_ease-in-out_infinite]"
             data-testid="cold-open-press"
           >
-            <span className="block text-[30px]">กดหน้าอก {count}/{beat === "cpr1" ? CPR_FIRST : CPR_SECOND}</span>
-            <span className="block text-[16px] mt-1.5 opacity-90" data-testid="cold-open-rate">{rate ? `${rate} ครั้ง/นาที` : "กดตามจังหวะปุ่มที่เต้นอยู่"}</span>
+            กดหน้าอก
           </button>
         )}
 
@@ -298,7 +341,7 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
       <AnimatePresence>
         {closing && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7 }} className="absolute inset-0 z-40 bg-[#1c1522] flex flex-col items-center justify-center gap-5 px-8 text-center" data-testid="cold-open-end">
-            <Typed text="แต่ก่อนจะถึงคืนนี้ คุณเป็นแค่ นศพ. ปี 5 รองเท้าขาวเอี่ยม" speed={38} className="text-[24px] leading-snug text-[#fbf3e2]" />
+            <Typed text="แต่ก่อนจะถึงคืนนี้... คุณเป็นแค่ นศพ. ปี 5 รองเท้าขาวเอี่ยม" speed={38} tone="dark" className="text-[24px] leading-snug text-[#fbf3e2]" />
             {beat === "title" && (
               <>
                 <motion.div initial={{ scale: 1.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 300, damping: 14 }}>

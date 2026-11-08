@@ -67,21 +67,29 @@ const LONG = 'กิตติพิชญ์ภูมิวัฒน';
     check(why.includes('atropine'), 'a wrong order is corrected, not failed', why);
     await p.screenshot({ path: `${OUT}/co_2_wrong.png` });
     await p.getByTestId('cold-open-right').click();
-    // Far too fast: sent back to start again, with the reason
-    for (let i = 0; i < 10; i++) { await p.getByTestId('cold-open-press').click({ force: true }); await p.waitForTimeout(120); }
-    await p.waitForTimeout(500);
+    // Far too fast: coached to slow down, and it still counts a little; nothing to start over
+    for (let i = 0; i < 6; i++) { await p.getByTestId('cold-open-press').click({ force: true }); await p.waitForTimeout(150); }
+    await p.waitForTimeout(400);
     const told = await p.getByTestId('cold-open-line').getAttribute('data-text');
-    check(/เร็วไป/.test(told) && (await p.getByTestId('cold-open-press').innerText()).includes('0/10'), 'too fast is sent back to start over', told);
+    check(/ช้าลง/.test(told) && /recoil/.test(told), 'too fast is coached to slow down', told);
+    check(await p.getByTestId('cold-open-press').count() === 1, 'and never sent back to start over');
     await p.screenshot({ path: `${OUT}/co_2b_too_fast.png` });
-    // About 110 a minute, a little uneven like real hands: accepted
-    const press = async (n) => { for (let i = 0; i < n; i++) { await p.getByTestId('cold-open-press').click({ force: true }); await p.waitForTimeout(i % 2 ? 500 : 560); } };
-    await press(10);
+    // Then about 110 a minute, a little uneven like real hands, until the shock is ready
+    const press = async (until, max) => {
+      let n = 0;
+      for (; n < max && !(await p.getByTestId(until).count()); n++) { await p.getByTestId('cold-open-press').click({ force: true }).catch(() => {}); await p.waitForTimeout(n % 2 ? 500 : 560); }
+      return n;
+    };
+    const steady = await press('cold-open-shock', 20);
+    check(steady <= 8, 'a steady rhythm gets there in a handful of presses', `${steady} more presses`);
+    await p.screenshot({ path: `${OUT}/co_2c_steady.png` });
     await p.getByTestId('cold-open-shock').waitFor();
     await p.screenshot({ path: `${OUT}/co_3_shock.png` });
     await p.getByTestId('cold-open-shock').click({ force: true });
     await p.getByTestId('cold-open-press').waitFor();
     check((await p.getByTestId('cold-open-line').innerText()).includes('กดต่อ'), 'back on the chest straight after the shock');
-    await press(8);
+    const second = await press('cold-open-later', 20);
+    check(second <= 6, 'after the shock, a few presses', `${second}`);
     await p.getByTestId('cold-open-later').waitFor();
     await p.getByTestId('cold-open-rosc').waitFor();
     check((await p.getByTestId('cold-open-HR').innerText()) === '88', 'the monitor shows the pulse back');
@@ -95,11 +103,13 @@ const LONG = 'กิตติพิชญ์ภูมิวัฒน';
     await p.getByTestId('start-game').waitFor();
     await p.waitForTimeout(600);
     await p.screenshot({ path: `${OUT}/co_6_setup.png` });
-    // Scrubs are one colour: picking them hides the separate trouser colours
+    // Year 5 wears the long coat; the rest are shown, locked, with when they open
     await p.getByTestId('customize').click();
-    await p.getByRole('button', { name: 'สครับ' }).click();
-    check(await p.getByTestId('scrubs-set').count() === 1, 'scrubs lock the trousers to the top colour');
-    await p.screenshot({ path: `${OUT}/co_7_scrubs.png` });
+    await p.getByTestId('uniform-scrubs').click({ force: true });
+    const lockWhy = await p.getByTestId('uniform-note').innerText();
+    check(/intern/.test(lockWhy), 'scrubs are locked in year 5 and say when they open', lockWhy);
+    check((await p.getByTestId('uniform-gown_long').getAttribute('class')).includes('cozy-btn-sky'), 'year 5 wears the long coat');
+    await p.screenshot({ path: `${OUT}/co_7_wardrobe.png` });
     await p.getByRole('button', { name: 'กลับ' }).first().click();
     await p.getByTestId('start-game').waitFor();
     check(await p.locator('select').count() === 1 && await p.locator('input').count() === 1, 'name, gender and school are on one screen');

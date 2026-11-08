@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import * as PIXI from "pixi.js";
+import { PixelGrid } from "@/lib/pixel/grid";
 import { audio } from "@/lib/audio";
 import { ActiveCase } from "@/lib/erStore";
 import { textureFrom, textureFromLayer } from "@/lib/pixel/texture";
@@ -33,7 +34,11 @@ export type WorldTarget =
   | { type: "bed"; id: string; bedIndex: number }
   | { type: "prop"; id: string; kind: Interactable["kind"] };
 
+export type MarkTarget = { npc: string } | { tile: [number, number] } | null;
+
 export interface WorldApi {
+  /** A bouncing arrow over a person or a spot, for the guide. null clears it. */
+  mark: (target: MarkTarget) => void;
   emote: (who: string, kind: T.Emote) => void;
   sparkle: (who: string) => void;
   hold: (who: string, seconds: number) => void;
@@ -288,6 +293,42 @@ function createEngine(
     place(a);
     actors.addChild(sprite);
     return a;
+  }
+
+  /* ---------- guide marker ---------- */
+  let markTarget: MarkTarget = null;
+  let marker: PIXI.Sprite | null = null;
+  function arrowGrid() {
+    const g = new PixelGrid(9, 8);
+    g.stamp(0, 0, [
+      "kkkkkkkkk",
+      "kyyyyyyyk",
+      "kyyyyyyyk",
+      " kyyyyyk ",
+      "  kyyyk  ",
+      "   kyk   ",
+      "    k    ",
+    ], { k: "#3a2a2f", y: "#ffd66b" });
+    return g;
+  }
+  function updateMarker() {
+    let x = 0, y = 0, show = false;
+    if (markTarget && "npc" in markTarget) {
+      const a = markTarget.npc === "cat" ? cat : npcActors.get(markTarget.npc);
+      if (a) { x = a.sprite.x; y = a.sprite.y - a.sprite.height - 4; show = true; }
+    } else if (markTarget && "tile" in markTarget) {
+      x = (markTarget.tile[0] + 0.5) * TILE; y = markTarget.tile[1] * TILE - 2; show = true;
+    }
+    if (!show) { if (marker) marker.visible = false; return; }
+    if (!marker || marker.destroyed) {
+      marker = new PIXI.Sprite(textureFrom("guide-arrow", arrowGrid));
+      marker.anchor.set(0.5, 1);
+    }
+    if (marker.parent !== actors) actors.addChild(marker);
+    marker.visible = true;
+    marker.x = Math.round(x);
+    marker.y = Math.round(y - Math.abs(Math.sin(elapsed * 4)) * 4);
+    marker.zIndex = 100000;
   }
 
   function place(a: Actor) {
@@ -851,6 +892,7 @@ function createEngine(
     if (!map || !player) return;
     const dt = Math.min(ticker.deltaMS / 1000, 0.05);
     elapsed += dt;
+    updateMarker();
     const p = propsRef.current;
 
     // player
@@ -967,6 +1009,7 @@ function createEngine(
   app.renderer.on("resize", onResize);
 
   const api: WorldApi = {
+    mark: (t) => { markTarget = t; },
     emote: showEmote,
     sparkle: (who) => { const a = actorById(who); if (a) burst(a.sprite.x, a.sprite.y - 14); },
     hold: (who, s) => { const a = actorById(who); if (a) { a.hold = s; a.path = []; } },
@@ -981,6 +1024,7 @@ function createEngine(
       }),
       tileToScreen: (x: number, y: number) => ({ x: root.x + (x + 0.5) * TILE * scale, y: root.y + (y + 0.5) * TILE * scale }),
       map: () => map?.id,
+      marker: () => (marker && marker.visible ? markTarget : null),
     };
   }
 

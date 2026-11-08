@@ -21,6 +21,7 @@ import { FriendsModal } from "@/components/game/FriendsModal";
 import { DayCard } from "@/components/game/DayCard";
 import { Pager } from "@/components/ui/Pager";
 import { DialogueBox } from "@/components/game/DialogueBox";
+import { GuideTracker } from "@/components/game/GuideTracker";
 import { QuestsModal } from "@/components/game/QuestsModal";
 import { LettersModal, LettersTab } from "@/components/game/LettersModal";
 import { unreadLetters } from "@/lib/letters";
@@ -661,6 +662,7 @@ export default function HubPage() {
 
   const tr = (en: string, th: string) => (language === 'th' ? th : en);
   const onShift = shiftMode === 'on-shift' || shiftMode === 'boss-battle';
+  const markGuide = useCallback((t: Parameters<WorldApi['mark']>[0]) => worldApi.current?.mark(t), []);
   const casebookClaimed = useERStore((s) => s.casebookClaimed);
   const requestsDone = useERStore((s) => s.requestsDone);
   // The postbox bubble also means a casebook reward is waiting to be claimed
@@ -708,6 +710,12 @@ export default function HubPage() {
           </div>
         </div>
 
+        <GuideTracker
+          onShift={onShift}
+          hidden={dialogueQueue.length > 0 || anyModal || dayCard !== null || currentMap !== 'ER_MAIN'}
+          mark={markGuide}
+        />
+
         {/* Coins and energy */}
         <div className="absolute top-2 right-2 z-40 flex flex-col items-end gap-1 pointer-events-none">
           <div className="cozy-tag px-2 py-1 flex items-center gap-1.5" data-testid="hud-cash">
@@ -746,6 +754,7 @@ export default function HubPage() {
             voice={dialogueQueue[0].voice}
             onComplete={handleDialogueComplete}
             onSkip={canSkip ? skipScene : undefined}
+            placement="top"
           />
         )}
 
@@ -771,7 +780,7 @@ export default function HubPage() {
               <div className="cozy-bar h-3 mt-1.5"><span style={{ width: `${progressPercent}%`, background: '#7fc8d8' }} /></div>
             )}
           </div>
-          <button onClick={() => { audio.playClick(); setIsQuestsOpen(true); }} className="cozy-btn cozy-btn-sun px-2 py-1 flex items-center gap-1 text-[17px] leading-none" aria-label="quests">
+          <button onClick={() => { audio.playClick(); useERStore.getState().markGuide('ev:board'); setIsQuestsOpen(true); }} className="cozy-btn cozy-btn-sun px-2 py-1 flex items-center gap-1 text-[17px] leading-none" aria-label="quests">
             <PixelIcon name="quest" size={16} />{activeQuests.length + (openRequest ? 1 : 0)}
           </button>
         </div>
@@ -863,7 +872,7 @@ export default function HubPage() {
       )}
 
       <AnimatePresence>
-        {isQuestsOpen && <QuestsModal onClose={() => setIsQuestsOpen(false)} onOpenCasebook={() => { setIsQuestsOpen(false); setLettersTab('casebook'); setIsLettersOpen(true); }} />}
+        {isQuestsOpen && <QuestsModal onClose={() => setIsQuestsOpen(false)} onOpenCasebook={() => { setIsQuestsOpen(false); useERStore.getState().markGuide('ev:casebook'); setLettersTab('casebook'); setIsLettersOpen(true); }} />}
         {isLettersOpen && <LettersModal initialTab={lettersTab} onClose={() => setIsLettersOpen(false)} />}
         {isLeaderboardOpen && <LeaderboardModal onClose={() => setIsLeaderboardOpen(false)} />}
         {isConsultsOpen && <ConsultsModal onClose={() => setIsConsultsOpen(false)} />}

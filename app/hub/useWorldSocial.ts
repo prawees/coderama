@@ -132,6 +132,7 @@ export function useWorldSocial(opts: {
     const points = TASTE_POINTS[taste] * (birthday ? 3 : 1);
     st.updateFriendship(id, points);
     st.markNpc(id, "giftDay", day);
+    st.markGuide("ev:gift");
     st.learnTaste(id, giftId, taste);
     const after = before + points;
     opts.worldApi.current?.emote(id, reactionEmote(taste));
@@ -222,6 +223,7 @@ export function useWorldSocial(opts: {
         return;
       }
       case "notice": {
+        useERStore.getState().markGuide("ev:board");
         // the board leaks gift hints about whoever works here now
         const here = rosterOn(day, phase);
         const npc = NPCS[here[day % here.length].id];

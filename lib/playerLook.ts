@@ -1,4 +1,6 @@
 import type { HairStyle, Look } from "@/lib/pixel/characters";
+import { uniformFor } from "@/lib/uniform";
+import { shade } from "@/lib/pixel/grid";
 import type { PlayerAppearance, Rank } from "@/lib/erStore";
 
 /**
@@ -6,21 +8,24 @@ import type { PlayerAppearance, Rank } from "@/lib/erStore";
  * a short-sleeved shirt as a student, a white coat from internship on.
  */
 export function playerLookFrom(appearance: PlayerAppearance | undefined, rank: Rank): Look {
-  const a = appearance ?? { skinColor: "#f4c7a1", hairColor: "#2c2328", topColor: "#ffffff", bottomColor: "#333333", shoeColor: "#000000", hairStyle: "hair_1", topStyle: "top_1" };
-  const student = rank === "MS5" || rank === "MS6";
-  const top = normalise(a.topColor, "#ffffff");
+  const a = appearance ?? { skinColor: "#f4c7a1", hairColor: "#2c2328", topColor: "#ffffff", bottomColor: "#333333", shoeColor: "#000000", hairStyle: "short", topStyle: "gown_long" };
+  const uniform = uniformFor(rank, a.topStyle);
+  const scrubColor = normalise(a.topColor, "#5b7fbf");
+  const scrubs = uniform === "scrubs";
   return {
     skin: normalise(a.skinColor, "#f4c7a1"),
     hair: normalise(a.hairColor, "#2c2328"),
     hairStyle: hairStyleFrom(a.hairStyle),
     glasses: !!a.glasses,
-    outfit: student ? (a.topStyle === "top_2" ? "scrubs" : "casual") : "coat",
-    main: student ? top : "#ffffff",
-    accent: student ? "#5b7fbf" : top === "#fbf7ee" ? "#5f9e8e" : top,
-    // Scrubs come as a set: the trousers are always the colour of the top
-    pants: a.topStyle === "top_2" ? top : normalise(a.bottomColor, "#3f4a6b"),
+    outfit: scrubs ? "scrubs" : "coat",
+    coatLength: uniform === "gown_short" ? "short" : "long",
+    sleeves: uniform === "gown_sleeves" ? "long" : "short",
+    // Scrubs are a set in one colour; under a white coat it is the white shirt of the uniform
+    main: scrubs ? scrubColor : "#fbf7ee",
+    accent: scrubs ? shade(scrubColor, 0.8) : "#e6ebf2",
+    pants: scrubs ? scrubColor : normalise(a.bottomColor, "#2c2328"),
     shoes: normalise(a.shoeColor, "#3b2a2f"),
-    stethoscope: !student,
+    stethoscope: !scrubs || rank !== "MS5",
   };
 }
 

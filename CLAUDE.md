@@ -53,7 +53,13 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
   `leaderboards/{uid}`, and a choice screen when the phone and the cloud disagree. `app/login/` is the account page.
   Firebase project `code-rama-6826d` (Firestore in Bangkok), rules in `firestore.rules`
   (`firebase deploy --only firestore:rules`). `lib/firebase.ts` holds the public web config.
-- Wardrobe: `components/game/Wardrobe.tsx`, used at setup and in the profile locker.
+- Wardrobe: `components/game/Wardrobe.tsx`, used at setup and in the profile locker. What each year may wear is in
+  `lib/uniform.ts` (year 5 long coat, extern short coat, scrubs from intern, long sleeves for attendings); locked
+  options stay visible and say when they open.
+- Reading: `components/game/RichText.tsx` lays a line out sentence by sentence (`lib/sentences.ts` decides where a
+  Thai sentence ends) and tints English clinical terms and doses. Use it for any Thai line longer than a phrase.
+- First-days guide: `lib/guide.ts` (steps, what completes them, what the world arrow points at) shown by
+  `components/game/GuideTracker.tsx`; the arrow is `WorldApi.mark`. Guide progress is `guide` in the save.
 - Haptics: always `haptic` from `lib/haptics.ts`, never `@capacitor/haptics` directly. Safari on iPhone has no vibration
   API and the plugin throws there; awaited, it silently broke taps. `hook.js` and `custom.js` run without vibration.
 - Rank: always read it with `storyRank(day, lifetimeXp)` in `lib/erStore.ts`, never from XP during the campaign.

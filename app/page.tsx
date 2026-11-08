@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useERStore, useHydrated, PlayerAppearance } from "@/lib/erStore";
 import { Wardrobe } from "@/components/game/Wardrobe";
 import { useCloud } from "@/lib/account";
+import { RichText } from "@/components/game/RichText";
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { haptic } from "@/lib/haptics";
@@ -23,6 +24,8 @@ import { teaserAfter } from "@/lib/teasers";
 
 /** The cold open plays once on a device. After that the title goes straight to the menu. */
 const SEEN_KEY = "coderama.coldOpenSeen";
+/** The name on the badge when the player leaves it blank */
+const DEFAULT_NAME = { M: "บิ๊ก", F: "นาน่า", O: "บิ๊ก" } as const;
 const seenColdOpen = () => { try { return !!localStorage.getItem(SEEN_KEY); } catch { return true; } };
 const markColdOpenSeen = () => { try { localStorage.setItem(SEEN_KEY, "1"); } catch { /* private mode */ } };
 
@@ -43,7 +46,7 @@ export default function RootPage() {
   const [uniInput, setUniInput] = useState("Rama");
 
   // Customization State
-  const [look, setLook] = useState<PlayerAppearance>({ skinColor: "#f4c7a1", hairColor: "#2c2328", topColor: "#ffffff", bottomColor: "#333333", shoeColor: "#000000", hairStyle: "short", topStyle: "top_1", glasses: false });
+  const [look, setLook] = useState<PlayerAppearance>({ skinColor: "#f4c7a1", hairColor: "#2c2328", topColor: "#ffffff", bottomColor: "#333333", shoeColor: "#000000", hairStyle: "short", topStyle: "gown_long", glasses: false });
 
   // Someone coming back wants their game, not the logo again
   useEffect(() => {
@@ -154,7 +157,7 @@ export default function RootPage() {
     // An empty name falls back to the placeholder shown in the field rather than blocking the start.
     audio.stopMenuChiptune();
     music.stopTrack();
-    setupPlayer(nameInput.trim() || 'มะปราง', genderInput, 'th', look, uniInput);
+    setupPlayer(nameInput.trim() || DEFAULT_NAME[genderInput], genderInput, 'th', look, uniInput);
     audio.playShiftStart(); // A little dramatic sound for starting
     router.push("/hub");
   };
@@ -205,7 +208,7 @@ export default function RootPage() {
                   <PixelButton onClick={handleContinue} variant="primary" className="w-full py-2 text-2xl" data-testid="continue">เล่นต่อ</PixelButton>
                   <div className="cozy-panel px-2.5 py-2 text-left" data-testid="continue-card">
                     <p className="text-[15px] leading-none text-[#86522e]">{at ? `บท ${at.chapter.n} ${at.chapter.title} เวร ${at.position}/${at.total}` : `เวรที่ ${currentDay}`}</p>
-                    {currentDay > 1 && <p className="text-[15px] leading-snug mt-1">{teaserAfter(currentDay - 1)}</p>}
+                    {currentDay > 1 && <RichText text={teaserAfter(currentDay - 1)} className="text-[15px] leading-snug mt-1" />}
                   </div>
                 </div>
               );
@@ -267,7 +270,7 @@ export default function RootPage() {
                   <input
                     type="text"
                     className="flex-1 min-w-0 bg-transparent border-none outline-none text-center text-[#3a2a2f]"
-                    placeholder="มะปราง"
+                    placeholder={DEFAULT_NAME[genderInput]}
                     value={nameInput}
                     onChange={(e) => setNameInput(e.target.value)}
                     maxLength={15}
@@ -323,7 +326,7 @@ export default function RootPage() {
                     <span className="text-[13px] text-[#86522e]">{tr("preview", "ตัวอย่าง")}</span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <Wardrobe value={look} onChange={(p) => setLook((l) => ({ ...l, ...p }))} />
+                    <Wardrobe value={look} rank="MS5" onChange={(p) => setLook((l) => ({ ...l, ...p }))} />
                   </div>
                 </div>
                 <div className="pt-1 flex gap-3">

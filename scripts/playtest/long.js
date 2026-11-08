@@ -68,7 +68,7 @@ const T0 = Date.now(); const log = (...a) => fs.appendFileSync(LOG, ((Date.now()
   await p.locator('text=เกมจาก Rama G7 Club').click({ force: true }).catch(() => {}); await p.waitForTimeout(300);
   await p.locator('text=แตะเพื่อเริ่ม').click({ force: true }); await p.waitForTimeout(300);
   await p.getByTestId('new-game').click({ force: true }); await p.waitForTimeout(400);
-  await p.locator('input[placeholder="มะปราง"]').fill('ต้นข้าว');
+  await p.locator('input[maxlength="15"]').fill('ต้นข้าว');
   await p.locator('button:has-text("หญิง")').first().click({ force: true }); await p.waitForTimeout(150);
   await p.getByTestId('start-game').click({ force: true }); await p.waitForTimeout(2500);
 

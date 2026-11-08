@@ -1,23 +1,28 @@
 "use client";
 
-import type { PlayerAppearance } from "@/lib/erStore";
+import { useState } from "react";
+import type { PlayerAppearance, Rank } from "@/lib/erStore";
+import { UNIFORMS, allowedUniforms, lockNote, uniformFor } from "@/lib/uniform";
 import { audio } from "@/lib/audio";
 
 export const SKIN = ["#ffdcc2", "#f4c7a1", "#e8b089", "#d19a6e", "#b97f55", "#9a6544"];
 export const HAIR = ["#2c2328", "#5a3a2a", "#7a4a2c", "#8a3f2c", "#b8b2ad", "#d9739a", "#5b7fbf"];
-export const TOP = ["#ffffff", "#9fd3e6", "#86c35f", "#f4c7d8", "#ffd66b", "#c98ad1", "#e07a3a"];
-export const BOTTOM = ["#333333", "#3f4a6b", "#5a5466", "#6e4428", "#2f5f4f"];
+/** Scrub colours wards actually use */
+export const SCRUBS = ["#5b7fbf", "#3f4a6b", "#2f5f4f", "#6aa9a0", "#c98ad1", "#e07a8a", "#2c2328"];
+/** Uniform trousers: dark and plain */
+export const BOTTOM = ["#2c2328", "#3f4a6b", "#5a5466", "#4b4f63"];
 
-/** Every hairstyle the sprite engine draws. Old saves hold hair_1 and hair_2, read as short and long. */
+/** Every hairstyle the sprite engine draws, by the names people use. Old saves hold hair_1 and hair_2. */
 export const HAIRSTYLES: [string, string][] = [
-  ["short", "สั้น"], ["sidepart", "แสกข้าง"], ["spiky", "ตั้ง"], ["curly", "หยิก"],
-  ["long", "ยาว"], ["bob", "บ๊อบ"], ["bun", "มวย"], ["ponytail", "หางม้า"],
+  ["short", "ผมสั้น"], ["sidepart", "แสกข้าง"], ["spiky", "ผมตั้ง"], ["curly", "ผมหยิก"],
+  ["long", "ผมยาว"], ["bob", "บ็อบ"], ["bun", "ดังโงะ"], ["ponytail", "มัดผม"],
 ];
 export const hairKey = (v?: string) => (v === "hair_2" ? "long" : !v || v === "hair_1" ? "short" : v);
 
-/** The locker: colours, hair, glasses and what you wear on the ward. Used at setup and on the ID card. */
-export function Wardrobe({ value, onChange }: { value: PlayerAppearance; onChange: (patch: Partial<PlayerAppearance>) => void }) {
-  const pick = (patch: Partial<PlayerAppearance>) => { audio.playClick(); onChange(patch); };
+/** The locker: skin, hair, glasses, and the uniform your year wears. Locked uniforms say when they open. */
+export function Wardrobe({ value, onChange, rank }: { value: PlayerAppearance; onChange: (patch: Partial<PlayerAppearance>) => void; rank: Rank }) {
+  const [note, setNote] = useState<string | null>(null);
+  const pick = (patch: Partial<PlayerAppearance>) => { audio.playClick(); setNote(null); onChange(patch); };
   const swatches = (label: string, key: keyof PlayerAppearance, options: string[]) => (
     <div className="flex flex-col gap-1">
       <span className="text-[15px] leading-none text-[#86522e]">{label}</span>
@@ -31,6 +36,8 @@ export function Wardrobe({ value, onChange }: { value: PlayerAppearance; onChang
     </div>
   );
   const hair = hairKey(value.hairStyle);
+  const allowed = allowedUniforms(rank);
+  const wearing = uniformFor(rank, value.topStyle);
   return (
     <div className="flex flex-col gap-2.5" data-testid="wardrobe">
       {swatches("สีผิว", "skinColor", SKIN)}
@@ -40,20 +47,33 @@ export function Wardrobe({ value, onChange }: { value: PlayerAppearance; onChang
         <div className="grid grid-cols-4 gap-1">
           {HAIRSTYLES.map(([v, label]) => (
             <button key={v} onClick={() => pick({ hairStyle: v })} data-testid={`hair-${v}`}
-              className={`cozy-btn py-1 text-[16px] leading-none ${hair === v ? "cozy-btn-sky" : ""}`}>{label}</button>
+              className={`cozy-btn py-1 text-[15px] leading-none ${hair === v ? "cozy-btn-sky" : ""}`}>{label}</button>
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-1">
-        {[["top_1", "เสื้อเชิ้ต"], ["top_2", "สครับ"]].map(([v, label]) => (
-          <button key={v} onClick={() => pick({ topStyle: v })} className={`cozy-btn py-1 text-[16px] leading-none ${(value.topStyle || "top_1") === v ? "cozy-btn-sky" : ""}`}>{label}</button>
-        ))}
-        <button onClick={() => pick({ glasses: !value.glasses })} aria-pressed={!!value.glasses} data-testid="glasses"
-          className={`cozy-btn py-1 text-[16px] leading-none ${value.glasses ? "cozy-btn-sky" : ""}`}>แว่น</button>
+      <button onClick={() => pick({ glasses: !value.glasses })} aria-pressed={!!value.glasses} data-testid="glasses"
+        className={`cozy-btn py-1 text-[15px] leading-none ${value.glasses ? "cozy-btn-sky" : ""}`}>{value.glasses ? "ใส่แว่น ✓" : "ใส่แว่น"}</button>
+      <div className="flex flex-col gap-1">
+        <span className="text-[15px] leading-none text-[#86522e]">ชุดขึ้นวอร์ด</span>
+        <div className="grid grid-cols-2 gap-1">
+          {UNIFORMS.map((u) => {
+            const open = allowed.includes(u.id);
+            return (
+              <button key={u.id} data-testid={`uniform-${u.id}`} aria-disabled={!open}
+                onClick={() => (open ? pick({ topStyle: u.id }) : (audio.playBump(), setNote(lockNote(u.id, rank))))}
+                className={`cozy-btn py-1 text-[15px] leading-none ${wearing === u.id ? "cozy-btn-sky" : ""} ${open ? "" : "opacity-55"}`}>
+                {open ? u.label : `🔒 ${u.label}`}
+              </button>
+            );
+          })}
+        </div>
+        {note && <p className="text-[14px] leading-snug text-[#a93c4b]" data-testid="uniform-note">{note}</p>}
       </div>
-      {swatches(value.topStyle === "top_2" ? "สีชุดสครับ" : "สีเสื้อ", "topColor", TOP)}
-      {value.topStyle === "top_2" ? (
-        <p className="text-[14px] leading-snug text-[#86522e]" data-testid="scrubs-set">สครับเป็นชุดเดียวกัน กางเกงสีเดียวกับเสื้อ</p>
+      {wearing === "scrubs" ? (
+        <>
+          {swatches("สีสครับ", "topColor", SCRUBS)}
+          <p className="text-[13px] leading-snug text-[#86522e]" data-testid="scrubs-set">สครับเป็นชุดเดียวกัน กางเกงสีเดียวกับเสื้อ</p>
+        </>
       ) : swatches("สีกางเกง", "bottomColor", BOTTOM)}
     </div>
   );

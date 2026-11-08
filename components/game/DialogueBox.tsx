@@ -8,6 +8,7 @@ import { PixelPortrait, hasPortrait } from "@/components/game/PixelPortrait";
 import { NPCS, npcIdForSpeaker, speakerLabel } from "@/lib/npcs";
 import { useERStore } from "@/lib/erStore";
 import { inVoice } from "@/lib/voice";
+import { RichText } from "@/components/game/RichText";
 
 interface DialogueBoxProps {
   speakerName?: string;
@@ -18,10 +19,12 @@ interface DialogueBoxProps {
   onComplete: (choice?: CutsceneChoice) => void;
   /** Jump ahead to the next decision. Shown only when there is something to skip. */
   onSkip?: () => void;
+  /** "top" keeps the box clear of the D-pad and the desk in the clinic */
+  placement?: "top" | "bottom";
 }
 
 /** Parchment dialogue card with a wooden portrait frame and a name ribbon. Text types out with a per-character voice. */
-export function DialogueBox({ speakerName, text: rawText, choices, voice, onComplete, onSkip }: DialogueBoxProps) {
+export function DialogueBox({ speakerName, text: rawText, choices, voice, onComplete, onSkip, placement = "bottom" }: DialogueBoxProps) {
   const { playerName, playerGender, currentDay } = useERStore();
   const text = inVoice(rawText, playerGender, currentDay);
   const label = speakerLabel(speakerName, playerName);
@@ -61,7 +64,7 @@ export function DialogueBox({ speakerName, text: rawText, choices, voice, onComp
 
   return (
     <div
-      className="absolute bottom-2 left-2 right-2 z-[100] cursor-pointer animate-[cozyPop_0.18s_ease-out]"
+      className={`absolute left-2 right-2 z-[100] cursor-pointer animate-[cozyPop_0.18s_ease-out] ${placement === "top" ? "top-[3.4rem]" : "bottom-2"}`}
       onClick={handleNext}
       data-testid="dialogue"
     >
@@ -86,12 +89,12 @@ export function DialogueBox({ speakerName, text: rawText, choices, voice, onComp
           </div>
         )}
         <div className="flex-1 min-w-0 flex flex-col justify-center">
-          <p className={`text-[19px] leading-[1.15] min-h-[3.2rem] ${isNarration ? "text-[#5b4148]" : "text-[#3a2a2f]"}`} data-testid="dialogue-text">
-            {text.slice(0, shown)}
+          <div className={`relative text-[19px] leading-[1.3] min-h-[3.2rem] ${isNarration ? "text-[#5b4148] italic-none" : "text-[#3a2a2f]"}`} data-testid="dialogue-text">
+            <RichText text={text} shown={shown} />
             {finished && (!choices || choices.length === 0) && (
-              <span className="inline-block ml-1 text-[#d95763] animate-[cozyBob_0.8s_ease-in-out_infinite]">▼</span>
+              <span className="absolute -bottom-1 right-0 text-[#d95763] text-[15px] animate-[cozyBob_0.8s_ease-in-out_infinite]">▼</span>
             )}
-          </p>
+          </div>
           {finished && choices && choices.length > 0 && (
             <div className="mt-2 flex flex-col gap-1.5 max-h-[38vh] overflow-y-auto" data-testid="dialogue-choices">
               {choices.map((c, idx) => (

@@ -76,8 +76,7 @@ export default function ProfilePage() {
         {/* Wardrobe */}
         <div className="cozy-panel p-3 w-full max-w-sm mx-auto flex flex-col gap-2.5">
           <p className="text-[20px] leading-none">{tr("Locker", "ล็อกเกอร์")}</p>
-          <Wardrobe value={appearance} onChange={(p) => setAppearance(p)} />
-          <p className="text-[14px] leading-snug text-[#86522e]">{tr("From intern year on, the white coat goes over whatever you wear.", "ตั้งแต่เป็นอินเทิร์น เสื้อกาวน์จะคลุมทับชุดที่ใส่")}</p>
+          <Wardrobe value={appearance} rank={rank} onChange={(p) => setAppearance(p)} />
         </div>
       </div>
     </PageTransition>
