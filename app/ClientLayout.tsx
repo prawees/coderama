@@ -3,8 +3,7 @@
 import { useEffect } from "react";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { Capacitor } from "@capacitor/core";
-import { initSync } from "@/lib/syncEngine";
-import { initCloudSync } from "@/lib/cloudSync";
+import { startAccount } from "@/lib/account";
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -12,8 +11,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
       StatusBar.setStyle({ style: Style.Dark });
       StatusBar.setOverlaysWebView({ overlay: true });
     }
-    initSync();
-    initCloudSync();
+    startAccount();
   }, []);
 
   return <>{children}</>;

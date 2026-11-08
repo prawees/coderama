@@ -1,4 +1,4 @@
-import type { Look } from "@/lib/pixel/characters";
+import type { HairStyle, Look } from "@/lib/pixel/characters";
 import type { PlayerAppearance, Rank } from "@/lib/erStore";
 
 /**
@@ -12,7 +12,8 @@ export function playerLookFrom(appearance: PlayerAppearance | undefined, rank: R
   return {
     skin: normalise(a.skinColor, "#f4c7a1"),
     hair: normalise(a.hairColor, "#2c2328"),
-    hairStyle: a.hairStyle === "hair_2" ? "long" : "short",
+    hairStyle: hairStyleFrom(a.hairStyle),
+    glasses: !!a.glasses,
     outfit: student ? (a.topStyle === "top_2" ? "scrubs" : "casual") : "coat",
     main: student ? top : "#ffffff",
     accent: student ? "#5b7fbf" : top === "#fbf7ee" ? "#5f9e8e" : top,
@@ -20,6 +21,14 @@ export function playerLookFrom(appearance: PlayerAppearance | undefined, rank: R
     shoes: normalise(a.shoeColor, "#3b2a2f"),
     stethoscope: !student,
   };
+}
+
+const STYLES: HairStyle[] = ["short", "sidepart", "spiky", "curly", "long", "bob", "bun", "ponytail"];
+
+/** Old saves hold hair_1 (short) and hair_2 (long); newer ones the style name */
+function hairStyleFrom(v?: string): HairStyle {
+  if (v === "hair_2") return "long";
+  return STYLES.includes(v as HairStyle) ? (v as HairStyle) : "short";
 }
 
 /** Pure black and pure white read badly in pixel art; nudge them into the palette */

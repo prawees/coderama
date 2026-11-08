@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useERStore, PlayerAppearance, storyRank } from "@/lib/erStore";
+import { useERStore, storyRank } from "@/lib/erStore";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { PixelIcon } from "@/components/ui/PixelIcon";
 import { SpritePreview } from "@/components/game/SpritePreview";
@@ -11,12 +11,7 @@ import { playerLookFrom } from "@/lib/playerLook";
 import { getLocalizedRankTitle, universityTh } from "@/lib/localization";
 import { NPCS, heartsFor } from "@/lib/npcs";
 import { LOCATION_NAMES, phaseForDay } from "@/lib/world/maps";
-import { audio } from "@/lib/audio";
-
-const SKIN = ["#ffdcc2", "#f4c7a1", "#e8b089", "#d19a6e", "#b97f55", "#9a6544"];
-const HAIR = ["#2c2328", "#5a3a2a", "#7a4a2c", "#8a3f2c", "#b8b2ad", "#d9739a", "#5b7fbf"];
-const TOP = ["#ffffff", "#9fd3e6", "#86c35f", "#f4c7d8", "#ffd66b", "#c98ad1", "#e07a3a"];
-const BOTTOM = ["#333333", "#3f4a6b", "#5a5466", "#6e4428", "#2f5f4f"];
+import { Wardrobe } from "@/components/game/Wardrobe";
 
 /** Your hospital ID card: who you are, where you work, and who you have become close to. */
 export default function ProfilePage() {
@@ -27,32 +22,10 @@ export default function ProfilePage() {
   const look = playerLookFrom(appearance, rank);
   const place = LOCATION_NAMES[phaseForDay(currentDay)][language];
 
-  const set = (key: keyof PlayerAppearance, val: string) => {
-    audio.playClick();
-    setAppearance({ [key]: val } as Partial<PlayerAppearance>);
-  };
-
   const friends = Object.entries(friendships || {})
     .filter(([id, pts]) => NPCS[id] && pts > 0)
     .sort(([, a], [, b]) => b - a)
     .slice(0, 4);
-
-  const swatches = (label: string, key: keyof PlayerAppearance, options: string[]) => (
-    <div className="flex flex-col gap-1">
-      <span className="text-[15px] leading-none text-[#86522e]">{label}</span>
-      <div className="flex gap-1 flex-wrap">
-        {options.map((c) => (
-          <button
-            key={c}
-            aria-label={`${label} ${c}`}
-            onClick={() => set(key, c)}
-            className={`w-7 h-7 rounded-[3px] border-[3px] ${appearance?.[key]?.toLowerCase() === c ? "border-[#3a2a2f] scale-110" : "border-[#c9a77a]"}`}
-            style={{ backgroundColor: c }}
-          />
-        ))}
-      </div>
-    </div>
-  );
 
   return (
     <PageTransition>
@@ -103,18 +76,7 @@ export default function ProfilePage() {
         {/* Wardrobe */}
         <div className="cozy-panel p-3 w-full max-w-sm mx-auto flex flex-col gap-2.5">
           <p className="text-[20px] leading-none">{tr("Locker", "ล็อกเกอร์")}</p>
-          {swatches(tr("Skin", "สีผิว"), "skinColor", SKIN)}
-          {swatches(tr("Hair", "สีผม"), "hairColor", HAIR)}
-          <div className="flex flex-col gap-1">
-            <span className="text-[15px] leading-none text-[#86522e]">{tr("Hair style", "ทรงผม")}</span>
-            <div className="flex gap-1">
-              {[["hair_1", tr("Short", "สั้น")], ["hair_2", tr("Long", "ยาว")]].map(([v, lbl]) => (
-                <button key={v} onClick={() => set("hairStyle", v)} className={`cozy-btn flex-1 py-1 text-[17px] ${appearance?.hairStyle === v ? "cozy-btn-sky" : ""}`}>{lbl}</button>
-              ))}
-            </div>
-          </div>
-          {swatches(tr("Shirt", "เสื้อ"), "topColor", TOP)}
-          {swatches(tr("Pants", "กางเกง"), "bottomColor", BOTTOM)}
+          <Wardrobe value={appearance} onChange={(p) => setAppearance(p)} />
           <p className="text-[14px] leading-snug text-[#86522e]">{tr("From intern year on, the white coat goes over whatever you wear.", "ตั้งแต่เป็นอินเทิร์น เสื้อกาวน์จะคลุมทับชุดที่ใส่")}</p>
         </div>
       </div>

@@ -1,5 +1,23 @@
 # Handoff, 6 November 2026
 
+## Accounts, cloud saves and the leaderboard
+
+- Firebase project `code-rama-6826d` (the one made in August, Firestore in Bangkok, free Spark plan). A web app
+  "Code Rama" is registered and `firestore.rules` is deployed. An extra empty project `code-rama-th` was created by
+  mistake on 8 November and can be deleted from the console.
+- `lib/account.ts` replaced three overlapping sync paths. It saves the whole game, never overwrites progress without
+  asking, keeps the game on the phone after sign-out, and writes a leaderboard row only for players who leave the
+  setting on (in-game name, school, day, patients saved, stars, best streak; never the email).
+- The leaderboard ranks by patients saved, not XP. The old `/hub/leaderboard` page, linked from nowhere, is gone.
+- **Still to do by a person:** in the Firebase console, Authentication, Sign-in method: turn on Google, and Email/Password
+  with "Email link (passwordless sign-in)". When the game has a public address, add it under Authorized domains.
+- **iOS app:** Google sign-in uses a pop-up, which does not work inside the app, so the app shows email-link sign-in
+  only, and the link opening the app needs deep links set up. Native Google and Sign in with Apple need the Capacitor
+  Firebase Authentication plugin. Apple requires Sign in with Apple in any App Store app that offers Google sign-in.
+- Leaderboard numbers are written by the player's own device. The rules cap them at believable values, but a
+  determined player could still post a fake score. Checking scores on a server needs Cloud Functions (paid plan).
+- Designer cases published before this went to Porames' `rama-toxico-edu` project and stay there.
+
 ## First minute and retention pass
 
 Goal: hook a student or evaluator at once, and stop 31 days from reading as a wall.

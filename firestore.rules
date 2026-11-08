@@ -1,0 +1,51 @@
+rules_version = '2';
+
+// Code Rama. Deploy with: firebase deploy --only firestore:rules
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
+
+    // One save per player, readable and writable only by that player
+    match /saves/{uid} {
+      allow read, delete: if isOwner(uid);
+      allow write: if isOwner(uid) && request.resource.data.keys().hasOnly(['state', 'summary', 'updatedAt']);
+    }
+
+    // Public leaderboard rows: anyone can read, each player writes only their own, within sane bounds
+    match /leaderboards/{uid} {
+      allow read: if true;
+      allow delete: if isOwner(uid);
+      allow write: if isOwner(uid)
+        && request.resource.data.keys().hasOnly(['uid', 'displayName', 'university', 'day', 'savedTotal', 'stars', 'bestStreak', 'updatedAt'])
+        && request.resource.data.uid == uid
+        && request.resource.data.displayName is string && request.resource.data.displayName.size() <= 20
+        && request.resource.data.university is string && request.resource.data.university.size() <= 20
+        && request.resource.data.day is int && request.resource.data.day >= 1 && request.resource.data.day <= 400
+        && request.resource.data.savedTotal is int && request.resource.data.savedTotal >= 0 && request.resource.data.savedTotal <= 5000
+        && request.resource.data.stars is int && request.resource.data.stars >= 0 && request.resource.data.stars <= 51
+        && request.resource.data.bestStreak is int && request.resource.data.bestStreak >= 0 && request.resource.data.bestStreak <= 5000;
+    }
+
+    // Cases from the designer: everyone can play them, only the author edits or removes one
+    match /simulations/{id} {
+      allow read: if true;
+      allow create: if signedIn() && request.resource.data.createdBy == request.auth.uid;
+      allow update: if signedIn() && resource.data.createdBy == request.auth.uid
+        && request.resource.data.createdBy == request.auth.uid;
+      allow delete: if signedIn() && resource.data.createdBy == request.auth.uid;
+    }
+
+    // Asking a friend about a case: signed-in players read and answer each other
+    match /consults/{id} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.requesterId == request.auth.uid;
+      allow update: if signedIn();
+    }
+
+    // Everything else is closed
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

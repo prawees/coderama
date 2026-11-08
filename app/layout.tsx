@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ClientLayout } from "./ClientLayout";
-import { CloudSync } from "@/components/CloudSync";
 import { withBase } from "@/lib/basePath";
 
 // Self-hosted so builds work offline (Electron, Capacitor, sandboxed CI).
@@ -45,7 +44,6 @@ export default function RootLayout({
         <div className="w-full sm:max-w-[400px] h-[100dvh] sm:h-[800px] sm:max-h-[90vh] bg-black sm:border-[12px] sm:border-zinc-800 sm:rounded-[3rem] sm:shadow-2xl overflow-hidden relative">
           <ClientLayout>
             {children}
-            <CloudSync />
           </ClientLayout>
         </div>
       </body>

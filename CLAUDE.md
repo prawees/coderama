@@ -46,6 +46,11 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
   story branch), `lib/shiftTitle.ts` (shift titles and doctor types).
 - Story cards: `lib/shareCard.ts` draws them on a canvas, `lib/shareSpecs.ts` builds them from the save,
   `components/game/ShareSheet.tsx` previews and sends. `NEXT_PUBLIC_SHARE_URL` puts a link in the card footer.
+- Accounts: `lib/account.ts` is the only cloud code: one save per player in `saves/{uid}`, an opt-in row in
+  `leaderboards/{uid}`, and a choice screen when the phone and the cloud disagree. `app/login/` is the account page.
+  Firebase project `code-rama-6826d` (Firestore in Bangkok), rules in `firestore.rules`
+  (`firebase deploy --only firestore:rules`). `lib/firebase.ts` holds the public web config.
+- Wardrobe: `components/game/Wardrobe.tsx`, used at setup and in the profile locker.
 - Rank: always read it with `storyRank(day, lifetimeXp)` in `lib/erStore.ts`, never from XP during the campaign.
 - Music is written code, not audio files: `lib/musicCore.ts`, `lib/music.ts`. Sound effects and rain: `lib/audio.ts`.
 
@@ -73,6 +78,10 @@ Story card with awkward data into `out/hook`: look at those pictures after chang
 They need a running export (`npm run build`, then `node scripts/playtest/serve.js out 8765`) and Playwright
 (`npm i -D playwright && npx playwright install chromium`, or set `PW_MODULE` and `PW_CHROMIUM`).
 `BASE_URL` overrides the address.
+`account.js` tests sign-in, cloud saves, a second phone, a save conflict, the leaderboard and the security rules
+against the Firebase emulators: run `firebase emulators:start --only auth,firestore --project demo-coderama`, build with
+`NEXT_PUBLIC_FIREBASE_EMULATOR=1 NEXT_PUBLIC_FIREBASE_PROJECT_ID=demo-coderama NEXT_PUBLIC_FIREBASE_API_KEY=demo-key`
+(that build has a test sign-in button), serve it and set `BASE_URL`. Rebuild without those before shipping.
 
 ## Gotchas
 

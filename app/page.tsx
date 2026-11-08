@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useERStore, useHydrated } from "@/lib/erStore";
+import { useERStore, useHydrated, PlayerAppearance } from "@/lib/erStore";
+import { Wardrobe } from "@/components/game/Wardrobe";
+import { useCloud } from "@/lib/account";
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
@@ -31,6 +33,7 @@ export default function RootPage() {
   const { setupPlayer, xp, currentDay, tutorialCompleted } = useERStore();
   const hasSave = xp > 0 || currentDay > 1 || tutorialCompleted;
   const hydrated = useHydrated();
+  const cloud = useCloud();
 
   const [menuState, setMenuState] = useState<MenuState | 'ABOUT' | 'CREDITS'>('INTRO');
   const [wizardStep, setWizardStep] = useState(1);
@@ -39,13 +42,7 @@ export default function RootPage() {
   const [uniInput, setUniInput] = useState("Rama");
 
   // Customization State
-  const [skinColor, setSkinColor] = useState("#f4c7a1");
-  const [hairColor, setHairColor] = useState("#2c2328");
-  const [topColor, setTopColor] = useState("#ffffff");
-  const [bottomColor, setBottomColor] = useState("#333333");
-  const [shoeColor, setShoeColor] = useState("#000000");
-  const [hairStyle, setHairStyle] = useState("hair_1");
-  const [topStyle, setTopStyle] = useState("top_1");
+  const [look, setLook] = useState<PlayerAppearance>({ skinColor: "#f4c7a1", hairColor: "#2c2328", topColor: "#ffffff", bottomColor: "#333333", shoeColor: "#000000", hairStyle: "short", topStyle: "top_1", glasses: false });
 
   // Someone coming back wants their game, not the logo again
   useEffect(() => {
@@ -148,37 +145,13 @@ export default function RootPage() {
     // An empty name falls back to the placeholder shown in the field rather than blocking the start.
     audio.stopMenuChiptune();
     music.stopTrack();
-    setupPlayer(nameInput.trim() || 'มะปราง', genderInput, 'th', {
-      skinColor,
-      hairColor,
-      topColor,
-      bottomColor,
-      shoeColor,
-      hairStyle,
-      topStyle
-    }, uniInput);
+    setupPlayer(nameInput.trim() || 'มะปราง', genderInput, 'th', look, uniInput);
     audio.playShiftStart(); // A little dramatic sound for starting
     router.push("/hub");
   };
 
   const tr = (_en: string, th: string) => th;
-  const previewLook = playerLookFrom({ skinColor, hairColor, topColor, bottomColor, shoeColor, hairStyle, topStyle }, "MS5");
-  const swatch = (value: string, set: (v: string) => void, options: string[], label: string) => (
-    <div className="flex flex-col gap-1">
-      <span className="text-[15px] leading-none text-[#86522e]">{label}</span>
-      <div className="flex gap-1 flex-wrap">
-        {options.map((c) => (
-          <button
-            key={c}
-            aria-label={`${label} ${c}`}
-            onClick={() => { audio.playClick(); set(c); }}
-            className={`w-6 h-6 rounded-[3px] border-2 ${value === c ? "border-[#3a2a2f] outline outline-2 outline-[#ffd66b]" : "border-[#3a2a2f]/60"}`}
-            style={{ background: c }}
-          />
-        ))}
-      </div>
-    </div>
-  );
+  const previewLook = playerLookFrom(look, "MS5");
 
   return (
     <div className="min-h-screen text-pixel-text font-pixel flex flex-col items-center justify-center p-4 relative overflow-hidden select-none cozy-night">
@@ -230,6 +203,9 @@ export default function RootPage() {
             })()}
             <PixelButton onClick={handleNewGame} variant={hasSave ? "wood" : "primary"} className="w-full py-2 text-2xl" data-testid="new-game">เริ่มใหม่</PixelButton>
             <PixelButton onClick={() => router.push('/cases')} variant="secondary" className="w-full py-1.5 text-xl" data-testid="case-library-link">คลังเคส</PixelButton>
+            <PixelButton onClick={() => router.push('/login')} variant="secondary" className="w-full py-1.5 text-xl" data-testid="account-link">
+              {cloud.user ? 'บัญชี ✓ เซฟในคลาวด์' : 'เข้าสู่ระบบ เซฟข้ามเครื่อง'}
+            </PixelButton>
             <PixelButton onClick={() => setMenuState('SETTINGS')} variant="secondary" className="w-full py-1.5 text-xl">ตั้งค่า</PixelButton>
             <div className="flex gap-3">
               <PixelButton onClick={() => setMenuState('ABOUT')} variant="secondary" className="flex-1 py-1.5 text-lg">เกี่ยวกับเกม</PixelButton>
@@ -337,29 +313,8 @@ export default function RootPage() {
                     </div>
                     <span className="text-[13px] text-[#86522e]">{tr("preview", "ตัวอย่าง")}</span>
                   </div>
-                  <div className="flex-1 flex flex-col gap-2">
-                    {swatch(skinColor, setSkinColor, ["#ffdcc2", "#f4c7a1", "#e8b089", "#d19a6e", "#b97f55", "#9a6544"], tr("Skin", "สีผิว"))}
-                    {swatch(hairColor, setHairColor, ["#2c2328", "#5a3a2a", "#7a4a2c", "#8a3f2c", "#b8b2ad", "#d9739a", "#5b7fbf"], tr("Hair", "สีผม"))}
-                    {swatch(topColor, setTopColor, ["#ffffff", "#9fd3e6", "#86c35f", "#f4c7d8", "#ffd66b", "#c98ad1", "#e07a3a"], tr("Shirt", "เสื้อ"))}
-                    {swatch(bottomColor, setBottomColor, ["#333333", "#3f4a6b", "#5a5466", "#6e4428", "#2f5f4f"], tr("Pants", "กางเกง"))}
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="flex flex-col gap-1">
-                    <span className="text-[15px] leading-none text-[#86522e]">{tr("Hair style", "ทรงผม")}</span>
-                    <div className="flex gap-1">
-                      {[["hair_1", tr("Short", "สั้น")], ["hair_2", tr("Long", "ยาว")]].map(([v, lbl]) => (
-                        <button key={v} onClick={() => { audio.playClick(); setHairStyle(v); }} className={`cozy-btn flex-1 py-1 text-lg ${hairStyle === v ? 'cozy-btn-sky' : ''}`}>{lbl}</button>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-[15px] leading-none text-[#86522e]">{tr("Outfit", "ชุด")}</span>
-                    <div className="flex gap-1">
-                      {[["top_1", "เสื้อกาวน์"], ["top_2", "สครับ"]].map(([v, lbl]) => (
-                        <button key={v} onClick={() => { audio.playClick(); setTopStyle(v); }} className={`cozy-btn flex-1 py-1 text-lg ${topStyle === v ? 'cozy-btn-sky' : ''}`}>{lbl}</button>
-                      ))}
-                    </div>
+                  <div className="flex-1 min-w-0">
+                    <Wardrobe value={look} onChange={(p) => setLook((l) => ({ ...l, ...p }))} />
                   </div>
                 </div>
                 <div className="pt-1 flex gap-3">

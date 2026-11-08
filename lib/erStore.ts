@@ -152,6 +152,7 @@ export interface PlayerAppearance {
   shoeColor: string;
   hairStyle: string;
   topStyle: string;
+  glasses?: boolean;
 }
 
 export interface PatientRecord {
@@ -212,6 +213,8 @@ interface ERState {
   completedQuests: string[];
   tutorialCompleted: boolean;
   syncEnabled: boolean;
+  /** Show this player on the public leaderboard when signed in */
+  leaderboardOptIn: boolean;
   currentDay: number; // For campaign progression
   storyFlags: Record<string, boolean | number | string>; // For narrative branching consequences
   
@@ -333,6 +336,7 @@ export const useERStore = create<ERState>()(
       completedQuests: [],
       tutorialCompleted: false,
       syncEnabled: false,
+      leaderboardOptIn: true,
       currentDay: 1,
       storyFlags: {},
       sfxVolume: 0.5,
@@ -801,6 +805,7 @@ export const useERStore = create<ERState>()(
         propDaily: state.propDaily,
         patientLog: state.patientLog,
         requestsDone: state.requestsDone,
+        leaderboardOptIn: state.leaderboardOptIn,
         savedTotal: state.savedTotal,
         goodStreak: state.goodStreak,
         bestStreak: state.bestStreak,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { PixelIcon } from "@/components/ui/PixelIcon";
 import { storyRank, useERStore } from "@/lib/erStore";
@@ -24,7 +24,7 @@ export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
     let alive = true;
     (async () => {
       try {
-        const q = query(collection(db, "leaderboards"), orderBy("xp", "desc"), limit(50));
+        const q = query(collection(db, "leaderboards"), orderBy("savedTotal", "desc"), limit(50));
         const snap = await getDocs(q);
         if (alive) setLeaders(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
       } catch (e) {
@@ -39,15 +39,16 @@ export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
 
   const universityScores = leaders.reduce((acc, curr) => {
     const uni = universityTh(curr.university) || "ไม่ระบุ";
-    acc[uni] = (acc[uni] || 0) + (curr.xp || 0);
+    acc[uni] = (acc[uni] || 0) + (curr.savedTotal || 0);
     return acc;
   }, {} as Record<string, number>);
   const sortedUniversities = Object.entries(universityScores)
     .sort(([, a], [, b]) => (b as number) - (a as number))
     .map(([name, xp]) => ({ name, xp: xp as number }));
 
-  const Row = ({ i, name, sub, right, right2 }: { i: number; name: string; sub?: string; right: string; right2?: string }) => (
-    <div className="flex items-center gap-2 bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] px-2 py-1.5">
+  const me = auth.currentUser?.uid;
+  const Row = ({ i, name, sub, right, right2, mine }: { i: number; name: string; sub?: string; right: string; right2?: string; mine?: boolean }) => (
+    <div className={`flex items-center gap-2 border-2 rounded-[4px] px-2 py-1.5 ${mine ? "bg-[#fff0c9] border-[#e8b84f]" : "bg-[#fff6e3] border-[#e7d3a8]"}`} data-testid={mine ? "leaderboard-me" : "leaderboard-row"}>
       <span
         className="w-7 h-7 shrink-0 flex items-center justify-center rounded-full border-2 border-[#3a2a2f] text-[16px] leading-none"
         style={{ background: MEDAL[i] ?? "#f1d9a7" }}
@@ -87,21 +88,22 @@ export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
             <p className="text-center text-[18px] text-[#86522e] py-8 animate-pulse">{tr("Dusting off the plaques...", "กำลังเช็ดป้ายรายชื่อ...")}</p>
           ) : failed || leaders.length === 0 ? (
             <p className="text-center text-[18px] text-[#86522e] py-8">
-              {failed ? tr("The board is offline. Sign in from Settings to post your name.", "บอร์ดออฟไลน์อยู่ ลงชื่อเข้าใช้ในหน้าตั้งค่าเพื่อขึ้นป้าย") : tr("No names yet. Yours could be first.", "ยังไม่มีใครเลย ชื่อแรกอาจเป็นของหมอ")}
+              {failed ? "เปิดกระดานอันดับไม่ได้ ลองเช็กเน็ตแล้วเปิดใหม่นะ" : "ยังไม่มีใครขึ้นกระดาน เข้าสู่ระบบจากเมนูบัญชีหน้าแรก แล้วชื่อจะขึ้นที่นี่"}
             </p>
           ) : tab === "individual" ? (
-            leaders.slice(0, 10).map((l, i) => (
+            leaders.slice(0, 20).map((l, i) => (
               <Row
                 key={l.id}
                 i={i}
-                name={l.displayName || tr("Mystery doctor", "หมอนิรนาม")}
-                sub={`${l.university && l.university !== "Unknown" ? `${universityTh(l.university)}, ` : ""}${RANK_SHORT_TH[storyRank(l.day || 1, l.xp || 0)] ?? storyRank(l.day || 1, l.xp || 0)}`}
-                right={`${l.xp || 0} XP`}
-                right2={tr(`Day ${l.day || 1}`, `วันที่ ${l.day || 1}`)}
+                mine={l.id === me}
+                name={l.displayName || "หมอนิรนาม"}
+                sub={`${l.university && l.university !== "Unknown" ? `${universityTh(l.university)} · ` : ""}${RANK_SHORT_TH[storyRank(l.day || 1)] ?? storyRank(l.day || 1)} วันที่ ${l.day || 1}`}
+                right={`${l.savedTotal || 0} คน`}
+                right2={`★ ${l.stars || 0}`}
               />
             ))
           ) : (
-            sortedUniversities.map((u, i) => <Row key={u.name} i={i} name={u.name} right={`${u.xp.toLocaleString()} XP`} />)
+            sortedUniversities.map((u, i) => <Row key={u.name} i={i} name={u.name} right={`${u.xp.toLocaleString()} คน`} right2="ช่วยไว้รวม" />)
           )}
         </div>
       </div>
