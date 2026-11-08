@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useERStore, PlayerAppearance, getRankFromXp } from "@/lib/erStore";
+import { useERStore, PlayerAppearance, storyRank } from "@/lib/erStore";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { PixelIcon } from "@/components/ui/PixelIcon";
 import { SpritePreview } from "@/components/game/SpritePreview";
@@ -23,7 +23,7 @@ export default function ProfilePage() {
   const router = useRouter();
   const { appearance, setAppearance, playerName, playerGender, lifetimeXp, currentDay, friendships, completedQuests, university, language } = useERStore();
   const tr = (en: string, th: string) => (language === "th" ? th : en);
-  const rank = getRankFromXp(lifetimeXp || 0);
+  const rank = storyRank(currentDay, lifetimeXp || 0);
   const look = playerLookFrom(appearance, rank);
   const place = LOCATION_NAMES[phaseForDay(currentDay)][language];
 

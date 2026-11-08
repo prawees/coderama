@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useERStore } from "@/lib/erStore";
+import { useERStore, useHydrated } from "@/lib/erStore";
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
@@ -14,13 +14,23 @@ import { PixelPortrait } from "@/components/game/PixelPortrait";
 import { playerLookFrom } from "@/lib/playerLook";
 import { SpritePreview } from "@/components/game/SpritePreview";
 import { SettingsMenu } from "@/components/game/SettingsMenu";
+import { ColdOpen } from "@/components/game/ColdOpen";
+import { PixelLogo } from "@/components/game/PixelLogo";
+import { shiftInChapter } from "@/lib/chapters";
+import { teaserAfter } from "@/lib/teasers";
 
-type MenuState = 'INTRO' | 'SPLASH' | 'MENU' | 'SETUP' | 'SETTINGS';
+/** The cold open plays once on a device. After that the title goes straight to the menu. */
+const SEEN_KEY = "coderama.coldOpenSeen";
+const seenColdOpen = () => { try { return !!localStorage.getItem(SEEN_KEY); } catch { return true; } };
+const markColdOpenSeen = () => { try { localStorage.setItem(SEEN_KEY, "1"); } catch { /* private mode */ } };
+
+type MenuState = 'INTRO' | 'SPLASH' | 'COLD_OPEN' | 'MENU' | 'SETUP' | 'SETTINGS';
 
 export default function RootPage() {
   const router = useRouter();
   const { setupPlayer, xp, currentDay, tutorialCompleted } = useERStore();
   const hasSave = xp > 0 || currentDay > 1 || tutorialCompleted;
+  const hydrated = useHydrated();
 
   const [menuState, setMenuState] = useState<MenuState | 'ABOUT' | 'CREDITS'>('INTRO');
   const [wizardStep, setWizardStep] = useState(1);
@@ -37,23 +47,47 @@ export default function RootPage() {
   const [hairStyle, setHairStyle] = useState("hair_1");
   const [topStyle, setTopStyle] = useState("top_1");
 
+  // Someone coming back wants their game, not the logo again
+  useEffect(() => {
+    if (hydrated && hasSave) setMenuState((m) => (m === 'INTRO' || m === 'SPLASH' ? 'MENU' : m));
+  }, [hydrated, hasSave]);
+
   // Auto-transition from Intro to Splash
   useEffect(() => {
     if (menuState === 'INTRO') {
       const timer = setTimeout(() => {
         setMenuState('SPLASH');
-      }, 3000);
+      }, 1800);
       return () => clearTimeout(timer);
     }
   }, [menuState]);
 
+  // Browsers hold sound until the first tap, and a returning player skips the splash that would give it
+  useEffect(() => {
+    const start = () => { if (music.getCurrentTrack() !== 'title') music.fadeToTrack('title', 1.5); };
+    window.addEventListener('pointerdown', start, { once: true });
+    return () => window.removeEventListener('pointerdown', start);
+  }, []);
+
   const handleSplashTap = () => {
     Haptics.impact({ style: ImpactStyle.Light });
     audio.playClick();
-    
+
+    // A first-time player goes straight into a resus. Everyone else gets the menu.
+    if (!hasSave && !seenColdOpen()) {
+      music.stopTrack();
+      setMenuState('COLD_OPEN');
+      return;
+    }
     music.fadeToTrack('title', 1.5);
-    
     setMenuState('MENU');
+  };
+
+  const finishColdOpen = () => {
+    markColdOpenSeen();
+    music.fadeToTrack('title', 1.5);
+    setWizardStep(1);
+    setMenuState('SETUP');
   };
 
   const handleNewGame = () => {
@@ -87,8 +121,14 @@ export default function RootPage() {
       storyFlags: {},
       karma: 0,
       clockMinutes: 0,
-      shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0 },
-      isPendingPromotion: false
+      shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] },
+      isPendingPromotion: false,
+      requestsDone: [],
+      casebookClaimed: [],
+      lastSeen: {},
+      savedTotal: 0,
+      goodStreak: 0,
+      bestStreak: 0
     });
     
     setWizardStep(1);
@@ -143,12 +183,13 @@ export default function RootPage() {
   return (
     <div className="min-h-screen text-pixel-text font-pixel flex flex-col items-center justify-center p-4 relative overflow-hidden select-none cozy-night">
       <TitleScene />
+      {menuState === 'COLD_OPEN' && <ColdOpen onDone={finishColdOpen} />}
 
       {menuState === 'INTRO' && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-[#1c1522] cursor-pointer" onClick={() => setMenuState('SPLASH')}>
           <div className="text-center flex flex-col gap-2 animate-[cozyPop_0.6s_ease-out]">
             <p className="text-[#c9b79c] text-lg">เกมจาก Rama G7 Club</p>
-            <h1 className="font-logo text-[#ffd66b] text-6xl mt-3 leading-none drop-shadow-[0_3px_0_#5e3923]">Code Rama</h1>
+            <h1 className="mt-3 flex justify-center"><PixelLogo scale={3} /></h1>
             <div className="mt-6 flex flex-col gap-1 text-[#c9b79c] text-base">
               <p>พัฒนาโดย Prawees</p>
               <p>ไอเดียโดย Porames</p>
@@ -158,10 +199,10 @@ export default function RootPage() {
       )}
 
       <div className="w-full max-w-md z-10 flex flex-col items-center justify-center min-h-screen py-4">
-        {menuState !== 'SETUP' && (
+        {menuState !== 'SETUP' && menuState !== 'COLD_OPEN' && (
           <div className="flex flex-col items-center mb-6 animate-[cozyBob_3s_ease-in-out_infinite]">
-            <div className="cozy-panel px-6 pt-3 pb-2 text-center">
-              <h1 className="font-logo text-[56px] leading-[0.9] text-[#d95763] drop-shadow-[0_3px_0_#86522e]">Code Rama</h1>
+            <div className="cozy-panel px-4 pt-3 pb-2 text-center">
+              <h1 className="flex justify-center"><PixelLogo scale={3} /></h1>
               <p className="text-[18px] leading-tight mt-1 text-[#86522e]">จาก นศพ. ปี 5 สู่อาจารย์หมอ</p>
             </div>
           </div>
@@ -175,9 +216,18 @@ export default function RootPage() {
 
         {menuState === 'MENU' && (
           <div className="w-64 flex flex-col gap-3 animate-slide-up">
-            {hasSave && (
-              <PixelButton onClick={handleContinue} variant="primary" className="w-full py-2 text-2xl" data-testid="continue">เล่นต่อ</PixelButton>
-            )}
+            {hasSave && (() => {
+              const at = shiftInChapter(currentDay);
+              return (
+                <div className="flex flex-col gap-1.5">
+                  <PixelButton onClick={handleContinue} variant="primary" className="w-full py-2 text-2xl" data-testid="continue">เล่นต่อ</PixelButton>
+                  <div className="cozy-panel px-2.5 py-2 text-left" data-testid="continue-card">
+                    <p className="text-[15px] leading-none text-[#86522e]">{at ? `บท ${at.chapter.n} ${at.chapter.title} เวร ${at.position}/${at.total}` : `เวรที่ ${currentDay}`}</p>
+                    {currentDay > 1 && <p className="text-[15px] leading-snug mt-1">{teaserAfter(currentDay - 1)}</p>}
+                  </div>
+                </div>
+              );
+            })()}
             <PixelButton onClick={handleNewGame} variant={hasSave ? "wood" : "primary"} className="w-full py-2 text-2xl" data-testid="new-game">เริ่มใหม่</PixelButton>
             <PixelButton onClick={() => router.push('/cases')} variant="secondary" className="w-full py-1.5 text-xl" data-testid="case-library-link">คลังเคส</PixelButton>
             <PixelButton onClick={() => setMenuState('SETTINGS')} variant="secondary" className="w-full py-1.5 text-xl">ตั้งค่า</PixelButton>
@@ -239,16 +289,7 @@ export default function RootPage() {
                   />
                   <span className="text-[#86522e]">ปี 5</span>
                 </div>
-                <div className="pt-1 flex gap-3 w-full">
-                  <PixelButton onClick={() => setMenuState('MENU')} variant="wood" className="w-1/3">กลับ</PixelButton>
-                  <PixelButton onClick={() => setWizardStep(2)} variant="primary" className="flex-1 text-2xl">ต่อไป</PixelButton>
-                </div>
-              </div>
-            )}
-
-            {wizardStep === 2 && (
-              <div className="space-y-4">
-                <div className="space-y-2">
+                <div className="space-y-2 w-full">
                   <label className="text-lg leading-none text-[#86522e]">{tr("Gender", "เพศ")}</label>
                   <div className="flex gap-2">
                     {(['M', 'F', 'O'] as const).map((g) => (
@@ -277,9 +318,12 @@ export default function RootPage() {
                     <option value="Other">ที่อื่น</option>
                   </select>
                 </div>
-                <div className="pt-1 flex gap-3 w-full">
-                  <PixelButton onClick={() => setWizardStep(1)} variant="wood" className="w-1/3">กลับ</PixelButton>
-                  <PixelButton onClick={() => setWizardStep(3)} variant="primary" className="flex-1 text-2xl">ต่อไป</PixelButton>
+                <div className="pt-1 flex flex-col gap-2 w-full">
+                  <PixelButton onClick={handleStart} variant="primary" className="w-full py-2 text-2xl" data-testid="start-game">เข้าเวรเลย</PixelButton>
+                  <div className="flex gap-2">
+                    <PixelButton onClick={() => setMenuState('MENU')} variant="wood" className="w-1/3">กลับ</PixelButton>
+                    <PixelButton onClick={() => setWizardStep(3)} variant="secondary" className="flex-1 text-xl" data-testid="customize">แต่งตัวก่อน</PixelButton>
+                  </div>
                 </div>
               </div>
             )}
@@ -319,7 +363,7 @@ export default function RootPage() {
                   </div>
                 </div>
                 <div className="pt-1 flex gap-3">
-                  <PixelButton onClick={() => setWizardStep(2)} variant="wood" className="w-1/3">กลับ</PixelButton>
+                  <PixelButton onClick={() => setWizardStep(1)} variant="wood" className="w-1/3">กลับ</PixelButton>
                   <PixelButton onClick={handleStart} variant="primary" className="flex-1 text-2xl">เข้าเวรเลย</PixelButton>
                 </div>
               </div>

@@ -11,6 +11,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NPCS } from "@/lib/npcs";
 import { LOCATION_NAMES, phaseForDay } from "@/lib/world/maps";
 import { music } from "@/lib/music";
+import { audio } from "@/lib/audio";
+import { chapterCard } from "@/lib/shareSpecs";
+import { ShareSheet } from "@/components/game/ShareSheet";
+import type { CardSpec } from "@/lib/shareCard";
 
 type L = { en: string; th: string };
 interface Chapter { title: L; line: L; host: string; button: L; promo?: L }
@@ -79,6 +83,7 @@ export default function YearEndPage() {
   const router = useRouter();
   const { storyFlags, currentDay, language } = useERStore();
   const [step, setStep] = useState(0);
+  const [card, setCard] = useState<CardSpec | null>(null);
   const ch = CHAPTERS[currentDay] ?? FALLBACK;
   const host = NPCS[ch.host];
   const place = LOCATION_NAMES[phaseForDay(currentDay)].th;
@@ -98,6 +103,7 @@ export default function YearEndPage() {
 
   return (
     <PageTransition>
+      {card && <ShareSheet spec={card} onClose={() => setCard(null)} filename={`code-rama-chapter-${currentDay}.png`} />}
       <div
         className="w-full h-[100dvh] cozy-night font-pixel flex flex-col items-center justify-center p-5 relative overflow-hidden"
         onClick={() => setStep((s) => Math.min(2, s + 1))}
@@ -144,9 +150,16 @@ export default function YearEndPage() {
             )}
           </AnimatePresence>
 
-          <div className="mt-4 h-12">
+          <div className="mt-4 min-h-[5.5rem]">
             {step >= 2 && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col gap-1.5">
+                <button
+                  onClick={(e) => { e.stopPropagation(); audio.playClick(); setCard(chapterCard({ title: ch.title.th, promo: ch.promo?.th, host: host?.look })); }}
+                  className="cozy-btn cozy-btn-sun w-full py-1.5 text-[17px] leading-none"
+                  data-testid="share-chapter"
+                >
+                  แชร์ลงสตอรี่
+                </button>
                 <PixelButton onClick={(e) => { e.stopPropagation(); router.push("/hub"); }} variant="plum" className="w-full py-2 text-[22px]" data-testid="year-end-next">
                   {ch.button.th}
                 </PixelButton>

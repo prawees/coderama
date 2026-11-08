@@ -73,9 +73,24 @@ const RANK_ORDER: Rank[] = ['MS5', 'MS6', 'Intern', 'R1', 'R2', 'R3', 'Asst. Pro
 export const rankFloorForDay = (day: number): Rank =>
   day >= 31 ? 'Asst. Prof' : day >= 26 ? 'R1' : day >= 16 ? 'Intern' : day >= 6 ? 'MS6' : 'MS5';
 
+/**
+ * The rank someone holds. During the campaign the story decides it alone, so a title can never
+ * disagree with the chapter, whatever XP a save carries. XP only moves rank after the campaign,
+ * through the promotion exam.
+ */
+export const storyRank = (day: number, lifetimeXp = 0): Rank => {
+  const floor = rankFloorForDay(day);
+  if (day < 31) return floor;
+  const earned = getRankFromXp(lifetimeXp);
+  return RANK_ORDER.indexOf(earned) > RANK_ORDER.indexOf(floor) ? earned : floor;
+};
+
+/** Whether a step needs someone senior than this rank standing by */
+export const rankBelow = (have: Rank, need: string): boolean => RANK_ORDER.indexOf(have) < RANK_ORDER.indexOf(need as Rank);
+
 /** The highest rank XP can earn before the story moves you on. From day 31 the promotion exam takes over. */
 export const rankCeilingForDay = (day: number): Rank =>
-  day >= 31 ? 'Prof' : day >= 26 ? 'R3' : day >= 16 ? 'Intern' : day >= 6 ? 'MS6' : 'MS5';
+  day >= 31 ? 'Prof' : day >= 26 ? 'R1' : day >= 16 ? 'Intern' : day >= 6 ? 'MS6' : 'MS5';
 
 /** Lifetime XP cap for the story chapter, one point below the next rank. Infinity once the campaign is over. */
 export const chapterXpCap = (day: number): number => {
@@ -218,6 +233,11 @@ interface ERState {
   patientLog: Record<string, PatientRecord>;
   /** Days whose notice-board request was done */
   requestsDone: number[];
+  /** Patients who survived under this doctor, this run */
+  savedTotal: number;
+  /** Cases in a row with at most one slip, and the longest such run */
+  goodStreak: number;
+  bestStreak: number;
   /** Casebook milestones already claimed, by page count */
   casebookClaimed: number[];
   /** Day each case was last brought in, so review cases rotate (lib/schedule.ts) */
@@ -274,6 +294,8 @@ interface ERState {
   useProp: (key: string, day: number) => void;
   /** Finish today's notice-board request and pay it out. False if there is none or it was done. */
   completeRequest: (day: number) => boolean;
+  /** Counts a finished story case towards the streak and the lives saved */
+  recordOutcome: (grade: 'clean' | 'minor' | 'poor' | 'critical') => void;
   claimCasebook: (count: number) => boolean;
 }
 
@@ -299,6 +321,9 @@ export const useERStore = create<ERState>()(
       propDaily: {},
       patientLog: {},
       requestsDone: [],
+      savedTotal: 0,
+      goodStreak: 0,
+      bestStreak: 0,
       casebookClaimed: [],
       lastSeen: {},
 
@@ -567,7 +592,10 @@ export const useERStore = create<ERState>()(
         patientLog: {},
         requestsDone: [],
         casebookClaimed: [],
-        lastSeen: {}
+        lastSeen: {},
+        savedTotal: 0,
+        goodStreak: 0,
+        bestStreak: 0
       }),
       resetShiftStats: () => set((state) => ({
         shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] }
@@ -670,6 +698,15 @@ export const useERStore = create<ERState>()(
       }),
       markHeartEvent: (key) => set((state) => ({ heartEventsSeen: [...state.heartEventsSeen, key] })),
       useProp: (key, day) => set((state) => ({ propDaily: { ...state.propDaily, [key]: day } })),
+      recordOutcome: (grade) => set((state) => {
+        const good = grade === 'clean' || grade === 'minor';
+        const goodStreak = good ? (state.goodStreak ?? 0) + 1 : 0;
+        return {
+          savedTotal: (state.savedTotal ?? 0) + (grade === 'critical' ? 0 : 1),
+          goodStreak,
+          bestStreak: Math.max(state.bestStreak ?? 0, goodStreak),
+        };
+      }),
       completeRequest: (day) => {
         const st = get();
         const r = requestFor(day);
@@ -704,6 +741,9 @@ export const useERStore = create<ERState>()(
          completedQuests: [],
          requestsDone: [],
          lastSeen: {},
+         savedTotal: 0,
+         goodStreak: 0,
+         bestStreak: 0,
          friendships: {},
          isPendingPromotion: false,
          clockMinutes: 0
@@ -761,6 +801,9 @@ export const useERStore = create<ERState>()(
         propDaily: state.propDaily,
         patientLog: state.patientLog,
         requestsDone: state.requestsDone,
+        savedTotal: state.savedTotal,
+        goodStreak: state.goodStreak,
+        bestStreak: state.bestStreak,
         casebookClaimed: state.casebookClaimed,
         lastSeen: state.lastSeen,
       })

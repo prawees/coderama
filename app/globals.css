@@ -202,6 +202,7 @@
   }
 }
 
+@keyframes cozyBeat { 0%, 100% { transform: scale(1); } 40% { transform: scale(0.96); } }
 @keyframes cozyBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 @keyframes cozyPop { 0% { transform: scale(0.6); opacity: 0; } 70% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
 @keyframes cozyDayCard {

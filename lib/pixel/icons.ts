@@ -10,6 +10,32 @@ const K: Key = {
 };
 
 const ICONS: Record<string, string[]> = {
+  star: [
+    "     kk     ",
+    "    kyyk    ",
+    "    kyyk    ",
+    " kkkkyykkkk ",
+    "kyyyyyyyyggk",
+    " kyyyyyyggk ",
+    "  kyyyyyggk ",
+    "  kyyyyyggk ",
+    " kyyykkyyggk",
+    " kykk  kkyk ",
+    " kk      kk ",
+  ],
+  starEmpty: [
+    "     kk     ",
+    "    kMMk    ",
+    "    kMMk    ",
+    " kkkkMMkkkk ",
+    "kMMMMMMMMMMk",
+    " kMMMMMMMMk ",
+    "  kMMMMMMk  ",
+    "  kMMMMMMk  ",
+    " kMMMkkMMMk ",
+    " kMkk  kkMk ",
+    " kk      kk ",
+  ],
   mail: [
     "kkkkkkkkkkkk",
     "kkxxxxxxxxkk",

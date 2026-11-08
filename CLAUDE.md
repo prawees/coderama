@@ -41,6 +41,12 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
 - Custom cases: `app/designer/` and `components/designer/` (Porames' editor), `app/cases/` (library),
   `lib/customCase.ts` (designer format to game format, plus author checks), `lib/customCases.ts` (local and Firestore
   storage). `components/exam3d/` is the 3D bedside. `lib/examOrder.ts` maps exam systems to ABCDE and body regions.
+- First minute and retention: `components/game/ColdOpen.tsx` (plays once per device, flag `coderama.coldOpenSeen`),
+  `lib/chapters.ts` (chapter breaks, the single source), `lib/teasers.ts` (next-shift hook per day, must hold on every
+  story branch), `lib/shiftTitle.ts` (shift titles and doctor types).
+- Story cards: `lib/shareCard.ts` draws them on a canvas, `lib/shareSpecs.ts` builds them from the save,
+  `components/game/ShareSheet.tsx` previews and sends. `NEXT_PUBLIC_SHARE_URL` puts a link in the card footer.
+- Rank: always read it with `storyRank(day, lifetimeXp)` in `lib/erStore.ts`, never from XP during the campaign.
 - Music is written code, not audio files: `lib/musicCore.ts`, `lib/music.ts`. Sound effects and rain: `lib/audio.ts`.
 
 ## Editing content
@@ -62,7 +68,8 @@ patient and birthdays on a seeded rain day. `rain_out.js` screenshots the courty
 `custom.js` checks the case library, practice mode, the 3D bedside, the designer and custom-case play.
 `requests.js` plays the board requests and a birthday by tapping people in the world (it uses the read-only
 `window.__codeRamaWorld` hook for where they are on screen). `ONLY=gift|birthday|social|cat|menu` runs one scene,
-`TRACE=1` logs every tap.
+`TRACE=1` logs every tap. `hook.js` checks the first minute (cold open, setup, returning player) and renders every
+Story card with awkward data into `out/hook`: look at those pictures after changing `lib/shareCard.ts`.
 They need a running export (`npm run build`, then `node scripts/playtest/serve.js out 8765`) and Playwright
 (`npm i -D playwright && npx playwright install chromium`, or set `PW_MODULE` and `PW_CHROMIUM`).
 `BASE_URL` overrides the address.

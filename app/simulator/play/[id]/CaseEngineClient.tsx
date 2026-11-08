@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useERStore } from "@/lib/erStore";
+import { useERStore, storyRank, rankBelow } from "@/lib/erStore";
 import { CASE_DATA } from "@/lib/caseIndex";
 import { requestFor } from "@/lib/requests";
 import { reviewQuote } from "@/lib/review";
@@ -24,6 +24,11 @@ import { toGameCase } from "@/lib/customCase";
 import { getLocalCase, getCloudCase } from "@/lib/customCases";
 import { sectionOf, regionOf, SECTION_LABEL, SECTION_ORDER, REGIONS, REGION_LABEL, BodyRegion } from "@/lib/examOrder";
 import type { LiveVitals } from "@/components/exam3d/BedsideScene";
+
+import { ResultStamp } from "@/components/game/ResultStamp";
+import { ShareSheet } from "@/components/game/ShareSheet";
+import { caseCard } from "@/lib/shareSpecs";
+import type { CardSpec } from "@/lib/shareCard";
 
 // Loaded only when a case opens, so the clinic itself stays light on phones
 const Bedside3D = dynamic(() => import("@/components/exam3d/Bedside3D"), { ssr: false });
@@ -46,7 +51,6 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   const addXp = practice ? noop : store.addXp;
   const addCurrency = practice ? noop : store.addCurrency;
   const deductEnergy = practice ? noop : store.deductEnergy;
-  const { RANK_THRESHOLDS } = require('@/lib/erStore');
   
   // Resolve active case and case definition key (supports both instanceId in URL and params.id)
   // A practice run never picks up a patient waiting in the saved shift
@@ -76,7 +80,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   const [testSlips, setTestSlips] = useState(0);
   const slipTotal = mistakes + testSlips;
   const [supervised, setSupervised] = useState(false);
-  const isAboveRank = (rank: string) => !practice && (lifetimeXp || 0) < (RANK_THRESHOLDS[rank] ?? 0);
+  const isAboveRank = (rank: string) => !practice && rankBelow(storyRank(store.currentDay, lifetimeXp || 0), rank);
   const [triedWrong, setTriedWrong] = useState<Record<string, string[]>>({});
   const [feedback, setFeedback] = useState<{ kind: 'good' | 'bad'; title: string; body?: string } | null>(null);
   // Steps taken, with the slip count at each, so vitals carry forward and the debrief can replay the case
@@ -99,6 +103,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   };
   const vitalsRef = useRef<LiveVitals>({ hr: 80, sbp: 120, dbp: 80, rr: 16, spo2: 98, temp: 37 });
   const compressRef = useRef(-1e6);
+  const [shareCardSpec, setShareCardSpec] = useState<CardSpec | null>(null);
 
   const addFloatingText = (text: string, type: 'good' | 'bad', x: number, y: number) => {
     const id = textIdCounter.current++;
@@ -445,6 +450,8 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
     addXp(50);
     addCurrency(25);
     useERStore.setState((state) => ({ shiftStats: { ...state.shiftStats, casesTreated: state.shiftStats.casesTreated + 1 } }));
+    // The attending took over: the patient lives, but it was not your save and the run of good cases ends
+    useERStore.getState().recordOutcome('poor');
     useERStore.getState().incrementClock(30);
     deductEnergy(10);
     if (currentInstanceId) removeCase(currentInstanceId);
@@ -516,6 +523,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
     // Remember them. A good outcome brings a letter the next morning.
     useERStore.getState().recordPatient(caseKey, grade !== 'critical', grade === 'clean' || grade === 'minor', !!alias);
     useERStore.getState().logShiftPatient({ caseId: caseKey, grade, mistakes: slipTotal, name: alias });
+    useERStore.getState().recordOutcome(grade);
     if (meetsBoardRequest(grade)) useERStore.getState().completeRequest(useERStore.getState().currentDay);
     // A finished patient tires you out a little. Tuned so a shift fits six to eight patients.
     deductEnergy(10);
@@ -598,6 +606,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
           <img src={zoomed.src} alt={zoomed.alt} className="max-w-full max-h-full rounded-[3px] border-[3px] border-[#3a2a2f]" style={{ imageRendering: 'auto' }} />
         </button>
       )}
+      {shareCardSpec && <ShareSheet spec={shareCardSpec} onClose={() => setShareCardSpec(null)} filename="code-rama-case.png" />}
       {activeMinigame && (
         <MinigameOverlay
           interventionName={activeMinigame.name}
@@ -882,6 +891,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                     const readings = investigations.filter((inv: any) => inv.abnormal && inv.indicated !== false && inv.report);
                     return (
                       <>
+                        <ResultStamp grade={grade} streak={practice ? null : grade === 'clean' || grade === 'minor' ? (useERStore.getState().goodStreak ?? 0) + 1 : 0} />
                         <div className="rounded-[4px] border-2 border-[#e7d3a8] bg-[#fffaf0] px-2.5 py-2 text-[15px] leading-snug flex flex-col gap-2" data-testid="debrief">
                           {takeaways.length > 0 && (
                             <div>
@@ -935,6 +945,28 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                             </p>
                           );
                         })()}
+                        {patient && (
+                          <button
+                            onClick={() => {
+                              audio.playClick();
+                              const v = nodesMap[startNodeId]?.vitals || currentNode.vitals;
+                              const sys = parseInt(String(v.bp), 10), o2 = parseInt(String(v.o2), 10);
+                              setShareCardSpec(caseCard({
+                                patient: `${patientName} ${patient.age.th}`, by: patient.by.th, quote: patient.quote.th, grade,
+                                vitals: [
+                                  { label: 'HR', value: String(v.hr), bad: v.hr < 50 || v.hr > 120 },
+                                  { label: 'BP', value: String(v.bp), bad: sys < 90 || sys > 180 },
+                                  { label: 'RR', value: String(v.rr), bad: v.rr < 10 || v.rr > 24 },
+                                  { label: 'SpO2', value: String(v.o2), bad: o2 < 94 },
+                                ],
+                              }));
+                            }}
+                            className="cozy-btn cozy-btn-sun w-full py-1.5 mb-1 text-[17px] leading-none"
+                            data-testid="share-case"
+                          >
+                            ชวนเพื่อนลองเคสนี้ลงสตอรี่
+                          </button>
+                        )}
                         <button
                           onClick={() => finishCase(grade)}
                           className={`cozy-btn w-full py-3 ${good ? 'cozy-btn-leaf' : 'cozy-btn-berry'}`}

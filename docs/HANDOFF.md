@@ -1,5 +1,36 @@
 # Handoff, 6 November 2026
 
+## First minute and retention pass
+
+Goal: hook a student or evaluator at once, and stop 31 days from reading as a wall.
+
+- **Cold open.** A new player taps once and is running a VF arrest as the attending: order, CPR, shock, back on the
+  chest, rhythm check at 2 minutes, ROSC. It follows ACLS and cannot be failed. It plays once per device and can be
+  skipped. A clinician should read `components/game/ColdOpen.tsx`.
+- **Setup is one screen** (name, gender, school). Dressing the character is optional. Returning players skip the logo
+  and land on the menu, with their chapter and what is waiting.
+- **Chapters, not 31 days.** The day card, summary and menu say "บท 1 เวร 3/5" and name the next promotion. Nothing
+  shows a total of 31.
+- **A reason to come back.** Every shift ends on a hook for the next one (`lib/teasers.ts`), a title for the shift, lives
+  saved and a run of good cases. Case results land as stars.
+- **Rank follows the story.** During the campaign `storyRank` gives rank from the day alone: นศพ. ปี 5, extern, intern, R1, then
+  อาจารย์ on day 31. XP is only what you spend on skills until the campaign ends, when the promotion exam takes over.
+  The bar on the desk counts shifts to the next promotion, which replaced an XP bar that sat full for most of a chapter.
+- **Logo.** `lib/pixel/logo.ts`, shown by `components/game/PixelLogo.tsx`. `npx tsx scripts/export-logo.ts` writes the PNGs in
+  `public/`. The app icons are still the cat.
+- **Story cards.** Shift, case (a "what would you do" challenge that hides the answer) and chapter cards, 1080x1920, kept
+  inside Instagram's safe area. Drawn on a canvas rather than captured from the page, and text shrinks to fit.
+
+**Needs a person or a decision:**
+- Real iPhone and Android test of the share button into Instagram. Headless browsers have no share sheet, so only the
+  fallback (save the picture) has been exercised. After pulling, run `npx cap sync ios` and rebuild the app: it adds
+  `@capacitor/filesystem`, and `Info.plist` gained the photo permission text that "Save Image" needs.
+- There is no public link for the game yet. Set `NEXT_PUBLIC_SHARE_URL` at build time and every card shows it, otherwise
+  someone who sees a card has nowhere to go.
+- Days 11 to 31 have far less story than days 1 to 10: about 9 lines a day against about 34. This is the biggest risk to
+  finishing the game and the hooks only partly cover it.
+- The titles and hooks are first drafts of Thai humour and need a Thai reader.
+
 ## Decision 1 is settled: option (a)
 
 The user had already asked for customizable cases, real EKG and investigation images, and hopping from the 2D

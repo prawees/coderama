@@ -51,6 +51,7 @@ const SEEDED = {
 
   // Library and a story case in practice mode
   const p = await page(390, 844);
+  await p.addInitScript(() => localStorage.setItem('coderama.coldOpenSeen', '1'));
   await p.goto(BASE + '/');
   for (let k = 0; k < 30 && !(await p.getByTestId('new-game').count()); k++) {
     await p.locator('text=เกมจาก Rama G7 Club').click({ force: true, timeout: 300 }).catch(() => {});

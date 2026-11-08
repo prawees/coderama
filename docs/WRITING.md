@@ -31,3 +31,9 @@ Numbers are digits: HR 38, 3 วัน, 72 ปี.
 ## Tone
 
 Warm and short. A line on a phone screen should fit in two or three lines. Teaching text explains the why in one or two sentences, the way a senior would on rounds. No em dashes, no middle dots, no lecture endings.
+
+## Titles and Story cards
+
+With a name, extern and intern shorten: Ext. ต้นข้าว, Int. ต้นข้าว. Alone they stay whole: "ขึ้นเป็น extern".
+
+The lines on Story cards (`lib/shiftTitle.ts`, the verdicts in `lib/shareSpecs.ts`) talk like a friend posting, a little Gen Z and no more: a stretched vowel, the odd ><. Address the reader as คุณ, never เธอ. Nowhere else in the game talks like this, and never in clinical text.

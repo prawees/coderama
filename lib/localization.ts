@@ -26,12 +26,12 @@ export const getLocalizedRankTitle = (
 
   switch (rank) {
     case 'MS5': return `นศพ. ${name} ปี 5`;
-    case 'MS6': return `extern ${name}`;
-    case 'Intern': return `intern ${name}`;
+    case 'MS6': return `Ext. ${name}`;
+    case 'Intern': return `Int. ${name}`;
     case 'R1': return `R1 ${name}`;
     case 'R2': return `R2 ${name}`;
     case 'R3': return `R3 ${name}`;
-    case 'Asst. Prof': return `ผศ.${titlePrefix} ${name}`;
+    case 'Asst. Prof': return `อ.${titlePrefix} ${name}`;
     case 'Assoc. Prof': return `รศ.${titlePrefix} ${name}`;
     case 'Prof': return `ศ.${titlePrefix} ${name}`;
     default: return `${rank} ${name}`;
@@ -40,7 +40,7 @@ export const getLocalizedRankTitle = (
 
 /** Rank as a ward would say it, without a name: "R1", "intern", "ผศ." */
 export const RANK_SHORT_TH: Record<string, string> = {
-  MS5: "นศพ. ปี 5", MS6: "extern", Intern: "intern", "Asst. Prof": "ผศ.", "Assoc. Prof": "รศ.", Prof: "ศ.",
+  MS5: "นศพ. ปี 5", MS6: "extern", Intern: "intern", "Asst. Prof": "อาจารย์", "Assoc. Prof": "รศ.", Prof: "ศ.",
 };
 
 /** Medical school as stored in the save, shown the way students say it */

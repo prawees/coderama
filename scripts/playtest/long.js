@@ -63,15 +63,14 @@ const T0 = Date.now(); const log = (...a) => fs.appendFileSync(LOG, ((Date.now()
     await p.getByTestId('finish-case').click({ force: true }).catch(() => {}); await p.waitForTimeout(1500);
   };
 
+  await p.addInitScript(() => localStorage.setItem('coderama.coldOpenSeen', '1'));
   await p.goto(BASE + '/'); await p.waitForTimeout(1200);
-  await p.locator('text=เกมจาก Rama G7 Club').click({ force: true }); await p.waitForTimeout(300);
+  await p.locator('text=เกมจาก Rama G7 Club').click({ force: true }).catch(() => {}); await p.waitForTimeout(300);
   await p.locator('text=แตะเพื่อเริ่ม').click({ force: true }); await p.waitForTimeout(300);
   await p.getByTestId('new-game').click({ force: true }); await p.waitForTimeout(400);
   await p.locator('input[placeholder="มะปราง"]').fill('ต้นข้าว');
-  await p.locator('button:has-text("ต่อไป")').last().click({ force: true }); await p.waitForTimeout(250);
   await p.locator('button:has-text("หญิง")').first().click({ force: true }); await p.waitForTimeout(150);
-  await p.locator('button:has-text("ต่อไป")').last().click({ force: true }); await p.waitForTimeout(250);
-  await p.locator('button:has-text("เข้าเวรเลย")').click({ force: true }); await p.waitForTimeout(2500);
+  await p.getByTestId('start-game').click({ force: true }); await p.waitForTimeout(2500);
 
   for (let day = 1; day <= DAYS; day++) {
     const t0 = Date.now();

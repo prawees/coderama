@@ -6,7 +6,7 @@ import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { getRankFromXp } from "@/lib/erStore";
+import { storyRank } from "@/lib/erStore";
 import { RANK_SHORT_TH } from "@/lib/localization";
 
 interface LeaderboardEntry {
@@ -91,7 +91,7 @@ export default function LeaderboardPage() {
                   <div className="text-2xl text-white">{leader.displayName}</div>
                   <div className="text-lg text-emerald-300">
                     {leader.university && leader.university !== 'Unknown' ? `${leader.university}, ` : ''}
-                    {RANK_SHORT_TH[getRankFromXp(leader.xp)] ?? getRankFromXp(leader.xp)} วันที่ {leader.day}
+                    {RANK_SHORT_TH[storyRank(leader.day || 1, leader.xp)] ?? storyRank(leader.day || 1, leader.xp)} วันที่ {leader.day}
                   </div>
                 </div>
               </div>

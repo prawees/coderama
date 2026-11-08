@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useERStore, getRankFromXp } from "@/lib/erStore";
+import { useERStore, storyRank } from "@/lib/erStore";
 import { drawCharacter, drawInfantBust, drawChildBust, Look, HairStyle } from "@/lib/pixel/characters";
 import { PixelGrid, hashString } from "@/lib/pixel/grid";
 import { SKIN_TONES, HAIR_COLORS } from "@/lib/pixel/palette";
@@ -65,17 +65,18 @@ function Pixels({ grid, background, className, label }: { grid: PixelGrid; backg
 export function PixelPortrait({ speaker, className = "" }: { speaker?: string; className?: string }) {
   const appearance = useERStore((s) => s.appearance);
   const lifetimeXp = useERStore((s) => s.lifetimeXp);
+  const currentDay = useERStore((s) => s.currentDay);
   const look = useMemo<Look | null>(() => {
     const name = (speaker || "").trim();
     const lower = name.toLowerCase();
     if (!name || lower === "system" || lower === "narrator") return null;
-    if (lower === "you" || lower === "คุณ") return playerLookFrom(appearance, getRankFromXp(lifetimeXp || 0));
+    if (lower === "you" || lower === "คุณ") return playerLookFrom(appearance, storyRank(currentDay, lifetimeXp || 0));
     const id = npcIdForSpeaker(name);
     if (id && NPCS[id]) return NPCS[id].look;
     if (lower.includes("anuwat")) return EXTRA_LOOKS.anuwat;
     if (lower.includes("director")) return EXTRA_LOOKS.director;
     return inventedLook(name);
-  }, [speaker, appearance, lifetimeXp]);
+  }, [speaker, appearance, lifetimeXp, currentDay]);
   const grid = useMemo(() => (look ? bust(look) : null), [look]);
   if (!look || !grid) return null;
   return <Pixels grid={grid} background={bg(look)} className={className} label={speaker} />;

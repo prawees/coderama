@@ -2,7 +2,8 @@
 
 import { useEffect, useState, useRef, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { useERStore, getEra, useHydrated, chapterXpCap, rankFloorForDay, getRankFromXp, RANK_THRESHOLDS } from "@/lib/erStore";
+import { useERStore, getEra, useHydrated, rankFloorForDay, storyRank, RANK_THRESHOLDS } from "@/lib/erStore";
+import { shiftInChapter } from "@/lib/chapters";
 import { getLocalizedRankTitle, translate } from "@/lib/localization";
 import { scheduleOnCallCases, cancelOnCallCases } from "@/lib/notifications";
 import { PageTransition } from "@/components/ui/PageTransition";
@@ -60,7 +61,7 @@ export default function HubPage() {
   const patientLog = useERStore((s) => s.patientLog);
   const [isCinematic, setIsCinematic] = useState(false);
   
-  const currentRankId = getRankFromXp(lifetimeXp || xp);
+  const currentRankId = storyRank(currentDay, lifetimeXp);
   const localizedRank = getLocalizedRankTitle(currentRankId, playerName, playerGender, language);
   
   // Calculate next rank threshold
@@ -70,7 +71,8 @@ export default function HubPage() {
   
   // The promotion exam is the endgame loop. During the campaign, chapters promote you.
   const isReadyForPromotion = currentDay >= 31 && lifetimeXp >= nextThreshold - 1;
-  const chapterCapped = currentDay <= 30 && lifetimeXp >= chapterXpCap(currentDay);
+  // During the campaign the bar is shifts towards the next promotion, which always moves
+  const chapterAt = currentDay <= 30 ? shiftInChapter(currentDay) : null;
 
   // Saves from before chapter promotions: bring rank up to what the story says you are.
   useEffect(() => {
@@ -424,7 +426,7 @@ export default function HubPage() {
         if (shiftMode === 'boss-battle' && energy > 0) {
            forcePromote();
            
-           if (getRankFromXp(lifetimeXp) === 'Prof') {
+           if (storyRank(currentDay, lifetimeXp) === 'Prof') {
              setDialogueQueue([
                { speaker: "Prof. Somchai", text: "ขึ้นมาถึงจุดสูงสุดแล้วนะ ตอนนี้เป็นหัวหน้าภาควิชาเต็มตัว" },
                { speaker: "Prof. Somchai", text: "จะเกษียณแล้วส่งต่อให้รุ่นน้องไหม เริ่มใหม่อีกรอบ แต่มีของติดตัวไปด้วย", choices: [
@@ -760,8 +762,11 @@ export default function HubPage() {
             </div>
             {isReadyForPromotion ? (
               <p className="text-[15px] leading-none mt-1.5 text-[#a93c4b] animate-pulse">{'พร้อมสอบเลื่อนขั้นแล้ว!'}</p>
-            ) : chapterCapped ? (
-              <p className="text-[15px] leading-none mt-1.5 text-[#4f7a3a]" data-testid="chapter-capped">{'XP เต็มบทนี้แล้ว ที่ได้เพิ่มเอาไปอัปสกิลได้'}</p>
+            ) : chapterAt ? (
+              <div data-testid="chapter-bar">
+                <div className="cozy-bar h-3 mt-1.5"><span style={{ width: `${((chapterAt.position - 1) / chapterAt.total) * 100}%`, background: '#86c35f' }} /></div>
+                <p className="text-[14px] leading-none mt-1 text-[#86522e] truncate">{`อีก ${chapterAt.total - chapterAt.position + 1} เวร ${chapterAt.chapter.reward}`}</p>
+              </div>
             ) : (
               <div className="cozy-bar h-3 mt-1.5"><span style={{ width: `${progressPercent}%`, background: '#7fc8d8' }} /></div>
             )}
