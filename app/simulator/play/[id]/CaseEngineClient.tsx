@@ -10,7 +10,7 @@ import { reviewQuote } from "@/lib/review";
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { motion, AnimatePresence } from "framer-motion";
-import { Haptics, ImpactStyle } from "@capacitor/haptics";
+import { haptic } from "@/lib/haptics";
 import { collection, addDoc } from "firebase/firestore";
 import { db, auth } from "@/lib/firebase";
 
@@ -300,14 +300,14 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
       setTimeout(() => setIsShaking(false), 500);
       if (!practice) addFloatingText("-2 พลังงาน", "bad", window.innerWidth / 2, window.innerHeight / 2);
       setFeedback({ kind: 'bad', title: choice.text, body: choice.feedback });
-      await Haptics.vibrate();
+      haptic.vibrate();
       return;
     }
 
     // Above-rank interventions are allowed under supervision, which lowers the case reward.
     // (Hard locks left first-day students with nothing to press.) Only a correct pick counts.
     if (isAboveRank(choice.requiredRank)) setSupervised(true);
-    await Haptics.impact({ style: ImpactStyle.Light });
+    haptic.impact("light");
     const targetNodeId = choice.targetNode!;
     const nextNode = nodesMap[targetNodeId];
     if (!nextNode) return;
@@ -345,7 +345,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
       const nextSystolic = parseInt(nextNode.vitals.bp.split('/')[0]);
       if (nextSystolic < currentSystolic || nextNode.vitals.bp.includes('0/0')) {
           setIsShaking(true);
-          await Haptics.vibrate();
+          haptic.vibrate();
           setTimeout(() => setIsShaking(false), 500);
       } else if (nextSystolic > currentSystolic && !practice) {
           addFloatingText("+15 XP", "good", window.innerWidth / 2, window.innerHeight / 2);
@@ -444,7 +444,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   };
 
   const callAttending = async () => {
-    await Haptics.impact({ style: ImpactStyle.Heavy });
+    haptic.impact("heavy");
     addFloatingText("อาจารย์มารับเคสต่อแล้ว", "good", window.innerWidth / 2, window.innerHeight / 2);
     // addXp and addCurrency record XP and cash in shiftStats; the patient is counted here
     addXp(50);
@@ -464,7 +464,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
       return;
     }
     
-    await Haptics.impact({ style: ImpactStyle.Heavy });
+    haptic.impact("heavy");
     try {
       await addDoc(collection(db, "consults"), {
         requesterId: auth.currentUser.uid,
@@ -508,9 +508,9 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
     if (practice) { router.push(home); return; }
     const reward = rewardFor(grade);
     if (grade !== 'critical') {
-      await Haptics.impact({ style: ImpactStyle.Heavy });
+      haptic.impact("heavy");
     } else {
-      await Haptics.vibrate();
+      haptic.vibrate();
     }
     // addXp and addCurrency record XP and cash in shiftStats; the patient is counted here
     if (reward.xp > 0) addXp(reward.xp);
@@ -615,10 +615,10 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
           onComplete={async (success, rate) => {
             setActiveMinigame(null);
             if (success) {
-              await Haptics.impact({ style: ImpactStyle.Medium });
+              haptic.impact("medium");
               goTo(activeMinigame.targetNodeId);
             } else {
-              await Haptics.vibrate();
+              haptic.vibrate();
               const why = rate > 120
                 ? `เฉลี่ย ${rate} ครั้ง/นาที เร็วเกินไป หน้าอกคืนตัวไม่ทัน เลือดไหลกลับเข้าหัวใจไม่พอ`
                 : `เฉลี่ย ${rate} ครั้ง/นาที ช้าเกินไป coronary perfusion pressure ไม่ถึง`;

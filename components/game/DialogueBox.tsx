@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Haptics, ImpactStyle } from "@capacitor/haptics";
+import { haptic } from "@/lib/haptics";
 import { audio } from "@/lib/audio";
 import { CutsceneChoice } from "@/lib/StoryManager";
 import { PixelPortrait, hasPortrait } from "@/components/game/PixelPortrait";
@@ -52,7 +52,7 @@ export function DialogueBox({ speakerName, text: rawText, choices, voice, onComp
   const handleNext = () => {
     if (!finished) { setShown(text.length); return; }
     if (!choices || choices.length === 0) {
-      Haptics.impact({ style: ImpactStyle.Light }).catch(() => {});
+      haptic.impact("light");
       onComplete();
     }
   };
@@ -97,7 +97,7 @@ export function DialogueBox({ speakerName, text: rawText, choices, voice, onComp
               {choices.map((c, idx) => (
                 <button
                   key={idx}
-                  onClick={(e) => { e.stopPropagation(); Haptics.impact({ style: ImpactStyle.Heavy }).catch(() => {}); audio.playClick(); onComplete(c); }}
+                  onClick={(e) => { e.stopPropagation(); haptic.impact("heavy"); audio.playClick(); onComplete(c); }}
                   className="cozy-btn cozy-btn-sun text-left px-3 py-1.5 text-[17px] leading-tight"
                 >
                   <span className="text-[#d95763] mr-1">▸</span>{inVoice(c.text, playerGender, currentDay)}

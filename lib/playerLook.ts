@@ -17,7 +17,8 @@ export function playerLookFrom(appearance: PlayerAppearance | undefined, rank: R
     outfit: student ? (a.topStyle === "top_2" ? "scrubs" : "casual") : "coat",
     main: student ? top : "#ffffff",
     accent: student ? "#5b7fbf" : top === "#fbf7ee" ? "#5f9e8e" : top,
-    pants: normalise(a.bottomColor, "#3f4a6b"),
+    // Scrubs come as a set: the trousers are always the colour of the top
+    pants: a.topStyle === "top_2" ? top : normalise(a.bottomColor, "#3f4a6b"),
     shoes: normalise(a.shoeColor, "#3b2a2f"),
     stethoscope: !student,
   };

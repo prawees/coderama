@@ -14,6 +14,8 @@ async function fresh(b, size = { width: 390, height: 844 }) {
   const ctx = await b.newContext({ viewport: size, acceptDownloads: true });
   const p = await ctx.newPage();
   p.setDefaultTimeout(15000);
+  // Behave like Safari on iPhone, which has no vibration API: a tap must never depend on it
+  await p.addInitScript(() => { delete Navigator.prototype.vibrate; });
   p.errors = [];
   // React 418/423/425: a page loaded directly can race the saved game during hydration and recovers by itself.
   // Players reach these screens by navigating inside the game, so only other errors count.
@@ -61,17 +63,25 @@ const LONG = 'กิตติพิชญ์ภูมิวัฒน';
     await p.getByTestId('cold-open-wrong').first().waitFor();
     await p.screenshot({ path: `${OUT}/co_1_order.png` });
     await p.getByTestId('cold-open-wrong').first().click();
-    const why = await p.getByTestId('cold-open-line').innerText();
+    const why = await p.getByTestId('cold-open-line').getAttribute('data-text');
     check(why.includes('atropine'), 'a wrong order is corrected, not failed', why);
     await p.screenshot({ path: `${OUT}/co_2_wrong.png` });
     await p.getByTestId('cold-open-right').click();
-    for (let i = 0; i < 10; i++) { await p.getByTestId('cold-open-press').click({ force: true }); await p.waitForTimeout(90); }
+    // Far too fast: sent back to start again, with the reason
+    for (let i = 0; i < 10; i++) { await p.getByTestId('cold-open-press').click({ force: true }); await p.waitForTimeout(120); }
+    await p.waitForTimeout(500);
+    const told = await p.getByTestId('cold-open-line').getAttribute('data-text');
+    check(/เร็วไป/.test(told) && (await p.getByTestId('cold-open-press').innerText()).includes('0/10'), 'too fast is sent back to start over', told);
+    await p.screenshot({ path: `${OUT}/co_2b_too_fast.png` });
+    // About 110 a minute, a little uneven like real hands: accepted
+    const press = async (n) => { for (let i = 0; i < n; i++) { await p.getByTestId('cold-open-press').click({ force: true }); await p.waitForTimeout(i % 2 ? 500 : 560); } };
+    await press(10);
     await p.getByTestId('cold-open-shock').waitFor();
     await p.screenshot({ path: `${OUT}/co_3_shock.png` });
     await p.getByTestId('cold-open-shock').click({ force: true });
     await p.getByTestId('cold-open-press').waitFor();
     check((await p.getByTestId('cold-open-line').innerText()).includes('กดต่อ'), 'back on the chest straight after the shock');
-    for (let i = 0; i < 6; i++) { await p.getByTestId('cold-open-press').click({ force: true }); await p.waitForTimeout(90); }
+    await press(8);
     await p.getByTestId('cold-open-later').waitFor();
     await p.getByTestId('cold-open-rosc').waitFor();
     check((await p.getByTestId('cold-open-HR').innerText()) === '88', 'the monitor shows the pulse back');
@@ -81,10 +91,17 @@ const LONG = 'กิตติพิชญ์ภูมิวัฒน';
     await p.getByTestId('cold-open-start').waitFor();
     await p.waitForTimeout(1200);
     await p.screenshot({ path: `${OUT}/co_5_title.png` });
-    await p.getByTestId('cold-open-start').click();
+    await p.getByTestId('cold-open-start').click({ force: true });
     await p.getByTestId('start-game').waitFor();
     await p.waitForTimeout(600);
     await p.screenshot({ path: `${OUT}/co_6_setup.png` });
+    // Scrubs are one colour: picking them hides the separate trouser colours
+    await p.getByTestId('customize').click();
+    await p.getByRole('button', { name: 'สครับ' }).click();
+    check(await p.getByTestId('scrubs-set').count() === 1, 'scrubs lock the trousers to the top colour');
+    await p.screenshot({ path: `${OUT}/co_7_scrubs.png` });
+    await p.getByRole('button', { name: 'กลับ' }).first().click();
+    await p.getByTestId('start-game').waitFor();
     check(await p.locator('select').count() === 1 && await p.locator('input').count() === 1, 'name, gender and school are on one screen');
     await p.locator('input').fill(LONG);
     await p.getByTestId('start-game').click();
@@ -117,6 +134,12 @@ const LONG = 'กิตติพิชญ์ภูมิวัฒน';
     check(card.length > 30, 'and what is waiting');
     await p.waitForTimeout(500);
     await p.screenshot({ path: `${OUT}/menu_returning.png` });
+    // The opening can be watched again from the menu, and leads back to it
+    await p.getByTestId('replay-intro').click();
+    await p.getByTestId('cold-open').waitFor();
+    await p.getByTestId('cold-open-skip').click();
+    await p.getByTestId('continue').waitFor();
+    check(true, 'the opening replays from the menu and returns to it');
     await p.context().close();
   }
 

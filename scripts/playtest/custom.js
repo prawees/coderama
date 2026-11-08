@@ -34,6 +34,7 @@ const SEEDED = {
   const errs = [];
   const page = async (w, h) => {
     const p = await (await b.newContext({ viewport: { width: w, height: h } })).newPage();
+    await p.addInitScript(() => { delete Navigator.prototype.vibrate; }); // like Safari on iPhone
     p.setDefaultTimeout(8000); p.setDefaultNavigationTimeout(30000);
     p.on('pageerror', (e) => errs.push(String(e).slice(0, 300)));
     p.on('console', (m) => { if (m.type() === 'error') errs.push('console: ' + m.text().slice(0, 200)); });

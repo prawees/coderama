@@ -7,7 +7,7 @@ import { Wardrobe } from "@/components/game/Wardrobe";
 import { useCloud } from "@/lib/account";
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
-import { Haptics, ImpactStyle } from "@capacitor/haptics";
+import { haptic } from "@/lib/haptics";
 import { audio } from "@/lib/audio";
 import { music } from "@/lib/music";
 
@@ -34,6 +34,7 @@ export default function RootPage() {
   const hasSave = xp > 0 || currentDay > 1 || tutorialCompleted;
   const hydrated = useHydrated();
   const cloud = useCloud();
+  const [replaying, setReplaying] = useState(false);
 
   const [menuState, setMenuState] = useState<MenuState | 'ABOUT' | 'CREDITS'>('INTRO');
   const [wizardStep, setWizardStep] = useState(1);
@@ -67,7 +68,7 @@ export default function RootPage() {
   }, []);
 
   const handleSplashTap = () => {
-    Haptics.impact({ style: ImpactStyle.Light });
+    haptic.impact("light");
     audio.playClick();
 
     // A first-time player goes straight into a resus. Everyone else gets the menu.
@@ -83,12 +84,20 @@ export default function RootPage() {
   const finishColdOpen = () => {
     markColdOpenSeen();
     music.fadeToTrack('title', 1.5);
+    if (replaying) { setReplaying(false); setMenuState('MENU'); return; }
     setWizardStep(1);
     setMenuState('SETUP');
   };
 
+  const replayColdOpen = () => {
+    audio.playClick();
+    music.stopTrack();
+    setReplaying(true);
+    setMenuState('COLD_OPEN');
+  };
+
   const handleNewGame = () => {
-    Haptics.impact({ style: ImpactStyle.Medium });
+    haptic.impact("medium");
     audio.playClick();
     
     // Reset stats for New Game
@@ -133,7 +142,7 @@ export default function RootPage() {
   };
 
   const handleContinue = () => {
-    Haptics.impact({ style: ImpactStyle.Heavy });
+    haptic.impact("heavy");
     audio.playClick();
     audio.stopMenuChiptune();
     music.stopTrack();
@@ -141,7 +150,7 @@ export default function RootPage() {
   };
 
   const handleStart = async () => {
-    await Haptics.impact({ style: ImpactStyle.Heavy });
+    haptic.impact("heavy");
     // An empty name falls back to the placeholder shown in the field rather than blocking the start.
     audio.stopMenuChiptune();
     music.stopTrack();
@@ -156,13 +165,13 @@ export default function RootPage() {
   return (
     <div className="min-h-screen text-pixel-text font-pixel flex flex-col items-center justify-center p-4 relative overflow-hidden select-none cozy-night">
       <TitleScene />
-      {menuState === 'COLD_OPEN' && <ColdOpen onDone={finishColdOpen} />}
+      {menuState === 'COLD_OPEN' && <ColdOpen onDone={finishColdOpen} replay={replaying} />}
 
       {menuState === 'INTRO' && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-[#1c1522] cursor-pointer" onClick={() => setMenuState('SPLASH')}>
           <div className="text-center flex flex-col gap-2 animate-[cozyPop_0.6s_ease-out]">
             <p className="text-[#c9b79c] text-lg">เกมจาก Rama G7 Club</p>
-            <h1 className="mt-3 flex justify-center"><PixelLogo scale={3} /></h1>
+            <h1 className="mt-3 flex justify-center"><PixelLogo scale={3} animated /></h1>
             <div className="mt-6 flex flex-col gap-1 text-[#c9b79c] text-base">
               <p>พัฒนาโดย Prawees</p>
               <p>ไอเดียโดย Porames</p>
@@ -175,7 +184,7 @@ export default function RootPage() {
         {menuState !== 'SETUP' && menuState !== 'COLD_OPEN' && (
           <div className="flex flex-col items-center mb-6 animate-[cozyBob_3s_ease-in-out_infinite]">
             <div className="cozy-panel px-4 pt-3 pb-2 text-center">
-              <h1 className="flex justify-center"><PixelLogo scale={3} /></h1>
+              <h1 className="flex justify-center"><PixelLogo scale={3} animated /></h1>
               <p className="text-[18px] leading-tight mt-1 text-[#86522e]">จาก นศพ. ปี 5 สู่อาจารย์หมอ</p>
             </div>
           </div>
@@ -204,9 +213,10 @@ export default function RootPage() {
             <PixelButton onClick={handleNewGame} variant={hasSave ? "wood" : "primary"} className="w-full py-2 text-2xl" data-testid="new-game">เริ่มใหม่</PixelButton>
             <PixelButton onClick={() => router.push('/cases')} variant="secondary" className="w-full py-1.5 text-xl" data-testid="case-library-link">คลังเคส</PixelButton>
             <PixelButton onClick={() => router.push('/login')} variant="secondary" className="w-full py-1.5 text-xl" data-testid="account-link">
-              {cloud.user ? 'บัญชี ✓ เซฟในคลาวด์' : 'เข้าสู่ระบบ เซฟข้ามเครื่อง'}
+              {cloud.user ? 'Account ✓ Saved to cloud' : 'Log in / Save to cloud'}
             </PixelButton>
             <PixelButton onClick={() => setMenuState('SETTINGS')} variant="secondary" className="w-full py-1.5 text-xl">ตั้งค่า</PixelButton>
+            <PixelButton onClick={replayColdOpen} variant="secondary" className="w-full py-1.5 text-xl" data-testid="replay-intro">ดูฉากเปิดอีกครั้ง</PixelButton>
             <div className="flex gap-3">
               <PixelButton onClick={() => setMenuState('ABOUT')} variant="secondary" className="flex-1 py-1.5 text-lg">เกี่ยวกับเกม</PixelButton>
               <PixelButton onClick={() => setMenuState('CREDITS')} variant="secondary" className="flex-1 py-1.5 text-lg">ทีมงาน</PixelButton>
@@ -232,8 +242,7 @@ export default function RootPage() {
               <p>พัฒนาโดย Prawees</p>
               <p>ไอเดียโดย Porames</p>
               <p>โปรเจกต์ของ Rama G7 Club</p>
-              <p className="text-[#86522e]">ฟอนต์ Itim และ VT323 (SIL Open Font License)</p>
-            </div>
+                          </div>
             <PixelButton onClick={() => setMenuState('MENU')} variant="wood" className="w-full">กลับ</PixelButton>
           </PixelPanel>
         )}

@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from "react";
-import { Haptics, ImpactStyle } from "@capacitor/haptics";
+import { haptic } from "@/lib/haptics";
 import { Capacitor } from "@capacitor/core";
 import { audio } from "@/lib/audio";
 
@@ -22,7 +22,7 @@ export function PixelButton({ children, variant = "primary", className = "", ...
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     audio.playClick();
-    if (Capacitor.isNativePlatform()) Haptics.impact({ style: ImpactStyle.Light }).catch(() => {});
+    haptic.impact("light");
     props.onClick?.(e);
   };
 

@@ -51,8 +51,10 @@ export function Wardrobe({ value, onChange }: { value: PlayerAppearance; onChang
         <button onClick={() => pick({ glasses: !value.glasses })} aria-pressed={!!value.glasses} data-testid="glasses"
           className={`cozy-btn py-1 text-[16px] leading-none ${value.glasses ? "cozy-btn-sky" : ""}`}>แว่น</button>
       </div>
-      {swatches("สีเสื้อ", "topColor", TOP)}
-      {swatches("สีกางเกง", "bottomColor", BOTTOM)}
+      {swatches(value.topStyle === "top_2" ? "สีชุดสครับ" : "สีเสื้อ", "topColor", TOP)}
+      {value.topStyle === "top_2" ? (
+        <p className="text-[14px] leading-snug text-[#86522e]" data-testid="scrubs-set">สครับเป็นชุดเดียวกัน กางเกงสีเดียวกับเสื้อ</p>
+      ) : swatches("สีกางเกง", "bottomColor", BOTTOM)}
     </div>
   );
 }

@@ -59,8 +59,16 @@ function word(text: string, top: string, bottom: string) {
   return g;
 }
 
+/** Where the parts sit inside the full logo, in logo pixels, for animating them */
+export function logoLayout() {
+  const mark = logoMark();
+  const code = word("CODE", SUN, SUN_DARK), rama = word("RAMA", BERRY, BERRY_DARK);
+  const textX = mark.w + 3, textW = code.w + 4 + rama.w;
+  return { markW: mark.w, markH: mark.h, textX, textW, base: 14, W: textX + textW + 2, H: 16 };
+}
+
 /** The full logo. Letters carry a dark outline and a drop edge, so it reads on any background. */
-export function logoGrid(): PixelGrid {
+export function logoGrid(withMark = true): PixelGrid {
   const code = word("CODE", SUN, SUN_DARK);
   const rama = word("RAMA", BERRY, BERRY_DARK);
   const mark = logoMark();
@@ -87,6 +95,6 @@ export function logoGrid(): PixelGrid {
   for (let x = textX + 1; x <= textX + textW; x++) if (x < blip || x > blip + 3) g.set(x, base, LEAF);
   for (const [dx, dy] of [[0, -1], [1, -2], [1, -3], [2, -2], [2, -1], [2, 0], [2, 1], [3, 0]]) g.set(blip + dx, base + dy, LEAF);
 
-  g.blit(mark, 0, 0);
+  if (withMark) g.blit(mark, 0, 0);
   return g;
 }

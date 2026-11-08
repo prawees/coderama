@@ -54,6 +54,8 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
   Firebase project `code-rama-6826d` (Firestore in Bangkok), rules in `firestore.rules`
   (`firebase deploy --only firestore:rules`). `lib/firebase.ts` holds the public web config.
 - Wardrobe: `components/game/Wardrobe.tsx`, used at setup and in the profile locker.
+- Haptics: always `haptic` from `lib/haptics.ts`, never `@capacitor/haptics` directly. Safari on iPhone has no vibration
+  API and the plugin throws there; awaited, it silently broke taps. `hook.js` and `custom.js` run without vibration.
 - Rank: always read it with `storyRank(day, lifetimeXp)` in `lib/erStore.ts`, never from XP during the campaign.
 - Music is written code, not audio files: `lib/musicCore.ts`, `lib/music.ts`. Sound effects and rain: `lib/audio.ts`.
 

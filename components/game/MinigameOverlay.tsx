@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { audio } from "@/lib/audio";
-import { Haptics, ImpactStyle, NotificationType } from "@capacitor/haptics";
+import { haptic } from "@/lib/haptics";
 
 interface MinigameOverlayProps {
   interventionName: string;
@@ -44,7 +44,7 @@ export function MinigameOverlay({ interventionName, onComplete, onCompress, show
     setTimeout(() => setPress(false), 90);
     onCompress?.();
     audio.playClick();
-    Haptics.impact({ style: ImpactStyle.Light }).catch(() => {});
+    haptic.impact("light");
     setTaps((prev) => {
       const next = [...prev, performance.now()];
       if (next.length >= TOTAL && !done.current) {
@@ -55,8 +55,8 @@ export function MinigameOverlay({ interventionName, onComplete, onCompress, show
         const inWindow = scored.filter((ms) => { const r = 60000 / ms; return r >= LOW - 5 && r <= HIGH + 5; }).length;
         const ok = rate >= LOW && rate <= HIGH && inWindow >= Math.ceil(scored.length * 0.7);
         setResult({ ok, rate });
-        if (ok) Haptics.impact({ style: ImpactStyle.Heavy }).catch(() => {});
-        else Haptics.notification({ type: NotificationType.Error }).catch(() => {});
+        if (ok) haptic.impact("heavy");
+        else haptic.error();
         setTimeout(() => onComplete(ok, rate), 1100);
       }
       return next;

@@ -1,12 +1,13 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Haptics, ImpactStyle } from "@capacitor/haptics";
+import { haptic } from "@/lib/haptics";
 import { audio } from "@/lib/audio";
 import { PixelPortrait } from "@/components/game/PixelPortrait";
 import { PixelLogo } from "@/components/game/PixelLogo";
+import { PixelIcon } from "@/components/ui/PixelIcon";
 import type { LiveVitals } from "@/components/exam3d/BedsideScene";
 
 const Bedside3D = dynamic(() => import("@/components/exam3d/Bedside3D"), { ssr: false });
@@ -20,7 +21,35 @@ const Bedside3D = dynamic(() => import("@/components/exam3d/Bedside3D"), { ssr: 
 type Beat = "arrive" | "order" | "cpr1" | "charge" | "shock" | "cpr2" | "later" | "rosc" | "back" | "title";
 type Rhythm = "vf" | "cpr" | "flat" | "sinus";
 
-const CPR_FIRST = 10, CPR_SECOND = 6;
+const CPR_FIRST = 10, CPR_SECOND = 8;
+/** The target is 100 to 120 a minute; only a rate clearly outside it is sent back */
+const RATE_LOW = 90, RATE_HIGH = 135;
+
+/** Compressions a minute from tap times, skipping the first taps while the hands find the rhythm */
+function rateOf(taps: number[], warmup: number) {
+  const t = taps.slice(warmup);
+  if (t.length < 3) return 0;
+  return Math.round(60000 / ((t[t.length - 1] - t[0]) / (t.length - 1)));
+}
+
+/** Text that types itself out, one Thai character cluster at a time. data-text holds the whole line. */
+function Typed({ text, className, testid, speed = 18 }: { text: string; className?: string; testid?: string; speed?: number }) {
+  const parts = useMemo(() => {
+    const Seg = (Intl as any).Segmenter;
+    return Seg ? Array.from(new Seg("th", { granularity: "grapheme" }).segment(text) as Iterable<{ segment: string }>).map((x) => x.segment) : Array.from(text);
+  }, [text]);
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    setN(0);
+    const id = setInterval(() => setN((k) => { if (k >= parts.length) { clearInterval(id); return k; } return k + 1; }), speed);
+    return () => clearInterval(id);
+  }, [parts, speed]);
+  return (
+    <p className={className} data-testid={testid} data-text={text}>
+      {parts.slice(0, n).join("")}<span className="opacity-0">{parts.slice(n).join("")}</span>
+    </p>
+  );
+}
 
 const ORDERS: { text: string; right?: boolean; why?: string }[] = [
   { text: "ให้ atropine 1 mg IV", why: "VF ไม่ใช่ bradycardia ค่ะอาจารย์ atropine ไม่ช่วย" },
@@ -90,10 +119,13 @@ function useRhythmStrip(rhythmRef: React.MutableRefObject<Rhythm>, pressRef: Rea
   return ref;
 }
 
-export function ColdOpen({ onDone }: { onDone: () => void }) {
+export function ColdOpen({ onDone, replay = false }: { onDone: () => void; replay?: boolean }) {
   const [beat, setBeat] = useState<Beat>("arrive");
   const [count, setCount] = useState(0);
   const counted = useRef(0);
+  const taps = useRef<number[]>([]);
+  const [rate, setRate] = useState(0);
+  const [coach, setCoach] = useState<string | null>(null);
   const [wrong, setWrong] = useState<string | null>(null);
   const [flash, setFlash] = useState(false);
   const [shake, setShake] = useState(false);
@@ -121,28 +153,42 @@ export function ColdOpen({ onDone }: { onDone: () => void }) {
     return () => clearInterval(alarm);
   }, [alarming]);
 
-  const compress = (goal: number, next: () => void) => {
-    pressRef.current = performance.now();
-    compressRef.current = performance.now();
+  const resetCpr = () => { counted.current = 0; taps.current = []; setCount(0); setRate(0); };
+
+  const compress = (goal: number, warmup: number, next: () => void) => {
+    const now = performance.now();
+    pressRef.current = now;
+    compressRef.current = now;
     rhythmRef.current = "cpr";
     audio.playTone(150, "square", 0.05, 0.12);
-    Haptics.impact({ style: ImpactStyle.Medium }).catch(() => {});
+    haptic.impact("medium");
     if (counted.current >= goal) return;
     counted.current += 1;
+    taps.current.push(now);
     setCount(counted.current);
-    if (counted.current === goal) later(next, 200);
+    const r = rateOf(taps.current, warmup);
+    setRate(r);
+    // Coach along the way only when it is clearly off, never for a few beats either side of the target
+    setCoach(r && r < RATE_LOW ? "ช้าไปนิดค่ะ เร็วขึ้นอีก" : r > RATE_HIGH ? "เร็วไปค่ะ ใจเย็นๆ ให้หน้าอกคืนตัว" : null);
+    if (counted.current === goal) {
+      if (r >= RATE_LOW && r <= RATE_HIGH) { setCoach(null); later(next, 200); return; }
+      audio.playBump();
+      haptic.vibrate();
+      setCoach(`เฉลี่ย ${r} ครั้ง/นาที ${r < RATE_LOW ? "ช้า" : "เร็ว"}ไปค่ะ เอาใหม่ ให้ได้ 100 ถึง 120 ตามจังหวะปุ่ม`);
+      later(resetCpr, 250);
+    }
   };
 
   const order = (o: (typeof ORDERS)[number]) => {
     if (o.right) {
       audio.playClick();
       setWrong(null);
-      counted.current = 0;
-      setCount(0);
+      resetCpr();
+      setCoach(null);
       setBeat("cpr1");
     } else {
       audio.playBump();
-      Haptics.vibrate().catch(() => {});
+      haptic.vibrate();
       setWrong(o.why ?? null);
     }
   };
@@ -160,10 +206,10 @@ export function ColdOpen({ onDone }: { onDone: () => void }) {
     compressRef.current = performance.now();
     rhythmRef.current = "flat";
     audio.playTone(70, "sawtooth", 0.35, 0.35);
-    Haptics.impact({ style: ImpactStyle.Heavy }).catch(() => {});
+    haptic.impact("heavy");
     later(() => setFlash(false), 140);
     later(() => setShake(false), 500);
-    later(() => { counted.current = 0; setCount(0); setBeat("cpr2"); }, 900);
+    later(() => { resetCpr(); setCoach(null); setBeat("cpr2"); }, 900);
   };
 
   const toLater = () => {
@@ -175,7 +221,7 @@ export function ColdOpen({ onDone }: { onDone: () => void }) {
       vitalsRef.current = { hr: 88, sbp: 104, dbp: 66, rr: 14, spo2: 96, temp: 36.5 };
       setVitals({ hr: 88, bp: "104/66", spo2: 96 });
       audio.playSparkle();
-      Haptics.impact({ style: ImpactStyle.Heavy }).catch(() => {});
+      haptic.impact("heavy");
     }, 1700);
   };
 
@@ -212,22 +258,24 @@ export function ColdOpen({ onDone }: { onDone: () => void }) {
             <div className="w-12 h-12 shrink-0 rounded-[3px] overflow-hidden border-2 border-[#3a2a2f]"><PixelPortrait speaker="Nurse Ann" className="w-full h-full" /></div>
             <div className="min-w-0">
               <p className="text-[14px] leading-none text-[#86522e]">พี่แอน</p>
-              <p className="text-[18px] leading-tight mt-1" data-testid="cold-open-line">{wrong ?? line}</p>
+              <Typed text={coach ?? wrong ?? line} className="text-[18px] leading-tight mt-1" testid="cold-open-line" />
             </div>
           </div>
         )}
 
-        {beat === "order" && ORDERS.map((o) => (
-          <button key={o.text} onClick={() => order(o)} className="cozy-btn w-full py-2 text-[19px] leading-tight" data-testid={o.right ? "cold-open-right" : "cold-open-wrong"}>{o.text}</button>
+        {beat === "order" && ORDERS.map((o, i) => (
+          <motion.button key={o.text} initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 + i * 0.09 }}
+            onClick={() => order(o)} className="cozy-btn w-full py-2 text-[19px] leading-tight" data-testid={o.right ? "cold-open-right" : "cold-open-wrong"}>{o.text}</motion.button>
         ))}
 
         {(beat === "cpr1" || beat === "cpr2") && (
           <button
-            onClick={() => (beat === "cpr1" ? compress(CPR_FIRST, toCharge) : compress(CPR_SECOND, toLater))}
-            className="cozy-btn cozy-btn-berry w-full py-6 text-[30px] leading-none animate-[cozyBeat_0.545s_ease-in-out_infinite]"
+            onClick={() => (beat === "cpr1" ? compress(CPR_FIRST, 2, toCharge) : compress(CPR_SECOND, 1, toLater))}
+            className="cozy-btn cozy-btn-berry w-full py-5 leading-none animate-[cozyBeat_0.545s_ease-in-out_infinite]"
             data-testid="cold-open-press"
           >
-            กดหน้าอก {count}/{beat === "cpr1" ? CPR_FIRST : CPR_SECOND}
+            <span className="block text-[30px]">กดหน้าอก {count}/{beat === "cpr1" ? CPR_FIRST : CPR_SECOND}</span>
+            <span className="block text-[16px] mt-1.5 opacity-90" data-testid="cold-open-rate">{rate ? `${rate} ครั้ง/นาที` : "กดตามจังหวะปุ่มที่เต้นอยู่"}</span>
           </button>
         )}
 
@@ -250,15 +298,28 @@ export function ColdOpen({ onDone }: { onDone: () => void }) {
       <AnimatePresence>
         {closing && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7 }} className="absolute inset-0 z-40 bg-[#1c1522] flex flex-col items-center justify-center gap-5 px-8 text-center" data-testid="cold-open-end">
-            <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="text-[24px] leading-snug text-[#fbf3e2]">
-              แต่ก่อนจะถึงคืนนี้ คุณเป็นแค่ นศพ. ปี 5 รองเท้าขาวเอี่ยม
-            </motion.p>
+            <Typed text="แต่ก่อนจะถึงคืนนี้ คุณเป็นแค่ นศพ. ปี 5 รองเท้าขาวเอี่ยม" speed={38} className="text-[24px] leading-snug text-[#fbf3e2]" />
             {beat === "title" && (
               <>
-                <motion.h1 initial={{ scale: 1.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 260, damping: 16 }}><PixelLogo scale={4} /></motion.h1>
-                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="text-[19px] leading-snug text-[#c9b79c]">เป้าแรก อีก 5 เวร ขึ้นเป็น extern<br />เล่นทีละเวร เกมเซฟให้ทุกครั้ง</motion.p>
-                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }} className="w-full max-w-xs">
-                  <button onClick={onDone} className="cozy-btn cozy-btn-leaf w-full py-3 text-[26px] leading-none" data-testid="cold-open-start">เริ่มเวรแรก</button>
+                <motion.div initial={{ scale: 1.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 300, damping: 14 }}>
+                  <PixelLogo scale={4} animated />
+                </motion.div>
+                {/* The first goal, as a row of hearts to fill rather than a sentence */}
+                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }} className="flex flex-col items-center gap-2" data-testid="cold-open-goal">
+                  <span className="cozy-tag !bg-[#ffd66b] px-2.5 py-1 text-[17px] leading-none">บท 1 เวรแรก</span>
+                  <div className="flex items-center gap-2">
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <motion.span key={i} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.6 + i * 0.08, type: "spring", stiffness: 500, damping: 12 }}>
+                        <PixelIcon name="heartEmpty" size={30} />
+                      </motion.span>
+                    ))}
+                    <motion.span initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.1 }} className="text-[22px] text-[#ffd66b] leading-none">▸</motion.span>
+                    <motion.span initial={{ scale: 0, rotate: -12 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 1.2, type: "spring", stiffness: 420, damping: 11 }}
+                      className="cozy-tag !bg-[#86c35f] px-2 py-1 text-[17px] leading-none">extern</motion.span>
+                  </div>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, type: "spring", stiffness: 260, damping: 16 }} className="w-full max-w-xs">
+                  <button onClick={onDone} className="cozy-btn cozy-btn-leaf w-full py-3 text-[26px] leading-none animate-[cozyBeat_1.4s_ease-in-out_infinite]" data-testid="cold-open-start">{replay ? "กลับเมนู" : "เริ่มเวรแรก"}</button>
                 </motion.div>
               </>
             )}

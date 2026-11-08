@@ -202,6 +202,10 @@
   }
 }
 
+/* Logo: lub-dub, the name bumping on the beat, a spark running the rhythm strip */
+@keyframes heartbeat { 0%, 100% { transform: scale(1); } 12% { transform: scale(1.18); } 24% { transform: scale(1); } 36% { transform: scale(1.1); } 50% { transform: scale(1); } }
+@keyframes logoBump { 0%, 100% { transform: translateY(0); } 12% { transform: translateY(-3px); } 26% { transform: translateY(0); } 38% { transform: translateY(-1px); } 52% { transform: translateY(0); } }
+@keyframes ecgSpark { 0% { left: -5%; opacity: 0; } 8% { opacity: 1; } 85% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
 @keyframes cozyBeat { 0%, 100% { transform: scale(1); } 40% { transform: scale(0.96); } }
 @keyframes cozyBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 @keyframes cozyPop { 0% { transform: scale(0.6); opacity: 0; } 70% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
