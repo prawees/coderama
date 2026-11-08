@@ -64,7 +64,7 @@ const CHAPTERS: Record<number, Chapter> = {
     title: { en: "The department is yours", th: "ER นี้เป็นของเราแล้ว" },
     line: {
       en: "Years of night shifts, Thai tea and second chances. Whatever you did with them, the clinic remembers. Keep going as long as you like.",
-      th: "เวรดึกหลายปี ชาเย็นหลายแก้ว โอกาสครั้งที่สองอีกหลายครั้ง ใช้มันยังไงไป ER ก็จำได้หมด อยู่ต่อได้นานเท่าที่อยากอยู่",
+      th: "เวรดึกนับไม่ถ้วน ชาเย็นอีกหลายแก้ว ทำอะไรไว้ ER จำได้หมด อยู่ต่อได้นานเท่าที่อยากอยู่",
     },
     host: "ann",
     button: { en: "Keep playing", th: "เล่นต่อ" },

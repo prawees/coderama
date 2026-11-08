@@ -10,6 +10,18 @@ const K: Key = {
 };
 
 const ICONS: Record<string, string[]> = {
+  lock: [
+    "   kkkk   ",
+    "  kMMMMk  ",
+    "  kM  Mk  ",
+    "  kM  Mk  ",
+    " kkkkkkkk ",
+    " kyyyyyyk ",
+    " kyykkyyk ",
+    " kyykkyyk ",
+    " kyyyyyyk ",
+    " kkkkkkkk ",
+  ],
   brain: [
     "  kkkk kkk  ",
     " kppppkpppk ",

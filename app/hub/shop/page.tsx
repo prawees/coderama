@@ -10,6 +10,7 @@ import { PageTransition } from "@/components/ui/PageTransition";
 import { GIFTS } from "@/lib/gifts";
 import { GIFT_ICON } from "@/lib/pixel/icons";
 import { audio } from "@/lib/audio";
+import { PixelArrow } from "@/components/ui/PixelArrow";
 
 type Tab = "gifts" | "treats" | "gear" | "upgrades";
 
@@ -67,7 +68,7 @@ export default function ShopPage() {
     <PageTransition>
       <div className="h-[100dvh] cozy-night font-pixel flex flex-col p-3 gap-2 pt-[calc(0.75rem+var(--safe-top))]" data-testid="shop">
         <div className="flex items-center justify-between">
-          <PixelButton onClick={() => router.push("/hub")} variant="wood" className="text-[18px] px-3 py-1">◀ {tr("Back", "กลับ")}</PixelButton>
+          <PixelButton onClick={() => router.push("/hub")} variant="wood" className="text-[18px] px-3 py-1"><PixelArrow dir="left" size={13} /> {tr("Back", "กลับ")}</PixelButton>
           <div className="cozy-tag px-2 py-1 flex items-center gap-1.5">
             <PixelIcon name="coin" size={15} />
             <span className="text-[20px] leading-none tabular-nums">{currency}</span>

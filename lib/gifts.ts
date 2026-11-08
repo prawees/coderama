@@ -15,7 +15,7 @@ export const GIFTS: Record<string, Gift> = {
   garland: { id: "garland", name: { en: "Jasmine Garland", th: "พวงมาลัยมะลิ" }, blurb: { en: "Smells like temple mornings.", th: "หอมเหมือนเช้าวันพระ" }, cost: 60, icon: "garland" },
   orchid: { id: "orchid", name: { en: "Orchid Pot", th: "กระถางกล้วยไม้" }, blurb: { en: "Purple, patient, hard to kill.", th: "สีม่วง อดทน ตายยาก" }, cost: 70, icon: "orchid" },
   energy_drink: { id: "energy_drink", name: { en: "Energy Drink", th: "เครื่องดื่มชูกำลัง" }, blurb: { en: "Tiny bottle, enormous regret.", th: "ขวดเล็ก ใจสั่นใหญ่" }, cost: 20, icon: "energy" },
-  handbook: { id: "handbook", name: { en: "Pocket Handbook", th: "หนังสือคู่มือพกพา" }, blurb: { en: "Dog-eared, highlighted, beloved.", th: "มุมพับ ไฮไลต์เต็ม เป็นที่รัก" }, cost: 120, icon: "book" },
+  handbook: { id: "handbook", name: { en: "Pocket Handbook", th: "หนังสือคู่มือพกพา" }, blurb: { en: "Dog-eared, highlighted, beloved.", th: "ใช้จนมุมพับ ไฮไลต์เต็มเล่ม" }, cost: 120, icon: "book" },
   durian: { id: "durian", name: { en: "Durian", th: "ทุเรียน" }, blurb: { en: "The king of fruit. Divisive monarch.", th: "ราชาผลไม้ ที่คนรักและเกลียดพอๆ กัน" }, cost: 90, icon: "durian" },
   dried_fish: { id: "dried_fish", name: { en: "Dried Fish", th: "ปลาแห้ง" }, blurb: { en: "For a very specific coworker.", th: "สำหรับเพื่อนร่วมงานบางตัวโดยเฉพาะ" }, cost: 15, icon: "fish" },
 };

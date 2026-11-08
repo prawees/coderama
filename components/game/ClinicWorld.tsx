@@ -12,6 +12,7 @@ import { hashString, mix } from "@/lib/pixel/grid";
 import { HAIR_COLORS } from "@/lib/pixel/palette";
 import { getMap, solidGrid, findPath, MapId, Phase, themeForPhase, WorldMap, Interactable } from "@/lib/world/maps";
 import { composeStatic, propGrid, propPixelPos, isWallProp, TILE } from "@/lib/world/render";
+import { PixelArrow } from "@/components/ui/PixelArrow";
 
 /* ------------------------------------------------------------------ */
 /* Public types                                                         */
@@ -213,13 +214,13 @@ export function ClinicWorld(props: ClinicWorldProps) {
       {/* D-pad (keyboard and tap-to-walk also work). The gaps between the keys let taps through to the world. */}
       <div className="pointer-events-none absolute bottom-3 left-3 z-30 grid grid-cols-3 gap-1 opacity-90">
         <div />
-        <button aria-label="up" className={padBtn} onPointerDown={() => press("up", true)} onPointerUp={releaseAll} onPointerLeave={releaseAll}>▲</button>
+        <button aria-label="up" className={padBtn} onPointerDown={() => press("up", true)} onPointerUp={releaseAll} onPointerLeave={releaseAll}><PixelArrow dir="up" size={14} /></button>
         <div />
-        <button aria-label="left" className={padBtn} onPointerDown={() => press("left", true)} onPointerUp={releaseAll} onPointerLeave={releaseAll}>◀</button>
+        <button aria-label="left" className={padBtn} onPointerDown={() => press("left", true)} onPointerUp={releaseAll} onPointerLeave={releaseAll}><PixelArrow dir="left" size={14} /></button>
         <div />
-        <button aria-label="right" className={padBtn} onPointerDown={() => press("right", true)} onPointerUp={releaseAll} onPointerLeave={releaseAll}>▶</button>
+        <button aria-label="right" className={padBtn} onPointerDown={() => press("right", true)} onPointerUp={releaseAll} onPointerLeave={releaseAll}><PixelArrow dir="right" size={14} /></button>
         <div />
-        <button aria-label="down" className={padBtn} onPointerDown={() => press("down", true)} onPointerUp={releaseAll} onPointerLeave={releaseAll}>▼</button>
+        <button aria-label="down" className={padBtn} onPointerDown={() => press("down", true)} onPointerUp={releaseAll} onPointerLeave={releaseAll}><PixelArrow dir="down" size={14} /></button>
         <div />
       </div>
 

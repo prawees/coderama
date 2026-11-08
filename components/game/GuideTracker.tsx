@@ -17,6 +17,9 @@ export function GuideTracker({ onShift, hidden, mark }: { onShift: boolean; hidd
   const st = useERStore();
   const steps = useMemo(() => guideSteps(st, onShift), [st, onShift]);
   const [open, setOpen] = useState(false);
+  // Folded down to a small tab when the player wants the screen; remembered on this device
+  const [mini, setMini] = useState(() => { try { return localStorage.getItem("coderama.guideMini") === "1"; } catch { return false; } });
+  const fold = (v: boolean) => { audio.playClick(); setMini(v); setOpen(false); try { localStorage.setItem("coderama.guideMini", v ? "1" : "0"); } catch { /* private mode */ } };
   const [cheer, setCheer] = useState<string | null>(null);
   const seen = useRef<Set<string>>(new Set());
 
@@ -37,8 +40,17 @@ export function GuideTracker({ onShift, hidden, mark }: { onShift: boolean; hidd
   useEffect(() => () => mark(null), [mark]);
 
   if (!steps.length || hidden) return null;
+  if (mini) {
+    return (
+      <button onClick={() => fold(false)} className="absolute top-[3.6rem] left-2 z-40 cozy-tag px-2 py-1 flex items-center gap-1.5 text-[14px] leading-none" data-testid="guide-mini" aria-label="เปิดภารกิจ">
+        <PixelIcon name="quest" size={13} />ภารกิจ {steps.length - left.length}/{steps.length}
+        {current && <span className="w-2 h-2 rounded-full bg-[#d95763] animate-pulse" />}
+      </button>
+    );
+  }
   return (
     <div className="absolute top-[3.6rem] left-2 z-40 max-w-[15.5rem]" data-testid="guide">
+      <button onClick={(e) => { e.stopPropagation(); fold(true); }} className="absolute -top-2 -right-2 z-10 cozy-tag w-6 h-6 flex items-center justify-center text-[15px] leading-none" data-testid="guide-fold" aria-label="ย่อภารกิจ">–</button>
       <button onClick={() => { audio.playClick(); setOpen((o) => !o); }} className="cozy-panel w-full text-left px-2 py-1.5 flex items-start gap-1.5" aria-expanded={open}>
         <span className="mt-0.5 shrink-0"><PixelIcon name="quest" size={14} /></span>
         <span className="min-w-0">

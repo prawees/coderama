@@ -373,42 +373,59 @@ export function play(bus: Bus, inst: Inst, midi: number, t: number, dur: number,
     const a2 = ctx.createGain();
     o1.frequency.value = f; o2.frequency.value = f * 4;
     a1.gain.setValueAtTime(0.0001, t);
-    a1.gain.exponentialRampToValueAtTime(0.22 * vel, t + 0.005);
-    a1.gain.exponentialRampToValueAtTime(0.0001, t + 0.9);
+    a1.gain.exponentialRampToValueAtTime(0.19 * vel, t + 0.008);
+    a1.gain.exponentialRampToValueAtTime(0.0001, t + 1.1);
     a2.gain.setValueAtTime(0.0001, t);
-    a2.gain.exponentialRampToValueAtTime(0.06 * vel, t + 0.003);
+    a2.gain.exponentialRampToValueAtTime(0.035 * vel, t + 0.004);
     a2.gain.exponentialRampToValueAtTime(0.0001, t + 0.08);
     o1.connect(a1).connect(out); o2.connect(a2).connect(out);
-    o1.start(t); o2.start(t); o1.stop(end(t + 0.9)); o2.stop(end(t + 0.1));
+    o1.start(t); o2.start(t); o1.stop(end(t + 1.1)); o2.stop(end(t + 0.1));
   } else if (inst === 'flute') {
-    // Flute: soft attack, delayed vibrato, a breath of noise at the start
+    // Soft flute: a rounded tone that blooms in, sighs down through the note, and leaves a faint echo.
+    // Two voices a few cents apart for width, a filter that opens on the breath, vibrato that comes in late.
     const o = ctx.createOscillator();
     const o2 = ctx.createOscillator();
+    const o3 = ctx.createOscillator();
+    const lp = ctx.createBiquadFilter();
     const amp = ctx.createGain();
     const lfo = ctx.createOscillator();
     const lg = ctx.createGain();
-    o.frequency.value = f; o2.type = 'triangle'; o2.frequency.value = f;
-    const o2g = ctx.createGain(); o2g.gain.value = 0.25;
-    lfo.frequency.value = 5.2;
+    o.type = 'sine'; o.frequency.value = f;
+    o2.type = 'triangle'; o2.frequency.value = f; o2.detune.value = 7;
+    o3.type = 'sine'; o3.frequency.value = f * 2; // a whisper of the octave, for air
+    const o2g = ctx.createGain(); o2g.gain.value = 0.32;
+    const o3g = ctx.createGain(); o3g.gain.value = 0.06;
+    lfo.frequency.value = 4.8;
     lg.gain.setValueAtTime(0, t);
-    lg.gain.linearRampToValueAtTime(f * 0.004, t + Math.min(0.5, dur * 0.6));
+    lg.gain.linearRampToValueAtTime(f * 0.0035, t + Math.min(0.6, dur * 0.7));
     lfo.connect(lg); lg.connect(o.frequency); lg.connect(o2.frequency);
-    const rel = 0.18;
-    const sus = Math.max(0.05, dur - 0.04);
+    lp.type = 'lowpass'; lp.Q.value = 0.4;
+    lp.frequency.setValueAtTime(f * 1.6, t);
+    lp.frequency.exponentialRampToValueAtTime(Math.min(7000, f * 5), t + 0.12);
+    lp.frequency.exponentialRampToValueAtTime(Math.min(5000, f * 3), t + 0.12 + dur);
+    const rel = 0.38;
+    const sus = Math.max(0.08, dur - 0.02);
+    const peak = 0.105 * vel;
     amp.gain.setValueAtTime(0.0001, t);
-    amp.gain.exponentialRampToValueAtTime(0.13 * vel, t + 0.07);
-    amp.gain.setValueAtTime(0.13 * vel, t + sus);
+    amp.gain.exponentialRampToValueAtTime(peak, t + 0.09);
+    amp.gain.exponentialRampToValueAtTime(peak * 0.62, t + sus); // the breath eases off through the note
     amp.gain.exponentialRampToValueAtTime(0.0001, t + sus + rel);
-    o.connect(amp); o2.connect(o2g).connect(amp); amp.connect(out);
+    o.connect(lp); o2.connect(o2g).connect(lp); o3.connect(o3g).connect(lp);
+    lp.connect(amp); amp.connect(out);
+    // A quiet echo a dotted eighth later
+    const dl = ctx.createDelay(1); dl.delayTime.value = 0.27;
+    const fb = ctx.createGain(); fb.gain.value = 0.22;
+    const dg = ctx.createGain(); dg.gain.value = 0.16;
+    amp.connect(dl); dl.connect(fb).connect(dl); dl.connect(dg).connect(out);
     const br = ctx.createBufferSource(); br.buffer = bus.noise;
-    const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = f * 2; bp.Q.value = 2;
+    const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = f * 2.5; bp.Q.value = 1.2;
     const bg = ctx.createGain();
     bg.gain.setValueAtTime(0.0001, t);
-    bg.gain.exponentialRampToValueAtTime(0.02 * vel, t + 0.03);
-    bg.gain.exponentialRampToValueAtTime(0.0001, t + 0.15);
+    bg.gain.exponentialRampToValueAtTime(0.014 * vel, t + 0.05);
+    bg.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
     br.connect(bp).connect(bg).connect(out);
-    for (const x of [o, o2, lfo]) { x.start(t); x.stop(end(t + sus + rel)); }
-    br.start(t); br.stop(t + 0.2);
+    for (const x of [o, o2, o3, lfo]) { x.start(t); x.stop(end(t + sus + rel)); }
+    br.start(t); br.stop(t + 0.25);
   } else if (inst === 'pad') {
     // Warm strings: two detuned saws, dark filter, slow swell
     const lp = ctx.createBiquadFilter();

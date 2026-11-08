@@ -97,14 +97,14 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd1_s_05',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "Dr. Bob. Senior resident, fourth year, which in this hospital means I am the most experienced physician on this floor for the next nine hours. Try not to find that comforting.",
+        text: "Dr. Bob. Second-year resident, and with the attending at home tonight that means I am the most experienced physician on this floor for the next nine hours. Try not to find that comforting.",
         nextId: 'd1_s_06',
       },
       {
         id: 'd1_s_06',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "Three rules. One: the ultrasound on the left lies about the gallbladder. Two: never say the word 'quiet' out loud. Three, and this is the only one that matters, we do not have a bed.",
+        text: "Three rules. One: the left ultrasound has a faulty probe and finds gallstones in every gallbladder, so do not trust it. Two: never say the word 'quiet' out loud. Three, and this is the only one that matters, we do not have a bed.",
         nextId: 'd1_s_07',
       },
       {
@@ -351,7 +351,7 @@ export const STORY_CAMPAIGN: Record<number, {
         id: 'd1_e_refuse_02',
         speaker: 'Dr. Bob',
         portrait: '/assets/doctor.jpg',
-        text: "I have been doing this for nine years and no student has ever said no to me. Not one. Do you want to know why? Because the ones who say no get scheduled into the ground until they say yes.",
+        text: "I have been doing this since I was an intern and no student has ever said no to me. Not one. Do you want to know why? Because the ones who say no get scheduled into the ground until they say yes.",
         nextId: 'd1_e_refuse_03',
       },
       {

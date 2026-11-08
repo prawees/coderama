@@ -8,6 +8,7 @@ import { arrivedLetters } from "@/lib/letters";
 import { audio } from "@/lib/audio";
 import { PixelIcon } from "@/components/ui/PixelIcon";
 import { CASEBOOK_IDS, CASEBOOK_MILESTONES, claimableMilestones, keySteps } from "@/lib/casebook";
+import { PixelArrow } from "@/components/ui/PixelArrow";
 
 export type LettersTab = "letters" | "casebook";
 
@@ -77,7 +78,7 @@ export function LettersModal({ onClose, initialTab = "letters" }: { onClose: () 
                 <PixelIcon name={GIFT_ICON[GIFTS[letter.gift].icon] ?? "heart"} size={13} />แนบมาด้วย: {GIFTS[letter.gift].name.th}
               </p>
             )}
-            <button className="cozy-btn self-start px-2.5 py-0.5 text-[16px]" onClick={() => { audio.playClick(); setOpen(null); }}>◀ กลับ</button>
+            <button className="cozy-btn self-start px-2.5 py-0.5 text-[16px]" onClick={() => { audio.playClick(); setOpen(null); }}><PixelArrow dir="left" size={12} /> กลับ</button>
           </div>
         ) : (
           <>
@@ -135,7 +136,7 @@ export function LettersModal({ onClose, initialTab = "letters" }: { onClose: () 
                         <ol className="list-decimal pl-5 space-y-1 text-[15px] leading-snug">{steps.map((st, i) => <li key={i}>{st}</li>)}</ol>
                       )}
                     </div>
-                    <button className="cozy-btn self-start px-2.5 py-0.5 text-[16px]" onClick={() => { audio.playClick(); setPage(null); }}>◀ กลับ</button>
+                    <button className="cozy-btn self-start px-2.5 py-0.5 text-[16px]" onClick={() => { audio.playClick(); setPage(null); }}><PixelArrow dir="left" size={12} /> กลับ</button>
                   </div>
                 );
               })()}

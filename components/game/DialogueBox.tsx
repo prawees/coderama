@@ -64,7 +64,7 @@ export function DialogueBox({ speakerName, text: rawText, choices, voice, onComp
 
   return (
     <div
-      className={`absolute left-2 right-2 z-[100] cursor-pointer animate-[cozyPop_0.18s_ease-out] ${placement === "top" ? "top-[3.4rem]" : "bottom-2"}`}
+      className={`absolute left-2 right-2 z-[100] cursor-pointer animate-[cozyPop_0.18s_ease-out] ${placement === "top" ? "top-[5.4rem]" : "bottom-2"}`}
       onClick={handleNext}
       data-testid="dialogue"
     >

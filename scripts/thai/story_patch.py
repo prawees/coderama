@@ -24,7 +24,8 @@ def main():
             if not ln.strip() or ln.startswith("#"):
                 continue
             key, _, text = ln.partition(": ")
-            key, text = key.strip(), text.strip()
+            # "\\n" in a day file is a deliberate line break, for lists like Bob's three rules
+            key, text = key.strip(), text.strip().replace("\\n", "\n")
             m = re.fullmatch(r"(.+?)>(\d+)", key)
             nid, idx = (m.group(1), int(m.group(2))) if m else (key, None)
             assert nid in nodes, f"{f.name}: no node {nid}"

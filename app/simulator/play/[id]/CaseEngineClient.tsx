@@ -337,7 +337,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
         setSlips((prev) => [...prev, {
           text: choice.text,
           // An ending already shows its narrative on screen, so the debrief gives the right move instead
-          why: ends ? (right ? `ทางที่ถูก: ${right.text}` : '') : nextNode.narrative,
+          why: ends ? (right ? `ที่ถูกคือ ${right.text}` : '') : nextNode.narrative,
         }]);
       }
       // Legacy branching cases: judge the choice by whether blood pressure improves

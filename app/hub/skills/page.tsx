@@ -9,7 +9,7 @@ import { PageTransition } from "@/components/ui/PageTransition";
 const SKILLS_DB = [
   {
     id: "IRON_BLADDER",
-    name: "กระเพาะปัสสาวะเหล็ก",
+    name: "กลั้นฉี่ได้ทั้งเวร",
     description: "พลังงานสูงสุด +50 อยู่เวรได้นานขึ้นโดยไม่ล้ม",
     cost: 500,
   },

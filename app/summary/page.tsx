@@ -91,7 +91,7 @@ export default function SummaryPage() {
   // The day's notice-board request, done or let go
   if (requestFor(finishedDay)) {
     const done = (useERStore.getState().requestsDone ?? []).includes(finishedDay);
-    rows.push({ icon: "log", label: "งานจากบอร์ด", value: <span className={done ? "text-[#3f8a48]" : "text-[#86522e] text-[18px]"}>{done ? "✓" : "ไม่ทัน"}</span> });
+    rows.push({ icon: "log", label: "งานจากบอร์ด", value: <span className={done ? "text-[#3f8a48]" : "text-[#86522e] text-[18px]"}>{done ? "✓" : "ทำไม่ทัน"}</span> });
   }
 
   const earned = shiftTitle((shiftStats.patients ?? []).map((p) => p.grade), fainted);

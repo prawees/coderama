@@ -74,17 +74,17 @@ export function ConsultsModal({ onClose }: ConsultsModalProps) {
           {loading ? (
             <p className="text-center text-[18px] text-[#86522e] py-8 animate-pulse">{tr("Checking the pigeonholes...", "กำลังดูช่องฝากข้อความ...")}</p>
           ) : failed ? (
-            <p className="text-center text-[18px] text-[#86522e] py-8">{tr("The lounge is closed while you are offline.", "ห้องพักปิดอยู่ระหว่างออฟไลน์")}</p>
+            <p className="text-center text-[18px] text-[#86522e] py-8">{tr("The lounge is closed while you are offline.", "ตอนนี้ออฟไลน์อยู่ เข้าห้องพักแพทย์ไม่ได้")}</p>
           ) : consults.length === 0 ? (
             <p className="text-center text-[18px] text-[#86522e] py-8">{tr("No notes today. Put the kettle on.", "วันนี้ไม่มีโน้ต ไปต้มน้ำชงชาเถอะ")}</p>
           ) : (
             consults.map((c) => (
               <div key={c.id} className="bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] p-2 flex flex-col gap-1.5">
                 <div className="flex justify-between items-start gap-2">
-                  <p className="text-[18px] leading-tight">{tr(`${c.requesterName} needs a second opinion`, `${c.requesterName} ขอความเห็นที่สอง`)}</p>
+                  <p className="text-[18px] leading-tight">{tr(`${c.requesterName} needs a second opinion`, `${c.requesterName} ขอ second opinion`)}</p>
                   <span className="cozy-tag px-1.5 py-0.5 text-[13px] leading-none whitespace-nowrap">+50 XP</span>
                 </div>
-                <p className="text-[15px] leading-snug text-[#86522e]">{tr("Vitals", "สัญญาณชีพ")}: {c.vitals}</p>
+                <p className="text-[15px] leading-snug text-[#86522e]">{tr("Vitals", "vital signs")}: {c.vitals}</p>
                 <p className="text-[16px] leading-snug">{c.narrative}</p>
                 <div className="flex flex-col gap-1.5 mt-1">
                   {(c.options || []).map((opt: any, idx: number) => (

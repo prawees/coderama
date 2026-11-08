@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { PlayerAppearance, Rank } from "@/lib/erStore";
 import { UNIFORMS, allowedUniforms, lockNote, uniformFor } from "@/lib/uniform";
 import { audio } from "@/lib/audio";
+import { PixelIcon } from "@/components/ui/PixelIcon";
 
 export const SKIN = ["#ffdcc2", "#f4c7a1", "#e8b089", "#d19a6e", "#b97f55", "#9a6544"];
 export const HAIR = ["#2c2328", "#5a3a2a", "#7a4a2c", "#8a3f2c", "#b8b2ad", "#d9739a", "#5b7fbf"];
@@ -62,7 +63,7 @@ export function Wardrobe({ value, onChange, rank }: { value: PlayerAppearance; o
               <button key={u.id} data-testid={`uniform-${u.id}`} aria-disabled={!open}
                 onClick={() => (open ? pick({ topStyle: u.id }) : (audio.playBump(), setNote(lockNote(u.id, rank))))}
                 className={`cozy-btn py-1 text-[15px] leading-none ${wearing === u.id ? "cozy-btn-sky" : ""} ${open ? "" : "opacity-55"}`}>
-                {open ? u.label : `🔒 ${u.label}`}
+                {open ? u.label : <span className="inline-flex items-center gap-1"><PixelIcon name="lock" size={12} />{u.label}</span>}
               </button>
             );
           })}

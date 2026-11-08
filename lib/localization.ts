@@ -51,13 +51,13 @@ export const universityTh = (u?: string) => (u ? UNIVERSITY_TH[u] ?? u : "");
 
 export const translate = (key: string, lang: 'en' | 'th'): string => {
   const dict: Record<string, { en: string, th: string }> = {
-    'hub_title': { en: 'ER CENTRAL COMMAND', th: 'ศูนย์ควบคุมฉุกเฉิน' },
-    'start_shift': { en: 'START SHIFT', th: 'เริ่มกะเวร' },
-    'on_shift': { en: 'ON SHIFT', th: 'กำลังเข้ากะ' },
+    'hub_title': { en: 'ER CENTRAL COMMAND', th: 'ER' },
+    'start_shift': { en: 'START SHIFT', th: 'เริ่มเวร' },
+    'on_shift': { en: 'ON SHIFT', th: 'อยู่เวร' },
     'end_shift': { en: 'END SHIFT', th: 'ออกเวร' },
     'shop': { en: 'SHOP', th: 'ร้านค้า' },
     'skills': { en: 'SKILLS', th: 'ทักษะ' },
-    'patients': { en: 'PATIENTS WAITING', th: 'ผู้ป่วยที่รอ' },
+    'patients': { en: 'PATIENTS WAITING', th: 'คนไข้ที่รอ' },
     'cash': { en: 'CASH', th: 'เงิน' },
     'energy': { en: 'ENERGY', th: 'พลังงาน' },
     'lifetime_xp': { en: 'LIFETIME XP', th: 'XP รวม' },

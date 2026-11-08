@@ -12,6 +12,7 @@ import { getLocalizedRankTitle, universityTh } from "@/lib/localization";
 import { NPCS, heartsFor } from "@/lib/npcs";
 import { LOCATION_NAMES, phaseForDay } from "@/lib/world/maps";
 import { Wardrobe } from "@/components/game/Wardrobe";
+import { PixelArrow } from "@/components/ui/PixelArrow";
 
 /** Your hospital ID card: who you are, where you work, and who you have become close to. */
 export default function ProfilePage() {
@@ -31,7 +32,7 @@ export default function ProfilePage() {
     <PageTransition>
       <div className="min-h-[100dvh] cozy-night font-pixel flex flex-col p-3 gap-3 pt-[calc(0.75rem+var(--safe-top))]" data-testid="profile">
         <div className="flex items-center justify-between">
-          <PixelButton onClick={() => router.push("/hub")} variant="wood" className="text-[18px] px-3 py-1">◀ {tr("Back", "กลับ")}</PixelButton>
+          <PixelButton onClick={() => router.push("/hub")} variant="wood" className="text-[18px] px-3 py-1"><PixelArrow dir="left" size={13} /> {tr("Back", "กลับ")}</PixelButton>
           <span className="cozy-tag px-2 py-1 text-[18px] leading-none flex items-center gap-1.5"><PixelIcon name="badge" size={15} />{tr("ID badge", "บัตรประจำตัว")}</span>
         </div>
 

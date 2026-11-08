@@ -37,6 +37,7 @@ import { getDayStory, advanceQueue, resolveRouters, visibleChoices, shiftStartMi
 import { audio } from "@/lib/audio";
 import { music, TrackId } from "@/lib/music";
 import { AnimatePresence } from "framer-motion";
+import { PixelArrow } from "@/components/ui/PixelArrow";
 
 // Story choices were authored with XP in the thousands (about 637,000 across the campaign),
 // while a perfect case pays 100 (about 12,000 across 31 days). At 2% the story and the
@@ -431,8 +432,8 @@ export default function HubPage() {
              setDialogueQueue([
                { speaker: "Prof. Somchai", text: "ขึ้นมาถึงจุดสูงสุดแล้วนะ ตอนนี้เป็นหัวหน้าภาควิชาเต็มตัว" },
                { speaker: "Prof. Somchai", text: "จะเกษียณแล้วส่งต่อให้รุ่นน้องไหม เริ่มใหม่อีกรอบ แต่มีของติดตัวไปด้วย", choices: [
-                  { text: "ส่งต่อทรัพย์ (เริ่มใหม่พร้อม 5000 เหรียญ)", nextId: "legacy_wealth", flagEffect: "prestige_wealth" },
-                  { text: "ส่งต่อความรู้ (เริ่มใหม่พร้อม 5000 XP)", nextId: "legacy_knowledge", flagEffect: "prestige_knowledge" }
+                  { text: "เริ่มใหม่ พร้อมเงินติดตัว 5000 เหรียญ", nextId: "legacy_wealth", flagEffect: "prestige_wealth" },
+                  { text: "เริ่มใหม่ พร้อม 5000 XP", nextId: "legacy_knowledge", flagEffect: "prestige_knowledge" }
                ]}
              ]);
              setActionOnDialogueEnd('PRESTIGE');
@@ -829,7 +830,7 @@ export default function HubPage() {
                 {tr('Start shift', 'เริ่มเวร')}
               </PixelButton>
               {currentDay === 1 && !tutorialCompleted && dialogueQueue.length === 0 && (
-                <div className="absolute top-1/2 -translate-y-1/2 right-3 text-2xl animate-[cozyBob_0.8s_ease-in-out_infinite] pointer-events-none">◀</div>
+                <div className="absolute top-1/2 -translate-y-1/2 right-3 text-2xl animate-[cozyBob_0.8s_ease-in-out_infinite] pointer-events-none"><PixelArrow dir="left" size={20} /></div>
               )}
             </div>
           </div>
