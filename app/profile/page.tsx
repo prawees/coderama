@@ -13,12 +13,17 @@ import { NPCS, heartsFor } from "@/lib/npcs";
 import { LOCATION_NAMES, phaseForDay } from "@/lib/world/maps";
 import { Wardrobe } from "@/components/game/Wardrobe";
 import { PixelArrow } from "@/components/ui/PixelArrow";
+import { ShareSheet } from "@/components/game/ShareSheet";
+import { profileCard } from "@/lib/shareSpecs";
+import type { CardSpec } from "@/lib/shareCard";
+import { useState } from "react";
 
 /** Your hospital ID card: who you are, where you work, and who you have become close to. */
 export default function ProfilePage() {
   const router = useRouter();
   const { appearance, setAppearance, playerName, playerGender, lifetimeXp, currentDay, friendships, completedQuests, university, language } = useERStore();
   const tr = (en: string, th: string) => (language === "th" ? th : en);
+  const [card, setCard] = useState<CardSpec | null>(null);
   const rank = storyRank(currentDay, lifetimeXp || 0);
   const look = playerLookFrom(appearance, rank);
   const place = LOCATION_NAMES[phaseForDay(currentDay)][language];
@@ -73,6 +78,9 @@ export default function ProfilePage() {
             )}
           </div>
         </div>
+
+        <button onClick={() => setCard(profileCard())} className="cozy-btn cozy-btn-sun w-full max-w-sm mx-auto py-2 text-[19px] leading-none" data-testid="share-profile">แชร์บัตรนี้ลงสตอรี่</button>
+        {card && <ShareSheet spec={card} onClose={() => setCard(null)} filename="code-rama-id.png" />}
 
         {/* Wardrobe */}
         <div className="cozy-panel p-3 w-full max-w-sm mx-auto flex flex-col gap-2.5">

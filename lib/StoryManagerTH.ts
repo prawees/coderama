@@ -465,7 +465,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d2_s_neutral_01",
         "speaker": "Nurse Ann",
         "portrait": "/assets/nurse.jpg",
-        "text": "ลุงประสิทธิ์กลับมาเมื่อวานบ่ายค่ะ เป็น MI ตอนนี้อยู่ข้างบน อาการ stable พี่บ๊อบเขียน incident report เอง ซึ่งพี่ไม่คิดว่าเขาจะทำ แล้ว report ก็อยู่บนโต๊ะ ผอ. ตั้งแต่ 8 โมงเช้า",
+        "text": "ลุงประสิทธิ์กลับมาเมื่อวานบ่ายค่ะ เป็น MI ตอนนี้อยู่ข้างบน อาการ stable พี่บ๊อบเขียน incident report เอง พี่ไม่คิดเลยว่าเขาจะเขียน แล้ว report ก็ไปอยู่บนโต๊ะ ผอ. ตั้งแต่ 8 โมงเช้า",
         "nextId": "d2_s_join"
       },
       {
@@ -534,7 +534,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d2_s_10",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "ลองคิดดูว่าโรงพยาบาลคืออะไร มันคือตึกที่วิ่งด้วยเงินที่ตัวเองไม่มี ครอบครัวคุณวิชัยสนับสนุนโครงการ HD คนไข้ 900 คน ชั่งดูสิ 900 คนกับคนเดียว แล้วบอกผมทีว่าในบทสนทนานี้ใครคือฝ่ายที่มีจริยธรรม",
+        "text": "ลองคิดดูว่าโรงพยาบาลคืออะไร ตึกที่วิ่งด้วยเงินที่ตัวเองไม่มี ครอบครัวคุณวิชัยสนับสนุนโครงการ HD คนไข้ 900 คน ชั่งดูสิ 900 คนกับคนเดียว แล้วบอกผมทีว่าในห้องนี้ใครกันแน่ที่มีจริยธรรม",
         "choices": [
           {
             "text": "เขียน note ว่าย้ายได้ 900 คนเป็นตัวเลขที่มีอยู่จริง",
@@ -873,7 +873,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d2_e_neutral_02",
         "speaker": "Nurse Ann",
         "portrait": "/assets/nurse.jpg",
-        "text": "แต่ต้องรู้นะว่ากำลังเลือกอะไร ในตึกแบบนี้การไม่รู้ไม่ใช่ความเป็นกลาง การไม่รู้คือบริการที่ฝ่ายบริหารแจกฟรี และหมอเพิ่งรับมันไว้",
+        "text": "แต่ต้องรู้นะว่ากำลังเลือกอะไร ตึกแบบนี้ ไม่รู้ไม่ได้แปลว่าเป็นกลาง ความไม่รู้คือของที่ผู้บริหารแจกฟรี และหมอเพิ่งรับไว้",
         "nextId": "d2_e_neutral_03"
       },
       {
@@ -1000,7 +1000,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d3_s_direct_04",
         "speaker": "Dr. Bob",
         "portrait": "/assets/doctor.jpg",
-        "text": "ซึ่งถ้าลองคิดดีๆ สักวิ มันคือสิ่งที่เขาหวังไว้พอดี เขาไม่ต้องซื้อใครเลย แค่ทำให้เราหมดแรงแล้วรอก็พอ",
+        "text": "ถ้าคิดดีๆ สักวิ นั่นแหละที่เขาหวังไว้พอดี เขาไม่ต้องซื้อใครเลย แค่ทำให้เราหมดแรง แล้วรอเฉยๆ",
         "nextId": "d3_s_join"
       },
       {
@@ -1141,7 +1141,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d3_e_03",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "แล้วก็ได้รับแจ้งด้วยว่าถุงนั้นหายไประหว่างทางจาก resus ไปห้องทิ้งขยะ น่าเสียดาย เพราะถ้าไม่มีมัน เคสนี้ก็แค่ sepsis หา source ไม่เจอ ซึ่งก็คือสิ่งที่ discharge summary จะเขียน",
+        "text": "แล้วก็ได้รับแจ้งด้วยว่าถุงนั้นหายระหว่างทางจาก resus ไปห้องทิ้งขยะ น่าเสียดาย ไม่มีถุงนั้น เคสนี้ก็เป็นแค่ sepsis หา source ไม่เจอ และ discharge summary ก็จะเขียนไว้แบบนั้น",
         "nextId": "d3_e_04"
       },
       {
@@ -1155,7 +1155,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d3_e_05",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "ถ้าอย่างนั้นคุณก็เอาขยะติดเชื้อออกจากพื้นที่ควบคุม ซึ่งไล่ออกได้ทันที แล้วยังจับของกลางโดยไม่มีบันทึก chain of custody ทำให้ใช้เป็นหลักฐานไม่ได้ ยินดีด้วย คุณเพิ่งทำลายหลักฐานของตัวเองด้วยการถือมันไว้",
+        "text": "ถ้าอย่างนั้นคุณก็เอาขยะติดเชื้อออกจากพื้นที่ควบคุม ไล่ออกได้ทันที แถมยังถือของกลางไว้โดยไม่มีบันทึก chain of custody ใช้เป็นหลักฐานไม่ได้แล้ว ยินดีด้วย คุณเพิ่งทำลายหลักฐานของตัวเองด้วยการถือมันไว้",
         "nextId": "d3_e_06"
       },
       {
@@ -1517,7 +1517,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d4_e_05",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "ซึ่งนั่นแหละคือสิ่งที่สรุปจะเขียนไว้พอดี พยาบาลที่มีความผูกพันทางอารมณ์ เปิดเวชระเบียนโดยไม่ได้รับอนุญาต ถุงยาไม่มีฉลากที่เธอเอาออกมาจากขยะติดเชื้อเอง เรื่องราวครบถ้วนสมบูรณ์ และใช้เวลาเขียนแค่ 11 นาที",
+        "text": "นั่นแหละคือสิ่งที่สรุปจะเขียนไว้พอดี พยาบาลที่ผูกพันกับคนไข้ เปิดเวชระเบียนโดยไม่ได้รับอนุญาต ถุงยาไม่มีฉลากที่เธอคุ้ยออกมาจากขยะติดเชื้อเอง เรื่องครบทุกตอน เขียนจบใน 11 นาที",
         "nextId": "d4_e_06"
       },
       {
@@ -1656,7 +1656,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d4_e_ann_04",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "ที่ประชุมได้คำยืนยันจากคนที่อยู่ในเหตุการณ์แล้ว ของคุณเป็นการกลับคำให้การภายใต้อารมณ์ ไม่มีน้ำหนักอะไรเลย นั่งลงเถอะ หมอบ๊อบ",
+        "text": "ที่ประชุมได้คำยืนยันจากคนที่อยู่ในเหตุการณ์แล้ว ส่วนของคุณคือกลับคำให้การเพราะอารมณ์ ไม่มีน้ำหนักอะไรเลย นั่งลงเถอะ หมอบ๊อบ",
         "nextId": "d4_e_ann_05"
       },
       {
@@ -1697,7 +1697,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
       {
         "id": "d5_s_01",
         "speaker": "System",
-        "text": "วันที่ 5 17:00 น. ER เต็มแต่สงบ ซึ่งก่อนเกิดเรื่องมันเป็นแบบนี้เสมอ",
+        "text": "วันที่ 5 17:00 น. ER เต็มแต่สงบ ก่อนเกิดเรื่องทุกครั้ง มันสงบแบบนี้แหละ",
         "nextId": "d5_s_check"
       },
       {
@@ -1903,7 +1903,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d5_e_07",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "ห้ามใครลงไปเด็ดขาด นี่คือคำสั่งจากผู้บัญชาการเหตุการณ์ และผมคือผู้บัญชาการเหตุการณ์",
+        "text": "ห้ามใครลงไปเด็ดขาด นี่คือคำสั่งของผู้บัญชาการเหตุการณ์ และผู้บัญชาการเหตุการณ์คือผม",
         "nextId": "d5_e_08"
       },
       {
@@ -2028,7 +2028,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d5_e_final_02",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "อุบัติเหตุจากการบำรุงรักษาบกพร่อง น่าเศร้า คาดการณ์ได้ และเป็นความรับผิดชอบของผู้รับเหมาทั้งหมด ซึ่งจะมีชื่ออยู่ในแถลงข่าวตอน 9 โมง",
+        "text": "อุบัติเหตุจากการบำรุงรักษาที่บกพร่อง น่าเศร้า คาดการณ์ได้ และเป็นความรับผิดชอบของผู้รับเหมาทั้งหมด ชื่อผู้รับเหมาจะอยู่ในแถลงข่าวตอน 9 โมง",
         "nextId": "d5_e_final_03"
       },
       {
@@ -2184,7 +2184,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d6_s_bought_02",
         "speaker": "Nurse Ann",
         "portrait": "/assets/nurse.jpg",
-        "text": "พี่อ่าน paper เรื่องที่สองแล้ว ส่วน safety เขียนดีมาก หมอลด dose ลงหลังเจอ coagulopathy signal ซึ่งไม่มีใครกล้าทำ และมีคน 11 คนที่ยังมีชีวิตอยู่เพราะเรื่องนั้น",
+        "text": "พี่อ่าน paper เรื่องที่สองแล้ว ส่วน safety เขียนดีมาก หมอลด dose ลงหลังเจอสัญญาณ coagulopathy ไม่มีใครกล้าทำแบบนั้น และมีคน 11 คนที่ยังมีชีวิตอยู่เพราะเรื่องนี้",
         "nextId": "d6_s_bought_03"
       },
       {
@@ -2217,7 +2217,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
       {
         "id": "d6_s_05",
         "speaker": "System",
-        "text": "กระทรวงสาธารณสุข สำนักตรวจราชการ การไต่สวนอย่างเป็นทางการเรื่องเหตุการณ์ไม่พึงประสงค์ที่โรงพยาบาลรามาเซ็นทรัล รวมถึงเหตุการณ์ที่ชั้น B2 เริ่มสอบปากคำวันพฤหัสบดี ทุกคนต้องเข้าร่วม",
+        "text": "หนังสือจากกระทรวงสาธารณสุข สำนักตรวจราชการ ไต่สวนอย่างเป็นทางการเรื่องเหตุการณ์ไม่พึงประสงค์ที่รามาเซ็นทรัล รวมถึงเหตุที่ชั้น B2 เริ่มสอบปากคำวันพฤหัสบดี ทุกคนต้องเข้าให้การ",
         "nextId": "d6_s_06"
       },
       {
@@ -2434,7 +2434,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d7_s_02",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "ทุนต้นสังกัดรามาเซ็นทรัล จบแล้วใช้ทุนครบ กลับมาเป็น resident EM ที่นี่ได้เลย ทุนนี้ผมให้ใครก็ได้ และผมจะให้เอ็กซ์เทิร์น ซึ่งจะมีเสียงบ่นเยอะ แต่ผมรับไว้เอง",
+        "text": "ทุนต้นสังกัดรามาเซ็นทรัล เรียนจบใช้ทุนครบ กลับมาเป็น resident EM ที่นี่ได้เลย ทุนนี้ผมให้ใครก็ได้ และผมจะให้เอ็กซ์เทิร์น คงมีเสียงบ่นเยอะ แต่ผมรับเอง",
         "nextId": "d7_s_03"
       },
       {
@@ -2462,7 +2462,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d7_s_06",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "โครงการนี้ต้องการคนที่มีเครดิตทางคลินิกนั่งใน safety review ของ site ผมอายุ 58 และตอนนี้แตะใครก็ไหม้ คุณอายุ 23 มีคำให้การกับกระทรวงอยู่ในแฟ้ม ซึ่งย้อนแย้งดีที่ทำให้คุณเป็นชื่อที่สะอาดที่สุดในตึก",
+        "text": "โครงการนี้ต้องการคนที่มีเครดิตทางคลินิกนั่งใน safety review ของ site ผมอายุ 58 ตอนนี้แตะใครก็ไหม้ คุณอายุ 23 มีคำให้การกับกระทรวงอยู่ในแฟ้ม ย้อนแย้งดีนะ เพราะมันทำให้คุณเป็นชื่อที่สะอาดที่สุดในตึก",
         "nextId": "d7_s_07"
       },
       {
@@ -3132,7 +3132,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d9_e_02",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "รายงานกระทรวงเสร็จแล้ว จะเผยแพร่วันที่ 14 ผมอ่านร่างไปแล้ว ซึ่งจริงๆ ผมไม่ควรได้เห็น แต่ผมจะเล่าให้ฟังว่ามีอะไร เพราะยังไงคุณก็ต้องรู้อยู่ดี",
+        "text": "รายงานกระทรวงเสร็จแล้ว จะเผยแพร่วันที่ 14 ผมได้อ่านร่างแล้ว จริงๆ ผมไม่ควรได้เห็นด้วยซ้ำ แต่ผมจะเล่าให้ฟัง เพราะยังไงคุณก็ต้องรู้อยู่ดี",
         "nextId": "d9_e_03"
       },
       {
@@ -3188,14 +3188,14 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d9_e_10",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "รายงานมีช่องยกเว้นอยู่ข้อเดียว ทีมรักษาของ site ยื่นคำร้องขอให้จ่ายยาต่อได้ เฉพาะคนไข้ที่ลงทะเบียนอยู่แล้ว ผมลงชื่อไม่ได้ บ๊อบลงชื่อไม่ได้ ต้องเป็นชื่อในทีมที่ยังสะอาด ซึ่งตอนนี้ก็คือคุณ และต้องยื่นก่อนวันที่ 14",
+        "text": "รายงานมีข้อยกเว้นอยู่ข้อเดียว ทีมรักษาของ site ยื่นคำร้องขอจ่ายยาต่อได้ เฉพาะคนไข้ที่ลงทะเบียนไว้แล้ว ผมลงชื่อไม่ได้ บ๊อบก็ไม่ได้ ต้องเป็นคนในทีมที่ยังสะอาด ซึ่งตอนนี้มีแค่คุณ และต้องยื่นก่อนวันที่ 14",
         "nextId": "d9_e_11"
       },
       {
         "id": "d9_e_11",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "เซ็นคำร้อง แล้วคน 211 คนจะได้ยาที่ได้ผลต่อ เซ็นแล้วฝ่ายแก้ต่างของผมก็จะได้เอกสารจากหมอที่ไม่มีมลทิน ยืนยันว่าโครงการนี้มีประโยชน์ทางคลินิก ไม่มีทางที่คุณจะได้อย่างหนึ่งโดยไม่ได้อีกอย่างไปด้วย",
+        "text": "เซ็นคำร้อง คน 211 คนจะได้ยาที่ได้ผลต่อ และฝ่ายแก้ต่างของผมก็จะได้เอกสารจากหมอที่ไม่มีมลทิน ยืนยันว่าโครงการนี้มีประโยชน์ทางคลินิก คุณจะเอาแค่อย่างแรกโดยไม่มีอย่างหลังไม่ได้",
         "choices": [
           {
             "text": "เซ็นคำร้องขอให้จ่ายยาต่อ เพื่อคน 211 คน",
@@ -3231,7 +3231,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d9_e_refuse_01",
         "speaker": "Prof. Somchai",
         "portrait": "/assets/director.jpg",
-        "text": "ถ้าอย่างนั้นวันที่ 15 จะมี variceal bleed เดินเข้ามาทางประตูใหม่นั่น แล้วในตู้จะไม่มีอะไรเลย และคุณจะเป็นคนที่ยืนอยู่ตรงนั้น ผมเคยเป็นคนคนนั้นมาแล้ว มันคือเหตุผลที่ผมเริ่มเรื่องทั้งหมดนี้",
+        "text": "ถ้าอย่างนั้น วันที่ 15 จะมีคนไข้ variceal bleed เดินเข้ามาทางประตูใหม่นั่น ในตู้จะไม่มีอะไรเลย และคุณจะเป็นคนที่ยืนอยู่ตรงนั้น ผมเคยเป็นคนคนนั้นมาแล้ว และนั่นคือเหตุผลที่ผมเริ่มเรื่องทั้งหมดนี้",
         "nextId": "d9_e_join"
       },
       {
@@ -3245,7 +3245,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d9_e_qualified_02",
         "speaker": "Nurse Ann",
         "portrait": "/assets/nurse.jpg",
-        "text": "พี่จะเซ็นกำกับจดหมายนั้นด้วย ในฐานะกรรมการ DSMB ที่เขาตั้งพี่เอง ซึ่งเขาคงเสียใจไปตลอดชีวิตแล้วล่ะ",
+        "text": "พี่จะเซ็นกำกับจดหมายนั้นด้วย ในฐานะกรรมการ DSMB ที่เขาตั้งพี่เอง เขาคงเสียใจเรื่องนี้ไปตลอดชีวิต",
         "nextId": "d9_e_join"
       },
       {
@@ -3735,6 +3735,25 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   "11": {
     "startShiftEvents": [
       {
+        "id": "d11_x_pre_01",
+        "speaker": "Narrator",
+        "text": "รถทัวร์จอดหน้าโรงพยาบาลจังหวัดตอนหกโมงเย็น กระเป๋าใบเดียว กับ stethoscope ที่ยังเงาอยู่",
+        "nextId": "d11_x_pre_02"
+      },
+      {
+        "id": "d11_x_pre_02",
+        "speaker": "Narrator",
+        "text": "ป้ายหน้าตึกเขียนว่าห้องฉุกเฉิน ตัวอักษรตัวหนึ่งหลุดไปนานแล้ว ไม่มีใครคิดจะติดคืน",
+        "nextId": "d11_x_pre_03"
+      },
+      {
+        "id": "d11_x_pre_03",
+        "speaker": "Lung Suk (Ambulance)",
+        "text": "หมอใหม่เหรอ ลุงสุข กู้ภัยนะ ขับรถพยาบาลมายี่สิบปี เห็นหน้าหมอแล้วรู้เลยว่าคืนนี้ต้องวิ่ง",
+        "portrait": "/assets/lungsuk.jpg",
+        "nextId": "d11_start_01"
+      },
+      {
         "id": "d11_start_01",
         "speaker": "Nurse Somjai (Pi Jai)",
         "portrait": "/assets/somjai.jpg",
@@ -3764,24 +3783,86 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d11_mid_01",
-        "speaker": "Wachira (Beam)",
-        "portrait": "/assets/beam.jpg",
-        "text": "มาจากรามาใช่ป่ะ เราบีม จากขอนแก่น แนะนำนิดนึง ที่นี่อย่าเขียน note ยาว ไม่มีใครอ่าน เขานับกันแค่จำนวนเคส",
-        "nextId": "d11_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d11_mid_01",
+            "speaker": "Wachira (Beam)",
+            "portrait": "/assets/beam.jpg",
+            "text": "มาจากรามาใช่ป่ะ เราบีม จากขอนแก่น แนะนำนิดนึง ที่นี่อย่าเขียน note ยาว ไม่มีใครอ่าน เขานับกันแค่จำนวนเคส",
+            "nextId": "d11_mid_02"
+          },
+          {
+            "id": "d11_mid_02",
+            "speaker": "Wachira (Beam)",
+            "portrait": "/assets/beam.jpg",
+            "text": "ตั้งแต่ทุ่มนึงเราเคลียร์ไปเก้าเคสแล้ว เธอเพิ่งสาม ไม่ได้แข่งนะ แน่นอน",
+            "nextId": "d11_mid_03"
+          },
+          {
+            "id": "d11_mid_03",
+            "speaker": "You",
+            "portrait": "/assets/player.jpg",
+            "text": "สามคนของผม/ฉันยังมีชีวิตอยู่ครบ ผม/ฉันเลยนับแบบอื่น"
+          }
+        ]
       },
       {
-        "id": "d11_mid_02",
-        "speaker": "Wachira (Beam)",
-        "portrait": "/assets/beam.jpg",
-        "text": "ตั้งแต่ทุ่มนึงเราเคลียร์ไปเก้าเคสแล้ว เธอเพิ่งสาม ไม่ได้แข่งนะ แน่นอน",
-        "nextId": "d11_mid_03"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d11_x_mid_01",
+            "speaker": "Nurse Somjai (Pi Jai)",
+            "text": "หมอ กินข้าวหรือยังคะ ไม่ต้องตอบ พี่รู้ว่ายัง ข้าวเหนียวหมูปิ้งอยู่บนโต๊ะพยาบาล ห้ามปฏิเสธ",
+            "portrait": "/assets/somjai.jpg",
+            "nextId": "d11_x_mid_02"
+          },
+          {
+            "id": "d11_x_mid_02",
+            "speaker": "You",
+            "text": "พี่ใจรู้ได้ยังไงครับ/คะ",
+            "portrait": "/assets/player.jpg",
+            "nextId": "d11_x_mid_03"
+          },
+          {
+            "id": "d11_x_mid_03",
+            "speaker": "Nurse Somjai (Pi Jai)",
+            "text": "เอ็กซ์เทิร์นจากกรุงเทพฯ ไม่เคยกินข้าวคืนแรกค่ะ มัวแต่กลัวพลาด กินซะ คนไข้ไม่หนีไปไหน",
+            "portrait": "/assets/somjai.jpg",
+            "nextId": "d11_x_mid_04"
+          },
+          {
+            "id": "d11_x_mid_04",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "ม้ามแตกรอดนะ ใครถามว่าที่นี่ผ่าตัดเองได้ไหม บอกเขาว่าได้ ถ้าคืนนั้นพี่ยังไม่หลับ",
+            "portrait": "/assets/ekkarat.jpg"
+          }
+        ]
       },
       {
-        "id": "d11_mid_03",
-        "speaker": "You",
-        "portrait": "/assets/player.jpg",
-        "text": "สามคนของผม/ฉันยังมีชีวิตอยู่ครบ ผม/ฉันเลยนับแบบอื่น"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d11_x_rounds_01",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "ก่อนส่งเวร พี่ขอทวนสั้นๆ dengue ในเด็ก ช่วงอันตรายคือตอนไข้ลง ดู pulse pressure ที่แคบลงกับ Hct ที่ขึ้น อย่าดูแค่ BP",
+            "portrait": "/assets/ekkarat.jpg",
+            "nextId": "d11_x_rounds_02"
+          },
+          {
+            "id": "d11_x_rounds_02",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "trauma ที่ช็อกจากเลือดออก ให้เลือดเร็ว อย่าเท crystalloid จนเลือดจาง คุมความดันให้พอเลี้ยงสมองจนหยุดเลือดได้",
+            "portrait": "/assets/ekkarat.jpg",
+            "nextId": "d11_x_rounds_03"
+          },
+          {
+            "id": "d11_x_rounds_03",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "ส่วนคนไข้หวัดตอนตีสาม ไม่ใช่ปัญหา มันแค่บอกว่าคลินิกใกล้บ้านเขาปิดหมดแล้ว",
+            "portrait": "/assets/ekkarat.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -3803,7 +3884,20 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d11_end_03",
         "speaker": "Dr. Ekkarat (Pi Ek)",
         "portrait": "/assets/ekkarat.jpg",
-        "text": "ไปนอน พรุ่งนี้วันศุกร์ ต่างจังหวัดวันศุกร์เงินเดือนออก เงินเดือนออกคือเหล้า เหล้าคือมอเตอร์ไซค์"
+        "text": "ไปนอน พรุ่งนี้วันศุกร์ ต่างจังหวัดวันศุกร์เงินเดือนออก เงินเดือนออกคือเหล้า เหล้าคือมอเตอร์ไซค์",
+        "nextId": "d11_x_post_01"
+      },
+      {
+        "id": "d11_x_post_01",
+        "speaker": "Narrator",
+        "text": "ตีสี่ ห้องพักแพทย์มีเตียงพับหนึ่งตัว พัดลมหนึ่งตัว และจิ้งจกที่ทำเหมือนเป็นเจ้าของห้อง",
+        "nextId": "d11_x_post_02"
+      },
+      {
+        "id": "d11_x_post_02",
+        "speaker": "Wachira (Beam)",
+        "text": "เตียงนี้ของเรานะ เรามาก่อน ล้อเล่น นอนไปเถอะ พรุ่งนี้เราจะชนะเธออีก",
+        "portrait": "/assets/beam.jpg"
       }
     ],
     "cases": [
@@ -3814,6 +3908,26 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "12": {
     "startShiftEvents": [
+      {
+        "id": "d12_x_pre_01",
+        "speaker": "Narrator",
+        "text": "คืนวันศุกร์ ถนนมิตรภาพสว่างกว่าปกติ ร้านเหล้าข้างปั๊มเปิดเพลงดังมาถึงห้องฉุกเฉิน",
+        "nextId": "d12_x_pre_02"
+      },
+      {
+        "id": "d12_x_pre_02",
+        "speaker": "Nurse Somjai (Pi Jai)",
+        "text": "เติม NSS ไว้ทุกรถเข็นนะคะ เตรียม hard collar ไว้ห้าอัน คืนเงินเดือนออกเราไม่เคยใช้น้อยกว่าห้า",
+        "portrait": "/assets/somjai.jpg",
+        "nextId": "d12_x_pre_03"
+      },
+      {
+        "id": "d12_x_pre_03",
+        "speaker": "Dr. Ekkarat (Pi Ek)",
+        "text": "คืนนี้พี่ขอข้อเดียว primary survey ก่อนทุกครั้ง แผลจะดูน่ากลัวแค่ไหนก็ไว้ทีหลัง คนตายเพราะ airway ไม่ได้ตายเพราะแผล",
+        "portrait": "/assets/ekkarat.jpg",
+        "nextId": "d12_start_01"
+      },
       {
         "id": "d12_start_01",
         "speaker": "Lung Suk (Ambulance)",
@@ -3837,43 +3951,97 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d12_mid_01",
-        "speaker": "Nurse Somjai (Pi Jai)",
-        "portrait": "/assets/somjai.jpg",
-        "text": "เด็กเตียง 4 arrest ค่ะ พี่เอก call ไปตอน 23:41 น. แม่อยู่ข้างนอก ขี่สกู๊ตเตอร์มา 40 กิโล",
-        "nextId": "d12_mid_02"
-      },
-      {
-        "id": "d12_mid_02",
-        "speaker": "Dr. Ekkarat (Pi Ek)",
-        "portrait": "/assets/ekkarat.jpg",
-        "text": "จะไปบอกแม่เขากับพี่ หรือจะดูคนไข้ต่อก็ได้ ถูกทั้งคู่ แต่มีอย่างเดียวที่สอนอะไรน้อง",
-        "choices": [
+        "triggerMinute": 240,
+        "cutscene": [
           {
-            "text": "ไปกับพี่เอก ยืนฟังให้ได้ยิน",
-            "nextId": "d12_mid_03a",
-            "karmaEffect": 10,
-            "xpEffect": 15
+            "id": "d12_mid_01",
+            "speaker": "Nurse Somjai (Pi Jai)",
+            "portrait": "/assets/somjai.jpg",
+            "text": "เด็กเตียง 4 arrest ค่ะ พี่เอก call ไปตอน 23:41 น. แม่อยู่ข้างนอก ขี่สกู๊ตเตอร์มา 40 กิโล",
+            "nextId": "d12_mid_02"
           },
           {
-            "text": "อยู่ต่อ ยังมีคนรออยู่อีก 11 คน",
-            "nextId": "d12_mid_03b",
-            "karmaEffect": 0,
-            "xpEffect": 5
+            "id": "d12_mid_02",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "portrait": "/assets/ekkarat.jpg",
+            "text": "จะไปบอกแม่เขากับพี่ หรือจะดูคนไข้ต่อก็ได้ ถูกทั้งคู่ แต่มีอย่างเดียวที่สอนอะไรน้อง",
+            "choices": [
+              {
+                "text": "ไปกับพี่เอก ยืนฟังให้ได้ยิน",
+                "nextId": "d12_mid_03a",
+                "karmaEffect": 10,
+                "xpEffect": 15
+              },
+              {
+                "text": "อยู่ต่อ ยังมีคนรออยู่อีก 11 คน",
+                "nextId": "d12_mid_03b",
+                "karmaEffect": 0,
+                "xpEffect": 5
+              }
+            ]
+          },
+          {
+            "id": "d12_mid_03a",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "portrait": "/assets/ekkarat.jpg",
+            "text": "แม่เขาไม่กรีดร้อง แทบไม่มีใครกรีดร้องหรอก เขาถามว่าลูกกลัวไหมตอนสุดท้าย พี่บอกความจริงว่าน้องหมดสติตั้งแต่วินาทีที่ชน นั่นคือความเมตตาอย่างเดียวที่มีให้ และพี่ให้เขาไปทั้งหมด"
+          },
+          {
+            "id": "d12_mid_03b",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "portrait": "/assets/ekkarat.jpg",
+            "text": "ก็ได้ คิวมีอยู่จริง แต่ให้รู้ไว้ว่าน้องเลือกอะไร คิวจะมีอยู่ตลอด และมันเป็นที่หลบที่สบายมาก"
           }
         ]
       },
       {
-        "id": "d12_mid_03a",
-        "speaker": "Dr. Ekkarat (Pi Ek)",
-        "portrait": "/assets/ekkarat.jpg",
-        "text": "แม่เขาไม่กรีดร้อง แทบไม่มีใครกรีดร้องหรอก เขาถามว่าลูกกลัวไหมตอนสุดท้าย พี่บอกความจริงว่าน้องหมดสติตั้งแต่วินาทีที่ชน นั่นคือความเมตตาอย่างเดียวที่มีให้ และพี่ให้เขาไปทั้งหมด"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d12_x_mid_01",
+            "speaker": "Lung Suk (Ambulance)",
+            "text": "หมอ ลุงเก็บหมวกกันน็อกมาจากที่เกิดเหตุ ของเด็กคนที่ไม่ได้ใส่น่ะ มันอยู่ใต้เบาะ ยังไม่แกะถุงเลย",
+            "portrait": "/assets/lungsuk.jpg",
+            "nextId": "d12_x_mid_02"
+          },
+          {
+            "id": "d12_x_mid_02",
+            "speaker": "Narrator",
+            "text": "ลุงสุขวางหมวกไว้บนเคาน์เตอร์ ไม่มีใครหยิบ ไม่มีใครย้าย มันอยู่ตรงนั้นทั้งคืน",
+            "nextId": "d12_x_mid_03"
+          },
+          {
+            "id": "d12_x_mid_03",
+            "speaker": "Nurse Somjai (Pi Jai)",
+            "text": "ลุงเก็บมาทุกใบค่ะ หลังห้องเก็บของมีเป็นชั้นเลย ลุงบอกว่าวันหนึ่งจะเอาไปตั้งหน้าโรงเรียน",
+            "portrait": "/assets/somjai.jpg"
+          }
+        ]
       },
       {
-        "id": "d12_mid_03b",
-        "speaker": "Dr. Ekkarat (Pi Ek)",
-        "portrait": "/assets/ekkarat.jpg",
-        "text": "ก็ได้ คิวมีอยู่จริง แต่ให้รู้ไว้ว่าน้องเลือกอะไร คิวจะมีอยู่ตลอด และมันเป็นที่หลบที่สบายมาก"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d12_x_rounds_01",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "tension pneumothorax วินิจฉัยจากข้างเตียง ไม่ต้องรอ film decompress เลย ผู้ใหญ่ใช้ช่องซี่โครงที่ 4 ถึง 5 แนว mid-axillary",
+            "portrait": "/assets/ekkarat.jpg",
+            "nextId": "d12_x_rounds_02"
+          },
+          {
+            "id": "d12_x_rounds_02",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "pelvic binder ผูกที่ระดับ greater trochanter ไม่ใช่ที่เอว ผูกผิดที่ก็เหมือนไม่ได้ผูก",
+            "portrait": "/assets/ekkarat.jpg",
+            "nextId": "d12_x_rounds_03"
+          },
+          {
+            "id": "d12_x_rounds_03",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "Na ต่ำมากๆ แก้ช้าๆ ไม่ให้เกินราว 8 ถึง 10 mmol/L ใน 24 ชั่วโมง เร็วไปสมองพังแบบที่แก้คืนไม่ได้",
+            "portrait": "/assets/ekkarat.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -3895,7 +4063,20 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d12_end_03",
         "speaker": "Dr. Ekkarat (Pi Ek)",
         "portrait": "/assets/ekkarat.jpg",
-        "text": "เขียนชื่อน้องเขาไว้ที่ไหนสักที่ ไม่ใช่ใน chart ที่ของน้องเอง พี่มีสมุดเล่มหนึ่ง มีชื่ออยู่ 62 ชื่อ คนชอบคิดว่ามันหดหู่ จริงๆ ตรงข้ามเลย มันคือเหตุผลเดียวที่พี่ยังวิ่งไปหาคนไข้อยู่"
+        "text": "เขียนชื่อน้องเขาไว้ที่ไหนสักที่ ไม่ใช่ใน chart ที่ของน้องเอง พี่มีสมุดเล่มหนึ่ง มีชื่ออยู่ 62 ชื่อ คนชอบคิดว่ามันหดหู่ จริงๆ ตรงข้ามเลย มันคือเหตุผลเดียวที่พี่ยังวิ่งไปหาคนไข้อยู่",
+        "nextId": "d12_x_post_01"
+      },
+      {
+        "id": "d12_x_post_01",
+        "speaker": "Narrator",
+        "text": "เช้าวันเสาร์ แม่ของเด็กยังนั่งอยู่หน้าห้อง มือถือถุงขนมที่ซื้อมาฝากลูก",
+        "nextId": "d12_x_post_02"
+      },
+      {
+        "id": "d12_x_post_02",
+        "speaker": "Nurse Somjai (Pi Jai)",
+        "text": "หมอไม่ต้องไปพูดอะไรนะคะ พี่จะไปนั่งเป็นเพื่อนเอง งานนี้บางทีพยาบาลทำได้ดีกว่า",
+        "portrait": "/assets/somjai.jpg"
       }
     ],
     "cases": [
@@ -3906,6 +4087,26 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "13": {
     "startShiftEvents": [
+      {
+        "id": "d13_x_pre_01",
+        "speaker": "Narrator",
+        "text": "หน้าเกี่ยวข้าว ฟางปลิวเข้ามาทางประตู รถกระบะจอดเรียงหน้าตึกเหมือนตลาดนัด",
+        "nextId": "d13_x_pre_02"
+      },
+      {
+        "id": "d13_x_pre_02",
+        "speaker": "Lung Suk (Ambulance)",
+        "text": "หมอ ลุงเอากล่องมาให้ดู งูแมวเซาตัวที่กัดตาผล ชาวบ้านตีตายแล้วใส่กล่องมาให้หมอเลย",
+        "portrait": "/assets/lungsuk.jpg",
+        "nextId": "d13_x_pre_03"
+      },
+      {
+        "id": "d13_x_pre_03",
+        "speaker": "Nurse Somjai (Pi Jai)",
+        "text": "อย่าเปิดในห้องนะคะลุง ครั้งที่แล้วมันยังไม่ตาย",
+        "portrait": "/assets/somjai.jpg",
+        "nextId": "d13_start_01"
+      },
       {
         "id": "d13_start_01",
         "speaker": "Nurse Somjai (Pi Jai)",
@@ -3929,51 +4130,114 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d13_mid_01",
-        "speaker": "Nurse Somjai (Pi Jai)",
-        "portrait": "/assets/somjai.jpg",
-        "text": "ลุงเตียง 6 ค่ะ ลูกชายจะพากลับบ้าน บอกว่าปีที่แล้วลุงเคยสั่งไว้ว่าไม่เอาท่อ ลุงอายุ 81 ตอนนี้น้ำท่วมปอดอยู่",
-        "nextId": "d13_mid_02"
-      },
-      {
-        "id": "d13_mid_02",
-        "speaker": "Dr. Ekkarat (Pi Ek)",
-        "portrait": "/assets/ekkarat.jpg",
-        "text": "น้องถูกสอนมาว่าคนไข้ปฏิเสธการรักษาคือความล้มเหลว ไม่ใช่เลย บางที ventilator ก็แค่เครื่องที่ทำให้การตายใช้เวลาสามอาทิตย์แทนสามชั่วโมง งานน้องคือทำให้แน่ใจว่าเขาเลือกด้วยข้อมูลจริง ไม่ใช่เพราะกลัวค่ารักษา",
-        "choices": [
+        "triggerMinute": 240,
+        "cutscene": [
           {
-            "text": "ถามลูกชายตรงๆ ว่าเรื่องเงินเป็นส่วนหนึ่งของการตัดสินใจไหม",
-            "nextId": "d13_mid_03a",
-            "karmaEffect": 15,
-            "xpEffect": 20,
-            "flagEffect": "ASKED_ABOUT_COST"
+            "id": "d13_mid_01",
+            "speaker": "Nurse Somjai (Pi Jai)",
+            "portrait": "/assets/somjai.jpg",
+            "text": "ลุงเตียง 6 ค่ะ ลูกชายจะพากลับบ้าน บอกว่าปีที่แล้วลุงเคยสั่งไว้ว่าไม่เอาท่อ ลุงอายุ 81 ตอนนี้น้ำท่วมปอดอยู่",
+            "nextId": "d13_mid_02"
           },
           {
-            "text": "ยอมรับการปฏิเสธและบันทึกไว้",
-            "nextId": "d13_mid_03b",
-            "karmaEffect": 0,
-            "xpEffect": 10
+            "id": "d13_mid_02",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "portrait": "/assets/ekkarat.jpg",
+            "text": "น้องถูกสอนมาว่าคนไข้ปฏิเสธการรักษาคือความล้มเหลว ไม่ใช่เลย บางที ventilator ก็แค่เครื่องที่ทำให้การตายใช้เวลาสามอาทิตย์แทนสามชั่วโมง งานน้องคือทำให้แน่ใจว่าเขาเลือกด้วยข้อมูลจริง ไม่ใช่เพราะกลัวค่ารักษา",
+            "choices": [
+              {
+                "text": "ถามลูกชายตรงๆ ว่าเรื่องเงินเป็นส่วนหนึ่งของการตัดสินใจไหม",
+                "nextId": "d13_mid_03a",
+                "karmaEffect": 15,
+                "xpEffect": 20,
+                "flagEffect": "ASKED_ABOUT_COST"
+              },
+              {
+                "text": "ยอมรับการปฏิเสธและบันทึกไว้",
+                "nextId": "d13_mid_03b",
+                "karmaEffect": 0,
+                "xpEffect": 10
+              }
+            ]
+          },
+          {
+            "id": "d13_mid_03a",
+            "speaker": "Eldest Son",
+            "portrait": "/assets/villager.jpg",
+            "text": "หมอครับ... ใช่ครับ เรามีอยู่สามหมื่น มีคนบอกว่า ICU วันละสี่พัน แต่พ่อพูดแบบนั้นจริงๆ นะครับ พูดตอนสงกรานต์ ผมไม่ได้โกหกหมอเรื่องนั้น",
+            "nextId": "d13_mid_03c"
+          },
+          {
+            "id": "d13_mid_03c",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "portrait": "/assets/ekkarat.jpg",
+            "text": "ดี ทีนี้ลุงได้กลับบ้านเพราะลุงอยากกลับ ไม่ใช่เพราะไม่มีใครบอกเขาว่าบัตรทองครอบคลุม สองอย่างนี้ต่างกัน และความต่างนั้นคือจริยธรรมทางการแพทย์ทั้งหมด"
+          },
+          {
+            "id": "d13_mid_03b",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "portrait": "/assets/ekkarat.jpg",
+            "text": "บันทึกเรียบร้อยดี แต่คุยไม่จบ ครึ่งหนึ่งของการปฏิเสธการรักษาในจังหวัดนี้คือเรื่องเงินที่แต่งตัวมาเป็นเรื่องความเชื่อ ครั้งหน้าถามด้วย"
           }
         ]
       },
       {
-        "id": "d13_mid_03a",
-        "speaker": "Eldest Son",
-        "portrait": "/assets/villager.jpg",
-        "text": "หมอครับ... ใช่ครับ เรามีอยู่สามหมื่น มีคนบอกว่า ICU วันละสี่พัน แต่พ่อพูดแบบนั้นจริงๆ นะครับ พูดตอนสงกรานต์ ผมไม่ได้โกหกหมอเรื่องนั้น",
-        "nextId": "d13_mid_03c"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d13_x_mid_01",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "น้อง เมื่อกี้คนไข้ organophosphate กลิ่นแรงขนาดนั้น ทำไมไม่ใส่ถุงมือสองชั้นตอนถอดเสื้อเขา",
+            "portrait": "/assets/ekkarat.jpg",
+            "choices": [
+              {
+                "text": "ลืมครับ/ค่ะ รีบเกินไป",
+                "nextId": "d13_x_mid_r1"
+              },
+              {
+                "text": "พี่ใจถอดให้แล้ว ผม/ฉันยืนคุมอยู่หัวเตียง",
+                "nextId": "d13_x_mid_r2"
+              }
+            ]
+          },
+          {
+            "id": "d13_x_mid_r1",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "ลืมได้ครั้งเดียว ครั้งหน้าคนไข้คนที่สองจะเป็นตัวน้องเอง ไปล้างมือ แล้วกลับมาบอกพี่ถ้าเริ่มเหงื่อแตกหรือตาพร่า",
+            "portrait": "/assets/ekkarat.jpg"
+          },
+          {
+            "id": "d13_x_mid_r2",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "ดี รู้ว่าใครทำอะไรอยู่ตรงไหน นั่นคืองานของคนคุม ไม่ใช่การเป็นมือที่เร็วที่สุดในห้อง",
+            "portrait": "/assets/ekkarat.jpg"
+          }
+        ]
       },
       {
-        "id": "d13_mid_03c",
-        "speaker": "Dr. Ekkarat (Pi Ek)",
-        "portrait": "/assets/ekkarat.jpg",
-        "text": "ดี ทีนี้ลุงได้กลับบ้านเพราะลุงอยากกลับ ไม่ใช่เพราะไม่มีใครบอกเขาว่าบัตรทองครอบคลุม สองอย่างนี้ต่างกัน และความต่างนั้นคือจริยธรรมทางการแพทย์ทั้งหมด"
-      },
-      {
-        "id": "d13_mid_03b",
-        "speaker": "Dr. Ekkarat (Pi Ek)",
-        "portrait": "/assets/ekkarat.jpg",
-        "text": "บันทึกเรียบร้อยดี แต่คุยไม่จบ ครึ่งหนึ่งของการปฏิเสธการรักษาในจังหวัดนี้คือเรื่องเงินที่แต่งตัวมาเป็นเรื่องความเชื่อ ครั้งหน้าถามด้วย"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d13_x_rounds_01",
+            "speaker": "Nurse Somjai (Pi Jai)",
+            "text": "organophosphate ให้ atropine จนเสมหะแห้ง ปอดใส ไม่ได้ดูที่รูม่านตาหรือชีพจรนะคะ",
+            "portrait": "/assets/somjai.jpg",
+            "nextId": "d13_x_rounds_02"
+          },
+          {
+            "id": "d13_x_rounds_02",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "งูแมวเซา ทำ 20 minute whole blood clotting test ถ้าเลือดไม่แข็งตัว ให้เซรุ่มเฉพาะชนิดได้เลย",
+            "portrait": "/assets/ekkarat.jpg",
+            "nextId": "d13_x_rounds_03"
+          },
+          {
+            "id": "d13_x_rounds_03",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "naloxone มีไว้ให้หายใจพอ ไม่ได้มีไว้ปลุกให้ลุกเดินกลับบ้าน ให้ทีละน้อย แล้วเฝ้าต่อ เพราะยาหมดฤทธิ์ก่อน opioid",
+            "portrait": "/assets/ekkarat.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -3995,7 +4259,20 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d13_end_03",
         "speaker": "Wachira (Beam)",
         "portrait": "/assets/beam.jpg",
-        "text": "รู้ใช่ไหมว่าทั้งหมดนี้ไม่ได้นับอะไรเลย ไม่มีใครในกรุงเทพฯ ทึ่งที่เธอดูออกว่างูแมวเซากัด เขาอยากได้ paper กับเส้นสาย นั่นแหละที่ทำให้อาชีพไปข้างหน้าจริงๆ"
+        "text": "รู้ใช่ไหมว่าทั้งหมดนี้ไม่ได้นับอะไรเลย ไม่มีใครในกรุงเทพฯ ทึ่งที่เธอดูออกว่างูแมวเซากัด เขาอยากได้ paper กับเส้นสาย นั่นแหละที่ทำให้อาชีพไปข้างหน้าจริงๆ",
+        "nextId": "d13_x_post_01"
+      },
+      {
+        "id": "d13_x_post_01",
+        "speaker": "Narrator",
+        "text": "ก่อนกลับ ตาผลยกมือไหว้ทั้งที่ขายังบวม บอกว่าเกี่ยวข้าวเสร็จจะเอาข้าวใหม่มาฝาก",
+        "nextId": "d13_x_post_02"
+      },
+      {
+        "id": "d13_x_post_02",
+        "speaker": "Nurse Somjai (Pi Jai)",
+        "text": "เขาเอามาจริงนะคะ ปีที่แล้วข้าวสามกระสอบ วางไว้หน้าห้องพยาบาลตอนตีห้า ไม่บอกชื่อด้วย",
+        "portrait": "/assets/somjai.jpg"
       }
     ],
     "cases": [
@@ -4006,6 +4283,19 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "14": {
     "startShiftEvents": [
+      {
+        "id": "d14_x_pre_01",
+        "speaker": "Narrator",
+        "text": "ฝนตั้งเค้ามาตั้งแต่บ่าย ไฟในห้องฉุกเฉินกะพริบสองครั้ง แล้วก็ติดต่อ",
+        "nextId": "d14_x_pre_02"
+      },
+      {
+        "id": "d14_x_pre_02",
+        "speaker": "Nurse Somjai (Pi Jai)",
+        "text": "ถ้าไฟดับ เครื่องปั่นไฟติดในสิบวินาทีค่ะ ventilator สำรองไฟได้สามสิบนาที หมอจำตัวเลขนี้ไว้",
+        "portrait": "/assets/somjai.jpg",
+        "nextId": "d14_start_01"
+      },
       {
         "id": "d14_start_01",
         "speaker": "Nurse Somjai (Pi Jai)",
@@ -4057,17 +4347,71 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d14_mid_01",
-        "speaker": "Wachira (Beam)",
-        "portrait": "/assets/beam.jpg",
-        "text": "พูดเฉยๆ นะ ถ้าเป็นเราคงโยนเหรียญ แล้วค่อยเขียนเหตุผลที่ฟังดูดีทีหลัง ไม่มีใคร audit เหตุผลหรอก เขา audit ผลลัพธ์",
-        "nextId": "d14_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d14_mid_01",
+            "speaker": "Wachira (Beam)",
+            "portrait": "/assets/beam.jpg",
+            "text": "พูดเฉยๆ นะ ถ้าเป็นเราคงโยนเหรียญ แล้วค่อยเขียนเหตุผลที่ฟังดูดีทีหลัง ไม่มีใคร audit เหตุผลหรอก เขา audit ผลลัพธ์",
+            "nextId": "d14_mid_02"
+          },
+          {
+            "id": "d14_mid_02",
+            "speaker": "You",
+            "portrait": "/assets/player.jpg",
+            "text": "นั่นแหละที่เราต่างกัน บีม ผม/ฉันต้องนอนในหัวเดียวกับที่ใช้ตัดสินใจ"
+          }
+        ]
       },
       {
-        "id": "d14_mid_02",
-        "speaker": "You",
-        "portrait": "/assets/player.jpg",
-        "text": "นั่นแหละที่เราต่างกัน บีม ผม/ฉันต้องนอนในหัวเดียวกับที่ใช้ตัดสินใจ"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d14_x_mid_01",
+            "speaker": "Narrator",
+            "text": "เด็กเก้าขวบตื่นมาตอนตีสาม ถามหาตุ๊กตาช้างที่ลืมไว้ในรถกระบะของพ่อ",
+            "nextId": "d14_x_mid_02"
+          },
+          {
+            "id": "d14_x_mid_02",
+            "speaker": "Lung Suk (Ambulance)",
+            "text": "ลุงไปเอามาให้แล้ว เปียกนิดหน่อย ลุงเป่าไดร์ให้ที่ห้องพักกู้ภัย",
+            "portrait": "/assets/lungsuk.jpg",
+            "nextId": "d14_x_mid_03"
+          },
+          {
+            "id": "d14_x_mid_03",
+            "speaker": "Wachira (Beam)",
+            "text": "ไม่มีใครจ่ายเงินให้ลุงทำแบบนี้นะ เรายังไม่เข้าใจเลยว่าคนที่นี่เอาแรงมาจากไหน",
+            "portrait": "/assets/beam.jpg",
+            "nextId": "d14_x_mid_04"
+          },
+          {
+            "id": "d14_x_mid_04",
+            "speaker": "You",
+            "text": "ผม/ฉันว่ามันไม่ได้มาจากไหนหรอก มันก็แค่ยังไม่หมด",
+            "portrait": "/assets/player.jpg"
+          }
+        ]
+      },
+      {
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d14_x_rounds_01",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "จมน้ำ ปัญหาคือขาดออกซิเจน ช่วยหายใจก่อนเสมอ ไม่ต้องพยายามเอาน้ำออกจากท้อง",
+            "portrait": "/assets/ekkarat.jpg",
+            "nextId": "d14_x_rounds_02"
+          },
+          {
+            "id": "d14_x_rounds_02",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "เด็ก dengue ที่ได้เครื่อง ดู fluid balance ทุกชั่วโมง ช่วง reabsorption น้ำจะกลับเข้าเส้น ระวังน้ำเกิน",
+            "portrait": "/assets/ekkarat.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -4089,7 +4433,20 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d14_end_03",
         "speaker": "Dr. Ekkarat (Pi Ek)",
         "portrait": "/assets/ekkarat.jpg",
-        "text": "อย่ามองพี่แบบนั้น พี่เหนื่อย ไม่ได้หวาดระแวง กลับบ้านไป"
+        "text": "อย่ามองพี่แบบนั้น พี่เหนื่อย ไม่ได้หวาดระแวง กลับบ้านไป",
+        "nextId": "d14_x_post_01"
+      },
+      {
+        "id": "d14_x_post_01",
+        "speaker": "Narrator",
+        "text": "ตีห้า ventilator ที่ร้องทุกแปดนาทีเงียบไป เพราะพี่ใจเอาเทปพันสายที่หลวมไว้สามรอบ",
+        "nextId": "d14_x_post_02"
+      },
+      {
+        "id": "d14_x_post_02",
+        "speaker": "Nurse Somjai (Pi Jai)",
+        "text": "ไม่ต้องรายงานนะคะ เดี๋ยวเขาส่งช่างมาเดือนหน้า แล้วถามว่าทำไมใช้เทป",
+        "portrait": "/assets/somjai.jpg"
       }
     ],
     "cases": [
@@ -4100,6 +4457,19 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "15": {
     "startShiftEvents": [
+      {
+        "id": "d15_x_pre_01",
+        "speaker": "Narrator",
+        "text": "เวรสุดท้ายที่โคราช กระเป๋าใบเดิมวางอยู่ข้างโต๊ะพยาบาล หนักกว่าวันแรก ทั้งที่ไม่ได้ใส่อะไรเพิ่ม",
+        "nextId": "d15_x_pre_02"
+      },
+      {
+        "id": "d15_x_pre_02",
+        "speaker": "Lung Suk (Ambulance)",
+        "text": "หมอ ลุงมีของให้ พวงกุญแจรถพยาบาลคันเก่า คันนี้พาคนมาส่งสามพันกว่าคน ตอนนี้จอดเป็นที่นอนแมวแล้ว",
+        "portrait": "/assets/lungsuk.jpg",
+        "nextId": "d15_start_01"
+      },
       {
         "id": "d15_start_01",
         "speaker": "Nurse Somjai (Pi Jai)",
@@ -4123,32 +4493,87 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d15_mid_01",
-        "speaker": "Dr. Ekkarat (Pi Ek)",
-        "portrait": "/assets/ekkarat.jpg",
-        "text": "นั่งก่อน ห้านาที แผนกไม่พังหรอก วันแรกน้องถามพี่ว่าทำไมหมอที่จบรามาถึงมาอยู่เวรดึก ER ต่างจังหวัดตอนอายุ 46",
-        "nextId": "d15_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d15_mid_01",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "portrait": "/assets/ekkarat.jpg",
+            "text": "นั่งก่อน ห้านาที แผนกไม่พังหรอก วันแรกน้องถามพี่ว่าทำไมหมอที่จบรามาถึงมาอยู่เวรดึก ER ต่างจังหวัดตอนอายุ 46",
+            "nextId": "d15_mid_02"
+          },
+          {
+            "id": "d15_mid_02",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "portrait": "/assets/ekkarat.jpg",
+            "text": "ตอนนั้นพี่เป็น resident ปี 3 มี trial หนึ่ง เป็น compassionate use ของยาที่ยังไม่ได้ขึ้นทะเบียน ในคนไข้ที่ให้ consent เองไม่ได้ บริษัทที่ sponsor มีกรรมการนั่งอยู่ในบอร์ดเรา พี่ไม่ยอมให้คนไข้พี่สองคนเข้า trial แล้วพี่ก็เขียนเรื่องนี้ส่งขึ้นไป",
+            "nextId": "d15_mid_03"
+          },
+          {
+            "id": "d15_mid_03",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "portrait": "/assets/ekkarat.jpg",
+            "text": "ไม่มีอะไรตื่นเต้น ไม่มีใครตะโกน แค่ตาราง rotation ของพี่ถูกเลื่อนไปเรื่อยๆ จากเรียนห้าปีกลายเป็นสิบเอ็ดปี แล้วเช้าวันหนึ่งพี่ก็เข้าใจว่าเขาบอกอะไร เลยสมัครมาอยู่ที่นี่ คนที่จัด rotation ให้พี่ ตอนนี้เป็น ผอ. ของ รพ. ที่น้องจบมา อ.สมชาย",
+            "nextId": "d15_mid_04"
+          },
+          {
+            "id": "d15_mid_04",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "portrait": "/assets/ekkarat.jpg",
+            "text": "พี่ไม่ได้บอกให้น้องไปเป็นผู้เสียสละ พี่บอกว่าราคามันมีจริง และไม่ได้จ่ายครั้งเดียวในคืนที่ดราม่า มันจ่ายทีละนิด เป็นงานธุรการเล็กๆ จากคนที่สุภาพมากเสมอ ตัดสินใจไว้ก่อนว่าอะไรที่น้องจะไม่ทำ เพราะตอนเกิดเรื่องจริงน้องจะไม่มีเวลาตัดสินใจ",
+            "flagEffect": "EK_TRUSTS_YOU"
+          }
+        ]
       },
       {
-        "id": "d15_mid_02",
-        "speaker": "Dr. Ekkarat (Pi Ek)",
-        "portrait": "/assets/ekkarat.jpg",
-        "text": "ตอนนั้นพี่เป็น resident ปี 3 มี trial หนึ่ง เป็น compassionate use ของยาที่ยังไม่ได้ขึ้นทะเบียน ในคนไข้ที่ให้ consent เองไม่ได้ บริษัทที่ sponsor มีกรรมการนั่งอยู่ในบอร์ดเรา พี่ไม่ยอมให้คนไข้พี่สองคนเข้า trial แล้วพี่ก็เขียนเรื่องนี้ส่งขึ้นไป",
-        "nextId": "d15_mid_03"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d15_x_mid_01",
+            "speaker": "Nurse Somjai (Pi Jai)",
+            "text": "กาแฟมาแล้วค่ะ หมอเลี้ยงตามธรรมเนียม ห้าแก้ว เย็นหมด หวานน้อยหนึ่งแก้ว ของพี่เอก เขาไม่ยอมบอกใครว่าไม่ชอบหวาน",
+            "portrait": "/assets/somjai.jpg",
+            "nextId": "d15_x_mid_02"
+          },
+          {
+            "id": "d15_x_mid_02",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "ใจ พี่บอกกี่ครั้งแล้วว่าห้ามบอกน้องๆ",
+            "portrait": "/assets/ekkarat.jpg",
+            "nextId": "d15_x_mid_03"
+          },
+          {
+            "id": "d15_x_mid_03",
+            "speaker": "Nurse Somjai (Pi Jai)",
+            "text": "สิบเอ็ดปีค่ะ ไม่เคยฟังเลยสักครั้ง",
+            "portrait": "/assets/somjai.jpg"
+          }
+        ]
       },
       {
-        "id": "d15_mid_03",
-        "speaker": "Dr. Ekkarat (Pi Ek)",
-        "portrait": "/assets/ekkarat.jpg",
-        "text": "ไม่มีอะไรตื่นเต้น ไม่มีใครตะโกน แค่ตาราง rotation ของพี่ถูกจัดใหม่ไปเรื่อยๆ จนเรียนห้าปีกลายเป็นสิบเอ็ดปี แล้วเช้าวันหนึ่งพี่ก็เข้าใจสาร เลยสมัครมาที่นี่ คนที่จัด rotation ให้พี่ ตอนนี้เป็น ผอ. ของ รพ. ที่น้องจบมา อ.สมชาย",
-        "nextId": "d15_mid_04"
-      },
-      {
-        "id": "d15_mid_04",
-        "speaker": "Dr. Ekkarat (Pi Ek)",
-        "portrait": "/assets/ekkarat.jpg",
-        "text": "พี่ไม่ได้บอกให้น้องไปเป็นผู้เสียสละ พี่บอกว่าราคามันมีจริง และไม่ได้จ่ายครั้งเดียวในคืนที่ดราม่า มันจ่ายทีละนิด เป็นงานธุรการเล็กๆ จากคนที่สุภาพมากเสมอ ตัดสินใจไว้ก่อนว่าอะไรที่น้องจะไม่ทำ เพราะตอนเกิดเรื่องจริงน้องจะไม่มีเวลาตัดสินใจ",
-        "flagEffect": "EK_TRUSTS_YOU"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d15_x_rounds_01",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "falciparum ที่รุนแรง ยาหลักคือ artesunate IV แล้วเจาะน้ำตาลบ่อยๆ hypoglycemia เจอบ่อยกว่าที่คิด",
+            "portrait": "/assets/ekkarat.jpg",
+            "nextId": "d15_x_rounds_02"
+          },
+          {
+            "id": "d15_x_rounds_02",
+            "speaker": "Nurse Somjai (Pi Jai)",
+            "text": "PPH ไล่ 4T ค่ะ Tone Trauma Tissue Thrombin นวดมดลูก oxytocin แล้วให้ TXA ภายใน 3 ชั่วโมงหลังคลอด",
+            "portrait": "/assets/somjai.jpg",
+            "nextId": "d15_x_rounds_03"
+          },
+          {
+            "id": "d15_x_rounds_03",
+            "speaker": "Dr. Ekkarat (Pi Ek)",
+            "text": "สองอย่างนี้ไม่มีใน guideline ฉบับไหน ตามคนไข้ไปให้ถึงมือคนรับ แล้วโทรถามข่าวเขาวันรุ่งขึ้น",
+            "portrait": "/assets/ekkarat.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -4170,7 +4595,19 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d15_end_03",
         "speaker": "Dr. Ekkarat (Pi Ek)",
         "portrait": "/assets/ekkarat.jpg",
-        "text": "อีกเรื่อง ที่ รพ. เอกชน คนไข้คือลูกค้า และลูกค้าถูกขายของได้ คอยดูว่าเหตุผลทางคลินิกของน้องเปลี่ยนไปยังไง เมื่อมีใบราคาวางอยู่อีกฝั่ง"
+        "text": "อีกเรื่อง ที่ รพ. เอกชน คนไข้คือลูกค้า และลูกค้าถูกขายของได้ คอยดูว่าเหตุผลทางคลินิกของน้องเปลี่ยนไปยังไง เมื่อมีใบราคาวางอยู่อีกฝั่ง",
+        "nextId": "d15_x_post_01"
+      },
+      {
+        "id": "d15_x_post_01",
+        "speaker": "Narrator",
+        "text": "รถทัวร์เที่ยวเช้าออกเจ็ดโมงครึ่ง จากหน้าต่าง โรงพยาบาลจังหวัดเล็กลงเรื่อยๆ จนเหลือแค่ไฟแดงบนหลังคา",
+        "nextId": "d15_x_post_02"
+      },
+      {
+        "id": "d15_x_post_02",
+        "speaker": "Narrator",
+        "text": "ในกระเป๋ามีเบอร์มือถือหนึ่งเบอร์ พวงกุญแจหนึ่งพวง และรายชื่อคนไข้ที่หมอจะจำไปอีกนาน"
       }
     ],
     "cases": [
@@ -4181,6 +4618,25 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "16": {
     "startShiftEvents": [
+      {
+        "id": "d16_x_pre_01",
+        "speaker": "Narrator",
+        "text": "เลิฟลี่ อินเตอร์เนชั่นแนล ล็อบบี้หอมมะลิกับกลิ่นเงิน พนักงานต้อนรับยิ้มให้ก่อนหมอจะเดินถึงประตู",
+        "nextId": "d16_x_pre_02"
+      },
+      {
+        "id": "d16_x_pre_02",
+        "speaker": "Narrator",
+        "text": "ห้องฉุกเฉินมีสิบสองเตียง ว่างแปด เครื่อง CT อยู่ห่างไปยี่สิบก้าว ไม่มีใครต้องเข็นเปลไปต่อคิวที่ไหน",
+        "nextId": "d16_x_pre_03"
+      },
+      {
+        "id": "d16_x_pre_03",
+        "speaker": "Wachira (Beam)",
+        "text": "เห็นไหม ไม่มีคนนอนเปลที่ทางเดิน ไม่มีหมาจร ไม่มีกลิ่นฉี่ เราว่าที่นี่แหละที่หมอควรได้ทำงาน",
+        "portrait": "/assets/beam.jpg",
+        "nextId": "d16_start_01"
+      },
       {
         "id": "d16_start_01",
         "speaker": "Khun Malinee (Khun Mali)",
@@ -4199,29 +4655,77 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d16_start_03",
         "speaker": "Dr. Kitipong (Ajarn Kit)",
         "portrait": "/assets/kitipong.jpg",
-        "text": "โคราช ดีมาก งั้นคุณก็ resuscitate เป็นจริง ซึ่งเก่งกว่า intern ส่วนใหญ่ของผมแล้ว ที่นี่พยาธิสภาพจะบางกว่า วิตกกังวล กรดไหลย้อน jet lag และนานๆ ทีก็มีหายนะจริงๆ ในคนที่เป็นเจ้าของสายการบิน",
+        "text": "โคราช ดีมาก งั้นคุณก็ resuscitate เป็นจริงๆ เก่งกว่า intern ส่วนใหญ่ของผมแล้ว ที่นี่โรคจะเบากว่า วิตกกังวล กรดไหลย้อน jet lag นานๆ ทีถึงจะมีเคสหนักจริงๆ ในคนที่เป็นเจ้าของสายการบิน",
         "nextId": "d16_start_04"
       },
       {
         "id": "d16_start_04",
         "speaker": "Dr. Kitipong (Ajarn Kit)",
         "portrait": "/assets/kitipong.jpg",
-        "text": "มีความต่างเชิงโครงสร้างอย่างหนึ่งที่คุณควรซึมซับวันนี้ ที่โคราชคุณต้องปันส่วน ที่นี่ไม่มีการปันส่วน ทุกอย่างพร้อม ได้ทันที และมีคนจ่าย นั่นเปลี่ยนความหมายของคำว่า indication แล้วคุณจะเห็นเอง"
+        "text": "มีความต่างข้อใหญ่ข้อหนึ่งที่คุณควรรู้ตั้งแต่วันนี้ ที่โคราชคุณต้องเลือกว่าใครได้อะไร ที่นี่ไม่ต้องเลือก ทุกอย่างพร้อม ได้ทันที และมีคนจ่าย แล้วคำว่า indication จะค่อยๆ เปลี่ยนความหมาย คุณจะเห็นเอง"
       }
     ],
     "midShiftEvents": [
       {
-        "id": "d16_mid_01",
-        "speaker": "Dr. Napassorn (Pi Nam)",
-        "portrait": "/assets/napassorn.jpg",
-        "text": "Med ปีสามที่นี่ แนะนำให้ฟรีๆ นะ อาทิตย์แรกอย่าไปสู้กับ order set เรียนรู้ก่อนว่าใครเซ็นใบประเมินน้อง แล้วค่อยเลือกว่าจะยอมตายบนเนินไหน",
-        "nextId": "d16_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d16_mid_01",
+            "speaker": "Dr. Napassorn (Pi Nam)",
+            "portrait": "/assets/napassorn.jpg",
+            "text": "Med ปีสามที่นี่ แนะนำให้ฟรีๆ นะ อาทิตย์แรกอย่าไปสู้กับ order set เรียนรู้ก่อนว่าใครเซ็นใบประเมินน้อง แล้วค่อยเลือกว่าจะยอมตายบนเนินไหน",
+            "nextId": "d16_mid_02"
+          },
+          {
+            "id": "d16_mid_02",
+            "speaker": "Wachira (Beam)",
+            "portrait": "/assets/beam.jpg",
+            "text": "ดูที่นี่สิ กาแฟของจริง ห้องพักแพทย์มีฝักบัว เธอเข้าใจไหมว่าเราโตมาในบ้านพื้นดิน เราไม่ขอโทษที่ชอบที่นี่หรอก"
+          }
+        ]
       },
       {
-        "id": "d16_mid_02",
-        "speaker": "Wachira (Beam)",
-        "portrait": "/assets/beam.jpg",
-        "text": "ดูที่นี่สิ กาแฟของจริง ห้องพักแพทย์มีฝักบัว เธอเข้าใจไหมว่าเราโตมาในบ้านพื้นดิน เราไม่ขอโทษที่ชอบที่นี่หรอก"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d16_x_mid_01",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "หมอคะ พี่ไก่ พยาบาลประจำ ER ค่ะ ปุ่มเรียกพยาบาลห้อง VIP สีทอง ห้องธรรมดาสีเงิน หัดฟังเสียงให้ออกนะคะ",
+            "portrait": "/assets/kanyarat.jpg",
+            "nextId": "d16_x_mid_02"
+          },
+          {
+            "id": "d16_x_mid_02",
+            "speaker": "You",
+            "text": "เสียงไม่เหมือนกันด้วยเหรอครับ/คะ",
+            "portrait": "/assets/player.jpg",
+            "nextId": "d16_x_mid_03"
+          },
+          {
+            "id": "d16_x_mid_03",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "ไม่เหมือนค่ะ สีทองดังสองครั้ง ไม่มีใครเขียนไว้ที่ไหน แต่ทุกคนวิ่งเร็วกว่ากันนิดหนึ่ง ทั้งที่ไม่มีใครตั้งใจ",
+            "portrait": "/assets/kanyarat.jpg"
+          }
+        ]
+      },
+      {
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d16_x_rounds_01",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "inferior STEMI ทำ right-sided ECG ทุกครั้ง ถ้า V4R ยก แปลว่า RV infarct ระวัง nitrate เพราะความดันจะตกฮวบ",
+            "portrait": "/assets/kitipong.jpg",
+            "nextId": "d16_x_rounds_02"
+          },
+          {
+            "id": "d16_x_rounds_02",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "คนไข้กรดไหลย้อนที่กลัวหัวใจวาย ไม่ใช่ emergency ก็จริง แต่ความกลัวเขาเป็นของจริง อธิบายให้เขาเข้าใจก็เป็นการรักษาอย่างหนึ่ง",
+            "portrait": "/assets/kitipong.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -4243,7 +4747,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d16_end_03",
         "speaker": "Khun Malinee (Khun Mali)",
         "portrait": "/assets/malinee.jpg",
-        "text": "ไม่มีค่ะ มันคือตัวชี้วัด ไม่ใช่เป้า ไม่มีใครเขียนเป้าเป็นลายลักษณ์อักษรหรอกค่ะคุณหมอ แบบนั้นไม่เหมาะสม"
+        "text": "ไม่มีค่ะ มันคือตัวชี้วัด ไม่ใช่เป้า ไม่มีใครเขียนเป้าเป็นลายลักษณ์อักษรหรอกค่ะคุณหมอ แบบนั้นไม่เหมาะสม",
+        "nextId": "d16_x_post_01"
+      },
+      {
+        "id": "d16_x_post_01",
+        "speaker": "Narrator",
+        "text": "เลิกเวรหกโมงเย็นตรงเวลา ครั้งแรกในชีวิตที่หมอกลับบ้านทันรถไฟฟ้าขบวนที่ยังมีที่นั่ง"
       }
     ],
     "cases": [
@@ -4254,6 +4764,20 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "17": {
     "startShiftEvents": [
+      {
+        "id": "d17_x_pre_01",
+        "speaker": "Nurse Kanyarat (Pi Kai)",
+        "text": "เช้านี้แขกห้อง 3 ขอเปลี่ยนหมอค่ะ อยากได้หมอที่อายุมากกว่านี้ อ.กิตบอกให้หมอเข้าไปตามเดิม",
+        "portrait": "/assets/kanyarat.jpg",
+        "nextId": "d17_x_pre_02"
+      },
+      {
+        "id": "d17_x_pre_02",
+        "speaker": "Nurse Kanyarat (Pi Kai)",
+        "text": "เคล็ดลับนะคะ พาด stethoscope ไว้ที่คอ อย่าพับใส่กระเป๋า แขกที่นี่เชื่อหมอที่มีหูฟังพาดคอมากกว่า",
+        "portrait": "/assets/kanyarat.jpg",
+        "nextId": "d17_start_01"
+      },
       {
         "id": "d17_start_01",
         "speaker": "Dr. Kitipong (Ajarn Kit)",
@@ -4279,7 +4803,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d17_start_04",
         "speaker": "Dr. Kitipong (Ajarn Kit)",
         "portrait": "/assets/kitipong.jpg",
-        "text": "มันคือ 38,000 บาท รังสีหนึ่ง dose และโอกาส 14% ที่จะเจอ incidental finding ตามหลอกหลอนเขาไปสองปี ทั้งสองประโยคเป็นความจริง ผมอยากให้คุณสังเกตว่าผมทำให้ประโยคไหนก็ฟังเป็นการแพทย์ได้",
+        "text": "แต่ CT ก็คือ 38,000 บาท รังสีหนึ่ง dose และโอกาส 14% ที่จะเจอ incidental finding ตามหลอกหลอนเขาไปอีกสองปี จริงทั้งสองประโยค ผมอยากให้คุณสังเกตว่าผมพูดประโยคไหนก็ฟังดูเป็นการแพทย์ได้ทั้งนั้น",
         "choices": [
           {
             "text": "D/C พร้อมอธิบายให้สบายใจ และเขียนอาการที่ต้องกลับมาให้",
@@ -4310,17 +4834,73 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d17_mid_01",
-        "speaker": "Dr. Napassorn (Pi Nam)",
-        "portrait": "/assets/napassorn.jpg",
-        "text": "อาจารย์ทำแบบโสเครตีสกับ intern ใหม่ทุกคน สอนเก่งจริงๆ นะ และเป็นวิธีที่อาจารย์ดูว่าใครจะยอมงอ",
-        "nextId": "d17_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d17_mid_01",
+            "speaker": "Dr. Napassorn (Pi Nam)",
+            "portrait": "/assets/napassorn.jpg",
+            "text": "อาจารย์ทำแบบโสเครตีสกับ intern ใหม่ทุกคน สอนเก่งจริงๆ นะ และเป็นวิธีที่อาจารย์ดูว่าใครจะยอมงอ",
+            "nextId": "d17_mid_02"
+          },
+          {
+            "id": "d17_mid_02",
+            "speaker": "Dr. Napassorn (Pi Nam)",
+            "portrait": "/assets/napassorn.jpg",
+            "text": "พี่งอเดือนที่ห้า แพ็กเกจตรวจสุขภาพผู้บริหาร พี่จะไม่ทำเป็นว่าไม่รู้ แค่รู้ไว้ว่าน้องกำลังถูกประเมิน และสิ่งที่ถูกประเมินไม่ใช่ความรู้ทาง clinical"
+          }
+        ]
       },
       {
-        "id": "d17_mid_02",
-        "speaker": "Dr. Napassorn (Pi Nam)",
-        "portrait": "/assets/napassorn.jpg",
-        "text": "พี่งอเดือนที่ห้า แพ็กเกจตรวจสุขภาพผู้บริหาร พี่จะไม่ทำเป็นว่าไม่รู้ แค่รู้ไว้ว่าน้องกำลังถูกประเมิน และสิ่งที่ถูกประเมินไม่ใช่ความรู้ทาง clinical"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d17_x_mid_01",
+            "speaker": "Wachira (Beam)",
+            "text": "เห็นตัวเลข CT ของเราแล้วใช่ไหม ไม่ต้องตอบ หน้าเธอบอกหมดแล้ว",
+            "portrait": "/assets/beam.jpg",
+            "choices": [
+              {
+                "text": "ถามบีมว่ามีกี่เคสที่ CT เปลี่ยนการรักษาจริงๆ",
+                "nextId": "d17_x_mid_r1"
+              },
+              {
+                "text": "ไม่พูดอะไร ยื่นกาแฟให้บีมหนึ่งแก้ว",
+                "nextId": "d17_x_mid_r2"
+              }
+            ]
+          },
+          {
+            "id": "d17_x_mid_r1",
+            "speaker": "Wachira (Beam)",
+            "text": "สองเคส จากเก้า... อย่าจดนะ เราแค่ตอบเฉยๆ",
+            "portrait": "/assets/beam.jpg"
+          },
+          {
+            "id": "d17_x_mid_r2",
+            "speaker": "Wachira (Beam)",
+            "text": "ขอบใจ เธอเป็นคนแรกในตึกนี้ที่ไม่ได้ถามเราเรื่องตัวเลข",
+            "portrait": "/assets/beam.jpg"
+          }
+        ]
+      },
+      {
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d17_x_rounds_01",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "เลือดออกหลังผ่าตัดเสริมความงาม ตามศัลยแพทย์เจ้าของไข้ค่ะ แต่ ABC ไม่สนว่าเขาจ่ายเงินที่ตึกไหน",
+            "portrait": "/assets/kanyarat.jpg",
+            "nextId": "d17_x_rounds_02"
+          },
+          {
+            "id": "d17_x_rounds_02",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "ต่อมน้ำเหลืองโตเล็กน้อยกับคนที่กลัวมะเร็ง ตรวจให้ครบ นัดดูซ้ำให้ชัด นั่นคือการรักษา ไม่ใช่ CT ทั้งตัว",
+            "portrait": "/assets/kitipong.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -4342,7 +4922,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d17_end_03",
         "speaker": "Wachira (Beam)",
         "portrait": "/assets/beam.jpg",
-        "text": "สิบเอ็ด ไม่ต้องทำหน้าแบบนั้น ทุกคนขอเองทั้งนั้น"
+        "text": "สิบเอ็ด ไม่ต้องทำหน้าแบบนั้น ทุกคนขอเองทั้งนั้น",
+        "nextId": "d17_x_post_01"
+      },
+      {
+        "id": "d17_x_post_01",
+        "speaker": "Narrator",
+        "text": "คืนนั้นหมอเปิดใบสั่ง CT ของตัวเองย้อนหลังทั้งอาทิตย์ นับได้สองใบ เหตุผลเขียนไว้ครบทั้งสองใบ แต่ก็ยังอ่านซ้ำอยู่ดี"
       }
     ],
     "cases": [
@@ -4353,6 +4939,19 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "18": {
     "startShiftEvents": [
+      {
+        "id": "d18_x_pre_01",
+        "speaker": "Narrator",
+        "text": "เช้าวันจันทร์ รถตู้สีดำจอดขวางช่องรถพยาบาลหน้า ER คนขับยืนสูบบุหรี่ข้างป้ายห้ามสูบบุหรี่",
+        "nextId": "d18_x_pre_02"
+      },
+      {
+        "id": "d18_x_pre_02",
+        "speaker": "Nurse Kanyarat (Pi Kai)",
+        "text": "รถคุณอนุวัฒน์ค่ะ จอดตรงนั้นทุกครั้ง ไม่มีใครกล้าให้ย้าย เคยมี รปภ. คนหนึ่งขอให้ย้าย ตอนนี้ไปอยู่สาขาชลบุรีแล้ว",
+        "portrait": "/assets/kanyarat.jpg",
+        "nextId": "d18_start_01"
+      },
       {
         "id": "d18_start_01",
         "speaker": "Khun Malinee (Khun Mali)",
@@ -4423,17 +5022,57 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d18_mid_01",
-        "speaker": "Dr. Kitipong (Ajarn Kit)",
-        "portrait": "/assets/kitipong.jpg",
-        "text": "[IF_FLAG:CORRUPT_DOC] ผมได้ยินเรื่องคุณอนุวัฒน์แล้ว ไม่ต้องเกร็ง ผมจะไม่เทศน์ จะพูดเรื่องเดียวแล้วเราจะไม่คุยเรื่องนี้อีก ครั้งที่สองง่ายกว่าครั้งแรก และครั้งที่สิบคุณจะจำไม่ได้ด้วยซ้ำว่ามันเกิดขึ้น",
-        "nextId": "d18_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d18_mid_01",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "portrait": "/assets/kitipong.jpg",
+            "text": "[IF_FLAG:CORRUPT_DOC] ผมได้ยินเรื่องคุณอนุวัฒน์แล้ว ไม่ต้องเกร็ง ผมจะไม่เทศน์ จะพูดเรื่องเดียวแล้วเราจะไม่คุยเรื่องนี้อีก ครั้งที่สองง่ายกว่าครั้งแรก และครั้งที่สิบคุณจะจำไม่ได้ด้วยซ้ำว่ามันเกิดขึ้น",
+            "nextId": "d18_mid_02"
+          },
+          {
+            "id": "d18_mid_02",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "portrait": "/assets/kitipong.jpg",
+            "text": "[IF_FLAG:WHISTLEBLOWER] อนุวัฒน์บอกว่าคุณทำให้เขาขายหน้า ผมบอกเขาว่าคุณยังใหม่และมีหลักการ ซึ่งในหูเขาคือคำเดียวกัน ระวังตัวด้วย เขามีเสียงในบอร์ดเราสองเสียงผ่านคนของเขา และผมปกป้อง intern จากบอร์ดไม่ได้"
+          }
+        ]
       },
       {
-        "id": "d18_mid_02",
-        "speaker": "Dr. Kitipong (Ajarn Kit)",
-        "portrait": "/assets/kitipong.jpg",
-        "text": "[IF_FLAG:WHISTLEBLOWER] อนุวัฒน์บอกว่าคุณทำให้เขาขายหน้า ผมบอกเขาว่าคุณยังใหม่และมีหลักการ ซึ่งในภาษาเขาแปลว่าอย่างเดียวกัน ระวังตัวด้วย เขาถือที่นั่งในบอร์ดเราสองที่ผ่านตัวแทน และผมปกป้อง intern จากที่นั่งในบอร์ดไม่ได้"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d18_x_mid_01",
+            "speaker": "Narrator",
+            "text": "ตู้เย็นในห้องพักแพทย์แบ่งช่องเป็นของใครของมัน ช่องของหมอว่างเปล่า มีโน้ตแปะไว้ว่า ยินดีต้อนรับ ไม่ได้ลงชื่อ",
+            "nextId": "d18_x_mid_02"
+          },
+          {
+            "id": "d18_x_mid_02",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "พี่น้ำเขียนค่ะ เขาเขียนให้ intern ทุกคน แล้วทำเป็นไม่รู้เรื่อง",
+            "portrait": "/assets/kanyarat.jpg"
+          }
+        ]
+      },
+      {
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d18_x_rounds_01",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "fat embolism คิดถึงเมื่อกระดูกยาวหักแล้วหนึ่งถึงสามวัน มี hypoxemia สับสน และจุดเลือดออกที่รักแร้หรือเยื่อบุตา",
+            "portrait": "/assets/kitipong.jpg",
+            "nextId": "d18_x_rounds_02"
+          },
+          {
+            "id": "d18_x_rounds_02",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "massive PE ที่ช็อก ถ้า echo เห็น RV โตและเขาไม่เสถียรพอจะไป CT ให้ยาละลายลิ่มเลือดได้เลย",
+            "portrait": "/assets/kitipong.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -4462,7 +5101,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d18_end_04",
         "speaker": "Dr. Napassorn (Pi Nam)",
         "portrait": "/assets/napassorn.jpg",
-        "text": "พี่เป็นคนที่เก็บสำเนาไว้ ไม่เคยรู้ว่าทำไม อีกเดือนนึงค่อยถามใหม่นะ"
+        "text": "พี่เป็นคนที่เก็บสำเนาไว้ ไม่เคยรู้ว่าทำไม อีกเดือนนึงค่อยถามใหม่นะ",
+        "nextId": "d18_x_post_01"
+      },
+      {
+        "id": "d18_x_post_01",
+        "speaker": "Narrator",
+        "text": "ขากลับ รถตู้สีดำยังจอดอยู่ที่เดิม คนขับยกมือทักหมอเหมือนรู้จักกันมานาน"
       }
     ],
     "cases": [
@@ -4473,6 +5118,19 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "19": {
     "startShiftEvents": [
+      {
+        "id": "d19_x_pre_01",
+        "speaker": "Narrator",
+        "text": "รูปบีมติดอยู่ที่ล็อบบี้ กรอบทอง ไฟส่องจากด้านบน ยิ้มกว้างกว่าที่หมอเคยเห็นบีมยิ้มจริงๆ",
+        "nextId": "d19_x_pre_02"
+      },
+      {
+        "id": "d19_x_pre_02",
+        "speaker": "Nurse Kanyarat (Pi Kai)",
+        "text": "เมื่อเช้าแม่บีมโทรมาที่เคาน์เตอร์ค่ะ ถามว่ารูปลูกชายใหญ่แค่ไหน พี่บอกว่าใหญ่ที่สุดในล็อบบี้",
+        "portrait": "/assets/kanyarat.jpg",
+        "nextId": "d19_start_01"
+      },
       {
         "id": "d19_start_01",
         "speaker": "Khun Malinee (Khun Mali)",
@@ -4503,44 +5161,92 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d19_mid_01",
-        "speaker": "Dr. Napassorn (Pi Nam)",
-        "portrait": "/assets/napassorn.jpg",
-        "text": "เตียง 7 คนงานก่อสร้าง ไม่มีประกัน มือถูกบด ฝ่ายรับผู้ป่วยขอมัดจำ 40,000 บาทก่อนเข้าห้องผ่าตัด",
-        "nextId": "d19_mid_02"
-      },
-      {
-        "id": "d19_mid_02",
-        "speaker": "Dr. Napassorn (Pi Nam)",
-        "portrait": "/assets/napassorn.jpg",
-        "text": "ที่นี่ปกติจะ stabilize แล้ว refer ไป รพ. รัฐ ใช้เวลาส่งตัวสองชั่วโมง เขาจะเสียนิ้วสองนิ้วที่ไม่ควรเสีย และเอกสารจะเขียนว่าเหมาะสมทาง clinical",
-        "choices": [
+        "triggerMinute": 240,
+        "cutscene": [
           {
-            "text": "ประกาศเป็นการรักษาฉุกเฉินเพื่อ stabilize แล้วพาเข้าห้องผ่าตัดเดี๋ยวนี้",
-            "nextId": "d19_mid_03a",
-            "karmaEffect": 20,
-            "xpEffect": 20,
-            "flagEffect": "DEFIED_BILLING"
+            "id": "d19_mid_01",
+            "speaker": "Dr. Napassorn (Pi Nam)",
+            "portrait": "/assets/napassorn.jpg",
+            "text": "เตียง 7 คนงานก่อสร้าง ไม่มีประกัน มือถูกบด ฝ่ายรับผู้ป่วยขอมัดจำ 40,000 บาทก่อนเข้าห้องผ่าตัด",
+            "nextId": "d19_mid_02"
           },
           {
-            "text": "ทำตาม protocol stabilize แล้ว refer",
-            "nextId": "d19_mid_03b",
-            "karmaEffect": -10,
-            "xpEffect": 5
+            "id": "d19_mid_02",
+            "speaker": "Dr. Napassorn (Pi Nam)",
+            "portrait": "/assets/napassorn.jpg",
+            "text": "ที่นี่ปกติจะ stabilize แล้ว refer ไป รพ. รัฐ ใช้เวลาส่งตัวสองชั่วโมง เขาจะเสียนิ้วสองนิ้วที่ไม่ควรเสีย และเอกสารจะเขียนว่าเหมาะสมทาง clinical",
+            "choices": [
+              {
+                "text": "ประกาศเป็นการรักษาฉุกเฉินเพื่อ stabilize แล้วพาเข้าห้องผ่าตัดเดี๋ยวนี้",
+                "nextId": "d19_mid_03a",
+                "karmaEffect": 20,
+                "xpEffect": 20,
+                "flagEffect": "DEFIED_BILLING"
+              },
+              {
+                "text": "ทำตาม protocol stabilize แล้ว refer",
+                "nextId": "d19_mid_03b",
+                "karmaEffect": -10,
+                "xpEffect": 5
+              }
+            ]
+          },
+          {
+            "id": "d19_mid_03a",
+            "speaker": "Khun Malinee (Khun Mali)",
+            "portrait": "/assets/malinee.jpg",
+            "text": "คุณหมอใช้สิทธิ์ยกเว้นกรณีฉุกเฉิน เป็นสิทธิ์ของคุณหมอตามกฎหมาย มีเขียนไว้ใน พ.ร.บ. จริงค่ะ และเรื่องนี้ก็ถูกจดลงแฟ้มของคุณหมอแล้วด้วย ตอนนี้จริงทั้งสองอย่างนะคะ"
+          },
+          {
+            "id": "d19_mid_03b",
+            "speaker": "Dr. Napassorn (Pi Nam)",
+            "portrait": "/assets/napassorn.jpg",
+            "text": "โอเค ถูกตาม protocol พี่อยากให้น้องดูเวลาส่งตัวในใบตอนเซ็น สองชั่วโมงสี่สิบนาที ดูให้ดีๆ นั่นคือตัวเลขที่พี่ละสายตาไม่ได้ สมัยที่พี่ยังนอนไม่หลับ"
           }
         ]
       },
       {
-        "id": "d19_mid_03a",
-        "speaker": "Khun Malinee (Khun Mali)",
-        "portrait": "/assets/malinee.jpg",
-        "text": "คุณหมอใช้สิทธิ์ยกเว้นกรณีฉุกเฉิน ตามกฎหมายเป็นสิทธิ์ของคุณหมอ และเขียนไว้ใน พ.ร.บ. จริงค่ะ แล้วก็ถูกเขียนลงแฟ้มของคุณหมอด้วย ตอนนี้ทั้งสองอย่างเป็นความจริงแล้วนะคะ"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d19_x_mid_01",
+            "speaker": "Wachira (Beam)",
+            "text": "เรื่องคนงานเมื่อกี้ เธอทำถูก เราพูดได้แค่ตรงนี้นะ ถ้าพูดในห้องประชุม เราคงไม่มีรูปที่ล็อบบี้แล้ว",
+            "portrait": "/assets/beam.jpg",
+            "nextId": "d19_x_mid_02"
+          },
+          {
+            "id": "d19_x_mid_02",
+            "speaker": "You",
+            "text": "บีม รูปนั้นสำคัญกับบีมขนาดนั้นเลยเหรอ",
+            "portrait": "/assets/player.jpg",
+            "nextId": "d19_x_mid_03"
+          },
+          {
+            "id": "d19_x_mid_03",
+            "speaker": "Wachira (Beam)",
+            "text": "สำคัญกับแม่ ซึ่งแปลว่าสำคัญกับเรา เธอไม่ต้องเข้าใจหรอก แค่อย่าเพิ่งตัดสินเร็วนัก",
+            "portrait": "/assets/beam.jpg"
+          }
+        ]
       },
       {
-        "id": "d19_mid_03b",
-        "speaker": "Dr. Napassorn (Pi Nam)",
-        "portrait": "/assets/napassorn.jpg",
-        "text": "โอเค ถูกตาม protocol พี่อยากให้น้องดูเวลาส่งตัวในใบตอนเซ็น สองชั่วโมงสี่สิบนาที ดูให้ดีๆ นั่นคือตัวเลขที่พี่ละสายตาไม่ได้ สมัยที่พี่ยังนอนไม่หลับ"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d19_x_rounds_01",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "นิ้วหรือมือที่ขาด ห่อผ้าชุบ NSS ใส่ถุง แล้วแช่ในน้ำผสมน้ำแข็งค่ะ ห้ามให้น้ำแข็งโดนเนื้อตรงๆ",
+            "portrait": "/assets/kanyarat.jpg",
+            "nextId": "d19_x_rounds_02"
+          },
+          {
+            "id": "d19_x_rounds_02",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "และส่งต่อให้เร็ว ทุกชั่วโมงที่ผ่านไปโอกาสต่อคืนลดลง ใบมัดจำรอได้ เนื้อเยื่อรอไม่ได้",
+            "portrait": "/assets/kitipong.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -4555,7 +5261,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d19_end_02",
         "speaker": "Dr. Kitipong (Ajarn Kit)",
         "portrait": "/assets/kitipong.jpg",
-        "text": "ทุกอย่างที่คุณรังเกียจที่นี่คือเงินที่จ่ายให้ 60% ของเคสที่ไม่เคยจ่ายเรา ในบัญชีของผมเอง ผมไม่ใช่ผู้ร้าย ไม่มีใครเป็นหรอก นั่นแหละที่ทำให้เรื่องนี้ยาก และทำไมคนที่แก้มันได้ไม่เคยเป็นคนที่ตกใจกับมัน"
+        "text": "ทุกอย่างที่คุณรังเกียจที่นี่คือเงินที่จ่ายให้ 60% ของเคสที่ไม่เคยจ่ายเรา ในบัญชีของผมเอง ผมไม่ใช่ผู้ร้าย ไม่มีใครเป็นหรอก นั่นแหละที่ทำให้เรื่องนี้ยาก และทำไมคนที่แก้มันได้ไม่เคยเป็นคนที่ตกใจกับมัน",
+        "nextId": "d19_x_post_01"
+      },
+      {
+        "id": "d19_x_post_01",
+        "speaker": "Narrator",
+        "text": "ก่อนกลับ หมอเดินผ่านล็อบบี้ ไฟส่องรูปบีมยังเปิดอยู่ ทั้งที่ไม่มีแขกเหลือสักคน"
       }
     ],
     "cases": [
@@ -4566,6 +5278,19 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "20": {
     "startShiftEvents": [
+      {
+        "id": "d20_x_pre_01",
+        "speaker": "Narrator",
+        "text": "ฝนตกตั้งแต่เช้า แขกน้อยลงครึ่งหนึ่ง คุณมาลียืนดูจอตัวเลขหน้า nurse station นานกว่าปกติ",
+        "nextId": "d20_x_pre_02"
+      },
+      {
+        "id": "d20_x_pre_02",
+        "speaker": "Khun Malinee (Khun Mali)",
+        "text": "วันฝนตกตัวเลขตกทุกครั้งค่ะ ไม่ใช่ความผิดใคร ดิฉันแค่ชอบดูเฉยๆ",
+        "portrait": "/assets/malinee.jpg",
+        "nextId": "d20_start_01"
+      },
       {
         "id": "d20_start_01",
         "speaker": "Dr. Napassorn (Pi Nam)",
@@ -4596,17 +5321,64 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d20_mid_01",
-        "speaker": "Dr. Kitipong (Ajarn Kit)",
-        "portrait": "/assets/kitipong.jpg",
-        "text": "[IF_FLAG:CORRUPT_DOC] ผมจะให้คุณไปอยู่คลินิกตรวจสุขภาพผู้บริหาร 12% ของค่าแพ็กเกจ จ่ายทุกไตรมาส ถูกกฎหมายทุกอย่างในฐานะค่าตอบแทนแพทย์ คุณสมควรได้ และคุณจะรู้สึกอะไรกับมันทีหลัง ไม่ใช่ตอนนี้",
-        "nextId": "d20_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d20_mid_01",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "portrait": "/assets/kitipong.jpg",
+            "text": "[IF_FLAG:CORRUPT_DOC] ผมจะให้คุณไปอยู่คลินิกตรวจสุขภาพผู้บริหาร 12% ของค่าแพ็กเกจ จ่ายทุกไตรมาส ถูกกฎหมายทุกอย่างในฐานะค่าตอบแทนแพทย์ คุณสมควรได้ และคุณจะรู้สึกอะไรกับมันทีหลัง ไม่ใช่ตอนนี้",
+            "nextId": "d20_mid_02"
+          },
+          {
+            "id": "d20_mid_02",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "portrait": "/assets/kitipong.jpg",
+            "text": "[IF_FLAG:WHISTLEBLOWER] คุณไปถามรังสีเรื่องอัตรา indication staff ผมสองคนพูดถึงเรื่องนี้แล้ว ผมจะถือว่าเป็นความสงสัยทางวิชาการ เพราะถ้าคิดแบบอื่น internship คุณจะจบ และผมไม่อยากเสียคนที่ resuscitate เป็นจริง"
+          }
+        ]
       },
       {
-        "id": "d20_mid_02",
-        "speaker": "Dr. Kitipong (Ajarn Kit)",
-        "portrait": "/assets/kitipong.jpg",
-        "text": "[IF_FLAG:WHISTLEBLOWER] คุณไปถามรังสีเรื่องอัตรา indication staff ผมสองคนพูดถึงเรื่องนี้แล้ว ผมจะถือว่าเป็นความสงสัยทางวิชาการ เพราะถ้าคิดแบบอื่น internship คุณจะจบ และผมไม่อยากเสียคนที่ resuscitate เป็นจริง"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d20_x_mid_01",
+            "speaker": "Narrator",
+            "text": "ผู้หญิงเตียง 2 ขอให้ปิดม่าน แล้วโทรหาแม่ด้วยเสียงที่ร่าเริงเกินไป",
+            "nextId": "d20_x_mid_02"
+          },
+          {
+            "id": "d20_x_mid_02",
+            "speaker": "Dr. Napassorn (Pi Nam)",
+            "text": "เธอยังไม่ได้บอกแม่ พี่จะไม่เร่ง น้องก็อย่าเร่ง บางเรื่องคนไข้ต้องพูดเองในเวลาของเขา",
+            "portrait": "/assets/napassorn.jpg",
+            "nextId": "d20_x_mid_03"
+          },
+          {
+            "id": "d20_x_mid_03",
+            "speaker": "Dr. Napassorn (Pi Nam)",
+            "text": "สิ่งเดียวที่เราทำได้ตอนนี้คือคุมปวดให้ดี แล้วนั่งอยู่ตรงนี้ตอนที่เขาวางสาย",
+            "portrait": "/assets/napassorn.jpg"
+          }
+        ]
+      },
+      {
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d20_x_rounds_01",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "heat stroke ทำให้เย็นก่อนแล้วค่อยย้าย แช่น้ำเย็นได้เร็วที่สุด เป้าให้ core temp ต่ำกว่า 39 ภายใน 30 นาที",
+            "portrait": "/assets/kitipong.jpg",
+            "nextId": "d20_x_rounds_02"
+          },
+          {
+            "id": "d20_x_rounds_02",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "aortic dissection คุม HR ให้ต่ำกว่า 60 ด้วย beta-blocker ก่อน แล้วค่อยลด SBP ไปที่ 100 ถึง 120 และห้ามให้ยาละลายลิ่มเลือดเด็ดขาด",
+            "portrait": "/assets/kitipong.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -4621,7 +5393,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d20_end_02",
         "speaker": "Dr. Napassorn (Pi Nam)",
         "portrait": "/assets/napassorn.jpg",
-        "text": "พี่ไม่เคยให้ใครดู พี่มีลูกสาวเรียน ป.3 มีหนี้บ้าน ไม่มีญาติที่มีเงิน น้องเข้าใจที่พี่กำลังบอกไหม หรือพี่ต้องพูดที่เหลือออกมาด้วย"
+        "text": "พี่ไม่เคยให้ใครดู พี่มีลูกสาวเรียน ป.3 มีหนี้บ้าน ไม่มีญาติที่มีเงิน น้องเข้าใจที่พี่กำลังบอกไหม หรือพี่ต้องพูดที่เหลือออกมาด้วย",
+        "nextId": "d20_x_post_01"
+      },
+      {
+        "id": "d20_x_post_01",
+        "speaker": "Narrator",
+        "text": "พี่น้ำวางแก้วกาแฟลงช้าๆ เหมือนกลัวว่ามันจะดังเกินไป แล้วเดินกลับไปที่เตียง 2"
       }
     ],
     "cases": [
@@ -4632,6 +5410,19 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "21": {
     "startShiftEvents": [
+      {
+        "id": "d21_x_pre_01",
+        "speaker": "Nurse Kanyarat (Pi Kai)",
+        "text": "หมอมาเช้ากว่าปกตินะคะ ดีแล้ว เมื่อคืนวุ่นทั้งคืน คุณหมอวชิระปิด chart ไปสี่สิบสองใบ",
+        "portrait": "/assets/kanyarat.jpg",
+        "nextId": "d21_x_pre_02"
+      },
+      {
+        "id": "d21_x_pre_02",
+        "speaker": "Narrator",
+        "text": "จอ nurse station มีแถบสีเขียวขึ้นข้างชื่อบีม แปลว่าปิด chart ครบเป้า ไม่มีแถบไหนบอกว่าอ่านครบหรือเปล่า",
+        "nextId": "d21_start_01"
+      },
       {
         "id": "d21_start_01",
         "speaker": "Nurse Kanyarat (Pi Kai)",
@@ -4655,44 +5446,100 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d21_mid_01",
-        "speaker": "Wachira (Beam)",
-        "portrait": "/assets/beam.jpg",
-        "text": "เราไม่ได้ปลอมอะไร ระบบดึง V/S จาก triage มาเอง เรากด accept ทุกคนก็กด accept รู้ไหมว่าเวรนึงเราปิด chart กี่ใบ",
-        "nextId": "d21_mid_02"
-      },
-      {
-        "id": "d21_mid_02",
-        "speaker": "Wachira (Beam)",
-        "portrait": "/assets/beam.jpg",
-        "text": "Admit เพื่อเก็บค่า observe ใช่ โอเค ยอมรับ แต่ beta-blocker คือความผิดพลาด และเราจะจับได้ถ้าไม่ต้องปิด chart คืนละสี่สิบใบเพื่อให้ถึงตัวเลขที่มาลีคิดขึ้นมาเอง",
-        "choices": [
+        "triggerMinute": 240,
+        "cutscene": [
           {
-            "text": "รายงานอุบัติการณ์ตามระบบ และระบุสาเหตุเชิงระบบด้วย",
-            "nextId": "d21_mid_03a",
-            "karmaEffect": 15,
-            "xpEffect": 20
+            "id": "d21_mid_01",
+            "speaker": "Wachira (Beam)",
+            "portrait": "/assets/beam.jpg",
+            "text": "เราไม่ได้ปลอมอะไร ระบบดึง V/S จาก triage มาเอง เรากด accept ทุกคนก็กด accept รู้ไหมว่าเวรนึงเราปิด chart กี่ใบ",
+            "nextId": "d21_mid_02"
           },
           {
-            "text": "แก้ที่คนไข้ ไม่พูดอะไร บีมเองก็จมน้ำอยู่",
-            "nextId": "d21_mid_03b",
-            "karmaEffect": -5,
-            "xpEffect": 10,
-            "flagEffect": "PROTECTED_BEAM"
+            "id": "d21_mid_02",
+            "speaker": "Wachira (Beam)",
+            "portrait": "/assets/beam.jpg",
+            "text": "Admit เพื่อเก็บค่า observe ใช่ โอเค ยอมรับ แต่ beta-blocker คือความผิดพลาด และเราจะจับได้ถ้าไม่ต้องปิด chart คืนละสี่สิบใบเพื่อให้ถึงตัวเลขที่มาลีคิดขึ้นมาเอง",
+            "choices": [
+              {
+                "text": "รายงานอุบัติการณ์ตามระบบ และระบุสาเหตุเชิงระบบด้วย",
+                "nextId": "d21_mid_03a",
+                "karmaEffect": 15,
+                "xpEffect": 20
+              },
+              {
+                "text": "แก้ที่คนไข้ ไม่พูดอะไร บีมเองก็จมน้ำอยู่",
+                "nextId": "d21_mid_03b",
+                "karmaEffect": -5,
+                "xpEffect": 10,
+                "flagEffect": "PROTECTED_BEAM"
+              }
+            ]
+          },
+          {
+            "id": "d21_mid_03a",
+            "speaker": "Wachira (Beam)",
+            "portrait": "/assets/beam.jpg",
+            "text": "เธอเขียนชื่อเราลงในรายงานอุบัติการณ์ เป็นลายลักษณ์อักษร เธอมาหาเราก่อนก็ได้ ถ้าเป็นเรา เราจะไปหาเธอก่อน"
+          },
+          {
+            "id": "d21_mid_03b",
+            "speaker": "Wachira (Beam)",
+            "portrait": "/assets/beam.jpg",
+            "text": "ขอบใจนะ พูดจริง เราจะไม่ลืมเรื่องนี้"
           }
         ]
       },
       {
-        "id": "d21_mid_03a",
-        "speaker": "Wachira (Beam)",
-        "portrait": "/assets/beam.jpg",
-        "text": "เธอเขียนชื่อเราลงในรายงานอุบัติการณ์ เป็นลายลักษณ์อักษร เธอมาหาเราก่อนก็ได้ ถ้าเป็นเรา เราจะไปหาเธอก่อน"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d21_x_mid_01",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "คนไข้เตียง 8 ตื่นแล้วค่ะ ถามว่าเมื่อคืนเขาเป็นอะไร หมอจะบอกเขาว่ายังไงคะ",
+            "portrait": "/assets/kanyarat.jpg",
+            "choices": [
+              {
+                "text": "บอกตรงๆ ว่าได้ยาที่ไม่ควรได้ และเรากำลังดูแลอยู่",
+                "nextId": "d21_x_mid_r1"
+              },
+              {
+                "text": "บอกว่าหัวใจเต้นช้าไปหน่อย ตอนนี้ดีขึ้นแล้ว",
+                "nextId": "d21_x_mid_r2"
+              }
+            ]
+          },
+          {
+            "id": "d21_x_mid_r1",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "เขาโกรธนิดหน่อยค่ะ แล้วก็ขอบคุณที่บอก คนส่วนใหญ่ขอบคุณที่ไม่ถูกปิดบัง มากกว่าที่ไม่มีอะไรผิดพลาด",
+            "portrait": "/assets/kanyarat.jpg"
+          },
+          {
+            "id": "d21_x_mid_r2",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "จริงทุกคำค่ะ แต่ไม่ครบ พี่ไม่ว่าอะไรหรอก แค่บอกไว้ว่าสักวันเขาจะได้อ่าน chart ของตัวเอง",
+            "portrait": "/assets/kanyarat.jpg"
+          }
+        ]
       },
       {
-        "id": "d21_mid_03b",
-        "speaker": "Wachira (Beam)",
-        "portrait": "/assets/beam.jpg",
-        "text": "ขอบใจนะ พูดจริง เราจะไม่ลืมเรื่องนี้"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d21_x_rounds_01",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "ไข้ ปวดน่อง ตาแดง มีประวัติลุยน้ำ คิดถึง leptospirosis ค่ะ ให้ antibiotic เร็ว เลือดออกในปอดไปเร็วมาก",
+            "portrait": "/assets/kanyarat.jpg",
+            "nextId": "d21_x_rounds_02"
+          },
+          {
+            "id": "d21_x_rounds_02",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "variceal bleeding ให้ antibiotic กับ vasoactive drug ตั้งแต่ ER ส่องกล้องภายใน 12 ชั่วโมง และอย่าให้เลือดจน Hb เกินราว 7 ถึง 8",
+            "portrait": "/assets/kitipong.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -4707,7 +5554,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d21_end_02",
         "speaker": "Dr. Kitipong (Ajarn Kit)",
         "portrait": "/assets/kitipong.jpg",
-        "text": "นี่คือส่วนที่ไม่มีใครสอน near miss ครั้งนี้ไม่ได้เกิดจากหมอวชิระ มันเกิดจากเป้าการปิด chart และคนที่เปลี่ยนเป้าการปิด chart ได้ไม่ใช่หมอ นั่นคือสิ่งที่คุณสู้อยู่จริงๆ และมันไม่มีหน้าให้โกรธ"
+        "text": "นี่คือส่วนที่ไม่มีใครสอน near miss ครั้งนี้ไม่ได้เกิดจากหมอวชิระ มันเกิดจากเป้าการปิด chart และคนที่เปลี่ยนเป้าการปิด chart ได้ไม่ใช่หมอ นั่นคือสิ่งที่คุณสู้อยู่จริงๆ และมันไม่มีหน้าให้โกรธ",
+        "nextId": "d21_x_post_01"
+      },
+      {
+        "id": "d21_x_post_01",
+        "speaker": "Narrator",
+        "text": "แถบสีเขียวข้างชื่อบีมขึ้นอีกครั้งตอนห้าโมงเย็น คนไข้เตียง 8 ยังนอนอยู่ HR 64"
       }
     ],
     "cases": [
@@ -4718,6 +5571,12 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "22": {
     "startShiftEvents": [
+      {
+        "id": "d22_x_pre_01",
+        "speaker": "Narrator",
+        "text": "ทั้งเช้าหมอรู้สึกว่ามีคนมองอยู่ตลอด อาจเป็นกล้องวงจรปิด อาจเป็นใจตัวเอง",
+        "nextId": "d22_start_01"
+      },
       {
         "id": "d22_start_01",
         "speaker": "Dr. Napassorn (Pi Nam)",
@@ -4789,24 +5648,72 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d22_mid_01",
-        "speaker": "Khun Malinee (Khun Mali)",
-        "portrait": "/assets/malinee.jpg",
-        "text": "ระบบรักษาความปลอดภัยแจ้งว่ามีบัตรผ่านประตูชั้นใต้ดินตอน 09:14 น. เป็นบัตรของคุณหมอค่ะ ห้องเก็บของไม่ใช่พื้นที่ทาง clinical คุณหมอต้องการอะไรหรือเปล่าคะ",
-        "nextId": "d22_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d22_mid_01",
+            "speaker": "Khun Malinee (Khun Mali)",
+            "portrait": "/assets/malinee.jpg",
+            "text": "ระบบรักษาความปลอดภัยแจ้งว่ามีบัตรผ่านประตูชั้นใต้ดินตอน 09:14 น. เป็นบัตรของคุณหมอค่ะ ห้องเก็บของไม่ใช่พื้นที่ทาง clinical คุณหมอต้องการอะไรหรือเปล่าคะ",
+            "nextId": "d22_mid_02"
+          },
+          {
+            "id": "d22_mid_02",
+            "speaker": "You",
+            "portrait": "/assets/player.jpg",
+            "text": "ลงบันไดผิดครับ/ค่ะ ตึกนี้บันไดเยอะเกิน หน้าตาเหมือนกันหมด",
+            "nextId": "d22_mid_03"
+          },
+          {
+            "id": "d22_mid_03",
+            "speaker": "Khun Malinee (Khun Mali)",
+            "portrait": "/assets/malinee.jpg",
+            "text": "ใช่ค่ะ ดิฉันทำงานที่นี่เก้าปี ยังลงผิดอยู่เลย"
+          }
+        ]
       },
       {
-        "id": "d22_mid_02",
-        "speaker": "You",
-        "portrait": "/assets/player.jpg",
-        "text": "ลงบันไดผิดครับ/ค่ะ ตึกนี้บันไดเยอะเกิน หน้าตาเหมือนกันหมด",
-        "nextId": "d22_mid_03"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d22_x_mid_01",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "พี่ทำข้าวผัดมาเกินค่ะ เอาไปกินในห้องพัก อย่ากินหน้าจอ ทุกจอในตึกนี้มีคนมองอยู่",
+            "portrait": "/assets/kanyarat.jpg",
+            "nextId": "d22_x_mid_02"
+          },
+          {
+            "id": "d22_x_mid_02",
+            "speaker": "You",
+            "text": "พี่ไก่หมายความว่ายังไงครับ/คะ",
+            "portrait": "/assets/player.jpg",
+            "nextId": "d22_x_mid_03"
+          },
+          {
+            "id": "d22_x_mid_03",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "หมายถึงข้าวผัดค่ะ กินให้หมด",
+            "portrait": "/assets/kanyarat.jpg"
+          }
+        ]
       },
       {
-        "id": "d22_mid_03",
-        "speaker": "Khun Malinee (Khun Mali)",
-        "portrait": "/assets/malinee.jpg",
-        "text": "ใช่ค่ะ ดิฉันทำงานที่นี่เก้าปี ยังลงผิดอยู่เลย"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d22_x_rounds_01",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "necrotizing fasciitis สัญญาณคือปวดมากกว่าที่แผลบอก แผลโดนน้ำทะเลหรือกินอาหารทะเลดิบในคนเป็นโรคตับ คิดถึง Vibrio ตามศัลย์ไป debride เร็ว",
+            "portrait": "/assets/kitipong.jpg",
+            "nextId": "d22_x_rounds_02"
+          },
+          {
+            "id": "d22_x_rounds_02",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "tetanus ห้องเงียบ ไฟมืด แตะตัวให้น้อยที่สุดค่ะ ให้ HTIG ให้ metronidazole แล้วคุมเกร็งด้วย benzodiazepine",
+            "portrait": "/assets/kanyarat.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -4828,7 +5735,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d22_end_03",
         "speaker": "Nurse Kanyarat (Pi Kai)",
         "portrait": "/assets/kanyarat.jpg",
-        "text": "เพราะพี่เห็น intern ผ่านแผนกนี้มาสี่คน และหมอเป็นคนเดียวที่เคยถามพี่ว่าพี่คิดยังไงกับคนไข้ เหตุผลมีแค่นั้น ไม่ได้ยิ่งใหญ่อะไรหรอก"
+        "text": "เพราะพี่เห็น intern ผ่านแผนกนี้มาสี่คน และหมอเป็นคนเดียวที่เคยถามพี่ว่าพี่คิดยังไงกับคนไข้ เหตุผลมีแค่นั้น ไม่ได้ยิ่งใหญ่อะไรหรอก",
+        "nextId": "d22_x_post_01"
+      },
+      {
+        "id": "d22_x_post_01",
+        "speaker": "Narrator",
+        "text": "คืนนั้นหมอเอากระเป๋านอนด้วย วางไว้ข้างหมอน ใกล้กว่ามือถือ"
       }
     ],
     "cases": [
@@ -4839,6 +5752,12 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "23": {
     "startShiftEvents": [
+      {
+        "id": "d23_x_pre_01",
+        "speaker": "Narrator",
+        "text": "อ.กิตไม่เคยเรียกใครเข้าห้องตอนเช้า วันนี้เรียก เลขายกเลิกนัดให้สามนัด",
+        "nextId": "d23_start_01"
+      },
       {
         "id": "d23_start_01",
         "speaker": "Dr. Kitipong (Ajarn Kit)",
@@ -4885,7 +5804,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d23_start_04a",
         "speaker": "Dr. Kitipong (Ajarn Kit)",
         "portrait": "/assets/kitipong.jpg",
-        "text": "ถ้าคุณยื่นก่อน และระบุชื่อผม ผมจะไม่ปฏิเสธอะไรเลย นั่นไม่ใช่ความกล้า มันคือความกล้าแบบที่ถูกที่สุดเท่าที่มี แต่มันคือสิ่งที่ผมมี มันเป็นของจริง และคุณควรรับไว้"
+        "text": "ถ้าคุณยื่นก่อน และระบุชื่อผม ผมจะไม่ปฏิเสธอะไรเลย นั่นไม่ใช่ความกล้าหรอก เป็นความกล้าราคาถูกที่สุดเท่าที่มี แต่ผมมีแค่นี้ และมันเป็นของจริง คุณควรรับไว้"
       },
       {
         "id": "d23_start_04b",
@@ -4897,29 +5816,76 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d23_start_04c",
         "speaker": "Dr. Kitipong (Ajarn Kit)",
         "portrait": "/assets/kitipong.jpg",
-        "text": "คุณจะไปได้ดีที่นี่ ผมหมายความแบบนั้นในฐานะคำที่แย่ที่สุดที่ผมเคยพูดกับหมอด้วยกัน"
+        "text": "คุณจะไปได้ดีที่นี่ และนั่นคือคำที่แย่ที่สุดที่ผมเคยพูดกับหมอด้วยกัน"
       }
     ],
     "midShiftEvents": [
       {
-        "id": "d23_mid_01",
-        "speaker": "Nurse Kanyarat (Pi Kai)",
-        "portrait": "/assets/kanyarat.jpg",
-        "text": "Resus 1 cardiac arrest ค่ะ เป็นคุณอนุวัฒน์ คนที่ยื่นซองนั่นแหละ อายุ 61 ล้มที่ฟิตเนส",
-        "nextId": "d23_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d23_mid_01",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "portrait": "/assets/kanyarat.jpg",
+            "text": "Resus 1 cardiac arrest ค่ะ เป็นคุณอนุวัฒน์ คนที่ยื่นซองนั่นแหละ อายุ 61 ล้มที่ฟิตเนส",
+            "nextId": "d23_mid_02"
+          },
+          {
+            "id": "d23_mid_02",
+            "speaker": "Narrator",
+            "portrait": "",
+            "text": "VF มือของหมออยู่บน paddle แล้ว ก่อนจะคิดจบด้วยซ้ำว่าเขาคือใคร",
+            "nextId": "d23_mid_03"
+          },
+          {
+            "id": "d23_mid_03",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "portrait": "/assets/kitipong.jpg",
+            "text": "22 นาที แล้วคุณก็ดึงเขากลับมาได้ จะคิดยังไงกับเขาก็ตาม นั่นคืองานที่สะอาด นี่คือส่วนของงานที่ไม่มีใครซื้อได้ และเป็นเหตุผลที่บางคนในพวกเรายังอยู่ที่นี่"
+          }
+        ]
       },
       {
-        "id": "d23_mid_02",
-        "speaker": "Narrator",
-        "portrait": "",
-        "text": "VF มือของหมออยู่บน paddle แล้ว ก่อนจะคิดจบด้วยซ้ำว่าเขาคือใคร",
-        "nextId": "d23_mid_03"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d23_x_mid_01",
+            "speaker": "Narrator",
+            "text": "หลังคุณอนุวัฒน์ขึ้น ICU มือของหมอยังสั่นอยู่ ถือแก้วน้ำแล้วน้ำกระเพื่อม",
+            "nextId": "d23_x_mid_02"
+          },
+          {
+            "id": "d23_x_mid_02",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "สั่นแปลว่าทำเต็มที่ค่ะ คนที่มือไม่สั่นหลัง code ยี่สิบนาที พี่ห่วงมากกว่า",
+            "portrait": "/assets/kanyarat.jpg",
+            "nextId": "d23_x_mid_03"
+          },
+          {
+            "id": "d23_x_mid_03",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "นั่งสักห้านาที นี่ไม่ใช่คำสั่งหัวหน้าแผนก เป็นคำแนะนำจากคนที่มีเครื่องกระตุกหัวใจอยู่ในอก",
+            "portrait": "/assets/kitipong.jpg"
+          }
+        ]
       },
       {
-        "id": "d23_mid_03",
-        "speaker": "Dr. Kitipong (Ajarn Kit)",
-        "portrait": "/assets/kitipong.jpg",
-        "text": "22 นาที แล้วคุณก็ดึงเขากลับมาได้ จะคิดยังไงกับเขาก็ตาม นั่นคืองานที่สะอาด นี่คือส่วนของงานที่ไม่มีใครซื้อได้ และเป็นเหตุผลที่บางคนในพวกเรายังอยู่ที่นี่"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d23_x_rounds_01",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "thyroid storm ลำดับสำคัญ beta-blocker ก่อน แล้ว PTU ก่อน iodine อย่างน้อยหนึ่งชั่วโมง ให้สลับกันต่อมไทรอยด์จะได้วัตถุดิบไปทำฮอร์โมนเพิ่ม",
+            "portrait": "/assets/kitipong.jpg",
+            "nextId": "d23_x_rounds_02"
+          },
+          {
+            "id": "d23_x_rounds_02",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "ส่วนคุณอนุวัฒน์ ที่หมอไม่หยุดกดหน้าอก ไม่มีใน protocol ข้อไหนเลยค่ะ มันมาจากตัวหมอเอง",
+            "portrait": "/assets/kanyarat.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -4941,7 +5907,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d23_end_03",
         "speaker": "Khun Anuwat (VIP)",
         "portrait": "/assets/anuwat.jpg",
-        "text": "ตอนบอร์ดประชุม และมันจะประชุมแน่ จำไว้ว่าผมมีหนึ่งเสียงกับความจำที่ยาว นั่นไม่ใช่คำขู่นะคุณหมอ ครั้งนี้ไม่ใช่คำขู่"
+        "text": "ตอนบอร์ดประชุม และมันจะประชุมแน่ จำไว้ว่าผมมีหนึ่งเสียงกับความจำที่ยาว นั่นไม่ใช่คำขู่นะคุณหมอ ครั้งนี้ไม่ใช่คำขู่",
+        "nextId": "d23_x_post_01"
+      },
+      {
+        "id": "d23_x_post_01",
+        "speaker": "Narrator",
+        "text": "คุณอนุวัฒน์ให้เลขาส่งดอกไม้มาที่ ER ไม่มีการ์ด คุณมาลีวางไว้ที่ nurse station แล้วไม่มีใครย้ายไปไหน"
       }
     ],
     "cases": [
@@ -4952,6 +5924,12 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "24": {
     "startShiftEvents": [
+      {
+        "id": "d24_x_pre_01",
+        "speaker": "Narrator",
+        "text": "เช้าวันพุธ ทุกคนในตึกพูดเบากว่าปกติ เหมือนมีคนป่วยหนักอยู่ห้องข้างๆ ทั้งที่ห้องข้างๆ คือห้องประชุม",
+        "nextId": "d24_start_01"
+      },
       {
         "id": "d24_start_01",
         "speaker": "Narrator",
@@ -4975,24 +5953,72 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d24_mid_01",
-        "speaker": "Wachira (Beam)",
-        "portrait": "/assets/beam.jpg",
-        "text": "มาลีถามเราว่าเธอเคยคุยเรื่องการเรียกเก็บเงินกับหมอนภัสสรไหม ในห้องปิด มีทนายนั่งมุมห้องไม่จดอะไรเลย",
-        "nextId": "d24_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d24_mid_01",
+            "speaker": "Wachira (Beam)",
+            "portrait": "/assets/beam.jpg",
+            "text": "มาลีถามเราว่าเธอเคยคุยเรื่องการเรียกเก็บเงินกับหมอนภัสสรไหม ในห้องปิด มีทนายนั่งมุมห้องไม่จดอะไรเลย",
+            "nextId": "d24_mid_02"
+          },
+          {
+            "id": "d24_mid_02",
+            "speaker": "You",
+            "portrait": "/assets/player.jpg",
+            "text": "แล้วบีมตอบว่าอะไร",
+            "nextId": "d24_mid_03"
+          },
+          {
+            "id": "d24_mid_03",
+            "speaker": "Wachira (Beam)",
+            "portrait": "/assets/beam.jpg",
+            "text": "เราบอกว่าไม่รู้ ตอนสิบโมงมันก็จริง แต่พอสิบโมงสี่สิบ ตอนที่เราคิดออกว่าเขาถามทำไม มันก็ไม่จริงแล้ว ตอนนี้เธอรู้แล้วว่าเรารู้ และรู้ด้วยว่าเรายังไม่ได้บอกเขา"
+          }
+        ]
       },
       {
-        "id": "d24_mid_02",
-        "speaker": "You",
-        "portrait": "/assets/player.jpg",
-        "text": "แล้วบีมตอบว่าอะไร",
-        "nextId": "d24_mid_03"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d24_x_mid_01",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "หมอคะ ทนายโรงพยาบาลมาถามพี่ว่าหมอกินข้าวที่ไหน ถามละเอียดมาก พี่บอกว่าหมอไม่เคยกินข้าวเลย",
+            "portrait": "/assets/kanyarat.jpg",
+            "nextId": "d24_x_mid_02"
+          },
+          {
+            "id": "d24_x_mid_02",
+            "speaker": "You",
+            "text": "จริงด้วยครับ/ค่ะ อาทิตย์นี้ผม/ฉันยังไม่ได้กินข้าวดีๆ สักมื้อ",
+            "portrait": "/assets/player.jpg",
+            "nextId": "d24_x_mid_03"
+          },
+          {
+            "id": "d24_x_mid_03",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "งั้นเย็นนี้กินกับพี่ ร้านข้าวต้มฝั่งตรงข้าม ไม่มีกล้อง ไม่มีทนาย มีแต่แมวร้านที่ชอบขโมยกุ้ง",
+            "portrait": "/assets/kanyarat.jpg"
+          }
+        ]
       },
       {
-        "id": "d24_mid_03",
-        "speaker": "Wachira (Beam)",
-        "portrait": "/assets/beam.jpg",
-        "text": "เราบอกว่าไม่รู้ ซึ่งจริงตอนสิบโมง แล้วก็เลิกจริงตอนสิบโมงสี่สิบ ตอนที่เราคิดออกว่าเขาถามทำไม ตอนนี้เธอรู้แล้วว่าเรารู้ และรู้ด้วยว่าเรายังไม่ได้บอกเขา"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d24_x_rounds_01",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "myxedema coma ให้ hydrocortisone ก่อนหรือพร้อม levothyroxine IV เพราะอาจมี adrenal insufficiency ซ่อนอยู่",
+            "portrait": "/assets/kitipong.jpg",
+            "nextId": "d24_x_rounds_02"
+          },
+          {
+            "id": "d24_x_rounds_02",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "methanol ตาพร่ามัวร่วมกับ high anion gap metabolic acidosis ให้ fomepizole หรือ ethanol แล้วนัดฟอกไตให้เร็ว",
+            "portrait": "/assets/kitipong.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -5007,7 +6033,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d24_end_02",
         "speaker": "Dr. Napassorn (Pi Nam)",
         "portrait": "/assets/napassorn.jpg",
-        "text": "ลูกสาวถามว่าทำไมแม่กลับบ้านก่อนมืด พี่บอกว่าแม่ทำบางอย่างเสร็จแล้ว สี่ปี เพื่อพูดประโยคที่ใช้เวลาเก้าวินาที"
+        "text": "ลูกสาวถามว่าทำไมแม่กลับบ้านก่อนมืด พี่บอกว่าแม่ทำบางอย่างเสร็จแล้ว สี่ปี เพื่อพูดประโยคที่ใช้เวลาเก้าวินาที",
+        "nextId": "d24_x_post_01"
+      },
+      {
+        "id": "d24_x_post_01",
+        "speaker": "Narrator",
+        "text": "พี่น้ำเดินออกประตูหน้าโรงพยาบาลตอนสี่โมงเย็น ไม่มีใครส่ง ยกเว้นพี่ไก่ ที่ยืนอยู่ที่ป้ายรถเมล์จนรถออก"
       }
     ],
     "cases": [
@@ -5018,6 +6050,12 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "25": {
     "startShiftEvents": [
+      {
+        "id": "d25_x_pre_01",
+        "speaker": "Narrator",
+        "text": "วันสุดท้ายที่เลิฟลี่ ล็อบบี้ยังหอมมะลิเหมือนวันแรก แต่ตอนนี้หมอได้กลิ่นอย่างอื่นที่อยู่ข้างใต้แล้ว",
+        "nextId": "d25_start_01"
+      },
       {
         "id": "d25_start_01",
         "speaker": "Khun Malinee (Khun Mali)",
@@ -5030,7 +6068,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d25_start_02",
         "speaker": "Khun Malinee (Khun Mali)",
         "portrait": "/assets/malinee.jpg",
-        "text": "ถ้าจะมีค่าอะไร ซึ่งไม่มีหรอกค่ะ ดิฉันไม่ได้ขอเขา เขาเสนอเอง นั่นคือส่วนของตึกนี้ที่ดิฉันไม่เคยชินเลย ไม่เคยมีใครต้องขอ",
+        "text": "ถ้าจะช่วยอะไรได้ ซึ่งคงไม่ช่วยหรอกค่ะ ดิฉันไม่ได้ขอให้เขาพูด เขาเสนอเอง ตึกนี้มีแบบนี้แหละที่ดิฉันไม่เคยชินเลย ไม่มีใครต้องขอสักครั้ง",
         "nextId": "d25_start_03"
       },
       {
@@ -5049,17 +6087,57 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d25_mid_01",
-        "speaker": "Dr. Kitipong (Ajarn Kit)",
-        "portrait": "/assets/kitipong.jpg",
-        "text": "[IF_FLAG:KIT_ALLY] ผมให้การกับแพทยสภาไปตอนสิบเอ็ดโมงเช้า 40 หน้า ระบุชื่อบริษัทที่ปรึกษาสิงคโปร์และระบุชื่อสมชาย ใบอนุญาตผมจะถูกพักภายในปี และผมพบว่ามันไม่ได้แย่อย่างที่คิดไว้",
-        "nextId": "d25_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d25_mid_01",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "portrait": "/assets/kitipong.jpg",
+            "text": "[IF_FLAG:KIT_ALLY] ผมให้การกับแพทยสภาไปตอนสิบเอ็ดโมงเช้า 40 หน้า ระบุชื่อบริษัทที่ปรึกษาสิงคโปร์และระบุชื่อสมชาย ใบอนุญาตผมจะถูกพักภายในปี และผมพบว่ามันไม่ได้แย่อย่างที่คิดไว้",
+            "nextId": "d25_mid_02"
+          },
+          {
+            "id": "d25_mid_02",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "portrait": "/assets/kitipong.jpg",
+            "text": "[IF_FLAG:CORRUPT_DOC] คุณจะทำเรื่องพวกนี้เก่งกว่าผมเยอะ และนั่นไม่ใช่คำชม อย่างน้อยผมยังรู้สึกอึดอัด ความอึดอัดก็เหมือนเบรก แต่คุณดูเหมือนไม่มีเบรกเลย"
+          }
+        ]
       },
       {
-        "id": "d25_mid_02",
-        "speaker": "Dr. Kitipong (Ajarn Kit)",
-        "portrait": "/assets/kitipong.jpg",
-        "text": "[IF_FLAG:CORRUPT_DOC] คุณจะทำเรื่องพวกนี้เก่งกว่าผมเยอะ และนั่นไม่ใช่คำชม อย่างน้อยผมยังรู้สึกอึดอัด ความอึดอัดคือเบรกแบบหนึ่ง คุณดูเหมือนไม่มีเบรก"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d25_x_mid_01",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "พยาบาลเวรดึกฝากขนมมาค่ะ เขาบอกว่าหมอเป็นคนเดียวที่จำชื่อเขาได้ตั้งแต่วันที่สอง",
+            "portrait": "/assets/kanyarat.jpg",
+            "nextId": "d25_x_mid_02"
+          },
+          {
+            "id": "d25_x_mid_02",
+            "speaker": "Narrator",
+            "text": "ขนมเปียกปูนหนึ่งกล่อง กับโน้ตลายมือ เขียนว่า ขอบคุณที่ถาม"
+          }
+        ]
+      },
+      {
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d25_x_rounds_01",
+            "speaker": "Dr. Kitipong (Ajarn Kit)",
+            "text": "status epilepticus ให้ benzodiazepine ภายในห้านาที ถ้าไม่หยุด ยาตัวที่สองต้องเข้าภายในยี่สิบนาที",
+            "portrait": "/assets/kitipong.jpg",
+            "nextId": "d25_x_rounds_02"
+          },
+          {
+            "id": "d25_x_rounds_02",
+            "speaker": "Nurse Kanyarat (Pi Kai)",
+            "text": "คนไข้ปวดหลังเรื้อรังที่ติด opioid ไม่ใช่คนขี้โกงนะคะ เขาป่วยสองโรค และต้องได้รักษาทั้งสองโรค",
+            "portrait": "/assets/kanyarat.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -5081,7 +6159,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d25_end_03",
         "speaker": "Dr. Ekkarat (Pi Ek) (phone)",
         "portrait": "/assets/ekkarat.jpg",
-        "text": "พี่ใจบอกแล้ว สรุปน้องจะกลับไปที่นั่น พร้อมชื่อเขาบนแบบฟอร์ม พี่บอกว่าราคามันมีจริง แต่ไม่เคยบอกว่ามันไม่คุ้มที่จะจ่าย แย่เมื่อไหร่โทรมา และมันจะแย่ราวๆ เดือนที่สี่"
+        "text": "พี่ใจบอกแล้ว สรุปน้องจะกลับไปที่นั่น พร้อมชื่อเขาบนแบบฟอร์ม พี่บอกว่าราคามันมีจริง แต่ไม่เคยบอกว่ามันไม่คุ้มที่จะจ่าย แย่เมื่อไหร่โทรมา และมันจะแย่ราวๆ เดือนที่สี่",
+        "nextId": "d25_x_post_01"
+      },
+      {
+        "id": "d25_x_post_01",
+        "speaker": "Narrator",
+        "text": "หมอเก็บของออกจากล็อกเกอร์ โน้ตยินดีต้อนรับใบเดิมยังแปะอยู่บนตู้เย็น หมอเขียนต่อท้ายว่า ขอบคุณครับ/ค่ะ แล้วทิ้งไว้ให้ intern คนต่อไป"
       }
     ],
     "cases": [
@@ -5092,6 +6176,18 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "26": {
     "startShiftEvents": [
+      {
+        "id": "d26_x_pre_01",
+        "speaker": "Narrator",
+        "text": "รามาเซ็นทรัล ประตูอัตโนมัติอันใหม่เปิดรอก่อนหมอจะเดินถึง ป้ายขอบคุณครอบครัวคุณวิชัยยังติดอยู่ที่เดิม สีซีดลงนิดหน่อย",
+        "nextId": "d26_x_pre_02"
+      },
+      {
+        "id": "d26_x_pre_02",
+        "speaker": "Narrator",
+        "text": "ขนมนอนอยู่บนรถเข็นยาคันเดิม อ้วนขึ้น ขี้เกียจขึ้น และไม่ได้ลืมหน้าใครเลย",
+        "nextId": "d26_start_01"
+      },
       {
         "id": "d26_start_01",
         "speaker": "Dr. Pimchanok (Pi Pim)",
@@ -5122,44 +6218,92 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d26_mid_01",
-        "speaker": "Tawan (Nong Wan)",
-        "portrait": "/assets/tawan.jpg",
-        "text": "พี่ครับ ผมเป็น นศพ. ปีห้าในทีมพี่ ผมยังไม่ได้นอน ยังไม่ได้กินข้าว และไม่รู้ว่าต้องทำอะไร",
-        "nextId": "d26_mid_02"
-      },
-      {
-        "id": "d26_mid_02",
-        "speaker": "Narrator",
-        "portrait": "",
-        "text": "น้องยืนอยู่ตรงที่หมอเคยยืนในวันแรกพอดี ยี่สิบห้าวันก่อนในเวลาของเกม และนานเป็นยุคในทุกความหมายอื่น",
-        "choices": [
+        "triggerMinute": 240,
+        "cutscene": [
           {
-            "text": "ให้คนไข้น้องหนึ่งคน แล้วยืนอยู่ข้างหลังตอนน้องทำ",
-            "nextId": "d26_mid_03a",
-            "karmaEffect": 15,
-            "xpEffect": 20,
-            "flagEffect": "MENTORING_WAN"
+            "id": "d26_mid_01",
+            "speaker": "Tawan (Nong Wan)",
+            "portrait": "/assets/tawan.jpg",
+            "text": "พี่ครับ ผมเป็น นศพ. ปีห้าในทีมพี่ ผมยังไม่ได้นอน ยังไม่ได้กินข้าว และไม่รู้ว่าต้องทำอะไร",
+            "nextId": "d26_mid_02"
           },
           {
-            "text": "บอกให้น้องดูอย่างเดียว คืนนี้อย่าเข้ามาขวาง",
-            "nextId": "d26_mid_03b",
-            "karmaEffect": 0,
-            "xpEffect": 5
+            "id": "d26_mid_02",
+            "speaker": "Narrator",
+            "portrait": "",
+            "text": "น้องยืนอยู่ตรงที่หมอเคยยืนในวันแรกพอดี ยี่สิบห้าวันก่อนในเวลาของเกม และนานเป็นยุคในทุกความหมายอื่น",
+            "choices": [
+              {
+                "text": "ให้คนไข้น้องหนึ่งคน แล้วยืนอยู่ข้างหลังตอนน้องทำ",
+                "nextId": "d26_mid_03a",
+                "karmaEffect": 15,
+                "xpEffect": 20,
+                "flagEffect": "MENTORING_WAN"
+              },
+              {
+                "text": "บอกให้น้องดูอย่างเดียว คืนนี้อย่าเข้ามาขวาง",
+                "nextId": "d26_mid_03b",
+                "karmaEffect": 0,
+                "xpEffect": 5
+              }
+            ]
+          },
+          {
+            "id": "d26_mid_03a",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "portrait": "/assets/pimchanok.jpg",
+            "text": "น้องยืนอยู่ข้างหลังแทนที่จะทำเอง รู้ไหมว่าหายากแค่ไหนใน resident ปีหนึ่ง ส่วนใหญ่แย่ง syringe ไปเลย การสอนเสียเวลาคนไข้ละ 11 นาที และเป็นสิ่งเดียวที่อยู่นานกว่าตัวเรา"
+          },
+          {
+            "id": "d26_mid_03b",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "portrait": "/assets/pimchanok.jpg",
+            "text": "ปลอดภัย และเป็นวิธีผลิต นศพ. ปีหกที่ไม่เคยจับเข็ม ที่โคราชเคยมีคนยืนอยู่ข้างหลังน้อง ทั้งที่ทำเองเร็วกว่า"
           }
         ]
       },
       {
-        "id": "d26_mid_03a",
-        "speaker": "Dr. Pimchanok (Pi Pim)",
-        "portrait": "/assets/pimchanok.jpg",
-        "text": "น้องยืนอยู่ข้างหลังแทนที่จะทำเอง รู้ไหมว่าหายากแค่ไหนใน resident ปีหนึ่ง ส่วนใหญ่แย่ง syringe ไปเลย การสอนเสียเวลาคนไข้ละ 11 นาที และเป็นสิ่งเดียวที่อยู่นานกว่าตัวเรา"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d26_x_mid_01",
+            "speaker": "Dr. Bob",
+            "text": "น้อง ห้องพักแพทย์ เตียงริมหน้าต่างของพี่ เตียงริมประตูของน้อง เตียงตรงกลางของขนม อย่าไปเถียงกับขนม",
+            "portrait": "/assets/doctor.jpg",
+            "nextId": "d26_x_mid_02"
+          },
+          {
+            "id": "d26_x_mid_02",
+            "speaker": "Nurse Ann",
+            "text": "ห้องพักเปลี่ยนแอร์ใหม่แล้วค่ะ บ๊อบเป็นคนเขียนขอ สามปี สามฉบับ ทุกฉบับขึ้นต้นว่าด้วยความเคารพอย่างสูง",
+            "portrait": "/assets/nurse.jpg",
+            "nextId": "d26_x_mid_03"
+          },
+          {
+            "id": "d26_x_mid_03",
+            "speaker": "Dr. Bob",
+            "text": "แอน นั่นเป็นเอกสารราชการ ไม่ใช่เรื่องตลก",
+            "portrait": "/assets/doctor.jpg"
+          }
+        ]
       },
       {
-        "id": "d26_mid_03b",
-        "speaker": "Dr. Pimchanok (Pi Pim)",
-        "portrait": "/assets/pimchanok.jpg",
-        "text": "ปลอดภัย และเป็นวิธีผลิต นศพ. ปีหกที่ไม่เคยจับเข็ม ที่โคราชเคยมีคนยืนอยู่ข้างหลังน้อง ทั้งที่ทำเองเร็วกว่า"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d26_x_rounds_01",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "text": "ไฟฟ้าแรงสูง แผลข้างนอกเล็ก ข้างในอาจพังหมด ตาม CK กับ myoglobin และดู compartment syndrome ไว้",
+            "portrait": "/assets/pimchanok.jpg",
+            "nextId": "d26_x_rounds_02"
+          },
+          {
+            "id": "d26_x_rounds_02",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "text": "stroke เจาะ DTX ก่อนทุกครั้ง hypoglycemia เลียนแบบ stroke ได้เป๊ะ ส่วนผู้หญิงวัยเจริญพันธุ์ที่ช็อก ตรวจ UPT ทุกคน คิดถึง ectopic ไว้เสมอ",
+            "portrait": "/assets/pimchanok.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -5174,7 +6318,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d26_end_02",
         "speaker": "Nurse Ann",
         "portrait": "/assets/nurse.jpg",
-        "text": "และ อ.สมชายเซ็นสัญญา resident ของหมอเองกับมือ ลองคิดดูว่ามันแปลว่าอะไร เขาอยากให้หมออยู่ในตึก ที่ที่เขามองเห็น"
+        "text": "และ อ.สมชายเซ็นสัญญา resident ของหมอเองกับมือ ลองคิดดูว่ามันแปลว่าอะไร เขาอยากให้หมออยู่ในตึก ที่ที่เขามองเห็น",
+        "nextId": "d26_x_post_01"
+      },
+      {
+        "id": "d26_x_post_01",
+        "speaker": "Narrator",
+        "text": "ตีสอง หมอเดินผ่านเตียง 4 เตียงที่ลุงประสิทธิ์เคยนอน ตอนนี้มีเด็กหนุ่มนอนหลับอยู่ ข้อเท้าพันผ้า แม่นั่งหลับอยู่บนเก้าอี้ข้างๆ"
       }
     ],
     "cases": [
@@ -5185,6 +6335,19 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "27": {
     "startShiftEvents": [
+      {
+        "id": "d27_x_pre_01",
+        "speaker": "Nurse Ann",
+        "text": "ทุกคนใส่เสื้อกั๊กสีตามหน้าที่ค่ะ หมอสีเหลือง คุม triage ตัวใหญ่ไปหน่อย ช่างมันค่ะ",
+        "portrait": "/assets/nurse.jpg",
+        "nextId": "d27_x_pre_02"
+      },
+      {
+        "id": "d27_x_pre_02",
+        "speaker": "Narrator",
+        "text": "ป้ายสีแดง เหลือง เขียว ดำ วางเรียงอยู่บนโต๊ะ ป้ายสีดำเป็นปึกที่บางที่สุด และหนักที่สุด",
+        "nextId": "d27_start_01"
+      },
       {
         "id": "d27_start_01",
         "speaker": "Dr. Pimchanok (Pi Pim)",
@@ -5208,24 +6371,86 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d27_mid_01",
-        "speaker": "Tawan (Nong Wan)",
-        "portrait": "/assets/tawan.jpg",
-        "text": "พี่ครับ ผู้ชายในโซนแดง crush injury เขาขอน้ำ จับมือผมไว้ ผมไม่รู้จะปล่อยยังไง",
-        "nextId": "d27_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d27_mid_01",
+            "speaker": "Tawan (Nong Wan)",
+            "portrait": "/assets/tawan.jpg",
+            "text": "พี่ครับ ผู้ชายในโซนแดง crush injury เขาขอน้ำ จับมือผมไว้ ผมไม่รู้จะปล่อยยังไง",
+            "nextId": "d27_mid_02"
+          },
+          {
+            "id": "d27_mid_02",
+            "speaker": "You",
+            "portrait": "/assets/player.jpg",
+            "text": "งั้นไม่ต้องปล่อย รับงานนั้นงานเดียวแล้วทำให้เต็มที่ วัน นั่นเป็นงานจริงนะ ไม่ใช่รางวัลปลอบใจ",
+            "nextId": "d27_mid_03"
+          },
+          {
+            "id": "d27_mid_03",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "portrait": "/assets/pimchanok.jpg",
+            "text": "เข้ามา 19 รอด 17 ที่สามชั่วโมง สองคนที่เสียไปรอดไม่ได้ตั้งแต่ที่เกิดเหตุ ดีได้แค่นี้แหละ และพี่อยากให้น้องได้ยินว่ามันดี เพราะอีกชั่วโมงน้องจะคิดถึงแต่สองคนนั้น"
+          }
+        ]
       },
       {
-        "id": "d27_mid_02",
-        "speaker": "You",
-        "portrait": "/assets/player.jpg",
-        "text": "งั้นไม่ต้องปล่อย รับงานนั้นงานเดียวแล้วทำให้เต็มที่ วัน นั่นเป็นงานจริงนะ ไม่ใช่รางวัลปลอบใจ",
-        "nextId": "d27_mid_03"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d27_x_mid_01",
+            "speaker": "Narrator",
+            "text": "ช่วงพัก หมอเจอวันนั่งอยู่ที่บันไดหนีไฟ ถือขวดน้ำที่ยังไม่ได้เปิด",
+            "nextId": "d27_x_mid_02"
+          },
+          {
+            "id": "d27_x_mid_02",
+            "speaker": "Tawan (Nong Wan)",
+            "text": "พี่ครับ ผู้ชายที่ผมจับมือไว้ เขารอดนะครับ อยู่ห้องผ่าตัดแล้ว พี่พยาบาลบอกผม",
+            "portrait": "/assets/tawan.jpg",
+            "choices": [
+              {
+                "text": "นั่งลงข้างวันเงียบๆ จนน้ำในขวดหมด",
+                "nextId": "d27_x_mid_r1"
+              },
+              {
+                "text": "บอกวันว่าคืนนี้ไปกินข้าวด้วยกัน",
+                "nextId": "d27_x_mid_r2"
+              }
+            ]
+          },
+          {
+            "id": "d27_x_mid_r1",
+            "speaker": "Tawan (Nong Wan)",
+            "text": "ขอบคุณครับพี่ ผมไม่รู้ว่าต้องการอะไร จนพี่นั่งลง",
+            "portrait": "/assets/tawan.jpg"
+          },
+          {
+            "id": "d27_x_mid_r2",
+            "speaker": "Tawan (Nong Wan)",
+            "text": "ได้ครับ แต่ผมขอเลือกร้านนะ ร้านที่พี่บ๊อบเลือกเมื่อวานเค็มมาก",
+            "portrait": "/assets/tawan.jpg"
+          }
+        ]
       },
       {
-        "id": "d27_mid_03",
-        "speaker": "Dr. Pimchanok (Pi Pim)",
-        "portrait": "/assets/pimchanok.jpg",
-        "text": "เข้ามา 19 รอด 17 ที่สามชั่วโมง สองคนที่เสียไปรอดไม่ได้ตั้งแต่ที่เกิดเหตุ ดีได้แค่นี้แหละ และพี่อยากให้น้องได้ยินว่ามันดี เพราะอีกชั่วโมงน้องจะคิดถึงแต่สองคนนั้น"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d27_x_rounds_01",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "text": "crush injury ให้น้ำเกลือก่อนยกของที่ทับออก กันโพแทสเซียมพุ่งกับไตวาย",
+            "portrait": "/assets/pimchanok.jpg",
+            "nextId": "d27_x_rounds_02"
+          },
+          {
+            "id": "d27_x_rounds_02",
+            "speaker": "Dr. Bob",
+            "text": "triage ทำซ้ำ ไม่ได้ทำครั้งเดียว คนไข้เปลี่ยนสีได้ทุกสิบนาที ทั้งดีขึ้นและแย่ลง",
+            "portrait": "/assets/doctor.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -5240,7 +6465,14 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d27_end_02",
         "speaker": "Dr. Bob",
         "portrait": "/assets/doctor.jpg",
-        "text": "ในเมื่อวันนี้เราพูดตรงกันผิดปกติ ที่พี่ทำงานลัดขั้นตอนไม่ใช่เพราะขี้เกียจ มันคือปี 2564 พี่คุมแผนกนี้คนเดียวสี่เดือน ตัดสินใจคืนละสามร้อยเรื่อง การลัดขั้นตอนคือทางเดียวที่จะยังอยู่ตรงนั้นได้ แล้วพอคลื่นผ่านไป พี่หาปุ่มปิดมันไม่เจอ"
+        "text": "ในเมื่อวันนี้เราพูดตรงกันผิดปกติ ที่พี่ทำงานลัดขั้นตอนไม่ใช่เพราะขี้เกียจ มันคือปี 2564 พี่คุมแผนกนี้คนเดียวสี่เดือน ตัดสินใจคืนละสามร้อยเรื่อง การลัดขั้นตอนคือทางเดียวที่จะยังอยู่ตรงนั้นได้ แล้วพอคลื่นผ่านไป พี่หาปุ่มปิดมันไม่เจอ",
+        "nextId": "d27_x_post_01"
+      },
+      {
+        "id": "d27_x_post_01",
+        "speaker": "Nurse Ann",
+        "text": "บ๊อบไม่เคยเล่าเรื่องปี 2564 ให้ใครฟังเลยค่ะ หมอเป็นคนแรก อย่าเอาไปเล่าต่อนะคะ เขาจะโกรธพี่",
+        "portrait": "/assets/nurse.jpg"
       }
     ],
     "cases": [
@@ -5251,6 +6483,12 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "28": {
     "startShiftEvents": [
+      {
+        "id": "d28_x_pre_01",
+        "speaker": "Narrator",
+        "text": "ฝนตกตั้งแต่ตีห้า ห้องเก็บแฟ้มงานวิจัยอยู่ชั้นใต้ดิน กลิ่นอับชื้นกับกระดาษเก่า หลอดไฟดวงหนึ่งเสียมานาน",
+        "nextId": "d28_start_01"
+      },
       {
         "id": "d28_start_01",
         "speaker": "Nurse Ann",
@@ -5274,57 +6512,113 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d28_mid_01",
-        "speaker": "Prof. Somchai",
-        "portrait": "/assets/somchai.jpg",
-        "text": "คุณหมอ นั่งก่อน ผมเซ็นสัญญาคุณหมอเองกับมือ รู้ไหม ผลประเมินที่โคราชของคุณหมอดีที่สุดที่ผมอ่านในรอบสิบปี เอกราชสอนมาดี และใช่ ผมจำเอกราชได้",
-        "nextId": "d28_mid_02"
-      },
-      {
-        "id": "d28_mid_02",
-        "speaker": "Prof. Somchai",
-        "portrait": "/assets/somchai.jpg",
-        "text": "แฟ้มแพทยสภาจะปิดในอีกราวแปดเดือน เรื่องแบบนี้ปิดเสมอ ไม่ใช่เพราะการทุจริต แต่เพราะความเหนื่อยล้า ผมเลยจะเสนอสิ่งที่หายากจริงๆ ให้ ทุนวิจัย เฟลโลว์ต่างประเทศ เส้นทางศาสตราจารย์ ไม่ใช่เพื่อซื้อความเงียบ แต่เพื่อทำให้การคัดค้านของคุณหมอมีราคาแพง",
-        "choices": [
+        "triggerMinute": 240,
+        "cutscene": [
           {
-            "text": "ปฏิเสธ และบอกว่าใบ consent ถูกสแกนไปแล้ว",
-            "nextId": "d28_mid_03a",
-            "karmaEffect": 25,
-            "xpEffect": 30,
-            "flagEffect": "CONFRONTED_SOMCHAI"
+            "id": "d28_mid_01",
+            "speaker": "Prof. Somchai",
+            "portrait": "/assets/somchai.jpg",
+            "text": "คุณหมอ นั่งก่อน ผมเซ็นสัญญาคุณหมอเองกับมือ รู้ไหม ผลประเมินที่โคราชของคุณหมอดีที่สุดที่ผมอ่านในรอบสิบปี เอกราชสอนมาดี และใช่ ผมจำเอกราชได้",
+            "nextId": "d28_mid_02"
           },
           {
-            "text": "ไม่พูดอะไร จดบันทึกการประชุมไว้แล้วออกไป",
-            "nextId": "d28_mid_03b",
-            "karmaEffect": 5,
-            "xpEffect": 15
+            "id": "d28_mid_02",
+            "speaker": "Prof. Somchai",
+            "portrait": "/assets/somchai.jpg",
+            "text": "แฟ้มแพทยสภาจะปิดในอีกราวแปดเดือน เรื่องแบบนี้ปิดเสมอ ไม่ใช่เพราะการทุจริต แต่เพราะความเหนื่อยล้า ผมเลยจะเสนอสิ่งที่หายากจริงๆ ให้ ทุนวิจัย เฟลโลว์ต่างประเทศ เส้นทางศาสตราจารย์ ไม่ใช่เพื่อซื้อความเงียบ แต่เพื่อทำให้การคัดค้านของคุณหมอมีราคาแพง",
+            "choices": [
+              {
+                "text": "ปฏิเสธ และบอกว่าใบ consent ถูกสแกนไปแล้ว",
+                "nextId": "d28_mid_03a",
+                "karmaEffect": 25,
+                "xpEffect": 30,
+                "flagEffect": "CONFRONTED_SOMCHAI"
+              },
+              {
+                "text": "ไม่พูดอะไร จดบันทึกการประชุมไว้แล้วออกไป",
+                "nextId": "d28_mid_03b",
+                "karmaEffect": 5,
+                "xpEffect": 15
+              },
+              {
+                "text": "[IF_FLAG:CORRUPT_DOC] รับทุนเฟลโลว์",
+                "nextId": "d28_mid_03c",
+                "karmaEffect": -30,
+                "xpEffect": 20,
+                "flagEffect": "SOMCHAI_PROTEGE"
+              }
+            ]
           },
           {
-            "text": "[IF_FLAG:CORRUPT_DOC] รับทุนเฟลโลว์",
-            "nextId": "d28_mid_03c",
-            "karmaEffect": -30,
-            "xpEffect": 20,
-            "flagEffect": "SOMCHAI_PROTEGE"
+            "id": "d28_mid_03a",
+            "speaker": "Prof. Somchai",
+            "portrait": "/assets/somchai.jpg",
+            "text": "สแกนแล้ว แน่นอนอยู่แล้ว รู้ไหม เอกราชพูดประโยคเกือบเดียวกันกับผมในห้องนี้ เรียบเรียงดีกว่านิดหน่อย ตอนนี้เขาอยู่เวรดึกที่โคราช อายุ 46 และจะไม่ได้เป็นรองศาสตราจารย์ ผมไม่ได้ทำแบบนั้นกับเขา ระบบแค่ไม่มีชั้นวางสำหรับคนแบบเขา และมันมีชั้นวางสำหรับผม"
+          },
+          {
+            "id": "d28_mid_03b",
+            "speaker": "Prof. Somchai",
+            "portrait": "/assets/somchai.jpg",
+            "text": "ฉลาดดี ความเงียบไม่ได้แปลว่าเห็นด้วย และผมก็ไม่เคยต้องการให้ใครเห็นด้วย ผมต้องการแค่ความเงียบ"
+          },
+          {
+            "id": "d28_mid_03c",
+            "speaker": "Prof. Somchai",
+            "portrait": "/assets/somchai.jpg",
+            "text": "ดี เข้าใจไว้ว่าคุณหมอรับอะไรไป ไม่ใช่เงิน แต่เป็นชั้นวาง ต่อจากนี้ทุกเรื่องที่คุณหมอคัดค้านจะมีราคาเป็นชั้นวางนั้น แล้วคุณหมอจะพบว่าตัวเองคัดค้านน้อยลงทุกปี โดยไม่เคยรู้ตัวว่าตัดสินใจไปตอนไหน"
           }
         ]
       },
       {
-        "id": "d28_mid_03a",
-        "speaker": "Prof. Somchai",
-        "portrait": "/assets/somchai.jpg",
-        "text": "สแกนแล้ว แน่นอนอยู่แล้ว รู้ไหม เอกราชพูดประโยคเกือบเดียวกันกับผมในห้องนี้ เรียบเรียงดีกว่านิดหน่อย ตอนนี้เขาอยู่เวรดึกที่โคราช อายุ 46 และจะไม่ได้เป็นรองศาสตราจารย์ ผมไม่ได้ทำแบบนั้นกับเขา ระบบแค่ไม่มีชั้นวางสำหรับคนแบบเขา และมันมีชั้นวางสำหรับผม"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d28_x_mid_01",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "text": "น้อง ห้องประชุมเมื่อกี้เป็นยังไง ไม่ต้องเล่าทั้งหมด บอกแค่ว่าตอนเดินออกมา น้องยังเป็นคนเดิมไหม",
+            "portrait": "/assets/pimchanok.jpg",
+            "choices": [
+              {
+                "text": "ยังเป็นคนเดิม แค่เหนื่อยกว่าเดิมมาก",
+                "nextId": "d28_x_mid_r1"
+              },
+              {
+                "text": "ไม่แน่ใจ ขอเวลาคิดก่อน",
+                "nextId": "d28_x_mid_r2"
+              }
+            ]
+          },
+          {
+            "id": "d28_x_mid_r1",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "text": "เหนื่อยแปลว่ายังสู้อยู่ ไปล้างหน้า แล้วกลับมาดูเตียง 6 ให้พี่หน่อย",
+            "portrait": "/assets/pimchanok.jpg"
+          },
+          {
+            "id": "d28_x_mid_r2",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "text": "ตอบแบบนี้แปลว่ายังเป็น คนที่เปลี่ยนไปแล้วจะตอบเร็วเสมอ",
+            "portrait": "/assets/pimchanok.jpg"
+          }
+        ]
       },
       {
-        "id": "d28_mid_03b",
-        "speaker": "Prof. Somchai",
-        "portrait": "/assets/somchai.jpg",
-        "text": "มีเหตุผล ความเงียบไม่ใช่การเห็นด้วย และผมไม่เคยต้องการการเห็นด้วย ต้องการแค่ความเงียบ"
-      },
-      {
-        "id": "d28_mid_03c",
-        "speaker": "Prof. Somchai",
-        "portrait": "/assets/somchai.jpg",
-        "text": "ดี เข้าใจไว้ว่าคุณหมอรับอะไรไป ไม่ใช่เงิน แต่เป็นชั้นวาง ต่อจากนี้ทุกเรื่องที่คุณหมอคัดค้านจะมีราคาเป็นชั้นวางนั้น แล้วคุณหมอจะพบว่าตัวเองคัดค้านน้อยลงทุกปี โดยไม่เคยรู้ตัวว่าตัดสินใจไปตอนไหน"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d28_x_rounds_01",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "text": "ไฟไหม้ ขนจมูกไหม้ เสียงแหบ มีเขม่าในปาก ใส่ท่อเร็วก่อนทางเดินหายใจบวมจนใส่ไม่ได้",
+            "portrait": "/assets/pimchanok.jpg",
+            "nextId": "d28_x_rounds_02"
+          },
+          {
+            "id": "d28_x_rounds_02",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "text": "ไข้กับจ้ำเลือดที่กดไม่จาง ให้ ceftriaxone ทันที ไม่ต้องรอ LP meningococcemia ไม่รอใคร",
+            "portrait": "/assets/pimchanok.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -5339,7 +6633,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d28_end_02",
         "speaker": "Dr. Pimchanok (Pi Pim)",
         "portrait": "/assets/pimchanok.jpg",
-        "text": "สองคนเสียชีวิต น่าจะจากโรคของเขาเอง น่าจะ พี่จะให้การ พี่อยากให้มีคนมาถามมาสองปี และขี้ขลาดเกินกว่าจะอาสาเอง"
+        "text": "สองคนเสียชีวิต น่าจะจากโรคของเขาเอง น่าจะ พี่จะให้การ พี่อยากให้มีคนมาถามมาสองปี และขี้ขลาดเกินกว่าจะอาสาเอง",
+        "nextId": "d28_x_post_01"
+      },
+      {
+        "id": "d28_x_post_01",
+        "speaker": "Narrator",
+        "text": "พี่พิมเดินกลับไปที่ nurse station เขียนอะไรบางอย่างลงสมุดเล่มเล็ก แล้วปิดมันช้าๆ"
       }
     ],
     "cases": [
@@ -5350,6 +6650,19 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "29": {
     "startShiftEvents": [
+      {
+        "id": "d29_x_pre_01",
+        "speaker": "Narrator",
+        "text": "ห้องประชุม M&M มีเก้าอี้สี่สิบตัว วันนี้คนมาห้าสิบ บางคนยืนพิงผนัง บางคนแค่อยากรู้ว่าใครจะนั่งเก้าอี้หน้าห้อง",
+        "nextId": "d29_x_pre_02"
+      },
+      {
+        "id": "d29_x_pre_02",
+        "speaker": "Nurse Ann",
+        "text": "กินอะไรก่อนไหมคะหมอ พรีเซนต์ท้องว่างแล้วเสียงสั่น พี่เห็นมาเยอะแล้ว",
+        "portrait": "/assets/nurse.jpg",
+        "nextId": "d29_start_01"
+      },
       {
         "id": "d29_start_01",
         "speaker": "Dr. Pimchanok (Pi Pim)",
@@ -5400,17 +6713,57 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d29_mid_01",
-        "speaker": "Tawan (Nong Wan)",
-        "portrait": "/assets/tawan.jpg",
-        "text": "พี่ครับ ผมคิดจะลาออก ถ้าคนแบบพี่ตัดสินใจดีขนาดนั้นแล้วยังจบแบบนั้น ผมจะมีโอกาสอะไร",
-        "nextId": "d29_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d29_mid_01",
+            "speaker": "Tawan (Nong Wan)",
+            "portrait": "/assets/tawan.jpg",
+            "text": "พี่ครับ ผมคิดจะลาออก ถ้าคนแบบพี่ตัดสินใจดีขนาดนั้นแล้วยังจบแบบนั้น ผมจะมีโอกาสอะไร",
+            "nextId": "d29_mid_02"
+          },
+          {
+            "id": "d29_mid_02",
+            "speaker": "You",
+            "portrait": "/assets/player.jpg",
+            "text": "วันคิดกลับด้านแล้ว ถ้าการตัดสินใจที่ดีรับประกันผลที่ดี เราไม่ต้องมีหมอ แค่มี flowchart ก็พอ ที่วันต้องมีอยู่ก็เพราะมันไม่รับประกันนั่นแหละ"
+          }
+        ]
       },
       {
-        "id": "d29_mid_02",
-        "speaker": "You",
-        "portrait": "/assets/player.jpg",
-        "text": "วันคิดกลับด้านแล้ว ถ้าการตัดสินใจที่ดีรับประกันผลที่ดี เราไม่ต้องมีหมอ แค่มี flowchart ก็พอ ที่วันต้องมีอยู่ก็เพราะมันไม่รับประกันนั่นแหละ"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d29_x_mid_01",
+            "speaker": "Narrator",
+            "text": "ช่วงบ่าย น้องสาวของคนไข้ยืนอยู่หน้า ER ถือถุงผลไม้ ไม่กล้าเดินเข้ามา",
+            "nextId": "d29_x_mid_02"
+          },
+          {
+            "id": "d29_x_mid_02",
+            "speaker": "Nurse Ann",
+            "text": "เขามายืนตรงนั้นสามรอบแล้วค่ะ พี่ว่าเขาอยากให้หมอเป็นคนเดินออกไปหาเอง",
+            "portrait": "/assets/nurse.jpg"
+          }
+        ]
+      },
+      {
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d29_x_rounds_01",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "text": "สารกระตุ้นกับตัวร้อนจัด ให้ benzodiazepine แล้วทำให้เย็นเร็ว ระวัง rhabdomyolysis ตามมา",
+            "portrait": "/assets/pimchanok.jpg",
+            "nextId": "d29_x_rounds_02"
+          },
+          {
+            "id": "d29_x_rounds_02",
+            "speaker": "Nurse Ann",
+            "text": "eclampsia ยาหลักคือ magnesium sulfate ค่ะ ระหว่างให้ดู reflex การหายใจ และปัสสาวะ ทุกชั่วโมง",
+            "portrait": "/assets/nurse.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -5425,7 +6778,13 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d29_end_02",
         "speaker": "Dr. Ekkarat (Pi Ek) (phone)",
         "portrait": "/assets/ekkarat.jpg",
-        "text": "ตอนนี้สมุดพี่มี 63 ชื่อแล้ว พี่บอกว่ามันจะมาเดือนที่สี่ พี่พลาดไปสองอาทิตย์ เขียนชื่อเธอไว้ ไม่ใช่เพื่อรู้สึกผิด แต่เพื่อเลขคณิต ชื่อเดียวเทียบกับคนที่เดินออกไปได้ ต้องนับทั้งสองฝั่ง ไม่งั้นเลขคณิตก็โกหก"
+        "text": "ตอนนี้สมุดพี่มี 63 ชื่อแล้ว พี่บอกว่ามันจะมาเดือนที่สี่ พี่พลาดไปสองอาทิตย์ เขียนชื่อเธอไว้ ไม่ใช่เพื่อรู้สึกผิด แต่เพื่อเลขคณิต ชื่อเดียวเทียบกับคนที่เดินออกไปได้ ต้องนับทั้งสองฝั่ง ไม่งั้นเลขคณิตก็โกหก",
+        "nextId": "d29_x_post_01"
+      },
+      {
+        "id": "d29_x_post_01",
+        "speaker": "Narrator",
+        "text": "หมอเปิดสมุดเล่มเล็กที่ซื้อไว้ตั้งแต่อยู่โคราช หน้าแรกยังว่าง หมอเขียนชื่อเธอลงไปเป็นชื่อแรก"
       }
     ],
     "cases": [
@@ -5436,6 +6795,12 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "30": {
     "startShiftEvents": [
+      {
+        "id": "d30_x_pre_01",
+        "speaker": "Narrator",
+        "text": "วันไต่สวน ทุกคนแต่งตัวดีกว่าปกติ พี่บ๊อบผูกเนกไทกลับด้าน ไม่มีใครกล้าบอก จนพี่แอนเดินไปจัดให้โดยไม่พูดอะไรสักคำ",
+        "nextId": "d30_start_01"
+      },
       {
         "id": "d30_start_01",
         "speaker": "Nurse Ann",
@@ -5454,7 +6819,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d30_start_03",
         "speaker": "Wachira (Beam)",
         "portrait": "/assets/beam.jpg",
-        "text": "เขาเลิกจ้างเราเดือนเมษา จดหมายรับรองสะอาดอยู่ได้ห้าเดือน สรุปเลขคณิตที่เราภูมิใจนักก็ผิดเหมือนกัน ตอนนี้เรากลับมาอยู่ รพ. อำเภอที่ขอนแก่น ได้เงินสี่สิบเปอร์เซ็นต์ของที่เลิฟลี่ แล้วเราก็ได้นอน ซึ่งเราลืมไปแล้วจริงๆ ว่ามันเป็นเรื่องที่เกิดขึ้นได้",
+        "text": "เขาเลิกจ้างเราเดือนเมษา จดหมายรับรองสะอาดอยู่ได้ห้าเดือน สรุปเลขที่เราคิดว่าแม่นก็ผิด ตอนนี้เรากลับมาอยู่ รพ. อำเภอที่ขอนแก่น ได้เงินสี่สิบเปอร์เซ็นต์ของที่เลิฟลี่ แล้วเราก็ได้นอน เราลืมไปแล้วจริงๆ ว่าคนเรานอนได้ด้วย",
         "choices": [
           {
             "text": "ให้บีมให้การ ไม่พูดถึงคำให้การครั้งนั้น",
@@ -5486,25 +6851,65 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d30_mid_01",
-        "speaker": "Prof. Somchai",
-        "portrait": "/assets/somchai.jpg",
-        "text": "ผมลาออกตอนเที่ยง ไม่ใช่เพราะหลักฐาน แต่เพราะบอร์ดนับเสียงแล้วผมขาดไปหก เรื่องแบบนี้จบจริงๆ แบบนี้ ไม่ใช่ด้วยคำตัดสิน ด้วยเลขคณิต",
-        "nextId": "d30_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d30_mid_01",
+            "speaker": "Prof. Somchai",
+            "portrait": "/assets/somchai.jpg",
+            "text": "ผมลาออกตอนเที่ยง ไม่ใช่เพราะหลักฐาน แต่เพราะบอร์ดนับเสียงแล้วผมขาดไปหก เรื่องแบบนี้จบจริงๆ แบบนี้ ไม่ใช่ด้วยคำตัดสิน ด้วยเลขคณิต",
+            "nextId": "d30_mid_02"
+          },
+          {
+            "id": "d30_mid_02",
+            "speaker": "Prof. Somchai",
+            "portrait": "/assets/somchai.jpg",
+            "text": "ผมสร้างศูนย์ trauma ที่คุณหมอทำงานวันนี้ คนไข้สี่หมื่นคนต่อปีผ่านตึกที่มีอยู่ได้เพราะผมยอมเป็นคนที่คนอื่นรังเกียจ ทั้งสองอย่างคือมรดกของผม และอีกราวสิบห้าปีคุณหมอจะได้รับเลขคณิตแบบเดียวกันต่อ",
+            "flagEffect": "SOMCHAI_EXPOSED",
+            "nextId": "d30_mid_03"
+          },
+          {
+            "id": "d30_mid_03",
+            "speaker": "You",
+            "portrait": "/assets/player.jpg",
+            "text": "งั้นจะสร้างโดยไม่มีลายนิ้วโป้งสิบเอ็ดลายนั้น ถ้ามันเป็นไปไม่ได้จริง ขอรู้เองดีกว่าเชื่อตามคำอาจารย์"
+          }
+        ]
       },
       {
-        "id": "d30_mid_02",
-        "speaker": "Prof. Somchai",
-        "portrait": "/assets/somchai.jpg",
-        "text": "ผมสร้างศูนย์ trauma ที่คุณหมอทำงานวันนี้ คนไข้สี่หมื่นคนต่อปีผ่านตึกที่มีอยู่ได้เพราะผมยอมเป็นคนที่คนอื่นรังเกียจ ทั้งสองอย่างคือมรดกของผม และอีกราวสิบห้าปีคุณหมอจะได้รับเลขคณิตแบบเดียวกันต่อ",
-        "flagEffect": "SOMCHAI_EXPOSED",
-        "nextId": "d30_mid_03"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d30_x_mid_01",
+            "speaker": "Narrator",
+            "text": "ห้องไต่สวนเงียบจนได้ยินเสียงแอร์ ทุกคนให้การทีละคน ไม่มีใครมองหน้าใคร",
+            "nextId": "d30_x_mid_02"
+          },
+          {
+            "id": "d30_x_mid_02",
+            "speaker": "Dr. Napassorn (Pi Nam)",
+            "text": "พี่เห็นลูกสาวนั่งอยู่แถวหลัง เขาไม่รู้เรื่องอะไรหรอก แค่อยากเห็นว่าแม่ทำงานอะไร",
+            "portrait": "/assets/napassorn.jpg"
+          }
+        ]
       },
       {
-        "id": "d30_mid_03",
-        "speaker": "You",
-        "portrait": "/assets/player.jpg",
-        "text": "งั้นจะสร้างโดยไม่มีลายนิ้วโป้งสิบเอ็ดลายนั้น ถ้ามันเป็นไปไม่ได้จริง ขอรู้เองดีกว่าเชื่อตามคำอาจารย์"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d30_x_rounds_01",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "text": "RSV ส่วนใหญ่รักษาแบบประคับประคอง ดูดจมูก ให้ออกซิเจน หอบมากใช้ HFNC ยาขยายหลอดลมไม่ค่อยช่วยในเด็กส่วนใหญ่",
+            "portrait": "/assets/pimchanok.jpg",
+            "nextId": "d30_x_rounds_02"
+          },
+          {
+            "id": "d30_x_rounds_02",
+            "speaker": "Dr. Pimchanok (Pi Pim)",
+            "text": "paraquat อย่าให้ออกซิเจนถ้า SpO2 ยังดี ออกซิเจนเร่งให้ปอดพังเร็วขึ้น",
+            "portrait": "/assets/pimchanok.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -5519,14 +6924,20 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d30_end_02",
         "speaker": "Dr. Bob",
         "portrait": "/assets/doctor.jpg",
-        "text": "หัวหน้าภาคถามพี่ว่าใครควรเป็น chief resident พี่พูดชื่อน้องโดยไม่มีคำแต่ใดๆ ที่พี่ชอบเติม ซึ่งเจ็บตัวมาก อย่าทำให้พี่เสียใจก่อนสงกรานต์",
+        "text": "หัวหน้าภาคถามพี่ว่าใครควรเป็น chief resident พี่พูดชื่อน้องไปเลย ไม่มีคำว่าแต่ต่อท้ายเหมือนทุกที เจ็บตัวมาก อย่าทำให้พี่เสียใจก่อนสงกรานต์นะ",
         "nextId": "d30_end_03"
       },
       {
         "id": "d30_end_03",
         "speaker": "Nurse Ann",
         "portrait": "/assets/nurse.jpg",
-        "text": "สองปีที่พี่แบกใบ consent พวกนั้นใส่กระเป๋า คืนนี้พี่จะนอนโดยไม่มีกระเป๋าใบนั้น ขอบคุณที่เป็นคนที่ไม่ต้องให้ใครมาโน้มน้าว"
+        "text": "สองปีที่พี่แบกใบ consent พวกนั้นใส่กระเป๋า คืนนี้พี่จะนอนโดยไม่มีกระเป๋าใบนั้น ขอบคุณที่เป็นคนที่ไม่ต้องให้ใครมาโน้มน้าว",
+        "nextId": "d30_x_post_01"
+      },
+      {
+        "id": "d30_x_post_01",
+        "speaker": "Narrator",
+        "text": "คืนนั้นทั้งทีมนั่งกินหมูกระทะร้านเดิมหลังโรงพยาบาล ขนมนั่งรออยู่ใต้โต๊ะ ทุกคนแอบป้อน และทุกคนบอกว่าไม่เคย"
       }
     ],
     "cases": [
@@ -5537,6 +6948,12 @@ export const STORY_CAMPAIGN_TH: Record<number, {
   },
   "31": {
     "startShiftEvents": [
+      {
+        "id": "d31_x_pre_01",
+        "speaker": "Narrator",
+        "text": "ประตูอัตโนมัติอันเดิม ป้ายขอบคุณอันเดิม ขนมแก่ลงแล้ว นอนอยู่บนที่นอนแมวที่มีชื่อปักอยู่ตรงขอบ",
+        "nextId": "d31_start_01"
+      },
       {
         "id": "d31_start_01",
         "speaker": "Narrator",
@@ -5560,24 +6977,80 @@ export const STORY_CAMPAIGN_TH: Record<number, {
     ],
     "midShiftEvents": [
       {
-        "id": "d31_mid_01",
-        "speaker": "New Extern",
-        "portrait": "/assets/extern.jpg",
-        "text": "อาจารย์คะ เขาบอกว่าอาจารย์คือคนที่รายงานเรื่อง trial ทุกคนเล่าไม่เหมือนกันเลย บางคนบอกว่ามันทำลายอาชีพอาจารย์ไปสามปี",
-        "nextId": "d31_mid_02"
+        "triggerMinute": 240,
+        "cutscene": [
+          {
+            "id": "d31_mid_01",
+            "speaker": "New Extern",
+            "portrait": "/assets/extern.jpg",
+            "text": "อาจารย์คะ เขาบอกว่าอาจารย์คือคนที่รายงานเรื่อง trial ทุกคนเล่าไม่เหมือนกันเลย บางคนบอกว่ามันทำลายอาชีพอาจารย์ไปสามปี",
+            "nextId": "d31_mid_02"
+          },
+          {
+            "id": "d31_mid_02",
+            "speaker": "You",
+            "portrait": "/assets/player.jpg",
+            "text": "ใช่ สามปีที่ไม่มีทุน ไม่ได้ไปประชุม และอยู่เวรดึกเยอะมาก แล้ววันหนึ่งมันก็เลิกสำคัญ บอกไม่ได้เหมือนกันว่าเดือนไหน",
+            "nextId": "d31_mid_03"
+          },
+          {
+            "id": "d31_mid_03",
+            "speaker": "You",
+            "portrait": "/assets/player.jpg",
+            "text": "เลิกถามเรื่องกรรมการได้แล้ว เตียง 4 ผู้หญิงอายุ 32 หอบเหนื่อย หนูไปดูก่อน เดี๋ยวยืนอยู่ข้างหลัง"
+          }
+        ]
       },
       {
-        "id": "d31_mid_02",
-        "speaker": "You",
-        "portrait": "/assets/player.jpg",
-        "text": "ใช่ สามปีที่ไม่มีทุน ไม่ได้ไปประชุม และอยู่เวรดึกเยอะมาก แล้ววันหนึ่งมันก็เลิกสำคัญ บอกไม่ได้เหมือนกันว่าเดือนไหน",
-        "nextId": "d31_mid_03"
+        "triggerMinute": 420,
+        "cutscene": [
+          {
+            "id": "d31_x_mid_01",
+            "speaker": "Nurse Ann",
+            "text": "พี่จะเกษียณปีหน้านะคะ อย่าทำหน้าแบบนั้น ยี่สิบปีในห้องนี้ พอแล้วค่ะ ฝากน้องๆ ด้วย",
+            "portrait": "/assets/nurse.jpg",
+            "choices": [
+              {
+                "text": "ขอบคุณพี่แอนสำหรับวันแรก",
+                "nextId": "d31_x_mid_r1"
+              },
+              {
+                "text": "ถามพี่แอนว่าเกษียณแล้วจะทำอะไร",
+                "nextId": "d31_x_mid_r2"
+              }
+            ]
+          },
+          {
+            "id": "d31_x_mid_r1",
+            "speaker": "Nurse Ann",
+            "text": "วันแรกหมอยืนอยู่ตรงนี้ รองเท้าขาวเอี่ยม วันนี้หมอยืนตรงเดิม รองเท้าเลอะแล้ว พี่ว่าแบบนี้ดีกว่า",
+            "portrait": "/assets/nurse.jpg"
+          },
+          {
+            "id": "d31_x_mid_r2",
+            "speaker": "Nurse Ann",
+            "text": "เลี้ยงแมวค่ะ แมวของพี่เอง ไม่ต้องแบ่งใคร",
+            "portrait": "/assets/nurse.jpg"
+          }
+        ]
       },
       {
-        "id": "d31_mid_03",
-        "speaker": "You",
-        "portrait": "/assets/player.jpg",
-        "text": "เลิกถามเรื่องกรรมการได้แล้ว เตียง 4 ผู้หญิงอายุ 32 หอบเหนื่อย หนูไปดูก่อน เดี๋ยวยืนอยู่ข้างหลัง"
+        "triggerMinute": 520,
+        "cutscene": [
+          {
+            "id": "d31_x_rounds_01",
+            "speaker": "You",
+            "text": "เด็กร้องเป็นพักๆ แล้วนิ่งปวกเปียก ถ่ายเป็นมูกปนเลือด คิดถึง intussusception ทำ ultrasound ดู target sign",
+            "portrait": "/assets/player.jpg",
+            "nextId": "d31_x_rounds_02"
+          },
+          {
+            "id": "d31_x_rounds_02",
+            "speaker": "You",
+            "text": "ส่วน stroke เจาะ DTX ก่อนเสมอ แล้วจำเวลาที่เห็นคนไข้ปกติครั้งสุดท้ายให้แม่น ทุกอย่างหลังจากนั้นขึ้นกับตัวเลขนี้",
+            "portrait": "/assets/player.jpg"
+          }
+        ]
       }
     ],
     "endShiftEvents": [
@@ -5592,7 +7065,7 @@ export const STORY_CAMPAIGN_TH: Record<number, {
         "id": "d31_end_02",
         "speaker": "Dr. Ekkarat (Pi Ek)",
         "portrait": "/assets/ekkarat.jpg",
-        "text": "สมุดมี 71 ชื่อแล้ว ไม่มีชื่อน้องอยู่ในนั้น ซึ่งไม่เคยมีอะไรรับประกัน วันที่สิบห้าพี่บอกให้น้องตัดสินใจไว้ก่อนว่าจะไม่ทำอะไร น้องทำแล้ว นั่นคือบทเรียนทั้งหมด และมันยาวแค่บรรทัดเดียว",
+        "text": "สมุดมี 71 ชื่อแล้ว ไม่มีชื่อน้องอยู่ในนั้น ซึ่งก็ไม่มีอะไรรับประกันมาตั้งแต่แรก วันที่สิบห้าพี่บอกให้น้องตัดสินใจไว้ก่อนว่าจะไม่ทำอะไร น้องทำได้ นั่นคือบทเรียนทั้งหมด และมันยาวแค่บรรทัดเดียว",
         "nextId": "d31_end_03"
       },
       {

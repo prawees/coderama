@@ -208,6 +208,8 @@
 @keyframes ecgSpark { 0% { left: -5%; opacity: 0; } 8% { opacity: 1; } 85% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
 /* The compressions button breathes in colour on the beat, so the rhythm is felt as well as heard */
 @keyframes cprPump { 0%, 100% { background-color: #c4485a; box-shadow: 0 0 0 0 rgba(255, 110, 125, 0); transform: scale(1); } 30% { background-color: #ff6f80; box-shadow: 0 0 22px 6px rgba(255, 110, 125, 0.8); transform: scale(0.96); } }
+/* The share button gives a little hop every few seconds so it is noticed without nagging */
+@keyframes shareNudge { 0%, 88%, 100% { transform: translateY(0) rotate(0); } 91% { transform: translateY(-4px) rotate(-4deg); } 94% { transform: translateY(0) rotate(3deg); } 97% { transform: translateY(-2px) rotate(0); } }
 @keyframes cozyBeat { 0%, 100% { transform: scale(1); } 40% { transform: scale(0.96); } }
 @keyframes cozyBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 @keyframes cozyPop { 0% { transform: scale(0.6); opacity: 0; } 70% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }

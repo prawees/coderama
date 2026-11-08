@@ -43,6 +43,7 @@ export function useWorldSocial(opts: {
   worldApi: MutableRefObject<WorldApi | null>;
   openLeaderboard: () => void;
   openConsults: () => void;
+  openFortune: () => void;
   openShop: () => void;
   openLetters: () => void;
   openCase: (caseId: string, instanceId: string) => void;
@@ -252,6 +253,9 @@ export function useWorldSocial(opts: {
         else say(t(lang, "The bench is warm from the sun. You can't sit all day, though.", "ม้านั่งอุ่นแดด แต่จะนั่งทั้งวันก็ไม่ได้"));
         return;
       case "tree":
+        opts.openFortune();
+        return;
+      case "tree_flowers":
         say(t(lang, "Frangipani. Lan thom. Someone has tucked a flower behind the signpost.", "ลีลาวดี มีคนเหน็บดอกไม้ไว้หลังป้าย"));
         return;
       case "ambulance":
@@ -293,10 +297,10 @@ export function useWorldSocial(opts: {
       }
       case "prop": {
         const labels: Record<string, [string, string]> = {
-          computer: target.id === "leaderboard" ? ["Leaderboard", "กระดานอันดับ"] : ["Consults", "ขอคำปรึกษา"],
+          computer: target.id === "leaderboard" ? ["Leaderboard", "กระดานอันดับ"] : ["Doctors' computer", "คอมห้องแพทย์"],
           kettle: ["Make tea", "ชงชา"], notice: ["Read the board", "อ่านบอร์ด"], bookshelf: ["Browse books", "หยิบหนังสือ"],
           vending: ["Supply closet", "ห้องเก็บของ"], pond: ["Look at the koi", "ดูปลาคาร์ป"], bench: ["Sit down", "นั่งพัก"],
-          tree: ["Smell the flowers", "ดมดอกไม้"], ambulance: ["Ambulance", "รถพยาบาล"], catbed: ["Kanom's bed", "ที่นอนขนม"], window: ["Look outside", "มองออกไปข้างนอก"],
+          tree: ["Fortune sticks", "เสี่ยงเซียมซี"], ambulance: ["Ambulance", "รถพยาบาล"], catbed: ["Kanom's bed", "ที่นอนขนม"], window: ["Look outside", "มองออกไปข้างนอก"],
           postbox: ["Postbox", "เปิดตู้ไปรษณีย์"],
         };
         const lbl = labels[target.kind];

@@ -22,6 +22,11 @@ import { DayCard } from "@/components/game/DayCard";
 import { Pager } from "@/components/ui/Pager";
 import { DialogueBox } from "@/components/game/DialogueBox";
 import { GuideTracker } from "@/components/game/GuideTracker";
+import { ShareSheet } from "@/components/game/ShareSheet";
+import { DoctorPC } from "@/components/game/DoctorPC";
+import { FortuneModal } from "@/components/game/LuckyModal";
+import { profileCard } from "@/lib/shareSpecs";
+import type { CardSpec } from "@/lib/shareCard";
 import { QuestsModal } from "@/components/game/QuestsModal";
 import { LettersModal, LettersTab } from "@/components/game/LettersModal";
 import { unreadLetters } from "@/lib/letters";
@@ -58,6 +63,7 @@ export default function HubPage() {
   
   const hydrated = useHydrated();
   const [isQuestsOpen, setIsQuestsOpen] = useState(false);
+  const [shareCardSpec, setShareCardSpec] = useState<CardSpec | null>(null);
   const [isLettersOpen, setIsLettersOpen] = useState(false);
   const [lettersTab, setLettersTab] = useState<LettersTab>('letters');
   const patientLog = useERStore((s) => s.patientLog);
@@ -88,6 +94,8 @@ export default function HubPage() {
   const [logs, setLogs] = useState<string[]>(['เปิดสมุดบันทึกเวรแล้ว']);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [isConsultsOpen, setIsConsultsOpen] = useState(false);
+  const [isPcOpen, setIsPcOpen] = useState(false);
+  const [isFortuneOpen, setIsFortuneOpen] = useState(false);
   const logEndRef = useRef<HTMLDivElement>(null);
   
   const [pagerMessage, setPagerMessage] = useState<string | null>(null);
@@ -407,8 +415,9 @@ export default function HubPage() {
     // A mid-shift scene plays at its minute, or when the player comes back from their first
     // patient, whichever is sooner. Leaving early must not skip the story or the flags it sets.
     const played = useERStore.getState().shiftStats.midPlayed ?? [];
+    // The first scene plays after the first patient at the latest, the second after the second, and so on
     const event = getDayStory(currentDay, language).mid.find(
-      (e) => !played.includes(e.triggerMinute) && (clockMinutes >= e.triggerMinute || shiftStats.casesTreated >= 1)
+      (e, i) => !played.includes(e.triggerMinute) && (clockMinutes >= e.triggerMinute || shiftStats.casesTreated >= i + 1)
     );
     if (event) {
        useERStore.getState().markMidPlayed(event.triggerMinute);
@@ -638,7 +647,8 @@ export default function HubPage() {
     setIsCinematic,
     worldApi,
     openLeaderboard: () => setIsLeaderboardOpen(true),
-    openConsults: () => setIsConsultsOpen(true),
+    openConsults: () => setIsPcOpen(true),
+    openFortune: () => setIsFortuneOpen(true),
     openShop: () => router.push('/hub/shop'),
     openLetters: () => { setLettersTab('letters'); setIsLettersOpen(true); },
     openCase: (caseId, instanceId) => router.push(`/simulator/play/${caseId}?instanceId=${instanceId}`),
@@ -670,7 +680,7 @@ export default function HubPage() {
   const hasMail = unreadLetters(patientLog, currentDay).length > 0
     || claimableMilestones(Object.keys(patientLog).length, casebookClaimed ?? []).length > 0;
   const openRequest = !!requestFor(currentDay) && !(requestsDone ?? []).includes(currentDay);
-  const anyModal = isQuestsOpen || isLettersOpen || isLeaderboardOpen || isConsultsOpen || isSettingsOpen || isFriendsOpen || activeTab === 'LOGS';
+  const anyModal = isQuestsOpen || isLettersOpen || isLeaderboardOpen || isConsultsOpen || isPcOpen || isFortuneOpen || isSettingsOpen || isFriendsOpen || activeTab === 'LOGS';
 
   return (
     <PageTransition>
@@ -728,6 +738,16 @@ export default function HubPage() {
             <div className="cozy-bar w-20 h-3">
               <span style={{ width: `${Math.max(0, Math.min(100, (energy / maxEnergy) * 100))}%`, background: energy > 50 ? '#86c35f' : energy > 20 ? '#ffd66b' : '#e06b72' }} />
             </div>
+
+        {/* Share: always in reach, because a Story post is how friends find the game */}
+        <button
+          onClick={() => { audio.playClick(); setShareCardSpec(profileCard()); }}
+          className="pointer-events-auto absolute top-[4.6rem] right-0 z-40 cozy-btn cozy-btn-sun px-2.5 py-1.5 flex items-center gap-1 text-[16px] leading-none animate-[shareNudge_6s_ease-in-out_infinite]"
+          data-testid="hud-share"
+          aria-label="แชร์ลงสตอรี่"
+        >
+          <PixelIcon name="heart" size={13} />{tr('Share', 'แชร์สตอรี่')}
+        </button>
           </div>
         </div>
 
@@ -872,11 +892,14 @@ export default function HubPage() {
         </div>
       )}
 
+      {shareCardSpec && <ShareSheet spec={shareCardSpec} onClose={() => setShareCardSpec(null)} filename={`code-rama-day-${currentDay}.png`} />}
       <AnimatePresence>
         {isQuestsOpen && <QuestsModal onClose={() => setIsQuestsOpen(false)} onOpenCasebook={() => { setIsQuestsOpen(false); useERStore.getState().markGuide('ev:casebook'); setLettersTab('casebook'); setIsLettersOpen(true); }} />}
         {isLettersOpen && <LettersModal initialTab={lettersTab} onClose={() => setIsLettersOpen(false)} />}
         {isLeaderboardOpen && <LeaderboardModal onClose={() => setIsLeaderboardOpen(false)} />}
         {isConsultsOpen && <ConsultsModal onClose={() => setIsConsultsOpen(false)} />}
+        {isPcOpen && <DoctorPC onClose={() => setIsPcOpen(false)} onConsults={() => { setIsPcOpen(false); setIsConsultsOpen(true); }} />}
+        {isFortuneOpen && <FortuneModal day={currentDay} onClose={() => setIsFortuneOpen(false)} />}
         {isSettingsOpen && <SettingsMenu isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />}
         {isFriendsOpen && <FriendsModal phase={phase} onClose={() => setIsFriendsOpen(false)} />}
       </AnimatePresence>

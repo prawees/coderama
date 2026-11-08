@@ -32,7 +32,9 @@ export type CardSpec =
   | { kind: "case"; phase: Phase; player: CardPlayer; patient: string; by?: string; quote: string; stars: number; verdict: string;
       vitals: { label: string; value: string; bad?: boolean }[] }
   | { kind: "chapter"; day: number; phase: Phase; player: CardPlayer; host?: Look; title: string; promo?: string; saved: number; stars: number;
-      patients: number; type: { title: string; line: string }; chaptersDone: number };
+      patients: number; type: { title: string; line: string }; chaptersDone: number }
+  | { kind: "profile"; day: number; phase: Phase; player: CardPlayer; saved: number; stars: number; best: number;
+      type: { title: string; line: string }; chapter?: { title: string; n: number; total: number; position: number; next?: string } };
 
 const BODY_FONT = `Itim, Tahoma, "Noto Sans Thai", sans-serif`;
 
@@ -358,6 +360,39 @@ function drawChapter(c: CanvasRenderingContext2D, s: Extract<CardSpec, { kind: "
   footer(c, url);
 }
 
+/** The doctor's ID card: shareable from the first minute, whatever has happened so far */
+function drawProfile(c: CanvasRenderingContext2D, s: Extract<CardSpec, { kind: "profile" }>, url?: string) {
+  backdrop(c, s.phase, "gold");
+  const statsY = 1010;
+  const y = SAFE_TOP + 4, bannerH = 330, inner = CARD_W - M * 2 - 80;
+  sparkles(c, CARD_W / 2 - 20, y + bannerH + 24, statsY - 24, 300);
+  panel(c, M, y, CARD_W - M * 2, bannerH);
+  ribbon(c, "บัตรหมอ Code Rama", CARD_W / 2, y + 4);
+  text(c, s.player.rank, { x: M + 40, y: y + 44, w: inner, h: 120, size: 104, min: 48, color: RED, shadow: BLUSH, shadowOff: 6, lead: 1.05 });
+  text(c, `${LOCATION_NAMES[s.phase].th}  ·  วันที่ ${s.day}`, { x: M + 40, y: y + 166, w: inner, h: 46, size: 36, min: 24, color: BROWN, lead: 1.1 });
+  if (s.chapter) {
+    text(c, `บท ${s.chapter.n} ${s.chapter.title}`, { x: M + 40, y: y + 218, w: 380, h: 50, size: 38, min: 24, color: INK, align: "left", lead: 1.1 });
+    pips(c, CARD_W - M - 40, y + 226, s.chapter.total, s.chapter.position);
+    if (s.chapter.next) text(c, s.chapter.next, { x: M + 40, y: y + 268, w: inner, h: 40, size: 32, min: 22, color: BROWN, align: "left", lead: 1.1 });
+  }
+
+  hero(c, s.player.look, CARD_W / 2, statsY - 4, 15);
+  kitty(c, CARD_W / 2 + 170, statsY - 2, 10);
+
+  statRow(c, M, statsY, CARD_W - M * 2, 196, [
+    { value: String(s.saved), label: "คนไข้ที่ช่วยไว้", fill: BLUSH },
+    { value: String(s.stars), label: "ดาวในสมุดเคส", color: "#a9743f", fill: BUTTER },
+    { value: String(s.best), label: "ทำดีติดกันสูงสุด", color: GREEN, fill: SAGE },
+  ]);
+
+  const py = statsY + 196 + 16, h = SAFE_BOTTOM - 124 - 16 - py;
+  panel(c, M, py, CARD_W - M * 2, h);
+  text(c, `${s.player.rank} เป็นหมอสไตล์...`, { x: M + 40, y: py + 14, w: inner, h: 46, size: 36, min: 24, color: BROWN, lead: 1.1 });
+  text(c, `"${s.type.title}"`, { x: M + 40, y: py + 58, w: inner, h: 92, size: 80, min: 40, color: RED, lead: 1.1 });
+  text(c, s.type.line, { x: M + 40, y: py + 150, w: inner, h: h - 174, size: 36, min: 24, color: INK, lead: 1.15 });
+  footer(c, url);
+}
+
 /** Draws a card on a new canvas. Waits for the fonts, so call it ahead of the tap that shares. */
 export async function renderCard(spec: CardSpec): Promise<HTMLCanvasElement> {
   await loadFonts();
@@ -368,7 +403,8 @@ export async function renderCard(spec: CardSpec): Promise<HTMLCanvasElement> {
   const url = process.env.NEXT_PUBLIC_SHARE_URL;
   if (spec.kind === "shift") drawShift(c, spec, url);
   else if (spec.kind === "case") drawCase(c, spec, url);
-  else drawChapter(c, spec, url);
+  else if (spec.kind === "chapter") drawChapter(c, spec, url);
+  else drawProfile(c, spec, url);
   return canvas;
 }
 

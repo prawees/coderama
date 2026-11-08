@@ -58,6 +58,22 @@ export function caseCard(o: { patient: string; by?: string; quote: string; grade
   return { kind: "case", phase: phaseForDay(st.currentDay), player: player(), patient: o.patient, by: o.by, quote: o.quote, stars: v.stars, verdict: v.line, vitals: o.vitals };
 }
 
+/** The doctor's ID card, available at any point in the game */
+export function profileCard(): CardSpec {
+  const st = useERStore.getState();
+  const log = Object.values(st.patientLog ?? {}) as { star?: boolean }[];
+  const stars = log.filter((p) => p.star).length;
+  const friends = Object.entries(st.friendships ?? {}).filter(([k]) => k !== "cat").reduce((a, [, n]) => a + n, 0);
+  const at = shiftInChapter(st.currentDay);
+  return {
+    kind: "profile", day: st.currentDay, phase: phaseForDay(st.currentDay), player: player(),
+    saved: st.savedTotal ?? 0, stars, best: st.bestStreak ?? 0,
+    type: doctorType({ stars, patients: log.length, catFriendship: st.friendships?.cat ?? 0, friendTotal: friends, saved: st.savedTotal ?? 0 }),
+    chapter: at ? { title: at.chapter.title, n: at.chapter.n, total: at.total, position: at.position - 1,
+      next: at.chapter.reward ? `อีก ${at.total - at.position + 1} เวร ${at.chapter.reward}` : undefined } : undefined,
+  };
+}
+
 export function chapterCard(o: { title: string; promo?: string; host?: Look }): CardSpec {
   const st = useERStore.getState();
   const log = Object.values(st.patientLog ?? {}) as { star?: boolean }[];

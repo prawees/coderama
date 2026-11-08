@@ -7,6 +7,7 @@ const fs = require('fs');
 const OUT = __dirname + '/out/long'; fs.mkdirSync(OUT, { recursive: true });
 const LOG = OUT + '/log.txt'; fs.writeFileSync(LOG, '');
 const DAYS = +(process.argv[2] || 13);
+const START = +(process.env.START_DAY || 1);
 const T0 = Date.now(); const log = (...a) => fs.appendFileSync(LOG, ((Date.now() - T0) / 1000).toFixed(0).padStart(5) + 's ' + a.join(' ') + '\n');
 (async () => {
   const b = await chromium.launch(LAUNCH);
@@ -64,6 +65,14 @@ const T0 = Date.now(); const log = (...a) => fs.appendFileSync(LOG, ((Date.now()
   };
 
   await p.addInitScript(() => localStorage.setItem('coderama.coldOpenSeen', '1'));
+  if (START > 1) {
+    // START_DAY=11 plays from a seeded save on that day instead of a fresh game
+    const seed = JSON.parse(fs.readFileSync(__dirname + '/seed-state.json', 'utf8'));
+    const st = { ...seed, state: { ...seed.state, currentDay: START, shiftMode: 'off-duty', clockMinutes: 0, activeCases: [], tutorialCompleted: true, energy: 100,
+      storyFlags: { FIRST_SHIFT_TIP: true }, shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] } } };
+    await p.addInitScript((v) => { if (!sessionStorage.getItem('seeded')) { localStorage.setItem('CapacitorStorage.code-rama-storage', v); sessionStorage.setItem('seeded', '1'); } }, JSON.stringify(st));
+    await p.goto(BASE + '/hub'); await p.waitForTimeout(2500);
+  } else {
   await p.goto(BASE + '/'); await p.waitForTimeout(1200);
   await p.locator('text=เกมจาก Rama G7 Club').click({ force: true }).catch(() => {}); await p.waitForTimeout(300);
   await p.locator('text=แตะเพื่อเริ่ม').click({ force: true }); await p.waitForTimeout(300);
@@ -71,8 +80,9 @@ const T0 = Date.now(); const log = (...a) => fs.appendFileSync(LOG, ((Date.now()
   await p.locator('input[maxlength="15"]').fill('ต้นข้าว');
   await p.locator('button:has-text("หญิง")').first().click({ force: true }); await p.waitForTimeout(150);
   await p.getByTestId('start-game').click({ force: true }); await p.waitForTimeout(2500);
+  }
 
-  for (let day = 1; day <= DAYS; day++) {
+  for (let day = START; day < START + DAYS; day++) {
     const t0 = Date.now();
     log(`\n===== DAY ${day} | ${await hud()} | ${p.url()}`);
     const card = await p.getByTestId('day-card').innerText().catch(() => '');

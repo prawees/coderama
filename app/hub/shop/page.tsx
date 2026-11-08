@@ -11,10 +11,12 @@ import { GIFTS } from "@/lib/gifts";
 import { GIFT_ICON } from "@/lib/pixel/icons";
 import { audio } from "@/lib/audio";
 import { PixelArrow } from "@/components/ui/PixelArrow";
+import { GachaMachine } from "@/components/game/LuckyModal";
 
-type Tab = "gifts" | "treats" | "gear" | "upgrades";
+type Tab = "gifts" | "gacha" | "treats" | "gear" | "upgrades";
 
 const GREETINGS = {
+  gacha: { en: "One turn, one capsule. Auntie swears the rare ones are in there.", th: "หมุนทีละลูก ป้าสาบานว่าของหายากมีอยู่จริงนะ" },
   gifts: { en: "Gifts for the people who keep you upright. Everyone has a favourite.", th: "ของขวัญให้คนที่ช่วยประคองหนูไว้ ทุกคนมีของโปรดนะ" },
   treats: { en: "Running on empty? Auntie has just the thing.", th: "หมดแรงแล้วเหรอ ป้ามีของดี" },
   gear: { en: "A good stethoscope is a friend for life.", th: "หูฟังดีๆ เป็นเพื่อนไปตลอดชีวิต" },
@@ -39,6 +41,7 @@ export default function ShopPage() {
 
   const tabs: { key: Tab; label: string; icon: string }[] = [
     { key: "gifts", label: tr("Gifts", "ของขวัญ"), icon: "garland" },
+    { key: "gacha", label: tr("Capsules", "กาชา"), icon: "coin" },
     { key: "treats", label: tr("Treats", "ของว่าง"), icon: "coffee" },
     { key: "gear", label: tr("Gear", "อุปกรณ์"), icon: "badge" },
     { key: "upgrades", label: tr("Upgrades", "ปรับปรุง"), icon: "bed" },
@@ -90,7 +93,7 @@ export default function ShopPage() {
             <button
               key={t.key}
               onClick={() => { audio.playClick(); setTab(t.key); }}
-              className={`flex-1 flex items-center justify-center gap-1 py-1 text-[16px] leading-none rounded-t-[5px] border-[3px] border-b-0 border-[#3a2a2f] ${tab === t.key ? "bg-[#f8ecd0] text-[#3a2a2f] -mb-[3px] pb-[7px] relative z-10" : "bg-[#c48a52] text-[#fff3df]"}`}
+              className={`flex-1 min-w-0 flex flex-col items-center justify-center gap-0.5 py-1 text-[14px] leading-none whitespace-nowrap rounded-t-[5px] border-[3px] border-b-0 border-[#3a2a2f] ${tab === t.key ? "bg-[#f8ecd0] text-[#3a2a2f] -mb-[3px] pb-[7px] relative z-10" : "bg-[#c48a52] text-[#fff3df]"}`}
               data-testid={`shop-tab-${t.key}`}
             >
               <PixelIcon name={t.icon} size={13} />{t.label}
@@ -119,6 +122,8 @@ export default function ShopPage() {
               }
             />
           ))}
+
+          {tab === "gacha" && <GachaMachine />}
 
           {tab === "treats" && (
             <Card

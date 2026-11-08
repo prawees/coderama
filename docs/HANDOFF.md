@@ -1,4 +1,33 @@
-# Handoff, 6 November 2026
+# Handoff, 8 November 2026
+
+## Sharing, late-story density, small extras (8 November)
+
+- **Share from anywhere.** A "แชร์สตอรี่" button sits under coins and energy in the clinic from day 1, and the profile
+  page has one too. Both make a "บัตรหมอ" card (`kind: "profile"` in `lib/shareCard.ts`, built by `profileCard()` in
+  `lib/shareSpecs.ts`): rank, place, day, chapter hearts, the player and the cat, three numbers and the doctor type.
+  Milestone cards (shift, case, chapter) still come up at the end of a shift as before. The HUD corner is
+  `pointer-events-none`, so anything clickable inside it needs `pointer-events-auto` (the first version did not, and
+  the canvas took the tap).
+- **Days 11 to 31 have more story.** `scripts/thai/story_more/days11_31.py` holds extra Thai lines per day (before,
+  during and after the shift, with a few choices) and a 2 to 3 line teaching round before handover.
+  `apply.py` inserts them into `lib/StoryManagerTH.ts` and can be rerun (it removes its own `_x_` nodes first).
+  Thai only: English players see the original scenes. Days 11 to 31 went from about 10 to about 18 lines a day.
+  `rewrite.py` replaces story lines by node id; `wording_02_10.py` and `wording_11_31.py` are this pass's rewrites.
+  After any of these, run `python3 scripts/thai/story_patch.py` if the day files changed, then `npm run validate`.
+- **Mid-shift scenes.** `midShiftEvents` can hold several `{triggerMinute, cutscene}` events. Event `i` plays when the
+  clock passes its minute or after patient `i+1`, whichever comes first, so a quick player still sees them all.
+- **Small luck games.** `lib/luck.ts`: a capsule machine in the supply closet (tab "กาชา", 30 coins, mostly gifts and
+  coins back, a 2% jackpot) and เซียมซี sticks at the courtyard tree, once a day, with a small bonus.
+  UI in `components/game/LuckyModal.tsx`.
+- **Doctors' room PC.** The consult computer now opens `components/game/DoctorPC.tsx`: links to Thai emergency
+  guidelines (Ramathibodi Poison Center 1367, สพฉ. 1669, Thai Resuscitation Council, AHA 2020 Thai highlights, Heart
+  Association of Thailand, Journal of Thai Stroke Society, กรมควบคุมโรค) and a button on to the consult room.
+  Check the links once a year; they open outside the game.
+- **Tested:** `ONLY=luck node scripts/playtest/requests.js` taps the share button (without forcing it), the PC, the
+  tree and the gacha. `START_DAY=11 node scripts/playtest/long.js 3` plays from a seeded save on day 11.
+- **GitHub "secret detected" alert on `lib/firebase.ts`.** That is the Firebase web API key, which is public by design
+  (it ships in every web build). Restrict it in Google Cloud Console (HTTP referrers and the Firebase APIs only),
+  then close the alert. See "Accounts" below.
 
 ## Hosting on coderama.prawees.com (Hostinger)
 

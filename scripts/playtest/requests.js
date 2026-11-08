@@ -264,6 +264,57 @@ async function goal(p) {
     await p.context().close();
   }
 
+  // The little extras: share button on the HUD, the doctors' room PC, the gacha and the fortune sticks
+  if (want('luck')) {
+    const p = await open(b, 1);
+    check(await p.getByTestId('hud-share').isVisible(), 'the share button is on the HUD on day 1');
+    // No force: a real tap must reach it, not the world under it
+    await p.getByTestId('hud-share').click({ timeout: 4000 }).catch((e) => console.log('  tap failed:', String(e).split('\n')[0]));
+    await p.getByTestId('share-image').waitFor({ timeout: 6000 }).catch(() => {});
+    check(await p.getByTestId('share-image').count() > 0, 'tapping it opens the share sheet with a drawn card');
+    await p.screenshot({ path: `${OUT}/7_share.png` });
+    if (await p.getByTestId('share-close').count()) await p.getByTestId('share-close').click();
+    await p.waitForTimeout(500);
+
+    const pc = await tapWorld(p, () => p.evaluate(() => window.__codeRamaWorld?.tileToScreen(4, 6)), async () => (await p.getByTestId('doctor-pc').count()) > 0);
+    check(pc, 'the doctors\' room computer opens the guideline PC');
+    if (pc) {
+      const links = await p.getByTestId('guideline-link').evaluateAll((as) => as.map((a) => ({ href: a.href, target: a.target })));
+      check(links.length >= 6 && links.every((l) => l.href.startsWith('https://') && l.target === '_blank'), 'every guideline opens in a new tab over https', String(links.length));
+      await p.screenshot({ path: `${OUT}/8_pc.png` });
+      await p.getByTestId('pc-consults').click({ force: true }); await p.waitForTimeout(600);
+      check(await p.getByTestId('consults').count() > 0, 'the PC still reaches the consult room');
+      await p.mouse.click(5, 5); await p.waitForTimeout(500);
+    }
+
+    // The fortune tree is out in the ambulance bay
+    const out = await tapWorld(p, () => p.evaluate(() => window.__codeRamaWorld?.tileToScreen(7, 10)), async () => (await p.evaluate(() => window.__codeRamaWorld?.map())) === 'AMBULANCE_BAY');
+    check(out, 'walked out to the ambulance bay');
+    await p.waitForTimeout(800);
+    const tree = await tapWorld(p, () => p.evaluate(() => window.__codeRamaWorld?.tileToScreen(2, 5)), async () => (await p.getByTestId('fortune').count()) > 0);
+    check(tree, 'the tree offers the fortune sticks');
+    if (tree) {
+      await p.getByTestId('fortune-shake').click({ force: true }); await p.waitForTimeout(2500);
+      const txt = await p.getByTestId('fortune-text').innerText().catch(() => '');
+      check(txt.length > 10, 'a stick falls out with a reading', txt.replace(/\n/g, ' / ').slice(0, 120));
+      check(!!(await save(p)).propDaily?.siamsi, 'today\'s stick is remembered');
+      await p.screenshot({ path: `${OUT}/9_fortune.png` });
+      await p.mouse.click(5, 5); await p.waitForTimeout(500);
+    }
+
+    await p.goto(BASE + '/hub/shop'); await p.waitForTimeout(1500);
+    await p.getByRole('button', { name: 'กาชา' }).click({ force: true }); await p.waitForTimeout(400);
+    const before = (await save(p)).currency;
+    await p.getByTestId('gacha-turn').click({ force: true }); await p.waitForTimeout(2500);
+    const prize = await p.getByTestId('gacha-prize').innerText().catch(() => '');
+    check(prize.length > 0, 'the gacha gives a prize', prize);
+    const after = (await save(p)).currency;
+    check(after !== before, 'the gacha costs coins (or pays some back)', `${before} -> ${after}`);
+    await p.screenshot({ path: `${OUT}/10_gacha.png` });
+    check(p.errors.length === 0, 'no page errors', p.errors.join(' '));
+    await p.context().close();
+  }
+
   await b.close();
   console.log(fails ? `\n${fails} check(s) FAILED` : '\nall checks passed');
   process.exit(fails ? 1 : 0);
