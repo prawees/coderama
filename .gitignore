@@ -79,3 +79,6 @@ tsconfig.tsbuildinfo
 *.tsbuildinfo
 
 __pycache__/
+
+# Hostinger deploy settings
+.deploy.env

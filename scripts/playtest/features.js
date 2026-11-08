@@ -63,7 +63,7 @@ function correctTexts(caseId) {
 
   // friends with birthdays
   const fb = p.getByRole('button', { name: /friends|เพื่อน/ });
-  if (await fb.count()) { await fb.first().click({ force: true }); await p.waitForTimeout(500); await p.screenshot({ path: `${OUT}/5_friends.png` }); log('FRIENDS', (await p.getByTestId('friends-modal').innerText()).replace(/\n/g, ' / ').slice(0, 400)); await p.mouse.click(5, 5); await p.waitForTimeout(300); }
+  if (await fb.count()) { await fb.first().click({ force: true }); await p.waitForTimeout(500); await p.screenshot({ path: `${OUT}/5_friends.png` }); log('FRIENDS', (await p.getByTestId('friends-modal').innerText()).replace(/\n/g, ' / ').slice(0, 400)); await p.mouse.click(5, 5); await p.getByTestId('friends-modal').waitFor({ state: 'detached' }); await p.waitForTimeout(400); }
   else log('no friends button');
 
   // start the shift; day card shows the weather

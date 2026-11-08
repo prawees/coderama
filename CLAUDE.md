@@ -24,6 +24,9 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
   Must print `0 error(s)` and `0 problem(s)` on every line.
 - `npm run build` writes the static export to `out/`. To play the export: `node scripts/playtest/serve.js out 8765`.
 - Playtest bots (Playwright, headless phone size) are in `scripts/playtest/`, see the section below.
+- `scripts/deploy-hostinger.sh` checks, builds and uploads the game to coderama.prawees.com over SSH with the key
+  `~/.ssh/coderama_hostinger` (settings in `.deploy.env`, see `.deploy.env.example`; `--dry-run` first). It refuses a
+  folder that is not empty or already Code Rama's. `public/.htaccess` gives Apache/LiteSpeed clean URLs and caching.
 
 ## Where things live
 

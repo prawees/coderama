@@ -1,5 +1,14 @@
 # Handoff, 6 November 2026
 
+## Hosting on coderama.prawees.com (Hostinger)
+
+- `scripts/deploy-hostinger.sh` builds with the site address on the Story cards and uploads over SSH with a key made for
+  this (`~/.ssh/coderama_hostinger` on the dev Mac). No Hostinger password is stored anywhere.
+- `public/.htaccess` was tested on a local Apache 2.4 with every bot (hook, custom, requests, features): clean URLs,
+  `/hub/` redirects to `/hub`, the game's own 404 page, no-cache on pages, a year of caching on hashed build files.
+- Waiting on hPanel: the subdomain, SSH access with the public key added, an SSL certificate with Force HTTPS, and the
+  subdomain added to Firebase Authorized domains.
+
 ## Accounts, cloud saves and the leaderboard
 
 - Firebase project `code-rama-6826d` (the one made in August, Firestore in Bangkok, free Spark plan). A web app
