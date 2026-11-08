@@ -12,9 +12,26 @@ const vt323 = localFont({
   display: "swap",
 });
 
+// What a pasted link shows in LINE, Messenger, Facebook and X. The image is public/og.jpg (1200x630).
+const SITE = process.env.NEXT_PUBLIC_SHARE_URL
+  ? (process.env.NEXT_PUBLIC_SHARE_URL.startsWith("http") ? process.env.NEXT_PUBLIC_SHARE_URL : `https://${process.env.NEXT_PUBLIC_SHARE_URL}`)
+  : "https://coderama.prawees.com";
+const DESCRIPTION = "เกม ER พิกเซลของ นศพ. ช่วยลุงหัวใจหยุดเต้นให้รอดใน 1 นาที แล้วท้าเพื่อนแข่ง CPR 51 เคสฉุกเฉิน 31 เวร เล่นฟรีบนมือถือ";
+
 export const metadata: Metadata = {
-  title: "Code Rama",
-  description: "ER Management Idle RPG",
+  metadataBase: new URL(SITE),
+  title: "Code Rama เกม ER ของ นศพ.",
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    url: SITE,
+    siteName: "Code Rama",
+    title: "Code Rama เกม ER ของ นศพ.",
+    description: DESCRIPTION,
+    locale: "th_TH",
+    images: [{ url: withBase("/og.jpg"), width: 1200, height: 630, alt: "Code Rama เกม ER พิกเซล" }],
+  },
+  twitter: { card: "summary_large_image", title: "Code Rama เกม ER ของ นศพ.", description: DESCRIPTION, images: [withBase("/og.jpg")] },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",

@@ -64,7 +64,7 @@ export default function AccountPage() {
     setTimeout(saveNow, 0);
   };
 
-  const fmt = (d: { day: number; saved: number; name: string }) => `${d.name || "ไม่มีชื่อ"} · วันที่ ${d.day} · ช่วยไว้ ${d.saved} คน`;
+  const fmt = (d: { day: number; saved: number; name: string }) => `${d.name || "ไม่มีชื่อ"} วันที่ ${d.day} ช่วยไว้ ${d.saved} คน`;
   const time = cloud.savedAt ? new Date(cloud.savedAt).toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit" }) : null;
 
   return (

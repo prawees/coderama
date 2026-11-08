@@ -21,6 +21,8 @@ import { shiftCard } from "@/lib/shareSpecs";
 import { ShareSheet } from "@/components/game/ShareSheet";
 import { RichText } from "@/components/game/RichText";
 import type { CardSpec } from "@/lib/shareCard";
+import { FeedbackModal, HeartRating } from "@/components/game/FeedbackModal";
+import { ASK_AFTER_DAYS, alreadyAsked, markAsked } from "@/lib/feedback";
 
 /** Whoever is looking out for you at this point in the story signs off the day */
 const MENTOR: Record<Phase, string> = { rama1: "bob", korat: "ek", lovely: "kit", rama2: "pim" };
@@ -61,6 +63,9 @@ export default function SummaryPage() {
   const [showNext, setShowNext] = useState(false);
   const [showNote, setShowNote] = useState(false);
   const [card, setCard] = useState<CardSpec | null>(null);
+  // After the first shift and at a few milestones, one tap on a heart opens the feedback form
+  const [askFeedback, setAskFeedback] = useState(false);
+  const [feedbackRating, setFeedbackRating] = useState(0);
   // Read before the overnight rest refills it: an empty tank means the shift ended in a faint.
   const [fainted] = useState(() => useERStore.getState().energy <= 0);
   const isEndOfEpisode = CHAPTERS.some((c) => c.n > 1 && c.first === currentDay);
@@ -78,6 +83,8 @@ export default function SummaryPage() {
     if (shiftStats.casesTreated > 0 && activeQuests.includes("q_first_shift")) completeQuest("q_first_shift");
     const a = setTimeout(() => setShowNote(true), 1400);
     const b = setTimeout(() => setShowNext(true), 2200);
+    const day = Math.max(1, useERStore.getState().currentDay - 1);
+    if (ASK_AFTER_DAYS.includes(day) && !alreadyAsked(day)) setAskFeedback(true);
     return () => { clearTimeout(a); clearTimeout(b); };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -100,6 +107,7 @@ export default function SummaryPage() {
 
   return (
     <PageTransition>
+      {feedbackRating > 0 && <FeedbackModal where="summary" initialRating={feedbackRating} onClose={() => { setFeedbackRating(0); setAskFeedback(false); }} />}
       {card && <ShareSheet spec={card} onClose={() => setCard(null)} filename={`code-rama-day-${finishedDay}.png`} />}
       <div className="w-full h-[100dvh] cozy-night text-pixel-text font-pixel flex flex-col items-center justify-center p-3 relative" data-testid="summary">
         <motion.div initial={{ scale: 0.92, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.35 }} className="cozy-panel w-full max-w-sm p-3 max-h-full overflow-y-auto">
@@ -182,7 +190,13 @@ export default function SummaryPage() {
           <div className="mt-2 min-h-[5.25rem]">
             {showNext && (
               <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-1.5">
-                <button onClick={() => { audio.playClick(); setCard(shiftCard(finishedDay, fainted)); }} className="cozy-btn cozy-btn-sun w-full py-1.5 text-[17px] leading-none" data-testid="share-shift">แชร์ลงสตอรี่</button>
+                {askFeedback && (
+                  <div className="flex items-center justify-between gap-2 rounded-[4px] border-2 border-[#3a2a2f] bg-[#fff8ea] px-2 py-1" data-testid="feedback-ask">
+                    <span className="text-[15px] leading-tight text-[#86522e]">{finishedDay === 1 ? "เวรแรกเป็นไงบ้าง" : "ช่วงนี้สนุกไหม"}</span>
+                    <HeartRating value={0} size={20} onPick={(n) => { markAsked(finishedDay); setFeedbackRating(n); }} />
+                  </div>
+                )}
+                <button onClick={() => { audio.playClick(); setCard(shiftCard(finishedDay, fainted)); }} className="cozy-btn cozy-btn-sun w-full py-1.5 text-[17px] leading-none" data-testid="share-shift">แชร์สตอรี่ IG</button>
                 <PixelButton
                   onClick={() => (isEndOfEpisode ? router.push("/summary/year-end") : router.push("/hub"))}
                   variant={isEndOfEpisode ? "plum" : "primary"}

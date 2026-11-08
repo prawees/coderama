@@ -79,7 +79,7 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        <button onClick={() => setCard(profileCard())} className="cozy-btn cozy-btn-sun w-full max-w-sm mx-auto py-2 text-[19px] leading-none" data-testid="share-profile">แชร์บัตรนี้ลงสตอรี่</button>
+        <button onClick={() => setCard(profileCard())} className="cozy-btn cozy-btn-sun w-full max-w-sm mx-auto py-2 text-[19px] leading-none" data-testid="share-profile">แชร์สตอรี่ IG</button>
         {card && <ShareSheet spec={card} onClose={() => setCard(null)} filename="code-rama-id.png" />}
 
         {/* Wardrobe */}

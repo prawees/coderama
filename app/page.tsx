@@ -21,6 +21,7 @@ import { ColdOpen } from "@/components/game/ColdOpen";
 import { PixelLogo } from "@/components/game/PixelLogo";
 import { shiftInChapter } from "@/lib/chapters";
 import { teaserAfter } from "@/lib/teasers";
+import { type Challenge, fmtSecs, readChallenge } from "@/lib/invite";
 
 /** The cold open plays once on a device. After that the title goes straight to the menu. */
 const SEEN_KEY = "coderama.coldOpenSeen";
@@ -33,11 +34,14 @@ type MenuState = 'INTRO' | 'SPLASH' | 'COLD_OPEN' | 'MENU' | 'SETUP' | 'SETTINGS
 
 export default function RootPage() {
   const router = useRouter();
-  const { setupPlayer, xp, currentDay, tutorialCompleted } = useERStore();
+  const { setupPlayer, xp, currentDay, tutorialCompleted, playerName } = useERStore();
   const hasSave = xp > 0 || currentDay > 1 || tutorialCompleted;
   const hydrated = useHydrated();
   const cloud = useCloud();
   const [replaying, setReplaying] = useState(false);
+  // A friend's challenge link (/?vf=34&cpr=88&n=...) opens on the cold open, even for someone with a save
+  const [challenge, setChallenge] = useState<Challenge | null>(null);
+  useEffect(() => { setChallenge(readChallenge(window.location.search)); }, []);
 
   const [menuState, setMenuState] = useState<MenuState | 'ABOUT' | 'CREDITS'>('INTRO');
   const [wizardStep, setWizardStep] = useState(1);
@@ -50,7 +54,7 @@ export default function RootPage() {
 
   // Someone coming back wants their game, not the logo again
   useEffect(() => {
-    if (hydrated && hasSave) setMenuState((m) => (m === 'INTRO' || m === 'SPLASH' ? 'MENU' : m));
+    if (hydrated && hasSave && !readChallenge(window.location.search)) setMenuState((m) => (m === 'INTRO' || m === 'SPLASH' ? 'MENU' : m));
   }, [hydrated, hasSave]);
 
   // Auto-transition from Intro to Splash
@@ -74,7 +78,13 @@ export default function RootPage() {
     haptic.impact("light");
     audio.playClick();
 
-    // A first-time player goes straight into a resus. Everyone else gets the menu.
+    // A first-time player goes straight into a resus, and so does anyone taking up a friend's challenge
+    if (challenge) {
+      music.stopTrack();
+      setReplaying(hasSave || seenColdOpen());
+      setMenuState('COLD_OPEN');
+      return;
+    }
     if (!hasSave && !seenColdOpen()) {
       music.stopTrack();
       setMenuState('COLD_OPEN');
@@ -86,6 +96,7 @@ export default function RootPage() {
 
   const finishColdOpen = () => {
     markColdOpenSeen();
+    if (challenge) { setChallenge(null); try { window.history.replaceState(null, '', window.location.pathname); } catch { /* old browser */ } }
     music.fadeToTrack('title', 1.5);
     if (replaying) { setReplaying(false); setMenuState('MENU'); return; }
     setWizardStep(1);
@@ -168,7 +179,7 @@ export default function RootPage() {
   return (
     <div className="min-h-screen text-pixel-text font-pixel flex flex-col items-center justify-center p-4 relative overflow-hidden select-none cozy-night">
       <TitleScene />
-      {menuState === 'COLD_OPEN' && <ColdOpen onDone={finishColdOpen} replay={replaying} />}
+      {menuState === 'COLD_OPEN' && <ColdOpen onDone={finishColdOpen} replay={replaying} challenge={challenge} playerName={hasSave ? playerName : null} />}
 
       {menuState === 'INTRO' && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-[#1c1522] cursor-pointer" onClick={() => setMenuState('SPLASH')}>
@@ -195,7 +206,14 @@ export default function RootPage() {
 
         {menuState === 'SPLASH' && (
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-28 cursor-pointer" onClick={handleSplashTap}>
-            <p className="cozy-tag px-4 py-1.5 text-2xl animate-[cozyBob_1.4s_ease-in-out_infinite]">แตะเพื่อเริ่ม</p>
+            {challenge && (
+              <div className="cozy-panel mx-6 mb-4 px-4 py-3 text-center animate-[cozyPop_0.4s_ease-out]" data-testid="challenge-splash">
+                <p className="text-[20px] leading-none text-[#c4374a]">{challenge.name ?? 'เพื่อน'}ท้าคุณ!</p>
+                <p className="text-[18px] leading-snug mt-1.5">ลุง 58 ปี หัวใจหยุดเต้นหน้าห้องตรวจ<br />{challenge.name ?? 'เพื่อน'}ช่วยกลับมาได้ใน {fmtSecs(challenge.secs)} วินาที</p>
+                <p className="text-[15px] leading-none mt-1.5 text-[#86522e]">ใช้เวลาไม่ถึงนาที</p>
+              </div>
+            )}
+            <p className="cozy-tag px-4 py-1.5 text-2xl animate-[cozyBob_1.4s_ease-in-out_infinite]">{challenge ? 'แตะเพื่อรับคำท้า' : 'แตะเพื่อเริ่ม'}</p>
           </div>
         )}
 
@@ -219,7 +237,7 @@ export default function RootPage() {
               {cloud.user ? 'Account ✓ Saved to cloud' : 'Log in / Save to cloud'}
             </PixelButton>
             <PixelButton onClick={() => setMenuState('SETTINGS')} variant="secondary" className="w-full py-1.5 text-xl">ตั้งค่า</PixelButton>
-            <PixelButton onClick={replayColdOpen} variant="secondary" className="w-full py-1.5 text-xl" data-testid="replay-intro">ดูฉากเปิดอีกครั้ง</PixelButton>
+            <PixelButton onClick={replayColdOpen} variant="secondary" className="w-full py-1.5 text-xl" data-testid="replay-intro">เล่นฉากเปิด ท้าเพื่อนแข่ง</PixelButton>
             <div className="flex gap-3">
               <PixelButton onClick={() => setMenuState('ABOUT')} variant="secondary" className="flex-1 py-1.5 text-lg">เกี่ยวกับเกม</PixelButton>
               <PixelButton onClick={() => setMenuState('CREDITS')} variant="secondary" className="flex-1 py-1.5 text-lg">ทีมงาน</PixelButton>

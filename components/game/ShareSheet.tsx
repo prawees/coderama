@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { audio } from "@/lib/audio";
 import type { CardSpec } from "@/lib/shareCard";
+import { outcomeNote, shareLink, siteUrl } from "@/lib/invite";
 
 /**
  * Preview of a Story card and the buttons to send it. The picture is drawn when this opens,
@@ -44,6 +45,12 @@ export function ShareSheet({ spec, onClose, filename = "code-rama.png" }: { spec
       setNote("เครื่องนี้แชร์ตรงไม่ได้ บันทึกรูปให้แล้ว เปิด Instagram แล้วเลือกรูปนี้ลงสตอรี่ได้เลย");
     }
   };
+  // In Thailand friends talk in LINE: a link there shows the game's preview picture
+  const sendLink = async () => {
+    audio.playClick();
+    const said = outcomeNote[await shareLink("เล่น Code Rama กัน เกม ER พิกเซลของ นศพ. ช่วยลุง VF ให้รอดใน 1 นาที", siteUrl())];
+    if (said) setNote(said);
+  };
   const save = () => {
     if (!blob.current || !tools.current) return;
     audio.playClick();
@@ -63,9 +70,10 @@ export function ShareSheet({ spec, onClose, filename = "code-rama.png" }: { spec
       </div>
       {note && <p className="shrink-0 text-center text-[15px] leading-snug text-[#ffd66b] px-2" data-testid="share-note">{note}</p>}
       <div className="shrink-0 w-full max-w-sm flex flex-col gap-1.5" onClick={(e) => e.stopPropagation()}>
-        <button onClick={share} disabled={!url} className="cozy-btn cozy-btn-leaf w-full py-2 text-[22px] leading-none" data-testid="share-go">แชร์ลงสตอรี่</button>
+        <button onClick={share} disabled={!url} className="cozy-btn cozy-btn-leaf w-full py-2 text-[22px] leading-none" data-testid="share-go">แชร์สตอรี่ IG</button>
         <div className="flex gap-1.5">
           <button onClick={save} disabled={!url} className="cozy-btn flex-1 py-1.5 text-[18px] leading-none" data-testid="share-save">บันทึกรูป</button>
+          <button onClick={sendLink} className="cozy-btn cozy-btn-sky flex-1 py-1.5 text-[18px] leading-none" data-testid="share-link">ส่งลิงก์ LINE</button>
           <button onClick={onClose} className="cozy-btn flex-1 py-1.5 text-[18px] leading-none" data-testid="share-close">ปิด</button>
         </div>
       </div>

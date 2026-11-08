@@ -1,5 +1,26 @@
 # Handoff, 8 November 2026
 
+## Getting friends in from the first minute (8 November, later)
+
+- **Link preview.** `app/layout.tsx` now has Thai Open Graph and X tags and `public/og.jpg` (1200x630, real
+  screenshots plus the logo), so a link pasted in LINE or Messenger shows a picture and a Thai line instead of
+  "ER Management Idle RPG". LINE caches previews per URL for a while; a link pasted before this deploy may keep the old one.
+- **Cold-open dare.** The cold open now times the run (first order to ROSC, in tenths of a second) and counts CPR
+  on rate. The title after it offers "ท้าเพื่อนให้ลองบ้าง", a link like `/?vf=12.4&cpr=88&n=บิ๊ก`. Whoever opens it gets a
+  splash naming the friend and the time, plays the same arrest with the dare on screen, sees who won (CPR breaks a
+  tie), and can dare back. It works for players with a save too, and goes back to their game afterwards.
+  `lib/invite.ts` holds the link format, the verdict and `shareLink` (phone share sheet, else LINE's share page on a
+  phone, else the clipboard). The menu button is now "เล่นฉากเปิด ท้าเพื่อนแข่ง".
+- **Invites.** Settings (title and clinic) has "ชวนเพื่อนเล่น"; the Story card sheet has "ส่งลิงก์ LINE".
+- **Feedback.** `components/game/FeedbackModal.tsx` and `lib/feedback.ts`: hearts 1 to 5, what they liked, what to
+  fix, a free line (no names or numbers asked). The summary asks with a row of hearts after days 1, 5, 10, 20 and 31,
+  once each; settings has "บอกทีมหน่อย" any time. Rows go to Firestore `feedback`, create only, checked field by field
+  in `firestore.rules` (tested on the emulator: a good row passes, extra fields, bad ratings, long text, someone
+  else's uid and any read are refused). Read them in the Firebase console, Firestore, `feedback`.
+  **The rule must be deployed** (`firebase deploy --only firestore:rules`), or sending shows "ส่งไม่สำเร็จ".
+- **Tested:** `scripts/playtest/growth.js` (28 checks: preview tags, the dare both ways, a returning player, a broken
+  link, invite, feedback against the emulators; `FEEDBACK=0` skips the emulator part).
+
 ## Sharing, late-story density, small extras (8 November)
 
 - **Share from anywhere.** A "แชร์สตอรี่" button sits under coins and energy in the clinic from day 1, and the profile

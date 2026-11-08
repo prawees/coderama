@@ -33,8 +33,8 @@ export type CardSpec =
       vitals: { label: string; value: string; bad?: boolean }[] }
   | { kind: "chapter"; day: number; phase: Phase; player: CardPlayer; host?: Look; title: string; promo?: string; saved: number; stars: number;
       patients: number; type: { title: string; line: string }; chaptersDone: number }
-  | { kind: "profile"; day: number; phase: Phase; player: CardPlayer; saved: number; stars: number; best: number;
-      type: { title: string; line: string }; chapter?: { title: string; n: number; total: number; position: number; next?: string } };
+  | { kind: "profile"; day: number; phase: Phase; player: CardPlayer; saved: number; cases: number; best: number;
+      type: { title: string; line: string } };
 
 const BODY_FONT = `Itim, Tahoma, "Noto Sans Thai", sans-serif`;
 
@@ -272,7 +272,7 @@ function drawShift(c: CanvasRenderingContext2D, s: Extract<CardSpec, { kind: "sh
     pips(c, CARD_W - M - 40, infoY + 26, s.chapter.total, s.chapter.position);
     if (s.chapter.next) text(c, s.chapter.next, { x: M + 40, y: infoY + 68, w: CARD_W - M * 2 - 80, h: infoH - 88, size: 36, min: 24, color: BROWN, align: "left", lead: 1.15 });
   } else {
-    text(c, s.dx.join("  ·  ") || "เวรต่อไปรออยู่น้า", { x: M + 40, y: infoY + 12, w: CARD_W - M * 2 - 80, h: infoH - 36, size: 36, min: 24, color: BROWN, lead: 1.15 });
+    text(c, s.dx.join(", ") || "เวรต่อไปรออยู่น้า", { x: M + 40, y: infoY + 12, w: CARD_W - M * 2 - 80, h: infoH - 36, size: 36, min: 24, color: BROWN, lead: 1.15 });
   }
   footer(c, url);
 }
@@ -361,35 +361,61 @@ function drawChapter(c: CanvasRenderingContext2D, s: Extract<CardSpec, { kind: "
 }
 
 /** The doctor's ID card: shareable from the first minute, whatever has happened so far */
+/**
+ * One stat as a sentence with a big number: "ช่วยคนไข้ได้แล้ว  0  คน". The number grows with the value, so a fresh
+ * player's row of zeros reads as a joke and a late-game card shouts.
+ */
+function bigStat(c: CanvasRenderingContext2D, y: number, h: number, label: string, value: number, unit: string, color: string, fill: string) {
+  const x = M, w = CARD_W - M * 2;
+  panel(c, x, y, w, h, fill, SHADE);
+  const size = Math.round(Math.min(136, 100 + 16 * Math.log10(value + 1)));
+  text(c, label, { x: x + 40, y: y + 8, w: 470, h: h - 24, size: 44, min: 28, color: INK, align: "left", lead: 1.1 });
+  // Unit on the right, the number just left of it, outlined and dropped like a sticker
+  c.font = `40px ${BODY_FONT}`;
+  const unitW = c.measureText(unit).width;
+  const right = x + w - 40;
+  text(c, unit, { x: right - unitW, y: y + 8, w: unitW, h: h - 24, size: 40, min: 40, color: BROWN, align: "right", lead: 1.1 });
+  const nx = right - unitW - 22, ny = y + (h - 16) / 2;
+  c.font = `${size}px ${BODY_FONT}`;
+  c.textAlign = "right";
+  c.textBaseline = "middle";
+  c.lineJoin = "round";
+  if (value >= 10) { c.shadowColor = color; c.shadowBlur = Math.min(40, value); }
+  c.lineWidth = Math.round(size * 0.08);
+  c.strokeStyle = INK;
+  c.fillStyle = INK;
+  c.strokeText(String(value), nx, ny + 6);
+  c.fillText(String(value), nx, ny + 6);
+  c.shadowBlur = 0;
+  c.strokeText(String(value), nx, ny);
+  c.fillStyle = color;
+  c.fillText(String(value), nx, ny);
+}
+
 function drawProfile(c: CanvasRenderingContext2D, s: Extract<CardSpec, { kind: "profile" }>, url?: string) {
   backdrop(c, s.phase, "gold");
-  const statsY = 1010;
-  const y = SAFE_TOP + 4, bannerH = 330, inner = CARD_W - M * 2 - 80;
-  sparkles(c, CARD_W / 2 - 20, y + bannerH + 24, statsY - 24, 300);
+  // Who and where, nothing a stranger would need the game to understand
+  const y = SAFE_TOP + 4, bannerH = 200, inner = CARD_W - M * 2 - 80;
   panel(c, M, y, CARD_W - M * 2, bannerH);
   ribbon(c, "บัตรหมอ Code Rama", CARD_W / 2, y + 4);
-  text(c, s.player.rank, { x: M + 40, y: y + 44, w: inner, h: 120, size: 104, min: 48, color: RED, shadow: BLUSH, shadowOff: 6, lead: 1.05 });
-  text(c, `${LOCATION_NAMES[s.phase].th}  ·  วันที่ ${s.day}`, { x: M + 40, y: y + 166, w: inner, h: 46, size: 36, min: 24, color: BROWN, lead: 1.1 });
-  if (s.chapter) {
-    text(c, `บท ${s.chapter.n} ${s.chapter.title}`, { x: M + 40, y: y + 218, w: 380, h: 50, size: 38, min: 24, color: INK, align: "left", lead: 1.1 });
-    pips(c, CARD_W - M - 40, y + 226, s.chapter.total, s.chapter.position);
-    if (s.chapter.next) text(c, s.chapter.next, { x: M + 40, y: y + 268, w: inner, h: 40, size: 32, min: 22, color: BROWN, align: "left", lead: 1.1 });
-  }
+  text(c, s.player.rank, { x: M + 40, y: y + 34, w: inner, h: 100, size: 92, min: 44, color: RED, shadow: BLUSH, shadowOff: 6, lead: 1.05 });
+  text(c, `วันที่ ${s.day} ที่${LOCATION_NAMES[s.phase].th}`, { x: M + 40, y: y + 134, w: inner, h: 46, size: 36, min: 24, color: BROWN, lead: 1.1 });
 
-  hero(c, s.player.look, CARD_W / 2, statsY - 4, 15);
-  kitty(c, CARD_W / 2 + 170, statsY - 2, 10);
+  const statsY = 800;
+  sparkles(c, CARD_W / 2 - 20, y + bannerH + 20, statsY - 20, 280);
+  hero(c, s.player.look, CARD_W / 2, statsY - 14, 11);
+  kitty(c, CARD_W / 2 + 140, statsY - 12, 9);
 
-  statRow(c, M, statsY, CARD_W - M * 2, 196, [
-    { value: String(s.saved), label: "คนไข้ที่ช่วยไว้", fill: BLUSH },
-    { value: String(s.stars), label: "ดาวในสมุดเคส", color: "#a9743f", fill: BUTTER },
-    { value: String(s.best), label: "ทำดีติดกันสูงสุด", color: GREEN, fill: SAGE },
-  ]);
+  const rowH = 134, gap = 10;
+  bigStat(c, statsY, rowH, "ช่วยคนไข้ได้แล้ว", s.saved, "คน", RED, BLUSH);
+  bigStat(c, statsY + rowH + gap, rowH, "มีเคสใน logbook", s.cases, "เคส", "#e0a04a", BUTTER);
+  bigStat(c, statsY + (rowH + gap) * 2, rowH, "ทำดีติดกันสูงสุด", s.best, "ครั้ง", GREEN, SAGE);
 
-  const py = statsY + 196 + 16, h = SAFE_BOTTOM - 124 - 16 - py;
+  const py = statsY + (rowH + gap) * 3 + 6, h = SAFE_BOTTOM - 124 - 16 - py;
   panel(c, M, py, CARD_W - M * 2, h);
-  text(c, `${s.player.rank} เป็นหมอสไตล์...`, { x: M + 40, y: py + 14, w: inner, h: 46, size: 36, min: 24, color: BROWN, lead: 1.1 });
-  text(c, `"${s.type.title}"`, { x: M + 40, y: py + 58, w: inner, h: 92, size: 80, min: 40, color: RED, lead: 1.1 });
-  text(c, s.type.line, { x: M + 40, y: py + 150, w: inner, h: h - 174, size: 36, min: 24, color: INK, lead: 1.15 });
+  text(c, `ตอนนี้ ${s.player.rank} กำลังเป็น...`, { x: M + 40, y: py + 16, w: inner, h: 46, size: 36, min: 24, color: BROWN, lead: 1.1 });
+  text(c, s.type.title, { x: M + 40, y: py + 62, w: inner, h: 92, size: 84, min: 40, color: RED, shadow: BLUSH, shadowOff: 5, lead: 1.1 });
+  text(c, s.type.line, { x: M + 40, y: py + 156, w: inner, h: h - 176, size: 34, min: 22, color: INK, lead: 1.15 });
   footer(c, url);
 }
 

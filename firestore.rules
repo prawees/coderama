@@ -43,6 +43,23 @@ service cloud.firestore {
       allow update: if signedIn();
     }
 
+    // Player feedback: anyone may leave one, nobody reads or changes it from the game (the team reads it in the console)
+    match /feedback/{id} {
+      allow read, update, delete: if false;
+      allow create: if request.resource.data.keys().hasOnly(['rating', 'likes', 'fixes', 'text', 'where', 'day', 'rank', 'school', 'device', 'uid', 'createdAt'])
+        && request.resource.data.rating is int && request.resource.data.rating >= 1 && request.resource.data.rating <= 5
+        && request.resource.data.likes is list && request.resource.data.likes.size() <= 7
+        && request.resource.data.fixes is list && request.resource.data.fixes.size() <= 6
+        && request.resource.data.text is string && request.resource.data.text.size() <= 600
+        && request.resource.data.where in ['summary', 'menu', 'settings']
+        && request.resource.data.day is int && request.resource.data.day >= 1 && request.resource.data.day <= 400
+        && request.resource.data.rank is string && request.resource.data.rank.size() <= 20
+        && request.resource.data.school is string && request.resource.data.school.size() <= 20
+        && request.resource.data.device in ['ios', 'android', 'desktop']
+        && (request.resource.data.uid == null || (signedIn() && request.resource.data.uid == request.auth.uid))
+        && request.resource.data.createdAt == request.time;
+    }
+
     // Everything else is closed
     match /{document=**} {
       allow read, write: if false;

@@ -158,7 +158,7 @@ export default function YearEndPage() {
                   className="cozy-btn cozy-btn-sun w-full py-1.5 text-[17px] leading-none"
                   data-testid="share-chapter"
                 >
-                  แชร์ลงสตอรี่
+                  แชร์สตอรี่ IG
                 </button>
                 <PixelButton onClick={(e) => { e.stopPropagation(); router.push("/hub"); }} variant="plum" className="w-full py-2 text-[22px]" data-testid="year-end-next">
                   {ch.button.th}

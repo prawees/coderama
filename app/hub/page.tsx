@@ -744,9 +744,9 @@ export default function HubPage() {
           onClick={() => { audio.playClick(); setShareCardSpec(profileCard()); }}
           className="pointer-events-auto absolute top-[4.6rem] right-0 z-40 cozy-btn cozy-btn-sun px-2.5 py-1.5 flex items-center gap-1 text-[16px] leading-none animate-[shareNudge_6s_ease-in-out_infinite]"
           data-testid="hud-share"
-          aria-label="แชร์ลงสตอรี่"
+          aria-label="แชร์สตอรี่ IG"
         >
-          <PixelIcon name="heart" size={13} />{tr('Share', 'แชร์สตอรี่')}
+          <PixelIcon name="heart" size={13} />{tr('Share', 'แชร์สตอรี่ IG')}
         </button>
           </div>
         </div>

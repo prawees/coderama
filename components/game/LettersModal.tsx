@@ -120,7 +120,7 @@ export function LettersModal({ onClose, initialTab = "letters" }: { onClose: () 
                     <div className="bg-[#fffaf0] border-2 border-[#e7d3a8] rounded-[4px] p-2.5">
                       <div className="flex justify-between items-baseline gap-2">
                         <span className="text-[20px] leading-none">{p.name.th} {p.age.th}</span>
-                        <span className="text-[13px] leading-none text-[#86522e] shrink-0">เคส {CASEBOOK_IDS.indexOf(page) + 1} · วันที่ {r.day}</span>
+                        <span className="text-[13px] leading-none text-[#86522e] shrink-0">เคส {CASEBOOK_IDS.indexOf(page) + 1} วันที่ {r.day}</span>
                       </div>
                       <p className="text-[16px] leading-snug mt-1.5"><span className="text-[#86522e]">Dx </span>{p.dx.th}</p>
                       <p className={`text-[14px] leading-snug mt-1.5 ${r.star ? "text-[#c08a1e]" : r.good ? "text-[#3f8a48]" : "text-[#a93c4b]"}`}>

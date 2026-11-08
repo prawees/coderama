@@ -97,7 +97,7 @@ export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
                 i={i}
                 mine={l.id === me}
                 name={l.displayName || "หมอนิรนาม"}
-                sub={`${l.university && l.university !== "Unknown" ? `${universityTh(l.university)} · ` : ""}${RANK_SHORT_TH[storyRank(l.day || 1)] ?? storyRank(l.day || 1)} วันที่ ${l.day || 1}`}
+                sub={`${l.university && l.university !== "Unknown" ? `${universityTh(l.university)}  ` : ""}${RANK_SHORT_TH[storyRank(l.day || 1)] ?? storyRank(l.day || 1)} วันที่ ${l.day || 1}`}
                 right={`${l.savedTotal || 0} คน`}
                 right2={`★ ${l.stars || 0}`}
               />

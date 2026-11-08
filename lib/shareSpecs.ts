@@ -64,13 +64,10 @@ export function profileCard(): CardSpec {
   const log = Object.values(st.patientLog ?? {}) as { star?: boolean }[];
   const stars = log.filter((p) => p.star).length;
   const friends = Object.entries(st.friendships ?? {}).filter(([k]) => k !== "cat").reduce((a, [, n]) => a + n, 0);
-  const at = shiftInChapter(st.currentDay);
   return {
     kind: "profile", day: st.currentDay, phase: phaseForDay(st.currentDay), player: player(),
-    saved: st.savedTotal ?? 0, stars, best: st.bestStreak ?? 0,
+    saved: st.savedTotal ?? 0, cases: log.length, best: st.bestStreak ?? 0,
     type: doctorType({ stars, patients: log.length, catFriendship: st.friendships?.cat ?? 0, friendTotal: friends, saved: st.savedTotal ?? 0 }),
-    chapter: at ? { title: at.chapter.title, n: at.chapter.n, total: at.total, position: at.position - 1,
-      next: at.chapter.reward ? `อีก ${at.total - at.position + 1} เวร ${at.chapter.reward}` : undefined } : undefined,
   };
 }
 

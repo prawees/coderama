@@ -10,6 +10,7 @@ import { PixelLogo } from "@/components/game/PixelLogo";
 import { PixelIcon } from "@/components/ui/PixelIcon";
 import { RichText } from "@/components/game/RichText";
 import type { LiveVitals } from "@/components/exam3d/BedsideScene";
+import { type Challenge, type ColdOpenResult, challengeUrl, fmtSecs, outcomeNote, resultLine, shareLink, verdict } from "@/lib/invite";
 
 const Bedside3D = dynamic(() => import("@/components/exam3d/Bedside3D"), { ssr: false });
 
@@ -116,8 +117,14 @@ function useRhythmStrip(rhythmRef: React.MutableRefObject<Rhythm>, pressRef: Rea
   return ref;
 }
 
-export function ColdOpen({ onDone, replay = false }: { onDone: () => void; replay?: boolean }) {
+export function ColdOpen({ onDone, replay = false, challenge = null, playerName = null }: { onDone: () => void; replay?: boolean; challenge?: Challenge | null; playerName?: string | null }) {
   const [beat, setBeat] = useState<Beat>("arrive");
+  // The score a friend can be challenged with: time from the first order to ROSC, and CPR on rate
+  const orderAt = useRef(0);
+  const cprTaps = useRef({ rated: 0, good: 0 });
+  const wrongs = useRef(0);
+  const [result, setResult] = useState<ColdOpenResult | null>(null);
+  const [shareNote, setShareNote] = useState<string | null>(null);
   const [count, setCount] = useState(0);
   const counted = useRef(0);
   const taps = useRef<number[]>([]);
@@ -142,7 +149,7 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
   useEffect(() => {
-    later(() => setBeat((b) => (b === "arrive" ? "order" : b)), 2400);
+    later(() => { orderAt.current = performance.now(); setBeat((b) => (b === "arrive" ? "order" : b)); }, 2400);
   }, [later]);
 
   // The alarm sounds until the first order is given
@@ -179,6 +186,7 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
     const r = rateOf(taps.current);
     setRate(r);
     const good = r >= RATE_LOW && r <= RATE_HIGH;
+    if (r) { cprTaps.current.rated += 1; if (good) cprTaps.current.good += 1; }
     fill.current = Math.min(1, fill.current + (r === 0 ? FILL[phase].off : good ? FILL[phase].good : FILL[phase].off));
     setPerfusion(fill.current);
     // Coach only when the rhythm is clearly off, and praise it once it settles
@@ -196,6 +204,7 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
     } else {
       audio.playBump();
       haptic.vibrate();
+      wrongs.current += 1;
       setWrong(o.why ?? null);
     }
   };
@@ -229,6 +238,8 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
       rhythmRef.current = "sinus";
       vitalsRef.current = { hr: 88, sbp: 104, dbp: 66, rr: 14, spo2: 96, temp: 36.5 };
       setVitals({ hr: 88, bp: "104/66", spo2: 96 });
+      const { rated, good } = cprTaps.current;
+      setResult({ secs: Math.max(1, (performance.now() - (orderAt.current || performance.now())) / 1000), cpr: rated ? (good / rated) * 100 : 0, wrong: wrongs.current });
       audio.playSparkle();
       haptic.impact("heavy");
     }, 1700);
@@ -242,6 +253,11 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
       <button onClick={onDone} className="absolute top-3 right-3 z-20 cozy-tag px-2 py-0.5 text-[15px] leading-none" data-testid="cold-open-skip">ข้าม ▸▸</button>
 
       <p className="shrink-0 pt-2 pl-1 pr-16 text-[17px] leading-none text-[#c9b79c]">อีกหลายปีข้างหน้า ER 03:12 น.</p>
+      {challenge && (beat === "arrive" || beat === "order") && (
+        <motion.div initial={{ y: -12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="shrink-0 cozy-tag !bg-[#ffd66b] px-2.5 py-1.5 text-[17px] leading-snug text-center" data-testid="challenge-banner">
+          {challenge.name ?? "เพื่อน"}ท้าคุณ! ช่วยลุงรอดใน {fmtSecs(challenge.secs)} วินาที คุณจะเร็วกว่าไหม
+        </motion.div>
+      )}
 
       <div className="shrink-0 cozy-screen rounded-[6px] border-[3px] border-[#3a2a2f] bg-[#1e1826] p-1.5" data-testid="cold-open-monitor">
         <div className="grid grid-cols-3 text-center leading-none">
@@ -331,6 +347,14 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
         {beat === "rosc" && (
           <>
             <p className="text-center cozy-tag !bg-[#86c35f] self-center px-3 py-1 text-[24px] leading-none animate-slide-up" data-testid="cold-open-rosc">ROSC</p>
+            {result && (
+              <div className="self-center flex flex-col items-center gap-1 animate-slide-up" data-testid="cold-open-score">
+                <p className="text-[18px] leading-none text-[#fbf3e2]">{resultLine(result)}</p>
+                {challenge && (() => { const v = verdict(result, challenge); return (
+                  <p className={`cozy-tag px-2 py-0.5 text-[18px] leading-none ${v.won ? "!bg-[#ffd66b]" : ""}`} data-testid="challenge-verdict">{v.text}</p>
+                ); })()}
+              </div>
+            )}
             <button onClick={() => { audio.playClick(); setBeat("back"); later(() => setBeat("title"), 2400); }} className="cozy-btn cozy-btn-leaf w-full py-3 text-[22px] leading-none" data-testid="cold-open-next">ต่อไป</button>
           </>
         )}
@@ -363,6 +387,24 @@ export function ColdOpen({ onDone, replay = false }: { onDone: () => void; repla
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, type: "spring", stiffness: 260, damping: 16 }} className="w-full max-w-xs">
                   <button onClick={onDone} className="cozy-btn cozy-btn-leaf w-full py-3 text-[26px] leading-none animate-[cozyBeat_1.4s_ease-in-out_infinite]" data-testid="cold-open-start">{replay ? "กลับเมนู" : "เริ่มเวรแรก"}</button>
+                  {result && <p className="mt-3 text-[16px] leading-none text-[#c9b79c]" data-testid="cold-open-score-title">คุณทำได้ {resultLine(result)}</p>}
+                  {result && (
+                    <button
+                      onClick={async () => {
+                        audio.playClick();
+                        const won = challenge ? verdict(result, challenge).won : false;
+                        const text = challenge
+                          ? `${won ? "ชนะแล้ว" : "เกือบชนะ"} ${resultLine(result)} ใน Code Rama ลองแก้มือดูสิ`
+                          : `ช่วยลุง VF กลับมาได้ ${resultLine(result)} ใน Code Rama คุณจะเร็วกว่าไหม`;
+                        setShareNote(outcomeNote[await shareLink(text, challengeUrl(result, playerName))]);
+                      }}
+                      className="cozy-btn cozy-btn-sun w-full mt-1.5 py-2 text-[20px] leading-none flex items-center justify-center gap-1.5"
+                      data-testid="challenge-share"
+                    >
+                      <PixelIcon name="heart" size={15} />{challenge ? "ท้ากลับ" : "ท้าเพื่อนให้ลองบ้าง"}
+                    </button>
+                  )}
+                  {shareNote && <p className="mt-1.5 text-[15px] leading-none text-[#ffd66b]" data-testid="challenge-note">{shareNote}</p>}
                 </motion.div>
               </>
             )}

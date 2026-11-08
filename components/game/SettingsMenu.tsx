@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { audio } from "@/lib/audio";
 import { music } from "@/lib/music";
 import { useERStore } from "@/lib/erStore";
+import { FeedbackModal } from "@/components/game/FeedbackModal";
+import { outcomeNote, shareLink, siteUrl } from "@/lib/invite";
 
 interface SettingsMenuProps {
   isOpen: boolean;
@@ -17,6 +19,13 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
   const [isMuted, setIsMuted] = useState(audio.isMuted);
   const [armedReset, setArmedReset] = useState(false);
   const [note, setNote] = useState<string | null>(null);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+
+  const invite = async () => {
+    audio.playClick();
+    const said = outcomeNote[await shareLink("มาเล่น Code Rama เกม ER พิกเซลของ นศพ. กัน ช่วยลุง VF ให้รอดใน 1 นาที", siteUrl())];
+    if (said) setNote(said);
+  };
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const toggleMute = () => {
@@ -74,6 +83,8 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
   );
 
   return (
+    <>
+    {feedbackOpen && <FeedbackModal where="settings" onClose={() => setFeedbackOpen(false)} />}
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -97,6 +108,11 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
               <span>{isMuted ? "ปิดอยู่" : "เปิดอยู่"}</span>
             </button>
 
+            <div className="flex gap-2">
+              <button onClick={() => { audio.playClick(); setFeedbackOpen(true); }} className="cozy-btn cozy-btn-sun flex-1 py-1.5 text-[17px] leading-none" data-testid="open-feedback">บอกทีมหน่อย</button>
+              <button onClick={invite} className="cozy-btn cozy-btn-sky flex-1 py-1.5 text-[17px] leading-none" data-testid="invite-friends">ชวนเพื่อนเล่น</button>
+            </div>
+
             {slider("เสียงเอฟเฟกต์", sfxVolume, setSfxVolume)}
             {slider("เพลง", musicVolume, setMusicVolume)}
 
@@ -115,5 +131,6 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
         </motion.div>
       )}
     </AnimatePresence>
+    </>
   );
 }
