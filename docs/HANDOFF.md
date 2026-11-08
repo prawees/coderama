@@ -6,8 +6,11 @@
   this (`~/.ssh/coderama_hostinger` on the dev Mac). No Hostinger password is stored anywhere.
 - `public/.htaccess` was tested on a local Apache 2.4 with every bot (hook, custom, requests, features): clean URLs,
   `/hub/` redirects to `/hub`, the game's own 404 page, no-cache on pages, a year of caching on hashed build files.
-- Waiting on hPanel: the subdomain, SSH access with the public key added, an SSL certificate with Force HTTPS, and the
-  subdomain added to Firebase Authorized domains.
+- Live since 8 November 2026 at https://coderama.prawees.com (folder `domains/prawees.com/public_html/coderama`).
+  Hostinger's automatic SSL is on and http redirects to https. The hook, custom and features bots pass against the live
+  site. To update it: `scripts/deploy-hostinger.sh` (needs `.deploy.env` and the key on the dev Mac).
+- Still to do in Firebase: add coderama.prawees.com under Authentication, Settings, Authorized domains, and switch on
+  Google and the email link, or sign-in will not work on the live site.
 
 ## Accounts, cloud saves and the leaderboard
 
