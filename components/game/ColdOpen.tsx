@@ -10,6 +10,7 @@ import { PixelLogo } from "@/components/game/PixelLogo";
 import { PixelIcon } from "@/components/ui/PixelIcon";
 import { RichText } from "@/components/game/RichText";
 import type { LiveVitals } from "@/components/exam3d/BedsideScene";
+import { PadPlacement, MISS_LINE } from "@/components/game/PadPlacement";
 import { type Challenge, type ColdOpenResult, challengeUrl, fmtSecs, outcomeNote, resultLine, shareLink, verdict } from "@/lib/invite";
 
 const Bedside3D = dynamic(() => import("@/components/exam3d/Bedside3D"), { ssr: false });
@@ -17,10 +18,12 @@ const Bedside3D = dynamic(() => import("@/components/exam3d/Bedside3D"), { ssr: 
 /**
  * The first thing a new player does: years from now, as the attending, run a VF arrest.
  * It is the whole game in 40 seconds, the ER, the teaching and the payoff, before any menu or form.
- * The order follows ACLS: CPR and an early shock, straight back on the chest, rhythm check at 2 minutes.
+ * The order follows ACLS: CPR, pads on while someone else compresses, a short pause to read the rhythm, charge,
+ * everyone clear, shock, straight back on the chest, rhythm check at 2 minutes. Placing the pads also breaks the
+ * tapping rhythm, so nobody hits the shock button by accident while still pressing.
  * It cannot be failed, a wrong call just gets corrected the way a nurse would.
  */
-type Beat = "arrive" | "order" | "cpr1" | "charge" | "shock" | "cpr2" | "later" | "rosc" | "back" | "title";
+type Beat = "arrive" | "order" | "cpr1" | "pads" | "analyse" | "charge" | "shock" | "cpr2" | "later" | "rosc" | "back" | "title";
 type Rhythm = "vf" | "cpr" | "flat" | "sinus";
 
 /**
@@ -59,7 +62,9 @@ const ANN: Partial<Record<Beat, string>> = {
   arrive: "อาจารย์คะ! ลุงอายุ 58 ล้มหน้าห้องตรวจ คลำ pulse ไม่ได้ค่ะ",
   order: "monitor เป็น VF ค่ะ สั่งเลยค่ะอาจารย์",
   cpr1: "กดเลยค่ะ! ลึก 5 ถึง 6 cm เร็ว 100 ถึง 120 ครั้ง/นาที กดตาม PUSH ได้เลยค่ะ",
-  charge: "ชาร์จ 200 J แล้วค่ะ ทุกคนถอยออกจากเตียง!",
+  pads: "อาจารย์คะ พี่กดต่อให้เอง ติดแผ่น pad ให้หน่อยค่ะ ลากไปวางบนหน้าอกได้เลย",
+  analyse: "ติดครบแล้ว หยุดกดแป๊บนึงค่ะ ดู rhythm... VF ค่ะ shockable",
+  charge: "ชาร์จ 200 J แล้วค่ะ บอกทุกคนถอยก่อนนะคะ",
   cpr2: "ช็อกแล้ว! กดต่อทันทีค่ะ อย่าเพิ่งเช็ค pulse",
   rosc: "sinus rhythm ค่ะ คลำ pulse ได้แล้ว กลับมาแล้วค่ะอาจารย์!",
 };
@@ -138,6 +143,9 @@ export function ColdOpen({ onDone, replay = false, challenge = null, playerName 
   const [flash, setFlash] = useState(false);
   const [shake, setShake] = useState(false);
   const [vitals, setVitals] = useState({ hr: 0, bp: "0/0", spo2: 0 });
+  // Charging, then "everyone clear", then the shock button: three separate taps, never in the same spot as the press
+  const [cleared, setCleared] = useState(false);
+  const [shockReady, setShockReady] = useState(false);
 
   const rhythmRef = useRef<Rhythm>("vf");
   const pressRef = useRef(-1e6);
@@ -165,6 +173,13 @@ export function ColdOpen({ onDone, replay = false, challenge = null, playerName 
 
   // On-beat cues at 110 a minute while compressing: PUSH! PUSH!
   const compressing = beat === "cpr1" || beat === "cpr2";
+  // While the player puts the pads on, Ann keeps compressing: the monitor and the 3D patient show it
+  useEffect(() => {
+    if (beat !== "pads") return;
+    rhythmRef.current = "cpr";
+    const id = setInterval(() => { const now = performance.now(); pressRef.current = now; compressRef.current = now; }, 545);
+    return () => clearInterval(id);
+  }, [beat]);
   useEffect(() => {
     if (!compressing) return;
     const id = setInterval(() => setCue((c) => c + 1), 545);
@@ -209,14 +224,39 @@ export function ColdOpen({ onDone, replay = false, challenge = null, playerName 
     }
   };
 
+  const toPads = () => {
+    setCoach(null);
+    setWrong(null);
+    setBeat("pads");
+  };
+
+  const padsOn = () => {
+    setCoach(null);
+    setWrong(null);
+    rhythmRef.current = "vf";
+    setBeat("analyse");
+    later(toCharge, 1600);
+  };
+
+  const clear = () => {
+    audio.playClick();
+    haptic.impact("medium");
+    setCleared(true);
+    setCoach("ถอยหมดแล้วค่ะ ไม่มีใครแตะเตียง ช็อกได้เลย");
+    later(() => setShockReady(true), 450);
+  };
+
   const toCharge = () => {
     setCoach(null);
+    setCleared(false);
+    setShockReady(false);
     rhythmRef.current = "vf";
     setBeat("charge");
     [392, 523, 659, 784].forEach((f, i) => later(() => audio.playTone(f, "square", 0.1, 0.06), i * 140));
   };
 
   const fire = () => {
+    setCoach(null);
     setBeat("shock");
     setFlash(true);
     setShake(true);
@@ -275,6 +315,13 @@ export function ColdOpen({ onDone, replay = false, challenge = null, playerName 
         <div className="absolute inset-0">
           <Bedside3D vitalsRef={vitalsRef} compressRef={compressRef} examined={[]} onRegion={() => {}} appearance={{ skinTone: "#d19a6e" }} quietFallback />
         </div>
+        {beat === "pads" && (
+          <PadPlacement
+            onPlaced={(n) => { setWrong(null); setCoach(n === 1 ? "แผ่นแรกได้แล้วค่ะ อีกแผ่นเลย" : null); }}
+            onMiss={(why) => { setCoach(null); setWrong(MISS_LINE[why]); }}
+            onDone={padsOn}
+          />
+        )}
         {(compressing || beat === "charge" || beat === "shock") && (
           // A small indicator in the top corner, clear of the patient: heart to brain, filling as you press
           <div className="absolute left-1.5 top-1.5 flex items-center gap-1 rounded-[6px] border-2 border-[#3a2a2f] bg-[#fff8ea]/90 px-1 py-0.5" data-testid="perfusion">
@@ -330,7 +377,7 @@ export function ColdOpen({ onDone, replay = false, challenge = null, playerName 
 
         {compressing && (
           <button
-            onClick={() => (beat === "cpr1" ? compress("cpr1", toCharge) : compress("cpr2", toLater))}
+            onClick={() => (beat === "cpr1" ? compress("cpr1", toPads) : compress("cpr2", toLater))}
             className="cozy-btn w-full py-6 text-[32px] leading-none text-white animate-[cprPump_0.545s_ease-in-out_infinite]"
             data-testid="cold-open-press"
           >
@@ -338,8 +385,15 @@ export function ColdOpen({ onDone, replay = false, challenge = null, playerName 
           </button>
         )}
 
-        {beat === "charge" && (
-          <button onClick={fire} className="cozy-btn cozy-btn-sun w-full py-6 text-[34px] leading-none animate-[cozyBeat_0.4s_ease-in-out_infinite]" data-testid="cold-open-shock">ช็อก 200 J</button>
+        {beat === "analyse" && <p className="text-center text-[24px] leading-none text-[#ffd66b] py-6" data-testid="cold-open-analyse">หยุดกด ดู rhythm...</p>}
+
+        {beat === "charge" && !cleared && (
+          <button onClick={clear} className="cozy-btn w-full py-4 text-[26px] leading-none" data-testid="cold-open-clear">ทุกคนถอย! ไม่แตะเตียง</button>
+        )}
+        {beat === "charge" && cleared && (
+          shockReady
+            ? <button onClick={fire} className="cozy-btn cozy-btn-sun w-full py-6 text-[34px] leading-none animate-[cozyBeat_0.4s_ease-in-out_infinite]" data-testid="cold-open-shock">ช็อก 200 J</button>
+            : <p className="text-center text-[22px] leading-none text-[#ffd66b] py-7">ทุกคนถอยแล้ว...</p>
         )}
 
         {beat === "later" && <p className="text-center text-[28px] leading-none text-[#ffd66b] py-8" data-testid="cold-open-later">2 นาทีต่อมา หยุดเช็ค rhythm...</p>}

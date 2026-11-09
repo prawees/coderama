@@ -44,7 +44,8 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
 - Custom cases: `app/designer/` and `components/designer/` (Porames' editor), `app/cases/` (library),
   `lib/customCase.ts` (designer format to game format, plus author checks), `lib/customCases.ts` (local and Firestore
   storage). `components/exam3d/` is the 3D bedside. `lib/examOrder.ts` maps exam systems to ABCDE and body regions.
-- First minute and retention: `components/game/ColdOpen.tsx` (plays once per device, flag `coderama.coldOpenSeen`),
+- First minute and retention: `components/game/ColdOpen.tsx` (plays once per device, flag `coderama.coldOpenSeen`; the defib pads step is
+  `components/game/PadPlacement.tsx`),
   `lib/chapters.ts` (chapter breaks, the single source), `lib/teasers.ts` (next-shift hook per day, must hold on every
   story branch), `lib/shiftTitle.ts` (shift titles and doctor types).
 - Story cards: `lib/shareCard.ts` draws them on a canvas, `lib/shareSpecs.ts` builds them from the save,
@@ -98,7 +99,8 @@ patient and birthdays on a seeded rain day. `rain_out.js` screenshots the courty
 `ONLY=luck` checks the HUD share button, the doctors' room PC, the fortune tree and the gacha. `TRACE=1` logs every tap. `START_DAY=11 long.js 3` plays days 11 to 13 from a seeded save. `hook.js` checks the first minute (cold open, setup, returning player) and renders every
 Story card with awkward data into `out/hook`: look at those pictures after changing `lib/shareCard.ts`.
 They need a running export (`npm run build`, then `node scripts/playtest/serve.js out 8765`) and Playwright
-(`npm i -D playwright && npx playwright install chromium`, or set `PW_MODULE` and `PW_CHROMIUM`).
+(`npm i -D playwright && npx playwright install chromium`, or set `PW_MODULE` and `PW_CHROMIUM`; a Playwright in /tmp
+can be emptied by macOS, and a newer Playwright can run the cached browser through `PW_CHROMIUM`).
 `BASE_URL` overrides the address.
 `calm.js` checks the calm-mode switch and that the clinic's top rows never overlap. `dx.js` checks the workup and working diagnosis on a case. `ONLY=meet` in `requests.js` plays first meetings and the
 stethoscope studio.

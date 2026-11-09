@@ -1,5 +1,18 @@
 # Handoff, 8 November 2026
 
+## Defib pads in the cold open (10 November)
+
+Players kept hitting the shock button by accident: it appeared where they were already tapping CPR.
+- After the first round of CPR, Ann takes over compressions and asks you to put the pads on
+  (`components/game/PadPlacement.tsx`). Drag each pad onto the chest, or tap a pad and then the chest:
+  one under the patient's right collarbone, one on the left side under the armpit. A wrong spot sends it back with a
+  reason (breastbone, too low, too high, not across the heart) and the two spots then show as dashed circles.
+- Then a short pause to read the rhythm (VF, shockable), charge, a "ทุกคนถอย! ไม่แตะเตียง" button, and only then
+  the shock button, after a short delay. Three separate taps, never where the press button was.
+- The dare time includes the pads now, so new runs are slower than links shared before this.
+- Bots: `scripts/playtest/coldopen.js` places the pads; `hook.js` checks the miss, the pads and that no shock button
+  shows before everyone is clear.
+
 ## Calmer screen for every age (9 November)
 
 From อ.พรเทพ (paediatrics): fun, but too many pop-ups in too many places; he could not tell what was information

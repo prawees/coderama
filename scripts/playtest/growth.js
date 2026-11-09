@@ -4,6 +4,7 @@ const { chromium } = require(process.env.PW_MODULE || 'playwright');
 const LAUNCH = { args: ['--use-gl=swiftshader', '--enable-webgl', '--ignore-gpu-blocklist'], ...(process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {}) };
 const BASE = process.env.BASE_URL || 'http://localhost:8765';
 const fs = require('fs');
+const { padsClearShock } = require('./coldopen');
 const OUT = __dirname + '/out/growth'; fs.rmSync(OUT, { recursive: true, force: true }); fs.mkdirSync(OUT, { recursive: true });
 const seed = JSON.parse(fs.readFileSync(__dirname + '/seed-state.json', 'utf8'));
 const KEY = 'CapacitorStorage.code-rama-storage';
@@ -32,8 +33,8 @@ async function playColdOpen(p) {
   const press = async (until) => {
     for (let n = 0; n < 30 && !(await p.getByTestId(until).count()); n++) { await p.getByTestId('cold-open-press').click({ force: true }).catch(() => {}); await p.waitForTimeout(545); }
   };
-  await press('cold-open-shock');
-  await p.getByTestId('cold-open-shock').click({ force: true });
+  await press('cold-open-pads');
+  await padsClearShock(p);
   await p.getByTestId('cold-open-press').waitFor();
   await press('cold-open-later');
   await p.getByTestId('cold-open-rosc').waitFor();

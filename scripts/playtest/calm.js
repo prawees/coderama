@@ -10,7 +10,7 @@ const check = (ok, what, extra = '') => { console.log(`${ok ? 'ok  ' : 'FAIL'} $
 const overlap = (a, b) => a && b && a.x < b.x + b.width && b.x < a.x + a.width && a.y < b.y + b.height && b.y < a.y + a.height;
 
 (async () => {
-  const b = await chromium.launch({ args: ['--use-gl=swiftshader'] });
+  const b = await chromium.launch({ args: ['--use-gl=swiftshader'], ...(process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {}) });
   const p = await (await b.newContext({ viewport: { width: 390, height: 844 } })).newPage();
   const errors = []; p.on('pageerror', (e) => { if (!/#(418|423|425)\b/.test(String(e))) errors.push(String(e)); });
   const st = { ...seed, state: { ...seed.state, currentDay: 1, playerName: 'บิ๊ก', shiftMode: 'off-duty', clockMinutes: 0, activeCases: [], tutorialCompleted: true, energy: 100,

@@ -5,6 +5,7 @@ const LAUNCH = { args: ['--use-gl=swiftshader', '--enable-webgl', '--ignore-gpu-
 const BASE = process.env.BASE_URL || 'http://localhost:8765';
 const fs = require('fs');
 const { workup, pickDx } = require('./workup');
+const { placePad, dragTo, centre } = require('./coldopen');
 const OUT = __dirname + '/out/hook'; fs.rmSync(OUT, { recursive: true, force: true }); fs.mkdirSync(OUT, { recursive: true });
 const seed = JSON.parse(fs.readFileSync(__dirname + '/seed-state.json', 'utf8'));
 const KEY = 'CapacitorStorage.code-rama-storage';
@@ -81,9 +82,26 @@ const LONG = 'กิตติพิชญ์ภูมิวัฒน';
       for (; n < max && !(await p.getByTestId(until).count()); n++) { await p.getByTestId('cold-open-press').click({ force: true }).catch(() => {}); await p.waitForTimeout(n % 2 ? 500 : 560); }
       return n;
     };
-    const steady = await press('cold-open-shock', 20);
+    const steady = await press('cold-open-pads', 20);
     check(steady <= 8, 'a steady rhythm gets there in a handful of presses', `${steady} more presses`);
     await p.screenshot({ path: `${OUT}/co_2c_steady.png` });
+    // Pads: no shock button anywhere yet, so fast tapping cannot fire it
+    await p.getByTestId('cold-open-pads').waitFor();
+    check(!(await p.getByTestId('cold-open-shock').count()) && !(await p.getByTestId('cold-open-press').count()), 'the pads step replaces the press button, with no shock button');
+    // A pad on the breastbone is sent back with a reason
+    const sternum = await p.getByTestId('pad-zone-0').boundingBox(), zone1 = await p.getByTestId('pad-zone-1').boundingBox();
+    const mid = { x: (centre(sternum).x + centre(zone1).x) / 2, y: centre(sternum).y + 10 };
+    await dragTo(p, centre(await p.getByTestId('pad-0').boundingBox()), mid);
+    const miss = await p.getByTestId('cold-open-line').getAttribute('data-text');
+    check(/ยังไม่ใช่|กระดูกหน้าอก/.test(miss), 'a pad in the wrong place is explained', miss);
+    await p.screenshot({ path: `${OUT}/co_3a_pad_miss.png` });
+    await placePad(p, 0, 0);
+    await placePad(p, 1, 1);
+    await p.screenshot({ path: `${OUT}/co_3b_pads_on.png` });
+    await p.getByTestId('cold-open-analyse').waitFor({ timeout: 3000 }).catch(() => {});
+    await p.getByTestId('cold-open-clear').waitFor({ timeout: 8000 });
+    check(!(await p.getByTestId('cold-open-shock').count()), 'after charging, everyone must be clear before the shock button shows');
+    await p.getByTestId('cold-open-clear').click();
     await p.getByTestId('cold-open-shock').waitFor();
     await p.screenshot({ path: `${OUT}/co_3_shock.png` });
     await p.getByTestId('cold-open-shock').click({ force: true });
