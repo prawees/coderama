@@ -22,6 +22,7 @@ import { PixelLogo } from "@/components/game/PixelLogo";
 import { shiftInChapter } from "@/lib/chapters";
 import { teaserAfter } from "@/lib/teasers";
 import { type Challenge, fmtSecs, readChallenge } from "@/lib/invite";
+import { setCalm, useCalm } from "@/lib/calm";
 
 /** The cold open plays once on a device. After that the title goes straight to the menu. */
 const SEEN_KEY = "coderama.coldOpenSeen";
@@ -39,6 +40,7 @@ export default function RootPage() {
   const hydrated = useHydrated();
   const cloud = useCloud();
   const [replaying, setReplaying] = useState(false);
+  const calm = useCalm();
   // A friend's challenge link (/?vf=34&cpr=88&n=...) opens on the cold open, even for someone with a save
   const [challenge, setChallenge] = useState<Challenge | null>(null);
   useEffect(() => { setChallenge(readChallenge(window.location.search)); }, []);
@@ -237,6 +239,11 @@ export default function RootPage() {
               {cloud.user ? 'Account ✓ Saved to cloud' : 'Log in / Save to cloud'}
             </PixelButton>
             <PixelButton onClick={() => setMenuState('SETTINGS')} variant="secondary" className="w-full py-1.5 text-xl">ตั้งค่า</PixelButton>
+            {/* In plain sight on purpose: the players who need it are the least likely to open settings */}
+            <button onClick={() => { audio.playClick(); setCalm(!calm); }} aria-pressed={calm} data-testid="calm-menu"
+              className={`cozy-tag self-center px-3 py-1 text-[16px] leading-none ${calm ? '!bg-[#c8ecb4]' : ''}`}>
+              โหมดสบายตา {calm ? 'เปิดอยู่' : 'ปิดอยู่'}
+            </button>
             <PixelButton onClick={replayColdOpen} variant="secondary" className="w-full py-1.5 text-xl" data-testid="replay-intro">เล่นฉากเปิด ท้าเพื่อนแข่ง</PixelButton>
             <div className="flex gap-3">
               <PixelButton onClick={() => setMenuState('ABOUT')} variant="secondary" className="flex-1 py-1.5 text-lg">เกี่ยวกับเกม</PixelButton>

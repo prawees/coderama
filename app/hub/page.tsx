@@ -686,7 +686,6 @@ export default function HubPage() {
   return (
     <PageTransition>
       <div className="w-full h-[100dvh] flex flex-col font-pixel relative select-none touch-none cozy-night">
-      <Pager message={pagerMessage} onClear={() => setPagerMessage(null)} />
 
       {/* The clinic */}
       <div className="relative flex-1 min-h-0 w-full overflow-hidden">
@@ -710,45 +709,54 @@ export default function HubPage() {
           onApi={(api) => { worldApi.current = api; }}
         />
 
-        {/* Day and time plaque */}
-        <div className="absolute top-2 left-2 z-40 cozy-tag px-2 py-1 pointer-events-none" data-testid="hud-day">
-          <div className="flex items-center gap-1.5 text-[18px] leading-none">
-            <PixelIcon name={rainy ? 'rain' : timeOfDay >= 360 && timeOfDay < 1110 ? 'sun' : 'moon'} size={15} />
-            <span>{tr('Day', 'วันที่')} {currentDay}</span>
-            <span className="tabular-nums text-[#86522e]">{formatTime(shownMinutes)}</span>
-          </div>
-          <div className="text-[13px] leading-none mt-1 text-[#86522e] max-w-[11rem] truncate">
-            {currentMap === 'AMBULANCE_BAY' ? tr('Courtyard', 'ลานหน้าตึก') : LOCATION_NAMES[phase][language]}
-          </div>
-        </div>
-
-        <GuideTracker
-          onShift={onShift}
-          hidden={dialogueQueue.length > 0 || anyModal || dayCard !== null || currentMap !== 'ER_MAIN'}
-          mark={markGuide}
-        />
-
-        {/* Coins and energy */}
-        <div className="absolute top-2 right-2 z-40 flex flex-col items-end gap-1 pointer-events-none">
-          <div className="cozy-tag px-2 py-1 flex items-center gap-1.5" data-testid="hud-cash">
-            <PixelIcon name="coin" size={15} />
-            <span className="text-[18px] leading-none tabular-nums">{currency}</span>
-          </div>
-          <div className="cozy-tag px-1.5 py-1 flex items-center gap-1.5" data-testid="hud-energy">
-            <PixelIcon name="energy" size={13} />
-            <div className="cozy-bar w-20 h-3">
-              <span style={{ width: `${Math.max(0, Math.min(100, (energy / maxEnergy) * 100))}%`, background: energy > 50 ? '#86c35f' : energy > 20 ? '#ffd66b' : '#e06b72' }} />
+        {/* The top of the screen, in rows that never overlap: what day it is and what you have, then today's task,
+            then the one place the game talks to you (pager, notices). Dialogue uses that same place. */}
+        <div className="absolute top-2 left-2 right-2 z-40 flex flex-col gap-1.5 pointer-events-none" data-testid="hud-top">
+          <div className="flex items-start justify-between gap-2">
+            <div className="cozy-tag px-2 py-1 min-w-0" data-testid="hud-day">
+              <div className="flex items-center gap-1.5 text-[18px] leading-none">
+                <PixelIcon name={rainy ? 'rain' : timeOfDay >= 360 && timeOfDay < 1110 ? 'sun' : 'moon'} size={15} />
+                <span>{tr('Day', 'วันที่')} {currentDay}</span>
+                <span className="tabular-nums text-[#86522e]">{formatTime(shownMinutes)}</span>
+              </div>
+              <div className="text-[13px] leading-none mt-1 text-[#86522e] max-w-[11rem] truncate">
+                {currentMap === 'AMBULANCE_BAY' ? tr('Courtyard', 'ลานหน้าตึก') : LOCATION_NAMES[phase][language]}
+              </div>
             </div>
+            <div className="cozy-tag px-2 py-1 flex flex-col items-end gap-1 shrink-0">
+              <div className="flex items-center gap-1.5" data-testid="hud-cash">
+                <PixelIcon name="coin" size={15} />
+                <span className="text-[18px] leading-none tabular-nums">{currency}</span>
+              </div>
+              <div className="flex items-center gap-1.5" data-testid="hud-energy">
+                <PixelIcon name="energy" size={13} />
+                <div className="cozy-bar w-16 h-3">
+                  <span style={{ width: `${Math.max(0, Math.min(100, (energy / maxEnergy) * 100))}%`, background: energy > 50 ? '#86c35f' : energy > 20 ? '#ffd66b' : '#e06b72' }} />
+                </div>
+              </div>
+            </div>
+          </div>
 
-        {/* Share: always in reach, because a Story post is how friends find the game */}
-        <button
-          onClick={() => { audio.playClick(); setShareCardSpec(profileCard()); }}
-          className="pointer-events-auto absolute top-[4.6rem] right-0 z-40 cozy-btn cozy-btn-sun px-2.5 py-1.5 flex items-center gap-1 text-[16px] leading-none animate-[shareNudge_6s_ease-in-out_infinite]"
-          data-testid="hud-share"
-          aria-label="แชร์สตอรี่ IG"
-        >
-          <PixelIcon name="heart" size={13} />{tr('Share', 'แชร์สตอรี่ IG')}
-        </button>
+          {/* The guide stays mounted while a scene plays, so it keeps ticking steps off; it just is not drawn */}
+          <div className={`flex items-start gap-1.5 ${dialogueQueue.length > 0 || anyModal || dayCard !== null ? 'hidden' : ''}`}>
+              <div className="flex-1 min-w-0 pointer-events-auto">
+                <GuideTracker onShift={onShift} hidden={currentMap !== 'ER_MAIN' || dialogueQueue.length > 0 || anyModal || dayCard !== null} mark={markGuide} />
+              </div>
+              {/* Share: always in reach, because a Story post is how friends find the game */}
+              <button
+                onClick={() => { audio.playClick(); setShareCardSpec(profileCard()); }}
+                className="pointer-events-auto shrink-0 ml-auto cozy-btn cozy-btn-sun px-2.5 py-1.5 flex items-center gap-1 text-[15px] leading-none"
+                data-testid="hud-share"
+                aria-label="แชร์สตอรี่ IG"
+              >
+                <PixelIcon name="heart" size={13} />{tr('Share', 'แชร์สตอรี่ IG')}
+              </button>
+          </div>
+
+          {/* Messages: one place, upright, under the rows above */}
+          <div className="pointer-events-auto flex flex-col gap-1.5">
+            <Pager message={pagerMessage} onClear={() => setPagerMessage(null)} />
+            {toastMsg && <div className="cozy-tag px-3 py-1.5 text-[17px] text-center" data-testid="toast">{toastMsg}</div>}
           </div>
         </div>
 
@@ -761,11 +769,6 @@ export default function HubPage() {
         <div className={`absolute top-0 left-0 w-full h-14 bg-[#1c1522] transition-transform duration-700 z-[45] ${isCinematic ? 'translate-y-0' : '-translate-y-full'}`} />
         <div className={`absolute bottom-0 left-0 w-full h-14 bg-[#1c1522] transition-transform duration-700 z-[45] ${isCinematic ? 'translate-y-0' : 'translate-y-full'}`} />
 
-        {toastMsg && (
-          <div className="absolute top-16 left-1/2 -translate-x-1/2 z-50 cozy-tag px-3 py-1.5 text-[17px] text-center w-max max-w-[90%] animate-[cozyPop_0.2s_ease-out]" data-testid="toast">
-            {toastMsg}
-          </div>
-        )}
 
         {dialogueQueue.length > 0 && (
           <DialogueBox

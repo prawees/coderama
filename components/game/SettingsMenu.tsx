@@ -7,6 +7,7 @@ import { audio } from "@/lib/audio";
 import { music } from "@/lib/music";
 import { useERStore } from "@/lib/erStore";
 import { FeedbackModal } from "@/components/game/FeedbackModal";
+import { setCalm, useCalm } from "@/lib/calm";
 import { outcomeNote, shareLink, siteUrl } from "@/lib/invite";
 
 interface SettingsMenuProps {
@@ -20,6 +21,7 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
   const [armedReset, setArmedReset] = useState(false);
   const [note, setNote] = useState<string | null>(null);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const calm = useCalm();
 
   const invite = async () => {
     audio.playClick();
@@ -102,6 +104,11 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
               <h2 className="text-[26px] leading-none">ตั้งค่า</h2>
               <button className="cozy-btn px-2 py-0.5 text-lg leading-none" onClick={onClose} aria-label="close">✕</button>
             </div>
+
+            <button onClick={() => { audio.playClick(); setCalm(!calm); }} className={`cozy-btn py-1.5 px-3 flex justify-between items-center gap-2 text-[19px] text-left ${calm ? "cozy-btn-leaf" : ""}`} data-testid="calm-toggle" aria-pressed={calm}>
+              <span className="leading-tight">โหมดสบายตา<span className="block text-[14px] text-[#86522e]">ตัวหนังสือขึ้นทันที ไม่มีอะไรเด้งหรือสั่น</span></span>
+              <span className="shrink-0">{calm ? "เปิดอยู่" : "ปิดอยู่"}</span>
+            </button>
 
             <button onClick={toggleMute} className={`cozy-btn py-1.5 px-3 flex justify-between items-center text-[19px] ${isMuted ? "" : "cozy-btn-leaf"}`}>
               <span>เสียงในเกม</span>

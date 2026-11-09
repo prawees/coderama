@@ -109,12 +109,11 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   const compressRef = useRef(-1e6);
   const [shareCardSpec, setShareCardSpec] = useState<CardSpec | null>(null);
 
-  const addFloatingText = (text: string, type: 'good' | 'bad', x: number, y: number) => {
+  // Points and notices show as one line at the top of the treatment panel, in the same place as the feedback
+  const addFloatingText = (text: string, type: 'good' | 'bad', _x?: number, _y?: number) => {
     const id = textIdCounter.current++;
-    setFloatingTexts(prev => [...prev, { id, text, type, x, y }]);
-    setTimeout(() => {
-      setFloatingTexts(prev => prev.filter(t => t.id !== id));
-    }, 1000);
+    setFloatingTexts([{ id, text, type, x: 0, y: 0 }]);
+    setTimeout(() => setFloatingTexts((prev) => prev.filter((t) => t.id !== id)), 3500);
   };
 
   const normalizeVitals = (rawVitals: any, overrideVitals?: any) => {
@@ -663,22 +662,8 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
           }}
         />
       )}
-      <div className={`h-[100dvh] sm:h-full cozy-night text-pixel-text font-pixel flex flex-col p-2 gap-2 relative ${isShaking ? 'animate-shake' : ''}`}>
-        <AnimatePresence>
-          {floatingTexts.map(ft => (
-            <motion.div
-              key={ft.id}
-              initial={{ opacity: 1, y: ft.y, x: ft.x }}
-              animate={{ opacity: 0, y: ft.y - 50 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
-              className={`absolute z-[100] text-3xl cozy-tag px-2 ${ft.type === 'good' ? '!bg-[#c8ecb4]' : '!bg-[#f6c3c6]'}`}
-              style={{ pointerEvents: 'none', transform: 'translate(-50%, -50%)' }}
-            >
-              {ft.text}
-            </motion.div>
-          ))}
-        </AnimatePresence>
+      {/* No screen shake and no text flying over the screen: what changed is written in the treatment panel */}
+      <div className="h-[100dvh] sm:h-full cozy-night text-pixel-text font-pixel flex flex-col p-2 gap-2 relative">
 
         {/* Patient card: a person first, the diagnosis comes at the end */}
         <div className="cozy-panel flex gap-2.5 p-2 flex-shrink-0 items-start" data-testid="patient-card">
@@ -863,6 +848,9 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
 
             {activeTab === 'action' && (
               <div className="flex flex-col min-h-full" data-testid="action-tab">
+                {floatingTexts.map((ft) => (
+                  <p key={ft.id} className={`self-start mb-1.5 cozy-tag px-2 py-0.5 text-[15px] leading-none ${ft.type === 'good' ? '!bg-[#c8ecb4]' : '!bg-[#f6c3c6]'}`} data-testid="case-notice">{ft.text}</p>
+                ))}
                 {feedback && (
                   <div className={`mb-2 p-2 rounded-[4px] border-2 text-[16px] leading-snug ${feedback.kind === 'good' ? 'bg-[#dff3d2] border-[#5fae5a]' : 'bg-[#fbe1dc] border-[#d95763]'}`}>
                     <p className={feedback.kind === 'good' ? 'text-[#3f8a48]' : 'text-[#a93c4b]'}>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { isCalm } from "@/lib/calm";
 import { haptic } from "@/lib/haptics";
 import { audio } from "@/lib/audio";
 import { CutsceneChoice } from "@/lib/StoryManager";
@@ -40,6 +41,8 @@ export function DialogueBox({ speakerName, text: rawText, choices, voice, onComp
   })();
 
   useEffect(() => {
+    // Calm mode shows the whole line at once
+    if (isCalm()) { setShown(text.length); return; }
     setShown(0);
     if (timer.current) clearInterval(timer.current);
     timer.current = setInterval(() => {

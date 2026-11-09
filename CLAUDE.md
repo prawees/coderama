@@ -63,6 +63,8 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
 - Haptics: always `haptic` from `lib/haptics.ts`, never `@capacitor/haptics` directly. Safari on iPhone has no vibration
   API and the plugin throws there; awaited, it silently broke taps. `hook.js` and `custom.js` run without vibration.
 - Rank: always read it with `storyRank(day, lifetimeXp)` in `lib/erStore.ts`, never from XP during the campaign.
+- Screen layout: the clinic's top is status rows, then one message slot (pager, toasts, dialogue); the bottom is only
+  actions. Keep new notices in that slot. Calm mode is `lib/calm.ts` (`isCalm`, `useCalm`, class `calm` on <html>).
 - Case reasoning: the working-diagnosis gate in `CaseEngineClient.tsx` (`dxGate`, `pickDx`) uses each case's
   `diagnoses` (first = answer, 4+ = a differential). Bots that play cases use `scripts/playtest/workup.js`.
 - Characters: `lib/npcMore.ts` (extra lines, first meetings with a welcome gift). Stethoscope studio:
@@ -98,7 +100,7 @@ Story card with awkward data into `out/hook`: look at those pictures after chang
 They need a running export (`npm run build`, then `node scripts/playtest/serve.js out 8765`) and Playwright
 (`npm i -D playwright && npx playwright install chromium`, or set `PW_MODULE` and `PW_CHROMIUM`).
 `BASE_URL` overrides the address.
-`dx.js` checks the workup and working diagnosis on a case. `ONLY=meet` in `requests.js` plays first meetings and the
+`calm.js` checks the calm-mode switch and that the clinic's top rows never overlap. `dx.js` checks the workup and working diagnosis on a case. `ONLY=meet` in `requests.js` plays first meetings and the
 stethoscope studio.
 `growth.js` checks the link preview tags, the cold-open dare from both sides, invites and feedback (feedback needs the
 emulator build below; `FEEDBACK=0` skips it).

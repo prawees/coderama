@@ -75,6 +75,15 @@
     image-rendering: pixelated;
   }
 
+  /* Calm mode (lib/calm.ts): no looping or entrance animation, no sliding; things simply appear */
+  .calm *, .calm *::before, .calm *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
   /* On-screen game keys: no magnifier, selection, callout or double-tap zoom when held */
   .game-key, .game-key * {
     -webkit-user-select: none;

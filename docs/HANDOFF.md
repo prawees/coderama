@@ -1,5 +1,25 @@
 # Handoff, 8 November 2026
 
+## Calmer screen for every age (9 November)
+
+From อ.พรเทพ (paediatrics): fun, but too many pop-ups in too many places; he could not tell what was information
+and what wanted an action, and text appearing on different layers was dizzying.
+
+- **One layout rule.** Top of the clinic: two rows that never overlap (day, time and place with coins and energy;
+  then today's task with the share button). Under them, one message slot: the pager and notices appear there, upright,
+  and the story dialogue uses the same place. The bottom is only things to do (keys, A, beds, buttons).
+- **The pager** no longer slides in tilted over the world; it sits in the message slot and says what to do
+  ("แตะชื่อคนไข้ที่แถบเตียงด้านล่างเพื่อรับเคส").
+- **Cases:** no screen shake on a wrong answer, and no text flying across the screen. "+15 XP" or "-2 พลังงาน" is a
+  small tag at the top of the treatment panel, where the feedback already is.
+- **โหมดสบายตา** (`lib/calm.ts`): a switch on the title menu (in plain sight on purpose) and in settings. Lines appear
+  whole instead of typing, and nothing bobs, pulses, wiggles or shakes (`.calm` in globals.css, framer-motion via
+  `MotionConfig` in `app/ClientLayout.tsx`). On by default when the phone asks for reduced motion.
+- **Tested:** `scripts/playtest/calm.js` (the switch, whole lines, no looping animation, the top rows do not overlap).
+- **Still to do:** the seven older cases (case_01 to case_07_vip) name the diagnosis in their opening narrative
+  (case_05 opens with "Severe asthma exacerbation"). Rewriting those openings as what the doctor sees would finish
+  Porames' point; a clinician should check the wording.
+
 ## Workup before treatment, first meetings, the stethoscope (8 November, evening)
 
 - **Cases ask you to think first** (from Porames' playtest: "players just pick from the MCQ"). A case opens on the
