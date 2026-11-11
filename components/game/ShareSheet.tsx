@@ -1,0 +1,100 @@
+"use client";
+
+import { useEffect, useMemo, useRef, useState } from "react";
+import { audio } from "@/lib/audio";
+import type { CardSpec } from "@/lib/shareCard";
+import { photoCard } from "@/lib/shareSpecs";
+import { outcomeNote, shareLink, siteUrl } from "@/lib/invite";
+
+/**
+ * Preview of a Story card and the buttons to send it. The picture is drawn when this opens,
+ * so what you see is exactly the file that gets shared, and the share button can call the
+ * phone's share sheet from the tap itself, which browsers require.
+ */
+export interface SheetPhoto { image: HTMLCanvasElement; captions: string[]; minutes: number }
+
+export function ShareSheet({ spec: cardSpec, onClose, filename = "code-rama.png", photo }: { spec: CardSpec; onClose: () => void; filename?: string; photo?: SheetPhoto }) {
+  // With a photo of the scene there are two things to share: the photo (shown first) and the stat card
+  const [mode, setMode] = useState<"photo" | "card">(photo ? "photo" : "card");
+  const [captionAt, setCaptionAt] = useState(0);
+  const spec = useMemo<CardSpec>(
+    () => (photo && mode === "photo" ? photoCard(photo.image, photo.captions[captionAt % photo.captions.length], photo.minutes) : cardSpec),
+    [photo, mode, captionAt, cardSpec],
+  );
+  const [url, setUrl] = useState<string | null>(null);
+  const [note, setNote] = useState<string | null>(null);
+  const [failed, setFailed] = useState(false);
+  const blob = useRef<Blob | null>(null);
+  const tools = useRef<typeof import("@/lib/shareCard") | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    let made: string | null = null;
+    (async () => {
+      try {
+        const m = await import("@/lib/shareCard");
+        tools.current = m;
+        setUrl(null);
+        const b = await m.canvasToBlob(await m.renderCard(spec));
+        if (!alive) return;
+        blob.current = b;
+        made = URL.createObjectURL(b);
+        setUrl(made);
+      } catch {
+        if (alive) setFailed(true);
+      }
+    })();
+    return () => { alive = false; if (made) URL.revokeObjectURL(made); };
+  }, [spec]);
+
+  const share = async () => {
+    if (!blob.current || !tools.current) return;
+    audio.playClick();
+    const r = await tools.current.shareBlob(blob.current, filename);
+    if (r === "unavailable" || r === "failed") {
+      tools.current.saveBlob(blob.current, filename);
+      setNote("เครื่องนี้แชร์ตรงไม่ได้ บันทึกรูปให้แล้ว เปิด Instagram แล้วเลือกรูปนี้ลงสตอรี่ได้เลย");
+    }
+  };
+  // In Thailand friends talk in LINE: a link there shows the game's preview picture
+  const sendLink = async () => {
+    audio.playClick();
+    const said = outcomeNote[await shareLink("เล่น Code Rama กัน เกม ER พิกเซลของ นศพ. ช่วยลุง VF ให้รอดใน 1 นาที", siteUrl())];
+    if (said) setNote(said);
+  };
+  const save = () => {
+    if (!blob.current || !tools.current) return;
+    audio.playClick();
+    tools.current.saveBlob(blob.current, filename);
+    setNote("บันทึกรูปแล้ว");
+  };
+
+  return (
+    <div className="fixed inset-0 z-[300] flex flex-col items-center justify-center gap-2.5 bg-[#1c1522]/90 p-3 font-pixel" data-testid="share-sheet" onClick={onClose}>
+      {photo && (
+        <div className="shrink-0 w-full max-w-sm flex gap-1.5" onClick={(e) => e.stopPropagation()}>
+          <button onClick={() => { audio.playClick(); setMode("photo"); }} className={`cozy-btn flex-1 py-1.5 text-[17px] leading-none ${mode === "photo" ? "cozy-btn-sun" : ""}`} data-testid="share-mode-photo">รูปถ่าย</button>
+          <button onClick={() => { audio.playClick(); setMode("card"); }} className={`cozy-btn flex-1 py-1.5 text-[17px] leading-none ${mode === "card" ? "cozy-btn-sun" : ""}`} data-testid="share-mode-card">บัตรหมอ</button>
+          {mode === "photo" && <button onClick={() => { audio.playClick(); setCaptionAt((n) => n + 1); }} className="cozy-btn flex-1 py-1.5 text-[17px] leading-none" data-testid="share-caption">เปลี่ยนคำ</button>}
+        </div>
+      )}
+      <div className="flex-1 min-h-0 w-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+        {url ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={url} alt="การ์ดสำหรับแชร์" data-testid="share-image" className="max-h-full max-w-full rounded-[10px] border-[3px] border-[#3a2a2f] shadow-2xl" style={{ imageRendering: "auto" }} />
+        ) : (
+          <p className="text-[20px] text-[#fbf3e2]" data-testid={failed ? "share-failed" : "share-loading"}>{failed ? "สร้างรูปไม่สำเร็จ ลองใหม่อีกครั้งนะ" : "กำลังวาดการ์ด..."}</p>
+        )}
+      </div>
+      {note && <p className="shrink-0 text-center text-[15px] leading-snug text-[#ffd66b] px-2" data-testid="share-note">{note}</p>}
+      <div className="shrink-0 w-full max-w-sm flex flex-col gap-1.5" onClick={(e) => e.stopPropagation()}>
+        <button onClick={share} disabled={!url} className="cozy-btn cozy-btn-leaf w-full py-2 text-[22px] leading-none" data-testid="share-go">แชร์สตอรี่ IG</button>
+        <div className="flex gap-1.5">
+          <button onClick={save} disabled={!url} className="cozy-btn flex-1 py-1.5 text-[18px] leading-none" data-testid="share-save">บันทึกรูป</button>
+          <button onClick={sendLink} className="cozy-btn cozy-btn-sky flex-1 py-1.5 text-[18px] leading-none" data-testid="share-link">ส่งลิงก์ LINE</button>
+          <button onClick={onClose} className="cozy-btn flex-1 py-1.5 text-[18px] leading-none" data-testid="share-close">ปิด</button>
+        </div>
+      </div>
+    </div>
+  );
+}

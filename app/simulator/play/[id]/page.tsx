@@ -3,7 +3,7 @@ import { CaseEngineClient } from "./CaseEngineClient";
 export async function generateStaticParams() {
   const caseIds = [
     'case_01', 'case_02_fluids', 'case_03_cardiac', 'case_04_svt', 'case_05_asthma', 'case_06_trauma',
-    'case_07', 'case_07_vip',
+    'case_07', 'case_07_vip', 'custom',
     ...Array.from({ length: 43 }, (_, i) => {
       const num = (i + 8).toString().padStart(2, '0');
       return `case_${num}`;

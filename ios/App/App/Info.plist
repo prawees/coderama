@@ -47,5 +47,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>บันทึกการ์ดจากเกมลงอัลบั้มรูป เพื่อแชร์ลงสตอรี่</string>
 </dict>
 </plist>

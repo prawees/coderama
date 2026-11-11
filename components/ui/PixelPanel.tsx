@@ -3,22 +3,17 @@ import { ReactNode } from "react";
 interface PixelPanelProps {
   children: ReactNode;
   className?: string;
-  variant?: 'dark' | 'light' | 'alert' | 'success';
+  variant?: "dark" | "light" | "alert" | "success" | "parchment";
 }
 
-export function PixelPanel({ children, className = "", variant = 'dark' }: PixelPanelProps) {
-  const baseStyle = "pixel-border p-4 relative backdrop-blur-md shadow-2xl transition-all duration-300";
-  
-  const variantStyles = {
-    dark: "bg-[#0d1117]/90 text-gray-200",
-    light: "bg-[#161b22]/90 text-white",
-    alert: "bg-[#da3633]/90 text-white",
-    success: "bg-[#2ea043]/90 text-white",
+/** Wooden-framed panel. "dark" is a night-wood panel for overlays; "parchment"/"light" are reading surfaces. */
+export function PixelPanel({ children, className = "", variant = "dark" }: PixelPanelProps) {
+  const variants: Record<string, string> = {
+    dark: "cozy-wood-dark text-pixel-text pixel-border",
+    light: "cozy-panel",
+    parchment: "cozy-panel",
+    alert: "bg-[#c4515b] text-[#fff6ec] pixel-border",
+    success: "bg-[#6fae54] text-[#fff6ec] pixel-border",
   };
-
-  return (
-    <div className={`${baseStyle} ${variantStyles[variant]} ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`p-4 relative ${variants[variant]} ${className}`}>{children}</div>;
 }

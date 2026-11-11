@@ -1,0 +1,17 @@
+cc: แน่นหน้าอกเล็กน้อย
+bg: กรรมการ รพ. ฐานะดี เรียกร้องให้ดูทันที แน่นหน้าอกเล็กน้อยหลังทะเลาะกับโบรกเกอร์
+i.ecg1: Sinus tachycardia 110 bpm ไม่มี acute ST change หรือ T inversion
+i.trop1: Negative
+ethical_1.l: ปลอบใจและรับฟัง (Empathy)
+ethical_1.n: คนไข้ VIP สงบลงมาก สัญญาว่าจะบริจาคสร้าง ICU ตึกใหม่
+req1.l: ให้ aspirin และ nitroglycerin
+req1.d0: ให้ streptokinase เลย คนไข้ VIP เสี่ยงไม่ได้
+req1.f0: ไม่มี ST elevation thrombolysis มีแต่ความเสี่ยงเลือดออกโดยไม่มีประโยชน์ สถานะทางสังคมไม่ได้เปลี่ยน indication
+req1.d1: Troponin แรกปกติ บอกว่าไม่เป็นไรแล้ว D/C
+req1.f1: Troponin ครั้งเดียวช่วงแรกตัด ACS ไม่ได้ ต้องเจาะ troponin ซ้ำและทำ EKG ซ้ำ
+req1.m0: 324 mg
+req1.m1: 0.4 mg
+req1.a0: Aspirin กิน
+req1.a1: NTG อมใต้ลิ้น
+out1.l: ผลลัพธ์
+out1.n: เจ็บหน้าอกหาย คนไข้ VIP พอใจมาก

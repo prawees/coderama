@@ -1,54 +1,353 @@
 {
-  "title": "45yo F - Fluids & Resuscitation",
+  "title": "45yo F Severe Hyponatraemia with Hypovolaemia",
   "age": "45",
   "sex": "F",
-  "chiefComplaint": "Severe vomiting, diarrhea, and confusion",
-  "diagnoses": ["Hypovolemic Shock", "Hyponatremia"],
-  "background": "Patient has a history of congestive heart failure. She presents with severe dehydration from 3 days of gastroenteritis. She is lethargic and hypotensive. Caution: High risk of fluid overload and cerebral edema if fluids are aggressively mismanaged.",
+  "chiefComplaint": "Vomiting and diarrhoea for 3 days, now confused",
+  "diagnoses": [
+    "Hypovolaemic hyponatraemia",
+    "Thiazide-associated hyponatraemia",
+    "Hypovolaemic shock",
+    "SIADH",
+    "Heart failure decompensation"
+  ],
+  "background": "Heart failure with reduced ejection fraction, on furosemide and hydrochlorothiazide. Three days of vomiting and watery diarrhoea, drinking only plain water. Today she became confused and had a brief episode of jerking in the taxi. Thiazide plus gastrointestinal losses plus water is the classic route to severe hyponatraemia, and the heart failure makes every litre a judgement call.",
   "patientAppearance": {
     "skinTone": "#e2b88b",
     "bmiFactor": 1.1,
     "ageGroup": "adult"
   },
   "vitals": {
-    "hr": { "value": 130, "abnormal": true },
-    "sbp": { "value": 75, "abnormal": true },
-    "dbp": { "value": 40, "abnormal": true },
-    "rr": { "value": 24, "abnormal": true },
-    "temp": { "value": 37.8, "abnormal": false },
-    "spo2": { "value": 94, "abnormal": false },
-    "gcs": { "value": 11, "abnormal": true }
+    "hr": {
+      "value": 130,
+      "abnormal": true
+    },
+    "sbp": {
+      "value": 75,
+      "abnormal": true
+    },
+    "dbp": {
+      "value": 40,
+      "abnormal": true
+    },
+    "rr": {
+      "value": 24,
+      "abnormal": true
+    },
+    "temp": {
+      "value": 37.8,
+      "abnormal": false
+    },
+    "spo2": {
+      "value": 94,
+      "abnormal": false
+    },
+    "gcs": {
+      "value": 11,
+      "abnormal": true
+    }
   },
   "exam": [
-    { "id": "ga1", "system": "General appearance", "finding": "Lethargic, dry mucous membranes, poor skin turgor", "abnormal": true },
-    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardic, weak thready pulses", "abnormal": true },
-    { "id": "rs1", "system": "Respiratory", "finding": "Tachypneic, lungs clear to auscultation", "abnormal": false },
-    { "id": "cns1", "system": "Neurological", "finding": "Confused, sluggish but reactive pupils", "abnormal": true }
+    {
+      "id": "ga1",
+      "system": "General appearance",
+      "finding": "Lethargic, dry mucous membranes, poor skin turgor",
+      "abnormal": true
+    },
+    {
+      "id": "cvs1",
+      "system": "Cardiovascular",
+      "finding": "Tachycardic, weak thready pulses",
+      "abnormal": true
+    },
+    {
+      "id": "rs1",
+      "system": "Respiratory",
+      "finding": "Tachypneic, lungs clear to auscultation",
+      "abnormal": false
+    },
+    {
+      "id": "cns1",
+      "system": "Neurological",
+      "finding": "Confused, sluggish but reactive pupils",
+      "abnormal": true
+    }
   ],
   "investigations": [
-    { "id": "chem1", "kind": "lab", "category": "Elytes", "name": "Sodium", "value": "118", "unit": "mmol/L", "normalRange": "135-145", "abnormal": true, "report": "Severe Hyponatremia" },
-    { "id": "chem2", "kind": "lab", "category": "Elytes", "name": "Potassium", "value": "3.1", "unit": "mmol/L", "normalRange": "3.5-5.0", "abnormal": true, "report": "Hypokalemia" }
+    {
+      "id": "chem1",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "Sodium",
+      "value": "118",
+      "unit": "mmol/L",
+      "normalRange": "135-145",
+      "abnormal": true,
+      "report": "Severe Hyponatremia"
+    },
+    {
+      "id": "chem2",
+      "kind": "lab",
+      "category": "Elytes",
+      "name": "Potassium",
+      "value": "3.1",
+      "unit": "mmol/L",
+      "normalRange": "3.5-5.0",
+      "abnormal": true,
+      "report": "Hypokalemia"
+    },
+    {
+      "id": "osm1",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Serum osmolality",
+      "value": "248",
+      "unit": "mOsm/kg",
+      "normalRange": "275-295",
+      "abnormal": true,
+      "report": "Hypotonic. This is true hyponatraemia, not pseudohyponatraemia."
+    },
+    {
+      "id": "osm2",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Urine sodium",
+      "value": "12",
+      "unit": "mmol/L",
+      "normalRange": "-",
+      "abnormal": true,
+      "report": "Low urine sodium points to volume depletion, with diuretic effect wearing off."
+    },
+    {
+      "id": "osm3",
+      "kind": "lab",
+      "category": "Chemistry",
+      "name": "Urine osmolality",
+      "value": "520",
+      "unit": "mOsm/kg",
+      "normalRange": "-",
+      "abnormal": true,
+      "report": "Concentrated urine: ADH is switched on by the low volume. When volume is restored it will switch off."
+    }
   ],
   "managementGraph": {
     "nodes": [
-      { "id": "start", "type": "start", "position": { "x": 0, "y": 0 }, "data": { "label": "Start" } },
-      
-      { "id": "fluids_normal", "type": "intervention", "position": { "x": 200, "y": 100 }, "data": { "label": "Normal Saline 0.9%", "actions": ["Normal Saline (0.9% NaCl) IV"], "requiredRank": "Intern" } },
-      { "id": "fluids_hyper", "type": "intervention", "position": { "x": 200, "y": 200 }, "data": { "label": "Hypertonic Saline 3%", "actions": ["Hypertonic Saline (3% NaCl) IV"], "requiredRank": "R3" } },
-      { "id": "fluids_d5w", "type": "intervention", "position": { "x": 200, "y": 300 }, "data": { "label": "D5W", "actions": ["D5W IV"], "requiredRank": "Intern" } },
-      
-      { "id": "out_correct", "type": "outcome", "position": { "x": 500, "y": 100 }, "data": { "label": "Stabilized", "outcomeType": "improved", "narrative": "Fluid resuscitation with Normal Saline improves blood pressure. Sodium is correcting at a safe rate.", "vitalChanges": { "hr": 105, "sbp": 95, "gcs": 13 } } },
-      { "id": "out_overload", "type": "outcome", "position": { "x": 500, "y": 200 }, "data": { "label": "Osmotic Demyelination", "outcomeType": "critical", "narrative": "Hypertonic saline caused overly rapid sodium correction in a chronic setting, risking osmotic demyelination syndrome.", "vitalChanges": { "gcs": 6 } } },
-      { "id": "out_edema", "type": "outcome", "position": { "x": 500, "y": 300 }, "data": { "label": "Cerebral Edema", "outcomeType": "critical", "narrative": "D5W (free water) exacerbated the severe hyponatremia, leading to rapid cellular swelling and cerebral edema.", "vitalChanges": { "gcs": 4, "hr": 45, "sbp": 160 } } }
+      {
+        "id": "start1",
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Start"
+        }
+      },
+      {
+        "id": "req1",
+        "type": "required",
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "data": {
+          "label": "Hypertonic 3% saline bolus for the severe symptoms",
+          "actions": [
+            "3% saline 150 mL IV over 20 minutes",
+            "Recheck sodium after the bolus",
+            "Repeat once if symptoms persist"
+          ],
+          "doseMap": {
+            "3% saline 150 mL IV over 20 minutes": "Aim for a rise of 4 to 6 mmol/L in the first hours. That is enough to reverse cerebral oedema. Then stop the hypertonic saline."
+          },
+          "distractors": [
+            {
+              "label": "Two litres of normal saline rapidly to fix the shock and the sodium together",
+              "feedback": "Once volume is restored, ADH switches off and she passes dilute urine, so sodium can rise 15 mmol/L overnight and cause osmotic demyelination. Treat the brain with a small hypertonic bolus and give volume in measured aliquots."
+            },
+            {
+              "label": "Restrict fluid to 1 litre a day and recheck tomorrow",
+              "feedback": "Fluid restriction is for euvolaemic SIADH. She is confused, has had a seizure-like episode and is dry. Severe symptoms need hypertonic saline now."
+            }
+          ],
+          "requiredRank": "R1"
+        }
+      },
+      {
+        "id": "out1",
+        "type": "outcome",
+        "position": {
+          "x": 480,
+          "y": 200
+        },
+        "data": {
+          "label": "Neurology settles",
+          "outcomeType": "improved",
+          "narrative": "Sodium rises from 118 to 122 after one bolus. The jerking stops and she answers questions. Four mmol/L was all the hypertonic saline was for.",
+          "vitalChanges": {
+            "hr": 124,
+            "sbp": 80,
+            "dbp": 44,
+            "gcs": 13
+          }
+        }
+      },
+      {
+        "id": "ethical_1",
+        "type": "ethicalChoice",
+        "position": {
+          "x": 720,
+          "y": 400
+        },
+        "data": {
+          "label": "Explain to her daughter why you are correcting slowly on purpose (Empathy)",
+          "ethicalValue": 10,
+          "narrative": "Her daughter wants the number fixed tonight. You explain that the brain has adapted over days and must be allowed to readapt over days. She stops asking for a faster drip and starts writing down the times."
+        }
+      },
+      {
+        "id": "req2",
+        "type": "required",
+        "position": {
+          "x": 960,
+          "y": 200
+        },
+        "data": {
+          "choice": "Normal saline in 250 mL aliquots, reassess each",
+          "label": "Small isotonic boluses for the hypovolaemia, reassessing each time",
+          "actions": [
+            "Normal saline 250 mL aliquots",
+            "Lung ultrasound and auscultation after each aliquot",
+            "Hold furosemide and the thiazide",
+            "Replace potassium"
+          ],
+          "doseMap": {
+            "Normal saline 250 mL aliquots": "Reassess after each one. Stop when perfusion improves or B-lines appear. Heart failure narrows the margin, it does not remove it.",
+            "Replace potassium": "Potassium chloride 10 mmol/h IV. Potassium raises serum sodium too, so count it in the correction budget."
+          },
+          "distractors": [
+            {
+              "label": "Withhold all IV fluid because of the heart failure",
+              "feedback": "She is hypotensive and dry from three days of losses. Small measured boluses with reassessment are safe and necessary."
+            },
+            {
+              "label": "Give furosemide to protect her from fluid overload",
+              "feedback": "She is volume depleted and diuretics caused this. Furosemide deepens the shock. Stop both diuretics."
+            }
+          ]
+        }
+      },
+      {
+        "id": "out2",
+        "type": "outcome",
+        "position": {
+          "x": 1200,
+          "y": 200
+        },
+        "data": {
+          "label": "Perfusion restored, then a water diuresis",
+          "outcomeType": "improved",
+          "narrative": "After 750 mL her pressure is 104/62. Then urine output takes off: 250 mL of dilute urine in an hour. ADH has switched off, and the sodium will now rise on its own.",
+          "vitalChanges": {
+            "hr": 98,
+            "sbp": 104,
+            "dbp": 62,
+            "gcs": 14
+          }
+        }
+      },
+      {
+        "id": "req3",
+        "type": "required",
+        "position": {
+          "x": 1440,
+          "y": 200
+        },
+        "data": {
+          "choice": "Sodium every 2-4 h, cap the rise at 8 in 24 h",
+          "label": "Watch for overcorrection and clamp it before the limit",
+          "actions": [
+            "Sodium every 2 to 4 hours",
+            "Hourly urine output",
+            "Limit the rise to 8 mmol/L in 24 hours",
+            "Desmopressin with D5W if the limit is approached"
+          ],
+          "doseMap": {
+            "Limit the rise to 8 mmol/L in 24 hours": "She has three risk factors for osmotic demyelination: sodium below 120, low potassium and a course over several days.",
+            "Desmopressin with D5W if the limit is approached": "Desmopressin 2 mcg IV stops the water diuresis. D5W at 3 mL/kg/h lowers the sodium again if it has already risen too fast."
+          },
+          "distractors": [
+            {
+              "label": "Aim to bring the sodium to 135 today",
+              "feedback": "Correcting by more than 8 to 10 mmol/L in 24 hours risks osmotic demyelination, which appears days later and is often permanent."
+            },
+            {
+              "label": "Recheck the sodium tomorrow morning",
+              "feedback": "A water diuresis can raise sodium by 2 mmol/L an hour. Two to four hourly checks are how overcorrection is caught in time."
+            }
+          ]
+        }
+      },
+      {
+        "id": "out3",
+        "type": "outcome",
+        "position": {
+          "x": 1680,
+          "y": 200
+        },
+        "data": {
+          "label": "Safe correction",
+          "outcomeType": "resolved",
+          "narrative": "Sodium 125 at 24 hours and 131 at 48. The water diuresis was clamped with desmopressin at hour 10. No neurological deficit. Her thiazide is stopped for good and the heart failure clinic is told why.",
+          "vitalChanges": {
+            "hr": 86,
+            "sbp": 112,
+            "dbp": 66,
+            "gcs": 15
+          }
+        }
+      }
     ],
     "edges": [
-      { "id": "e1", "source": "start", "target": "fluids_normal" },
-      { "id": "e2", "source": "start", "target": "fluids_hyper" },
-      { "id": "e3", "source": "start", "target": "fluids_d5w" },
-      
-      { "id": "e4", "source": "fluids_normal", "target": "out_correct" },
-      { "id": "e5", "source": "fluids_hyper", "target": "out_overload" },
-      { "id": "e6", "source": "fluids_d5w", "target": "out_edema" }
+      {
+        "id": "e1",
+        "source": "start1",
+        "target": "req1"
+      },
+      {
+        "id": "e2",
+        "source": "req1",
+        "target": "out1"
+      },
+      {
+        "id": "e3",
+        "source": "out1",
+        "target": "ethical_1"
+      },
+      {
+        "id": "e4",
+        "source": "ethical_1",
+        "target": "req2"
+      },
+      {
+        "id": "e5",
+        "source": "out1",
+        "target": "req2"
+      },
+      {
+        "id": "e6",
+        "source": "req2",
+        "target": "out2"
+      },
+      {
+        "id": "e7",
+        "source": "out2",
+        "target": "req3"
+      },
+      {
+        "id": "e8",
+        "source": "req3",
+        "target": "out3"
+      }
     ]
   }
 }

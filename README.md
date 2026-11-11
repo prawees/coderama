@@ -116,6 +116,38 @@ Generates the complete static build in `out/` with all 51 medical cases pre-rend
 
 ---
 
+## ✅ Checks
+
+```bash
+npm run validate
+```
+
+Runs two checks:
+
+- `scripts/validate-cases.mjs` validates every case graph (edges, start node, reachable endings) and every distractor.
+- `scripts/check-story.ts` walks every scene of all 31 days in English and Thai under several flag combinations, and fails if any `[IF_FLAG:...]` markup would reach the player or a scene fails to end.
+
+### Case decisions (distractors)
+
+Each `required` step in a case can list wrong options in `data.distractors` as `{ "label", "feedback" }`. The engine shows them shuffled alongside the correct step. A wrong pick costs 5 energy, worsens the displayed vitals, shows the feedback, and counts toward the case grade:
+
+| Errors | Grade | Reward |
+| :--- | :--- | :--- |
+| 0 | Stabilized | 100 XP, $50 |
+| 1 | Stabilized, one error | 70 XP, $40 |
+| 2+ | Survived, care below standard | 30 XP, $10 |
+| Bad ending | Critical | 0 |
+
+Interventions above the player's rank are allowed under supervision, which reduces the reward by 40%.
+
+Distractors are authored in `scripts/distractors/batch*.json` (English) and `th_batch*.json` (Thai), then merged with `python3 scripts/distractors/merge.py`. Re-running the merge replaces existing distractors.
+
+### Story XP
+
+Story choices were authored with XP values in the thousands. The hub applies `STORY_XP_SCALE` (currently 0.02) so dialogue and cases contribute roughly equally across the campaign.
+
+---
+
 ## 🤝 Collaboration Notes (for Porames & Team)
 
 - **Art & Assets**: The 2D sprites and UI are ripe for human touch / rework (e.g. Fable polish, character portraits, custom tilesets).

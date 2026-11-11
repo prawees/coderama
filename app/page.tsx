@@ -2,61 +2,118 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useERStore } from "@/lib/erStore";
+import { useERStore, useHydrated, PlayerAppearance } from "@/lib/erStore";
+import { Wardrobe } from "@/components/game/Wardrobe";
+import { useCloud } from "@/lib/account";
+import { RichText } from "@/components/game/RichText";
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelButton } from "@/components/ui/PixelButton";
-import { Haptics, ImpactStyle } from "@capacitor/haptics";
+import { haptic } from "@/lib/haptics";
 import { audio } from "@/lib/audio";
-import { music, TrackId } from "@/lib/music";
+import { music } from "@/lib/music";
 
-import { PixiIntro } from "@/components/game/PixiIntro";
-import { PixiPreview } from "@/components/game/PixiPreview";
+import { TitleScene } from "@/components/game/TitleScene";
+import { PixelPortrait } from "@/components/game/PixelPortrait";
+import { playerLookFrom } from "@/lib/playerLook";
+import { SpritePreview } from "@/components/game/SpritePreview";
 import { SettingsMenu } from "@/components/game/SettingsMenu";
+import { ColdOpen } from "@/components/game/ColdOpen";
+import { PixelLogo } from "@/components/game/PixelLogo";
+import { shiftInChapter } from "@/lib/chapters";
+import { teaserAfter } from "@/lib/teasers";
+import { type Challenge, fmtSecs, readChallenge } from "@/lib/invite";
+import { setCalm, useCalm } from "@/lib/calm";
 
-type MenuState = 'INTRO' | 'SPLASH' | 'MENU' | 'SETUP' | 'SETTINGS';
+/** The cold open plays once on a device. After that the title goes straight to the menu. */
+const SEEN_KEY = "coderama.coldOpenSeen";
+/** The name on the badge when the player leaves it blank */
+const DEFAULT_NAME = { M: "บิ๊ก", F: "นาน่า", O: "บิ๊ก" } as const;
+const seenColdOpen = () => { try { return !!localStorage.getItem(SEEN_KEY); } catch { return true; } };
+const markColdOpenSeen = () => { try { localStorage.setItem(SEEN_KEY, "1"); } catch { /* private mode */ } };
+
+type MenuState = 'INTRO' | 'SPLASH' | 'COLD_OPEN' | 'MENU' | 'SETUP' | 'SETTINGS';
 
 export default function RootPage() {
   const router = useRouter();
-  const { setupPlayer, playerName, playerGender, language, xp } = useERStore();
+  const { setupPlayer, xp, currentDay, tutorialCompleted, playerName } = useERStore();
+  const hasSave = xp > 0 || currentDay > 1 || tutorialCompleted;
+  const hydrated = useHydrated();
+  const cloud = useCloud();
+  const [replaying, setReplaying] = useState(false);
+  const calm = useCalm();
+  // A friend's challenge link (/?vf=34&cpr=88&n=...) opens on the cold open, even for someone with a save
+  const [challenge, setChallenge] = useState<Challenge | null>(null);
+  useEffect(() => { setChallenge(readChallenge(window.location.search)); }, []);
 
   const [menuState, setMenuState] = useState<MenuState | 'ABOUT' | 'CREDITS'>('INTRO');
   const [wizardStep, setWizardStep] = useState(1);
   const [nameInput, setNameInput] = useState("");
   const [genderInput, setGenderInput] = useState<'M'|'F'|'O'>('M');
   const [uniInput, setUniInput] = useState("Rama");
-  const [langInput, setLangInput] = useState<'en' | 'th'>(language);
 
   // Customization State
-  const [skinColor, setSkinColor] = useState("#ffcc99");
-  const [hairColor, setHairColor] = useState("#000000");
-  const [topColor, setTopColor] = useState("#ffffff");
-  const [bottomColor, setBottomColor] = useState("#333333");
-  const [shoeColor, setShoeColor] = useState("#000000");
-  const [hairStyle, setHairStyle] = useState("hair_1");
-  const [topStyle, setTopStyle] = useState("top_1");
+  const [look, setLook] = useState<PlayerAppearance>({ skinColor: "#f4c7a1", hairColor: "#2c2328", topColor: "#ffffff", bottomColor: "#333333", shoeColor: "#000000", hairStyle: "short", topStyle: "gown_long", glasses: false });
+
+  // Someone coming back wants their game, not the logo again
+  useEffect(() => {
+    if (hydrated && hasSave && !readChallenge(window.location.search)) setMenuState((m) => (m === 'INTRO' || m === 'SPLASH' ? 'MENU' : m));
+  }, [hydrated, hasSave]);
 
   // Auto-transition from Intro to Splash
   useEffect(() => {
     if (menuState === 'INTRO') {
       const timer = setTimeout(() => {
         setMenuState('SPLASH');
-      }, 3000);
+      }, 1800);
       return () => clearTimeout(timer);
     }
   }, [menuState]);
 
+  // Browsers hold sound until the first tap, and a returning player skips the splash that would give it
+  useEffect(() => {
+    const start = () => { if (music.getCurrentTrack() !== 'title') music.fadeToTrack('title', 1.5); };
+    window.addEventListener('pointerdown', start, { once: true });
+    return () => window.removeEventListener('pointerdown', start);
+  }, []);
+
   const handleSplashTap = () => {
-    Haptics.impact({ style: ImpactStyle.Light });
+    haptic.impact("light");
     audio.playClick();
-    
-    const tracks: TrackId[] = ['sunrise', 'first_house', 'home', 'wandering', 'deep_mines', 'the_void', 'nightfall'];
-    music.playTrack(tracks[Math.floor(Math.random() * tracks.length)]);
-    
+
+    // A first-time player goes straight into a resus, and so does anyone taking up a friend's challenge
+    if (challenge) {
+      music.stopTrack();
+      setReplaying(hasSave || seenColdOpen());
+      setMenuState('COLD_OPEN');
+      return;
+    }
+    if (!hasSave && !seenColdOpen()) {
+      music.stopTrack();
+      setMenuState('COLD_OPEN');
+      return;
+    }
+    music.fadeToTrack('title', 1.5);
     setMenuState('MENU');
   };
 
+  const finishColdOpen = () => {
+    markColdOpenSeen();
+    if (challenge) { setChallenge(null); try { window.history.replaceState(null, '', window.location.pathname); } catch { /* old browser */ } }
+    music.fadeToTrack('title', 1.5);
+    if (replaying) { setReplaying(false); setMenuState('MENU'); return; }
+    setWizardStep(1);
+    setMenuState('SETUP');
+  };
+
+  const replayColdOpen = () => {
+    audio.playClick();
+    music.stopTrack();
+    setReplaying(true);
+    setMenuState('COLD_OPEN');
+  };
+
   const handleNewGame = () => {
-    Haptics.impact({ style: ImpactStyle.Medium });
+    haptic.impact("medium");
     audio.playClick();
     
     // Reset stats for New Game
@@ -76,7 +133,24 @@ export default function RootPage() {
       activeQuests: [],
       completedQuests: [],
       tutorialCompleted: false,
-      friendships: { nurse_ann: 0, dr_bob: 0 }
+      friendships: {},
+      gifts: {},
+      npcDaily: {},
+      knownTastes: {},
+      heartEventsSeen: [],
+      propDaily: {},
+      patientLog: {},
+      storyFlags: {},
+      karma: 0,
+      clockMinutes: 0,
+      shiftStats: { casesTreated: 0, xpEarned: 0, cashEarned: 0, patients: [], spawned: [], midPlayed: [] },
+      isPendingPromotion: false,
+      requestsDone: [],
+      casebookClaimed: [],
+      lastSeen: {},
+      savedTotal: 0,
+      goodStreak: 0,
+      bestStreak: 0
     });
     
     setWizardStep(1);
@@ -84,7 +158,7 @@ export default function RootPage() {
   };
 
   const handleContinue = () => {
-    Haptics.impact({ style: ImpactStyle.Heavy });
+    haptic.impact("heavy");
     audio.playClick();
     audio.stopMenuChiptune();
     music.stopTrack();
@@ -92,338 +166,205 @@ export default function RootPage() {
   };
 
   const handleStart = async () => {
-    await Haptics.impact({ style: ImpactStyle.Heavy });
-    if (!nameInput.trim()) {
-      alert(langInput === "th" ? "กรุณาใส่ชื่อของคุณ!" : "Please enter your name!");
-      return;
-    }
-    
+    haptic.impact("heavy");
+    // An empty name falls back to the placeholder shown in the field rather than blocking the start.
     audio.stopMenuChiptune();
     music.stopTrack();
-    setupPlayer(nameInput.trim() || (langInput === 'th' ? 'สมชาย' : 'John Doe'), genderInput, langInput, {
-      skinColor,
-      hairColor,
-      topColor,
-      bottomColor,
-      shoeColor,
-      hairStyle,
-      topStyle
-    }, uniInput);
+    setupPlayer(nameInput.trim() || DEFAULT_NAME[genderInput], genderInput, 'th', look, uniInput);
     audio.playShiftStart(); // A little dramatic sound for starting
     router.push("/hub");
   };
 
+  const tr = (_en: string, th: string) => th;
+  const previewLook = playerLookFrom(look, "MS5");
+
   return (
-    <div className="min-h-screen bg-black text-pixel-text font-pixel flex flex-col items-center justify-center p-4 relative overflow-hidden select-none">
-      
-      {/* PixiJS Background and Animated Characters */}
-      <PixiIntro hue={0} showCharacter={menuState === 'SETUP'} />
-      
-      {/* Intro Overlay */}
+    <div className="min-h-screen text-pixel-text font-pixel flex flex-col items-center justify-center p-4 relative overflow-hidden select-none cozy-night">
+      <TitleScene />
+      {menuState === 'COLD_OPEN' && <ColdOpen onDone={finishColdOpen} replay={replaying} challenge={challenge} playerName={hasSave ? playerName : null} />}
+
       {menuState === 'INTRO' && (
-        <div 
-          className="absolute inset-0 z-50 flex items-center justify-center bg-black cursor-pointer"
-          onClick={() => setMenuState('SPLASH')}
-        >
-          <div className="text-center animate-pulse flex flex-col gap-2">
-            <h2 className="text-gray-300 text-xl tracking-[0.4em] mb-4 font-bold">A GAME BY RAMA G7 CLUB</h2>
-            
-            <h1 className="text-white text-5xl tracking-widest font-bold drop-shadow-[0_0_15px_rgba(255,255,255,0.8)] mt-4">CODE RAMA</h1>
-            
-            <div className="mt-8 flex flex-col gap-1 text-gray-500 text-sm tracking-widest">
-              <p>DEVELOPED BY PRAWEES</p>
-              <p>CONCEPT BY PORAMES</p>
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-[#1c1522] cursor-pointer" onClick={() => setMenuState('SPLASH')}>
+          <div className="text-center flex flex-col gap-2 animate-[cozyPop_0.6s_ease-out]">
+            <p className="text-[#c9b79c] text-lg">เกมจาก Rama G7 Club</p>
+            <h1 className="mt-3 flex justify-center"><PixelLogo scale={3} animated /></h1>
+            <div className="mt-6 flex flex-col gap-1 text-[#c9b79c] text-base">
+              <p>พัฒนาโดย Prawees</p>
+              <p>ไอเดียโดย Porames</p>
             </div>
           </div>
         </div>
       )}
 
       <div className="w-full max-w-md z-10 flex flex-col items-center justify-center min-h-screen py-4">
-        
-        {/* Title Logo */}
-        <div className={`transition-all duration-700 ease-in-out flex flex-col items-center ${
-          menuState === 'SPLASH' ? 'scale-100 mb-12 opacity-100' : 
-          menuState === 'SETUP' ? 'scale-0 h-0 opacity-0 mb-0 pointer-events-none' : 
-          'scale-75 mb-4 opacity-100'
-        }`}>
-          <img src="/assets/logo_new.jpg" alt="CODE RAMA" className="w-64 md:w-80 rounded-xl shadow-[0_0_20px_rgba(88,166,255,0.4)]" />
-        </div>
+        {menuState !== 'SETUP' && menuState !== 'COLD_OPEN' && (
+          <div className="flex flex-col items-center mb-6 animate-[cozyBob_3s_ease-in-out_infinite]">
+            <div className="cozy-panel px-4 pt-3 pb-2 text-center">
+              <h1 className="flex justify-center"><PixelLogo scale={3} animated /></h1>
+              <p className="text-[18px] leading-tight mt-1 text-[#86522e]">จาก นศพ. ปี 5 สู่อาจารย์หมอ</p>
+            </div>
+          </div>
+        )}
 
         {menuState === 'SPLASH' && (
-          <div 
-            className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-32 cursor-pointer"
-            onClick={handleSplashTap}
-          >
-            <p className="text-2xl text-yellow-400 animate-pulse drop-shadow-md">
-              TAP TO START
-            </p>
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-28 cursor-pointer" onClick={handleSplashTap}>
+            {challenge && (
+              <div className="cozy-panel mx-6 mb-4 px-4 py-3 text-center animate-[cozyPop_0.4s_ease-out]" data-testid="challenge-splash">
+                <p className="text-[20px] leading-none text-[#c4374a]">{challenge.name ?? 'เพื่อน'}ท้าคุณ!</p>
+                <p className="text-[18px] leading-snug mt-1.5">ลุง 58 ปี หัวใจหยุดเต้นหน้าห้องตรวจ<br />{challenge.name ?? 'เพื่อน'}ช่วยกลับมาได้ใน {fmtSecs(challenge.secs)} วินาที</p>
+                <p className="text-[15px] leading-none mt-1.5 text-[#86522e]">ใช้เวลาไม่ถึงนาที</p>
+              </div>
+            )}
+            <p className="cozy-tag px-4 py-1.5 text-2xl animate-[cozyBob_1.4s_ease-in-out_infinite]">{challenge ? 'แตะเพื่อรับคำท้า' : 'แตะเพื่อเริ่ม'}</p>
           </div>
         )}
 
         {menuState === 'MENU' && (
-          <div className="w-full space-y-3 animate-slide-up flex flex-col items-center">
-            {xp > 0 && (
-              <PixelButton onClick={handleContinue} variant="primary" className="w-64 py-2 text-2xl shadow-[0_0_15px_rgba(46,160,67,0.5)]">
-                CONTINUE
-              </PixelButton>
-            )}
-            <PixelButton onClick={handleNewGame} variant={xp > 0 ? "secondary" : "primary"} className="w-64 py-2 text-xl">
-              NEW GAME
+          <div className="w-64 flex flex-col gap-3 animate-slide-up">
+            {hasSave && (() => {
+              const at = shiftInChapter(currentDay);
+              return (
+                <div className="flex flex-col gap-1.5">
+                  <PixelButton onClick={handleContinue} variant="primary" className="w-full py-2 text-2xl" data-testid="continue">เล่นต่อ</PixelButton>
+                  <div className="cozy-panel px-2.5 py-2 text-left" data-testid="continue-card">
+                    <p className="text-[15px] leading-none text-[#86522e]">{at ? `บท ${at.chapter.n} ${at.chapter.title} เวร ${at.position}/${at.total}` : `เวรที่ ${currentDay}`}</p>
+                    {currentDay > 1 && <RichText text={teaserAfter(currentDay - 1)} className="text-[15px] leading-snug mt-1" />}
+                  </div>
+                </div>
+              );
+            })()}
+            <PixelButton onClick={handleNewGame} variant={hasSave ? "wood" : "primary"} className="w-full py-2 text-2xl" data-testid="new-game">เริ่มใหม่</PixelButton>
+            <PixelButton onClick={() => router.push('/cases')} variant="secondary" className="w-full py-1.5 text-xl" data-testid="case-library-link">คลังเคส</PixelButton>
+            <PixelButton onClick={() => router.push('/login')} variant="secondary" className="w-full py-1.5 text-xl" data-testid="account-link">
+              {cloud.user ? 'Account ✓ Saved to cloud' : 'Log in / Save to cloud'}
             </PixelButton>
-            <PixelButton onClick={() => setMenuState('SETTINGS')} variant="secondary" className="w-64 py-2 text-lg text-gray-400">
-              SETTINGS
-            </PixelButton>
-            <div className="flex gap-4">
-              <PixelButton onClick={() => setMenuState('ABOUT')} variant="secondary" className="w-30 py-2 text-sm text-gray-500">
-                ABOUT
-              </PixelButton>
-              <PixelButton onClick={() => setMenuState('CREDITS')} variant="secondary" className="w-30 py-2 text-sm text-gray-500">
-                CREDITS
-              </PixelButton>
+            <PixelButton onClick={() => setMenuState('SETTINGS')} variant="secondary" className="w-full py-1.5 text-xl">ตั้งค่า</PixelButton>
+            {/* In plain sight on purpose: the players who need it are the least likely to open settings */}
+            <button onClick={() => { audio.playClick(); setCalm(!calm); }} aria-pressed={calm} data-testid="calm-menu"
+              className={`cozy-tag self-center px-3 py-1 text-[16px] leading-none ${calm ? '!bg-[#c8ecb4]' : ''}`}>
+              โหมดสบายตา {calm ? 'เปิดอยู่' : 'ปิดอยู่'}
+            </button>
+            <PixelButton onClick={replayColdOpen} variant="secondary" className="w-full py-1.5 text-xl" data-testid="replay-intro">เล่นฉากเปิด ท้าเพื่อนแข่ง</PixelButton>
+            <div className="flex gap-3">
+              <PixelButton onClick={() => setMenuState('ABOUT')} variant="secondary" className="flex-1 py-1.5 text-lg">เกี่ยวกับเกม</PixelButton>
+              <PixelButton onClick={() => setMenuState('CREDITS')} variant="secondary" className="flex-1 py-1.5 text-lg">ทีมงาน</PixelButton>
             </div>
           </div>
         )}
 
         {menuState === 'ABOUT' && (
-          <PixelPanel variant="dark" className="w-full space-y-6 animate-slide-up">
-            <h2 className="text-center text-xl text-yellow-400">ABOUT</h2>
-            <p className="text-gray-300 text-sm leading-relaxed text-center">
-              CODE RAMA is a hospital simulator set across different eras.
-              Manage your shift, treat patients, and navigate the brutal realities of medical ethics.
+          <PixelPanel variant="parchment" className="w-full space-y-4 animate-slide-up">
+            <h2 className="text-center text-3xl leading-none">เกี่ยวกับเกม</h2>
+            <p className="text-lg leading-snug text-center">
+              Code Rama คือชีวิตหมอคนหนึ่ง ตั้งแต่ขึ้นวอร์ดตอน นศพ. ปี 5 จนได้เป็นอาจารย์ ผ่านโรงพยาบาลสามแห่งที่ไม่เหมือนกันเลย
+              ดูคนไข้ ผูกมิตรกับพี่ๆ ในวอร์ด แล้วเลือกเองว่าจะเป็นหมอแบบไหน
             </p>
-            <PixelButton onClick={() => setMenuState('MENU')} variant="secondary" className="w-full mt-4">
-              BACK
-            </PixelButton>
+            <PixelButton onClick={() => setMenuState('MENU')} variant="wood" className="w-full">กลับ</PixelButton>
           </PixelPanel>
         )}
 
         {menuState === 'CREDITS' && (
-          <PixelPanel variant="dark" className="w-full space-y-6 animate-slide-up">
-            <h2 className="text-center text-xl text-yellow-400">CREDITS</h2>
-            <div className="text-gray-300 text-sm leading-relaxed text-center space-y-2">
-              <p>Designed and Built with passion.</p>
-              <p>Engine: Next.js + React</p>
-              <p>Special Thanks: The Medical Community</p>
-            </div>
-            <PixelButton onClick={() => setMenuState('MENU')} variant="secondary" className="w-full mt-4">
-              BACK
-            </PixelButton>
+          <PixelPanel variant="parchment" className="w-full space-y-4 animate-slide-up">
+            <h2 className="text-center text-3xl leading-none">ทีมงาน</h2>
+            <div className="text-lg leading-snug text-center space-y-1">
+              <p>พัฒนาโดย Prawees</p>
+              <p>ไอเดียโดย Porames</p>
+              <p>โปรเจกต์ของ Rama G7 Club</p>
+                          </div>
+            <PixelButton onClick={() => setMenuState('MENU')} variant="wood" className="w-full">กลับ</PixelButton>
           </PixelPanel>
         )}
 
         <SettingsMenu isOpen={menuState === 'SETTINGS'} onClose={() => setMenuState('MENU')} />
 
         {menuState === 'SETUP' && (
-          <PixelPanel variant="dark" className="w-full max-h-[90vh] space-y-3 animate-slide-up shadow-2xl relative z-10 pb-4">
-            
-            {/* Step 1: Introduction and Name */}
+          <PixelPanel variant="parchment" className="w-full max-h-[92vh] overflow-y-auto space-y-3 animate-slide-up relative z-10">
             {wizardStep === 1 && (
               <div className="space-y-4 flex flex-col items-center">
-                <div className="w-24 h-24 bg-gray-900 border-4 border-[#1f6feb] rounded-xl overflow-hidden relative mb-2">
-                  <img 
-                    src="/assets/doctor_sprite.png" 
-                    alt="Prof. Somchai" 
-                    className="absolute max-w-none pixelated" 
-                    style={{ 
-                      width: "300%", height: "400%", left: "-100%", top: "0%" 
-                    }} 
-                  />
-                </div>
-                <div className="bg-black/80 border-4 border-[#30363d] rounded-xl p-4 w-full">
-                  <p className="text-[#58a6ff] text-lg font-bold mb-2">Prof. Somchai</p>
-                  <p className="text-white text-lg">
-                    {langInput === "th" ? "นศพ...ชื่ออะไรจ้ะ ?" : "Medical Student... what is your name?"}
-                  </p>
-                </div>
-                
-                <div className="w-full space-y-2">
-                  <div className="flex items-center gap-2 bg-black border-4 border-[#30363d] rounded p-3 focus-within:border-[#58a6ff] transition-colors shadow-inner text-white font-pixel">
-                     <span>{langInput === "th" ? "นศพ." : "MS."}</span>
-                     <input 
-                       type="text" 
-                       className="flex-1 bg-transparent border-none outline-none text-center"
-                       placeholder={langInput === "th" ? "สมชาย" : "John Doe"}
-                       value={nameInput}
-                       onChange={(e) => setNameInput(e.target.value)}
-                       maxLength={15}
-                     />
-                     <span>{langInput === "th" ? "ปี 5" : "Yr 5"}</span>
+                <div className="flex gap-3 items-start w-full">
+                  <div className="w-20 h-20 shrink-0 rounded-[4px] overflow-hidden border-[3px] border-[#3a2a2f]">
+                    <PixelPortrait speaker="Auntie Noi" className="w-full h-full" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="cozy-tag inline-block px-2 py-0.5 text-base leading-none !bg-[#ffd66b]">ป้าน้อย ห้องเก็บของ</p>
+                    <p className="text-xl leading-tight mt-2">คุณหมอคนใหม่ใช่ไหมจ๊ะ ป้าทำป้ายชื่อให้ก่อน ชื่อเล่นอะไรจ๊ะ</p>
                   </div>
                 </div>
-
-                <div className="pt-4 flex gap-4 w-full">
-                  <PixelButton onClick={() => setMenuState('MENU')} variant="secondary" className="w-1/3">
-                    BACK
-                  </PixelButton>
-                  <PixelButton onClick={() => setWizardStep(2)} variant="primary" className="flex-1 text-xl shadow-[0_0_15px_rgba(88,166,255,0.6)]">
-                    NEXT
-                  </PixelButton>
+                <div className="w-full flex items-center gap-2 bg-[#fff6e3] border-[3px] border-[#3a2a2f] rounded-[4px] p-2.5 text-xl">
+                  <span className="text-[#86522e]">นศพ.</span>
+                  <input
+                    type="text"
+                    className="flex-1 min-w-0 bg-transparent border-none outline-none text-center text-[#3a2a2f]"
+                    placeholder={DEFAULT_NAME[genderInput]}
+                    value={nameInput}
+                    onChange={(e) => setNameInput(e.target.value)}
+                    maxLength={15}
+                  />
+                  <span className="text-[#86522e]">ปี 5</span>
                 </div>
-              </div>
-            )}
-            
-            {/* Step 2: Basic Info */}
-            {wizardStep === 2 && (
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <label className="text-pixel-accent uppercase text-sm">
-                    {langInput === "th" ? "เพศ" : "Gender"}
-                  </label>
+                <div className="space-y-2 w-full">
+                  <label className="text-lg leading-none text-[#86522e]">{tr("Gender", "เพศ")}</label>
                   <div className="flex gap-2">
-                    {(['M', 'F', 'O'] as const).map(g => (
+                    {(['M', 'F', 'O'] as const).map((g) => (
                       <button
                         key={g}
                         onClick={() => { audio.playClick(); setGenderInput(g); }}
-                        className={`flex-1 py-2 text-center border-4 font-bold transition-all ${
-                          genderInput === g 
-                            ? 'bg-[#1f6feb] border-[#58a6ff] text-white shadow-[0_0_10px_rgba(88,166,255,0.5)]' 
-                            : 'bg-[#21262d] border-[#30363d] text-gray-400'
-                        }`}
+                        className={`cozy-btn flex-1 py-1.5 text-xl ${genderInput === g ? 'cozy-btn-sky' : ''}`}
                       >
-                        {g === 'M' ? (langInput === 'th' ? 'ชาย' : 'Male') : 
-                         g === 'F' ? (langInput === 'th' ? 'หญิง' : 'Female') : 
-                         (langInput === 'th' ? 'อื่นๆ' : 'Other')}
+                        {g === 'M' ? tr('Male', 'ชาย') : g === 'F' ? tr('Female', 'หญิง') : 'ไม่ระบุ'}
                       </button>
                     ))}
                   </div>
                 </div>
-
                 <div className="space-y-2">
-                  <label className="text-pixel-accent uppercase text-sm">
-                    {langInput === "th" ? "สถาบันการศึกษา" : "University / Medical School"}
-                  </label>
-                  <select 
-                    className="w-full bg-black border-4 border-[#30363d] rounded p-3 text-white font-pixel outline-none focus:border-[#58a6ff] transition-colors shadow-inner"
+                  <label className="text-lg leading-none text-[#86522e]">คณะแพทย์ที่เรียน</label>
+                  <select
+                    className="w-full bg-[#fff6e3] border-[3px] border-[#3a2a2f] rounded-[4px] p-2 text-xl text-[#3a2a2f] outline-none"
                     value={uniInput}
                     onChange={(e) => { audio.playClick(); setUniInput(e.target.value); }}
                   >
-                    <option value="Rama">Ramathibodi Hospital (Rama)</option>
-                    <option value="Siriraj">Siriraj Hospital</option>
-                    <option value="Chula">Chulalongkorn University</option>
-                    <option value="ChiangMai">Chiang Mai University (CMU)</option>
-                    <option value="KhonKaen">Khon Kaen University (KKU)</option>
-                    <option value="Other">Other / General</option>
+                    <option value="Rama">รามาธิบดี</option>
+                    <option value="Siriraj">ศิริราช</option>
+                    <option value="Chula">จุฬาฯ</option>
+                    <option value="ChiangMai">เชียงใหม่</option>
+                    <option value="KhonKaen">ขอนแก่น</option>
+                    <option value="Other">ที่อื่น</option>
                   </select>
                 </div>
-                
-                <div className="pt-4 flex gap-4 w-full">
-                  <PixelButton onClick={() => setWizardStep(1)} variant="secondary" className="w-1/3">
-                    BACK
-                  </PixelButton>
-                  <PixelButton onClick={() => setWizardStep(3)} variant="primary" className="flex-1 text-xl shadow-[0_0_15px_rgba(88,166,255,0.6)]">
-                    NEXT
-                  </PixelButton>
+                <div className="pt-1 flex flex-col gap-2 w-full">
+                  <PixelButton onClick={handleStart} variant="primary" className="w-full py-2 text-2xl" data-testid="start-game">เข้าเวรเลย</PixelButton>
+                  <div className="flex gap-2">
+                    <PixelButton onClick={() => setMenuState('MENU')} variant="wood" className="w-1/3">กลับ</PixelButton>
+                    <PixelButton onClick={() => setWizardStep(3)} variant="secondary" className="flex-1 text-xl" data-testid="customize">แต่งตัวก่อน</PixelButton>
+                  </div>
                 </div>
               </div>
             )}
 
-            {/* Step 3: Customization */}
             {wizardStep === 3 && (
-              <div className="space-y-2">
-                <label className="text-pixel-accent uppercase text-sm">
-                  {langInput === "th" ? "ปรับแต่งตัวละคร" : "Character Customization"}
-                </label>
-                
-                <div className="flex flex-col md:flex-row gap-4 items-start bg-black/40 p-3 rounded-lg border-2 border-[#30363d]">
-                  
-                  {/* Left Side: Preview */}
-                  <div className="flex flex-col items-center gap-2 w-full md:w-1/3">
-                    <div className="w-24 h-24 rounded-md border-4 border-[#30363d] bg-black/80 flex items-center justify-center relative shadow-inner overflow-hidden">
-                       <PixiPreview 
-                         skinColor={skinColor}
-                         hairColor={hairColor}
-                         topColor={topColor}
-                         bottomColor={bottomColor}
-                         shoeColor={shoeColor}
-                         hairStyle={hairStyle}
-                         topStyle={topStyle}
-                       />
-                       <div className="absolute inset-0 z-10 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] rounded-sm pointer-events-none" />
+              <div className="space-y-3">
+                <div className="flex gap-3 items-start">
+                  <div className="shrink-0 flex flex-col items-center gap-1">
+                    <div className="w-24 h-32 rounded-[4px] border-[3px] border-[#3a2a2f] bg-[#cfe8d8] flex items-end justify-center overflow-hidden" data-testid="char-preview">
+                      <SpritePreview look={previewLook} />
                     </div>
-                    <span className="text-xs text-gray-500 text-center uppercase tracking-widest mt-2">
-                      {langInput === "th" ? "ตัวอย่าง" : "PREVIEW"}
-                    </span>
+                    <span className="text-[13px] text-[#86522e]">{tr("preview", "ตัวอย่าง")}</span>
                   </div>
-
-                  {/* Right Side: Options */}
-                  <div className="flex flex-col gap-2 w-full md:w-2/3">
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="flex flex-col gap-1">
-                        <label className="text-xs text-gray-400">{langInput === "th" ? "สีผิว" : "Skin"}</label>
-                        <input type="color" value={skinColor} onChange={(e) => setSkinColor(e.target.value)} className="w-full h-6 cursor-pointer rounded border-0" />
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <label className="text-xs text-gray-400">{langInput === "th" ? "สีผม" : "Hair"}</label>
-                        <input type="color" value={hairColor} onChange={(e) => setHairColor(e.target.value)} className="w-full h-6 cursor-pointer rounded border-0" />
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <label className="text-xs text-gray-400">{langInput === "th" ? "เสื้อ" : "Shirt"}</label>
-                        <input type="color" value={topColor} onChange={(e) => setTopColor(e.target.value)} className="w-full h-6 cursor-pointer rounded border-0" />
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <label className="text-xs text-gray-400">{langInput === "th" ? "กางเกง" : "Pants"}</label>
-                        <input type="color" value={bottomColor} onChange={(e) => setBottomColor(e.target.value)} className="w-full h-6 cursor-pointer rounded border-0" />
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <label className="text-xs text-gray-400">{langInput === "th" ? "รองเท้า" : "Shoes"}</label>
-                        <input type="color" value={shoeColor} onChange={(e) => setShoeColor(e.target.value)} className="w-full h-6 cursor-pointer rounded border-0" />
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-1 mt-1">
-                      <label className="text-xs text-gray-400">{langInput === "th" ? "ทรงผม" : "Hair Style"}</label>
-                      <select 
-                        value={hairStyle} 
-                        onChange={(e) => setHairStyle(e.target.value)}
-                        className="w-full bg-black border-2 border-[#30363d] rounded p-1 text-white text-sm outline-none focus:border-[#58a6ff]"
-                      >
-                        <option value="hair_1">{langInput === "th" ? "ผมสั้น" : "Short Hair"}</option>
-                        <option value="hair_2">{langInput === "th" ? "ผมยาว" : "Long Hair"}</option>
-                      </select>
-                    </div>
-
-                    <div className="flex flex-col gap-1 mt-1">
-                      <label className="text-xs text-gray-400">{langInput === "th" ? "ชุดประจำตำแหน่ง" : "Uniform"}</label>
-                      <select 
-                        value={topStyle} 
-                        onChange={(e) => setTopStyle(e.target.value)}
-                        className="w-full bg-black border-2 border-[#30363d] rounded p-1 text-white text-sm outline-none focus:border-[#58a6ff]"
-                      >
-                        <option value="top_1">{langInput === "th" ? "ชุดนักศึกษาแพทย์" : "Medical Student Uniform"}</option>
-                        <option value="top_2">{langInput === "th" ? "ชุดสครับ" : "Scrubs"}</option>
-                      </select>
-                    </div>
+                  <div className="flex-1 min-w-0">
+                    <Wardrobe value={look} rank="MS5" onChange={(p) => setLook((l) => ({ ...l, ...p }))} />
                   </div>
                 </div>
-
-                <div className="space-y-2 mt-4">
-                  <label className="text-pixel-accent uppercase text-sm">
-                    Language / ภาษา
-                  </label>
-                  <div className="flex gap-2">
-                    <button onClick={() => { audio.playClick(); setLangInput('en'); }} className={`flex-1 py-3 text-center border-4 font-bold transition-all ${langInput === 'en' ? 'bg-[#2ea043] border-[#3fb950] text-white shadow-[0_0_10px_rgba(63,185,80,0.5)]' : 'bg-[#21262d] border-[#30363d] text-gray-400'}`}>
-                      English
-                    </button>
-                    <button onClick={() => { audio.playClick(); setLangInput('th'); }} className={`flex-1 py-3 text-center border-4 font-bold transition-all ${langInput === 'th' ? 'bg-[#2ea043] border-[#3fb950] text-white shadow-[0_0_10px_rgba(63,185,80,0.5)]' : 'bg-[#21262d] border-[#30363d] text-gray-400'}`}>
-                      ไทย
-                    </button>
-                  </div>
-                </div>
-
-                <div className="pt-4 flex gap-4">
-                  <PixelButton onClick={() => setWizardStep(2)} variant="secondary" className="w-1/3">
-                    BACK
-                  </PixelButton>
-                  <PixelButton onClick={handleStart} variant="primary" className="flex-1 text-xl shadow-[0_0_15px_rgba(88,166,255,0.6)]">
-                    {langInput === "th" ? "เริ่มเกม" : "START"}
-                  </PixelButton>
+                <div className="pt-1 flex gap-3">
+                  <PixelButton onClick={() => setWizardStep(1)} variant="wood" className="w-1/3">กลับ</PixelButton>
+                  <PixelButton onClick={handleStart} variant="primary" className="flex-1 text-2xl">เข้าเวรเลย</PixelButton>
                 </div>
               </div>
             )}
           </PixelPanel>
         )}
-        
       </div>
     </div>
   );
 }
+
+/** The real in-game sprite, turning slowly so you can see all sides */
