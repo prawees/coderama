@@ -68,13 +68,13 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Deep sighing Kussmaul respirations at 32/min, bibasal fine crackles suggesting early acute lung injury, no consolidation",
+      "finding": "Deep sighing Kussmaul respirations at 32/min, bibasal fine crackles, no consolidation || The crackles suggest early acute lung injury",
       "abnormal": true
     },
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Tender splenomegaly 4 cm below the costal margin, hepatomegaly 2 cm, no ascites. Handle the spleen gently, splenic rupture is a recognised complication",
+      "finding": "Tender splenomegaly 4 cm below the costal margin, hepatomegaly 2 cm, no ascites || Handle the spleen gently, splenic rupture is a recognised complication",
       "abnormal": true
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 9 (E2V2M5), post-ictal, no focal deficit, no meningism, pupils equal and reactive, plantars downgoing. Cerebral malaria is a diagnosis of exclusion after hypoglycaemia is corrected",
+      "finding": "GCS 9 (E2V2M5), post-ictal, no focal deficit, no meningism, pupils equal and reactive, plantars downgoing || Cerebral malaria is a diagnosis of exclusion after hypoglycaemia is corrected",
       "abnormal": true
     }
   ],

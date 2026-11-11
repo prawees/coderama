@@ -50,7 +50,7 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Comfortable at rest, moves onto the trolley without assistance, reports 10 out of 10 pain while scrolling on his phone. Note this observation without moralising about it: pain behaviour and pain intensity correlate poorly, and this discrepancy is information rather than proof of anything",
+      "finding": "Comfortable at rest, moves onto the trolley without assistance, reports 10 out of 10 pain while scrolling on his phone || Note this observation without moralising about it: pain behaviour and pain intensity correlate poorly, and this discrepancy is information rather than proof of anything",
       "abnormal": false
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "Normal power 5/5 in both legs, reflexes symmetrical, straight leg raise negative bilaterally, normal perianal sensation, normal anal tone, no urinary retention or incontinence. No red flags for cauda equina. Do this examination properly and document it, because the one time it is skipped is the time it matters",
+      "finding": "Normal power 5/5 in both legs, reflexes symmetrical, straight leg raise negative bilaterally, normal perianal sensation, normal anal tone, no urinary retention or incontinence || No red flags for cauda equina. Do this examination properly and document it, because the one time it is skipped is the time it matters",
       "abnormal": false
     }
   ],
@@ -119,7 +119,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "Film L-spine",
-      "report": "Degenerative change เล็กน้อยที่ L4-L5 ไม่ต่างจาก film เมื่อ 14 เดือนก่อน ไม่มี fracture ไม่มี lytic lesion ไม่มี disc space แคบที่บ่งว่าติดเชื้อ การทำ imaging ใน non-specific low back pain ที่ไม่มี red flag ไม่ได้ทำให้ outcome ดีขึ้น และมักเจอ finding ที่ทำให้คนไข้เชื่อหนักขึ้นว่ากระดูกเสียหาย",
+      "report": "Degenerative change เล็กน้อยที่ L4-L5 ไม่ต่างจาก film เมื่อ 14 เดือนก่อน ไม่มี fracture ไม่มี lytic lesion ไม่มี disc space แคบที่บ่งว่าติดเชื้อ || การทำ imaging ใน non-specific low back pain ที่ไม่มี red flag ไม่ได้ทำให้ outcome ดีขึ้น และมักเจอ finding ที่ทำให้คนไข้เชื่อหนักขึ้นว่ากระดูกเสียหาย",
       "imageUrl": "",
       "abnormal": true
     },

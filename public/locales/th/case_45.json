@@ -56,19 +56,19 @@
     {
       "id": "hent1",
       "system": "HENT",
-      "finding": "Singed eyebrows and nasal hairs, soot in the nostrils and oropharynx, hoarse voice, carbonaceous sputum, early facial and lip oedema, no stridor yet. Every one of these predicts airway loss within hours",
+      "finding": "Singed eyebrows and nasal hairs, soot in the nostrils and oropharynx, hoarse voice, carbonaceous sputum, early facial and lip oedema, no stridor yet || Every one of these predicts airway loss within hours",
       "abnormal": true
     },
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Sinus tachycardia at 138/min, blood pressure 96/58, capillary refill 4 seconds in unburnt skin. Hypotension in the first hour after a burn is not from the burn and means you should look for haemorrhage or blast injury",
+      "finding": "Sinus tachycardia at 138/min, blood pressure 96/58, capillary refill 4 seconds in unburnt skin || Hypotension in the first hour after a burn is not from the burn and means you should look for haemorrhage or blast injury",
       "abnormal": true
     },
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Tachypnoeic at 32/min with a circumferential full thickness burn across the chest wall restricting expansion. Coarse crackles and wheeze. Oxygen saturation reads 99% and is unreliable, because pulse oximetry cannot distinguish carboxyhaemoglobin from oxyhaemoglobin",
+      "finding": "Tachypnoeic at 32/min with a circumferential full thickness burn across the chest wall restricting expansion. Coarse crackles and wheeze. Oxygen saturation reads 99% || The saturation is unreliable, because pulse oximetry cannot distinguish carboxyhaemoglobin from oxyhaemoglobin",
       "abnormal": true
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 12 (E3V4M5), confused and agitated. In an enclosed space fire, confusion is carbon monoxide or cyanide until proven otherwise, and not simply pain or fear",
+      "finding": "GCS 12 (E3V4M5), confused and agitated || In an enclosed space fire, confusion is carbon monoxide or cyanide until proven otherwise, and not simply pain or fear",
       "abnormal": true
     }
   ],
@@ -129,7 +129,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CXR",
-      "report": "ปอดใสในช่วงแรก CXR มักปกติใน 24 ชม. แรกของ inhalation injury film ปกติจึงไม่ได้ทำให้วางใจได้เลย",
+      "report": "ปอดใส || CXR มักปกติใน 24 ชม. แรกของ inhalation injury film ปกติจึงไม่ได้ทำให้วางใจได้เลย",
       "imageUrl": "",
       "abnormal": false
     },

@@ -68,13 +68,13 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Reduced air entry at the right base with dullness suggesting a small hepatic hydrothorax, no frank aspiration signs yet, tachypnoeic",
+      "finding": "Reduced air entry at the right base with dullness, no frank aspiration signs yet, tachypnoeic || The dull base suggests a small hepatic hydrothorax",
       "abnormal": true
     },
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Distended with tense ascites and shifting dullness, caput medusae, splenomegaly 5 cm below the costal margin, non-tender with no rebound, which argues against spontaneous bacterial peritonitis for now",
+      "finding": "Distended with tense ascites and shifting dullness, caput medusae, splenomegaly 5 cm below the costal margin, non-tender with no rebound || A non-tender abdomen argues against spontaneous bacterial peritonitis for now",
       "abnormal": true
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 12 (E3V4M5), disorientated in time and place, asterixis present on wrist extension, no focal deficit. Grade 2 hepatic encephalopathy, worsened by the protein load of blood in the gut",
+      "finding": "GCS 12 (E3V4M5), disorientated in time and place, asterixis present on wrist extension, no focal deficit || Grade 2 hepatic encephalopathy, worsened by the protein load of blood in the gut",
       "abnormal": true
     }
   ],

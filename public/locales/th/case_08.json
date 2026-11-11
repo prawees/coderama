@@ -95,7 +95,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "eFAST",
-      "report": "Left anterior chest: ไม่มี lung sliding ไม่มี B-lines, barcode sign บน M-mode เจอ lung point ด้านข้าง ไม่มี pericardial effusion ไม่มี free fluid ใน Morison's pouch, splenorenal recess หรือ pelvis ทำข้างเตียง 90 วินาทีโดยไม่ทำให้ decompress ช้า",
+      "report": "Left anterior chest: ไม่มี lung sliding ไม่มี B-lines, barcode sign บน M-mode เจอ lung point ด้านข้าง ไม่มี pericardial effusion ไม่มี free fluid ใน Morison's pouch, splenorenal recess หรือ pelvis || ทำข้างเตียง 90 วินาทีโดยไม่ทำให้ decompress ช้า",
       "imageUrl": "",
       "abnormal": true
     },

@@ -17,12 +17,12 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Well, well nourished, no weight loss, no cachexia, no jaundice, arrives in business clothing after a dinner meeting", "abnormal": false },
-    { "id": "hent1", "system": "HENT", "finding": "No scleral icterus, no pallor, no cervical or supraclavicular lymphadenopathy, no oral lesions, mild pharyngeal erythema consistent with reflux", "abnormal": false },
-    { "id": "cvs1", "system": "Cardiovascular", "finding": "Regular rate and rhythm, normal heart sounds, no murmur, blood pressure mildly elevated at 138/86 consistent with white coat effect and evening alcohol", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "No scleral icterus, no pallor, no cervical or supraclavicular lymphadenopathy, no oral lesions, mild pharyngeal erythema || Consistent with reflux", "abnormal": false },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Regular rate and rhythm, normal heart sounds, no murmur, blood pressure mildly elevated at 138/86 || Consistent with white coat effect and evening alcohol", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds bilaterally, no wheeze, normal effort, no cough", "abnormal": false },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender including deep epigastric palpation, no mass, no organomegaly, no ascites, Courvoisier's sign absent, bowel sounds normal", "abnormal": false },
     { "id": "skin1", "system": "Skin", "finding": "Normal colour, no jaundice, no scratch marks, no spider naevi, no palmar erythema, no acanthosis nigricans", "abnormal": false },
-    { "id": "cns1", "system": "Neurological", "finding": "GCS 15, fully orientated, no focal deficit. He is not anxious in the way case_23 was anxious. He is transactional: he believes screening is a purchasable good and he is prepared to pay for the best version of it", "abnormal": false }
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 15, fully orientated, no focal deficit. Calm and businesslike rather than anxious || He is transactional: he believes screening is a purchasable good and he is prepared to pay for the best version of it", "abnormal": false }
   ],
   "investigations": [
     { "id": "prev1", "onFile": true, "kind": "lab", "category": "Records", "name": "Executive health package, 11 weeks ago", "value": "All within normal limits", "unit": "-", "normalRange": "-", "abnormal": false, "report": "Full blood count, liver and renal function, HbA1c 5.6%, lipids, abdominal ultrasound, chest X-ray and ECG all normal. Repeating any of this eleven weeks later has no plausible yield in an asymptomatic man." },

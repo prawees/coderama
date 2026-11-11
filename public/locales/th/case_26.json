@@ -56,7 +56,7 @@
     {
       "id": "hent1",
       "system": "HENT",
-      "finding": "Pale and sweating, no jaundice, no carotid bruit, elevated jugular venous pressure to the angle of the jaw with clear lungs, which is the combination that signals right ventricular infarction",
+      "finding": "Pale and sweating, no jaundice, no carotid bruit, elevated jugular venous pressure to the angle of the jaw with clear lungs || This is the combination that signals right ventricular infarction",
       "abnormal": true
     },
     {
@@ -68,7 +68,7 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Clear lung fields with no crackles. Clear lungs plus hypotension plus raised JVP separates right ventricular infarction from left ventricular failure, and the distinction changes the treatment completely",
+      "finding": "Clear lung fields with no crackles || Clear lungs plus hypotension plus raised JVP separates right ventricular infarction from left ventricular failure, and the distinction changes the treatment completely",
       "abnormal": true
     },
     {
@@ -96,7 +96,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "ST elevation 3 mm ใน II, III, aVF โดย III สูงกว่า II มี reciprocal ST depression ใน I กับ aVL, sinus bradycardia 46/min ร่วมกับ 2nd degree AV block Mobitz I เป็น inferior STEMI น่าจะ RCA อุดตัน",
+      "report": "ST elevation 3 mm ใน II, III, aVF โดย III สูงกว่า II มี reciprocal ST depression ใน I กับ aVL, sinus bradycardia 46/min ร่วมกับ 2nd degree AV block Mobitz I || เป็น inferior STEMI น่าจะ RCA อุดตัน",
       "imageUrl": "",
       "abnormal": true
     },
@@ -105,7 +105,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "Right-sided EKG (V4R)",
-      "report": "ST elevation 1.5 mm ใน V4R ยืนยัน RV infarction tracing เพิ่มอันเดียวใช้เวลา 90 วินาทีแต่เปลี่ยนการรักษา คนไข้รายนี้ preload dependent nitrate กับ morphine ทำให้ BP ตกรุนแรงได้",
+      "report": "ST elevation 1.5 mm ใน V4R || ยืนยัน RV infarction tracing เพิ่มอันเดียวใช้เวลา 90 วินาทีแต่เปลี่ยนการรักษา คนไข้รายนี้ preload dependent nitrate กับ morphine ทำให้ BP ตกรุนแรงได้",
       "imageUrl": "",
       "abnormal": true
     },
@@ -145,7 +145,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CXR portable",
-      "report": "Mediastinum กว้างปกติ aorta ไม่กว้าง ปอดใส ไม่มี pulmonary edema ช่วยตัด dissection ได้ แต่ห้ามทำให้ reperfusion ช้า",
+      "report": "Mediastinum กว้างปกติ aorta ไม่กว้าง ปอดใส ไม่มี pulmonary edema || ช่วยตัด dissection ได้ แต่ห้ามทำให้ reperfusion ช้า",
       "imageUrl": "",
       "abnormal": false
     }

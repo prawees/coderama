@@ -19,10 +19,10 @@
     { "id": "ga1", "system": "General appearance", "finding": "Cachectic, hot to touch, drowsy and confused, deep acidotic breathing, unable to follow commands in any language", "abnormal": true },
     { "id": "hent1", "system": "HENT", "finding": "Scleral icterus, pale conjunctivae, dry mucous membranes, no neck stiffness, no rash, retinal whitening and a single retinal haemorrhage on fundoscopy", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia, bounding then thready pulse, capillary refill 4 seconds, soft systolic flow murmur from anaemia", "abnormal": true },
-    { "id": "rs1", "system": "Respiratory", "finding": "Deep sighing Kussmaul respirations at 32/min, bibasal fine crackles suggesting early acute lung injury, no consolidation", "abnormal": true },
-    { "id": "abd1", "system": "Abdomen", "finding": "Tender splenomegaly 4 cm below the costal margin, hepatomegaly 2 cm, no ascites. Handle the spleen gently, splenic rupture is a recognised complication", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Deep sighing Kussmaul respirations at 32/min, bibasal fine crackles, no consolidation || The crackles suggest early acute lung injury", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Tender splenomegaly 4 cm below the costal margin, hepatomegaly 2 cm, no ascites || Handle the spleen gently, splenic rupture is a recognised complication", "abnormal": true },
     { "id": "skin1", "system": "Skin", "finding": "Jaundiced, hot dry skin, reduced turgor, no petechiae or purpura, no eschar found after a full search including axillae and groin", "abnormal": true },
-    { "id": "cns1", "system": "Neurological", "finding": "GCS 9 (E2V2M5), post-ictal, no focal deficit, no meningism, pupils equal and reactive, plantars downgoing. Cerebral malaria is a diagnosis of exclusion after hypoglycaemia is corrected", "abnormal": true }
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 9 (E2V2M5), post-ictal, no focal deficit, no meningism, pupils equal and reactive, plantars downgoing || Cerebral malaria is a diagnosis of exclusion after hypoglycaemia is corrected", "abnormal": true }
   ],
   "investigations": [
     { "id": "sm1", "kind": "lab", "category": "Micro", "name": "Thick and thin blood smear", "value": "P. falciparum, 14% parasitaemia, schizonts present", "unit": "-", "normalRange": "No parasites", "abnormal": true, "report": "Parasitaemia above 10% is a severe malaria criterion on its own. Circulating schizonts indicate a heavy sequestered load. Repeat the smear 12 hourly to track clearance." },

@@ -51,19 +51,19 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Unresponsive, cyanosed, gasping, in extremis within four minutes of feeling unwell. The speed of deterioration is itself diagnostic",
+      "finding": "Unresponsive, cyanosed, gasping, in extremis within four minutes of feeling unwell || The speed of deterioration is itself diagnostic",
       "abnormal": true
     },
     {
       "id": "hent1",
       "system": "HENT",
-      "finding": "Central cyanosis of the lips and tongue, frothy blood-stained secretions at the mouth, no facial or airway swelling and no urticaria, which argues against anaphylaxis",
+      "finding": "Central cyanosis of the lips and tongue, frothy blood-stained secretions at the mouth, no facial or airway swelling and no urticaria || This argues against anaphylaxis",
       "abnormal": true
     },
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Tachycardia at 148/min, profound hypotension, impalpable radial pulses with a weak central pulse, capillary refill over 6 seconds. Initial right ventricular failure from acute pulmonary vasoconstriction, followed within minutes by left ventricular failure",
+      "finding": "Tachycardia at 148/min, profound hypotension, impalpable radial pulses with a weak central pulse, capillary refill over 6 seconds || Initial right ventricular failure from acute pulmonary vasoconstriction, followed within minutes by left ventricular failure",
       "abnormal": true
     },
     {
@@ -75,19 +75,19 @@
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Gravid uterus, hypertonic and firm, fetal heart rate 68 bpm and falling on the cardiotocograph. Torrential fresh vaginal bleeding beginning about eight minutes after collapse as the coagulopathy establishes",
+      "finding": "Gravid uterus, hypertonic and firm, fetal heart rate 68 bpm and falling on the cardiotocograph. Torrential fresh vaginal bleeding beginning about eight minutes after collapse || The bleeding starts as the coagulopathy establishes",
       "abnormal": true
     },
     {
       "id": "skin1",
       "system": "Skin",
-      "finding": "Cyanosed and mottled, bleeding freely from the intravenous cannula site and from the epidural insertion site, no rash. Oozing from every puncture site is the visible marker of disseminated intravascular coagulation",
+      "finding": "Cyanosed and mottled, bleeding freely from the intravenous cannula site and from the epidural insertion site, no rash || Oozing from every puncture site is the visible marker of disseminated intravascular coagulation",
       "abnormal": true
     },
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 6, post-ictal, pupils 4 mm and sluggish. Neurological injury here is hypoxic and is determined by how fast circulation is restored",
+      "finding": "GCS 6, post-ictal, pupils 4 mm and sluggish || Neurological injury here is hypoxic and is determined by how fast circulation is restored",
       "abnormal": true
     }
   ],
@@ -119,7 +119,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "Echo ข้างเตียง",
-      "report": "RV โตมาก บีบตัวแย่ septum โป่งเข้า LV LV เล็กและเลือดเข้าไม่พอ ไม่มี pericardial effusion รูปแบบ RV failure นี้นำการรักษา ต้องใช้ vasopressor และ pulmonary vasodilator และแปลว่าการ load fluid หนักจะทำให้แย่ลง",
+      "report": "RV โตมาก บีบตัวแย่ septum โป่งเข้า LV LV เล็กและเลือดเข้าไม่พอ ไม่มี pericardial effusion || รูปแบบ RV failure นี้นำการรักษา ต้องใช้ vasopressor และ pulmonary vasodilator และแปลว่าการ load fluid หนักจะทำให้แย่ลง",
       "imageUrl": "",
       "abnormal": true
     },
@@ -139,7 +139,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "Sinus tachycardia 146/min, right axis deviation, S1Q3T3 และ T inversion V1 ถึง V4 acute right heart strain ดูจาก EKG อย่างเดียวแยกจาก massive PE ไม่ได้",
+      "report": "Sinus tachycardia 146/min, right axis deviation, S1Q3T3 และ T inversion V1 ถึง V4 || Acute right heart strain ดูจาก EKG อย่างเดียวแยกจาก massive PE ไม่ได้",
       "imageUrl": "",
       "abnormal": true
     },

@@ -50,7 +50,7 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Miserable, exhausted rather than agitated, which is the more worrying of the two. Grunting intermittently. Too breathless to feed",
+      "finding": "Miserable, exhausted rather than agitated. Grunting intermittently. Too breathless to feed || Exhausted is the more worrying of the two",
       "abnormal": true
     },
     {
@@ -74,7 +74,7 @@
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Soft, mildly distended from air swallowing, liver edge palpable 1 cm below the costal margin which is normal at this age and displaced by hyperinflation, no masses",
+      "finding": "Soft, mildly distended from air swallowing, liver edge palpable 1 cm below the costal margin, no masses || A palpable liver edge is normal at this age and is pushed down by hyperinflation",
       "abnormal": true
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 14, drowsy and less responsive than his mother describes as normal, normal tone, anterior fontanelle sunken. Drowsiness in bronchiolitis means carbon dioxide retention and exhaustion, and it is the sign that predicts intubation",
+      "finding": "GCS 14, drowsy and less responsive than his mother describes as normal, normal tone, anterior fontanelle sunken || Drowsiness in bronchiolitis means carbon dioxide retention and exhaustion, and it is the sign that predicts intubation",
       "abnormal": true
     }
   ],
@@ -129,7 +129,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CXR",
-      "report": "Hyperinflation กะบังลมแบน peribronchial thickening และ patchy atelectasis ที่ RML ไม่มี lobar consolidation ไม่มี effusion การถ่าย CXR routine ใน bronchiolitis เพิ่มการสั่ง antibiotic โดยไม่ทำให้ outcome ดีขึ้น เพราะ atelectasis ถูกอ่านผิดเป็น pneumonia ซ้ำแล้วซ้ำเล่า เคสนี้ทำได้เพราะอาการหนักและต้องใช้ O2",
+      "report": "Hyperinflation กะบังลมแบน peribronchial thickening และ patchy atelectasis ที่ RML ไม่มี lobar consolidation ไม่มี effusion || การถ่าย CXR routine ใน bronchiolitis เพิ่มการสั่ง antibiotic โดยไม่ทำให้ outcome ดีขึ้น เพราะ atelectasis ถูกอ่านผิดเป็น pneumonia ซ้ำแล้วซ้ำเล่า เคสนี้ทำได้เพราะอาการหนักและต้องใช้ O2",
       "imageUrl": "",
       "abnormal": true
     },

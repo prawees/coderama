@@ -16,12 +16,12 @@
     "gcs": { "value": 8, "abnormal": true }
   },
   "exam": [
-    { "id": "ga1", "system": "General appearance", "finding": "Unresponsive to voice, hot to touch, agitated when stimulated, core temperature 41.6 C measured rectally. Central nervous system dysfunction plus core temperature above 40 C is the definition, and no other feature is required", "abnormal": true },
+    { "id": "ga1", "system": "General appearance", "finding": "Unresponsive to voice, hot to touch, agitated when stimulated, core temperature 41.6 C measured rectally || Central nervous system dysfunction plus core temperature above 40 C is the definition, and no other feature is required", "abnormal": true },
     { "id": "hent1", "system": "HENT", "finding": "Dry mucous membranes, no neck stiffness, no papilloedema, pupils 4 mm and reactive, no tongue laceration despite the reported seizure", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 148/min, hyperdynamic precordium, bounding then weak pulses, capillary refill 4 seconds, hypotensive from vasodilatation and volume loss", "abnormal": true },
-    { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoeic at 34/min, clear breath sounds, no crackles at present. Watch for ARDS at 24 to 48 hours", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoeic at 34/min, clear breath sounds, no crackles at present || Watch for ARDS at 24 to 48 hours", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, bowel sounds sluggish, no organomegaly, no rigidity", "abnormal": false },
-    { "id": "skin1", "system": "Skin", "finding": "Hot, flushed and dry with no sweating over the trunk. Anhidrosis is a late and ominous sign, and its absence never excludes heat stroke, since half of exertional cases are still sweating", "abnormal": true },
+    { "id": "skin1", "system": "Skin", "finding": "Hot, flushed and dry with no sweating over the trunk || Anhidrosis is a late and ominous sign, and its absence never excludes heat stroke, since half of exertional cases are still sweating", "abnormal": true },
     { "id": "cns1", "system": "Neurological", "finding": "GCS 8 (E2V2M4), post-ictal, no focal deficit, no meningism, cerebellar signs may emerge later as a permanent sequela", "abnormal": true }
   ],
   "investigations": [

@@ -50,25 +50,25 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Awake, distressed, frightened, trying to speak and producing only fragments. She is fully aware of what is happening to her, which is worth remembering before anyone talks across her",
+      "finding": "Awake, distressed, frightened, trying to speak and producing only fragments. She is fully aware of what is happening to her || This is worth remembering before anyone talks across her",
       "abnormal": true
     },
     {
       "id": "hent1",
       "system": "HENT",
-      "finding": "Right facial droop sparing the forehead, indicating an upper motor neurone lesion. Forced gaze deviation to the left. Tongue deviates to the right on protrusion. No head injury, no tongue laceration to suggest a seizure",
+      "finding": "Right facial droop sparing the forehead. Forced gaze deviation to the left. Tongue deviates to the right on protrusion. No head injury, no tongue laceration to suggest a seizure || Forehead sparing indicates an upper motor neurone lesion",
       "abnormal": true
     },
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Irregularly irregular pulse at 96/min consistent with atrial fibrillation, hypertensive at 192/104, no murmur, no carotid bruit, peripheries warm",
+      "finding": "Irregularly irregular pulse at 96/min, hypertensive at 192/104, no murmur, no carotid bruit, peripheries warm || The pulse is consistent with atrial fibrillation",
       "abnormal": true
     },
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Clear breath sounds, normal effort, no aspiration. Swallow not yet tested and she must be kept nil by mouth until it is",
+      "finding": "Clear breath sounds, normal effort, no aspiration || Swallow not yet tested and she must be kept nil by mouth until it is",
       "abnormal": false
     },
     {
@@ -80,7 +80,7 @@
     {
       "id": "skin1",
       "system": "Skin",
-      "finding": "Warm and well perfused, no bruising, no petechiae, no recent puncture sites, no signs of trauma anywhere. Relevant because any of these would raise the bleeding risk from thrombolysis",
+      "finding": "Warm and well perfused, no bruising, no petechiae, no recent puncture sites, no signs of trauma anywhere || Relevant because any of these would raise the bleeding risk from thrombolysis",
       "abnormal": false
     },
     {
@@ -107,7 +107,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CT brain ไม่ฉีดสี",
-      "report": "ไม่มีเลือดออก มี hyperdense left MCA sign มี early ischemic change คือ insular ribbon หายไป และแยก grey-white ไม่ได้ที่ left basal ganglia ASPECTS 8 คำถามเดียวที่ scan นี้ต้องตอบก่อน thrombolysis คือมีเลือดหรือไม่",
+      "report": "ไม่มีเลือดออก มี hyperdense left MCA sign มี early ischemic change คือ insular ribbon หายไป และแยก grey-white ไม่ได้ที่ left basal ganglia ASPECTS 8 || คำถามเดียวที่ scan นี้ต้องตอบก่อน thrombolysis คือมีเลือดหรือไม่",
       "imageUrl": "",
       "abnormal": true
     },
@@ -116,7 +116,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CTA ศีรษะและคอ",
-      "report": "Left M1 MCA occlusion collateral ดี large vessel occlusion ทำให้เป็น candidate ของ mechanical thrombectomy นอกจาก thrombolysis และการรู้เรื่องนี้เปลี่ยนว่าเธอต้องไปอยู่ที่ไหนในชั่วโมงหน้า",
+      "report": "Left M1 MCA occlusion collateral ดี || Large vessel occlusion ทำให้เป็น candidate ของ mechanical thrombectomy นอกจาก thrombolysis และการรู้เรื่องนี้เปลี่ยนว่าเธอต้องไปอยู่ที่ไหนในชั่วโมงหน้า",
       "imageUrl": "",
       "abnormal": true
     },
@@ -136,7 +136,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "AF 94/min ไม่มี acute ischemic change ยืนยันกลไก cardioembolic ที่น่าจะเป็น ซึ่งคือสิ่งที่ anticoagulant ที่หยุดไปเคยป้องกันอยู่",
+      "report": "AF 94/min ไม่มี acute ischemic change || ยืนยันกลไก cardioembolic ที่น่าจะเป็น ซึ่งคือสิ่งที่ anticoagulant ที่หยุดไปเคยป้องกันอยู่",
       "imageUrl": "",
       "abnormal": true
     },

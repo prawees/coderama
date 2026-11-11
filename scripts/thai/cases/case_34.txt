@@ -4,8 +4,8 @@ i.plt1: Thrombocytopenia รวมกับ hemolysis และ transaminase ส
 i.lft1: ตับบาดเจ็บ LDH สูงบ่ง hemolysis ยืนยัน HELLP syndrome ระวัง subcapsular hepatic hematoma ซึ่งมาด้วยปวดใต้ชายโครงขวาแบบเดียวกันและแตกได้
 i.ua1: Proteinuria มาก proteinuria ไม่จำเป็นสำหรับการวินิจฉัย pre-eclampsia ถ้ามีอวัยวะทำงานผิดปกติ และ eclampsia เกิดได้โดยไม่มี proteinuria
 i.cr1: AKI ค่า Cr ที่ปกติในคนไม่ตั้งครรภ์ถือว่าผิดปกติในคนตั้งครรภ์ ซึ่ง baseline ต่ำกว่า
-i.ctg1: Baseline 132 bpm variability ลดลง (ต่ำกว่า 5 bpm) มี late deceleration ซ้ำๆ fetal compromise น่าจะจาก placental insufficiency และ hypoxia ของแม่ช่วงชัก ดีขึ้นหลังแม่ stable ซึ่งเป็นเหตุผลให้ stabilize แม่ก่อน
-i.ct1: ไม่มีเลือดออกในสมอง ไม่มี mass ไม่มี infarct มี low attenuation ที่ posterior white matter เข้าได้กับ PRES ทำ imaging ในเคสนี้เพราะคำบอกเล่าว่าชักแบบ focal onset และซึมนาน ไม่ใช่ routine ใน eclampsia ทั่วไป
+i.ctg1: Baseline 132 bpm variability ลดลง (ต่ำกว่า 5 bpm) มี late deceleration ซ้ำๆ || Fetal compromise น่าจะจาก placental insufficiency และ hypoxia ของแม่ช่วงชัก ดีขึ้นหลังแม่ stable ซึ่งเป็นเหตุผลให้ stabilize แม่ก่อน
+i.ct1: ไม่มีเลือดออกในสมอง ไม่มี mass ไม่มี infarct มี low attenuation ที่ posterior white matter || เข้าได้กับ PRES ทำ imaging ในเคสนี้เพราะคำบอกเล่าว่าชักแบบ focal onset และซึมนาน ไม่ใช่ routine ใน eclampsia ทั่วไป
 i.coag1: Fibrinogen ต่ำสำหรับคนตั้งครรภ์ ระวังลุกลามเป็น DIC โดยเฉพาะถ้าเกิด abruption
 req1.l: จัดท่าตะแคงซ้าย airway, O2 และกันไม่ให้บาดเจ็บ
 req1.c: Left lateral tilt, O2 และ suction

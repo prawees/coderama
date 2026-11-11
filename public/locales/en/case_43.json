@@ -16,13 +16,13 @@
     "gcs": { "value": 15, "abnormal": false }
   },
   "exam": [
-    { "id": "ga1", "system": "General appearance", "finding": "Comfortable at rest, moves onto the trolley without assistance, reports 10 out of 10 pain while scrolling on his phone. Note this observation without moralising about it: pain behaviour and pain intensity correlate poorly, and this discrepancy is information rather than proof of anything", "abnormal": false },
+    { "id": "ga1", "system": "General appearance", "finding": "Comfortable at rest, moves onto the trolley without assistance, reports 10 out of 10 pain while scrolling on his phone || Note this observation without moralising about it: pain behaviour and pain intensity correlate poorly, and this discrepancy is information rather than proof of anything", "abnormal": false },
     { "id": "hent1", "system": "HENT", "finding": "No pallor, mucous membranes moist, pupils 3 mm and equal with normal reaction, no rhinorrhoea, no yawning, no piloerection, so he is not in acute withdrawal", "abnormal": false },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Regular rate and rhythm, normal heart sounds, no murmur (specifically listened for, because injecting drug use raises endocarditis risk), peripheries warm", "abnormal": false },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, normal respiratory rate, no cough", "abnormal": false },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, no renal angle tenderness on either side, no palpable bladder, no pulsatile mass, bowel sounds normal", "abnormal": false },
     { "id": "skin1", "system": "Skin", "finding": "No injection sites, no cellulitis or abscess, no track marks, no rash over the spine, no midline tenderness or step deformity on palpation of the lumbar spine", "abnormal": false },
-    { "id": "cns1", "system": "Neurological", "finding": "Normal power 5/5 in both legs, reflexes symmetrical, straight leg raise negative bilaterally, normal perianal sensation, normal anal tone, no urinary retention or incontinence. No red flags for cauda equina. Do this examination properly and document it, because the one time it is skipped is the time it matters", "abnormal": false }
+    { "id": "cns1", "system": "Neurological", "finding": "Normal power 5/5 in both legs, reflexes symmetrical, straight leg raise negative bilaterally, normal perianal sensation, normal anal tone, no urinary retention or incontinence || No red flags for cauda equina. Do this examination properly and document it, because the one time it is skipped is the time it matters", "abnormal": false }
   ],
   "investigations": [
     { "id": "records1", "kind": "lab", "category": "Records", "name": "Shared prescription monitoring record", "value": "31 opioid prescriptions from 9 prescribers in 4 months", "unit": "-", "normalRange": "-", "abnormal": true, "report": "Checking the record is a clinical act, not a policing act. It establishes that he has an opioid use disorder, which is the actual diagnosis and the thing that needs treatment." },

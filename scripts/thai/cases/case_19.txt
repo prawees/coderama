@@ -2,10 +2,10 @@ cc: จมน้ำในคลองชลประทาน ดึงขึ้
 bg: พบลอยคว่ำหน้าอยู่ในคลองชลประทานหลังบ้าน คาดว่าจมอยู่ 5 ถึง 8 นาที ไม่มีใครเห็น พี่สาวอายุ 11 ขวบดึงขึ้นมา เพื่อนบ้านกดหน้าอกโดยไม่ช่วยหายใจราว 6 นาทีจนรถพยาบาลมาถึง ได้ ROSC บนรถหลัง 2 cycle กับ adrenaline 1 dose น้ำหนักประมาณ 16 kg การจมน้ำเป็นสาเหตุการตายอันดับหนึ่งของเด็กไทยอายุ 1 ถึง 14 ปี เจอมากสุดช่วงเมษายนและปิดเทอม
 i.abg1: Severe mixed acidosis ร่วมกับ profound hypoxemia หลัง hypoxic arrest lactate เกิน 10 หลังเด็กจมน้ำสัมพันธ์กับ neurological outcome ที่ไม่ดี แต่ตัวมันเองยังไม่ใช่เหตุผลที่จะหยุด
 i.poc1: Hypoglycemia เด็กเล็กมี glycogen สะสมน้อยและใช้หมดเร็วตอน arrest ทั้ง hypo และ hyperglycemia ทำให้ hypoxic brain injury แย่ลง
-i.cxr1: Diffuse perihilar และ basal airspace opacity ทั้งสองข้าง เข้าได้กับ aspiration และ pulmonary edema, ET tube อยู่เหนือ carina 1 cm ต้องดึงออก 1.5 cm มี gastric distension ไม่มี pneumothorax ไม่มี rib fracture
+i.cxr1: Diffuse perihilar และ basal airspace opacity ทั้งสองข้าง ET tube อยู่เหนือ carina 1 cm มี gastric distension ไม่มี pneumothorax ไม่มี rib fracture || เข้าได้กับ aspiration และ pulmonary edema ET tube ลึกไป ต้องดึงออก 1.5 cm
 i.temp1: Moderate hypothermia อย่า warm เกิน 36 C, TTM ที่ 33 ถึง 36 C นาน 24 ถึง 48 ชม. เป็นมาตรฐานหลัง pediatric cardiac arrest การ active rewarm จนปกติเป็นผลเสีย
 i.k1: Hypokalemia เล็กน้อย เจอบ่อยใน hypothermia เพราะ K เข้าเซลล์ พอ warm แล้ว K จะขึ้นเอง ให้ทดแทนอย่างระวัง
-i.ecg1: Sinus tachycardia 166/min, QTc ยาว 480 ms มี Osborn J wave ที่ inferior และ lateral leads เข้าได้กับ hypothermia หัวใจที่เย็นไวต่อการกระตุ้น จับและเคลื่อนย้ายเด็กเบาๆ
+i.ecg1: Sinus tachycardia 166/min, QTc ยาว 480 ms มี Osborn J wave ที่ inferior และ lateral leads || เข้าได้กับ hypothermia หัวใจที่เย็นไวต่อการกระตุ้น จับและเคลื่อนย้ายเด็กเบาๆ
 req1.l: จมน้ำ: airway, suction และ oxygenation มาก่อน
 req1.d0: กดท้องเอาน้ำออกจากปอด
 req1.f0: กดท้องทำให้ช่วยหายใจช้าลงและ aspirate จมน้ำเป็นภาวะ hypoxic ต้องช่วยหายใจ

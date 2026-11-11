@@ -20,7 +20,7 @@
     { "id": "hent1", "system": "HENT", "finding": "Scalp laceration 8 cm over the left parietal region with active venous bleeding, no midface instability, no CSF rhinorrhoea, cervical collar applied, no haemotympanum", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 142/min, radial pulse barely palpable, femoral pulse present, capillary refill over 5 seconds, no JVD", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Equal air entry bilaterally, tender left ribs 8 to 10 without flail, no surgical emphysema, tachypnoeic from acidosis", "abnormal": true },
-    { "id": "abd1", "system": "Abdomen", "finding": "Distended, diffusely tender, seatbelt sign absent, pelvis feels unstable on gentle assessment. Do not spring the pelvis repeatedly, each examination disrupts clot", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Distended, diffusely tender, seatbelt sign absent, pelvis feels unstable on gentle assessment || Do not spring the pelvis repeatedly, each examination disrupts clot", "abnormal": true },
     { "id": "skin1", "system": "Skin", "finding": "Cold clammy mottled skin to mid-thigh, extensive abrasions, blood at the urethral meatus and a scrotal haematoma, temperature 35.1 C and falling", "abnormal": true },
     { "id": "cns1", "system": "Neurological", "finding": "GCS 12 (E3V4M5), agitated, pupils 3 mm equal and reactive, moves all limbs, no lateralising signs", "abnormal": true }
   ],

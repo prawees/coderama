@@ -33,6 +33,7 @@ export type CardSpec =
       vitals: { label: string; value: string; bad?: boolean }[] }
   | { kind: "chapter"; day: number; phase: Phase; player: CardPlayer; host?: Look; title: string; promo?: string; saved: number; stars: number;
       patients: number; type: { title: string; line: string }; chaptersDone: number }
+  | { kind: "photo"; phase: Phase; player: CardPlayer; image: HTMLCanvasElement; caption: string; stamp: string }
   | { kind: "profile"; day: number; phase: Phase; player: CardPlayer; saved: number; cases: number; best: number;
       type: { title: string; line: string } };
 
@@ -419,6 +420,62 @@ function drawProfile(c: CanvasRenderingContext2D, s: Extract<CardSpec, { kind: "
   footer(c, url);
 }
 
+/**
+ * A photo from the game, the way players share a farm screenshot: the scene they were standing in, in a polaroid
+ * with a strip of tape, a film-camera date stamp, and a caption in the white margin.
+ */
+function drawPhoto(c: CanvasRenderingContext2D, s: Extract<CardSpec, { kind: "photo" }>, url?: string) {
+  backdrop(c, s.phase, "night");
+  text(c, s.player.rank, { x: M, y: SAFE_TOP - 6, w: CARD_W - M * 2, h: 74, size: 62, min: 34, color: CREAM, shadow: PLUM, shadowOff: 5, lead: 1.05 });
+
+  const pw = 872, ph = 1050, px = (CARD_W - pw) / 2, py = SAFE_TOP + 92;
+  const inset = 40, iw = pw - inset * 2, ih = 836;
+  c.save();
+  c.translate(px + pw / 2, py + ph / 2);
+  c.rotate((-2.2 * Math.PI) / 180);
+  c.translate(-pw / 2, -ph / 2);
+  // the print: a soft shadow, the white card, the picture
+  c.fillStyle = "rgba(40,26,48,0.35)";
+  c.fillRect(10, 16, pw, ph);
+  c.fillStyle = "#fffdf6";
+  c.fillRect(0, 0, pw, ph);
+  c.fillStyle = "#efe6d2";
+  c.fillRect(0, ph - 8, pw, 8);
+  // crop the middle of the view to the print's shape; nearest-neighbour keeps the pixels crisp
+  const src = s.image, ratio = iw / ih;
+  let sw = src.width, sh = Math.round(sw / ratio);
+  if (sh > src.height) { sh = src.height; sw = Math.round(sh * ratio); }
+  const sx = Math.round((src.width - sw) / 2), sy = Math.round((src.height - sh) * 0.42);
+  c.imageSmoothingEnabled = false;
+  c.drawImage(src, sx, sy, sw, sh, inset, inset, iw, ih);
+  c.imageSmoothingEnabled = true;
+  c.strokeStyle = "rgba(92,67,64,0.25)";
+  c.lineWidth = 3;
+  c.strokeRect(inset, inset, iw, ih);
+  // film-camera date stamp, bottom right of the picture
+  c.font = `bold 44px "Courier New", monospace`;
+  c.textAlign = "right";
+  c.textBaseline = "alphabetic";
+  c.fillStyle = "rgba(120,50,0,0.55)";
+  c.fillText(s.stamp, inset + iw - 20, inset + ih - 20);
+  c.fillStyle = "#ffa23d";
+  c.fillText(s.stamp, inset + iw - 22, inset + ih - 22);
+  // the caption, written in the margin
+  text(c, s.caption, { x: inset, y: inset + ih + 14, w: iw, h: ph - ih - inset - 30, size: 54, min: 30, color: INK, lead: 1.15 });
+  // two strips of tape
+  const tape = (tx: number, ty: number, deg: number, col: string) => {
+    c.save(); c.translate(tx, ty); c.rotate((deg * Math.PI) / 180);
+    c.fillStyle = col; c.fillRect(-80, -22, 160, 44);
+    c.fillStyle = "rgba(255,255,255,0.25)"; c.fillRect(-80, -22, 160, 10);
+    c.restore();
+  };
+  tape(70, 6, -28, "rgba(249,201,207,0.88)");
+  tape(pw - 70, 6, 24, "rgba(255,224,138,0.88)");
+  c.restore();
+  blit(c, icon("heart"), px + pw - 96, py + ph - 20, 6);
+  footer(c, url);
+}
+
 /** Draws a card on a new canvas. Waits for the fonts, so call it ahead of the tap that shares. */
 export async function renderCard(spec: CardSpec): Promise<HTMLCanvasElement> {
   await loadFonts();
@@ -430,6 +487,7 @@ export async function renderCard(spec: CardSpec): Promise<HTMLCanvasElement> {
   if (spec.kind === "shift") drawShift(c, spec, url);
   else if (spec.kind === "case") drawCase(c, spec, url);
   else if (spec.kind === "chapter") drawChapter(c, spec, url);
+  else if (spec.kind === "photo") drawPhoto(c, spec, url);
   else drawProfile(c, spec, url);
   return canvas;
 }

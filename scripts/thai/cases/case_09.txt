@@ -6,7 +6,7 @@ i.bhb1: Ketonemia มาก ใช้ค่านี้แทน urine ketone �
 i.k1: K ที่วัดได้สูง แต่ K ทั้งร่างกายพร่องมาก จะลดลงเร็วเมื่อเริ่ม insulin
 i.na1: Pseudohyponatremia จาก hyperglycemia corrected Na ราว 135 mmol/L
 i.cr1: Pre-renal AKI จากขาดน้ำ anion gap 30 mmol/L
-i.ecg1: Sinus tachycardia 122/min peaked T สูงที่ V2 ถึง V4 เข้าได้กับ hyperkalemia QRS ปกติ ไม่มี ischemic change
+i.ecg1: Sinus tachycardia 122/min peaked T สูงที่ V2 ถึง V4 QRS ปกติ ไม่มี ischemic change || peaked T เข้าได้กับ hyperkalemia
 i.ua1: Ketonuria และ glycosuria ไม่มีหลักฐาน UTI เป็นตัวกระตุ้น
 i.cbc2: Leukocytosis พบบ่อยใน DKA เอง หาการติดเชื้อต่อเฉพาะถ้ามีไข้ มีแหล่ง หรือมี left shift
 i.hba1c: ยืนยันว่าน้ำตาลสูงโดยไม่ได้รักษามาหลายเดือน เข้าได้กับ type 1 diabetes ที่เพิ่งเริ่มเป็น

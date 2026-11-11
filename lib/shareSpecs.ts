@@ -84,3 +84,21 @@ export function chapterCard(o: { title: string; promo?: string; host?: Look }): 
     chaptersDone: ch ? ch.n - 1 : 6,
   };
 }
+
+/** Lines for the margin of a photo, picked for the moment: night shift, rain, or just another day */
+export function photoCaptions(o: { day: number; place: string; minutes: number; rain: boolean; onShift: boolean }): string[] {
+  const night = o.minutes >= 19 * 60 || o.minutes < 6 * 60;
+  const out: string[] = [`เวรที่ ${o.day} ${o.place}`];
+  if (night && o.onShift) out.push("ตีสามแล้ว ยังไหวอยู่", "คืนนี้ไม่พูดคำว่าเงียบนะ");
+  else if (night) out.push("เวรดึกอีกแล้วเรา");
+  if (o.rain) out.push("ฝนตกอีกแล้ว คนไข้ก็มาอีกแล้ว");
+  out.push("ชีวิตใน ER ก็ประมาณนี้", "วันนี้รอดแล้ว พรุ่งนี้ว่ากันใหม่", "น้องขนมฝากสวัสดีทุกคน");
+  return out;
+}
+
+/** A photo card from a picture of the game view */
+export function photoCard(image: HTMLCanvasElement, caption: string, minutes: number): CardSpec {
+  const st = useERStore.getState();
+  const hh = String(Math.floor(minutes / 60) % 24).padStart(2, "0"), mm = String(Math.floor(minutes) % 60).padStart(2, "0");
+  return { kind: "photo", phase: phaseForDay(st.currentDay), player: player(), image, caption, stamp: `DAY ${String(st.currentDay).padStart(2, "0")}  ${hh}:${mm}` };
+}

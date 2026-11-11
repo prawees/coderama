@@ -16,11 +16,11 @@
     "gcs": { "value": 14, "abnormal": true }
   },
   "exam": [
-    { "id": "ga1", "system": "General appearance", "finding": "Pale, cold, clammy and drowsy, apologising repeatedly for making a fuss, which is a classic presentation of concealed haemorrhage in a patient who has been told her symptoms are normal", "abnormal": true },
+    { "id": "ga1", "system": "General appearance", "finding": "Pale, cold, clammy and drowsy, apologising repeatedly for making a fuss || This is a classic presentation of concealed haemorrhage in a patient who has been told her symptoms are normal", "abnormal": true },
     { "id": "hent1", "system": "HENT", "finding": "Marked conjunctival pallor, dry mucous membranes, no jaundice, no airway compromise, no facial swelling", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 132/min, thready pulse, capillary refill 5 seconds, no murmur, JVP flat", "abnormal": true },
-    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, tachypnoeic, no pleuritic pain, calves soft and non-tender, which makes pulmonary embolism less likely than bleeding", "abnormal": true },
-    { "id": "abd1", "system": "Abdomen", "finding": "Grossly distended and tense beneath the compression garment, exquisitely tender, dressings soaked with old blood, girth increased by 9 cm from the recorded postoperative measurement. Remove the garment to examine, it conceals both the swelling and the bleeding", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, tachypnoeic, no pleuritic pain, calves soft and non-tender || This makes pulmonary embolism less likely than bleeding", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Grossly distended and tense beneath the compression garment, exquisitely tender, dressings soaked with old blood, girth increased by 9 cm from the recorded postoperative measurement || Remove the garment to examine, it conceals both the swelling and the bleeding", "abnormal": true },
     { "id": "skin1", "system": "Skin", "finding": "Cold mottled peripheries, extensive flank bruising tracking to both loins, undermined skin flap dusky at the inferior edge, temperature 35.7 C", "abnormal": true },
     { "id": "cns1", "system": "Neurological", "finding": "GCS 14 (E4V4M6), drowsy from hypoperfusion and residual anaesthesia, no focal deficit, pupils equal and reactive", "abnormal": true }
   ],

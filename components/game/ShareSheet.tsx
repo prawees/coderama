@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { audio } from "@/lib/audio";
 import type { CardSpec } from "@/lib/shareCard";
+import { photoCard } from "@/lib/shareSpecs";
 import { outcomeNote, shareLink, siteUrl } from "@/lib/invite";
 
 /**
@@ -10,7 +11,16 @@ import { outcomeNote, shareLink, siteUrl } from "@/lib/invite";
  * so what you see is exactly the file that gets shared, and the share button can call the
  * phone's share sheet from the tap itself, which browsers require.
  */
-export function ShareSheet({ spec, onClose, filename = "code-rama.png" }: { spec: CardSpec; onClose: () => void; filename?: string }) {
+export interface SheetPhoto { image: HTMLCanvasElement; captions: string[]; minutes: number }
+
+export function ShareSheet({ spec: cardSpec, onClose, filename = "code-rama.png", photo }: { spec: CardSpec; onClose: () => void; filename?: string; photo?: SheetPhoto }) {
+  // With a photo of the scene there are two things to share: the photo (shown first) and the stat card
+  const [mode, setMode] = useState<"photo" | "card">(photo ? "photo" : "card");
+  const [captionAt, setCaptionAt] = useState(0);
+  const spec = useMemo<CardSpec>(
+    () => (photo && mode === "photo" ? photoCard(photo.image, photo.captions[captionAt % photo.captions.length], photo.minutes) : cardSpec),
+    [photo, mode, captionAt, cardSpec],
+  );
   const [url, setUrl] = useState<string | null>(null);
   const [note, setNote] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
@@ -24,6 +34,7 @@ export function ShareSheet({ spec, onClose, filename = "code-rama.png" }: { spec
       try {
         const m = await import("@/lib/shareCard");
         tools.current = m;
+        setUrl(null);
         const b = await m.canvasToBlob(await m.renderCard(spec));
         if (!alive) return;
         blob.current = b;
@@ -60,6 +71,13 @@ export function ShareSheet({ spec, onClose, filename = "code-rama.png" }: { spec
 
   return (
     <div className="fixed inset-0 z-[300] flex flex-col items-center justify-center gap-2.5 bg-[#1c1522]/90 p-3 font-pixel" data-testid="share-sheet" onClick={onClose}>
+      {photo && (
+        <div className="shrink-0 w-full max-w-sm flex gap-1.5" onClick={(e) => e.stopPropagation()}>
+          <button onClick={() => { audio.playClick(); setMode("photo"); }} className={`cozy-btn flex-1 py-1.5 text-[17px] leading-none ${mode === "photo" ? "cozy-btn-sun" : ""}`} data-testid="share-mode-photo">รูปถ่าย</button>
+          <button onClick={() => { audio.playClick(); setMode("card"); }} className={`cozy-btn flex-1 py-1.5 text-[17px] leading-none ${mode === "card" ? "cozy-btn-sun" : ""}`} data-testid="share-mode-card">บัตรหมอ</button>
+          {mode === "photo" && <button onClick={() => { audio.playClick(); setCaptionAt((n) => n + 1); }} className="cozy-btn flex-1 py-1.5 text-[17px] leading-none" data-testid="share-caption">เปลี่ยนคำ</button>}
+        </div>
+      )}
       <div className="flex-1 min-h-0 w-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
         {url ? (
           // eslint-disable-next-line @next/next/no-img-element

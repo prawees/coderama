@@ -56,13 +56,13 @@
     {
       "id": "hent1",
       "system": "HENT",
-      "finding": "Photophobia, mild neck stiffness, dry mucous membranes, no papilloedema on fundoscopy, conjunctival petechiae present. Neck stiffness is absent in a substantial proportion of meningococcal disease and its absence excludes nothing",
+      "finding": "Photophobia, mild neck stiffness, dry mucous membranes, no papilloedema on fundoscopy, conjunctival petechiae present || Neck stiffness is absent in a substantial proportion of meningococcal disease and its absence excludes nothing",
       "abnormal": true
     },
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Tachycardia at 142/min, hypotensive at 84/44, capillary refill 5 seconds, cold peripheries to the mid forearm and mid calf with a clear cold-warm demarcation line. Hypotension in a 17 year old is a very late sign of shock",
+      "finding": "Tachycardia at 142/min, hypotensive at 84/44, capillary refill 5 seconds, cold peripheries to the mid forearm and mid calf with a clear cold-warm demarcation line || Hypotension in a 17 year old is a very late sign of shock",
       "abnormal": true
     },
     {
@@ -74,7 +74,7 @@
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Soft, generally tender without guarding, no organomegaly, no rebound. Abdominal pain is a common early feature and has led to laparotomy in misdiagnosed cases",
+      "finding": "Soft, generally tender without guarding, no organomegaly, no rebound || Abdominal pain is a common early feature and has led to laparotomy in misdiagnosed cases",
       "abnormal": true
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 13 (E3V4M6), drowsy and irritable, no focal deficit, mild neck stiffness, no seizure. Deteriorating consciousness in this setting is cerebral hypoperfusion, raised intracranial pressure, or both",
+      "finding": "GCS 13 (E3V4M6), drowsy and irritable, no focal deficit, mild neck stiffness, no seizure || Deteriorating consciousness in this setting is cerebral hypoperfusion, raised intracranial pressure, or both",
       "abnormal": true
     }
   ],

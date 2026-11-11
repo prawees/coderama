@@ -1,7 +1,7 @@
 cc: ใจสั่นเร็วทันที เวียนหัวมาก
 bg: คนไข้มา ER ด้วยใจสั่นเร็วขึ้นมาทันที ตอนนี้เวียนหัวมาก หน้าซีด
 i.ecg1: Narrow complex tachycardia rate 185 ไม่เห็น P wave regular
-start.n: EKG ยืนยัน SVT BP 80/50 เวียนหัว เหงื่อแตก แปลว่าเป็น unstable tachycardia ตาม ACLS
+start.n: ใจสั่นขึ้นมาทันที ชีพจรเร็วมากและสม่ำเสมอ BP 80/50 เวียนหัว เหงื่อแตก ต้องทำอะไรก่อน
 start.o0: Synchronized cardioversion 50-100 J
 start.o1: Adenosine 6 mg IV rapid push
 start.o2: Unsynchronized defib 200 J

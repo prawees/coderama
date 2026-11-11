@@ -6,8 +6,8 @@ i.ck1: Rhabdomyolysis จากนอนนิ่งนาน ดู renal funct
 i.cr1: AKI น่าจะจาก myoglobin และ pre-renal
 i.para1: ตรวจไม่พบที่ 4 ชม. ขึ้นไปหลังกิน ตัดการกินยาผสม paracetamol ร่วมด้วยออก
 i.sal1: Negative
-i.ecg1: Sinus bradycardia 50/min, QRS 92 ms, QTc 430 ms ไม่มี Brugada pattern ไม่มี terminal R ใน aVR ไม่สนับสนุนว่ากินยาที่ block sodium channel ร่วมด้วย
-i.cxr1: Patchy airspace opacity ที่ฐานปอดทั้งสองข้าง เข้าได้กับ aspiration หรือ non-cardiogenic pulmonary edema จาก naloxone หัวใจขนาดปกติ ไม่มี pneumothorax
+i.ecg1: Sinus bradycardia 50/min, QRS 92 ms, QTc 430 ms ไม่มี Brugada pattern ไม่มี terminal R ใน aVR || ไม่สนับสนุนว่ากินยาที่ block sodium channel ร่วมด้วย
+i.cxr1: Patchy airspace opacity ที่ฐานปอดทั้งสองข้าง หัวใจขนาดปกติ ไม่มี pneumothorax || เข้าได้กับ aspiration หรือ non-cardiogenic pulmonary edema จาก naloxone
 req1.l: Airway ก่อน suction, jaw thrust และ bag-mask พร้อม O2
 req1.c: Suction, jaw thrust, bag-mask ventilation
 req1.d0: ให้ naloxone 2 mg IV ก่อนจัดการ airway

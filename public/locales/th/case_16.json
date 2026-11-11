@@ -56,7 +56,7 @@
     {
       "id": "hent1",
       "system": "HENT",
-      "finding": "Spontaneous gum bleeding, blood-stained saliva, no ptosis, no ophthalmoplegia, full mouth opening, normal voice. Absence of neurotoxic signs helps distinguish from cobra or krait envenomation",
+      "finding": "Spontaneous gum bleeding, blood-stained saliva, no ptosis, no ophthalmoplegia, full mouth opening, normal voice || Absence of neurotoxic signs helps distinguish from cobra or krait envenomation",
       "abnormal": true
     },
     {

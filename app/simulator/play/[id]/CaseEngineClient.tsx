@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, Suspense } from "react";
+import { differentialFor } from "@/lib/differentials";
 import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useERStore, storyRank, rankBelow } from "@/lib/erStore";
@@ -327,7 +328,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
       const nd = (caseData.managementGraph?.nodes || []).find?.((n: any) => n.id === targetNodeId)?.data;
       const actions: string[] = Array.isArray(nd?.actions) ? nd.actions : [];
       const orders = actions.map((a) => (nd?.doseMap?.[a] ? `${a}: ${nd.doseMap[a]}` : a));
-      setFeedback({ kind: 'good', title: choice.label || choice.text, body: orders.length ? orders.map((o) => `• ${o}`).join('\n') : undefined });
+      setFeedback({ kind: 'good', title: choice.label || choice.text, body: orders.length ? orders.join('\n') : undefined });
     } else {
       setFeedback(null);
       // Legacy branching cases: a turn off the correct path is a slip, explained in the debrief.
@@ -378,6 +379,10 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   };
 
   const investigations: any[] = Array.isArray(caseData.investigations) ? caseData.investigations : [];
+  // A text result or exam finding is written "what was found || what it means" (scripts/clinical/split_apply.py).
+  // Only the finding shows until the player commits a working diagnosis; the reading is the teaching note.
+  const splitReading = (t?: string): [string, string] => { const x = String(t ?? ''); const i = x.indexOf(' || '); return i < 0 ? [x, ''] : [x.slice(0, i), x.slice(i + 4)]; };
+  const wholeText = (t?: string) => String(t ?? '').replace(' || ', ' ');
   const orderTest = (inv: any) => {
     if (ordered.includes(inv.id) || inv.onFile) return;
     audio.playClick();
@@ -385,9 +390,9 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
     if (inv.indicated === false) {
       // Ordering what the patient does not need is a slip: it costs time, money and sometimes harm
       setTestSlips((m) => m + 1);
-      setSlips((prev) => [...prev, { text: `สั่ง ${inv.name}`, why: inv.report }]);
+      setSlips((prev) => [...prev, { text: `สั่ง ${inv.name}`, why: splitReading(inv.report)[1] || wholeText(inv.report) }]);
       deductEnergy(1);
-      setLabNote({ title: `${inv.name} ไม่มี indication`, body: inv.report });
+      setLabNote({ title: `${inv.name} ไม่มี indication`, body: splitReading(inv.report)[1] || wholeText(inv.report) });
     } else {
       setLabNote(null);
     }
@@ -585,10 +590,10 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
 
   const { choices } = buildChoices(effectiveNodeId, currentNode);
 
-  // Working diagnosis. When a case's `diagnoses` is a real differential (four or more, the answer first), treatment
+  // Working diagnosis. When a case has a differential to choose from (lib/differentials.ts, the answer first), treatment
   // waits until the player has gathered something and committed to one. An arrest is treated first: the question
   // comes after the first step. A wrong first pick is one slip; the player thinks again rather than being told.
-  const differential: string[] = Array.isArray(caseData.diagnoses) && caseData.diagnoses.length >= 4 ? caseData.diagnoses.slice(0, 6) : [];
+  const differential: string[] = differentialFor(caseKey, caseData.diagnoses);
   const dxAnswer = differential[0] ?? '';
   const startVitals = nodesMap[startNodeId]?.vitals ?? caseData.vitals ?? {};
   const arrest = String(startVitals.bp ?? '').startsWith('0/') || Number(startVitals.hr) === 0;
@@ -597,6 +602,8 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   const canGather = openQuestions.length + examFindings.length + investigations.filter((i: any) => !i.onFile).length;
   const needGathered = Math.min(2, canGather);
   const dxGate = differential.length > 0 && !dxSolved && choices.length > 0 && (!arrest || path.length >= 1);
+  // Teaching notes on findings open once the diagnosis is committed (or at once, in a case with no differential)
+  const readingOpen = dxSolved || differential.length === 0;
   const dxOptions = [...differential].sort((a, b) => seededOrder(`dx:${caseKey}:${a}`) - seededOrder(`dx:${caseKey}:${b}`));
   const pickDx = (d: string) => {
     if (dxPicks.includes(d)) return;
@@ -604,7 +611,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
     setDxPicks((p) => [...p, d]);
     if (d === dxAnswer) {
       audio.playSparkle();
-      setFeedback({ kind: 'good', title: `Working diagnosis: ${d}`, body: first ? 'ตรงตั้งแต่ครั้งแรก ได้ XP เพิ่ม ไปต่อที่การรักษาได้เลย' : 'เจอแล้ว ไปต่อที่การรักษาได้เลย' });
+      setFeedback({ kind: 'good', title: `Working diagnosis: ${d}`, body: (first ? 'ตรงตั้งแต่ครั้งแรก ได้ XP เพิ่ม' : 'เจอแล้ว') + ' ไปต่อที่การรักษาได้เลย ใน PE กับแล็บมีคำอธิบายผลเพิ่มให้แล้ว' });
     } else {
       haptic.vibrate();
       if (first) deductEnergy(2);
@@ -783,7 +790,8 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                       {items.map((e: any) => examined.includes(e.id) ? (
                         <div key={e.id} className="p-2 rounded-[4px] border-2 bg-[#fff6e3] border-[#e7d3a8]" data-testid={`finding-${e.id}`}>
                           <h4 className="text-[15px] leading-none mb-1 text-[#86522e]">{e.system}</h4>
-                          <p className="text-[17px] leading-snug">{e.finding}</p>
+                          <p className="text-[17px] leading-snug">{splitReading(e.finding)[0]}</p>
+                          {readingOpen && splitReading(e.finding)[1] && <p className="text-[14px] leading-snug mt-1 text-[#3f6f80]" data-testid="reading">{splitReading(e.finding)[1]}</p>}
                           {e.imageUrl && <button onClick={() => setZoomed({ src: imageSrc(e.imageUrl), alt: e.system })} className="block mt-1.5 w-full"><img src={imageSrc(e.imageUrl)} alt={e.system} className="max-h-32 w-auto rounded-[3px] border-2 border-[#3a2a2f]" style={{ imageRendering: 'auto' }} /></button>}
                         </div>
                       ) : (
@@ -832,7 +840,10 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                           {inv.normalRange && <span className="block text-[13px] leading-none mt-1 text-[#86522e]">ค่าปกติ {inv.normalRange}</span>}
                         </p>
                       ) : (
-                        <p className="text-[16px] leading-snug mt-1">{inv.report}</p>
+                        <>
+                          <p className="text-[16px] leading-snug mt-1">{splitReading(inv.report)[0]}</p>
+                          {readingOpen && splitReading(inv.report)[1] && <p className="text-[14px] leading-snug mt-1 text-[#3f6f80]" data-testid="reading">{splitReading(inv.report)[1]}</p>}
+                        </>
                       )}
                       {/* Real ECG, film or scan when the case has one: set imageUrl in the case file or the designer */}
                       {inv.imageUrl && (
@@ -971,7 +982,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                                 <li key={inv.id}>
                                   <span className="text-[#3f6f80]">{inv.name}{inv.value ? ` ${inv.value} ${inv.unit !== '-' ? inv.unit : ''}` : ''}</span>
                                   {!ordered.includes(inv.id) && !inv.onFile && <span className="text-[#86522e]"> (ไม่ได้สั่ง)</span>}
-                                  <span className="block text-[#5b4148]">{inv.report}</span>
+                                  <span className="block text-[#5b4148]">{wholeText(inv.report)}</span>
                                 </li>
                               ))}</ul>
                             </div>

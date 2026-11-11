@@ -74,7 +74,7 @@
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Distended, diffusely tender, seatbelt sign absent, pelvis feels unstable on gentle assessment. Do not spring the pelvis repeatedly, each examination disrupts clot",
+      "finding": "Distended, diffusely tender, seatbelt sign absent, pelvis feels unstable on gentle assessment || Do not spring the pelvis repeatedly, each examination disrupts clot",
       "abnormal": true
     },
     {
@@ -96,7 +96,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "eFAST",
-      "report": "ไม่มี free fluid ใน Morison's pouch, splenorenal recess หรือ pelvis ไม่มี pericardial effusion มี lung sliding ทั้งสองข้าง FAST negative ไม่ได้ตัดเลือดออกใน retroperitoneum จาก pelvis ซึ่งคือที่ที่คนไข้รายนี้เสียเลือดอยู่",
+      "report": "ไม่มี free fluid ใน Morison's pouch, splenorenal recess หรือ pelvis ไม่มี pericardial effusion มี lung sliding ทั้งสองข้าง || FAST negative ไม่ได้ตัดเลือดออกใน retroperitoneum จาก pelvis ซึ่งคือที่ที่คนไข้รายนี้เสียเลือดอยู่",
       "imageUrl": "",
       "abnormal": false
     },
@@ -105,7 +105,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "Film pelvis",
-      "report": "Symphysis แยก 4.5 cm SI joint กว้างทั้งสองข้าง APC injury, Young-Burgess type 2 แบบ open book มีที่ว่างใน retroperitoneum ให้เลือดไปขังได้มาก",
+      "report": "Symphysis แยก 4.5 cm SI joint กว้างทั้งสองข้าง || APC injury, Young-Burgess type 2 แบบ open book มีที่ว่างใน retroperitoneum ให้เลือดไปขังได้มาก",
       "imageUrl": "",
       "abnormal": true
     },

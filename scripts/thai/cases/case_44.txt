@@ -4,9 +4,9 @@ i.ck1: Massive rhabdomyolysis ในไฟแรงสูงค่ามัก�
 i.ua1: Myoglobinuria dipstick blood บวกแต่ไม่มี RBC ในกล้อง เป็น finding คลาสสิก ยืนยันความเสี่ยง pigment nephropathy
 iv.ua1: ปัสสาวะสีชาเข้ม dipstick blood 4+ ไม่มี RBC ใน microscopy
 i.k1: Hyperkalemia จากกล้ามเนื้อสลายร่วมกับ AKI K จะสูงขึ้นอีกหลังทำ fasciotomy ปล่อย compartment ที่เสียหาย
-i.ecg1: Sinus tachycardia มี ventricular ectopic บ่อย peaked T เข้าได้กับ hyperkalemia ไม่มี ST elevation arrhythmia คือสาเหตุการเสียชีวิตทันทีในไฟดูด ต้อง monitor 24 ชม. หลังโดนไฟแรงสูงหรือหมดสติ
+i.ecg1: Sinus tachycardia มี ventricular ectopic บ่อย peaked T ไม่มี ST elevation || peaked T เข้าได้กับ hyperkalemia arrhythmia คือสาเหตุการเสียชีวิตทันทีในไฟดูด ต้อง monitor 24 ชม. หลังโดนไฟแรงสูงหรือหมดสติ
 i.gas1: Metabolic acidosis จากกล้ามเนื้อตายและ hypoperfusion
-i.ct1: Right frontal contusion เล็ก ไม่มี mass effect ไม่มี C-spine injury rib 6 ถึง 8 ขวาหัก มี pulmonary contusion เล็กน้อย ไม่มี intra-abdominal injury การตกต้อง work up เป็น blunt trauma ด้วยตัวมันเอง
+i.ct1: Right frontal contusion เล็ก ไม่มี mass effect ไม่มี C-spine injury rib 6 ถึง 8 ขวาหัก มี pulmonary contusion เล็กน้อย ไม่มี intra-abdominal injury || การตกต้อง work up เป็น blunt trauma ด้วยตัวมันเอง
 req1.l: ดูแลเป็น blunt trauma ด้วย ไม่ใช่แค่ไฟดูด
 req1.d0: รักษาเป็นแผลไฟไหม้จากไฟฟ้าอย่างเดียว ไม่ต้องทำ trauma imaging
 req1.f0: กระเด็นแล้วตกลงมา 5 เมตร ต้องดูแลเป็น blunt trauma ด้วย

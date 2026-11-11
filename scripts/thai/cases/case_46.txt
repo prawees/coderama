@@ -5,8 +5,8 @@ i.temp1: Hyperthermia จากกล้ามเนื้อทำงานต�
 i.gas1: Profound mixed acidosis การออกแรงสุดกำลังต่อเนื่องต้านการกดตัวทำให้ lactate ระดับนี้ และเมื่อการกดตัวจำกัดการหายใจด้วย การ compensate ทางหายใจก็ล้มเหลว blood gas นี้คือ physiology ของการเสียชีวิตจากการควบคุมตัวที่เขียนออกมา
 i.ck1: Rhabdomyolysis กำลังขึ้น จะสูงสุดที่ 24 ถึง 72 ชม.
 i.k1: Hyperkalemia ร่วมกับ AKI จาก myoglobinuria รวมกับ acidosis เป็นภาวะที่เกิด arrhythmia ได้ง่าย
-i.ecg1: Sinus tachycardia 152/min มี peaked T และ QRS 118 ms จาก hyperkalemia และ acidosis ไม่มี ST elevation, QTc 470 ms
-i.ct1: ไม่มีเลือดออกในสมอง ไม่มี contusion ไม่มีกะโหลกร้าวแม้มีแผลถลอกที่หน้า ปกติ ทำเพราะตัดประวัติศีรษะกระแทกระหว่างควบคุมตัวทาง clinical ไม่ได้
+i.ecg1: Sinus tachycardia 152/min มี peaked T และ QRS 118 ms ไม่มี ST elevation, QTc 470 ms || peaked T กับ QRS ที่กว้างมาจาก hyperkalemia และ acidosis
+i.ct1: ไม่มีเลือดออกในสมอง ไม่มี contusion ไม่มีกะโหลกร้าวแม้มีแผลถลอกที่หน้า || ปกติ ทำเพราะตัดประวัติศีรษะกระแทกระหว่างควบคุมตัวทาง clinical ไม่ได้
 req1.l: พลิกตัวขึ้นจากท่าคว่ำ ทันทีและก่อนอย่างอื่น
 req1.c: พลิกนอนหงาย เอาน้ำหนักออกจากตัว
 req1.d0: ให้นอนคว่ำและมัดไว้จนยา sedate ออกฤทธิ์

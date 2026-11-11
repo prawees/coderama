@@ -16,12 +16,12 @@
     "gcs": { "value": 13, "abnormal": true }
   },
   "exam": [
-    { "id": "ga1", "system": "General appearance", "finding": "Awake, distressed, frightened, trying to speak and producing only fragments. She is fully aware of what is happening to her, which is worth remembering before anyone talks across her", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Right facial droop sparing the forehead, indicating an upper motor neurone lesion. Forced gaze deviation to the left. Tongue deviates to the right on protrusion. No head injury, no tongue laceration to suggest a seizure", "abnormal": true },
-    { "id": "cvs1", "system": "Cardiovascular", "finding": "Irregularly irregular pulse at 96/min consistent with atrial fibrillation, hypertensive at 192/104, no murmur, no carotid bruit, peripheries warm", "abnormal": true },
-    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, normal effort, no aspiration. Swallow not yet tested and she must be kept nil by mouth until it is", "abnormal": false },
+    { "id": "ga1", "system": "General appearance", "finding": "Awake, distressed, frightened, trying to speak and producing only fragments. She is fully aware of what is happening to her || This is worth remembering before anyone talks across her", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Right facial droop sparing the forehead. Forced gaze deviation to the left. Tongue deviates to the right on protrusion. No head injury, no tongue laceration to suggest a seizure || Forehead sparing indicates an upper motor neurone lesion", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Irregularly irregular pulse at 96/min, hypertensive at 192/104, no murmur, no carotid bruit, peripheries warm || The pulse is consistent with atrial fibrillation", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, normal effort, no aspiration || Swallow not yet tested and she must be kept nil by mouth until it is", "abnormal": false },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, no organomegaly, bladder not palpable, no evidence of occult bleeding", "abnormal": false },
-    { "id": "skin1", "system": "Skin", "finding": "Warm and well perfused, no bruising, no petechiae, no recent puncture sites, no signs of trauma anywhere. Relevant because any of these would raise the bleeding risk from thrombolysis", "abnormal": false },
+    { "id": "skin1", "system": "Skin", "finding": "Warm and well perfused, no bruising, no petechiae, no recent puncture sites, no signs of trauma anywhere || Relevant because any of these would raise the bleeding risk from thrombolysis", "abnormal": false },
     { "id": "cns1", "system": "Neurological", "finding": "Global aphasia with no comprehension and no meaningful output. Right hemiplegia with power 0/5 in the arm and 2/5 in the leg. Right homonymous hemianopia. Right sided sensory inattention. NIHSS 19", "abnormal": true }
   ],
   "investigations": [

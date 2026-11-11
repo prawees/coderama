@@ -62,19 +62,19 @@
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Blood pressure 178/96 in the right arm and 132/74 in the left, a 46 mmHg differential. Early diastolic murmur at the left sternal edge indicating new aortic regurgitation. Right femoral pulse weak, left femoral pulse absent",
+      "finding": "Blood pressure 178/96 in the right arm and 132/74 in the left, a 46 mmHg differential. Early diastolic murmur at the left sternal edge. Right femoral pulse weak, left femoral pulse absent || The murmur indicates new aortic regurgitation",
       "abnormal": true
     },
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Clear breath sounds, tachypnoeic from pain, no crackles, no pleural rub. Left pleural effusion may develop from haemorrhage into the pleural space",
+      "finding": "Clear breath sounds, tachypnoeic from pain, no crackles, no pleural rub || Left pleural effusion may develop from haemorrhage into the pleural space",
       "abnormal": true
     },
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Soft with disproportionate periumbilical pain and no tenderness on palpation, which raises mesenteric malperfusion from the dissection flap. No pulsatile mass palpable, bowel sounds present",
+      "finding": "Soft with disproportionate periumbilical pain and no tenderness on palpation. No pulsatile mass palpable, bowel sounds present || Pain out of proportion to the examination raises mesenteric malperfusion from the dissection flap",
       "abnormal": true
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 14, transient right arm weakness that has now resolved, no dysphasia, pupils equal. Stroke-like features occur in around 15% of dissections and are the reason some are thrombolysed by mistake, with catastrophic results",
+      "finding": "GCS 14, transient right arm weakness that has now resolved, no dysphasia, pupils equal || Stroke-like features occur in around 15% of dissections and are the reason some are thrombolysed by mistake, with catastrophic results",
       "abnormal": true
     }
   ],
@@ -96,7 +96,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CTA aorta",
-      "report": "Intimal flap ตั้งแต่ aortic root ผ่าน arch และ descending aorta ลงไปถึงระดับ left common iliac artery เป็น Stanford type A, false lumen กด origin ของ left common carotid และ left common iliac มี pericardial effusion เล็กน้อย aortic root 52 mm ไม่มี mesenteric occlusion นี่คือ definitive investigation ต้องได้เร็ว ไม่ต้องสมบูรณ์แบบ",
+      "report": "Intimal flap ตั้งแต่ aortic root ผ่าน arch และ descending aorta ลงไปถึงระดับ left common iliac artery เป็น Stanford type A, false lumen กด origin ของ left common carotid และ left common iliac มี pericardial effusion เล็กน้อย aortic root 52 mm ไม่มี mesenteric occlusion || นี่คือ definitive investigation ต้องได้เร็ว ไม่ต้องสมบูรณ์แบบ",
       "imageUrl": "",
       "abnormal": true
     },
@@ -105,7 +105,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "Echo ข้างเตียง",
-      "report": "Aortic root โต เห็น flap ขยับได้ มี AR ปานกลางถึงรุนแรง pericardial effusion 12 mm ยังไม่มี tamponade physiology ทำได้ในไม่กี่นาที และพอจะหยุดไม่ให้ใครให้ thrombolysis",
+      "report": "Aortic root โต เห็น flap ขยับได้ มี AR ปานกลางถึงรุนแรง pericardial effusion 12 mm ยังไม่มี tamponade physiology || ทำได้ในไม่กี่นาที และพอจะหยุดไม่ให้ใครให้ thrombolysis",
       "imageUrl": "",
       "abnormal": true
     },
@@ -114,7 +114,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "Sinus tachycardia มี ST elevation 1.5 mm ใน II, III, aVF flap ลามไปถึง right coronary ostium นี่คือ inferior STEMI จริงที่เกิดจาก dissection ให้ thrombolysis ตอนนี้ถึงตาย type A dissection ราว 1 ถึง 2% มาด้วย coronary involvement",
+      "report": "Sinus tachycardia มี ST elevation 1.5 mm ใน II, III, aVF || Flap ลามไปถึง right coronary ostium นี่คือ inferior STEMI จริงที่เกิดจาก dissection ให้ thrombolysis ตอนนี้ถึงตาย type A dissection ราว 1 ถึง 2% มาด้วย coronary involvement",
       "imageUrl": "",
       "abnormal": true
     },
@@ -123,7 +123,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CXR",
-      "report": "Mediastinum กว้าง 9.5 cm aortic knuckle เสียรูป มี left pleural effusion เล็กน้อย dissection ราว 12 ถึง 20% มี CXR ปกติ CXR ปกติจึงตัดโรคนี้ไม่ได้เลย",
+      "report": "Mediastinum กว้าง 9.5 cm aortic knuckle เสียรูป มี left pleural effusion เล็กน้อย || Dissection ราว 12 ถึง 20% มี CXR ปกติ CXR ปกติจึงตัดโรคนี้ไม่ได้เลย",
       "imageUrl": "",
       "abnormal": true
     },

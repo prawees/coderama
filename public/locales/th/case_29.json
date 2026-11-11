@@ -50,7 +50,7 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Distressed, deep sighing Kussmaul respirations, smells of alcohol but is not clinically intoxicated, which is itself a clue since methanol produces less inebriation than ethanol",
+      "finding": "Distressed, deep sighing Kussmaul respirations, smells of alcohol but is not clinically intoxicated || This is itself a clue since methanol produces less inebriation than ethanol",
       "abnormal": true
     },
     {
@@ -68,13 +68,13 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Clear lung fields with deep rapid Kussmaul breathing compensating for severe metabolic acidosis. Any fall in respiratory rate here signals decompensation, not improvement",
+      "finding": "Clear lung fields with deep rapid Kussmaul breathing || The breathing is compensating for severe metabolic acidosis. Any fall in respiratory rate here signals decompensation, not improvement",
       "abnormal": true
     },
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Diffuse epigastric tenderness without guarding, repeated vomiting, no rebound. Haemorrhagic pancreatitis is a recognised complication",
+      "finding": "Diffuse epigastric tenderness without guarding, repeated vomiting, no rebound || Haemorrhagic pancreatitis is a recognised complication",
       "abnormal": true
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 13 (E3V4M6), confused and agitated, no focal limb deficit, no meningism. Basal ganglia damage, specifically putaminal necrosis, is the classic late finding and causes a parkinsonian syndrome in survivors",
+      "finding": "GCS 13 (E3V4M6), confused and agitated, no focal limb deficit, no meningism || Basal ganglia damage, specifically putaminal necrosis, is the classic late finding and causes a parkinsonian syndrome in survivors",
       "abnormal": true
     }
   ],
@@ -151,7 +151,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CT brain ไม่ฉีดสี",
-      "report": "Low attenuation สมมาตรที่ putamen ทั้งสองข้าง มี hemorrhagic change เริ่มต้น bilateral putaminal necrosis แทบจะ pathognomonic ของ methanol poisoning และทำนาย parkinsonian syndrome ถาวร",
+      "report": "Low attenuation สมมาตรที่ putamen ทั้งสองข้าง มี hemorrhagic change เริ่มต้น || Bilateral putaminal necrosis แทบจะ pathognomonic ของ methanol poisoning และทำนาย parkinsonian syndrome ถาวร",
       "imageUrl": "",
       "abnormal": true
     }

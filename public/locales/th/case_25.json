@@ -56,7 +56,7 @@
     {
       "id": "hent1",
       "system": "HENT",
-      "finding": "Subconjunctival petechiae in both eyes. Retinal examination shows cotton wool spots and retinal fat globules (Purtscher-like retinopathy), which is close to diagnostic in this setting",
+      "finding": "Subconjunctival petechiae in both eyes. Retinal examination shows cotton wool spots and retinal fat globules (Purtscher-like retinopathy) || This is close to diagnostic in this setting",
       "abnormal": true
     },
     {
@@ -68,7 +68,7 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Bilateral fine crackles throughout, no wheeze, saturations 86% on 15 L/min, respiratory rate 36. Hypoxaemia disproportionate to the chest X-ray findings",
+      "finding": "Bilateral fine crackles throughout, no wheeze, saturations 86% on 15 L/min, respiratory rate 36 || Hypoxaemia disproportionate to the chest X-ray findings",
       "abnormal": true
     },
     {
@@ -80,13 +80,13 @@
     {
       "id": "skin1",
       "system": "Skin",
-      "finding": "Non-blanching petechial rash across the upper chest, anterior axillary folds and neck, in a distribution that spares the lower body. This petechial rash appears in about half of cases, is often missed under a gown, and typically fades within 24 hours",
+      "finding": "Non-blanching petechial rash across the upper chest, anterior axillary folds and neck, in a distribution that spares the lower body || This petechial rash appears in about half of cases, is often missed under a gown, and typically fades within 24 hours",
       "abnormal": true
     },
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 12 (E3V4M5), agitated and disorientated, no focal deficit, no meningism. Cerebral involvement precedes or accompanies the respiratory picture in most cases",
+      "finding": "GCS 12 (E3V4M5), agitated and disorientated, no focal deficit, no meningism || Cerebral involvement precedes or accompanies the respiratory picture in most cases",
       "abnormal": true
     }
   ],
@@ -107,7 +107,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CXR portable",
-      "report": "Diffuse patchy alveolar infiltrate ทั้งสองข้างแบบ snowstorm หัวใจขนาดปกติ ไม่มี pleural effusion ไม่มี pneumothorax infiltrate ดูน้อยกว่าระดับ hypoxemia ซึ่งเป็นลักษณะเฉพาะ",
+      "report": "Diffuse patchy alveolar infiltrate ทั้งสองข้างแบบ snowstorm หัวใจขนาดปกติ ไม่มี pleural effusion ไม่มี pneumothorax || Infiltrate ดูน้อยกว่าระดับ hypoxemia ซึ่งเป็นลักษณะเฉพาะ",
       "imageUrl": "",
       "abnormal": true
     },
@@ -116,7 +116,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CTPA",
-      "report": "ไม่มี filling defect ใน pulmonary artery ถึงระดับ segmental ตัด thromboembolism ก้อนใหญ่ออก มี ground glass opacity กระจายทั่วร่วมกับ interlobular septal thickening สนับสนุน fat embolism มากกว่า thrombotic embolism",
+      "report": "ไม่มี filling defect ใน pulmonary artery ถึงระดับ segmental มี ground glass opacity กระจายทั่วร่วมกับ interlobular septal thickening || ตัด thromboembolism ก้อนใหญ่ออก ภาพแบบนี้สนับสนุน fat embolism มากกว่า thrombotic embolism",
       "imageUrl": "",
       "abnormal": true
     },
@@ -136,7 +136,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "Echo ข้างเตียง",
-      "report": "RV โตเล็กน้อย บีบตัวดี ไม่มี McConnell's sign ไม่มี thrombus in transit, LV function ปกติ ไม่สนับสนุน massive PE และไม่สนับสนุน cardiogenic pulmonary edema",
+      "report": "RV โตเล็กน้อย บีบตัวดี ไม่มี McConnell's sign ไม่มี thrombus in transit, LV function ปกติ || ไม่สนับสนุน massive PE และไม่สนับสนุน cardiogenic pulmonary edema",
       "imageUrl": "",
       "abnormal": true
     },
@@ -145,7 +145,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "Sinus tachycardia 126/min มี non-specific ST depression V1 ถึง V3 ไม่มี S1Q3T3, QTc 430 ms ไม่สนับสนุน lidocaine toxicity จาก tumescent solution",
+      "report": "Sinus tachycardia 126/min มี non-specific ST depression V1 ถึง V3 ไม่มี S1Q3T3, QTc 430 ms || ไม่สนับสนุน lidocaine toxicity จาก tumescent solution",
       "imageUrl": "",
       "abnormal": true
     }

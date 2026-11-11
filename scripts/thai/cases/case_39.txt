@@ -2,7 +2,7 @@ cc: ปวดขารุนแรง มีไข้ 20 ชม. หลังจ
 bg: พ่อค้าส่งอาหารทะเลที่ตลาดปลา เมื่อวานเช้าโดนลังหอยนางรมบาดหน้าแข้งขวา ล้างแผลด้วยน้ำทะเล 20 ชม. ต่อมาปวดขาทรมานมาก หนาวสั่น อาเจียน เป็น cirrhosis จาก chronic hepatitis B ไม่มียาประจำ
 i.lric1: Score 11 ความเสี่ยงสูง LRINEC ต่ำไม่ได้ตัด necrotizing fasciitis และเคยทำให้ล่าช้าจนเสียชีวิต score ใช้สนับสนุนความสงสัยทาง clinical ไม่เคยใช้ล้มมันได้
 i.lac1: Severe septic shock และ tissue hypoperfusion
-i.ct1: มี gas ตาม deep fascial plane ของ anterior และ lateral compartment, fascia หนาและไม่ enhance, มี fat stranding สนับสนุน necrotizing fasciitis imaging มีประโยชน์เฉพาะเมื่อไม่ทำให้ผ่าตัดช้า และ scan ปกติก็ไม่ได้ตัดการวินิจฉัย
+i.ct1: มี gas ตาม deep fascial plane ของ anterior และ lateral compartment, fascia หนาและไม่ enhance, มี fat stranding || สนับสนุน necrotizing fasciitis imaging มีประโยชน์เฉพาะเมื่อไม่ทำให้ผ่าตัดช้า และ scan ปกติก็ไม่ได้ตัดการวินิจฉัย
 i.bc1: Positive ที่ 9 ชม. Gram negative bacilli รูปโค้งในคนไข้ cirrhosis ที่สัมผัสน้ำทะเลแทบจะวินิจฉัยได้เลย และเปลี่ยนการเลือก antibiotic เพราะต้องใช้ doxycycline ร่วมกับ 3rd generation cephalosporin โดยเฉพาะ
 iv.bc1: Curved Gram negative rods ต่อมายืนยันเป็น Vibrio vulnificus
 i.ck1: กล้ามเนื้อถูกกระทบ CK สูงร่วมกับปวดเกินสัดส่วนเพิ่มความกังวลว่าเป็น necrotizing infection มากกว่า cellulitis ธรรมดา

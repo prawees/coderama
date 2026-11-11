@@ -50,7 +50,7 @@ export function GuideTracker({ onShift, hidden, mark }: { onShift: boolean; hidd
   }
   return (
     <div className="relative max-w-[15.5rem]" data-testid="guide">
-      <button onClick={(e) => { e.stopPropagation(); fold(true); }} className="absolute -top-2 -right-2 z-10 cozy-tag w-6 h-6 flex items-center justify-center text-[15px] leading-none" data-testid="guide-fold" aria-label="ย่อภารกิจ">–</button>
+      <button onClick={(e) => { e.stopPropagation(); fold(true); }} className="absolute -top-2 -right-2 z-10 cozy-tag w-6 h-6 flex items-center justify-center text-[15px] leading-none" data-testid="guide-fold" aria-label="ย่อภารกิจ"><span className="block w-2.5 h-[3px] bg-[#3a2a2f]" /></button>
       <button onClick={() => { audio.playClick(); setOpen((o) => !o); }} className="cozy-panel w-full text-left px-2 py-1.5 flex items-start gap-1.5" aria-expanded={open}>
         <span className="mt-0.5 shrink-0"><PixelIcon name="quest" size={14} /></span>
         <span className="min-w-0">

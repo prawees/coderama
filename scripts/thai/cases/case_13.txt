@@ -2,10 +2,10 @@ cc: พบหมดสติในไร่มัน น้ำลายฟูม
 bg: ชาวไร่อ้อยและมันสำปะหลัง เพื่อนบ้านขนมาท้ายกระบะ 40 นาทีหลังพบนอนข้างถังพ่นยาที่ล้มอยู่ ข้างตัวมีขวด chlorpyrifos เปล่า ภรรยาเล่าว่าดื่มเหล้าหนักตั้งแต่ผลผลิตเสียหาย เมื่อคืนทะเลาะกัน ตัวเปียกยาเข้มข้นทั้งตัว
 i.abg1: Type 2 respiratory failure ร่วมกับ mixed acidosis หายใจไม่พอจาก bronchorrhea และกล้ามเนื้อหายใจอ่อนแรง
 i.che1: ต่ำมาก ยืนยันว่า cholinesterase ถูกยับยั้ง ใช้ยืนยันการวินิจฉัย แต่ห้ามรอผลก่อนให้ atropine ซึ่งให้ตาม clinical
-i.ecg1: Sinus bradycardia 42/min, 1st degree AV block, QTc 510 ms QT ยาวใน OP poisoning ทำนาย torsades ในภายหลัง ต้องให้ Mg และแก้ electrolyte
+i.ecg1: Sinus bradycardia 42/min, 1st degree AV block, QTc 510 ms || QT ยาวใน OP poisoning ทำนาย torsades ในภายหลัง ต้องให้ Mg และแก้ electrolyte
 i.poc1: สูงเล็กน้อย ไม่มี hypoglycemia ตัดอีกสาเหตุที่พบบ่อยของชาวไร่หมดสติออกได้
 i.k1: ต่ำทั้งคู่ ซ้ำเติม QT ยาว ให้ทดแทนก่อนเกิด torsades
-i.cxr1: Diffuse airspace opacity ทั้งสองข้าง เข้าได้กับ aspiration และ bronchorrhea, ET tube อยู่เหนือ carina 3 cm
+i.cxr1: Diffuse airspace opacity ทั้งสองข้าง ET tube อยู่เหนือ carina 3 cm || เข้าได้กับ aspiration และ bronchorrhea
 req1.l: ป้องกันตัวเองและ decontaminate ก่อนอย่างอื่น
 req1.c: ใส่ PPE ถอดเสื้อผ้าคนไข้ ล้างตัว
 req1.d0: Intubate ก่อน ค่อย decontaminate ทีหลัง

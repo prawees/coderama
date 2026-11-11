@@ -16,13 +16,13 @@
     "gcs": { "value": 13, "abnormal": true }
   },
   "exam": [
-    { "id": "ga1", "system": "General appearance", "finding": "Distressed, deep sighing Kussmaul respirations, smells of alcohol but is not clinically intoxicated, which is itself a clue since methanol produces less inebriation than ethanol", "abnormal": true },
+    { "id": "ga1", "system": "General appearance", "finding": "Distressed, deep sighing Kussmaul respirations, smells of alcohol but is not clinically intoxicated || This is itself a clue since methanol produces less inebriation than ethanol", "abnormal": true },
     { "id": "hent1", "system": "HENT", "finding": "Pupils 6 mm, dilated and sluggishly reactive. Fundoscopy shows optic disc hyperaemia with blurred margins and retinal oedema. Visual acuity is light perception only in both eyes", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 112/min, blood pressure maintained, capillary refill 3 seconds, no murmur", "abnormal": true },
-    { "id": "rs1", "system": "Respiratory", "finding": "Clear lung fields with deep rapid Kussmaul breathing compensating for severe metabolic acidosis. Any fall in respiratory rate here signals decompensation, not improvement", "abnormal": true },
-    { "id": "abd1", "system": "Abdomen", "finding": "Diffuse epigastric tenderness without guarding, repeated vomiting, no rebound. Haemorrhagic pancreatitis is a recognised complication", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear lung fields with deep rapid Kussmaul breathing || The breathing is compensating for severe metabolic acidosis. Any fall in respiratory rate here signals decompensation, not improvement", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Diffuse epigastric tenderness without guarding, repeated vomiting, no rebound || Haemorrhagic pancreatitis is a recognised complication", "abnormal": true },
     { "id": "skin1", "system": "Skin", "finding": "Warm and dry, no jaundice, no needle marks, no rash, capillary refill normal centrally", "abnormal": false },
-    { "id": "cns1", "system": "Neurological", "finding": "GCS 13 (E3V4M6), confused and agitated, no focal limb deficit, no meningism. Basal ganglia damage, specifically putaminal necrosis, is the classic late finding and causes a parkinsonian syndrome in survivors", "abnormal": true }
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 13 (E3V4M6), confused and agitated, no focal limb deficit, no meningism || Basal ganglia damage, specifically putaminal necrosis, is the classic late finding and causes a parkinsonian syndrome in survivors", "abnormal": true }
   ],
   "investigations": [
     { "id": "abg1", "kind": "lab", "category": "ABG", "name": "Arterial blood gas", "value": "pH 6.94 / pCO2 12 / HCO3 4 / anion gap 38", "unit": "-", "normalRange": "pH 7.35-7.45", "abnormal": true, "report": "Profound high anion gap metabolic acidosis with maximal respiratory compensation. A pH below 7.0 in methanol poisoning is associated with high mortality and is an indication for dialysis on its own." },

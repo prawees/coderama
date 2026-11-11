@@ -32,7 +32,7 @@
     "nodes": {
       "start": {
         "vitals": { "bp": "110/70", "hr": 140, "o2": "88%" },
-        "narrative": "A child presents with a severe asthma exacerbation (SpO2 88%, retractions, speaking in single words). Immediate action is required.",
+        "narrative": "A child working hard to breathe: SpO2 88%, retractions, speaking in single words, wheeze on both sides. What must happen now?",
         "options": [
           { "id": "opt1", "text": "Oxygen via mask + Nebulized Salbutamol/Ipratropium", "targetNode": "correct_o2_neb", "requiredRank": "MS5" },
           { "id": "opt2", "text": "Intubate immediately", "targetNode": "wrong_intubate", "requiredRank": "R2" },

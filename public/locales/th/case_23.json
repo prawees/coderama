@@ -97,7 +97,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "U/S คอเดิม 2 ครั้ง จาก รพ. อื่น",
-      "report": "ทั้งสองรายงานเห็น right posterior cervical node 9 mm มี fatty hilum รูปร่างรีปกติ vascular pattern ปกติ ลักษณะ benign reactive ไม่มี node ผิดปกติอื่น hilum ยังอยู่ร่วมกับรูปรีเป็นลักษณะที่น่าวางใจ และตรงกับที่ตรวจข้างเตียง",
+      "report": "ทั้งสองรายงานเห็น right posterior cervical node 9 mm มี fatty hilum รูปร่างรีปกติ vascular pattern ปกติ ไม่มี node ผิดปกติอื่น || ลักษณะ benign reactive hilum ที่ยังอยู่ร่วมกับรูปรีเป็นลักษณะที่น่าวางใจ และตรงกับที่ตรวจข้างเตียง",
       "imageUrl": "",
       "abnormal": false
     },
@@ -131,7 +131,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CXR",
-      "report": "Mediastinum ปกติ ไม่มี hilar หรือ mediastinal lymphadenopathy ปอดใส ไม่มี indication ทำใน ER ตอน 3 ทุ่มไม่ได้เปลี่ยนอะไรที่ F/U ที่ OPD จัดการได้ดีกว่า",
+      "report": "Mediastinum ปกติ ไม่มี hilar หรือ mediastinal lymphadenopathy ปอดใส || ไม่มี indication ทำใน ER ตอน 3 ทุ่มไม่ได้เปลี่ยนอะไรที่ F/U ที่ OPD จัดการได้ดีกว่า",
       "imageUrl": "",
       "abnormal": false
     },
@@ -141,7 +141,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "PET-CT (คนไข้ขอ)",
-      "report": "ไม่ได้ทำและไม่มี indication effective dose ราว 15 mSv ค่าใช้จ่ายราว 60,000 บาท ในคนอายุ 29 ที่มี reactive node 9 mm ลักษณะไม่ร้าย โอกาสได้ผลบวกลวงที่ต้องตามด้วยหัตถการมีมากกว่าโอกาสเจอโรคหลายเท่า",
+      "report": "ไม่ได้ทำ || ไม่มี indication effective dose ราว 15 mSv ค่าใช้จ่ายราว 60,000 บาท ในคนอายุ 29 ที่มี reactive node 9 mm ลักษณะไม่ร้าย โอกาสได้ผลบวกลวงที่ต้องตามด้วยหัตถการมีมากกว่าโอกาสเจอโรคหลายเท่า",
       "imageUrl": "",
       "abnormal": false
     }

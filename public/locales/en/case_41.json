@@ -18,11 +18,11 @@
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Unresponsive, profoundly cold to touch at 31.8 C, puffy and doughy in appearance, breathing slowly and shallowly", "abnormal": true },
     { "id": "hent1", "system": "HENT", "finding": "Periorbital and facial non-pitting oedema, macroglossia, coarse dry skin, loss of the outer third of both eyebrows, hoarse quality to the little speech she produces, well-healed thyroidectomy scar across the neck", "abnormal": true },
-    { "id": "cvs1", "system": "Cardiovascular", "finding": "Bradycardia at 42/min, hypotensive, distant muffled heart sounds suggesting pericardial effusion, non-pitting oedema of both legs, capillary refill 5 seconds", "abnormal": true },
-    { "id": "rs1", "system": "Respiratory", "finding": "Hypoventilating at 8 breaths per minute with shallow tidal volumes, right basal crackles suggesting pneumonia, reduced air entry at both bases from pleural effusions", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Bradycardia at 42/min, hypotensive, distant muffled heart sounds, non-pitting oedema of both legs, capillary refill 5 seconds || Muffled heart sounds suggest a pericardial effusion", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Hypoventilating at 8 breaths per minute with shallow tidal volumes, right basal crackles, reduced air entry at both bases || The crackles suggest pneumonia, the quiet bases pleural effusions", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Distended with sluggish absent bowel sounds and clinical ileus, no peritonism, faecal loading on palpation, bladder palpable to the umbilicus from retention", "abnormal": true },
     { "id": "skin1", "system": "Skin", "finding": "Cold, dry, coarse and scaly with a yellowish tinge from carotenaemia, non-pitting myxoedematous swelling of the hands and face, no pressure sores despite the fall", "abnormal": true },
-    { "id": "cns1", "system": "Neurological", "finding": "GCS 7 (E1V2M4), delayed relaxation phase of the ankle reflexes which is close to specific for hypothyroidism, no focal deficit, no seizure activity, pupils sluggish", "abnormal": true }
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 7 (E1V2M4), delayed relaxation phase of the ankle reflexes, no focal deficit, no seizure activity, pupils sluggish || Delayed reflex relaxation is close to specific for hypothyroidism", "abnormal": true }
   ],
   "investigations": [
     { "id": "tft1", "kind": "lab", "category": "Endocrine", "name": "Thyroid function", "value": "TSH 128 mIU/L / free T4 1.8 pmol/L", "unit": "-", "normalRange": "TSH 0.4-4.0 mIU/L", "abnormal": true, "report": "Profound primary hypothyroidism. Treatment must be started on clinical grounds, since waiting several hours for this result in a patient with this presentation is fatal." },

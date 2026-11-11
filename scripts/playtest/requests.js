@@ -341,6 +341,15 @@ async function goal(p) {
     await p.getByTestId('hud-share').click({ timeout: 4000 }).catch((e) => console.log('  tap failed:', String(e).split('\n')[0]));
     await p.getByTestId('share-image').waitFor({ timeout: 6000 }).catch(() => {});
     check(await p.getByTestId('share-image').count() > 0, 'tapping it opens the share sheet with a drawn card');
+    // The first thing offered is a photo of the scene; the stat card is one tap away
+    check(await p.getByTestId('share-mode-photo').count() > 0, 'the sheet offers a photo of the scene');
+    const photoSrc = await p.getByTestId('share-image').getAttribute('src');
+    await p.getByTestId('share-caption').click(); await p.waitForTimeout(300);
+    await p.getByTestId('share-image').waitFor({ timeout: 6000 });
+    check(await p.getByTestId('share-image').getAttribute('src') !== photoSrc, 'the caption can be changed');
+    await p.getByTestId('share-mode-card').click(); await p.waitForTimeout(300);
+    await p.getByTestId('share-image').waitFor({ timeout: 6000 });
+    check(!(await p.getByTestId('share-caption').count()), 'and the stat card is still there');
     await p.screenshot({ path: `${OUT}/7_share.png` });
     if (await p.getByTestId('share-close').count()) await p.getByTestId('share-close').click();
     await p.waitForTimeout(500);

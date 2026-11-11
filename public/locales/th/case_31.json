@@ -50,7 +50,7 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Pale, floppy and lethargic between episodes, then screaming and inconsolable during them. Lethargy out of proportion to the apparent illness is a recognised and frequently misread presentation of intussusception",
+      "finding": "Pale, floppy and lethargic between episodes, then screaming and inconsolable during them || Lethargy out of proportion to the apparent illness is a recognised and frequently misread presentation of intussusception",
       "abnormal": true
     },
     {
@@ -68,7 +68,7 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Clear chest, tachypnoeic without recession or grunting, which suggests compensation for metabolic acidosis rather than a primary respiratory problem",
+      "finding": "Clear chest, tachypnoeic without recession or grunting || This suggests compensation for metabolic acidosis rather than a primary respiratory problem",
       "abnormal": true
     },
     {
@@ -80,13 +80,13 @@
     {
       "id": "skin1",
       "system": "Skin",
-      "finding": "Pale and mottled with reduced turgor and skin tenting over the abdomen. No purpura. Look specifically for Henoch-Schonlein purpura, which can cause a pathological lead point",
+      "finding": "Pale and mottled with reduced turgor and skin tenting over the abdomen. No purpura || Look specifically for Henoch-Schonlein purpura, which can cause a pathological lead point",
       "abnormal": true
     },
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 12, floppy, reduced spontaneous movement, no focal deficit, anterior fontanelle sunken rather than bulging, which argues against meningitis",
+      "finding": "GCS 12, floppy, reduced spontaneous movement, no focal deficit, anterior fontanelle sunken rather than bulging || This argues against meningitis",
       "abnormal": true
     }
   ],
@@ -96,7 +96,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "US ท้อง",
-      "report": "Target sign ที่ RUQ เส้นผ่านศูนย์กลาง 3.2 cm ลำไส้ซ้อนในลำไส้ มี pseudokidney sign ในแนวยาว ไม่มี free fluid ไม่เห็น pathological lead point Doppler ยังมี flow ใน intussusceptum บ่งว่าลำไส้น่าจะยังไม่ตาย U/S มี sensitivity และ specificity เกือบ 100% ในมือคนที่ฝึกมา และเป็น investigation ที่เลือก",
+      "report": "Target sign ที่ RUQ เส้นผ่านศูนย์กลาง 3.2 cm ลำไส้ซ้อนในลำไส้ มี pseudokidney sign ในแนวยาว ไม่มี free fluid ไม่เห็น pathological lead point Doppler ยังมี flow ใน intussusceptum || บ่งว่าลำไส้น่าจะยังไม่ตาย U/S มี sensitivity และ specificity เกือบ 100% ในมือคนที่ฝึกมา และเป็น investigation ที่เลือก",
       "imageUrl": "",
       "abnormal": true
     },
@@ -149,7 +149,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "Film ท้อง",
-      "report": "ลมในลำไส้น้อยที่ RUQ มี soft tissue mass effect ไม่มี free air ใต้กะบังลม ตัดลำไส้ทะลุออกได้ ทำ reduction ต่อได้ film ท้องปกติไม่เคยตัด intussusception จึงใช้ตัดลำไส้ทะลุ ไม่ใช่ใช้วินิจฉัย",
+      "report": "ลมในลำไส้น้อยที่ RUQ มี soft tissue mass effect ไม่มี free air ใต้กะบังลม || ตัดลำไส้ทะลุออกได้ ทำ reduction ต่อได้ film ท้องปกติไม่เคยตัด intussusception จึงใช้ตัดลำไส้ทะลุ ไม่ใช่ใช้วินิจฉัย",
       "imageUrl": "",
       "abnormal": true
     }

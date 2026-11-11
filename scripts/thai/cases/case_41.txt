@@ -4,8 +4,8 @@ i.tft1: Profound primary hypothyroidism ต้องเริ่มรักษ�
 i.na1: Severe hyponatremia จากขับน้ำไม่ได้ ร่วมกับ hypoglycemia แก้ Na ช้าๆ ไม่เกิน 8 ถึง 10 mmol/L ใน 24 ชม. เลี่ยง osmotic demyelination
 i.gas1: Type 2 respiratory failure CO2 คั่งจาก central hypoventilation และกล้ามเนื้อหายใจอ่อนแรง นี่คือภัยต่อชีวิตเฉพาะหน้า
 i.cort1: ต่ำเกินไปเมื่อเทียบกับความเครียดทางร่างกายระดับนี้ คนไข้กลุ่มนี้ส่วนหนึ่งมี adrenal insufficiency ร่วม และการให้ thyroid hormone ก่อน steroid อาจกระตุ้น adrenal crisis
-i.ecg1: Sinus bradycardia 42/min, low voltage ทุก lead, QTc ยาว 540 ms มี J wave ที่ inferior leads จาก hypothermia low voltage สนับสนุนว่ามี pericardial effusion
-i.cxr1: เงาหัวใจโตกลม เข้าได้กับ pericardial effusion มี pleural effusion เล็กน้อยทั้งสองข้าง และ RLL consolidation pneumonia คือตัวกระตุ้น
+i.ecg1: Sinus bradycardia 42/min, low voltage ทุก lead, QTc ยาว 540 ms มี J wave ที่ inferior leads || J wave จาก hypothermia ส่วน low voltage สนับสนุนว่ามี pericardial effusion
+i.cxr1: เงาหัวใจโตกลม มี pleural effusion เล็กน้อยทั้งสองข้าง และ RLL consolidation || เงาหัวใจเข้าได้กับ pericardial effusion ส่วน pneumonia คือตัวกระตุ้น
 i.ck1: สูง เป็นลักษณะที่รู้จักของ hypothyroidism รุนแรง และจากนอนอยู่บนพื้นนาน
 req1.l: Airway กับการหายใจ แล้วเจาะน้ำตาล
 req1.d0: ให้ thyroid hormone ก่อน แล้วค่อยจัดการ airway

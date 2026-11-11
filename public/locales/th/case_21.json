@@ -50,7 +50,7 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Unresponsive to voice, hot to touch, agitated when stimulated, core temperature 41.6 C measured rectally. Central nervous system dysfunction plus core temperature above 40 C is the definition, and no other feature is required",
+      "finding": "Unresponsive to voice, hot to touch, agitated when stimulated, core temperature 41.6 C measured rectally || Central nervous system dysfunction plus core temperature above 40 C is the definition, and no other feature is required",
       "abnormal": true
     },
     {
@@ -68,7 +68,7 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Tachypnoeic at 34/min, clear breath sounds, no crackles at present. Watch for ARDS at 24 to 48 hours",
+      "finding": "Tachypnoeic at 34/min, clear breath sounds, no crackles at present || Watch for ARDS at 24 to 48 hours",
       "abnormal": true
     },
     {
@@ -80,7 +80,7 @@
     {
       "id": "skin1",
       "system": "Skin",
-      "finding": "Hot, flushed and dry with no sweating over the trunk. Anhidrosis is a late and ominous sign, and its absence never excludes heat stroke, since half of exertional cases are still sweating",
+      "finding": "Hot, flushed and dry with no sweating over the trunk || Anhidrosis is a late and ominous sign, and its absence never excludes heat stroke, since half of exertional cases are still sweating",
       "abnormal": true
     },
     {
@@ -162,7 +162,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "Sinus tachycardia 146/min, peaked T ที่ V2 ถึง V4 จาก hyperkalemia ไม่มี ischemic ST elevation, QTc 420 ms",
+      "report": "Sinus tachycardia 146/min, peaked T ที่ V2 ถึง V4 ไม่มี ischemic ST elevation, QTc 420 ms || peaked T จาก hyperkalemia",
       "imageUrl": "",
       "abnormal": true
     }

@@ -4,7 +4,7 @@ i.hct1: Hct ขึ้นเกิน 20% จาก baseline 43% นี่คื�
 i.plt1: Severe thrombocytopenia ถ้าไม่มี significant bleeding ไม่ต้องให้ platelet ให้ไปก็ไม่ช่วย outcome
 i.ns1: ยืนยัน acute dengue ตอนนี้อยู่ใน critical phase ซึ่งเริ่มตอนไข้ลง
 i.lft1: Transaminitis AST สูงกว่า ALT แบบที่เจอใน dengue บ่อย ถ้า hepatitis รุนแรงถือเป็น severe dengue
-i.us1: Right pleural effusion, GB wall หนา 8 mm, ascites เล็กน้อย, IVC collapse มี plasma leak และ intravascular depletion
+i.us1: Right pleural effusion, GB wall หนา 8 mm, ascites เล็กน้อย, IVC collapse || มี plasma leak และ intravascular depletion
 i.lac1: Hypoperfusion
 i.coag1: Coagulopathy จากตับ
 req1.l: รู้ว่าเข้า critical phase แล้ว เจาะ Hct baseline

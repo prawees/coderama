@@ -18,8 +18,8 @@
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Grey, distressed, air hungry, unable to speak more than three words at a time, cold and clammy", "abnormal": true },
     { "id": "hent1", "system": "HENT", "finding": "Central cyanosis, jugular venous pressure raised to the earlobe at 45 degrees, no facial swelling, no stridor", "abnormal": true },
-    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 136/min, loud palpable P2, right ventricular heave, hypotensive at 74/44, capillary refill 5 seconds. Raised JVP with clear lungs and shock is the combination that should make you think right ventricle", "abnormal": true },
-    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds bilaterally with profound hypoxaemia. Hypoxaemia out of all proportion to the auscultation and chest X-ray findings is the classic pattern", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 136/min, loud palpable P2, right ventricular heave, hypotensive at 74/44, capillary refill 5 seconds || Raised JVP with clear lungs and shock is the combination that should make you think right ventricle", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds bilaterally with profound hypoxaemia || Hypoxaemia out of all proportion to the auscultation and chest X-ray findings is the classic pattern", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, mildly pulsatile liver edge from right heart failure, no masses, bowel sounds normal", "abnormal": true },
     { "id": "skin1", "system": "Skin", "finding": "Cold mottled peripheries, right calf swollen 4 cm greater than the left with pitting oedema, healed knee arthroplasty scar, no cellulitis", "abnormal": true },
     { "id": "cns1", "system": "Neurological", "finding": "GCS 13 (E3V4M6), confused from hypoxia and low cardiac output, no focal deficit, pupils equal and reactive", "abnormal": true }

@@ -1,11 +1,11 @@
 cc: หอบเหนื่อย สับสน 28 ชม. หลังดูดไขมันปริมาณมาก
 bg: ดูดไขมันปริมาณมากที่หน้าท้อง สีข้าง ต้นขา ร่วมกับฉีดไขมันที่สะโพก เมื่อ 28 ชม. ก่อน ดูดออกราว 5.5 ลิตรในครั้งเดียวภายใต้ tumescent anesthesia D/C หลัง observe 6 ชม. ช่วงกลางคืนเริ่มหอบและกระสับกระส่าย แฟนพามาตอนที่พูดไม่รู้เรื่อง กินยาคุมกำเนิดชนิดรวม ทำงานฝ่ายการตลาด อีก 4 วันมีงานเปิดตัวสินค้า เลยเลือกทำครั้งเดียวแทนแบ่งทำสองครั้ง
 i.abg1: Severe hypoxemic respiratory failure ร่วมกับ respiratory alkalosis, PaO2 ต่ำกว่า 60 mmHg เป็น major Gurd criterion ของ fat embolism syndrome
-i.cxr1: Diffuse patchy alveolar infiltrate ทั้งสองข้างแบบ snowstorm หัวใจขนาดปกติ ไม่มี pleural effusion ไม่มี pneumothorax infiltrate ดูน้อยกว่าระดับ hypoxemia ซึ่งเป็นลักษณะเฉพาะ
-i.ctpa1: ไม่มี filling defect ใน pulmonary artery ถึงระดับ segmental ตัด thromboembolism ก้อนใหญ่ออก มี ground glass opacity กระจายทั่วร่วมกับ interlobular septal thickening สนับสนุน fat embolism มากกว่า thrombotic embolism
+i.cxr1: Diffuse patchy alveolar infiltrate ทั้งสองข้างแบบ snowstorm หัวใจขนาดปกติ ไม่มี pleural effusion ไม่มี pneumothorax || Infiltrate ดูน้อยกว่าระดับ hypoxemia ซึ่งเป็นลักษณะเฉพาะ
+i.ctpa1: ไม่มี filling defect ใน pulmonary artery ถึงระดับ segmental มี ground glass opacity กระจายทั่วร่วมกับ interlobular septal thickening || ตัด thromboembolism ก้อนใหญ่ออก ภาพแบบนี้สนับสนุน fat embolism มากกว่า thrombotic embolism
 i.cbc1: Anemia และ thrombocytopenia เป็น minor Gurd criteria ทั้งคู่ ถ้าลดลงทั้งสองอย่างกะทันหันโดยไม่มีสาเหตุหลังผ่าตัดกระดูกหรือศัลยกรรมความงาม ให้นึกถึงโรคนี้
-i.echo1: RV โตเล็กน้อย บีบตัวดี ไม่มี McConnell's sign ไม่มี thrombus in transit, LV function ปกติ ไม่สนับสนุน massive PE และไม่สนับสนุน cardiogenic pulmonary edema
-i.ecg1: Sinus tachycardia 126/min มี non-specific ST depression V1 ถึง V3 ไม่มี S1Q3T3, QTc 430 ms ไม่สนับสนุน lidocaine toxicity จาก tumescent solution
+i.echo1: RV โตเล็กน้อย บีบตัวดี ไม่มี McConnell's sign ไม่มี thrombus in transit, LV function ปกติ || ไม่สนับสนุน massive PE และไม่สนับสนุน cardiogenic pulmonary edema
+i.ecg1: Sinus tachycardia 126/min มี non-specific ST depression V1 ถึง V3 ไม่มี S1Q3T3, QTc 430 ms || ไม่สนับสนุน lidocaine toxicity จาก tumescent solution
 req1.l: ให้ O2 high flow และเปิดดูทั้งตัวหา petechial rash
 req1.c: O2 high flow และเปิดเสื้อคลุมดู
 req1.d0: Cannula 2 L/min เลี่ยง hyperoxia

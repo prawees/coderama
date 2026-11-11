@@ -19,8 +19,8 @@
     { "id": "ga1", "system": "General appearance", "finding": "Restless then drowsy, cold clammy peripheries despite being afebrile, narrow pulse pressure of 10 mmHg", "abnormal": true },
     { "id": "hent1", "system": "HENT", "finding": "Flushed face, injected conjunctivae, gum bleeding on gentle probing, no neck stiffness, dry tongue", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia, weak thready pulse, capillary refill 5 seconds, narrow pulse pressure, heart sounds normal", "abnormal": true },
-    { "id": "rs1", "system": "Respiratory", "finding": "Reduced air entry at the right base with stony dull percussion, consistent with pleural effusion from plasma leak", "abnormal": true },
-    { "id": "abd1", "system": "Abdomen", "finding": "Tender hepatomegaly 3 cm below the costal margin, shifting dullness, no rebound, severe abdominal pain is a dengue warning sign", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Reduced air entry at the right base with stony dull percussion || Consistent with pleural effusion from plasma leak", "abnormal": true },
+    { "id": "abd1", "system": "Abdomen", "finding": "Tender hepatomegaly 3 cm below the costal margin, shifting dullness, no rebound, severe abdominal pain || Severe abdominal pain is a dengue warning sign", "abnormal": true },
     { "id": "skin1", "system": "Skin", "finding": "Confluent blanching rash with islands of sparing over both legs, scattered petechiae, positive tourniquet test, cool mottled knees", "abnormal": true },
     { "id": "cns1", "system": "Neurological", "finding": "GCS 13 (E3V4M6), no focal deficit, no meningism, pupils equal and reactive", "abnormal": true }
   ],

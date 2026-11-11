@@ -62,13 +62,13 @@
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Sinus tachycardia at 136/min, loud palpable P2, right ventricular heave, hypotensive at 74/44, capillary refill 5 seconds. Raised JVP with clear lungs and shock is the combination that should make you think right ventricle",
+      "finding": "Sinus tachycardia at 136/min, loud palpable P2, right ventricular heave, hypotensive at 74/44, capillary refill 5 seconds || Raised JVP with clear lungs and shock is the combination that should make you think right ventricle",
       "abnormal": true
     },
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Clear breath sounds bilaterally with profound hypoxaemia. Hypoxaemia out of all proportion to the auscultation and chest X-ray findings is the classic pattern",
+      "finding": "Clear breath sounds bilaterally with profound hypoxaemia || Hypoxaemia out of all proportion to the auscultation and chest X-ray findings is the classic pattern",
       "abnormal": true
     },
     {
@@ -96,7 +96,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "Echo ข้างเตียง",
-      "report": "RV โตมาก RV/LV ratio เกิน 1.2 septum แบนทั้ง systole และ diastole (D-shaped LV) มี McConnell's sign คือ mid free wall akinesia แต่ apex ยังบีบดี IVC โตไม่ collapse ไม่มี pericardial effusion ในคนไข้ที่ unstable เกินจะไป CT ข้อมูลเท่านี้พอให้ thrombolysis ได้",
+      "report": "RV โตมาก RV/LV ratio เกิน 1.2 septum แบนทั้ง systole และ diastole (D-shaped LV) มี McConnell's sign คือ mid free wall akinesia แต่ apex ยังบีบดี IVC โตไม่ collapse ไม่มี pericardial effusion || ในคนไข้ที่ unstable เกินจะไป CT ข้อมูลเท่านี้พอให้ thrombolysis ได้",
       "imageUrl": "",
       "abnormal": true
     },
@@ -105,7 +105,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "Sinus tachycardia 134/min มี S1Q3T3, incomplete RBBB และ T inversion V1 ถึง V4 เป็น right heart strain sensitivity ต่ำ EKG ปกติก็ตัดโรคนี้ไม่ได้",
+      "report": "Sinus tachycardia 134/min มี S1Q3T3, incomplete RBBB และ T inversion V1 ถึง V4 || เป็น right heart strain sensitivity ต่ำ EKG ปกติก็ตัดโรคนี้ไม่ได้",
       "imageUrl": "",
       "abnormal": true
     },
@@ -114,7 +114,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CTPA",
-      "report": "Saddle embolus ก้อนใหญ่ที่ bifurcation ของ pulmonary artery มี filling defect ทั้ง central และ lobar ทั้งสองข้าง RV/LV ratio 1.6 และ contrast ไหลย้อนเข้า IVC บ่งชี้ right heart strain ทำหลัง stabilize แล้วเท่านั้น",
+      "report": "Saddle embolus ก้อนใหญ่ที่ bifurcation ของ pulmonary artery มี filling defect ทั้ง central และ lobar ทั้งสองข้าง RV/LV ratio 1.6 และ contrast ไหลย้อนเข้า IVC || บ่งชี้ right heart strain ทำหลัง stabilize แล้วเท่านั้น",
       "imageUrl": "",
       "abnormal": true
     },
@@ -145,7 +145,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "Compression US ขาขวา",
-      "report": "Right femoral และ popliteal vein กดไม่ยุบ มี echogenic thrombus ยืนยันต้นเหตุ ทำข้างเตียงได้ใน 2 นาที และช่วยสนับสนุนการวินิจฉัยตอนคนไข้ unstable เกินจะเคลื่อนย้าย",
+      "report": "Right femoral และ popliteal vein กดไม่ยุบ มี echogenic thrombus || ยืนยันต้นเหตุ ทำข้างเตียงได้ใน 2 นาที และช่วยสนับสนุนการวินิจฉัยตอนคนไข้ unstable เกินจะเคลื่อนย้าย",
       "imageUrl": "",
       "abnormal": true
     }

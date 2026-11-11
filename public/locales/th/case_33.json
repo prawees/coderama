@@ -56,13 +56,13 @@
     {
       "id": "hent1",
       "system": "HENT",
-      "finding": "Anterior fontanelle full and slightly tense when held upright, which in a neonate is a late sign of meningitis. Dry mucous membranes, no dysmorphic features, red reflex present bilaterally, no conjunctivitis",
+      "finding": "Anterior fontanelle full and slightly tense when held upright. Dry mucous membranes, no dysmorphic features, red reflex present bilaterally, no conjunctivitis || A full fontanelle in a neonate is a late sign of meningitis",
       "abnormal": true
     },
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Tachycardia at 196/min, capillary refill 5 seconds centrally, weak brachial pulses, femoral pulses present and equal which argues against coarctation, no murmur, no hepatomegaly",
+      "finding": "Tachycardia at 196/min, capillary refill 5 seconds centrally, weak brachial pulses, femoral pulses present and equal, no murmur, no hepatomegaly || Equal femoral pulses argue against coarctation",
       "abnormal": true
     },
     {

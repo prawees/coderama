@@ -62,7 +62,7 @@
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Sinus tachycardia at 136/min, thready pulse, capillary refill 5 seconds. Note that a healthy young woman can lose 1500 mL before her blood pressure moves, so tachycardia is the early sign and hypotension is a late one",
+      "finding": "Sinus tachycardia at 136/min, thready pulse, capillary refill 5 seconds || Note that a healthy young woman can lose 1500 mL before her blood pressure moves, so tachycardia is the early sign and hypotension is a late one",
       "abnormal": true
     },
     {
@@ -74,7 +74,7 @@
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Uterine fundus soft, boggy and above the umbilicus, poorly contracted, no rebound. A soft high fundus is the diagnosis, made with a hand and no equipment",
+      "finding": "Uterine fundus soft, boggy and above the umbilicus, poorly contracted, no rebound || A soft high fundus is the diagnosis, made with a hand and no equipment",
       "abnormal": true
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 14 (E4V4M6), anxious and slow, no focal deficit, no seizure. Consider eclampsia if there were hypertension, but her booking pressures were normal",
+      "finding": "GCS 14 (E4V4M6), anxious and slow, no focal deficit, no seizure || Consider eclampsia if there were hypertension, but her booking pressures were normal",
       "abnormal": true
     }
   ],
@@ -140,7 +140,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "US pelvis ข้างเตียง",
-      "report": "โพรงมดลูกขยาย มี echogenic material 3 cm เข้าได้กับรกค้างหรือ clot มี free fluid ใน pouch of Douglas ไม่เห็น uterine rupture หรือ inversion",
+      "report": "โพรงมดลูกขยาย มี echogenic material 3 cm มี free fluid ใน pouch of Douglas ไม่เห็น uterine rupture หรือ inversion || echogenic material เข้าได้กับรกค้างหรือ clot",
       "imageUrl": "",
       "abnormal": true
     },

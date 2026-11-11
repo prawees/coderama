@@ -17,8 +17,8 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Lethargic, floppy, weak high-pitched cry, poor response to handling, does not root or suck. Hypothermic at 35.4 C rather than febrile", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Anterior fontanelle full and slightly tense when held upright, which in a neonate is a late sign of meningitis. Dry mucous membranes, no dysmorphic features, red reflex present bilaterally, no conjunctivitis", "abnormal": true },
-    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 196/min, capillary refill 5 seconds centrally, weak brachial pulses, femoral pulses present and equal which argues against coarctation, no murmur, no hepatomegaly", "abnormal": true },
+    { "id": "hent1", "system": "HENT", "finding": "Anterior fontanelle full and slightly tense when held upright. Dry mucous membranes, no dysmorphic features, red reflex present bilaterally, no conjunctivitis || A full fontanelle in a neonate is a late sign of meningitis", "abnormal": true },
+    { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 196/min, capillary refill 5 seconds centrally, weak brachial pulses, femoral pulses present and equal, no murmur, no hepatomegaly || Equal femoral pulses argue against coarctation", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoea at 68 with grunting and mild subcostal recession, clear air entry bilaterally, no crackles, intermittent apnoeic pauses observed on the monitor", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, mildly distended, no visible bowel loops, no abdominal wall erythema, umbilical stump separated and clean with no periumbilical flare, bowel sounds present, no organomegaly", "abnormal": true },
     { "id": "skin1", "system": "Skin", "finding": "Mottled and cool to the elbows and knees, capillary refill 5 seconds, no purpura or petechiae, no bruising anywhere, no jaundice, skin turgor reduced", "abnormal": true },

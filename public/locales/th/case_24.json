@@ -50,7 +50,7 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Pale, cold, clammy and drowsy, apologising repeatedly for making a fuss, which is a classic presentation of concealed haemorrhage in a patient who has been told her symptoms are normal",
+      "finding": "Pale, cold, clammy and drowsy, apologising repeatedly for making a fuss || This is a classic presentation of concealed haemorrhage in a patient who has been told her symptoms are normal",
       "abnormal": true
     },
     {
@@ -68,13 +68,13 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Clear breath sounds, tachypnoeic, no pleuritic pain, calves soft and non-tender, which makes pulmonary embolism less likely than bleeding",
+      "finding": "Clear breath sounds, tachypnoeic, no pleuritic pain, calves soft and non-tender || This makes pulmonary embolism less likely than bleeding",
       "abnormal": true
     },
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Grossly distended and tense beneath the compression garment, exquisitely tender, dressings soaked with old blood, girth increased by 9 cm from the recorded postoperative measurement. Remove the garment to examine, it conceals both the swelling and the bleeding",
+      "finding": "Grossly distended and tense beneath the compression garment, exquisitely tender, dressings soaked with old blood, girth increased by 9 cm from the recorded postoperative measurement || Remove the garment to examine, it conceals both the swelling and the bleeding",
       "abnormal": true
     },
     {
@@ -107,7 +107,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "US ผนังหน้าท้องข้างเตียง",
-      "report": "Heterogeneous collection ขนาดราว 15 x 9 cm ใน subcutaneous plane ระหว่าง flap กับ fascia มีลักษณะหมุนวน บ่งว่ายังเลือดออกอยู่ ไม่มี free fluid ในช่องท้อง fascia ไม่ขาด",
+      "report": "Heterogeneous collection ขนาดราว 15 x 9 cm ใน subcutaneous plane ระหว่าง flap กับ fascia มีลักษณะหมุนวน ไม่มี free fluid ในช่องท้อง fascia ไม่ขาด || ลักษณะหมุนวนบ่งว่ายังเลือดออกอยู่",
       "imageUrl": "",
       "abnormal": true
     },
@@ -149,7 +149,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "Sinus tachycardia 130/min ไม่มี S1Q3T3 ไม่มี right heart strain ไม่มี ischemic change ไม่สนับสนุนว่า PE เป็นสาเหตุ",
+      "report": "Sinus tachycardia 130/min ไม่มี S1Q3T3 ไม่มี right heart strain ไม่มี ischemic change || ไม่สนับสนุนว่า PE เป็นสาเหตุ",
       "imageUrl": "",
       "abnormal": true
     }

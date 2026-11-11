@@ -107,7 +107,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "Film มือและปลายแขนขวา",
-      "report": "Transmetacarpal amputation ผ่าน shaft ของ metacarpal 2 ถึง 5 แบบ comminuted, radius กับ ulna ปกติ มี radio-opaque debris ใน soft tissue การแตกละเอียดเป็นช่วงยาวคือ finding ที่ทำนายว่า replantation จะไม่สำเร็จ",
+      "report": "Transmetacarpal amputation ผ่าน shaft ของ metacarpal 2 ถึง 5 แบบ comminuted, radius กับ ulna ปกติ มี radio-opaque debris ใน soft tissue || การแตกละเอียดเป็นช่วงยาวคือ finding ที่ทำนายว่า replantation จะไม่สำเร็จ",
       "imageUrl": "",
       "abnormal": true
     },

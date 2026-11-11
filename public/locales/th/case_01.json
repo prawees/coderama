@@ -75,7 +75,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "AF with slow ventricular response 35/min, scooped ST depression (reverse tick) และ PVC บ่อย เข้าได้กับ digoxin toxicity",
+      "report": "AF with slow ventricular response 35/min, scooped ST depression (reverse tick) และ PVC บ่อย || เข้าได้กับ digoxin toxicity",
       "imageUrl": "",
       "abnormal": true
     },

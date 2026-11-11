@@ -162,7 +162,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "Sinus bradycardia 50/min, QRS 92 ms, QTc 430 ms ไม่มี Brugada pattern ไม่มี terminal R ใน aVR ไม่สนับสนุนว่ากินยาที่ block sodium channel ร่วมด้วย",
+      "report": "Sinus bradycardia 50/min, QRS 92 ms, QTc 430 ms ไม่มี Brugada pattern ไม่มี terminal R ใน aVR || ไม่สนับสนุนว่ากินยาที่ block sodium channel ร่วมด้วย",
       "imageUrl": "",
       "abnormal": true
     },
@@ -171,7 +171,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CXR portable",
-      "report": "Patchy airspace opacity ที่ฐานปอดทั้งสองข้าง เข้าได้กับ aspiration หรือ non-cardiogenic pulmonary edema จาก naloxone หัวใจขนาดปกติ ไม่มี pneumothorax",
+      "report": "Patchy airspace opacity ที่ฐานปอดทั้งสองข้าง หัวใจขนาดปกติ ไม่มี pneumothorax || เข้าได้กับ aspiration หรือ non-cardiogenic pulmonary edema จาก naloxone",
       "imageUrl": "",
       "abnormal": true
     }

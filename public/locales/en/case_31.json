@@ -16,13 +16,13 @@
     "gcs": { "value": 12, "abnormal": true }
   },
   "exam": [
-    { "id": "ga1", "system": "General appearance", "finding": "Pale, floppy and lethargic between episodes, then screaming and inconsolable during them. Lethargy out of proportion to the apparent illness is a recognised and frequently misread presentation of intussusception", "abnormal": true },
+    { "id": "ga1", "system": "General appearance", "finding": "Pale, floppy and lethargic between episodes, then screaming and inconsolable during them || Lethargy out of proportion to the apparent illness is a recognised and frequently misread presentation of intussusception", "abnormal": true },
     { "id": "hent1", "system": "HENT", "finding": "Sunken anterior fontanelle, dry mucous membranes, no tears when crying, no neck stiffness, tympanic membranes normal, throat clear", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 178/min, capillary refill 4 seconds centrally, weak peripheral pulses, cool hands and feet to the wrists and ankles", "abnormal": true },
-    { "id": "rs1", "system": "Respiratory", "finding": "Clear chest, tachypnoeic without recession or grunting, which suggests compensation for metabolic acidosis rather than a primary respiratory problem", "abnormal": true },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear chest, tachypnoeic without recession or grunting || This suggests compensation for metabolic acidosis rather than a primary respiratory problem", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft between episodes with a palpable sausage-shaped mass in the right upper quadrant and an empty right iliac fossa (Dance's sign). Tender during episodes with guarding. Bowel sounds high-pitched. No hernia in either groin, testes normal", "abnormal": true },
-    { "id": "skin1", "system": "Skin", "finding": "Pale and mottled with reduced turgor and skin tenting over the abdomen. No purpura. Look specifically for Henoch-Schonlein purpura, which can cause a pathological lead point", "abnormal": true },
-    { "id": "cns1", "system": "Neurological", "finding": "GCS 12, floppy, reduced spontaneous movement, no focal deficit, anterior fontanelle sunken rather than bulging, which argues against meningitis", "abnormal": true }
+    { "id": "skin1", "system": "Skin", "finding": "Pale and mottled with reduced turgor and skin tenting over the abdomen. No purpura || Look specifically for Henoch-Schonlein purpura, which can cause a pathological lead point", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 12, floppy, reduced spontaneous movement, no focal deficit, anterior fontanelle sunken rather than bulging || This argues against meningitis", "abnormal": true }
   ],
   "investigations": [
     { "id": "us1", "kind": "imaging", "category": "Imaging", "name": "Abdominal ultrasound", "report": "Target sign in the right upper quadrant with a 3.2 cm diameter bowel-within-bowel appearance, and a pseudokidney sign on longitudinal view. No free fluid, no visible pathological lead point. Doppler shows preserved flow in the intussusceptum, which favours viable bowel. Ultrasound has sensitivity and specificity approaching 100% in trained hands and is the investigation of choice.", "imageUrl": "", "abnormal": true },

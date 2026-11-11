@@ -32,7 +32,7 @@
     "nodes": {
       "start": {
         "vitals": { "bp": "80/50", "hr": 185, "o2": "96%" },
-        "narrative": "ECG confirms SVT. The patient is hypotensive (80/50) and symptomatic (dizzy, diaphoretic). This indicates an UNSTABLE tachycardia according to ACLS guidelines.",
+        "narrative": "Sudden palpitations, a very fast regular pulse, blood pressure 80/50, dizzy and sweating. What comes first?",
         "options": [
           { "id": "opt1", "text": "Synchronized Cardioversion (50-100J)", "targetNode": "correct_cardioversion", "requiredRank": "R1" },
           { "id": "opt2", "text": "Push Adenosine 6mg IV rapid push", "targetNode": "wrong_adenosine", "requiredRank": "Intern" },

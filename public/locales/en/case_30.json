@@ -16,13 +16,13 @@
     "gcs": { "value": 15, "abnormal": false }
   },
   "exam": [
-    { "id": "ga1", "system": "General appearance", "finding": "Alert, in pain, frightened, deceptively well-looking. Early paraquat poisoning looks far less serious than it is, and this appearance misleads clinicians into under-triaging", "abnormal": true },
+    { "id": "ga1", "system": "General appearance", "finding": "Alert, in pain, frightened, deceptively well-looking || Early paraquat poisoning looks far less serious than it is, and this appearance misleads clinicians into under-triaging", "abnormal": true },
     { "id": "hent1", "system": "HENT", "finding": "Extensive ulceration of the tongue, palate and posterior pharynx with a white pseudomembrane developing. Drooling because swallowing is too painful. Voice hoarse. Airway patent but the pharyngeal oedema needs watching", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Mild sinus tachycardia, blood pressure normal at present, capillary refill 2 seconds, no murmur", "abnormal": true },
-    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, saturations 97% on room air. This is the crucial window: the lungs are currently normal and progressive fibrosis develops over the following 5 to 14 days", "abnormal": false },
+    { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, saturations 97% on room air || This is the crucial window: the lungs are currently normal and progressive fibrosis develops over the following 5 to 14 days", "abnormal": false },
     { "id": "abd1", "system": "Abdomen", "finding": "Epigastric tenderness, repeated vomiting, no peritonism, bowel sounds present, no evidence of perforation", "abnormal": true },
     { "id": "skin1", "system": "Skin", "finding": "Chemical burns to the lips and chin where liquid spilled, staining on the fingers and shirt, warm and well perfused peripherally", "abnormal": true },
-    { "id": "cns1", "system": "Neurological", "finding": "GCS 15, fully orientated and able to participate in decisions about her own care. This matters, because everything that follows depends on her being able to understand it", "abnormal": false }
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 15, fully orientated and able to participate in decisions about her own care || This matters, because everything that follows depends on her being able to understand it", "abnormal": false }
   ],
   "investigations": [
     { "id": "urine1", "kind": "lab", "category": "Bedside", "name": "Urine dithionite test", "value": "Dark blue", "unit": "-", "normalRange": "No colour change", "abnormal": true, "report": "Sodium dithionite added to urine turns blue in the presence of paraquat, and the depth of colour reflects the concentration. A cheap bedside test that confirms the diagnosis within minutes and carries prognostic weight. A dark blue result indicates a large ingestion." },

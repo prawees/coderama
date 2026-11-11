@@ -16,13 +16,13 @@
     "gcs": { "value": 13, "abnormal": true }
   },
   "exam": [
-    { "id": "ga1", "system": "General appearance", "finding": "Toxic, agitated, sweating, in pain that is grossly out of proportion to the visible skin changes. Pain far exceeding what the skin explains is the single most important early sign and it appears before anything looks bad", "abnormal": true },
+    { "id": "ga1", "system": "General appearance", "finding": "Toxic, agitated, sweating, in pain that is grossly out of proportion to the visible skin changes || Pain far exceeding what the skin explains is the single most important early sign and it appears before anything looks bad", "abnormal": true },
     { "id": "hent1", "system": "HENT", "finding": "Mildly icteric sclerae from underlying cirrhosis, dry mucous membranes, no oral lesions, no neck stiffness", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 134/min, hypotensive at 78/42, warm peripheries with a bounding pulse and a wide pulse pressure, typical of early distributive septic shock", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoeic at 32/min compensating for metabolic acidosis, clear breath sounds, no crackles", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Moderate ascites and splenomegaly consistent with known cirrhosis, non-tender, no peritonism", "abnormal": true },
-    { "id": "skin1", "system": "Skin", "finding": "Right shin with a small healing laceration surrounded by dusky violaceous discolouration extending to the knee, three tense haemorrhagic bullae, skin anaesthesia over a 10 cm patch, crepitus on deep palpation, and a woody hard feel to the subcutaneous tissue. The border is indistinct rather than sharply demarcated, unlike cellulitis", "abnormal": true },
-    { "id": "cns1", "system": "Neurological", "finding": "GCS 13 (E3V4M6), confused from sepsis, no focal deficit. Cutaneous anaesthesia over the affected area from destruction of superficial nerves is an early and highly specific sign", "abnormal": true }
+    { "id": "skin1", "system": "Skin", "finding": "Right shin with a small healing laceration surrounded by dusky violaceous discolouration extending to the knee, three tense haemorrhagic bullae, skin anaesthesia over a 10 cm patch, crepitus on deep palpation, and a woody hard feel to the subcutaneous tissue || The border is indistinct rather than sharply demarcated, unlike cellulitis", "abnormal": true },
+    { "id": "cns1", "system": "Neurological", "finding": "GCS 13 (E3V4M6), confused, no focal deficit. The skin over the affected area is numb || The confusion is from sepsis. Cutaneous anaesthesia from destruction of superficial nerves is an early and highly specific sign", "abnormal": true }
   ],
   "investigations": [
     { "id": "lric1", "kind": "lab", "category": "Scoring", "name": "LRINEC score components", "value": "CRP 340, WBC 22.4, Hb 10.8, Na 128, creatinine 2.4, glucose 210. Score 11", "unit": "-", "normalRange": "Score <6 low risk", "abnormal": true, "report": "Score of 11 indicates high risk. A low LRINEC score does not exclude necrotising fasciitis and has caused fatal delays. The score supports a clinical suspicion, it never overrules one." },

@@ -162,7 +162,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "Sinus tachycardia 122/min peaked T สูงที่ V2 ถึง V4 เข้าได้กับ hyperkalemia QRS ปกติ ไม่มี ischemic change",
+      "report": "Sinus tachycardia 122/min peaked T สูงที่ V2 ถึง V4 QRS ปกติ ไม่มี ischemic change || peaked T เข้าได้กับ hyperkalemia",
       "imageUrl": "",
       "abnormal": true
     },

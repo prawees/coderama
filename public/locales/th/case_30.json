@@ -49,7 +49,7 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Alert, in pain, frightened, deceptively well-looking. Early paraquat poisoning looks far less serious than it is, and this appearance misleads clinicians into under-triaging",
+      "finding": "Alert, in pain, frightened, deceptively well-looking || Early paraquat poisoning looks far less serious than it is, and this appearance misleads clinicians into under-triaging",
       "abnormal": true
     },
     {
@@ -67,7 +67,7 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Clear breath sounds, saturations 97% on room air. This is the crucial window: the lungs are currently normal and progressive fibrosis develops over the following 5 to 14 days",
+      "finding": "Clear breath sounds, saturations 97% on room air || This is the crucial window: the lungs are currently normal and progressive fibrosis develops over the following 5 to 14 days",
       "abnormal": false
     },
     {
@@ -85,7 +85,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 15, fully orientated and able to participate in decisions about her own care. This matters, because everything that follows depends on her being able to understand it",
+      "finding": "GCS 15, fully orientated and able to participate in decisions about her own care || This matters, because everything that follows depends on her being able to understand it",
       "abnormal": false
     }
   ],
@@ -139,7 +139,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CXR (baseline)",
-      "report": "ปอดใส หัวใจขนาดปกติ เป็น film baseline ไว้เปรียบเทียบ opacity แบบ reticular แล้วรวมเป็นปื้นมักเริ่มเห็นตั้งแต่วันที่ 5",
+      "report": "ปอดใส หัวใจขนาดปกติ || เป็น film baseline ไว้เปรียบเทียบ opacity แบบ reticular แล้วรวมเป็นปื้นมักเริ่มเห็นตั้งแต่วันที่ 5",
       "imageUrl": "",
       "abnormal": false
     },
@@ -148,7 +148,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "ประเมินการส่องกล้อง upper GI",
-      "report": "เลื่อนไปในช่วงเฉียบพลัน คาดว่ามีแผลในปากคอและหลอดอาหารกว้าง ส่องกล้องเร็วเพิ่มความเสี่ยงทะลุและไม่เปลี่ยนการรักษา",
+      "report": "เลื่อนไปในช่วงเฉียบพลัน || คาดว่ามีแผลในปากคอและหลอดอาหารกว้าง ส่องกล้องเร็วเพิ่มความเสี่ยงทะลุและไม่เปลี่ยนการรักษา",
       "imageUrl": "",
       "abnormal": true
     }

@@ -2,10 +2,10 @@ cc: ล้มหมดสติทันทีระหว่างรอคล�
 bg: ครรภ์ที่ 3 GA 39+4 สัปดาห์ อยู่ใน active labour ปากมดลูกเปิด 8 cm ได้ oxytocin เร่งคลอด เจาะถุงน้ำคร่ำเมื่อ 11 นาทีก่อน บอกว่ารู้สึกหนาวและกลัวขึ้นมาทันที แล้วชักครู่หนึ่งและหมดสติ ความรู้สึกว่ากำลังจะเกิดเรื่องร้ายก่อนล้มพบในเคสส่วนใหญ่ และมักเป็นสัญญาณเตือนเดียว ประกาศ obstetric emergency ตอน 03:14 น.
 i.coag1: Fulminant DIC fibrinogen ที่ร่วงจาก baseline ตอนตั้งครรภ์ 4 ถึง 6 g/L เหลือต่ำกว่า 0.5 ในไม่กี่นาที เกือบจำเพาะต่อ AFE ในบรรดาภาวะวิกฤตทางสูติกรรม
 i.abg1: Profound mixed acidosis ร่วมกับ severe hypoxemia
-i.echo1: RV โตมาก บีบตัวแย่ septum โป่งเข้า LV LV เล็กและเลือดเข้าไม่พอ ไม่มี pericardial effusion รูปแบบ RV failure นี้นำการรักษา ต้องใช้ vasopressor และ pulmonary vasodilator และแปลว่าการ load fluid หนักจะทำให้แย่ลง
+i.echo1: RV โตมาก บีบตัวแย่ septum โป่งเข้า LV LV เล็กและเลือดเข้าไม่พอ ไม่มี pericardial effusion || รูปแบบ RV failure นี้นำการรักษา ต้องใช้ vasopressor และ pulmonary vasodilator และแปลว่าการ load fluid หนักจะทำให้แย่ลง
 i.hb1: ลดเร็วจาก PPH บนภาวะ coagulopathy เต็มรูปแบบ
 iv.hb1: 10.4 แล้วลดเหลือ 6.2 g/dL ใน 25 นาที
-i.ecg1: Sinus tachycardia 146/min, right axis deviation, S1Q3T3 และ T inversion V1 ถึง V4 acute right heart strain ดูจาก EKG อย่างเดียวแยกจาก massive PE ไม่ได้
+i.ecg1: Sinus tachycardia 146/min, right axis deviation, S1Q3T3 และ T inversion V1 ถึง V4 || Acute right heart strain ดูจาก EKG อย่างเดียวแยกจาก massive PE ไม่ได้
 i.ca1: Hypocalcemia จากให้เลือดปริมาณมากที่มี citrate calcium จำเป็นทั้งต่อการแข็งตัวของเลือดและการบีบตัวของหัวใจ และถูกลืมซ้ำแล้วซ้ำเล่าระหว่าง massive transfusion
 req1.l: ประกาศ obstetric emergency ดันมดลูกไปทางซ้าย airway และ O2
 req1.c: ประกาศ emergency ดันมดลูก ให้ O2

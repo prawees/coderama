@@ -62,13 +62,13 @@
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Sinus tachycardia at 168/min post arrest, weak central pulses, capillary refill 5 seconds, cold peripheries. In hypothermia, pulses are hard to feel and you must check for a full minute before declaring arrest",
+      "finding": "Sinus tachycardia at 168/min post arrest, weak central pulses, capillary refill 5 seconds, cold peripheries || In hypothermia, pulses are hard to feel and you must check for a full minute before declaring arrest",
       "abnormal": true
     },
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Widespread coarse crackles in all zones, poor chest expansion, wheeze, oxygen saturations 82% on 15 L/min via mask. Surfactant washout, not water in the lungs, is what impairs gas exchange",
+      "finding": "Widespread coarse crackles in all zones, poor chest expansion, wheeze, oxygen saturations 82% on 15 L/min via mask || Surfactant washout, not water in the lungs, is what impairs gas exchange",
       "abnormal": true
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 6 (E1V2M3), flaccid tone, no seizure activity at present, pupils sluggish. Neurological prognosis in drowning is decided by hypoxic time and cannot be assessed reliably for 72 hours, particularly while hypothermic",
+      "finding": "GCS 6 (E1V2M3), flaccid tone, no seizure activity at present, pupils sluggish || Neurological prognosis in drowning is decided by hypoxic time and cannot be assessed reliably for 72 hours, particularly while hypothermic",
       "abnormal": true
     }
   ],
@@ -118,7 +118,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CXR portable",
-      "report": "Diffuse perihilar และ basal airspace opacity ทั้งสองข้าง เข้าได้กับ aspiration และ pulmonary edema, ET tube อยู่เหนือ carina 1 cm ต้องดึงออก 1.5 cm มี gastric distension ไม่มี pneumothorax ไม่มี rib fracture",
+      "report": "Diffuse perihilar และ basal airspace opacity ทั้งสองข้าง ET tube อยู่เหนือ carina 1 cm มี gastric distension ไม่มี pneumothorax ไม่มี rib fracture || เข้าได้กับ aspiration และ pulmonary edema ET tube ลึกไป ต้องดึงออก 1.5 cm",
       "imageUrl": "",
       "abnormal": true
     },
@@ -149,7 +149,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "Sinus tachycardia 166/min, QTc ยาว 480 ms มี Osborn J wave ที่ inferior และ lateral leads เข้าได้กับ hypothermia หัวใจที่เย็นไวต่อการกระตุ้น จับและเคลื่อนย้ายเด็กเบาๆ",
+      "report": "Sinus tachycardia 166/min, QTc ยาว 480 ms มี Osborn J wave ที่ inferior และ lateral leads || เข้าได้กับ hypothermia หัวใจที่เย็นไวต่อการกระตุ้น จับและเคลื่อนย้ายเด็กเบาๆ",
       "imageUrl": "",
       "abnormal": true
     }

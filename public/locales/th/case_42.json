@@ -68,7 +68,7 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Ineffective irregular respiration during tonic phases, saturations 84%, coarse crackles suggesting aspiration, chest wall rigidity",
+      "finding": "Ineffective irregular respiration during tonic phases, saturations 84%, coarse crackles, chest wall rigidity || The crackles suggest aspiration",
       "abnormal": true
     },
     {
@@ -80,13 +80,13 @@
     {
       "id": "skin1",
       "system": "Skin",
-      "finding": "Cyanosed centrally, diaphoretic, a small palpable subcutaneous nodule over the left forearm which may represent a cysticercus, no rash or petechiae, no needle marks",
+      "finding": "Cyanosed centrally, diaphoretic, a small palpable subcutaneous nodule over the left forearm, no rash or petechiae, no needle marks || The nodule may be a cysticercus",
       "abnormal": true
     },
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 3 with continuous convulsive activity. Pupils 5 mm and unreactive during the seizure. After 30 minutes the motor activity may become subtle or stop entirely while electrical seizure continues, which is non-convulsive status and is easily mistaken for a post-ictal state",
+      "finding": "GCS 3 with continuous convulsive activity. Pupils 5 mm and unreactive during the seizure || After 30 minutes the motor activity may become subtle or stop entirely while electrical seizure continues, which is non-convulsive status and is easily mistaken for a post-ictal state",
       "abnormal": true
     }
   ],
@@ -129,7 +129,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CT brain ไม่ฉีดสี",
-      "report": "Calcified lesion เล็กๆ หลายจุดในสมองทั้งสองซีก มี ring-enhancing lesion หนึ่งจุดที่ left parietal มี edema รอบๆ เข้าได้กับ neurocysticercosis หลายระยะ ไม่มีเลือดออก ไม่มี midline shift",
+      "report": "Calcified lesion เล็กๆ หลายจุดในสมองทั้งสองซีก มี ring-enhancing lesion หนึ่งจุดที่ left parietal มี edema รอบๆ ไม่มีเลือดออก ไม่มี midline shift || เข้าได้กับ neurocysticercosis หลายระยะ",
       "imageUrl": "",
       "abnormal": true
     },
@@ -160,7 +160,7 @@
       "kind": "imaging",
       "category": "Neurophysiology",
       "name": "EEG",
-      "report": "มี epileptiform discharge ต่อเนื่องที่ left parietal หลังหยุดชักให้เห็นแล้ว ยืนยันว่ายังมี non-convulsive status ถ้าไม่มี EEG คนไข้จะถูกคิดว่าอยู่ใน post-ictal และไม่ได้รักษาไปหลายชั่วโมง",
+      "report": "มี epileptiform discharge ต่อเนื่องที่ left parietal หลังหยุดชักให้เห็นแล้ว || ยืนยันว่ายังมี non-convulsive status ถ้าไม่มี EEG คนไข้จะถูกคิดว่าอยู่ใน post-ictal และไม่ได้รักษาไปหลายชั่วโมง",
       "imageUrl": "",
       "abnormal": true
     }

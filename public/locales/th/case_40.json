@@ -62,7 +62,7 @@
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Atrial fibrillation at 168/min with a wide pulse pressure of 156/58, bounding pulses, third heart sound, bibasal crackles indicating high output cardiac failure",
+      "finding": "Atrial fibrillation at 168/min with a wide pulse pressure of 156/58, bounding pulses, third heart sound, bibasal crackles || The third heart sound and the crackles indicate high output cardiac failure",
       "abnormal": true
     },
     {
@@ -118,7 +118,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "AF with rapid ventricular response 168/min ไม่มี ischemic ST change, AF เจอใน thyrotoxicosis 10 ถึง 35% และเป็นอาการนำที่พบบ่อยในวัยนี้",
+      "report": "AF with rapid ventricular response 168/min ไม่มี ischemic ST change || AF เจอใน thyrotoxicosis 10 ถึง 35% และเป็นอาการนำที่พบบ่อยในวัยนี้",
       "imageUrl": "",
       "abnormal": true
     },

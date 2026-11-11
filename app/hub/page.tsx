@@ -25,7 +25,7 @@ import { GuideTracker } from "@/components/game/GuideTracker";
 import { ShareSheet } from "@/components/game/ShareSheet";
 import { DoctorPC } from "@/components/game/DoctorPC";
 import { FortuneModal } from "@/components/game/LuckyModal";
-import { profileCard } from "@/lib/shareSpecs";
+import { profileCard, photoCaptions } from "@/lib/shareSpecs";
 import type { CardSpec } from "@/lib/shareCard";
 import { QuestsModal } from "@/components/game/QuestsModal";
 import { LettersModal, LettersTab } from "@/components/game/LettersModal";
@@ -64,6 +64,9 @@ export default function HubPage() {
   const hydrated = useHydrated();
   const [isQuestsOpen, setIsQuestsOpen] = useState(false);
   const [shareCardSpec, setShareCardSpec] = useState<CardSpec | null>(null);
+  // The share button takes a photo of the scene first: everyone poses, the shutter flashes, then the sheet opens
+  const [sharePhoto, setSharePhoto] = useState<HTMLCanvasElement | null>(null);
+  const [shutter, setShutter] = useState(false);
   const [isLettersOpen, setIsLettersOpen] = useState(false);
   const [lettersTab, setLettersTab] = useState<LettersTab>('letters');
   const patientLog = useERStore((s) => s.patientLog);
@@ -656,6 +659,19 @@ export default function HubPage() {
     addLog,
   });
 
+  const takePhoto = async () => {
+    if (shareCardSpec || shutter) return;
+    audio.playClick();
+    worldApi.current?.pose();
+    await new Promise((r) => setTimeout(r, 520));
+    const image = worldApi.current?.snapshot() ?? null;
+    audio.playTone(1500, "square", 0.03, 0.05);
+    setTimeout(() => audio.playTone(900, "square", 0.04, 0.05), 70);
+    setShutter(true);
+    setTimeout(() => setShutter(false), 160);
+    setSharePhoto(image);
+    setShareCardSpec(profileCard());
+  };
   const myStethoscope = useERStore((s) => s.myStethoscope);
   const playerLook = useMemo(() => playerLookFrom(useERStore.getState().appearance, currentRankId), [currentRankId, myStethoscope]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -744,7 +760,7 @@ export default function HubPage() {
               </div>
               {/* Share: always in reach, because a Story post is how friends find the game */}
               <button
-                onClick={() => { audio.playClick(); setShareCardSpec(profileCard()); }}
+                onClick={takePhoto}
                 className="pointer-events-auto shrink-0 ml-auto cozy-btn cozy-btn-sun px-2.5 py-1.5 flex items-center gap-1 text-[15px] leading-none"
                 data-testid="hud-share"
                 aria-label="แชร์สตอรี่ IG"
@@ -896,7 +912,14 @@ export default function HubPage() {
         </div>
       )}
 
-      {shareCardSpec && <ShareSheet spec={shareCardSpec} onClose={() => setShareCardSpec(null)} filename={`code-rama-day-${currentDay}.png`} />}
+      {shutter && <div className="fixed inset-0 z-[290] bg-white pointer-events-none" data-testid="shutter" />}
+      {shareCardSpec && (
+        <ShareSheet spec={shareCardSpec} onClose={() => { setShareCardSpec(null); setSharePhoto(null); }} filename={`code-rama-day-${currentDay}.png`}
+          photo={sharePhoto ? {
+            image: sharePhoto, minutes: timeOfDay,
+            captions: photoCaptions({ day: currentDay, place: currentMap === 'AMBULANCE_BAY' ? 'ลานหน้าตึก' : LOCATION_NAMES[phase].th, minutes: timeOfDay, rain: rainy, onShift }),
+          } : undefined} />
+      )}
       <AnimatePresence>
         {isQuestsOpen && <QuestsModal onClose={() => setIsQuestsOpen(false)} onOpenCasebook={() => { setIsQuestsOpen(false); useERStore.getState().markGuide('ev:casebook'); setLettersTab('casebook'); setIsLettersOpen(true); }} />}
         {isLettersOpen && <LettersModal initialTab={lettersTab} onClose={() => setIsLettersOpen(false)} />}

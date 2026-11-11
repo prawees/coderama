@@ -4,7 +4,7 @@ i.hb1: Severe acute anemia Hb ตอนฝากครรภ์ 10.4 g/dL แป
 i.fib1: Fibrinogen ต่ำกว่า 2 g/L ใน PPH ทำนายได้แรงว่าจะเลือดออกรุนแรงขึ้น ตอนตั้งครรภ์ fibrinogen ปกติขึ้นเป็นสองเท่า ค่าที่อยู่ในช่วงปกติของคนไม่ท้องก็อันตรายแล้ว
 i.coag2: Dilutional coagulopathy ระยะแรก
 i.bg1: Crossmatch ไว้ 4 unit Rh positive ไม่ต้องให้ anti-D
-i.us1: โพรงมดลูกขยาย มี echogenic material 3 cm เข้าได้กับรกค้างหรือ clot มี free fluid ใน pouch of Douglas ไม่เห็น uterine rupture หรือ inversion
+i.us1: โพรงมดลูกขยาย มี echogenic material 3 cm มี free fluid ใน pouch of Douglas ไม่เห็น uterine rupture หรือ inversion || echogenic material เข้าได้กับรกค้างหรือ clot
 i.lac1: Hemorrhagic shock
 req1.l: ตามคนช่วย เปิด 2 เส้น และวัดปริมาณเลือดที่เสีย
 req1.c: ตามคนช่วย เปิด 2 เส้น ชั่งผ้าอนามัย

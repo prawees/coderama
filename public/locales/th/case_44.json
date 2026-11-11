@@ -74,19 +74,19 @@
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Soft, mildly tender in the right upper quadrant, no rebound, no seatbelt sign, pelvis stable. Blunt abdominal injury from the fall must be excluded separately from the electrical injury",
+      "finding": "Soft, mildly tender in the right upper quadrant, no rebound, no seatbelt sign, pelvis stable || Blunt abdominal injury from the fall must be excluded separately from the electrical injury",
       "abnormal": true
     },
     {
       "id": "skin1",
       "system": "Skin",
-      "finding": "Deep charred contact wound over the right palm (entry) measuring 4 cm, and a similar exit wound over the left heel. Total burn surface area under 3%, which is deceptive. Right forearm is tense, swollen and hard with pain on passive finger extension",
+      "finding": "Deep charred contact wound over the right palm (entry) measuring 4 cm, and a similar exit wound over the left heel. Total burn surface area under 3%. Right forearm is tense, swollen and hard with pain on passive finger extension || The small surface burn is deceptive: the damage is deep",
       "abnormal": true
     },
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 14 (E4V4M6), confused, no focal deficit centrally. Right hand is insensate over the median distribution with weak finger flexion. Peripheral nerve injury is common and may be immediate or delayed by days to weeks",
+      "finding": "GCS 14 (E4V4M6), confused, no focal deficit centrally. Right hand is insensate over the median distribution with weak finger flexion || Peripheral nerve injury is common and may be immediate or delayed by days to weeks",
       "abnormal": true
     }
   ],
@@ -129,7 +129,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "Sinus tachycardia มี ventricular ectopic บ่อย peaked T เข้าได้กับ hyperkalemia ไม่มี ST elevation arrhythmia คือสาเหตุการเสียชีวิตทันทีในไฟดูด ต้อง monitor 24 ชม. หลังโดนไฟแรงสูงหรือหมดสติ",
+      "report": "Sinus tachycardia มี ventricular ectopic บ่อย peaked T ไม่มี ST elevation || peaked T เข้าได้กับ hyperkalemia arrhythmia คือสาเหตุการเสียชีวิตทันทีในไฟดูด ต้อง monitor 24 ชม. หลังโดนไฟแรงสูงหรือหมดสติ",
       "imageUrl": "",
       "abnormal": true
     },
@@ -149,7 +149,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CT head, C-spine และลำตัว",
-      "report": "Right frontal contusion เล็ก ไม่มี mass effect ไม่มี C-spine injury rib 6 ถึง 8 ขวาหัก มี pulmonary contusion เล็กน้อย ไม่มี intra-abdominal injury การตกต้อง work up เป็น blunt trauma ด้วยตัวมันเอง",
+      "report": "Right frontal contusion เล็ก ไม่มี mass effect ไม่มี C-spine injury rib 6 ถึง 8 ขวาหัก มี pulmonary contusion เล็กน้อย ไม่มี intra-abdominal injury || การตกต้อง work up เป็น blunt trauma ด้วยตัวมันเอง",
       "imageUrl": "",
       "abnormal": true
     }

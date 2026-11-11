@@ -1,5 +1,36 @@
 # Handoff, 8 November 2026
 
+## Editor's pass: findings before readings, fair differentials, photo mode (11 November)
+
+An audit of every screen and every case, as an editor and as a clinician would read them.
+
+- **Findings come without their interpretation.** Exam findings and text results (ECG, films, ultrasound) used to
+  state the conclusion ("...which is the combination that signals right ventricular infarction"), which gave the
+  working diagnosis away. Each is now stored as `what was found || what it means`. In play only the finding shows;
+  the reading (the teaching note) opens once the working diagnosis is committed, or at once in a case with no
+  diagnosis step, and the debrief shows both. 177 items were split by hand: `scripts/clinical/split_apply.py` holds
+  every decision (`CUT` where the reading starts at a phrase, `CUSTOM` where the two were interleaved and had to be
+  rewritten) and is safe to rerun; `split_draft.py` is the first-pass helper. Exam text is English (as charted on a
+  Thai ward) and lives in `public/locales/en`; text results are Thai in `scripts/thai/cases/*.txt`.
+- **Fair differentials** (`lib/differentials.ts`). Seven cases skip the diagnosis step because their list is a problem
+  list or the mechanism is plain (drowning, amputation, worried well, electrical injury, major burn, crush, mass
+  casualty). Eight cases had options that were true alongside the answer (retroperitoneal haematoma in the pelvic
+  fracture, health anxiety beside the benign node); those were replaced so every wrong pick is wrong. 37 cases now
+  have the step. **A clinician should read this file**: it is short, and it is where a wrong call would be unfair.
+- **Openings that gave the answer away** rewritten as the bedside picture (case_04 "EKG ยืนยัน SVT", case_05 "Severe
+  asthma exacerbation"). The case library lists story cases by patient and complaint, not the working title that
+  names the diagnosis. An internal note that leaked into an exam finding ("the way case_23 was anxious") is gone.
+- **Photo mode.** The clinic's share button now takes a picture: everyone on screen turns and pops a heart or a
+  star (`WorldApi.pose`), the shutter flashes, and the sheet opens on a polaroid of the scene (`WorldApi.snapshot`,
+  card kind `photo` in `lib/shareCard.ts`) with tape, a film-camera stamp ("DAY 07 08:00") and a caption that can be
+  changed (`photoCaptions` in `lib/shareSpecs.ts`: night shift, rain, ordinary day). The stat card is one tap away.
+- **Small things:** the bullet character in order feedback and the dash used as a minimise icon are gone; two unused
+  files with placeholder text were deleted.
+- **Tested:** `dx.js` now also checks findings without readings, the reading opening on commit, a skipped case and a
+  curated list (24 checks). `ONLY=luck` in `requests.js` checks the photo, the caption change and the stat card.
+- **Still for a clinician:** the reading notes themselves, the eight curated lists, and whether any remaining finding
+  is too leading. Search a case's text for ` || ` to see where each split falls.
+
 ## Defib pads in the cold open (10 November)
 
 Players kept hitting the shock button by accident: it appeared where they were already tapping CPR.

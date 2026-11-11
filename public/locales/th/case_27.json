@@ -56,13 +56,13 @@
     {
       "id": "hent1",
       "system": "HENT",
-      "finding": "No scleral icterus, no pallor, no cervical or supraclavicular lymphadenopathy, no oral lesions, mild pharyngeal erythema consistent with reflux",
+      "finding": "No scleral icterus, no pallor, no cervical or supraclavicular lymphadenopathy, no oral lesions, mild pharyngeal erythema || Consistent with reflux",
       "abnormal": false
     },
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Regular rate and rhythm, normal heart sounds, no murmur, blood pressure mildly elevated at 138/86 consistent with white coat effect and evening alcohol",
+      "finding": "Regular rate and rhythm, normal heart sounds, no murmur, blood pressure mildly elevated at 138/86 || Consistent with white coat effect and evening alcohol",
       "abnormal": true
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 15, fully orientated, no focal deficit. He is not anxious in the way case_23 was anxious. He is transactional: he believes screening is a purchasable good and he is prepared to pay for the best version of it",
+      "finding": "GCS 15, fully orientated, no focal deficit. Calm and businesslike rather than anxious || He is transactional: he believes screening is a purchasable good and he is prepared to pay for the best version of it",
       "abnormal": false
     }
   ],
@@ -132,7 +132,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "Whole-body MRI (คนไข้ขอ)",
-      "report": "ไม่ได้ทำ ผู้ใหญ่ไม่มีอาการราว 30 ถึง 40% มี incidental finding อย่างน้อยหนึ่งอย่างใน MRI ทั้งตัว ส่วนใหญ่ไม่ร้าย แต่การตรวจต่อเป็นทอดๆ ที่ตามมามีความเสี่ยงทางกายที่วัดได้ และไม่มีหลักฐานว่าลด mortality ในผู้ใหญ่ไม่มีอาการที่ความเสี่ยงปกติ",
+      "report": "ไม่ได้ทำ || ผู้ใหญ่ไม่มีอาการราว 30 ถึง 40% มี incidental finding อย่างน้อยหนึ่งอย่างใน MRI ทั้งตัว ส่วนใหญ่ไม่ร้าย แต่การตรวจต่อเป็นทอดๆ ที่ตามมามีความเสี่ยงทางกายที่วัดได้ และไม่มีหลักฐานว่าลด mortality ในผู้ใหญ่ไม่มีอาการที่ความเสี่ยงปกติ",
       "imageUrl": "",
       "abnormal": false
     },
@@ -142,7 +142,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CT abdomen (คนไข้ขอ)",
-      "report": "ไม่ได้ทำ effective dose ราว 8 mSv ไม่มี indication คัดกรอง ไม่มีอาการให้สืบค้น",
+      "report": "ไม่ได้ทำ || Effective dose ราว 8 mSv ไม่มี indication คัดกรอง ไม่มีอาการให้สืบค้น",
       "imageUrl": "",
       "abnormal": false
     }

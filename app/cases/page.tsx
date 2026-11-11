@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { patientFor } from "@/lib/patients";
 import { useRouter } from "next/navigation";
 import { CASE_DATA } from "@/lib/caseIndex";
 import { listLocalCases, deleteLocalCase, exportCaseFile, importCaseFile, listCloudCases, StoredCase } from "@/lib/customCases";
@@ -24,7 +25,9 @@ export default function CaseLibraryPage() {
 
   useEffect(() => { setMine(listLocalCases()); }, []);
   useEffect(() => { if (tab === "shared" && shared === null) listCloudCases().then(setShared); }, [tab, shared]);
-  const story = useMemo(() => Object.entries<any>(CASE_DATA).map(([id, c]) => ({ id, title: c.title, cc: c.chiefComplaint })), []);
+  // Story cases are listed as the patient and the complaint. The working title names the diagnosis, which would
+  // spoil the working-diagnosis step for anyone practising.
+  const story = useMemo(() => Object.entries<any>(CASE_DATA).map(([id, c]) => { const who = patientFor(id); return { id, title: who ? `${who.name.th} ${who.age.th}` : c.title, cc: c.chiefComplaint }; }), []);
 
   return (
     <div className="h-[100dvh] sm:h-full cozy-night text-pixel-text font-pixel flex flex-col p-2 gap-2" data-testid="case-library">
@@ -97,6 +100,7 @@ export default function CaseLibraryPage() {
           {tab === "story" && story.map((c) => (
             <div key={c.id} className="rounded-[4px] border-2 bg-[#fff6e3] border-[#e7d3a8] p-2" data-testid="story-case">
               <p className="text-[17px] leading-tight">{c.title}</p>
+              {c.cc && <p className="text-[14px] leading-snug text-[#86522e] mt-0.5">{c.cc}</p>}
               <div className="flex gap-1.5 mt-1.5">
                 <button onClick={() => router.push(`/simulator/play/${c.id}?practice=1`)} className="cozy-btn cozy-btn-leaf px-2.5 py-1 text-[15px] leading-none" data-testid={`practice-${c.id}`}>ฝึก</button>
                 <button onClick={() => router.push(`/designer?template=${c.id}`)} className="cozy-btn px-2.5 py-1 text-[15px] leading-none">คัดลอกไปแก้</button>

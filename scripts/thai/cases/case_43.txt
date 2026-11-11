@@ -3,7 +3,7 @@ bg: มาแผนกนี้ครั้งที่ 4 ใน 6 สัปด�
 i.records1: การดูประวัติเป็นงานทาง clinical ไม่ใช่การจับผิด ยืนยันว่าเขามี opioid use disorder ซึ่งคือการวินิจฉัยจริง และคือสิ่งที่ต้องรักษา
 iv.records1: ใบสั่ง opioid 31 ใบ จากแพทย์ 9 คน ใน 4 เดือน
 i.ua1: Negative แทบตัด renal colic ออก ซึ่งเป็นการวินิจฉัยที่เขียนไว้ในการมาสองครั้งก่อน
-i.xr1: Degenerative change เล็กน้อยที่ L4-L5 ไม่ต่างจาก film เมื่อ 14 เดือนก่อน ไม่มี fracture ไม่มี lytic lesion ไม่มี disc space แคบที่บ่งว่าติดเชื้อ การทำ imaging ใน non-specific low back pain ที่ไม่มี red flag ไม่ได้ทำให้ outcome ดีขึ้น และมักเจอ finding ที่ทำให้คนไข้เชื่อหนักขึ้นว่ากระดูกเสียหาย
+i.xr1: Degenerative change เล็กน้อยที่ L4-L5 ไม่ต่างจาก film เมื่อ 14 เดือนก่อน ไม่มี fracture ไม่มี lytic lesion ไม่มี disc space แคบที่บ่งว่าติดเชื้อ || การทำ imaging ใน non-specific low back pain ที่ไม่มี red flag ไม่ได้ทำให้ outcome ดีขึ้น และมักเจอ finding ที่ทำให้คนไข้เชื่อหนักขึ้นว่ากระดูกเสียหาย
 i.cbc1: ปกติ ไม่สนับสนุน vertebral osteomyelitis หรือ discitis ซึ่งเป็นการวินิจฉัยที่ห้ามพลาดในคนที่มีประวัติใช้ยาฉีด
 i.cows1: ตอนนี้ไม่มี withdrawal ที่สำคัญ เกี่ยวเพราะการเริ่ม buprenorphine ต้องได้คะแนนเกิน 12 เริ่มตอนนี้จะกระตุ้น withdrawal
 req1.l: ประเมิน red flag ให้ดีก่อนตัดสินเรื่องยา

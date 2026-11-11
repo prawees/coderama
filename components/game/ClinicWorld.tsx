@@ -43,6 +43,10 @@ export interface WorldApi {
   emote: (who: string, kind: T.Emote) => void;
   sparkle: (who: string) => void;
   hold: (who: string, seconds: number) => void;
+  /** Everyone on screen stops and smiles for a photo */
+  pose: () => void;
+  /** A picture of what the player is looking at right now (the game view only, no buttons) */
+  snapshot: () => HTMLCanvasElement | null;
 }
 
 interface ClinicWorldProps {
@@ -1027,6 +1031,30 @@ function createEngine(
     emote: showEmote,
     sparkle: (who) => { const a = actorById(who); if (a) burst(a.sprite.x, a.sprite.y - 14); },
     hold: (who, s) => { const a = actorById(who); if (a) { a.hold = s; a.path = []; } },
+    pose: () => {
+      const kinds: T.Emote[] = ["heart", "note", "star"];
+      [player, cat, ...npcActors.values()].filter(Boolean).forEach((a, i) => {
+        a!.hold = 3; a!.path = [];
+        if (a!.id !== "cat") a!.dir = "down";
+        showEmote(a!.id, a!.id === "cat" ? "heart" : kinds[i % kinds.length]);
+      });
+    },
+    snapshot: () => {
+      try {
+        // Draw a fresh frame without the guide arrow, then copy it out before the buffer is cleared
+        const arrow = marker?.visible;
+        if (marker) marker.visible = false;
+        app.render();
+        const out = document.createElement("canvas");
+        out.width = app.canvas.width;
+        out.height = app.canvas.height;
+        out.getContext("2d")!.drawImage(app.canvas, 0, 0);
+        if (marker && arrow) marker.visible = true;
+        return out;
+      } catch {
+        return null;
+      }
+    },
   };
 
   // Read-only hook for automated playtests: where everyone is on screen, in CSS pixels

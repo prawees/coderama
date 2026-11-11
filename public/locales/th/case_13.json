@@ -68,7 +68,7 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Coarse crackles throughout both lungs from bronchorrhoea, wheeze, shallow ineffective respirations at 8/min. This is what kills, the patient drowns in their own secretions",
+      "finding": "Coarse crackles throughout both lungs from bronchorrhoea, wheeze, shallow ineffective respirations at 8/min || This is what kills, the patient drowns in their own secretions",
       "abnormal": true
     },
     {
@@ -118,7 +118,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "Sinus bradycardia 42/min, 1st degree AV block, QTc 510 ms QT ยาวใน OP poisoning ทำนาย torsades ในภายหลัง ต้องให้ Mg และแก้ electrolyte",
+      "report": "Sinus bradycardia 42/min, 1st degree AV block, QTc 510 ms || QT ยาวใน OP poisoning ทำนาย torsades ในภายหลัง ต้องให้ Mg และแก้ electrolyte",
       "imageUrl": "",
       "abnormal": true
     },
@@ -149,7 +149,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CXR portable",
-      "report": "Diffuse airspace opacity ทั้งสองข้าง เข้าได้กับ aspiration และ bronchorrhea, ET tube อยู่เหนือ carina 3 cm",
+      "report": "Diffuse airspace opacity ทั้งสองข้าง ET tube อยู่เหนือ carina 3 cm || เข้าได้กับ aspiration และ bronchorrhea",
       "imageUrl": "",
       "abnormal": true
     }

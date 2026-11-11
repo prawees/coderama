@@ -68,13 +68,13 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Reduced air entry at the right base with stony dull percussion, consistent with pleural effusion from plasma leak",
+      "finding": "Reduced air entry at the right base with stony dull percussion || Consistent with pleural effusion from plasma leak",
       "abnormal": true
     },
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Tender hepatomegaly 3 cm below the costal margin, shifting dullness, no rebound, severe abdominal pain is a dengue warning sign",
+      "finding": "Tender hepatomegaly 3 cm below the costal margin, shifting dullness, no rebound, severe abdominal pain || Severe abdominal pain is a dengue warning sign",
       "abnormal": true
     },
     {
@@ -140,7 +140,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "US ข้างเตียง",
-      "report": "Right pleural effusion, GB wall หนา 8 mm, ascites เล็กน้อย, IVC collapse มี plasma leak และ intravascular depletion",
+      "report": "Right pleural effusion, GB wall หนา 8 mm, ascites เล็กน้อย, IVC collapse || มี plasma leak และ intravascular depletion",
       "imageUrl": "",
       "abnormal": true
     },

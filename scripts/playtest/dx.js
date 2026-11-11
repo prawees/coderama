@@ -80,6 +80,34 @@ const check = (ok, what, extra = '') => { console.log(`${ok ? 'ok  ' : 'FAIL'} $
   await tab('รักษา').click();
   check(!(await p.getByTestId('dx-gate').count()), 'the VF arrest is treated straight away');
 
+  // Findings come without their interpretation until the diagnosis is committed
+  await p.goto(`${BASE}/simulator/play/case_26?practice=1`);
+  await p.getByTestId('patient-card').waitFor();
+  await tab('PE').click(); await p.getByTestId('exam-all').click(); await p.waitForTimeout(300);
+  const pe = await p.getByTestId('exam-tab').innerText();
+  check(/jugular venous pressure/.test(pe) && !/right ventricular infarction/.test(pe), 'the exam shows what was found, not what it means');
+  await p.getByRole('button', { name: 'แล็บ' }).click();
+  await p.getByTestId('order-ecg2').click().catch(() => {}); await p.waitForTimeout(200);
+  const v4r = await p.getByTestId('result-ecg2').innerText().catch(() => '');
+  check(/V4R/.test(v4r) && !/RV infarction/.test(v4r), 'a text result shows the tracing, not the conclusion', v4r.replace(/\n/g, ' / ').slice(0, 80));
+  check(!(await p.getByTestId('reading').count()), 'no teaching notes before the diagnosis');
+  await tab('รักษา').click();
+  await pickDx(p, 'case_26', true);
+  await tab('PE').click(); await p.waitForTimeout(200);
+  check(/right ventricular infarction/.test(await p.getByTestId('exam-tab').innerText()), 'the reading opens once the diagnosis is committed');
+  await p.screenshot({ path: `${OUT}/8_reading_open.png` });
+
+  // Cases whose list is a problem list skip the step, and a curated list offers only wrong look-alikes
+  await p.goto(`${BASE}/simulator/play/case_19?practice=1`);
+  await p.getByTestId('patient-card').waitFor();
+  await tab('รักษา').click();
+  check(!(await p.getByTestId('dx-gate').count()), 'the drowning case goes straight to treatment');
+  await p.goto(`${BASE}/simulator/play/case_14?practice=1`);
+  await p.getByTestId('patient-card').waitFor();
+  await tab('PE').click(); await p.getByTestId('exam-all').click(); await tab('รักษา').click(); await p.waitForTimeout(200);
+  const pelvis = await p.getByTestId('dx-option').allInnerTexts();
+  check(pelvis.length === 5 && !pelvis.some((t) => /Retroperitoneal haematoma/.test(t)) && pelvis.some((t) => /haemothorax/i.test(t)), 'the pelvic fracture offers no true co-diagnosis', pelvis.join(' | '));
+
   check(errors.length === 0, 'no page errors', errors.join(' '));
   await b.close();
   console.log(fails ? `\n${fails} check(s) FAILED` : '\nall checks passed');

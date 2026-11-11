@@ -1,11 +1,11 @@
 cc: ร้องกรีดเป็นพักๆ ชักขาขึ้น ตอนนี้ซึม
 bg: เด็ก 9 เดือนที่แข็งแรงดีมาก่อน น้ำหนัก 8.5 kg 18 ชม. ที่ผ่านมาร้องไห้รุนแรงเป็นพักๆ ครั้งละ 2 ถึง 3 นาที ทุก 15 ถึง 20 นาที ระหว่างร้องชักเข่าขึ้นและตัวซีด ช่วงแรกระหว่างพักยังปกติ แต่ 4 ชม. หลังตัวอ่อนและปลุกยากแม้ช่วงที่ไม่ร้อง อาเจียน 2 ครั้ง ตอนนี้มีสีน้ำดี แม่เล่าว่าผ้าอ้อมมีอุจจาระสีแดงคล้ำเหมือนวุ้นหนึ่งครั้ง สัปดาห์ก่อนเป็นไข้หวัด ซึ่งมักเป็นตัวกระตุ้นจาก lymphoid hypertrophy ที่กลายเป็น lead point
-i.us1: Target sign ที่ RUQ เส้นผ่านศูนย์กลาง 3.2 cm ลำไส้ซ้อนในลำไส้ มี pseudokidney sign ในแนวยาว ไม่มี free fluid ไม่เห็น pathological lead point Doppler ยังมี flow ใน intussusceptum บ่งว่าลำไส้น่าจะยังไม่ตาย U/S มี sensitivity และ specificity เกือบ 100% ในมือคนที่ฝึกมา และเป็น investigation ที่เลือก
+i.us1: Target sign ที่ RUQ เส้นผ่านศูนย์กลาง 3.2 cm ลำไส้ซ้อนในลำไส้ มี pseudokidney sign ในแนวยาว ไม่มี free fluid ไม่เห็น pathological lead point Doppler ยังมี flow ใน intussusceptum || บ่งว่าลำไส้น่าจะยังไม่ตาย U/S มี sensitivity และ specificity เกือบ 100% ในมือคนที่ฝึกมา และเป็น investigation ที่เลือก
 i.poc1: Hypoglycemia เด็กเล็กใช้ glycogen หมดเร็วเมื่อไม่ได้กิน และมีส่วนทำให้ซึม แก้เร็ว
 i.gas1: Metabolic acidosis lactate สูงจาก hypoperfusion และอาจมีลำไส้ขาดเลือด base deficit มากทำให้กังวลว่าลำไส้ยังรอดไหม
 i.na1: Hyponatremia และ hypokalemia จากอาเจียนและ third space loss
 i.cbc1: Leukocytosis ไม่จำเพาะ แต่ถ้าสูงมากร่วมกับ acidosis ทำให้กังวลว่าลำไส้ขาดเลือดหรือทะลุ
-i.axr1: ลมในลำไส้น้อยที่ RUQ มี soft tissue mass effect ไม่มี free air ใต้กะบังลม ตัดลำไส้ทะลุออกได้ ทำ reduction ต่อได้ film ท้องปกติไม่เคยตัด intussusception จึงใช้ตัดลำไส้ทะลุ ไม่ใช่ใช้วินิจฉัย
+i.axr1: ลมในลำไส้น้อยที่ RUQ มี soft tissue mass effect ไม่มี free air ใต้กะบังลม || ตัดลำไส้ทะลุออกได้ ทำ reduction ต่อได้ film ท้องปกติไม่เคยตัด intussusception จึงใช้ตัดลำไส้ทะลุ ไม่ใช่ใช้วินิจฉัย
 req1.l: จับได้ว่าช็อก และแก้น้ำตาล
 req1.d0: ทำ U/S ท้องก่อนอย่างอื่น
 req1.f0: เด็กซึมและช็อก resuscitate กับแก้น้ำตาลมาก่อน

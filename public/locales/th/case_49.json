@@ -50,7 +50,7 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Fully alert, dusty, cold, calm and cooperative, complaining mainly of thirst. The mismatch between how well a crush victim looks immediately after extrication and what is about to happen to their potassium is the central trap of this presentation",
+      "finding": "Fully alert, dusty, cold, calm and cooperative, complaining mainly of thirst || The mismatch between how well a crush victim looks immediately after extrication and what is about to happen to their potassium is the central trap of this presentation",
       "abnormal": true
     },
     {
@@ -62,7 +62,7 @@
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Sinus tachycardia at 118/min with occasional ventricular ectopics, borderline hypotension, capillary refill 4 seconds in the arms. The ectopics are the warning that reperfusion potassium is already reaching the heart",
+      "finding": "Sinus tachycardia at 118/min with occasional ventricular ectopics, borderline hypotension, capillary refill 4 seconds in the arms || The ectopics are the warning that reperfusion potassium is already reaching the heart",
       "abnormal": true
     },
     {
@@ -107,7 +107,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead",
-      "report": "Peaked tented T ที่ V2 ถึง V5 P wave แบน QRS 132 ms เปลี่ยนเป็น sine wave แล้ว arrest ได้ในไม่กี่นาที ต้องติด monitor ก่อนยกออก ไม่ใช่หลัง",
+      "report": "Peaked tented T ที่ V2 ถึง V5 P wave แบน QRS 132 ms || เปลี่ยนเป็น sine wave แล้ว arrest ได้ในไม่กี่นาที ต้องติด monitor ก่อนยกออก ไม่ใช่หลัง",
       "imageUrl": "",
       "abnormal": true
     },

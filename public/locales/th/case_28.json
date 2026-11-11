@@ -50,7 +50,7 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Rigid, sweating profusely, fully conscious and terrified throughout every spasm. Consciousness is preserved in tetanus, which means every one of these spasms is experienced in full",
+      "finding": "Rigid, sweating profusely, fully conscious and terrified throughout every spasm || Consciousness is preserved in tetanus, which means every one of these spasms is experienced in full",
       "abnormal": true
     },
     {
@@ -62,7 +62,7 @@
     {
       "id": "cvs1",
       "system": "Cardiovascular",
-      "finding": "Tachycardia at 132/min with wide blood pressure swings between 186/104 and 92/50 over minutes. Autonomic instability appears in the second week and is now the leading cause of death in treated tetanus",
+      "finding": "Tachycardia at 132/min with wide blood pressure swings between 186/104 and 92/50 over minutes || Autonomic instability appears in the second week and is now the leading cause of death in treated tetanus",
       "abnormal": true
     },
     {
@@ -74,19 +74,19 @@
     {
       "id": "abd1",
       "system": "Abdomen",
-      "finding": "Board-like rigidity of the abdominal wall without tenderness on palpation and with normal bowel sounds. Rigidity without peritonism is the point: this is muscle, not peritoneum",
+      "finding": "Board-like rigidity of the abdominal wall without tenderness on palpation and with normal bowel sounds || Rigidity without peritonism is the point: this is muscle, not peritoneum",
       "abnormal": true
     },
     {
       "id": "skin1",
       "system": "Skin",
-      "finding": "Healed puncture wound on the right sole with surrounding induration and a small amount of purulent discharge. Profuse diaphoresis. Ten percent of tetanus cases never have an identifiable wound",
+      "finding": "Healed puncture wound on the right sole with surrounding induration and a small amount of purulent discharge. Profuse diaphoresis || Ten percent of tetanus cases never have an identifiable wound",
       "abnormal": true
     },
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 15 throughout. Opisthotonic posturing during spasms triggered by light touch and by the sound of a trolley. Reflexes brisk, no focal deficit, no meningism. This is the clinical picture that separates it from meningitis",
+      "finding": "GCS 15 throughout. Opisthotonic posturing during spasms triggered by light touch and by the sound of a trolley. Reflexes brisk, no focal deficit, no meningism || This is the clinical picture that separates it from meningitis",
       "abnormal": true
     }
   ],

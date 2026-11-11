@@ -119,7 +119,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CXR",
-      "report": "ปอดปกติ หัวใจขนาดปกติ ไม่มี consolidation ไม่มี indication ไม่มีไข้ ไม่หอบเร็ว ไม่ desat ตรวจปอดไม่มี focal sign โอกาสเป็น pneumonia ต่ำกว่า 1% รังสีกับค่าใช้จ่ายเสียเปล่า",
+      "report": "ปอดปกติ หัวใจขนาดปกติ ไม่มี consolidation || ไม่มี indication ไม่มีไข้ ไม่หอบเร็ว ไม่ desat ตรวจปอดไม่มี focal sign โอกาสเป็น pneumonia ต่ำกว่า 1% รังสีกับค่าใช้จ่ายเสียเปล่า",
       "imageUrl": "",
       "abnormal": false
     },

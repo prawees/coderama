@@ -3,10 +3,10 @@ bg: U/D epilepsy ตั้งแต่อายุ 19 กิน phenytoin ยา
 i.poc1: ต่ำก้ำกึ่ง เจาะน้ำตาลในคนไข้ชักทุกคนภายในนาทีแรก hypoglycemia คือสาเหตุที่แก้ได้เร็วที่สุด และพลาดเพราะทุกคนรีบหยิบ benzodiazepine ก่อน
 i.phen1: ตรวจไม่พบ เข้าได้กับขาดยา 8 วัน การไม่กินยาและยาขาดเป็นตัวกระตุ้น status ที่พบบ่อยที่สุดในคนที่เป็น epilepsy อยู่เดิม
 i.gas1: Severe mixed acidosis lactate สูงมากจากกล้ามเนื้อทำงาน lactate ระดับนี้หลังชักเกร็งเป็นเรื่องที่คาดได้และหายเร็ว ตัวมันเองไม่ได้บอกว่ามี sepsis หรือ ischemia
-i.ct1: Calcified lesion เล็กๆ หลายจุดในสมองทั้งสองซีก มี ring-enhancing lesion หนึ่งจุดที่ left parietal มี edema รอบๆ เข้าได้กับ neurocysticercosis หลายระยะ ไม่มีเลือดออก ไม่มี midline shift
+i.ct1: Calcified lesion เล็กๆ หลายจุดในสมองทั้งสองซีก มี ring-enhancing lesion หนึ่งจุดที่ left parietal มี edema รอบๆ ไม่มีเลือดออก ไม่มี midline shift || เข้าได้กับ neurocysticercosis หลายระยะ
 i.na1: ปกติ ตัดตัวกระตุ้นทาง metabolic ที่พบบ่อยออก
 i.ck1: Rhabdomyolysis จากกล้ามเนื้อทำงานนาน เริ่ม fluid และ monitor renal function
-i.eeg1: มี epileptiform discharge ต่อเนื่องที่ left parietal หลังหยุดชักให้เห็นแล้ว ยืนยันว่ายังมี non-convulsive status ถ้าไม่มี EEG คนไข้จะถูกคิดว่าอยู่ใน post-ictal และไม่ได้รักษาไปหลายชั่วโมง
+i.eeg1: มี epileptiform discharge ต่อเนื่องที่ left parietal หลังหยุดชักให้เห็นแล้ว || ยืนยันว่ายังมี non-convulsive status ถ้าไม่มี EEG คนไข้จะถูกคิดว่าอยู่ใน post-ictal และไม่ได้รักษาไปหลายชั่วโมง
 req1.l: Airway, O2, น้ำตาล และจับเวลา ทั้งหมดใน 60 วินาทีแรก
 req1.c: Nasal airway, O2, DTX และคนจับเวลา
 req1.d0: รอให้หยุดชักเอง

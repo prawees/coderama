@@ -66,8 +66,12 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
 - Rank: always read it with `storyRank(day, lifetimeXp)` in `lib/erStore.ts`, never from XP during the campaign.
 - Screen layout: the clinic's top is status rows, then one message slot (pager, toasts, dialogue); the bottom is only
   actions. Keep new notices in that slot. Calm mode is `lib/calm.ts` (`isCalm`, `useCalm`, class `calm` on <html>).
-- Case reasoning: the working-diagnosis gate in `CaseEngineClient.tsx` (`dxGate`, `pickDx`) uses each case's
-  `diagnoses` (first = answer, 4+ = a differential). Bots that play cases use `scripts/playtest/workup.js`.
+- Case reasoning: the working-diagnosis gate in `CaseEngineClient.tsx` (`dxGate`, `pickDx`) takes its options from
+  `lib/differentials.ts` (answer first; which cases skip the step; curated look-alikes). Exam findings and text
+  results are written `finding || reading`: the reading shows after the diagnosis is committed. The splits are kept in
+  `scripts/clinical/split_apply.py`. Bots that play cases use `scripts/playtest/workup.js`.
+- Photo mode: `WorldApi.pose` and `WorldApi.snapshot` in `ClinicWorld.tsx`, card kind `photo` in `lib/shareCard.ts`,
+  captions in `lib/shareSpecs.ts`, the photo/card switch in `ShareSheet.tsx`.
 - Characters: `lib/npcMore.ts` (extra lines, first meetings with a welcome gift). Stethoscope studio:
   `components/game/StethoscopeStudio.tsx`, saved as `myStethoscope`, drawn by `lib/playerLook.ts`.
 - Growth: `lib/invite.ts` (cold-open dare links `/?vf=&cpr=&n=`, `shareLink`), `components/game/FeedbackModal.tsx` with
@@ -83,6 +87,7 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
   and is built with `python3 scripts/thai/cases.py build case_09` (or `build all`). Never hand-edit
   `public/locales/th/*.json`, the build overwrites it. `python3 scripts/thai/cases.py check` reports stale keys.
   A dose change means editing both the English JSON and the Thai `.txt`, then building.
+  In an exam finding or a text result, put what was found first, then ` || `, then what it means.
 - **Story text.** Thai lines are in `scripts/thai/story/dayNN.txt`, applied with `scripts/thai/story_patch.py`.
   The patch refuses changes to `[IF_FLAG:X]` tags. Structural edits (a day's `cases` list, new nodes) go straight
   into both `lib/StoryManager.ts` and `lib/StoryManagerTH.ts`, then run `npm run validate`.

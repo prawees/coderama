@@ -6,7 +6,7 @@ i.lft1: ตับบาดเจ็บร่วมกับ coagulopathy ระ�
 i.cr1: AKI ร่วมกับ hyperkalemia จาก rhabdomyolysis และ hypernatremia จากเสียน้ำ thiazide มีส่วนด้วย
 i.abg1: Metabolic acidosis, lactate เกิน 4 ใน exertional heat stroke ทำนาย outcome ไม่ดี
 i.poc1: Hypoglycemia จาก glycogen ในตับหมด แก้ก่อนจะโทษว่า coma มาจากความร้อนอย่างเดียว
-i.ecg1: Sinus tachycardia 146/min, peaked T ที่ V2 ถึง V4 จาก hyperkalemia ไม่มี ischemic ST elevation, QTc 420 ms
+i.ecg1: Sinus tachycardia 146/min, peaked T ที่ V2 ถึง V4 ไม่มี ischemic ST elevation, QTc 420 ms || peaked T จาก hyperkalemia
 req1.l: วัด core temperature จริง และเริ่มลดอุณหภูมิในนาทีแรกๆ
 req1.c: Rectal probe ถอดเสื้อผ้า เริ่ม cooling
 req1.d0: ส่ง CT brain ก่อนตัด stroke ออก

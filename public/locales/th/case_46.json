@@ -51,7 +51,7 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Extreme agitation with apparently undiminished strength against four people, incoherent shouting, drenched in sweat, no response to verbal de-escalation. This combination of extreme agitation, hyperthermia and exhaustion is the presentation that precedes sudden cardiac arrest in custody",
+      "finding": "Extreme agitation with apparently undiminished strength against four people, incoherent shouting, drenched in sweat, no response to verbal de-escalation || This combination of extreme agitation, hyperthermia and exhaustion is the presentation that precedes sudden cardiac arrest in custody",
       "abnormal": true
     },
     {
@@ -69,7 +69,7 @@
     {
       "id": "rs1",
       "system": "Respiratory",
-      "finding": "Tachypnoeic at 36/min with shallow ineffective breaths. Saturations 92% despite hyperventilation. Prolonged prone restraint mechanically limits chest and diaphragmatic excursion, and this is the mechanism of restraint-associated death",
+      "finding": "Tachypnoeic at 36/min with shallow ineffective breaths. Saturations 92% despite hyperventilation || Prolonged prone restraint mechanically limits chest and diaphragmatic excursion, and this is the mechanism of restraint-associated death",
       "abnormal": true
     },
     {
@@ -87,7 +87,7 @@
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 13 but unassessable in detail because of the agitation. No lateralising weakness observed during struggling. Moving all four limbs. Any patient with an unexplained agitated delirium has a head injury and a metabolic cause until both are excluded",
+      "finding": "GCS 13 but unassessable in detail because of the agitation. No lateralising weakness observed during struggling. Moving all four limbs || Any patient with an unexplained agitated delirium has a head injury and a metabolic cause until both are excluded",
       "abnormal": true
     }
   ],
@@ -152,7 +152,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "EKG 12 lead (หลังให้ยานอนหลับ)",
-      "report": "Sinus tachycardia 152/min มี peaked T และ QRS 118 ms จาก hyperkalemia และ acidosis ไม่มี ST elevation, QTc 470 ms",
+      "report": "Sinus tachycardia 152/min มี peaked T และ QRS 118 ms ไม่มี ST elevation, QTc 470 ms || peaked T กับ QRS ที่กว้างมาจาก hyperkalemia และ acidosis",
       "imageUrl": "",
       "abnormal": true
     },
@@ -161,7 +161,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CT brain (หลังให้ยาและ stable)",
-      "report": "ไม่มีเลือดออกในสมอง ไม่มี contusion ไม่มีกะโหลกร้าวแม้มีแผลถลอกที่หน้า ปกติ ทำเพราะตัดประวัติศีรษะกระแทกระหว่างควบคุมตัวทาง clinical ไม่ได้",
+      "report": "ไม่มีเลือดออกในสมอง ไม่มี contusion ไม่มีกะโหลกร้าวแม้มีแผลถลอกที่หน้า || ปกติ ทำเพราะตัดประวัติศีรษะกระแทกระหว่างควบคุมตัวทาง clinical ไม่ได้",
       "imageUrl": "",
       "abnormal": false
     }

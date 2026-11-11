@@ -5,7 +5,7 @@ i.osm1: Osmolar gap สูงจาก alcohol ที่ยังไม่ถู
 i.meth1: ใช้ยืนยันได้ แต่ รพ. ไทยส่วนใหญ่ตรวจไม่ได้ และมักใช้เวลาหลายชั่วโมง ห้ามรอ รักษาตาม acidosis, osmolar gap และอาการทางตา
 i.lac1: Lactate กับ ketone รวมกันอธิบาย anion gap 38 ได้แค่ส่วนน้อย ที่เหลือคือ formic acid และเลขคณิตนี้คือการวินิจฉัย
 i.poc1: ปกติ ตัด DKA ออกจากสาเหตุของ acidosis
-i.ct1: Low attenuation สมมาตรที่ putamen ทั้งสองข้าง มี hemorrhagic change เริ่มต้น bilateral putaminal necrosis แทบจะ pathognomonic ของ methanol poisoning และทำนาย parkinsonian syndrome ถาวร
+i.ct1: Low attenuation สมมาตรที่ putamen ทั้งสองข้าง มี hemorrhagic change เริ่มต้น || Bilateral putaminal necrosis แทบจะ pathognomonic ของ methanol poisoning และทำนาย parkinsonian syndrome ถาวร
 req1.l: จับ pattern ให้ได้ anion gap acidosis รุนแรงร่วมกับตาบอด
 req1.c: Anion gap, osmolar gap และ visual acuity
 req1.d0: รักษาเป็นเมาค้างด้วย IV fluid กับยาแก้อาเจียน

@@ -50,7 +50,7 @@
     {
       "id": "ga1",
       "system": "General appearance",
-      "finding": "Toxic, agitated, sweating, in pain that is grossly out of proportion to the visible skin changes. Pain far exceeding what the skin explains is the single most important early sign and it appears before anything looks bad",
+      "finding": "Toxic, agitated, sweating, in pain that is grossly out of proportion to the visible skin changes || Pain far exceeding what the skin explains is the single most important early sign and it appears before anything looks bad",
       "abnormal": true
     },
     {
@@ -80,13 +80,13 @@
     {
       "id": "skin1",
       "system": "Skin",
-      "finding": "Right shin with a small healing laceration surrounded by dusky violaceous discolouration extending to the knee, three tense haemorrhagic bullae, skin anaesthesia over a 10 cm patch, crepitus on deep palpation, and a woody hard feel to the subcutaneous tissue. The border is indistinct rather than sharply demarcated, unlike cellulitis",
+      "finding": "Right shin with a small healing laceration surrounded by dusky violaceous discolouration extending to the knee, three tense haemorrhagic bullae, skin anaesthesia over a 10 cm patch, crepitus on deep palpation, and a woody hard feel to the subcutaneous tissue || The border is indistinct rather than sharply demarcated, unlike cellulitis",
       "abnormal": true
     },
     {
       "id": "cns1",
       "system": "Neurological",
-      "finding": "GCS 13 (E3V4M6), confused from sepsis, no focal deficit. Cutaneous anaesthesia over the affected area from destruction of superficial nerves is an early and highly specific sign",
+      "finding": "GCS 13 (E3V4M6), confused, no focal deficit. The skin over the affected area is numb || The confusion is from sepsis. Cutaneous anaesthesia from destruction of superficial nerves is an early and highly specific sign",
       "abnormal": true
     }
   ],
@@ -118,7 +118,7 @@
       "kind": "imaging",
       "category": "Imaging",
       "name": "CT ขาฉีดสี",
-      "report": "มี gas ตาม deep fascial plane ของ anterior และ lateral compartment, fascia หนาและไม่ enhance, มี fat stranding สนับสนุน necrotizing fasciitis imaging มีประโยชน์เฉพาะเมื่อไม่ทำให้ผ่าตัดช้า และ scan ปกติก็ไม่ได้ตัดการวินิจฉัย",
+      "report": "มี gas ตาม deep fascial plane ของ anterior และ lateral compartment, fascia หนาและไม่ enhance, มี fat stranding || สนับสนุน necrotizing fasciitis imaging มีประโยชน์เฉพาะเมื่อไม่ทำให้ผ่าตัดช้า และ scan ปกติก็ไม่ได้ตัดการวินิจฉัย",
       "imageUrl": "",
       "abnormal": true
     },
