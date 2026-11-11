@@ -23,6 +23,7 @@ import { shiftInChapter } from "@/lib/chapters";
 import { teaserAfter } from "@/lib/teasers";
 import { type Challenge, fmtSecs, readChallenge } from "@/lib/invite";
 import { setCalm, useCalm } from "@/lib/calm";
+import { dailyNumber, liveStreak, playedToday, readDaily } from "@/lib/daily";
 
 /** The cold open plays once on a device. After that the title goes straight to the menu. */
 const SEEN_KEY = "coderama.coldOpenSeen";
@@ -41,6 +42,9 @@ export default function RootPage() {
   const cloud = useCloud();
   const [replaying, setReplaying] = useState(false);
   const calm = useCalm();
+  // The case of the day: its number, whether this device has played it, and the streak (read after mount)
+  const [dailyInfo, setDailyInfo] = useState<{ n: number; played: boolean; streak: number } | null>(null);
+  useEffect(() => { const st = readDaily(), n = dailyNumber(); setDailyInfo({ n, played: playedToday(st, n), streak: liveStreak(st, n) }); }, []);
   // A friend's challenge link (/?vf=34&cpr=88&n=...) opens on the cold open, even for someone with a save
   const [challenge, setChallenge] = useState<Challenge | null>(null);
   useEffect(() => { setChallenge(readChallenge(window.location.search)); }, []);
@@ -233,6 +237,18 @@ export default function RootPage() {
                 </div>
               );
             })()}
+            {dailyInfo && (
+              <button onClick={() => { audio.playClick(); router.push('/daily'); }} data-testid="daily-link"
+                className={`cozy-btn ${dailyInfo.played ? '' : 'cozy-btn-sun'} w-full px-3 py-2 flex items-center justify-between gap-2 text-left`}>
+                <span className="leading-tight">
+                  <span className="block text-[21px] leading-none">เคสประจำวัน #{dailyInfo.n}</span>
+                  <span className="block text-[14px] leading-none mt-1 text-[#86522e]">
+                    {dailyInfo.played ? `เล่นแล้ว ติดกัน ${dailyInfo.streak} วัน` : dailyInfo.streak > 0 ? `ยังไม่ได้เล่นวันนี้ ติดกันมา ${dailyInfo.streak} วันแล้ว` : 'ทุกคนได้คนไข้คนเดียวกัน ราว 3 นาที'}
+                  </span>
+                </span>
+                {!dailyInfo.played && <span className="shrink-0 w-2.5 h-2.5 rounded-full bg-[#d95763] animate-pulse" />}
+              </button>
+            )}
             <PixelButton onClick={handleNewGame} variant={hasSave ? "wood" : "primary"} className="w-full py-2 text-2xl" data-testid="new-game">เริ่มใหม่</PixelButton>
             <PixelButton onClick={() => router.push('/cases')} variant="secondary" className="w-full py-1.5 text-xl" data-testid="case-library-link">คลังเคส</PixelButton>
             <PixelButton onClick={() => router.push('/login')} variant="secondary" className="w-full py-1.5 text-xl" data-testid="account-link">

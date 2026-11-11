@@ -1,5 +1,30 @@
 # Handoff, 8 November 2026
 
+## Player's pass: เคสประจำวัน, the case of the day (11 November, later)
+
+What the game lacked as a habit and as a group-chat topic: a reason to open it tomorrow, and one thing everybody
+played today. One mechanic does both.
+
+- **One case a day, the same for everyone** (`lib/daily.ts`). The case comes from the 37 with a working-diagnosis
+  step, in a fixed shuffled order; a new one arrives at midnight Thai time; day 1 is 11 November 2026. It plays like
+  practice (the story save does not move) and is timed.
+- **`/daily`** (`app/daily/page.tsx`) shows today's patient and complaint, the streak, the last seven days as coloured
+  squares, and one button. It needs no save, so a friend who taps a link can play straight away. After playing: the
+  result, a countdown to the next patient, and the ways to pass it on.
+- **Result** (`components/game/DailyResult.tsx`): stars, the clock, whether the diagnosis was right first time, the
+  streak. Kept on the device in `coderama.daily`; only the first finish of the day counts. A player with a story save
+  gets coins once a day (20 plus 10 a star, +50 at a 3 day streak, +150 every 7th day).
+- **Dare link** `/daily?d=12&s=3&t=134&x=1&n=บิ๊ก`: the friend sees "บิ๊กท้าคุณ!" with the result, plays the same
+  patient, and gets a verdict (stars, then the diagnosis, then the clock). An old link says so and offers today's case.
+  Neither the page, the share text nor the Story card names the diagnosis.
+- **Where it shows:** the title menu ("เคสประจำวัน #N", with a dot until today's is played and the streak at stake),
+  and the end-of-shift summary when today's is still waiting. The link preview description mentions it.
+- **Tested:** `scripts/playtest/daily.js` (24 checks: the dare, a visitor with no save, no diagnosis leaked, the dare
+  back, the card, tomorrow, a missed day, coins once with a save, replay pays nothing). It moves the clock by
+  overriding `Date.now`, which is all `lib/daily.ts` reads.
+- **Not built:** a shared leaderboard for the day. Results live on each phone; comparing happens through the links.
+  A real board needs sign-in and server-side checks to be worth trusting, which fits the funded competition idea.
+
 ## Editor's pass: findings before readings, fair differentials, photo mode (11 November)
 
 An audit of every screen and every case, as an editor and as a clinician would read them.

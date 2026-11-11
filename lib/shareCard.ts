@@ -29,7 +29,7 @@ export interface CardPlayer { name: string; rank: string; look: Look }
 export type CardSpec =
   | { kind: "shift"; day: number; phase: Phase; player: CardPlayer; title: string; line: string; saved: number; streak: number;
       treated: number; dx: string[]; chapter?: { title: string; n: number; total: number; position: number; next?: string } }
-  | { kind: "case"; phase: Phase; player: CardPlayer; patient: string; by?: string; quote: string; stars: number; verdict: string;
+  | { kind: "case"; phase: Phase; player: CardPlayer; patient: string; by?: string; quote: string; stars: number; heading?: string; verdict: string;
       vitals: { label: string; value: string; bad?: boolean }[] }
   | { kind: "chapter"; day: number; phase: Phase; player: CardPlayer; host?: Look; title: string; promo?: string; saved: number; stars: number;
       patients: number; type: { title: string; line: string }; chaptersDone: number }
@@ -295,7 +295,7 @@ function drawCase(c: CanvasRenderingContext2D, s: Extract<CardSpec, { kind: "cas
   backdrop(c, s.phase, "night");
   let y = SAFE_TOP;
   plate(c, M, y - 12, CARD_W - M * 2, 144);
-  text(c, "เคสนี้ ถ้าเป็นคุณจะทำไงดี", { x: M, y, w: CARD_W - M * 2, h: 130, size: 96, min: 56, color: SUN, shadow: PLUM, shadowOff: 6, lead: 1.05 });
+  text(c, s.heading ?? "เคสนี้ ถ้าเป็นคุณจะทำไงดี", { x: M, y, w: CARD_W - M * 2, h: 130, size: 96, min: 56, color: SUN, shadow: PLUM, shadowOff: 6, lead: 1.05 });
   y += 150;
 
   // Bedside monitor

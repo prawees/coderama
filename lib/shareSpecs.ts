@@ -52,10 +52,10 @@ const VERDICT = {
   critical: { stars: 0, line: "เคสนี้เรายังทำได้ไม่ดี ฮือ ถ้าเป็นคุณจะทำไงดี" },
 };
 
-export function caseCard(o: { patient: string; by?: string; quote: string; grade: keyof typeof VERDICT; vitals: { label: string; value: string; bad?: boolean }[] }): CardSpec {
+export function caseCard(o: { patient: string; by?: string; quote: string; grade: keyof typeof VERDICT; vitals: { label: string; value: string; bad?: boolean }[]; heading?: string; line?: string }): CardSpec {
   const st = useERStore.getState();
   const v = VERDICT[o.grade];
-  return { kind: "case", phase: phaseForDay(st.currentDay), player: player(), patient: o.patient, by: o.by, quote: o.quote, stars: v.stars, verdict: v.line, vitals: o.vitals };
+  return { kind: "case", phase: phaseForDay(st.currentDay), player: player(), patient: o.patient, by: o.by, quote: o.quote, stars: v.stars, verdict: o.line ?? v.line, vitals: o.vitals, heading: o.heading };
 }
 
 /** The doctor's ID card, available at any point in the game */

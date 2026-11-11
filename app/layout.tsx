@@ -16,7 +16,7 @@ const vt323 = localFont({
 const SITE = process.env.NEXT_PUBLIC_SHARE_URL
   ? (process.env.NEXT_PUBLIC_SHARE_URL.startsWith("http") ? process.env.NEXT_PUBLIC_SHARE_URL : `https://${process.env.NEXT_PUBLIC_SHARE_URL}`)
   : "https://coderama.prawees.com";
-const DESCRIPTION = "เกม ER พิกเซลของ นศพ. ช่วยลุงหัวใจหยุดเต้นให้รอดใน 1 นาที แล้วท้าเพื่อนแข่ง CPR 51 เคสฉุกเฉิน 31 เวร เล่นฟรีบนมือถือ";
+const DESCRIPTION = "เกม ER พิกเซลของ นศพ. มีเคสประจำวันที่ทุกคนได้คนไข้คนเดียวกัน ท้าเพื่อนวินิจฉัยและแข่ง CPR ได้ 51 เคสฉุกเฉิน 31 เวร เล่นฟรีบนมือถือ";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),

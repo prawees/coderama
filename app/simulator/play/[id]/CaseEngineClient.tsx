@@ -2,6 +2,8 @@
 
 import { useEffect, useState, useRef, Suspense } from "react";
 import { differentialFor } from "@/lib/differentials";
+import { dailyCaseId, fmtClock } from "@/lib/daily";
+import { DailyResult } from "@/components/game/DailyResult";
 import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useERStore, storyRank, rankBelow } from "@/lib/erStore";
@@ -43,8 +45,11 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   const searchParams = useSearchParams();
   const instanceId = searchParams.get('instanceId');
   // Practice runs (custom cases, or a story case from the library) never touch the save
-  const practice = !!customCase || searchParams.get('practice') === '1';
-  const home = practice ? '/cases' : '/hub';
+  // The case of the day (lib/daily.ts) plays like practice: nothing in the story save moves, the result is its own
+  const daily = !customCase && searchParams.get('daily') === '1' && params.id === dailyCaseId();
+  const practice = !!customCase || searchParams.get('practice') === '1' || daily;
+  const home = daily ? '/daily' : practice ? '/cases' : '/hub';
+  const openedAt = useRef(Date.now());
 
   const store = useERStore();
   const { activeCases, removeCase, lifetimeXp, language } = store;
@@ -683,7 +688,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                 {patient ? `${patientName} ${patient.age.th}` : caseData.title}
               </p>
               {alias && <span className="shrink-0 cozy-tag !bg-[#cfe6f0] px-1.5 py-0.5 text-[13px] leading-none" data-testid="review-tag">เคสทบทวน</span>}
-              {practice && <span className="shrink-0 cozy-tag !bg-[#ffd66b] px-1.5 py-0.5 text-[13px] leading-none" data-testid="practice-tag">ฝึก</span>}
+              {practice && <span className="shrink-0 cozy-tag !bg-[#ffd66b] px-1.5 py-0.5 text-[13px] leading-none" data-testid="practice-tag">{daily ? 'เคสประจำวัน' : 'ฝึก'}</span>}
               {slipTotal > 0 && (
                 <span className="shrink-0 cozy-tag !bg-[#f6c3c6] px-1.5 py-0.5 text-[13px] leading-none" data-testid="slip-count">{`พลาด ${slipTotal}`}</span>
               )}
@@ -1013,7 +1018,29 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                             </p>
                           );
                         })()}
-                        {patient && (
+                        {daily && patient && (
+                          <DailyResult
+                            stars={grade === 'clean' ? 3 : grade === 'minor' ? 2 : grade === 'poor' ? 1 : 0}
+                            dxFirst={dxPicks.length > 0 && dxPicks[0] === dxAnswer}
+                            openedAt={openedAt.current}
+                            onShareCard={(r, n, streak) => {
+                              const v = nodesMap[startNodeId]?.vitals || currentNode.vitals;
+                              const sys = parseInt(String(v.bp), 10), o2 = parseInt(String(v.o2), 10);
+                              setShareCardSpec(caseCard({
+                                patient: `${patientName} ${patient.age.th}`, by: patient.by.th, quote: patient.quote.th, grade,
+                                heading: `เคสประจำวัน #${n}`,
+                                line: `ใช้เวลา ${fmtClock(r.secs)} นาที ${r.dxFirst ? 'วินิจฉัยถูกตั้งแต่ครั้งแรก' : 'วินิจฉัยแก้ไปหนึ่งรอบ'}${streak > 1 ? ` เล่นติดกัน ${streak} วันแล้ว` : ''} คุณล่ะ`,
+                                vitals: [
+                                  { label: 'HR', value: String(v.hr), bad: v.hr < 50 || v.hr > 120 },
+                                  { label: 'BP', value: String(v.bp), bad: sys < 90 || sys > 180 },
+                                  { label: 'RR', value: String(v.rr), bad: v.rr < 10 || v.rr > 24 },
+                                  { label: 'SpO2', value: String(v.o2), bad: o2 < 94 },
+                                ],
+                              }));
+                            }}
+                          />
+                        )}
+                        {patient && !daily && (
                           <button
                             onClick={() => {
                               audio.playClick();
@@ -1042,7 +1069,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                         >
                           <span className="block text-[21px] leading-none">{LABELS[grade].th}</span>
                           <span className="block text-[15px] leading-none mt-1.5 opacity-90">
-                            {practice ? 'ฝึกซ้อม ไม่นับ XP และไม่กระทบเซฟ' : `+${reward.xp} XP และ ${coins}${supervised ? ' (อาจารย์คุม)' : ''}`}
+                            {daily ? 'กลับไปหน้าเคสประจำวัน' : practice ? 'ฝึกซ้อม ไม่นับ XP และไม่กระทบเซฟ' : `+${reward.xp} XP และ ${coins}${supervised ? ' (อาจารย์คุม)' : ''}`}
                           </span>
                         </button>
                       </>

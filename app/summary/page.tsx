@@ -23,6 +23,7 @@ import { RichText } from "@/components/game/RichText";
 import type { CardSpec } from "@/lib/shareCard";
 import { FeedbackModal, HeartRating } from "@/components/game/FeedbackModal";
 import { ASK_AFTER_DAYS, alreadyAsked, markAsked } from "@/lib/feedback";
+import { dailyNumber, playedToday } from "@/lib/daily";
 
 /** Whoever is looking out for you at this point in the story signs off the day */
 const MENTOR: Record<Phase, string> = { rama1: "bob", korat: "ek", lovely: "kit", rama2: "pim" };
@@ -66,6 +67,8 @@ export default function SummaryPage() {
   // After the first shift and at a few milestones, one tap on a heart opens the feedback form
   const [askFeedback, setAskFeedback] = useState(false);
   const [feedbackRating, setFeedbackRating] = useState(0);
+  // If today's case of the day is still waiting, the end of a shift is a good moment to mention it
+  const [dailyWaiting, setDailyWaiting] = useState(0);
   // Read before the overnight rest refills it: an empty tank means the shift ended in a faint.
   const [fainted] = useState(() => useERStore.getState().energy <= 0);
   const isEndOfEpisode = CHAPTERS.some((c) => c.n > 1 && c.first === currentDay);
@@ -85,6 +88,7 @@ export default function SummaryPage() {
     const b = setTimeout(() => setShowNext(true), 2200);
     const day = Math.max(1, useERStore.getState().currentDay - 1);
     if (ASK_AFTER_DAYS.includes(day) && !alreadyAsked(day)) setAskFeedback(true);
+    if (!playedToday()) setDailyWaiting(dailyNumber());
     return () => { clearTimeout(a); clearTimeout(b); };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -205,6 +209,11 @@ export default function SummaryPage() {
                 >
                   {isEndOfEpisode ? "เก็บกระเป๋า" : "กลับบ้าน"}
                 </PixelButton>
+                {dailyWaiting > 0 && !isEndOfEpisode && (
+                  <button onClick={() => { audio.playClick(); router.push("/daily"); }} className="cozy-btn cozy-btn-sky w-full py-1.5 text-[16px] leading-none" data-testid="summary-daily">
+                    เคสประจำวัน #{dailyWaiting} ยังรออยู่ ลองก่อนนอนไหม
+                  </button>
+                )}
                 <p className="text-center text-[13px] leading-none text-[#86522e]">เซฟแล้ว จะพักก่อนแล้วค่อยกลับมาเล่นต่อก็ได้</p>
               </motion.div>
             )}
