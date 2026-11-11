@@ -77,9 +77,16 @@ const LONG = 'กิตติพิชญ์ภูมิวัฒน';
     check(await p.getByTestId('cold-open-press').count() === 1, 'and never sent back to start over');
     await p.screenshot({ path: `${OUT}/co_2b_too_fast.png` });
     // Then about 110 a minute, a little uneven like real hands, until the shock is ready
+    // Presses are timed against a clock, not by fixed sleeps: a click's own overhead grows when the machine is
+    // busy, and fixed sleeps then drift under 95 a minute, which the game rightly scores as off the rhythm.
     const press = async (until, max) => {
       let n = 0;
-      for (; n < max && !(await p.getByTestId(until).count()); n++) { await p.getByTestId('cold-open-press').click({ force: true }).catch(() => {}); await p.waitForTimeout(n % 2 ? 500 : 560); }
+      const t0 = Date.now();
+      for (; n < max && !(await p.getByTestId(until).count()); n++) {
+        await p.getByTestId('cold-open-press').click({ force: true }).catch(() => {});
+        const due = t0 + (n + 1) * 545 + (n % 2 ? -25 : 25);
+        await p.waitForTimeout(Math.max(0, due - Date.now()));
+      }
       return n;
     };
     const steady = await press('cold-open-pads', 20);
