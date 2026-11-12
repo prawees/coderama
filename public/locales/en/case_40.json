@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Agitated and delirious, drenched in sweat, thin with obvious recent weight loss, warm to touch, restless in the bed", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Bilateral exophthalmos with lid lag and lid retraction, diffusely enlarged smooth goitre with an audible bruit over both lobes, no tracheal deviation, no stridor", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Bilateral exophthalmos with lid lag and lid retraction, diffusely enlarged smooth goitre with an audible bruit over both lobes, no tracheal deviation, no stridor", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Atrial fibrillation at 168/min with a wide pulse pressure of 156/58, bounding pulses, third heart sound, bibasal crackles || The third heart sound and the crackles indicate high output cardiac failure", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoeic at 32/min with fine bibasal crackles from pulmonary congestion, no bronchial breathing or focal consolidation", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Gravid uterus consistent with 22 weeks, fetal heart rate 176 (tachycardic, mirroring the mother), hyperactive bowel sounds with diarrhoea, mild right upper quadrant tenderness from hepatic congestion", "abnormal": true },

@@ -100,7 +100,7 @@ export const fmtClock = (secs: number) => `${Math.floor(secs / 60)}:${String(Mat
 
 /** One line for a result, with no diagnosis in it */
 export function dailyLine(r: DailyResult): string {
-  return `${r.stars} ดาว ใน ${fmtClock(r.secs)} ${r.dxFirst ? "วินิจฉัยถูกตั้งแต่ครั้งแรก" : "วินิจฉัยแก้ไปหนึ่งรอบ"}`;
+  return `${r.stars} ดาว ใน ${fmtClock(r.secs)} ${r.dxFirst ? "Dx ถูกครั้งแรก" : "Dx รอบสอง"}`;
 }
 
 /** A link that dares a friend with today's result: /daily?d=12&s=3&t=134&x=1&n=บิ๊ก */

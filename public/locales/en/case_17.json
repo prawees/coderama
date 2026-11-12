@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Cachectic, hot to touch, drowsy and confused, deep acidotic breathing, unable to follow commands in any language", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Scleral icterus, pale conjunctivae, dry mucous membranes, no neck stiffness, no rash, retinal whitening and a single retinal haemorrhage on fundoscopy", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Scleral icterus, pale conjunctivae, dry mucous membranes, no neck stiffness, no rash, retinal whitening and a single retinal haemorrhage on fundoscopy", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia, bounding then thready pulse, capillary refill 4 seconds, soft systolic flow murmur from anaemia", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Deep sighing Kussmaul respirations at 32/min, bibasal fine crackles, no consolidation || The crackles suggest early acute lung injury", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Tender splenomegaly 4 cm below the costal margin, hepatomegaly 2 cm, no ascites || Handle the spleen gently, splenic rupture is a recognised complication", "abnormal": true },

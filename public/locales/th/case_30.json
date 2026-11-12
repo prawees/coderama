@@ -2,7 +2,7 @@
   "title": "22yo F Paraquat Ingestion",
   "age": "22",
   "sex": "F",
-  "chiefComplaint": "เจ็บปาก อาเจียน หลังกินยาฆ่าหญ้า",
+  "chiefComplaint": "เจ็บปาก อาเจียน 3 hr หลังกินยาฆ่าหญ้า",
   "diagnoses": [
     "Paraquat poisoning",
     "Corrosive ingestion",
@@ -54,7 +54,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Extensive ulceration of the tongue, palate and posterior pharynx with a white pseudomembrane developing. Drooling because swallowing is too painful. Voice hoarse. Airway patent but the pharyngeal oedema needs watching",
       "abnormal": true
     },

@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "In severe distress, restless and unable to find a comfortable position, diaphoretic, describing the worst pain of his life with an abrupt maximal onset", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "No jugular venous distension initially, hoarse voice from recurrent laryngeal nerve stretch, no Horner syndrome, carotid pulses present but the left is weaker than the right", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "No jugular venous distension initially, hoarse voice from recurrent laryngeal nerve stretch, no Horner syndrome, carotid pulses present but the left is weaker than the right", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Blood pressure 178/96 in the right arm and 132/74 in the left, a 46 mmHg differential. Early diastolic murmur at the left sternal edge. Right femoral pulse weak, left femoral pulse absent || The murmur indicates new aortic regurgitation", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, tachypnoeic from pain, no crackles, no pleural rub || Left pleural effusion may develop from haemorrhage into the pleural space", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft with disproportionate periumbilical pain and no tenderness on palpation. No pulsatile mass palpable, bowel sounds present || Pain out of proportion to the examination raises mesenteric malperfusion from the dissection flap", "abnormal": true },

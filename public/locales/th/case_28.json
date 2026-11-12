@@ -2,7 +2,7 @@
   "title": "63yo M Generalised Tetanus",
   "age": "63",
   "sex": "M",
-  "chiefComplaint": "ขากรรไกรแข็ง เกร็งกระตุกทั้งตัวแบบเจ็บปวด",
+  "chiefComplaint": "ขากรรไกรแข็ง 5 d เกร็งกระตุกทั้งตัวแบบเจ็บปวด",
   "diagnoses": [
     "Generalised tetanus",
     "Strychnine poisoning",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Trismus with mouth opening limited to 12 mm, risus sardonicus with fixed grimacing facial muscles, difficulty swallowing saliva, no oropharyngeal abscess or dental source found",
       "abnormal": true
     },

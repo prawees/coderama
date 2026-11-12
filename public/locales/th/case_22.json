@@ -2,7 +2,7 @@
   "title": "41yo M Leptospirosis with Pulmonary Haemorrhage",
   "age": "41",
   "sex": "M",
-  "chiefComplaint": "ไข้ ตัวเหลือง ไอเป็นเลือด",
+  "chiefComplaint": "ไข้ 6 d ตัวเหลือง ไอเป็นเลือด",
   "diagnoses": [
     "Severe leptospirosis (Weil's disease) with pulmonary haemorrhage",
     "Dengue",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Marked conjunctival suffusion without discharge. Scleral icterus, dry lips, no neck stiffness, no eschar found on full skin survey || A red eye with no exudate is close to pathognomonic in the right setting",
       "abnormal": true
     },

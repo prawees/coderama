@@ -2,7 +2,7 @@
   "title": "26yo M Status Epilepticus",
   "age": "26",
   "sex": "M",
-  "chiefComplaint": "ชักต่อเนื่อง 25 นาที",
+  "chiefComplaint": "ชักต่อเนื่อง 25 min",
   "diagnoses": [
     "Convulsive status epilepticus",
     "Neurocysticercosis",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Clenched jaw preventing oral airway insertion, frothy blood-stained saliva, lateral tongue laceration, no head injury palpable, no neck stiffness assessable during the seizure",
       "abnormal": true
     },

@@ -2,7 +2,7 @@
   "title": "9mo M Intussusception",
   "age": "0.75",
   "sex": "M",
-  "chiefComplaint": "ร้องกรีดเป็นพักๆ ชักขาขึ้น ตอนนี้ซึม",
+  "chiefComplaint": "ร้องกรีดเป็นพักๆ ชักขาขึ้น 18 hr ตอนนี้ซึม",
   "diagnoses": [
     "Ileocolic intussusception",
     "Gastroenteritis",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Sunken anterior fontanelle, dry mucous membranes, no tears when crying, no neck stiffness, tympanic membranes normal, throat clear",
       "abnormal": true
     },

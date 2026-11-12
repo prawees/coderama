@@ -1,4 +1,4 @@
-cc: เจ็บหน้าอก หอบเหนื่อยมากหลังมอเตอร์ไซค์ล้ม
+cc: เจ็บหน้าอก หอบเหนื่อยมาก 25 min หลังมอเตอร์ไซค์ล้ม
 bg: มอเตอร์ไซค์ชนกระบะ ความเร็วราว 60 km/h เมื่อ 25 นาทีก่อน ใส่หมวก ไม่สลบ ล้มตะแคงซ้ายกระแทกขอบฟุตบาท กู้ภัยบอกว่าหอบมากขึ้นเรื่อยๆ และ SpO2 ตกระหว่างทางทั้งที่ on NRB mask ไม่มีโรคประจำตัว ไม่มียาประจำ ไม่สูบบุหรี่
 i.us1: Left anterior chest: ไม่มี lung sliding ไม่มี B-lines, barcode sign บน M-mode เจอ lung point ด้านข้าง ไม่มี pericardial effusion ไม่มี free fluid ใน Morison's pouch, splenorenal recess หรือ pelvis || ทำข้างเตียง 90 วินาทีโดยไม่ทำให้ decompress ช้า
 i.cxr1: Left ICD tip ชี้ขึ้น apex ยังเหลือ apical pneumothorax ซ้าย 10% rib 5 และ 6 ซ้ายหัก mediastinum อยู่กลาง ไม่มี hemothorax ปอดส่วนอื่นใส

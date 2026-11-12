@@ -1,4 +1,4 @@
-cc: ผื่นขึ้น หายใจลำบากหลังกินข้าว
+cc: ผื่นขึ้น หายใจลำบาก 20 min หลังกินข้าว
 bg: เพื่อนพามา 20 นาทีหลังกินข้าวผัดกุ้งที่ร้านริมทาง เริ่มคันฝ่ามือ แล้วผื่นลามทั่วตัว แน่นคอ อาเจียน เป็น allergic rhinitis และ asthma เล็กน้อย พ่น salbutamol เดือนละ 1 ถึง 2 ครั้ง ไม่ได้พก adrenaline autoinjector กิน cetirizine 10 mg ที่ร้านแล้วไม่ดีขึ้น LMP 2 สัปดาห์ก่อน
 i.ecg1: Sinus tachycardia 126/min ไม่มี ischemic ST change QTc ปกติ
 i.cxr1: Hyperinflation กะบังลมแบน ไม่มี consolidation, effusion หรือ pneumothorax หัวใจขนาดปกติ

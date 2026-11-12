@@ -211,7 +211,7 @@ export default function SummaryPage() {
                 </PixelButton>
                 {dailyWaiting > 0 && !isEndOfEpisode && (
                   <button onClick={() => { audio.playClick(); router.push("/daily"); }} className="cozy-btn cozy-btn-sky w-full py-1.5 text-[16px] leading-none" data-testid="summary-daily">
-                    เคสประจำวัน #{dailyWaiting} ยังรออยู่ ลองก่อนนอนไหม
+                    Daily Case #{dailyWaiting}
                   </button>
                 )}
                 <p className="text-center text-[13px] leading-none text-[#86522e]">เซฟแล้ว จะพักก่อนแล้วค่อยกลับมาเล่นต่อก็ได้</p>

@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Index patient: 34 year old male, thrown from the bus, cold and grey, GCS 9, obvious deformity of the left thigh || He walked past triage on a stretcher into resus one, and the question is whether he should have", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Facial soot and singed nasal hairs from the tanker fire, hoarse voice, no stridor yet || Nine of the thirty-four casualties have similar airway findings and there are four ventilators available in the whole hospital", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Facial soot and singed nasal hairs from the tanker fire, hoarse voice, no stridor yet || Nine of the thirty-four casualties have similar airway findings and there are four ventilators available in the whole hospital", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardic at 148/min, systolic 76, radial pulse impalpable and femoral pulse weak || Under the START triage system an impalpable radial pulse with a respiratory rate above 30 places him in the immediate (red) category", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Reduced air entry on the left with hyperresonance and tracheal shift || Consistent with a tension pneumothorax. This is treatable in 60 seconds at the door and is the classic thing that gets missed when everyone is counting casualties", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Distended and rigid. Positive eFAST with free fluid in Morison's pouch and the pelvis || He needs the one available operating theatre, and three other red patients also need it", "abnormal": true },

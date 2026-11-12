@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Confused and agitated, soot-covered, oil smeared over the burn surfaces, shivering, in severe pain over the partial thickness areas and none over the full thickness areas", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Singed eyebrows and nasal hairs, soot in the nostrils and oropharynx, hoarse voice, carbonaceous sputum, early facial and lip oedema, no stridor yet || Every one of these predicts airway loss within hours", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Singed eyebrows and nasal hairs, soot in the nostrils and oropharynx, hoarse voice, carbonaceous sputum, early facial and lip oedema, no stridor yet || Every one of these predicts airway loss within hours", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 138/min, blood pressure 96/58, capillary refill 4 seconds in unburnt skin || Hypotension in the first hour after a burn is not from the burn and means you should look for haemorrhage or blast injury", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoeic at 32/min with a circumferential full thickness burn across the chest wall restricting expansion. Coarse crackles and wheeze. Oxygen saturation reads 99% || The saturation is unreliable, because pulse oximetry cannot distinguish carboxyhaemoglobin from oxyhaemoglobin", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, no guarding, no evidence of blast abdominal injury, bowel sounds present, no circumferential abdominal burn compromising ventilation", "abnormal": true },

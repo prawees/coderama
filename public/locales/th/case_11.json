@@ -2,7 +2,7 @@
   "title": "27yo F Ruptured Ectopic Pregnancy",
   "age": "27",
   "sex": "F",
-  "chiefComplaint": "ปวดท้องน้อยทันที แล้วล้มหมดสติ",
+  "chiefComplaint": "ปวดท้องน้อยทันที 2 hr แล้วล้มหมดสติ",
   "diagnoses": [
     "Ruptured ectopic pregnancy",
     "Ruptured ovarian cyst with haemoperitoneum",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Conjunctival pallor, dry mucous membranes, no jaundice, no lymphadenopathy",
       "abnormal": true
     },

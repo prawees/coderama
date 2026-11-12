@@ -2,7 +2,7 @@
   "title": "17yo M Pelvic Fracture Haemorrhage",
   "age": "17",
   "sex": "M",
-  "chiefComplaint": "มอเตอร์ไซค์ชนกระบะ มาถึงช็อก",
+  "chiefComplaint": "มอเตอร์ไซค์ชนกระบะ 30 min ก่อนมา มาถึงช็อก",
   "diagnoses": [
     "Open book pelvic fracture with haemorrhagic shock",
     "Intra-abdominal haemorrhage",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Scalp laceration 8 cm over the left parietal region with active venous bleeding, no midface instability, no CSF rhinorrhoea, cervical collar applied, no haemotympanum",
       "abnormal": true
     },

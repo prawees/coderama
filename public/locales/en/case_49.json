@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Fully alert, dusty, cold, calm and cooperative, complaining mainly of thirst || The mismatch between how well a crush victim looks immediately after extrication and what is about to happen to their potassium is the central trap of this presentation", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Dry mucous membranes, dust in the nose and mouth, no facial injury, no soot or airway burn, cervical collar applied at scene, no neck tenderness", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Dry mucous membranes, dust in the nose and mouth, no facial injury, no soot or airway burn, cervical collar applied at scene, no neck tenderness", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 118/min with occasional ventricular ectopics, borderline hypotension, capillary refill 4 seconds in the arms || The ectopics are the warning that reperfusion potassium is already reaching the heart", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds bilaterally, no chest wall injury, no flail segment, tachypnoeic from acidosis rather than from a chest problem", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, no seatbelt or compression mark, pelvis stable, no evidence of intra-abdominal injury from the collapse", "abnormal": true },

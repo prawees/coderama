@@ -2,7 +2,7 @@
   "title": "45yo M Organophosphate Poisoning",
   "age": "45",
   "sex": "M",
-  "chiefComplaint": "พบหมดสติในไร่มัน น้ำลายฟูมปาก",
+  "chiefComplaint": "พบหมดสติในไร่มัน น้ำลายฟูมปาก 40 min ก่อนมา",
   "diagnoses": [
     "Organophosphate poisoning",
     "Carbamate poisoning",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Pinpoint pupils 1 mm and unreactive, copious frothy oral and nasal secretions requiring continuous suction, lacrimation, airway soiled",
       "abnormal": true
     },

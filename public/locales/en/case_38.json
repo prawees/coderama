@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Pale, jaundiced, drowsy, cachectic with temporal wasting, blood over his shirt and around the mouth, actively retching", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Scleral icterus, marked conjunctival pallor, fetor hepaticus, dried blood in the oropharynx, no dental source of bleeding, airway currently patent but at high aspiration risk", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Scleral icterus, marked conjunctival pallor, fetor hepaticus, dried blood in the oropharynx, no dental source of bleeding, airway currently patent but at high aspiration risk", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 128/min, thready pulse, capillary refill 5 seconds, hyperdynamic circulation typical of cirrhosis, no murmur", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Reduced air entry at the right base with dullness, no frank aspiration signs yet, tachypnoeic || The dull base suggests a small hepatic hydrothorax", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Distended with tense ascites and shifting dullness, caput medusae, splenomegaly 5 cm below the costal margin, non-tender with no rebound || A non-tender abdomen argues against spontaneous bacterial peritonitis for now", "abnormal": true },

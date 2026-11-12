@@ -69,7 +69,7 @@ export default function DailyPage() {
     if (!mine) return;
     audio.playClick();
     const me = hasSave && playerName && playerName !== "Doctor" ? playerName : null;
-    setNote(outcomeNote[await shareLink(`เคสประจำวัน Code Rama #${n} เราได้ ${dailyLine(mine)} มาลองเคสเดียวกันดู`, dailyDareUrl(n, mine, me))]);
+    setNote(outcomeNote[await shareLink(`Code Rama Daily Case #${n} ${dailyLine(mine)}`, dailyDareUrl(n, mine, me))]);
   };
 
   return (
@@ -81,16 +81,15 @@ export default function DailyPage() {
 
       <div className="cozy-panel w-full max-w-sm p-3 flex flex-col gap-2.5">
         <div className="flex items-end justify-between">
-          <h1 className="text-[30px] leading-none">เคสประจำวัน</h1>
+          <h1 className="text-[30px] leading-none">Daily Case</h1>
           <span className="cozy-tag !bg-[#ffd66b] px-2 py-0.5 text-[18px] leading-none" data-testid="daily-number">#{n}</span>
         </div>
-        <p className="text-[15px] leading-snug text-[#86522e]">วันนี้ทุกคนได้คนไข้คนเดียวกัน ใช้เวลาราว 3 นาที ไม่ต้องมีเซฟก็เล่นได้</p>
 
         {dare && (
           <div className="rounded-[4px] border-[3px] border-[#3a2a2f] bg-[#ffd66b] px-2.5 py-2" data-testid="daily-dare-banner">
             {dareToday
-              ? <><p className="text-[20px] leading-none text-[#7a3f24]">{friend}ท้าคุณ!</p><p className="text-[16px] leading-snug mt-1">เคสวันนี้{friend}ได้ {dailyLine(dareToday.result)}</p></>
-              : <p className="text-[16px] leading-snug">คำท้าของ{friend}เป็นของเคสวันก่อน วันนี้มีคนไข้ใหม่แล้ว ลองเคสนี้แล้วท้ากลับได้เลย</p>}
+              ? <><p className="text-[20px] leading-none text-[#7a3f24]">{friend}ท้าคุณ!</p><p className="text-[16px] leading-snug mt-1">{dailyLine(dareToday.result)}</p></>
+              : <p className="text-[16px] leading-snug">คำท้าของ{friend}เป็นเคสวันก่อน</p>}
           </div>
         )}
 
@@ -101,12 +100,11 @@ export default function DailyPage() {
           <div className="min-w-0">
             <p className="text-[20px] leading-none">{who ? `${who.name.th} ${who.age.th}` : "คนไข้วันนี้"}</p>
             <p className="text-[15px] leading-snug mt-1 text-[#86522e]">{data?.chiefComplaint}</p>
-            {who && <p className="text-[15px] leading-snug mt-1">{who.by.th}: &ldquo;{who.quote.th}&rdquo;</p>}
           </div>
         </div>
 
         <div className="flex items-center justify-between gap-2">
-          <p className="text-[17px] leading-none" data-testid="daily-page-streak">เล่นติดกัน {streak} วัน</p>
+          <p className="text-[17px] leading-none" data-testid="daily-page-streak">Streak {streak}</p>
           <div className="flex gap-1" aria-label="เจ็ดวันล่าสุด" data-testid="daily-week">
             {week.map((r, i) => (
               <span key={i} title={r ? `${r.stars} ดาว` : "ไม่ได้เล่น"}
@@ -116,18 +114,18 @@ export default function DailyPage() {
         </div>
 
         {!mine ? (
-          <button onClick={play} className="cozy-btn cozy-btn-leaf w-full py-3 text-[26px] leading-none" data-testid="daily-play">รับเคสวันนี้</button>
+          <button onClick={play} className="cozy-btn cozy-btn-leaf w-full py-3 text-[26px] leading-none" data-testid="daily-play">Play</button>
         ) : (
           <div className="flex flex-col gap-2" data-testid="daily-done">
             <div className="rounded-[4px] border-2 border-[#5fae5a] bg-[#dff3d2] px-2.5 py-2 flex items-center gap-2">
               <span className="flex gap-0.5">{[0, 1, 2].map((i) => <PixelIcon key={i} name={i < mine.stars ? "star" : "starEmpty"} size={22} />)}</span>
               <span className="text-[22px] leading-none tabular-nums">{fmtClock(mine.secs)}</span>
-              <span className="text-[14px] leading-tight">{mine.dxFirst ? "วินิจฉัยถูกตั้งแต่ครั้งแรก" : "วินิจฉัยแก้ไปหนึ่งรอบ"}</span>
+              <span className="text-[15px] leading-none">{mine.dxFirst ? "Dx ถูกครั้งแรก" : "Dx รอบสอง"}</span>
             </div>
-            <p className="text-center text-[16px] leading-none text-[#86522e]">คนไข้คนต่อไปมาในอีก <span className="tabular-nums text-[#3a2a2f]" data-testid="daily-countdown">{countdown(left)}</span></p>
-            <button onClick={sendDare} className="cozy-btn cozy-btn-sky w-full py-2 text-[20px] leading-none" data-testid="daily-page-dare">ท้าเพื่อนด้วยเคสวันนี้</button>
+            <p className="text-center text-[16px] leading-none text-[#86522e]">Next <span className="tabular-nums text-[#3a2a2f]" data-testid="daily-countdown">{countdown(left)}</span></p>
+            <button onClick={sendDare} className="cozy-btn cozy-btn-sky w-full py-2 text-[20px] leading-none" data-testid="daily-page-dare">ท้าเพื่อน</button>
             {note && <p className="text-center text-[14px] leading-none text-[#86522e]">{note}</p>}
-            <button onClick={play} className="cozy-btn w-full py-1.5 text-[16px] leading-none" data-testid="daily-replay">ทวนเคสนี้อีกรอบ (ไม่นับคะแนน)</button>
+            <button onClick={play} className="cozy-btn w-full py-1.5 text-[16px] leading-none" data-testid="daily-replay">เล่นซ้ำ</button>
           </div>
         )}
       </div>
@@ -135,18 +133,15 @@ export default function DailyPage() {
       {/* Two quicker ones for the same day */}
       <div className="w-full max-w-sm grid grid-cols-2 gap-2">
         <button onClick={() => { audio.playClick(); router.push("/daily/dx"); }} className="cozy-panel p-2.5 text-left" data-testid="daily-dx-link">
-          <span className="block text-[20px] leading-none">ทายโรค</span>
-          <span className="block text-[14px] leading-snug mt-1 text-[#86522e]">{extra.dx ? "ทายแล้ววันนี้" : "6 ครั้ง ผิดแล้วได้ข้อมูลเพิ่ม"}</span>
+          <span className="block text-[20px] leading-none">Dx Guess</span>
+          {extra.dx && <span className="block text-[14px] leading-none mt-1 text-[#3f8a48]">Done</span>}
         </button>
         <button onClick={() => { audio.playClick(); router.push("/daily/algo"); }} className="cozy-panel p-2.5 text-left" data-testid="daily-algo-link">
-          <span className="block text-[20px] leading-none">ลำดับชีวิต</span>
-          <span className="block text-[14px] leading-snug mt-1 text-[#86522e]">{extra.algo ? `${extra.algo} คะแนนวันนี้` : "เรียง algorithm แข่งกับเวลา"}</span>
+          <span className="block text-[20px] leading-none">Algorithm</span>
+          {extra.algo !== null && <span className="block text-[14px] leading-none mt-1 text-[#3f8a48]">{extra.algo} pts</span>}
         </button>
       </div>
 
-      <button onClick={() => router.push("/")} className="cozy-btn cozy-btn-sun w-full max-w-sm py-2 text-[19px] leading-none" data-testid="daily-story">
-        {hasSave ? "กลับไปเล่นเนื้อเรื่องต่อ" : "เริ่มเนื้อเรื่อง จาก นศพ. ปี 5 สู่อาจารย์หมอ"}
-      </button>
     </div>
   );
 }

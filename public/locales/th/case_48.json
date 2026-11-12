@@ -2,7 +2,7 @@
   "title": "17yo F Meningococcal Septicaemia",
   "age": "17",
   "sex": "F",
-  "chiefComplaint": "ไข้ ปวดขา มีผื่น มา 9 ชม.",
+  "chiefComplaint": "ไข้ ปวดขา มีผื่น 9 hr",
   "diagnoses": [
     "Meningococcal septicaemia with meningitis",
     "Dengue haemorrhagic fever",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Photophobia, mild neck stiffness, dry mucous membranes, no papilloedema on fundoscopy, conjunctival petechiae present || Neck stiffness is absent in a substantial proportion of meningococcal disease and its absence excludes nothing",
       "abnormal": true
     },

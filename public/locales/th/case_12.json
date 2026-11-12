@@ -2,7 +2,7 @@
   "title": "21yo M Dengue Shock Syndrome",
   "age": "21",
   "sex": "M",
-  "chiefComplaint": "ไข้มา 5 วัน ตอนนี้ตัวเย็น ซึม",
+  "chiefComplaint": "ไข้ 5 d ตอนนี้ตัวเย็น ซึม",
   "diagnoses": [
     "Dengue shock syndrome",
     "Septic shock",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Flushed face, injected conjunctivae, gum bleeding on gentle probing, no neck stiffness, dry tongue",
       "abnormal": true
     },

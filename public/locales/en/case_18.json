@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Pale, cold and shivering, drowsy but rousable, repeatedly asking about the baby", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Marked conjunctival and palmar pallor, dry lips, no jaundice, capillary refill in the lips delayed", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Marked conjunctival and palmar pallor, dry lips, no jaundice, capillary refill in the lips delayed", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 136/min, thready pulse, capillary refill 5 seconds || Note that a healthy young woman can lose 1500 mL before her blood pressure moves, so tachycardia is the early sign and hypotension is a late one", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear chest, tachypnoeic, no crackles, air hunger from anaemia", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Uterine fundus soft, boggy and above the umbilicus, poorly contracted, no rebound || A soft high fundus is the diagnosis, made with a hand and no equipment", "abnormal": true },

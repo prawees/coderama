@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Deeply jaundiced with an orange rather than lemon hue, tachypnoeic, coughing frank blood into a bowl, anxious and exhausted", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Marked conjunctival suffusion without discharge. Scleral icterus, dry lips, no neck stiffness, no eschar found on full skin survey || A red eye with no exudate is close to pathognomonic in the right setting", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Marked conjunctival suffusion without discharge. Scleral icterus, dry lips, no neck stiffness, no eschar found on full skin survey || A red eye with no exudate is close to pathognomonic in the right setting", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 124/min, hypotensive, capillary refill 4 seconds, no murmur, JVP not raised || Myocarditis occurs and can cause arrhythmia", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Coarse crackles throughout both lung fields, frank haemoptysis, saturations 85% on 15 L/min || Pulmonary haemorrhage carries mortality above 50% and is now the thing that will kill him, not the liver", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Tender hepatomegaly 3 cm below the costal margin, no splenomegaly, no ascites, exquisite tenderness on squeezing the calf muscles", "abnormal": true },

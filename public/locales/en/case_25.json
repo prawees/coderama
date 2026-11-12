@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Agitated, confused, air hungry, unable to give a coherent history, pulling at the oxygen mask", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Subconjunctival petechiae in both eyes. Retinal examination shows cotton wool spots and retinal fat globules (Purtscher-like retinopathy) || This is close to diagnostic in this setting", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Subconjunctival petechiae in both eyes. Retinal examination shows cotton wool spots and retinal fat globules (Purtscher-like retinopathy) || This is close to diagnostic in this setting", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 128/min, loud P2, no murmur, JVP mildly raised, capillary refill 3 seconds", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Bilateral fine crackles throughout, no wheeze, saturations 86% on 15 L/min, respiratory rate 36 || Hypoxaemia disproportionate to the chest X-ray findings", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Extensive bruising and tenderness over all liposuction sites, no peritonism, compression garments in place, no evidence of intra-abdominal perforation", "abnormal": true },

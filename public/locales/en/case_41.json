@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Unresponsive, profoundly cold to touch at 31.8 C, puffy and doughy in appearance, breathing slowly and shallowly", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Periorbital and facial non-pitting oedema, macroglossia, coarse dry skin, loss of the outer third of both eyebrows, hoarse quality to the little speech she produces, well-healed thyroidectomy scar across the neck", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Periorbital and facial non-pitting oedema, macroglossia, coarse dry skin, loss of the outer third of both eyebrows, hoarse quality to the little speech she produces, well-healed thyroidectomy scar across the neck", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Bradycardia at 42/min, hypotensive, distant muffled heart sounds, non-pitting oedema of both legs, capillary refill 5 seconds || Muffled heart sounds suggest a pericardial effusion", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Hypoventilating at 8 breaths per minute with shallow tidal volumes, right basal crackles, reduced air entry at both bases || The crackles suggest pneumonia, the quiet bases pleural effusions", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Distended with sluggish absent bowel sounds and clinical ileus, no peritonism, faecal loading on palpation, bladder palpable to the umbilicus from retention", "abnormal": true },

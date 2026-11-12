@@ -2,7 +2,7 @@
   "title": "56yo M Exertional Heat Stroke",
   "age": "56",
   "sex": "M",
-  "chiefComplaint": "ล้มในนา สับสน ไม่มีเหงื่อ",
+  "chiefComplaint": "ล้มในนา สับสน ไม่มีเหงื่อ ราว 1 hr ก่อนมา",
   "diagnoses": [
     "Exertional heat stroke",
     "Heat exhaustion",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Dry mucous membranes, no neck stiffness, no papilloedema, pupils 4 mm and reactive, no tongue laceration despite the reported seizure",
       "abnormal": true
     },

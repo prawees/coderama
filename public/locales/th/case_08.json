@@ -2,7 +2,7 @@
   "title": "32yo M Tension Pneumothorax",
   "age": "32",
   "sex": "M",
-  "chiefComplaint": "เจ็บหน้าอก หอบเหนื่อยมากหลังมอเตอร์ไซค์ล้ม",
+  "chiefComplaint": "เจ็บหน้าอก หอบเหนื่อยมาก 25 min หลังมอเตอร์ไซค์ล้ม",
   "diagnoses": [
     "Tension pneumothorax",
     "Haemothorax",
@@ -54,7 +54,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Trachea deviated to the right at the suprasternal notch, distended neck veins, helmet abrasion over left zygoma, no midface instability, cervical collar in place",
       "abnormal": true
     },

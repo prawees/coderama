@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Unresponsive, cyanosed, gasping, in extremis within four minutes of feeling unwell || The speed of deterioration is itself diagnostic", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Central cyanosis of the lips and tongue, frothy blood-stained secretions at the mouth, no facial or airway swelling and no urticaria || This argues against anaphylaxis", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Central cyanosis of the lips and tongue, frothy blood-stained secretions at the mouth, no facial or airway swelling and no urticaria || This argues against anaphylaxis", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 148/min, profound hypotension, impalpable radial pulses with a weak central pulse, capillary refill over 6 seconds || Initial right ventricular failure from acute pulmonary vasoconstriction, followed within minutes by left ventricular failure", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Widespread coarse crackles, saturations 72% on 15 L/min, poor air entry, no wheeze, no unilateral absence of breath sounds", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Gravid uterus, hypertonic and firm, fetal heart rate 68 bpm and falling on the cardiotocograph. Torrential fresh vaginal bleeding beginning about eight minutes after collapse || The bleeding starts as the coagulopathy establishes", "abnormal": true },

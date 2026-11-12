@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Distressed, deep sighing Kussmaul respirations, smells of alcohol but is not clinically intoxicated || This is itself a clue since methanol produces less inebriation than ethanol", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Pupils 6 mm, dilated and sluggishly reactive. Fundoscopy shows optic disc hyperaemia with blurred margins and retinal oedema. Visual acuity is light perception only in both eyes", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Pupils 6 mm, dilated and sluggishly reactive. Fundoscopy shows optic disc hyperaemia with blurred margins and retinal oedema. Visual acuity is light perception only in both eyes", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 112/min, blood pressure maintained, capillary refill 3 seconds, no murmur", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear lung fields with deep rapid Kussmaul breathing || The breathing is compensating for severe metabolic acidosis. Any fall in respiratory rate here signals decompensation, not improvement", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Diffuse epigastric tenderness without guarding, repeated vomiting, no rebound || Haemorrhagic pancreatitis is a recognised complication", "abnormal": true },

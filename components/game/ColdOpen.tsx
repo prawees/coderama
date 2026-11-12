@@ -292,7 +292,7 @@ export function ColdOpen({ onDone, replay = false, challenge = null, playerName 
     <div className={`fixed inset-0 z-[60] bg-[#1c1522] font-pixel flex flex-col p-2 gap-2 select-none overflow-hidden ${shake ? "animate-shake" : ""}`} data-testid="cold-open">
       <button onClick={onDone} className="absolute top-3 right-3 z-20 cozy-tag px-2 py-0.5 text-[15px] leading-none" data-testid="cold-open-skip">ข้าม ▸▸</button>
 
-      <p className="shrink-0 pt-2 pl-1 pr-16 text-[17px] leading-none text-[#c9b79c]">อีกหลายปีข้างหน้า ER 03:12 น.</p>
+      <p className="shrink-0 pt-2 pl-1 pr-16 text-[17px] leading-none text-[#c9b79c]">ER 03:12</p>
       {challenge && (beat === "arrive" || beat === "order") && (
         <motion.div initial={{ y: -12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="shrink-0 cozy-tag !bg-[#ffd66b] px-2.5 py-1.5 text-[17px] leading-snug text-center" data-testid="challenge-banner">
           {challenge.name ?? "เพื่อน"}ท้าคุณ! ช่วยลุงรอดใน {fmtSecs(challenge.secs)} วินาที คุณจะเร็วกว่าไหม
@@ -419,25 +419,11 @@ export function ColdOpen({ onDone, replay = false, challenge = null, playerName 
       <AnimatePresence>
         {closing && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7 }} className="absolute inset-0 z-40 bg-[#1c1522] flex flex-col items-center justify-center gap-5 px-8 text-center" data-testid="cold-open-end">
-            <Typed text="แต่ก่อนจะถึงคืนนี้... คุณเป็นแค่ นศพ. ปี 5 รองเท้าขาวเอี่ยม" speed={38} tone="dark" className="text-[24px] leading-snug text-[#fbf3e2]" />
+            <p className="text-[22px] leading-none text-[#c9b79c]" data-testid="cold-open-back">10 ปีก่อน</p>
             {beat === "title" && (
               <>
                 <motion.div initial={{ scale: 1.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 300, damping: 14 }}>
                   <PixelLogo scale={4} animated />
-                </motion.div>
-                {/* The first goal, as a row of hearts to fill rather than a sentence */}
-                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }} className="flex flex-col items-center gap-2" data-testid="cold-open-goal">
-                  <span className="cozy-tag !bg-[#ffd66b] px-2.5 py-1 text-[17px] leading-none">บท 1 เวรแรก</span>
-                  <div className="flex items-center gap-2">
-                    {[0, 1, 2, 3, 4].map((i) => (
-                      <motion.span key={i} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.6 + i * 0.08, type: "spring", stiffness: 500, damping: 12 }}>
-                        <PixelIcon name="heartEmpty" size={30} />
-                      </motion.span>
-                    ))}
-                    <motion.span initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.1 }} className="text-[22px] text-[#ffd66b] leading-none">▸</motion.span>
-                    <motion.span initial={{ scale: 0, rotate: -12 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 1.2, type: "spring", stiffness: 420, damping: 11 }}
-                      className="cozy-tag !bg-[#86c35f] px-2 py-1 text-[17px] leading-none">extern</motion.span>
-                  </div>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, type: "spring", stiffness: 260, damping: 16 }} className="w-full max-w-xs">
                   <button onClick={onDone} className="cozy-btn cozy-btn-leaf w-full py-3 text-[26px] leading-none animate-[cozyBeat_1.4s_ease-in-out_infinite]" data-testid="cold-open-start">{replay ? "กลับเมนู" : "เริ่มเวรแรก"}</button>

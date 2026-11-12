@@ -2,7 +2,7 @@
   "title": "39yo M Chronic Back Pain, Opioid Request (Non-Emergency)",
   "age": "39",
   "sex": "M",
-  "chiefComplaint": "ปวดหลังมาก ขอฉีด pethidine โดยระบุชื่อยา",
+  "chiefComplaint": "ปวดหลังมาก 3 mo ขอฉีด pethidine โดยระบุชื่อยา",
   "diagnoses": [
     "Chronic non-specific low back pain",
     "Opioid use disorder",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "No pallor, mucous membranes moist, pupils 3 mm and equal with normal reaction, no rhinorrhoea, no yawning, no piloerection, so he is not in acute withdrawal",
       "abnormal": false
     },

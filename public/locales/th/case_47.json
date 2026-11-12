@@ -2,7 +2,7 @@
   "title": "66yo F Acute Ischaemic Stroke (Thrombolysis Window)",
   "age": "66",
   "sex": "F",
-  "chiefComplaint": "แขนขาขวาอ่อนแรงทันที พูดไม่ได้ เมื่อ 70 นาทีก่อน",
+  "chiefComplaint": "แขนขาขวาอ่อนแรงทันที พูดไม่ได้ 70 min",
   "diagnoses": [
     "Acute ischaemic stroke, left middle cerebral artery territory",
     "Intracerebral haemorrhage",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Right facial droop sparing the forehead. Forced gaze deviation to the left. Tongue deviates to the right on protrusion. No head injury, no tongue laceration to suggest a seizure || Forehead sparing indicates an upper motor neurone lesion",
       "abnormal": true
     },

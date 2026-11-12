@@ -2,7 +2,7 @@
   "title": "52yo F Russell's Viper Envenomation",
   "age": "52",
   "sex": "F",
-  "chiefComplaint": "งูกัดเท้าขวาตอนเกี่ยวข้าว ตอนนี้เลือดออกตามไรฟัน",
+  "chiefComplaint": "งูกัดเท้าขวา 2 hr ก่อนมา ตอนนี้เลือดออกตามไรฟัน",
   "diagnoses": [
     "Russell's viper (Daboia siamensis) envenomation",
     "Malayan pit viper envenomation",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Spontaneous gum bleeding, blood-stained saliva, no ptosis, no ophthalmoplegia, full mouth opening, normal voice || Absence of neurotoxic signs helps distinguish from cobra or krait envenomation",
       "abnormal": true
     },

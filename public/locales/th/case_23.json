@@ -2,7 +2,7 @@
   "title": "29yo F Health Anxiety (Non-Emergency)",
   "age": "29",
   "sex": "F",
-  "chiefComplaint": "มั่นใจว่าเป็นมะเร็งต่อมน้ำเหลือง หลังคลำเจอก้อนที่คอ",
+  "chiefComplaint": "คลำเจอก้อนที่คอ 11 d มั่นใจว่าเป็นมะเร็งต่อมน้ำเหลือง",
   "diagnoses": [
     "Benign reactive cervical lymph node",
     "Health anxiety",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Single 9 mm soft, mobile, non-tender node in the right posterior cervical chain with overlying skin excoriation from repeated palpation. No supraclavicular node, no fixed or matted nodes, no thyroid mass, oropharynx normal, tympanic membranes normal",
       "abnormal": true
     },

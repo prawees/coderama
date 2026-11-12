@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Small child, unresponsive, wet and cold, mottled and cyanosed, agonal respirations at 8/min, canal weed in his hair", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Frothy pink fluid at the mouth and nose, silt and vegetation in the oropharynx requiring suction, pupils 5 mm and sluggish bilaterally, no head injury palpable, cervical collar applied because the mechanism is unwitnessed", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Frothy pink fluid at the mouth and nose, silt and vegetation in the oropharynx requiring suction, pupils 5 mm and sluggish bilaterally, no head injury palpable, cervical collar applied because the mechanism is unwitnessed", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 168/min post arrest, weak central pulses, capillary refill 5 seconds, cold peripheries || In hypothermia, pulses are hard to feel and you must check for a full minute before declaring arrest", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Widespread coarse crackles in all zones, poor chest expansion, wheeze, oxygen saturations 82% on 15 L/min via mask || Surfactant washout, not water in the lungs, is what impairs gas exchange", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Distended with swallowed water and air from bag-mask ventilation, soft, no bruising to suggest inflicted injury, bowel sounds present", "abnormal": true },

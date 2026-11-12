@@ -1,4 +1,4 @@
-cc: เจ็บแน่นหน้าอกเหมือนมีอะไรทับมา 50 นาที
+cc: เจ็บแน่นหน้าอกเหมือนมีอะไรทับ 50 min
 bg: กรรมการบริษัทสายการบิน คนขับรถพามาที่ทางเข้า VIP ชั้น 4 ตรงๆ ไม่ผ่าน ER เพราะแพ็กเกจสมาชิกเขียนไว้แบบนั้น ได้รับเชิญดื่มชาและห้องส่วนตัว EKG แรกทำที่ 34 นาทีหลังมาถึง ตอนที่พยาบาลคนหนึ่งเริ่มเอะใจ U/D HT, DM type 2 สูบบุหรี่ 30 pack-year กิน sildenafil ครั้งล่าสุดราว 5 ชม. ก่อน เจ็บหน้าอกเริ่ม 50 นาทีก่อนมาถึง
 i.ecg1: ST elevation 3 mm ใน II, III, aVF โดย III สูงกว่า II มี reciprocal ST depression ใน I กับ aVL, sinus bradycardia 46/min ร่วมกับ 2nd degree AV block Mobitz I || เป็น inferior STEMI น่าจะ RCA อุดตัน
 i.ecg2: ST elevation 1.5 mm ใน V4R || ยืนยัน RV infarction tracing เพิ่มอันเดียวใช้เวลา 90 วินาทีแต่เปลี่ยนการรักษา คนไข้รายนี้ preload dependent nitrate กับ morphine ทำให้ BP ตกรุนแรงได้

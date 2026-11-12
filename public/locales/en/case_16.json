@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Anxious, in severe pain, cooperative and fully alert, a cloth tourniquet still tied tightly around the right thigh", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Spontaneous gum bleeding, blood-stained saliva, no ptosis, no ophthalmoplegia, full mouth opening, normal voice || Absence of neurotoxic signs helps distinguish from cobra or krait envenomation", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Spontaneous gum bleeding, blood-stained saliva, no ptosis, no ophthalmoplegia, full mouth opening, normal voice || Absence of neurotoxic signs helps distinguish from cobra or krait envenomation", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia, borderline hypotension, capillary refill 3 seconds, dorsalis pedis pulse present on the bitten limb", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, normal effort, no respiratory muscle weakness, single breath count 32", "abnormal": false },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, mild generalised tenderness, no guarding, no flank bruising, bowel sounds present", "abnormal": true },

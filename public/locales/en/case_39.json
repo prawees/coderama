@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Toxic, agitated, sweating, in pain that is grossly out of proportion to the visible skin changes || Pain far exceeding what the skin explains is the single most important early sign and it appears before anything looks bad", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Mildly icteric sclerae from underlying cirrhosis, dry mucous membranes, no oral lesions, no neck stiffness", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Mildly icteric sclerae from underlying cirrhosis, dry mucous membranes, no oral lesions, no neck stiffness", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 134/min, hypotensive at 78/42, warm peripheries with a bounding pulse and a wide pulse pressure, typical of early distributive septic shock", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoeic at 32/min compensating for metabolic acidosis, clear breath sounds, no crackles", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Moderate ascites and splenomegaly consistent with known cirrhosis, non-tender, no peritonism", "abnormal": true },

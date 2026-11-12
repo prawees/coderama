@@ -2,7 +2,7 @@
   "title": "22yo F Eclampsia at 34 Weeks",
   "age": "22",
   "sex": "F",
-  "chiefComplaint": "ชักที่บ้าน ตั้งครรภ์ 34 สัปดาห์",
+  "chiefComplaint": "ชักที่บ้านเมื่อครู่ ตั้งครรภ์ 34 สัปดาห์",
   "diagnoses": [
     "Eclampsia",
     "HELLP syndrome",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Facial and periorbital oedema, tongue laceration from the seizure, no neck stiffness, fundoscopy shows retinal arteriolar spasm without papilloedema or haemorrhage",
       "abnormal": true
     },

@@ -2,7 +2,7 @@
   "title": "38yo M Traumatic Hand Amputation",
   "age": "38",
   "sex": "M",
-  "chiefComplaint": "มือติดเครื่องตัดอ้อย",
+  "chiefComplaint": "มือติดเครื่องตัดอ้อย 90 min ก่อนมา",
   "diagnoses": [
     "Traumatic transmetacarpal amputation",
     "Crush avulsion injury",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Pale conjunctivae, dry lips, no head injury, no facial trauma, speaking in full sentences",
       "abnormal": true
     },

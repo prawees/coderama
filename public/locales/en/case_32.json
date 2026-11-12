@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Miserable, exhausted rather than agitated. Grunting intermittently. Too breathless to feed || Exhausted is the more worrying of the two", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Profuse clear nasal secretions blocking both nostrils (infants are obligate nasal breathers, so this alone worsens the work of breathing), head bobbing, nasal flaring, dry mucous membranes, anterior fontanelle slightly sunken", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Profuse clear nasal secretions blocking both nostrils (infants are obligate nasal breathers, so this alone worsens the work of breathing), head bobbing, nasal flaring, dry mucous membranes, anterior fontanelle slightly sunken", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 182/min, capillary refill 3 seconds, femoral pulses present and equal, no murmur, no hepatomegaly to suggest cardiac failure", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Respiratory rate 72 with marked subcostal, intercostal and sternal recession, tracheal tug. Widespread fine inspiratory crackles with expiratory wheeze in all zones. Prolonged expiratory phase. Observed apnoeic pause of 12 seconds during examination", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, mildly distended from air swallowing, liver edge palpable 1 cm below the costal margin, no masses || A palpable liver edge is normal at this age and is pushed down by hyperinflation", "abnormal": true },

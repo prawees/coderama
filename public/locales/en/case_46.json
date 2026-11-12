@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Extreme agitation with apparently undiminished strength against four people, incoherent shouting, drenched in sweat, no response to verbal de-escalation || This combination of extreme agitation, hyperthermia and exhaustion is the presentation that precedes sudden cardiac arrest in custody", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Pupils 7 mm and sluggish, dry mucous membranes, abrasions to the forehead and left cheek from the roadside restraint, no obvious skull deformity, no blood from the ears or nose, no neck stiffness assessable", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Pupils 7 mm and sluggish, dry mucous membranes, abrasions to the forehead and left cheek from the roadside restraint, no obvious skull deformity, no blood from the ears or nose, no neck stiffness assessable", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 158/min, hypertensive, warm and flushed peripheries, bounding pulses, capillary refill under 2 seconds", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Tachypnoeic at 36/min with shallow ineffective breaths. Saturations 92% despite hyperventilation || Prolonged prone restraint mechanically limits chest and diaphragmatic excursion, and this is the mechanism of restraint-associated death", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft on the limited examination possible, no distension, no guarding, no external evidence of abdominal trauma from the restraint", "abnormal": true },

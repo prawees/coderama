@@ -2,7 +2,7 @@
   "title": "57yo M Necrotising Fasciitis (Vibrio vulnificus)",
   "age": "57",
   "sex": "M",
-  "chiefComplaint": "ปวดขารุนแรง มีไข้ 20 ชม. หลังจับอาหารทะเล",
+  "chiefComplaint": "ปวดขารุนแรง มีไข้ 20 hr หลังจับอาหารทะเล",
   "diagnoses": [
     "Necrotising fasciitis (Vibrio vulnificus)",
     "Cellulitis",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Mildly icteric sclerae from underlying cirrhosis, dry mucous membranes, no oral lesions, no neck stiffness",
       "abnormal": true
     },

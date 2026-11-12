@@ -90,7 +90,7 @@ export function saveAlgo(r: { score: number; secs: number; wrong: number }, n = 
 export const dxDone = (marks: Mark[] | undefined, max: number) => !!marks && (marks.includes("right") || marks.length >= max);
 export function dxShareText(n: number, marks: Mark[], max: number): string {
   const won = marks.includes("right");
-  return `Code Rama ทายโรค #${n} ${won ? marks.length : "X"}/${max}\n${marks.map((m) => SQUARE[m]).join("")}`;
+  return `Code Rama Dx Guess #${n} ${won ? marks.length : "X"}/${max}\n${marks.map((m) => SQUARE[m]).join("")}`;
 }
 export const dxUrl = (n: number, marks: Mark[], name?: string | null) => {
   const q = new URLSearchParams({ d: String(n), g: marks.includes("right") ? String(marks.length) : "x" });

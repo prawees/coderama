@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Alert, grey, sweating, holding the wrapped stump above his head as instructed by a co-worker, remarkably calm in the way that severe pain and adrenaline sometimes produce", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Pale conjunctivae, dry lips, no head injury, no facial trauma, speaking in full sentences", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Pale conjunctivae, dry lips, no head injury, no facial trauma, speaking in full sentences", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 118/min, blood pressure maintained, capillary refill 3 seconds in the uninjured hand, brachial and radial pulses present on the injured arm", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear chest, tachypnoeic from pain and anxiety, no chest trauma", "abnormal": false },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft and non-tender, no other injury found on secondary survey, no seatbelt or handlebar mark", "abnormal": false },

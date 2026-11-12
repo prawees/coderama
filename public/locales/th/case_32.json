@@ -2,7 +2,7 @@
   "title": "5mo M Severe Bronchiolitis",
   "age": "0.42",
   "sex": "M",
-  "chiefComplaint": "หายใจแรง ไม่ยอมกินนม",
+  "chiefComplaint": "น้ำมูก 4 d วันนี้หายใจแรง ไม่ยอมกินนม",
   "diagnoses": [
     "RSV bronchiolitis",
     "Viral-induced wheeze",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Profuse clear nasal secretions blocking both nostrils (infants are obligate nasal breathers, so this alone worsens the work of breathing), head bobbing, nasal flaring, dry mucous membranes, anterior fontanelle slightly sunken",
       "abnormal": true
     },

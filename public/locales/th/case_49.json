@@ -2,7 +2,7 @@
   "title": "45yo M Crush Syndrome (Building Collapse)",
   "age": "45",
   "sex": "M",
-  "chiefComplaint": "ขาสองข้างถูกแผ่นคอนกรีตทับนาน 6 ชม.",
+  "chiefComplaint": "ขาสองข้างถูกแผ่นคอนกรีตทับ 6 hr",
   "diagnoses": [
     "Crush syndrome with rhabdomyolysis",
     "Hyperkalaemic cardiac arrest risk",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Dry mucous membranes, dust in the nose and mouth, no facial injury, no soot or airway burn, cervical collar applied at scene, no neck tenderness",
       "abnormal": true
     },

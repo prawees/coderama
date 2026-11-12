@@ -73,7 +73,7 @@ export default function AlgoPage() {
     if (!kept) return;
     audio.playClick();
     const me = playerName && playerName !== "Doctor" ? playerName : null;
-    setNote(outcomeNote[await shareLink(`Code Rama ลำดับชีวิต #${n} ${algo.title} เราได้ ${kept.score} คะแนน ใน ${fmtClock(kept.secs)} เรียงให้ถูกเร็วกว่านี้ได้ไหม`, algoUrl(n, kept.score, me))]);
+    setNote(outcomeNote[await shareLink(`Code Rama Algorithm #${n} ${algo.title} ${kept.score} pts`, algoUrl(n, kept.score, me))]);
   };
   const result = daily && kept ? kept : { score, secs: Math.round(secs), wrong };
   const showEnd = done || (daily && !!kept && !started);
@@ -82,7 +82,7 @@ export default function AlgoPage() {
     <div className="h-[100dvh] cozy-night text-pixel-text font-pixel flex flex-col items-center p-3 gap-2 overflow-y-auto" data-testid="algo">
       <div className="w-full max-w-sm flex items-center justify-between">
         <button onClick={() => router.push("/daily")} className="cozy-btn px-2.5 py-1 text-[16px] leading-none">กลับ</button>
-        <span className="cozy-tag !bg-[#ffd66b] px-2 py-0.5 text-[18px] leading-none">{daily ? `ลำดับชีวิต #${n}` : "ฝึก"}</span>
+        <span className="cozy-tag !bg-[#ffd66b] px-2 py-0.5 text-[18px] leading-none">{daily ? `Algorithm #${n}` : "ฝึก"}</span>
       </div>
       <div className="cozy-panel w-full max-w-sm p-3 flex flex-col gap-2">
         <div className="flex items-end justify-between gap-2">
@@ -92,14 +92,13 @@ export default function AlgoPage() {
         <p className="text-[16px] leading-snug">{algo.scene}</p>
         {friend && daily && (
           <p className="rounded-[4px] border-[3px] border-[#3a2a2f] bg-[#ffd66b] px-2 py-1.5 text-[16px] leading-snug" data-testid="algo-friend">
-            {friend.day === n ? `${friend.name ?? "เพื่อน"}ได้ ${friend.value} คะแนน คุณล่ะ` : `คำท้าของ${friend.name ?? "เพื่อน"}เป็นของวันก่อน วันนี้มีลำดับใหม่แล้ว`}
+            {friend.day === n ? `${friend.name ?? "เพื่อน"} ${friend.value} pts` : `คำท้าของ${friend.name ?? "เพื่อน"}เป็นของวันก่อน`}
           </p>
         )}
 
         {!started && !showEnd && (
           <>
-            <p className="text-[15px] leading-snug text-[#86522e]">แตะขั้นตอนให้ถูกลำดับ ยิ่งเร็วยิ่งได้คะแนน แตะผิดเสีย 40 คะแนน</p>
-            <button onClick={begin} className="cozy-btn cozy-btn-leaf w-full py-3 text-[24px] leading-none" data-testid="algo-start">เริ่มจับเวลา</button>
+            <button onClick={begin} className="cozy-btn cozy-btn-leaf w-full py-3 text-[24px] leading-none" data-testid="algo-start">Start</button>
           </>
         )}
 
@@ -113,7 +112,7 @@ export default function AlgoPage() {
                 </li>
               ))}
             </ol>
-            {!done && <p className="text-[14px] leading-none text-[#86522e]">ขั้นที่ {placed + 1} คืออะไร {wrong > 0 && <span className="text-[#a93c4b]">แตะผิด {wrong}</span>}</p>}
+            {!done && <p className="text-[14px] leading-none text-[#86522e]">Step {placed + 1} {wrong > 0 && <span className="text-[#a93c4b]">ผิด {wrong}</span>}</p>}
             <div className="flex flex-col gap-1.5" data-testid="algo-chips">
               {order.filter((i) => i >= placed).map((i) => (
                 <button key={i} onClick={() => tap(i)} data-step={i}
@@ -127,18 +126,18 @@ export default function AlgoPage() {
           <div className="flex flex-col gap-2" data-testid="algo-end">
             <div className="rounded-[4px] border-2 border-[#5fae5a] bg-[#dff3d2] px-2.5 py-2">
               <p className="text-[34px] leading-none tabular-nums" data-testid="algo-score">{result.score}</p>
-              <p className="text-[15px] leading-none mt-1 text-[#5b4148]">คะแนน ใช้เวลา {fmtClock(result.secs)} แตะผิด {result.wrong} ครั้ง</p>
+              <p className="text-[15px] leading-none mt-1 text-[#5b4148]">{fmtClock(result.secs)} ผิด {result.wrong}</p>
             </div>
-            <p className="text-[13px] leading-snug text-[#86522e]">อ้างอิง {algo.source}</p>
-            {daily && <button onClick={share} className="cozy-btn cozy-btn-sun w-full py-2 text-[20px] leading-none" data-testid="algo-share">ท้าเพื่อนเรียงให้เร็วกว่า</button>}
+            <p className="text-[13px] leading-snug text-[#86522e]">Ref: {algo.source}</p>
+            {daily && <button onClick={share} className="cozy-btn cozy-btn-sun w-full py-2 text-[20px] leading-none" data-testid="algo-share">ท้าเพื่อน</button>}
             {note && <p className="text-center text-[14px] leading-none text-[#86522e]">{note}</p>}
-            <button onClick={begin} className="cozy-btn w-full py-1.5 text-[16px] leading-none" data-testid="algo-again">{daily ? "ลองอีกรอบ (ไม่นับคะแนน)" : "ลองอีกรอบ"}</button>
+            <button onClick={begin} className="cozy-btn w-full py-1.5 text-[16px] leading-none" data-testid="algo-again">เล่นซ้ำ</button>
           </div>
         )}
       </div>
 
       <div className="cozy-panel w-full max-w-sm p-3 flex flex-col gap-1.5">
-        <p className="text-[15px] leading-none text-[#86522e]">ฝึกลำดับอื่น ไม่นับคะแนน</p>
+        <p className="text-[15px] leading-none text-[#86522e]">ฝึก</p>
         <div className="grid grid-cols-2 gap-1.5">
           {ALGORITHMS.map((a) => (
             <button key={a.id} onClick={() => { audio.playClick(); setPracticeId(a.id === algorithmFor(n).id ? null : a.id); setStarted(false); setPlaced(0); setWrong(0); setSecs(0); setMiss(null); }}

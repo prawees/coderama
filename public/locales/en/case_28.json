@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Rigid, sweating profusely, fully conscious and terrified throughout every spasm || Consciousness is preserved in tetanus, which means every one of these spasms is experienced in full", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Trismus with mouth opening limited to 12 mm, risus sardonicus with fixed grimacing facial muscles, difficulty swallowing saliva, no oropharyngeal abscess or dental source found", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Trismus with mouth opening limited to 12 mm, risus sardonicus with fixed grimacing facial muscles, difficulty swallowing saliva, no oropharyngeal abscess or dental source found", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 132/min with wide blood pressure swings between 186/104 and 92/50 over minutes || Autonomic instability appears in the second week and is now the leading cause of death in treated tetanus", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Shallow respirations, laryngeal spasm during examination causing transient desaturation, chest wall rigidity limiting expansion, no consolidation on auscultation", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Board-like rigidity of the abdominal wall without tenderness on palpation and with normal bowel sounds || Rigidity without peritonism is the point: this is muscle, not peritoneum", "abnormal": true },

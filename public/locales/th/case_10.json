@@ -2,7 +2,7 @@
   "title": "34yo M Opioid Overdose",
   "age": "34",
   "sex": "M",
-  "chiefComplaint": "ไม่รู้สึกตัว หายใจช้า",
+  "chiefComplaint": "ไม่รู้สึกตัว หายใจช้า ไม่ทราบระยะเวลา",
   "diagnoses": [
     "Opioid overdose",
     "Benzodiazepine co-ingestion",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Pinpoint pupils 1 mm bilaterally with sluggish reaction, snoring stertorous airway relieved by jaw thrust, vomitus at the angle of the mouth, no head injury or haemotympanum",
       "abnormal": true
     },

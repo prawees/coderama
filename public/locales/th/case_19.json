@@ -2,7 +2,7 @@
   "title": "4yo M Drowning (Irrigation Canal)",
   "age": "4",
   "sex": "M",
-  "chiefComplaint": "จมน้ำในคลองชลประทาน ดึงขึ้นมาไม่รู้สึกตัว",
+  "chiefComplaint": "จมน้ำในคลองชลประทาน 5 ถึง 8 min ดึงขึ้นมาไม่รู้สึกตัว",
   "diagnoses": [
     "Drowning with hypoxic cardiac arrest",
     "Aspiration pneumonitis",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Frothy pink fluid at the mouth and nose, silt and vegetation in the oropharynx requiring suction, pupils 5 mm and sluggish bilaterally, no head injury palpable, cervical collar applied because the mechanism is unwitnessed",
       "abnormal": true
     },

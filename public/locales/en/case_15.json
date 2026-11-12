@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Well, comfortable, sitting and using her phone, speaking in full sentences, no distress", "abnormal": false },
-    { "id": "hent1", "system": "HENT", "finding": "Clear rhinorrhoea with boggy turbinates, mild pharyngeal erythema without exudate, no tonsillar swelling, no cervical lymphadenopathy, no trismus, tympanic membranes normal. Centor score 0", "abnormal": false },
+    { "id": "hent1", "system": "HEENT", "finding": "Clear rhinorrhoea with boggy turbinates, mild pharyngeal erythema without exudate, no tonsillar swelling, no cervical lymphadenopathy, no trismus, tympanic membranes normal. Centor score 0", "abnormal": false },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Regular rate and rhythm, normal heart sounds, capillary refill under 2 seconds, peripheries warm", "abnormal": false },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds throughout, no wheeze or crackles, no tachypnoea, no accessory muscle use", "abnormal": false },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, bowel sounds normal, no organomegaly", "abnormal": false },

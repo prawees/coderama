@@ -2,7 +2,7 @@
   "title": "47yo M Methanol Poisoning",
   "age": "47",
   "sex": "M",
-  "chiefComplaint": "ตาบอด หายใจหอบลึก เช้าหลังดื่มเหล้า",
+  "chiefComplaint": "ตาบอด หายใจหอบลึก 16 hr หลังดื่มเหล้า",
   "diagnoses": [
     "Methanol poisoning",
     "Ethylene glycol poisoning",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Pupils 6 mm, dilated and sluggishly reactive. Fundoscopy shows optic disc hyperaemia with blurred margins and retinal oedema. Visual acuity is light perception only in both eyes",
       "abnormal": true
     },

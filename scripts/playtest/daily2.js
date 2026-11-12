@@ -36,16 +36,16 @@ const check = (ok, what, extra = '') => { console.log(`${ok ? 'ok  ' : 'FAIL'} $
   await p.screenshot({ path: `${OUT}/1_dx_end.png`, fullPage: true });
   await p.getByTestId('dx-share').click(); await p.waitForTimeout(300);
   const shared = (await p.evaluate(() => window.__shared))[0];
-  check(/ทายโรค #\d+ (X|\d)\/\d\n[🟩🟨🟥]+$/u.test(shared?.text || '') && !shared.text.includes(answer), 'the share text is the grid, with no diagnosis', (shared?.text || '').replace(/\n/g, ' / '));
+  check(/Dx Guess #\d+ (X|\d)\/\d\n[🟩🟨🟥]+$/u.test(shared?.text || '') && !shared.text.includes(answer), 'the share text is the grid, with no diagnosis', (shared?.text || '').replace(/\n/g, ' / '));
   check(/\/daily\/dx\?d=\d+&g=(x|\d)$/.test(shared?.url || ''), 'and a link that carries the result', shared?.url);
   const day = Number(shared.url.match(/d=(\d+)/)[1]);
   // a second visitor wins on the first try and sees the friend's line
   const q = await (await b.newContext({ viewport: { width: 390, height: 844 } })).newPage();
   await q.goto(`${BASE}/daily/dx?d=${day}&g=3&n=${encodeURIComponent('สมาร์ท')}`); await q.getByTestId('dx-friend').waitFor();
-  check(/สมาร์ททายถูกในครั้งที่ 3/.test(await q.getByTestId('dx-friend').innerText()), 'a dare shows how the friend did');
+  check(/สมาร์ท 3\/6/.test(await q.getByTestId('dx-friend').innerText()), 'a dare shows how the friend did');
   await q.getByTestId('dx-input').fill(answer.slice(0, 12)); await q.getByTestId('dx-pick').filter({ hasText: answer }).first().click();
   await q.getByTestId('dx-end').waitFor();
-  check(/ถูกในครั้งที่ 1/.test(await q.getByTestId('dx-end').innerText()), 'the right name ends it at once');
+  check(/1\/6/.test(await q.getByTestId('dx-end').innerText()), 'the right name ends it at once');
   await q.screenshot({ path: `${OUT}/2_dx_win.png` });
   await q.context().close();
 
@@ -54,13 +54,13 @@ const check = (ok, what, extra = '') => { console.log(`${ok ? 'ok  ' : 'FAIL'} $
   const total = await p.getByTestId('algo-chip').count();
   // one deliberate wrong tap: the last step first
   await p.locator(`[data-testid=algo-chip][data-step="${total - 1}"]`).click(); await p.waitForTimeout(100);
-  check(/แตะผิด 1/.test(await p.getByTestId('algo').innerText()), 'a step out of order is counted, not placed');
+  check(/ผิด 1/.test(await p.getByTestId('algo').innerText()), 'a step out of order is counted, not placed');
   await p.screenshot({ path: `${OUT}/3_algo_play.png` });
   for (let i = 0; i < total; i++) { await p.locator(`[data-testid=algo-chip][data-step="${i}"]`).click(); await p.waitForTimeout(80); }
   await p.getByTestId('algo-end').waitFor();
   const score = Number(await p.getByTestId('algo-score').innerText());
   check(score > total * 100 - 40 && score <= total * 100 - 40 + 300, 'the score is steps, less the miss, plus speed', String(score));
-  check(/อ้างอิง/.test(await p.getByTestId('algo-end').innerText()), 'the guideline is named');
+  check(/Ref:/.test(await p.getByTestId('algo-end').innerText()), 'the guideline is named');
   await p.screenshot({ path: `${OUT}/4_algo_end.png`, fullPage: true });
   await p.getByTestId('algo-share').click(); await p.waitForTimeout(300);
   const s2 = (await p.evaluate(() => window.__shared)).pop();
@@ -72,7 +72,7 @@ const check = (ok, what, extra = '') => { console.log(`${ok ? 'ok  ' : 'FAIL'} $
   await p.getByTestId('algo-pick-atls').click(); await p.getByTestId('algo-start').waitFor();
   check((await p.getByTestId('algo-title').innerText()).includes('ATLS'), 'other algorithms can be practised');
   await p.goto(BASE + '/daily'); await p.getByTestId('daily-algo-link').waitFor();
-  check((await p.getByTestId('daily-algo-link').innerText()).includes(String(score)) && /ทายแล้ว/.test(await p.getByTestId('daily-dx-link').innerText()), 'the daily page shows both as done');
+  check((await p.getByTestId('daily-algo-link').innerText()).includes(String(score)) && /Done/.test(await p.getByTestId('daily-dx-link').innerText()), 'the daily page shows both as done');
   await p.screenshot({ path: `${OUT}/5_daily.png`, fullPage: true });
   check(errors.length === 0, 'no page errors', errors.join(' '));
   await b.close();

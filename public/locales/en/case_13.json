@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Unresponsive, soaked clothing with a strong solvent and garlic odour, generalised sweating, muscle fasciculations visible over the chest and thighs", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Pinpoint pupils 1 mm and unreactive, copious frothy oral and nasal secretions requiring continuous suction, lacrimation, airway soiled", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Pinpoint pupils 1 mm and unreactive, copious frothy oral and nasal secretions requiring continuous suction, lacrimation, airway soiled", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus bradycardia at 42/min, hypotensive, peripheries warm and wet, no murmur", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Coarse crackles throughout both lungs from bronchorrhoea, wheeze, shallow ineffective respirations at 8/min || This is what kills, the patient drowns in their own secretions", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, hyperactive bowel sounds, faecal and urinary incontinence, no guarding", "abnormal": true },

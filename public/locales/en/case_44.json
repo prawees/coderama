@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Alert but agitated and confused, in severe pain in the right arm, smell of burnt tissue, clothing charred at the right hand and left foot", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Occipital scalp haematoma from the fall, no facial burns, no singed nasal hairs and no soot in the oropharynx so no inhalational injury, cervical collar in place, tympanic membranes intact", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Occipital scalp haematoma from the fall, no facial burns, no singed nasal hairs and no soot in the oropharynx so no inhalational injury, cervical collar in place, tympanic membranes intact", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Sinus tachycardia at 124/min with occasional ventricular ectopics, blood pressure maintained, radial pulse present on the left but not palpable on the right, capillary refill 2 seconds centrally", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Equal air entry, tender right ribs 6 to 8 from the fall, no surgical emphysema, no flail segment, tachypnoeic from pain and acidosis", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, mildly tender in the right upper quadrant, no rebound, no seatbelt sign, pelvis stable || Blunt abdominal injury from the fall must be excluded separately from the electrical injury", "abnormal": true },

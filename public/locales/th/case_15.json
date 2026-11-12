@@ -2,7 +2,7 @@
   "title": "34yo F Low Acuity URI (Non-Emergency)",
   "age": "34",
   "sex": "F",
-  "chiefComplaint": "น้ำมูก ไอ มา 3 วัน ขอให้น้ำเกลือกับยาฆ่าเชื้อ",
+  "chiefComplaint": "น้ำมูก ไอ 3 d ขอให้น้ำเกลือกับยาฆ่าเชื้อ",
   "diagnoses": [
     "Viral upper respiratory tract infection",
     "Allergic rhinitis",
@@ -54,7 +54,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Clear rhinorrhoea with boggy turbinates, mild pharyngeal erythema without exudate, no tonsillar swelling, no cervical lymphadenopathy, no trismus, tympanic membranes normal. Centor score 0",
       "abnormal": false
     },

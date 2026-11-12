@@ -2,7 +2,7 @@
   "title": "58yo M Inferior STEMI (VIP Pathway Delay)",
   "age": "58",
   "sex": "M",
-  "chiefComplaint": "เจ็บแน่นหน้าอกเหมือนมีอะไรทับมา 50 นาที",
+  "chiefComplaint": "เจ็บแน่นหน้าอกเหมือนมีอะไรทับ 50 min",
   "diagnoses": [
     "Inferior ST elevation myocardial infarction with right ventricular involvement",
     "Aortic dissection",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Pale and sweating, no jaundice, no carotid bruit, elevated jugular venous pressure to the angle of the jaw with clear lungs || This is the combination that signals right ventricular infarction",
       "abnormal": true
     },

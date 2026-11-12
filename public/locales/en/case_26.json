@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Diaphoretic, grey, clutching his sternum, nauseated, minimising his symptoms and asking whether this can wait until after a scheduled call", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Pale and sweating, no jaundice, no carotid bruit, elevated jugular venous pressure to the angle of the jaw with clear lungs || This is the combination that signals right ventricular infarction", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Pale and sweating, no jaundice, no carotid bruit, elevated jugular venous pressure to the angle of the jaw with clear lungs || This is the combination that signals right ventricular infarction", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Bradycardic at 46/min with an irregular pause, hypotensive, soft heart sounds, no murmur, equal radial and femoral pulses with no blood pressure differential between arms", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear lung fields with no crackles || Clear lungs plus hypotension plus raised JVP separates right ventricular infarction from left ventricular failure, and the distinction changes the treatment completely", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, mild epigastric tenderness which he attributes to indigestion, no pulsatile mass, bowel sounds normal", "abnormal": true },

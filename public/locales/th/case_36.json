@@ -2,7 +2,7 @@
   "title": "49yo F Massive Pulmonary Embolism",
   "age": "49",
   "sex": "F",
-  "chiefComplaint": "ล้มหมดสติ หอบเหนื่อยมาก",
+  "chiefComplaint": "ล้มหมดสติ หอบเหนื่อยมาก 4 hr หลังลงเครื่องบิน",
   "diagnoses": [
     "High-risk (massive) pulmonary embolism",
     "Acute myocardial infarction",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Central cyanosis, jugular venous pressure raised to the earlobe at 45 degrees, no facial swelling, no stridor",
       "abnormal": true
     },

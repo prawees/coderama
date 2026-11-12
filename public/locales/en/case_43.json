@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Comfortable at rest, moves onto the trolley without assistance, reports 10 out of 10 pain while scrolling on his phone || Note this observation without moralising about it: pain behaviour and pain intensity correlate poorly, and this discrepancy is information rather than proof of anything", "abnormal": false },
-    { "id": "hent1", "system": "HENT", "finding": "No pallor, mucous membranes moist, pupils 3 mm and equal with normal reaction, no rhinorrhoea, no yawning, no piloerection, so he is not in acute withdrawal", "abnormal": false },
+    { "id": "hent1", "system": "HEENT", "finding": "No pallor, mucous membranes moist, pupils 3 mm and equal with normal reaction, no rhinorrhoea, no yawning, no piloerection, so he is not in acute withdrawal", "abnormal": false },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Regular rate and rhythm, normal heart sounds, no murmur (specifically listened for, because injecting drug use raises endocarditis risk), peripheries warm", "abnormal": false },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds, normal respiratory rate, no cough", "abnormal": false },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, no renal angle tenderness on either side, no palpable bladder, no pulsatile mass, bowel sounds normal", "abnormal": false },

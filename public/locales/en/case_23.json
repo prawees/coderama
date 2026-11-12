@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Well nourished, well, visibly anxious, tearful when discussing her father, no cachexia, no pallor", "abnormal": false },
-    { "id": "hent1", "system": "HENT", "finding": "Single 9 mm soft, mobile, non-tender node in the right posterior cervical chain with overlying skin excoriation from repeated palpation. No supraclavicular node, no fixed or matted nodes, no thyroid mass, oropharynx normal, tympanic membranes normal", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Single 9 mm soft, mobile, non-tender node in the right posterior cervical chain with overlying skin excoriation from repeated palpation. No supraclavicular node, no fixed or matted nodes, no thyroid mass, oropharynx normal, tympanic membranes normal", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Regular rate and rhythm, normal heart sounds, no murmur, peripheries warm", "abnormal": false },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds bilaterally, no stridor, no effusion, normal effort", "abnormal": false },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender, no hepatomegaly, no splenomegaly, no abdominal or inguinal lymphadenopathy", "abnormal": false },

@@ -2,7 +2,7 @@
   "title": "24yo F Postpartum Haemorrhage",
   "age": "24",
   "sex": "F",
-  "chiefComplaint": "เลือดออกทางช่องคลอดมาก 40 นาทีหลังคลอด",
+  "chiefComplaint": "เลือดออกทางช่องคลอดมาก 40 min หลังคลอด",
   "diagnoses": [
     "Uterine atony",
     "Retained placental fragments",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Marked conjunctival and palmar pallor, dry lips, no jaundice, capillary refill in the lips delayed",
       "abnormal": true
     },

@@ -69,6 +69,10 @@ const SEEDED = {
   const save = () => p.evaluate(() => localStorage.getItem('CapacitorStorage.code-rama-storage'));
   const before = await save();
   await p.getByTestId('practice-case_12').click(); await p.getByTestId('practice-tag').waitFor({ timeout: 20000 });
+  ok('the 3D bedside is off until asked for', (await p.getByTestId('bedside-3d').count()) === 0);
+  await p.getByTestId('monitor').click(); await p.waitForTimeout(300);
+  ok('tapping the monitor opens the rhythm strip', (await p.getByTestId('ecg-strip').count()) === 1);
+  await p.getByTestId('toggle-3d').click();
   await p.waitForTimeout(4000);
   ok('3D canvas renders, no fallback', (await p.locator('[data-testid=bedside-3d] canvas').count()) === 1 && (await p.getByTestId('bedside-fallback').count()) === 0);
   await p.screenshot({ path: OUT + '/bedside.png' });

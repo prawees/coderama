@@ -240,12 +240,8 @@ export default function RootPage() {
             {dailyInfo && (
               <button onClick={() => { audio.playClick(); router.push('/daily'); }} data-testid="daily-link"
                 className={`cozy-btn ${dailyInfo.played ? '' : 'cozy-btn-sun'} w-full px-3 py-2 flex items-center justify-between gap-2 text-left`}>
-                <span className="leading-tight">
-                  <span className="block text-[21px] leading-none">เคสประจำวัน #{dailyInfo.n}</span>
-                  <span className="block text-[14px] leading-none mt-1 text-[#86522e]">
-                    {dailyInfo.played ? `เล่นแล้ว ติดกัน ${dailyInfo.streak} วัน` : dailyInfo.streak > 0 ? `ยังไม่ได้เล่นวันนี้ ติดกันมา ${dailyInfo.streak} วันแล้ว` : 'ทุกคนได้คนไข้คนเดียวกัน ราว 3 นาที'}
-                  </span>
-                </span>
+                <span className="text-[21px] leading-none">Daily Case #{dailyInfo.n}</span>
+                {dailyInfo.streak > 0 && <span className="ml-auto text-[14px] leading-none text-[#86522e]" data-testid="daily-link-streak">Streak {dailyInfo.streak}</span>}
                 {!dailyInfo.played && <span className="shrink-0 w-2.5 h-2.5 rounded-full bg-[#d95763] animate-pulse" />}
               </button>
             )}

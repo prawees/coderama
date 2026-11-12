@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, Suspense } from "react";
+import { EcgStrip } from "@/components/game/EcgStrip";
 import { differentialFor } from "@/lib/differentials";
 import { dailyCaseId, fmtClock } from "@/lib/daily";
 import { DailyResult } from "@/components/game/DailyResult";
@@ -103,10 +104,13 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   const [examined, setExamined] = useState<string[]>([]);
   const [asked, setAsked] = useState<string[]>([]);
   const [zoomed, setZoomed] = useState<{ src: string; alt: string } | null>(null);
-  const [show3D, setShow3D] = useState(true);
+  // The 3D bedside is heavy to load, so it is off until the player turns it on (remembered on this device)
+  const [show3D, setShow3D] = useState(false);
   useEffect(() => {
-    try { if (localStorage.getItem(VIEW_KEY) === "off") setShow3D(false); } catch {}
+    try { if (localStorage.getItem(VIEW_KEY) === "on") setShow3D(true); } catch {}
   }, []);
+  // Tapping the monitor opens the rhythm strip
+  const [showStrip, setShowStrip] = useState(false);
   const toggle3D = () => {
     audio.playClick();
     setShow3D((on) => { try { localStorage.setItem(VIEW_KEY, on ? "off" : "on"); } catch {} return !on; });
@@ -688,7 +692,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                 {patient ? `${patientName} ${patient.age.th}` : caseData.title}
               </p>
               {alias && <span className="shrink-0 cozy-tag !bg-[#cfe6f0] px-1.5 py-0.5 text-[13px] leading-none" data-testid="review-tag">เคสทบทวน</span>}
-              {practice && <span className="shrink-0 cozy-tag !bg-[#ffd66b] px-1.5 py-0.5 text-[13px] leading-none" data-testid="practice-tag">{daily ? 'เคสประจำวัน' : 'ฝึก'}</span>}
+              {practice && <span className="shrink-0 cozy-tag !bg-[#ffd66b] px-1.5 py-0.5 text-[13px] leading-none" data-testid="practice-tag">{daily ? 'Daily' : 'ฝึก'}</span>}
               {slipTotal > 0 && (
                 <span className="shrink-0 cozy-tag !bg-[#f6c3c6] px-1.5 py-0.5 text-[13px] leading-none" data-testid="slip-count">{`พลาด ${slipTotal}`}</span>
               )}
@@ -706,7 +710,8 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
         </div>
 
         {/* Bedside monitor */}
-        <div className="flex-shrink-0 rounded-[6px] border-[3px] border-[#3a2a2f] p-1 cozy-wood-dark">
+        <button type="button" onClick={() => { audio.playClick(); setShowStrip((v) => !v); }} aria-expanded={showStrip} data-testid="monitor"
+          className="flex-shrink-0 w-full text-left rounded-[6px] border-[3px] border-[#3a2a2f] p-1 cozy-wood-dark">
           <div className="grid grid-cols-5 bg-[#1b2320] rounded-[3px] px-1 py-1.5 text-center shadow-[inset_0_0_10px_rgba(0,0,0,0.8)]" data-testid="vitals">
             {[
               { k: 'HR', v: shownVitals.hr, bad: shownVitals.hr > 110 || shownVitals.hr < 40 },
@@ -721,7 +726,8 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
               </div>
             ))}
           </div>
-        </div>
+          {showStrip && <div className="mt-1"><EcgStrip hr={Number(shownVitals.hr) || 0} pulseless={Number(shownVitals.hr) === 0 || String(shownVitals.bp).startsWith("0/")} /></div>}
+        </button>
 
         {/* 3D bedside: optional, tap a body region to examine it */}
         {show3D && (
@@ -758,8 +764,8 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
           <div className="flex-1 min-h-0 cozy-panel p-3 overflow-y-auto">
             {activeTab === 'info' && (
               <div className="space-y-3 text-[17px] leading-snug">
-                {caseData.chiefComplaint && <p><span className="text-[#86522e]">CC </span>{caseData.chiefComplaint}</p>}
-                <p>{caseData.background || 'ยังไม่มีใครจดอะไรไว้เลย'}</p>
+                {caseData.chiefComplaint && <p className="text-[19px] leading-snug"><span className="cozy-tag !bg-[#ffd66b] px-1.5 py-0.5 text-[14px] leading-none mr-1.5">CC</span>{caseData.chiefComplaint}</p>}
+                <p className="text-[17px] leading-[1.5]" data-testid="history-text">{caseData.background ? emphasise(caseData.background) : 'ยังไม่มีใครจดอะไรไว้เลย'}</p>
                 {openQuestions.length > 0 && (
                   <div className="space-y-1.5 pt-1" data-testid="history-questions">
                     <p className="text-[15px] leading-snug text-[#86522e]">ซักประวัติเพิ่ม แตะคำถามทีละข้อ</p>
@@ -1028,8 +1034,8 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                               const sys = parseInt(String(v.bp), 10), o2 = parseInt(String(v.o2), 10);
                               setShareCardSpec(caseCard({
                                 patient: `${patientName} ${patient.age.th}`, by: patient.by.th, quote: patient.quote.th, grade,
-                                heading: `เคสประจำวัน #${n}`,
-                                line: `ใช้เวลา ${fmtClock(r.secs)} นาที ${r.dxFirst ? 'วินิจฉัยถูกตั้งแต่ครั้งแรก' : 'วินิจฉัยแก้ไปหนึ่งรอบ'}${streak > 1 ? ` เล่นติดกัน ${streak} วันแล้ว` : ''} คุณล่ะ`,
+                                heading: `Daily Case #${n}`,
+                                line: `${fmtClock(r.secs)} นาที ${r.dxFirst ? 'Dx ถูกครั้งแรก' : 'Dx รอบสอง'}${streak > 1 ? ` Streak ${streak}` : ''} คุณล่ะ`,
                                 vitals: [
                                   { label: 'HR', value: String(v.hr), bad: v.hr < 50 || v.hr > 120 },
                                   { label: 'BP', value: String(v.bp), bad: sys < 90 || sys > 180 },
@@ -1069,7 +1075,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                         >
                           <span className="block text-[21px] leading-none">{LABELS[grade].th}</span>
                           <span className="block text-[15px] leading-none mt-1.5 opacity-90">
-                            {daily ? 'กลับไปหน้าเคสประจำวัน' : practice ? 'ฝึกซ้อม ไม่นับ XP และไม่กระทบเซฟ' : `+${reward.xp} XP และ ${coins}${supervised ? ' (อาจารย์คุม)' : ''}`}
+                            {daily ? 'กลับ' : practice ? 'ฝึกซ้อม ไม่นับ XP และไม่กระทบเซฟ' : `+${reward.xp} XP และ ${coins}${supervised ? ' (อาจารย์คุม)' : ''}`}
                           </span>
                         </button>
                       </>
@@ -1083,6 +1089,26 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
       </div>
     </>
   );
+}
+
+/**
+ * A history is one long paragraph. The things a reader scans for stand out: times and amounts in bold,
+ * drug and disease names in the clinical tint.
+ */
+const EMPH = /(\d[\d.,/+]*\s?(?:นาที|ชม\.|ชั่วโมง|วัน|สัปดาห์|เดือน|ปี|ขวบ|ครั้ง|min|hr|d|mo|kg|mg|mcg|ml|mL|L|cm|mm|C|%)(?![A-Za-zก-๙])|[A-Za-z][A-Za-z0-9/.+-]*(?:\s+[A-Za-z][A-Za-z0-9/.+-]*)*)/g;
+function emphasise(text: string) {
+  const out: React.ReactNode[] = [];
+  let at = 0, i = 0;
+  for (const m of text.matchAll(EMPH)) {
+    const start = m.index ?? 0;
+    if (start > at) out.push(text.slice(at, start));
+    out.push(/^\d/.test(m[0])
+      ? <b key={i++} className="font-bold text-[#3a2a2f] bg-[#ffe9a8] rounded-[2px] px-0.5">{m[0]}</b>
+      : <span key={i++} className="text-[#2f6f86]">{m[0]}</span>);
+    at = start + m[0].length;
+  }
+  if (at < text.length) out.push(text.slice(at));
+  return out;
 }
 
 /** A designer case, from this device first, then from the shared collection */

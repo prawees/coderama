@@ -2,7 +2,7 @@
   "title": "34yo M 45% Burn with Inhalational Injury",
   "age": "34",
   "sex": "M",
-  "chiefComplaint": "ไฟลวกจากถังแก๊สระเบิดในครัวปิด",
+  "chiefComplaint": "ไฟลวกจากถังแก๊สระเบิดในครัวปิด 40 min ก่อนมา",
   "diagnoses": [
     "45% TBSA mixed depth burn with inhalational injury",
     "Carbon monoxide poisoning",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Singed eyebrows and nasal hairs, soot in the nostrils and oropharynx, hoarse voice, carbonaceous sputum, early facial and lip oedema, no stridor yet || Every one of these predicts airway loss within hours",
       "abnormal": true
     },

@@ -2,7 +2,7 @@
   "title": "36yo F Fat Embolism after Liposuction",
   "age": "36",
   "sex": "F",
-  "chiefComplaint": "หอบเหนื่อย สับสน 28 ชม. หลังดูดไขมันปริมาณมาก",
+  "chiefComplaint": "หอบเหนื่อย สับสน 28 hr หลังดูดไขมันปริมาณมาก",
   "diagnoses": [
     "Fat embolism syndrome",
     "Pulmonary thromboembolism",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Subconjunctival petechiae in both eyes. Retinal examination shows cotton wool spots and retinal fat globules (Purtscher-like retinopathy) || This is close to diagnostic in this setting",
       "abnormal": true
     },

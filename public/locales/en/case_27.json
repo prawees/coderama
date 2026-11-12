@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Well, well nourished, no weight loss, no cachexia, no jaundice, arrives in business clothing after a dinner meeting", "abnormal": false },
-    { "id": "hent1", "system": "HENT", "finding": "No scleral icterus, no pallor, no cervical or supraclavicular lymphadenopathy, no oral lesions, mild pharyngeal erythema || Consistent with reflux", "abnormal": false },
+    { "id": "hent1", "system": "HEENT", "finding": "No scleral icterus, no pallor, no cervical or supraclavicular lymphadenopathy, no oral lesions, mild pharyngeal erythema || Consistent with reflux", "abnormal": false },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Regular rate and rhythm, normal heart sounds, no murmur, blood pressure mildly elevated at 138/86 || Consistent with white coat effect and evening alcohol", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Clear breath sounds bilaterally, no wheeze, normal effort, no cough", "abnormal": false },
     { "id": "abd1", "system": "Abdomen", "finding": "Soft, non-tender including deep epigastric palpation, no mass, no organomegaly, no ascites, Courvoisier's sign absent, bowel sounds normal", "abnormal": false },

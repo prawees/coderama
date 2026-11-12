@@ -17,7 +17,7 @@
   },
   "exam": [
     { "id": "ga1", "system": "General appearance", "finding": "Actively convulsing with generalised tonic-clonic activity, cyanosed, incontinent of urine, drenched in sweat", "abnormal": true },
-    { "id": "hent1", "system": "HENT", "finding": "Clenched jaw preventing oral airway insertion, frothy blood-stained saliva, lateral tongue laceration, no head injury palpable, no neck stiffness assessable during the seizure", "abnormal": true },
+    { "id": "hent1", "system": "HEENT", "finding": "Clenched jaw preventing oral airway insertion, frothy blood-stained saliva, lateral tongue laceration, no head injury palpable, no neck stiffness assessable during the seizure", "abnormal": true },
     { "id": "cvs1", "system": "Cardiovascular", "finding": "Tachycardia at 152/min, hypertensive at 168/96 from the catecholamine surge, warm and well perfused peripherally", "abnormal": true },
     { "id": "rs1", "system": "Respiratory", "finding": "Ineffective irregular respiration during tonic phases, saturations 84%, coarse crackles, chest wall rigidity || The crackles suggest aspiration", "abnormal": true },
     { "id": "abd1", "system": "Abdomen", "finding": "Rigid during tonic phases, no organomegaly assessable, no evidence of trauma, incontinent", "abnormal": true },

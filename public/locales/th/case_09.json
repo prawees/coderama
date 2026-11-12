@@ -2,7 +2,7 @@
   "title": "19yo F Diabetic Ketoacidosis",
   "age": "19",
   "sex": "F",
-  "chiefComplaint": "อาเจียน ปวดท้อง ซึม",
+  "chiefComplaint": "อาเจียน ปวดท้อง 2 d วันนี้ซึม",
   "diagnoses": [
     "Diabetic ketoacidosis",
     "Gastroenteritis",
@@ -55,7 +55,7 @@
     },
     {
       "id": "hent1",
-      "system": "HENT",
+      "system": "HEENT",
       "finding": "Dry cracked lips, tacky mucous membranes, sunken eyes, no oral thrush, no neck stiffness",
       "abnormal": true
     },
