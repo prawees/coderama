@@ -1,4 +1,4 @@
-cc: ซึม เรียกไม่ค่อยตอบ ไม่ทราบระยะเวลา
+cc: ซึมลง เรียกไม่รู้สึกตัว ไม่ทราบระยะเวลาก่อนมารพ.
 bg: เพื่อนบ้านพบลุงนอนหมดสติอยู่ที่บ้าน มีขวดยาเปล่าวางอยู่ข้างตัว U/D AF กับ HT ขวดบนโต๊ะในครัวคือ digoxin ของลุงเอง เพิ่งรับยามาเมื่อ 8 วันก่อน
 i.ecg1: AF with slow ventricular response 35/min, scooped ST depression (reverse tick) และ PVC บ่อย || เข้าได้กับ digoxin toxicity
 i.chem1: Hyperkalemia

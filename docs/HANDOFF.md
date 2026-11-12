@@ -1,5 +1,16 @@
 # Handoff, 8 November 2026
 
+## Less text, report-style chief complaints (13 November)
+
+- The daily pages, the title's daily button and the cold open lost their explanatory subtext; labels are short and
+  mostly English ("Daily Case", "Dx Guess", "Algorithm", "Play", "Streak").
+- Chief complaints follow the Thai report form: symptom, then duration, "ก่อนมารพ." (for example
+  "อาเจียน ปวดท้อง 2 วันก่อนมารพ."). Where the history gives no duration one was supplied for case_04, 05, 06,
+  07_vip, 14 and 21; a clinician should confirm those six.
+- Case screen: the 3D bedside is off until asked for (it was slow to load); tapping the monitor opens a moving
+  rhythm strip (`components/game/EcgStrip.tsx`); the history highlights times and amounts and tints clinical terms;
+  HENT is now HEENT.
+
 ## Two quick daily challenges: ทายโรค and ลำดับชีวิต (12 November)
 
 Both sit under the case of the day on `/daily`, are the same for everyone, and keep results in `coderama.daily2`.

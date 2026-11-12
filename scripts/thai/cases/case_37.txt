@@ -1,4 +1,4 @@
-cc: เจ็บหน้าอกเหมือนถูกฉีก ทะลุไปหลังทันที
+cc: เจ็บหน้าอกร้าวไปหลังทันทีก่อนมารพ.
 bg: ปวดแบบฉีกขาดระหว่างสะบักรุนแรงทันที แรงสุดตั้งแต่วินาทีแรก ตอนยกกระเป๋าเดินทาง เป็น HT มานาน คุมไม่ได้ กินยาสามตัวไม่สม่ำเสมอ เล่าว่าอาการปวดเลื่อนจากระหว่างสะบักลงไปทางท้องใน 20 นาที หมอที่คลินิกใกล้บ้านเห็น ST change เลยให้ aspirin กับ clopidogrel และกำลังจะจัดให้ thrombolysis แต่ญาติตัดสินใจขับรถพามาที่นี่แทน
 i.ct1: Intimal flap ตั้งแต่ aortic root ผ่าน arch และ descending aorta ลงไปถึงระดับ left common iliac artery เป็น Stanford type A, false lumen กด origin ของ left common carotid และ left common iliac มี pericardial effusion เล็กน้อย aortic root 52 mm ไม่มี mesenteric occlusion || นี่คือ definitive investigation ต้องได้เร็ว ไม่ต้องสมบูรณ์แบบ
 i.echo1: Aortic root โต เห็น flap ขยับได้ มี AR ปานกลางถึงรุนแรง pericardial effusion 12 mm ยังไม่มี tamponade physiology || ทำได้ในไม่กี่นาที และพอจะหยุดไม่ให้ใครให้ thrombolysis

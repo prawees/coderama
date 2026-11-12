@@ -1,4 +1,4 @@
-cc: ล้มหมดสติ หอบเหนื่อยมาก 4 hr หลังลงเครื่องบิน
+cc: หมดสติ หายใจหอบเหนื่อย 4 ชั่วโมงหลังลงจากเครื่องบิน
 bg: บินกรุงเทพไปแฟรงก์เฟิร์ตไปกลับภายใน 8 วัน เครื่องลงเมื่อ 4 ชม. ก่อน ผ่าตัดเปลี่ยนข้อเข่า 11 วันก่อนเดินทาง หยุดฉีด enoxaparin ป้องกันลิ่มเลือดก่อนกำหนดเพราะฉีดแล้วแสบ ปวดน่องขวามา 2 วัน คิดว่าเป็นจากผ่าตัด ล้มลงที่สายพานรับกระเป๋า หมดสติไปครู่หนึ่ง มาถึงด้วยรถพยาบาล SpO2 84% ทั้งที่ on O2 high flow
 i.echo1: RV โตมาก RV/LV ratio เกิน 1.2 septum แบนทั้ง systole และ diastole (D-shaped LV) มี McConnell's sign คือ mid free wall akinesia แต่ apex ยังบีบดี IVC โตไม่ collapse ไม่มี pericardial effusion || ในคนไข้ที่ unstable เกินจะไป CT ข้อมูลเท่านี้พอให้ thrombolysis ได้
 i.ecg1: Sinus tachycardia 134/min มี S1Q3T3, incomplete RBBB และ T inversion V1 ถึง V4 || เป็น right heart strain sensitivity ต่ำ EKG ปกติก็ตัดโรคนี้ไม่ได้

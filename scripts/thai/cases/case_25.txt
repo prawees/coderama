@@ -1,4 +1,4 @@
-cc: หอบเหนื่อย สับสน 28 hr หลังดูดไขมันปริมาณมาก
+cc: หายใจหอบเหนื่อย 28 ชั่วโมงหลังดูดไขมัน
 bg: ดูดไขมันปริมาณมากที่หน้าท้อง สีข้าง ต้นขา ร่วมกับฉีดไขมันที่สะโพก เมื่อ 28 ชม. ก่อน ดูดออกราว 5.5 ลิตรในครั้งเดียวภายใต้ tumescent anesthesia D/C หลัง observe 6 ชม. ช่วงกลางคืนเริ่มหอบและกระสับกระส่าย แฟนพามาตอนที่พูดไม่รู้เรื่อง กินยาคุมกำเนิดชนิดรวม ทำงานฝ่ายการตลาด อีก 4 วันมีงานเปิดตัวสินค้า เลยเลือกทำครั้งเดียวแทนแบ่งทำสองครั้ง
 i.abg1: Severe hypoxemic respiratory failure ร่วมกับ respiratory alkalosis, PaO2 ต่ำกว่า 60 mmHg เป็น major Gurd criterion ของ fat embolism syndrome
 i.cxr1: Diffuse patchy alveolar infiltrate ทั้งสองข้างแบบ snowstorm หัวใจขนาดปกติ ไม่มี pleural effusion ไม่มี pneumothorax || Infiltrate ดูน้อยกว่าระดับ hypoxemia ซึ่งเป็นลักษณะเฉพาะ
