@@ -39,7 +39,7 @@ export function Pager({ message, onClear }: PagerProps) {
           <p className="text-[#233a1c] text-[18px] leading-tight text-center whitespace-pre-wrap relative">{message}</p>
         </div>
         {/* What to do about it, so the pager is never information without a next step */}
-        <p className="mt-1 text-center text-[14px] leading-none text-[#fbf3e2]">แตะชื่อคนไข้ที่แถบเตียงด้านล่างเพื่อรับเคส</p>
+        <p className="mt-1 text-center text-[15px] leading-none text-[#fbf3e2]">แตะชื่อคนไข้ที่แถบเตียงด้านล่างเพื่อรับเคส</p>
       </div>
     </div>
   );

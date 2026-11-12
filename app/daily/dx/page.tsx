@@ -62,7 +62,7 @@ export default function DxGuessPage() {
         <span className="cozy-tag !bg-[#ffd66b] px-2 py-0.5 text-[18px] leading-none">Dx Guess #{n}</span>
       </div>
       <div className="cozy-panel w-full max-w-sm p-3 flex flex-col gap-2">
-        <p className="flex items-center gap-2 text-[14px] leading-none text-[#86522e]">
+        <p className="flex items-center gap-2 text-[15px] leading-none text-[#86522e]">
           <span className="flex items-center gap-1"><span className={`w-3 h-3 rounded-[2px] border-2 border-[#3a2a2f] ${COLOR.right}`} />ใช่</span>
           <span className="flex items-center gap-1"><span className={`w-3 h-3 rounded-[2px] border-2 border-[#3a2a2f] ${COLOR.close}`} />ใกล้</span>
           <span className="flex items-center gap-1"><span className={`w-3 h-3 rounded-[2px] border-2 border-[#3a2a2f] ${COLOR.far}`} />ไม่ใช่</span>
@@ -75,7 +75,7 @@ export default function DxGuessPage() {
         <div className="flex flex-col gap-1.5" data-testid="dx-clues">
           {shown.map((c, i) => (
             <div key={i} className="rounded-[4px] border-2 border-[#e7d3a8] bg-[#fff6e3] px-2 py-1.5" data-testid="dx-clue">
-              <p className="text-[13px] leading-none text-[#3f6f80]">{i + 1}. {c.label}</p>
+              <p className="text-[14px] leading-none text-[#3f6f80]">{i + 1}. {c.label}</p>
               <p className="text-[16px] leading-snug mt-1">{c.text}</p>
             </div>
           ))}
@@ -94,7 +94,7 @@ export default function DxGuessPage() {
               className="w-full rounded-[5px] border-2 border-[#3a2a2f] bg-white px-2 py-1.5 text-[17px] leading-none text-[#3a2a2f]" data-testid="dx-input" />
             <div className="flex flex-col gap-1">
               {matches.map((d) => <button key={d} onClick={() => guess(d)} className="cozy-btn w-full py-1.5 px-2 text-left text-[15px] leading-tight" data-testid="dx-pick">{d}</button>)}
-              {query.trim().length >= 2 && !matches.length && <p className="text-[14px] leading-none text-[#86522e]">ไม่พบ</p>}
+              {query.trim().length >= 2 && !matches.length && <p className="text-[15px] leading-none text-[#86522e]">ไม่พบ</p>}
             </div>
           </>
         ) : (
@@ -102,10 +102,10 @@ export default function DxGuessPage() {
             <div className={`rounded-[4px] border-2 px-2.5 py-2 ${won ? "border-[#5fae5a] bg-[#dff3d2]" : "border-[#d95763] bg-[#fbe1dc]"}`}>
               <p className="text-[15px] leading-none text-[#86522e]">{won ? `${marks.length}/${max}` : `X/${max}`}</p>
               <p className="text-[21px] leading-tight mt-1" data-testid="dx-answer">{puzzle.answer}</p>
-              <p className="text-[14px] leading-snug mt-1 text-[#5b4148]">DDx: {puzzle.close.join(", ")}</p>
+              <p className="text-[15px] leading-snug mt-1 text-[#5b4148]">DDx: {puzzle.close.join(", ")}</p>
             </div>
             <button onClick={share} className="cozy-btn cozy-btn-sun w-full py-2 text-[20px] leading-none" data-testid="dx-share">ท้าเพื่อน</button>
-            {note && <p className="text-center text-[14px] leading-none text-[#86522e]" data-testid="dx-note">{note}</p>}
+            {note && <p className="text-center text-[15px] leading-none text-[#86522e]" data-testid="dx-note">{note}</p>}
             <button onClick={() => router.push(`/simulator/play/${puzzle.caseId}?practice=1`)} className="cozy-btn w-full py-1.5 text-[16px] leading-none">รักษาเคสนี้</button>
           </div>
         )}

@@ -2,6 +2,7 @@ import { CASE_DATA } from "@/lib/caseIndex";
 import { differentialFor } from "@/lib/differentials";
 import { dailyCaseId, dailyNumber } from "@/lib/daily";
 import { siteUrl } from "@/lib/invite";
+import { plainHistory } from "@/lib/historyText";
 
 /**
  * Two more daily challenges beside the case of the day, the same for everyone:
@@ -61,7 +62,7 @@ export function dxPuzzle(n = dailyNumber()): DxPuzzle {
   const clues = [
     { label: "มาด้วย", text: `${sex} ${c.age} ปี ${c.chiefComplaint}` },
     { label: "Vital signs", text: vitalsLine(start?.vitals ?? c.vitals) },
-    { label: "ประวัติ", text: tells(String(c.background || "")) ? "" : String(c.background || "") },
+    { label: "ประวัติ", text: tells(plainHistory(c.background)) ? "" : plainHistory(c.background) },
     { label: "ตรวจร่างกาย", text: exam.slice(0, 2).map((e: any) => finding(e.finding)).join(" ") },
     { label: "แล็บ", text: numeric.map((i: any) => `${i.name} ${i.value}${i.unit && i.unit !== "-" ? " " + i.unit : ""}`).join("  ") },
     { label: textual?.name ?? "ผลตรวจ", text: textual ? finding(textual.report) : exam.slice(2, 4).map((e: any) => finding(e.finding)).join(" ") },

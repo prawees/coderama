@@ -34,7 +34,7 @@ export default function CaseLibraryPage() {
       <div className="cozy-panel p-2.5 flex items-center justify-between gap-2 shrink-0">
         <div>
           <h1 className="text-[22px] leading-none">คลังเคส</h1>
-          <p className="text-[14px] leading-snug mt-1 text-[#86522e]">สร้างเคสเอง ฝึกเคสเดิม ไม่นับ XP และไม่กระทบเซฟ</p>
+          <p className="text-[15px] leading-snug mt-1 text-[#86522e]">สร้างเคสเอง ฝึกเคสเดิม ไม่นับ XP และไม่กระทบเซฟ</p>
         </div>
         <button onClick={() => router.push("/")} className="cozy-btn px-2 py-0.5 text-[15px] leading-none self-start" aria-label="back">✕</button>
       </div>
@@ -69,8 +69,8 @@ export default function CaseLibraryPage() {
               return (
                 <div key={c.id} className="rounded-[4px] border-2 bg-[#fff6e3] border-[#e7d3a8] p-2" data-testid="my-case">
                   <p className="text-[18px] leading-tight">{c.title}</p>
-                  <p className="text-[14px] leading-snug text-[#86522e]">{c.data?.chiefComplaint}</p>
-                  {problems.errors.length > 0 && <p className="text-[14px] leading-snug text-[#a93c4b] mt-1">ยังเล่นไม่ได้: {problems.errors[0]}</p>}
+                  <p className="text-[15px] leading-snug text-[#86522e]">{c.data?.chiefComplaint}</p>
+                  {problems.errors.length > 0 && <p className="text-[15px] leading-snug text-[#a93c4b] mt-1">ยังเล่นไม่ได้: {problems.errors[0]}</p>}
                   <div className="flex flex-wrap gap-1.5 mt-1.5">
                     <button disabled={problems.errors.length > 0} onClick={() => router.push(`/simulator/play/custom?caseId=${c.id}`)} className="cozy-btn cozy-btn-leaf px-2.5 py-1 text-[15px] leading-none" data-testid="play-case">เล่น</button>
                     <button onClick={() => router.push(`/designer?id=${c.id}`)} className="cozy-btn px-2.5 py-1 text-[15px] leading-none">แก้ไข</button>
@@ -100,7 +100,7 @@ export default function CaseLibraryPage() {
           {tab === "story" && story.map((c) => (
             <div key={c.id} className="rounded-[4px] border-2 bg-[#fff6e3] border-[#e7d3a8] p-2" data-testid="story-case">
               <p className="text-[17px] leading-tight">{c.title}</p>
-              {c.cc && <p className="text-[14px] leading-snug text-[#86522e] mt-0.5">{c.cc}</p>}
+              {c.cc && <p className="text-[15px] leading-snug text-[#86522e] mt-0.5">{c.cc}</p>}
               <div className="flex gap-1.5 mt-1.5">
                 <button onClick={() => router.push(`/simulator/play/${c.id}?practice=1`)} className="cozy-btn cozy-btn-leaf px-2.5 py-1 text-[15px] leading-none" data-testid={`practice-${c.id}`}>ฝึก</button>
                 <button onClick={() => router.push(`/designer?template=${c.id}`)} className="cozy-btn px-2.5 py-1 text-[15px] leading-none">คัดลอกไปแก้</button>

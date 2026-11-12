@@ -92,6 +92,7 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
   `public/locales/th/*.json`, the build overwrites it. `python3 scripts/thai/cases.py check` reports stale keys.
   A dose change means editing both the English JSON and the Thai `.txt`, then building.
   In an exam finding or a text result, put what was found first, then ` || `, then what it means.
+  In a history (`bg:`), ` ¦ ` starts a present-illness line, ` ¦p ` a past-history line, ` || ` the teaching note.
 - **Story text.** Thai lines are in `scripts/thai/story/dayNN.txt`, applied with `scripts/thai/story_patch.py`.
   The patch refuses changes to `[IF_FLAG:X]` tags. Structural edits (a day's `cases` list, new nodes) go straight
   into both `lib/StoryManager.ts` and `lib/StoryManagerTH.ts`, then run `npm run validate`.

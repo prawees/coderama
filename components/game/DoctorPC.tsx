@@ -26,12 +26,12 @@ export function DoctorPC({ onClose, onConsults }: { onClose: () => void; onConsu
           <button className="cozy-btn px-2 py-0.5 text-[15px] leading-none" onClick={onClose} aria-label="ปิด">✕</button>
         </div>
         <div className="rounded-[4px] bg-[#fff8ea] max-h-[68vh] overflow-y-auto p-2.5 flex flex-col gap-2">
-          <p className="text-[14px] leading-snug text-[#86522e]">Guideline ฉุกเฉินที่หมอไทยใช้จริง เปิดเป็นลิงก์ภายนอก ใช้ฉบับล่าสุดจากต้นทางเสมอ เกมนี้ใช้ฝึก ไม่ได้แทน guideline</p>
+          <p className="text-[15px] leading-snug text-[#86522e]">Guideline ฉุกเฉินที่หมอไทยใช้จริง เปิดเป็นลิงก์ภายนอก ใช้ฉบับล่าสุดจากต้นทางเสมอ เกมนี้ใช้ฝึก ไม่ได้แทน guideline</p>
           {LINKS.map((l) => (
             <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" onClick={() => audio.playClick()}
               className="block rounded-[4px] border-2 border-[#e7d3a8] bg-white px-2.5 py-1.5" data-testid="guideline-link">
               <span className="block text-[16px] leading-snug text-[#2f6f86]">{l.title}</span>
-              <span className="block text-[13px] leading-snug text-[#5b4148]">{l.note}</span>
+              <span className="block text-[14px] leading-snug text-[#5b4148]">{l.note}</span>
             </a>
           ))}
           <button onClick={() => { audio.playClick(); onConsults(); }} className="cozy-btn cozy-btn-sky w-full py-1.5 text-[16px]" data-testid="pc-consults">ห้องพักแพทย์ ฝากเคสถามเพื่อน</button>

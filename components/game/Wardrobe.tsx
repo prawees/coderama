@@ -68,12 +68,12 @@ export function Wardrobe({ value, onChange, rank }: { value: PlayerAppearance; o
             );
           })}
         </div>
-        {note && <p className="text-[14px] leading-snug text-[#a93c4b]" data-testid="uniform-note">{note}</p>}
+        {note && <p className="text-[15px] leading-snug text-[#a93c4b]" data-testid="uniform-note">{note}</p>}
       </div>
       {wearing === "scrubs" ? (
         <>
           {swatches("สีสครับ", "topColor", SCRUBS)}
-          <p className="text-[13px] leading-snug text-[#86522e]" data-testid="scrubs-set">สครับเป็นชุดเดียวกัน กางเกงสีเดียวกับเสื้อ</p>
+          <p className="text-[14px] leading-snug text-[#86522e]" data-testid="scrubs-set">สครับเป็นชุดเดียวกัน กางเกงสีเดียวกับเสื้อ</p>
         </>
       ) : swatches("สีกางเกง", "bottomColor", BOTTOM)}
     </div>

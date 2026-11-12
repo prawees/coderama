@@ -38,7 +38,7 @@ const check = (ok, what, extra = '') => { console.log(`${ok ? 'ok  ' : 'FAIL'} $
   await p.getByTestId('exam-tab').waitFor();
   const firstExam = p.locator('[data-testid^=examine-]').first();
   await firstExam.click(); await p.waitForTimeout(200);
-  await p.getByRole('button', { name: 'แล็บ' }).click();
+  await p.getByRole('button', { name: 'แล็บ', exact: true }).click();
   await p.locator('[data-testid^=order-]').first().click(); await p.waitForTimeout(200);
   await p.screenshot({ path: `${OUT}/3_labs_raw.png` });
   const firstResult = await p.locator('[data-testid^=result-]').first().innerText();
@@ -86,7 +86,7 @@ const check = (ok, what, extra = '') => { console.log(`${ok ? 'ok  ' : 'FAIL'} $
   await tab('PE').click(); await p.getByTestId('exam-all').click(); await p.waitForTimeout(300);
   const pe = await p.getByTestId('exam-tab').innerText();
   check(/jugular venous pressure/.test(pe) && !/right ventricular infarction/.test(pe), 'the exam shows what was found, not what it means');
-  await p.getByRole('button', { name: 'แล็บ' }).click();
+  await p.getByRole('button', { name: 'แล็บ', exact: true }).click();
   await p.getByTestId('order-ecg2').click().catch(() => {}); await p.waitForTimeout(200);
   const v4r = await p.getByTestId('result-ecg2').innerText().catch(() => '');
   check(/V4R/.test(v4r) && !/RV infarction/.test(v4r), 'a text result shows the tracing, not the conclusion', v4r.replace(/\n/g, ' / ').slice(0, 80));

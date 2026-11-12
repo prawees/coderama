@@ -117,7 +117,7 @@ export default function SummaryPage() {
         <motion.div initial={{ scale: 0.92, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.35 }} className="cozy-panel w-full max-w-sm p-3 max-h-full overflow-y-auto">
           <h1 className="text-center text-[28px] leading-tight">จบเวรวันที่ {finishedDay}</h1>
           <motion.div initial={{ scale: 1.4, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2, type: "spring", stiffness: 260, damping: 15 }} className="mt-1 text-center" data-testid="shift-title">
-            <p className="text-[13px] leading-none text-[#86522e]">ฉายาเวรนี้</p>
+            <p className="text-[14px] leading-none text-[#86522e]">ฉายาเวรนี้</p>
             <p className="text-[32px] leading-tight text-[#d95763]">{earned.title}</p>
           </motion.div>
 
@@ -146,17 +146,17 @@ export default function SummaryPage() {
                   <div key={i} className="flex items-baseline justify-between gap-2 text-[15px] leading-snug border-b border-dashed border-[#e7d3a8] last:border-0 py-0.5">
                     <span className="min-w-0">
                       <span>{sp.name ?? who?.name.th ?? sp.caseId}</span>
-                      <span className="block text-[13px] text-[#5b4148]">{who?.dx.th}</span>
+                      <span className="block text-[14px] text-[#5b4148]">{who?.dx.th}</span>
                     </span>
-                    <span className={`shrink-0 text-[13px] ${g.good ? "text-[#3f8a48]" : "text-[#a93c4b]"}`}>{g.text}</span>
+                    <span className={`shrink-0 text-[14px] ${g.good ? "text-[#3f8a48]" : "text-[#a93c4b]"}`}>{g.text}</span>
                   </div>
                 );
               })}
             </div>
           )}
           <div className="mt-2 grid grid-cols-2 gap-1.5 text-center leading-none" data-testid="summary-totals">
-            <div className="rounded-[4px] border-2 border-[#e7d3a8] bg-[#fff6e3] py-1"><p className="text-[22px] text-[#d95763] tabular-nums">{savedTotal ?? 0}</p><p className="text-[13px] text-[#86522e] mt-0.5">คนไข้ที่ช่วยไว้ทั้งหมด</p></div>
-            <div className="rounded-[4px] border-2 border-[#e7d3a8] bg-[#fff6e3] py-1"><p className="text-[22px] text-[#3f8a48] tabular-nums">{goodStreak ?? 0}</p><p className="text-[13px] text-[#86522e] mt-0.5">ทำดีติดกัน (เคส)</p></div>
+            <div className="rounded-[4px] border-2 border-[#e7d3a8] bg-[#fff6e3] py-1"><p className="text-[22px] text-[#d95763] tabular-nums">{savedTotal ?? 0}</p><p className="text-[14px] text-[#86522e] mt-0.5">คนไข้ที่ช่วยไว้ทั้งหมด</p></div>
+            <div className="rounded-[4px] border-2 border-[#e7d3a8] bg-[#fff6e3] py-1"><p className="text-[22px] text-[#3f8a48] tabular-nums">{goodStreak ?? 0}</p><p className="text-[14px] text-[#86522e] mt-0.5">ทำดีติดกัน (เคส)</p></div>
           </div>
           {at && (
             <div className="mt-2 flex flex-col gap-1" data-testid="chapter-progress">
@@ -169,7 +169,7 @@ export default function SummaryPage() {
                 </div>
               </div>
               {at.chapter.reward && (
-                <p className="text-[14px] leading-none text-[#86522e]">{at.left > 0 ? `อีก ${at.left} เวร ${at.chapter.reward}` : `ครบบทแล้ว ${at.chapter.reward}`}</p>
+                <p className="text-[15px] leading-none text-[#86522e]">{at.left > 0 ? `อีก ${at.left} เวร ${at.chapter.reward}` : `ครบบทแล้ว ${at.chapter.reward}`}</p>
               )}
             </div>
           )}
@@ -186,7 +186,7 @@ export default function SummaryPage() {
           )}
           {showNote && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mt-1.5 rounded-[4px] border-2 border-[#3a2a2f] bg-[#2b2133] px-2.5 py-1.5" data-testid="teaser">
-              <p className="text-[13px] leading-none text-[#ffd66b]">เวรหน้า</p>
+              <p className="text-[14px] leading-none text-[#ffd66b]">เวรหน้า</p>
               <RichText text={teaserAfter(finishedDay)} tone="dark" className="text-[15px] leading-snug mt-1 text-[#fbf3e2]" />
             </motion.div>
           )}
@@ -214,7 +214,7 @@ export default function SummaryPage() {
                     Daily Case #{dailyWaiting}
                   </button>
                 )}
-                <p className="text-center text-[13px] leading-none text-[#86522e]">เซฟแล้ว จะพักก่อนแล้วค่อยกลับมาเล่นต่อก็ได้</p>
+                <p className="text-center text-[14px] leading-none text-[#86522e]">เซฟแล้ว จะพักก่อนแล้วค่อยกลับมาเล่นต่อก็ได้</p>
               </motion.div>
             )}
           </div>

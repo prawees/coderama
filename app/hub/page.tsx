@@ -717,6 +717,7 @@ export default function HubPage() {
           onShift={onShift}
           paused={dialogueQueue.length > 0 || anyModal || dayCard !== null}
           fastForward={isFastForwarding}
+          catFollows={(useERStore.getState().gifts?.dried_fish ?? 0) > 0}
           spawn={spawnPos}
           language={language}
           onInteract={social.onInteract}
@@ -735,7 +736,7 @@ export default function HubPage() {
                 <span>{tr('Day', 'วันที่')} {currentDay}</span>
                 <span className="tabular-nums text-[#86522e]">{formatTime(shownMinutes)}</span>
               </div>
-              <div className="text-[13px] leading-none mt-1 text-[#86522e] max-w-[11rem] truncate">
+              <div className="text-[14px] leading-none mt-1 text-[#86522e] max-w-[11rem] truncate">
                 {currentMap === 'AMBULANCE_BAY' ? tr('Courtyard', 'ลานหน้าตึก') : LOCATION_NAMES[phase][language]}
               </div>
             </div>
@@ -815,7 +816,7 @@ export default function HubPage() {
             ) : chapterAt ? (
               <div data-testid="chapter-bar">
                 <div className="cozy-bar h-3 mt-1.5"><span style={{ width: `${((chapterAt.position - 1) / chapterAt.total) * 100}%`, background: '#86c35f' }} /></div>
-                <p className="text-[14px] leading-none mt-1 text-[#86522e] truncate">{`อีก ${chapterAt.total - chapterAt.position + 1} เวร ${chapterAt.chapter.reward}`}</p>
+                <p className="text-[15px] leading-none mt-1 text-[#86522e] truncate">{`อีก ${chapterAt.total - chapterAt.position + 1} เวร ${chapterAt.chapter.reward}`}</p>
               </div>
             ) : (
               <div className="cozy-bar h-3 mt-1.5"><span style={{ width: `${progressPercent}%`, background: '#7fc8d8' }} /></div>
@@ -839,7 +840,7 @@ export default function HubPage() {
                     className={`cozy-btn py-1.5 px-1 flex flex-col items-center leading-none ${c ? 'cozy-btn-berry animate-[cozyWiggle_1.2s_ease-in-out_infinite]' : 'opacity-70'}`}
                   >
                     <span className="flex items-center gap-1 text-[16px]"><PixelIcon name="bed" size={16} />{bedIdx + 1}</span>
-                    <span className="text-[14px] mt-1 max-w-full truncate px-0.5">{c ? (c.alias ?? patientFor(c.caseDataId)?.name.th ?? 'คนไข้') : tr('free', 'ว่าง')}</span>
+                    <span className="text-[15px] mt-1 max-w-full truncate px-0.5">{c ? (c.alias ?? patientFor(c.caseDataId)?.name.th ?? 'คนไข้') : tr('free', 'ว่าง')}</span>
                   </button>
                 );
               })}
@@ -886,7 +887,7 @@ export default function HubPage() {
           ].map((b) => (
             <button key={b.key} onClick={() => { audio.playClick(); b.onClick(); }} className="cozy-btn py-1 flex flex-col items-center gap-0.5 leading-none" aria-label={b.key} data-testid={`btn-${b.key}`}>
               <PixelIcon name={b.icon} size={18} />
-              <span className="text-[13px]">{b.label}</span>
+              <span className="text-[14px]">{b.label}</span>
             </button>
           ))}
         </div>

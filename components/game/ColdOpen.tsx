@@ -303,7 +303,7 @@ export function ColdOpen({ onDone, replay = false, challenge = null, playerName 
         <div className="grid grid-cols-3 text-center leading-none">
           {[["HR", vitals.hr], ["BP", vitals.bp], ["SpO2", vitals.spo2 ? `${vitals.spo2}%` : "-"]].map(([k, v]) => (
             <div key={k as string}>
-              <p className="text-[13px] text-[#a99fb5]">{k}</p>
+              <p className="text-[14px] text-[#a99fb5]">{k}</p>
               <p className={`text-[26px] tabular-nums ${vitals.hr ? "text-[#7fe0a0]" : "text-[#ff8a8a]"}`} data-testid={`cold-open-${k}`}>{v}</p>
             </div>
           ))}
@@ -342,10 +342,10 @@ export function ColdOpen({ onDone, replay = false, challenge = null, playerName 
         {compressing && (
           <div className="relative rounded-[6px] border-[3px] border-[#3a2a2f] bg-[#241c2b] px-2.5 pt-1.5 pb-2" data-testid="cpr-hud">
             <div className="flex items-end justify-between leading-none">
-              <span className="text-[14px] text-[#cfc3dc]">อัตรากดหน้าอก</span>
+              <span className="text-[15px] text-[#cfc3dc]">อัตรากดหน้าอก</span>
               <span className="flex items-baseline gap-1">
                 <span className={`text-[30px] tabular-nums ${!rate ? "text-[#cfc3dc]" : rate >= RATE_LOW && rate <= RATE_HIGH ? "text-[#a5ecc0]" : "text-[#ffb3b8]"}`} data-testid="cold-open-rate">{rate || "..."}</span>
-                <span className="text-[13px] text-[#cfc3dc]">ครั้ง/นาที</span>
+                <span className="text-[14px] text-[#cfc3dc]">ครั้ง/นาที</span>
               </span>
             </div>
             {/* 60 to 160 a minute, the 100 to 120 target shaded green */}
@@ -353,7 +353,7 @@ export function ColdOpen({ onDone, replay = false, challenge = null, playerName 
               <div className="absolute inset-y-0 bg-[#5fa96a]" style={{ left: "40%", width: "20%" }} />
               {rate > 0 && <div className="absolute inset-y-[-2px] w-[4px] bg-[#ffe08a] transition-[left] duration-150" style={{ left: `calc(${Math.max(0, Math.min(100, rate - 60))}% - 2px)` }} />}
             </div>
-            <div className="flex justify-between text-[11px] leading-none mt-1 text-[#9d90ae]"><span>60</span><span>100</span><span>120</span><span>160</span></div>
+            <div className="flex justify-between text-[14px] leading-none mt-1 text-[#9d90ae]"><span>60</span><span>100</span><span>120</span><span>160</span></div>
             <AnimatePresence>
               <motion.span key={cue} initial={{ scale: 1.5, opacity: 1, rotate: cue % 2 ? 6 : -6 }} animate={{ scale: 1, opacity: 0 }} transition={{ duration: 0.5, ease: "easeOut" }}
                 className={`pointer-events-none absolute -top-6 px-2 py-0.5 rounded-[4px] border-[3px] border-[#3a2a2f] bg-[#ffe08a] text-[24px] leading-none text-[#7a3f24] ${cue % 2 ? "right-5" : "left-5"}`} data-testid="push-cue">PUSH!</motion.span>
@@ -364,7 +364,7 @@ export function ColdOpen({ onDone, replay = false, challenge = null, playerName 
           <div className="cozy-panel flex gap-2 items-center p-2">
             <div className="w-12 h-12 shrink-0 rounded-[3px] overflow-hidden border-2 border-[#3a2a2f]"><PixelPortrait speaker="Nurse Ann" className="w-full h-full" /></div>
             <div className="min-w-0">
-              <p className="text-[14px] leading-none text-[#86522e]">พี่แอน</p>
+              <p className="text-[15px] leading-none text-[#86522e]">พี่แอน</p>
               <Typed text={coach ?? wrong ?? line} className="text-[19px] leading-[1.3] mt-1 text-[#3a2a2f]" testid="cold-open-line" />
             </div>
           </div>

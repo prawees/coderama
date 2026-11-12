@@ -37,10 +37,10 @@ export function QuestsModal({ onClose, onOpenCasebook }: QuestsModalProps) {
         <div className="flex-1 overflow-y-auto flex flex-col gap-2 pr-1">
           {today && (
             <div className={`border-2 rounded-[4px] p-2 ${todayDone ? "bg-[#eef6e6] border-[#b7d7a8]" : "bg-[#fff1d6] border-[#e2b86a]"}`} data-testid="daily-request">
-              <p className="text-[14px] leading-none text-[#86522e] flex items-center gap-1"><PixelIcon name="log" size={11} />งานวันนี้จากบอร์ดประกาศ</p>
+              <p className="text-[15px] leading-none text-[#86522e] flex items-center gap-1"><PixelIcon name="log" size={11} />งานวันนี้จากบอร์ดประกาศ</p>
               <p className={`text-[19px] leading-none mt-1.5 ${todayDone ? "line-through text-[#86522e]" : ""}`}>{today.goal}</p>
               <p className="text-[15px] leading-snug mt-1 text-[#5b4148]">{today.note}</p>
-              <p className="text-[14px] leading-none mt-1.5 text-[#3f8a48] flex items-center gap-1">
+              <p className="text-[15px] leading-none mt-1.5 text-[#3f8a48] flex items-center gap-1">
                 {todayDone ? "✓ เสร็จแล้ว" : <><PixelIcon name="coin" size={11} />+{today.cash} เหรียญ{today.xp ? ` +${today.xp} XP` : ""}</>}
               </p>
             </div>
@@ -50,7 +50,7 @@ export function QuestsModal({ onClose, onOpenCasebook }: QuestsModalProps) {
             <div key={id} className="bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] p-2">
               <p className="text-[19px] leading-none">{title(id)}</p>
               <p className="text-[16px] leading-snug mt-1 text-[#5b4148]">{desc(id)}</p>
-              <p className="text-[14px] leading-none mt-1.5 text-[#3f8a48] flex items-center gap-1"><PixelIcon name="coin" size={11} />{QUEST_DATABASE[id].rewardText}</p>
+              <p className="text-[15px] leading-none mt-1.5 text-[#3f8a48] flex items-center gap-1"><PixelIcon name="coin" size={11} />{QUEST_DATABASE[id].rewardText}</p>
             </div>
           ))}
           {onOpenCasebook && (

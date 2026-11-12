@@ -45,7 +45,7 @@ export default function ProfilePage() {
         <div className="relative mx-auto w-full max-w-sm">
           <div className="absolute left-1/2 -top-3 -translate-x-1/2 w-10 h-4 rounded-t-[4px] bg-[#6b4f78] border-[3px] border-b-0 border-[#3a2a2f]" />
           <div className="cozy-panel p-3">
-            <div className="flex items-center justify-between text-[14px] leading-none text-[#86522e] border-b-2 border-dashed border-[#e7d3a8] pb-1.5">
+            <div className="flex items-center justify-between text-[15px] leading-none text-[#86522e] border-b-2 border-dashed border-[#e7d3a8] pb-1.5">
               <span>{place}</span>
               <span>{tr(`Day ${currentDay}`, `วันที่ ${currentDay}`)}</span>
             </div>
@@ -56,7 +56,7 @@ export default function ProfilePage() {
               <div className="flex-1 min-w-0 flex flex-col">
                 <p className="text-[26px] leading-none truncate">{playerName}</p>
                 <p className="text-[17px] leading-none mt-1 text-[#86522e]">{getLocalizedRankTitle(rank, playerName, playerGender, language)}</p>
-                {university && university !== "Unknown" && <p className="text-[14px] leading-none mt-1.5 text-[#86522e] truncate">{universityTh(university)}</p>}
+                {university && university !== "Unknown" && <p className="text-[15px] leading-none mt-1.5 text-[#86522e] truncate">{universityTh(university)}</p>}
                 <div className="mt-auto flex flex-col gap-1 text-[15px] leading-none">
                   <span className="flex items-center gap-1.5"><PixelIcon name="quest" size={13} />{tr(`${(completedQuests || []).length} favours done`, `ช่วยงานสำเร็จ ${(completedQuests || []).length} ครั้ง`)}</span>
                   <span className="flex items-center gap-1.5"><PixelIcon name="heart" size={13} />{tr(`${friends.length} friends at work`, `เพื่อนที่ทำงาน ${friends.length} คน`)}</span>
@@ -71,7 +71,7 @@ export default function ProfilePage() {
                     <div className="w-11 h-11 rounded-[3px] overflow-hidden border-2 border-[#3a2a2f]">
                       <PixelPortrait speaker={NPCS[id].name.en} className="w-full h-full" />
                     </div>
-                    <span className="text-[13px] leading-none flex items-center gap-0.5"><PixelIcon name="heart" size={10} />{heartsFor(pts)}</span>
+                    <span className="text-[14px] leading-none flex items-center gap-0.5"><PixelIcon name="heart" size={10} />{heartsFor(pts)}</span>
                   </div>
                 ))}
               </div>

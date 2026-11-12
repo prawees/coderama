@@ -1,5 +1,5 @@
 cc: อาเจียนเป็นเลือดสดก่อนมารพ.
-bg: U/D cirrhosis จาก chronic hepatitis B เคยส่องกล้องเจอ esophageal varices grade 3 หยุด propranolol ไปเมื่อ 6 เดือนก่อนเพราะกินแล้วเพลีย ไม่ได้ไปทำ band ligation ตามนัด อาเจียนเป็นเลือดปริมาณมาก 3 ครั้งใน 2 ชม. ถ่ายดำเหนียว 1 ครั้ง คืนนี้ดื่มเหล้า ภรรยาบอกว่า 2 วันมานี้สับสนมากขึ้น บ่งว่า encephalopathy เริ่มมาก่อนเลือดออกแล้ว
+bg: ¦p U/D cirrhosis จาก chronic hepatitis B เคยส่องกล้องเจอ esophageal varices grade 3 หยุด propranolol ไปเมื่อ 6 เดือนก่อนเพราะกินแล้วเพลีย ไม่ได้ไปทำ band ligation ตามนัด ¦ อาเจียนเป็นเลือดปริมาณมาก 3 ครั้งใน 2 ชม. ถ่ายดำเหนียว 1 ครั้ง ¦ คืนนี้ดื่มเหล้า ภรรยาบอกว่า 2 วันมานี้สับสนมากขึ้น || บ่งว่า encephalopathy เริ่มมาก่อนเลือดออกแล้ว
 i.hb1: Severe anemia ร่วมกับ thrombocytopenia จาก hypersplenism ให้เลือดถึงเป้า Hb 7 ถึง 8 g/dL เท่านั้น ให้เกินจะเพิ่ม portal pressure เพิ่มเลือดออกซ้ำและ mortality
 i.coag1: Coagulopathy จากโรคตับ INR สูงใน cirrhosis ไม่ได้บอกแนวโน้มเลือดออกได้แน่นอน เพราะทั้ง procoagulant และ anticoagulant factor ลดลงพร้อมกัน อย่าไล่แก้ INR ด้วย FFP เพราะปริมาณน้ำเพิ่ม portal pressure
 i.lft1: Child-Pugh C, MELD ราว 24 ไตทำงานลดลงทำให้กังวล hepatorenal syndrome ซึ่งเปลี่ยนพยากรณ์โรคมาก

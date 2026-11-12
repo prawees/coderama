@@ -42,7 +42,7 @@ export function GuideTracker({ onShift, hidden, mark }: { onShift: boolean; hidd
   if (!steps.length || hidden) return null;
   if (mini) {
     return (
-      <button onClick={() => fold(false)} className="cozy-tag px-2 py-1 flex items-center gap-1.5 text-[14px] leading-none" data-testid="guide-mini" aria-label="เปิดภารกิจ">
+      <button onClick={() => fold(false)} className="cozy-tag px-2 py-1 flex items-center gap-1.5 text-[15px] leading-none" data-testid="guide-mini" aria-label="เปิดภารกิจ">
         <PixelIcon name="quest" size={13} />ภารกิจ {steps.length - left.length}/{steps.length}
         {current && <span className="w-2 h-2 rounded-full bg-[#d95763] animate-pulse" />}
       </button>
@@ -54,7 +54,7 @@ export function GuideTracker({ onShift, hidden, mark }: { onShift: boolean; hidd
       <button onClick={() => { audio.playClick(); setOpen((o) => !o); }} className="cozy-panel w-full text-left px-2 py-1.5 flex items-start gap-1.5" aria-expanded={open}>
         <span className="mt-0.5 shrink-0"><PixelIcon name="quest" size={14} /></span>
         <span className="min-w-0">
-          <span className="block text-[12px] leading-none text-[#86522e]">ภารกิจวันนี้ {steps.length - left.length}/{steps.length}</span>
+          <span className="block text-[14px] leading-none text-[#86522e]">ภารกิจวันนี้ {steps.length - left.length}/{steps.length}</span>
           <AnimatePresence mode="wait">
             <motion.span key={current?.id ?? "done"} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 6 }}
               className="block text-[15px] leading-snug mt-0.5" data-testid="guide-step">
@@ -69,7 +69,7 @@ export function GuideTracker({ onShift, hidden, mark }: { onShift: boolean; hidd
             {steps.map((s) => {
               const done = (st.guide ?? []).includes(s.id);
               return (
-                <li key={s.id} className={`text-[14px] leading-snug flex gap-1.5 ${done ? "text-[#5fa96a]" : ""}`}>
+                <li key={s.id} className={`text-[15px] leading-snug flex gap-1.5 ${done ? "text-[#5fa96a]" : ""}`}>
                   <span className="shrink-0">{done ? "✓" : "◇"}</span><span className={done ? "line-through decoration-1" : ""}>{s.text}</span>
                 </li>
               );
@@ -80,7 +80,7 @@ export function GuideTracker({ onShift, hidden, mark }: { onShift: boolean; hidd
       <AnimatePresence>
         {cheer && (
           <motion.p initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}
-            className="mt-1 cozy-tag !bg-[#86c35f] px-2 py-0.5 text-[14px] leading-none inline-block" data-testid="guide-cheer">✓ สำเร็จ</motion.p>
+            className="mt-1 cozy-tag !bg-[#86c35f] px-2 py-0.5 text-[15px] leading-none inline-block" data-testid="guide-cheer">✓ สำเร็จ</motion.p>
         )}
       </AnimatePresence>
     </div>

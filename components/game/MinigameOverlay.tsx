@@ -97,7 +97,7 @@ export function MinigameOverlay({ interventionName, onComplete, onCompress, show
                 <div className="absolute top-0 bottom-0 w-[4px] bg-[#3a2a2f] transition-[left] duration-150" style={{ left: `calc(${gaugePct(shownRate)}% - 2px)` }} />
               )}
             </div>
-            <div className="flex justify-between text-[12px] leading-none mt-1 text-[#86522e] tabular-nums">
+            <div className="flex justify-between text-[14px] leading-none mt-1 text-[#86522e] tabular-nums">
               <span>60</span><span>100</span><span>120</span><span>160</span>
             </div>
           </div>
@@ -119,7 +119,7 @@ export function MinigameOverlay({ interventionName, onComplete, onCompress, show
               กดหน้าอก
             </button>
           )}
-          <p className="text-[13px] leading-none text-[#86522e]">แตะปุ่ม หรือกด Space</p>
+          <p className="text-[14px] leading-none text-[#86522e]">แตะปุ่ม หรือกด Space</p>
         </div>
       </div>
     </div>

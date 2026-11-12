@@ -78,11 +78,11 @@ export default function AccountPage() {
               <p className="text-[16px] leading-snug text-[#86522e] text-center">เลือกเก็บอันเดียว อีกอันจะถูกแทนที่</p>
               <button onClick={() => { audio.playClick(); resolveConflict("cloud"); }} className="cozy-btn cozy-btn-leaf w-full py-2 text-left px-3" data-testid="keep-cloud">
                 <span className="block text-[19px] leading-none">ใช้เซฟในคลาวด์</span>
-                <span className="block text-[14px] leading-snug mt-1 opacity-90">{fmt(cloud.conflict.cloud)}</span>
+                <span className="block text-[15px] leading-snug mt-1 opacity-90">{fmt(cloud.conflict.cloud)}</span>
               </button>
               <button onClick={() => { audio.playClick(); resolveConflict("local"); }} className="cozy-btn w-full py-2 text-left px-3" data-testid="keep-local">
                 <span className="block text-[19px] leading-none">ใช้เซฟในเครื่องนี้</span>
-                <span className="block text-[14px] leading-snug mt-1 opacity-90">{fmt(cloud.conflict.local)}</span>
+                <span className="block text-[15px] leading-snug mt-1 opacity-90">{fmt(cloud.conflict.local)}</span>
               </button>
             </>
           ) : cloud.user ? (
@@ -93,11 +93,11 @@ export default function AccountPage() {
                 {cloud.phase === "saving" || cloud.phase === "loading" ? "กำลังเซฟขึ้นคลาวด์..." : cloud.phase === "error" ? "เซฟขึ้นคลาวด์ไม่สำเร็จ จะลองใหม่ตอนเล่นต่อ" : time ? `เซฟในคลาวด์แล้ว ${time} น.` : "เซฟในคลาวด์แล้ว"}
               </p>
               <button onClick={toggleBoard} className="flex items-center justify-between gap-2 rounded-[4px] border-2 border-[#e7d3a8] bg-[#fff6e3] px-2.5 py-2 text-left" data-testid="board-toggle" aria-pressed={optIn}>
-                <span className="text-[16px] leading-snug">แสดงชื่อในกระดานอันดับ<span className="block text-[13px] text-[#86522e]">ใช้ชื่อในเกมกับคณะ ไม่แสดงอีเมล</span></span>
+                <span className="text-[16px] leading-snug">แสดงชื่อในกระดานอันดับ<span className="block text-[14px] text-[#86522e]">ใช้ชื่อในเกมกับคณะ ไม่แสดงอีเมล</span></span>
                 <span className={`shrink-0 cozy-tag px-2 py-0.5 text-[15px] ${optIn ? "!bg-[#86c35f]" : ""}`}>{optIn ? "เปิด" : "ปิด"}</span>
               </button>
               <button onClick={async () => { audio.playClick(); await signOut(); }} className="cozy-btn w-full py-1.5 text-[18px]" data-testid="sign-out">ออกจากระบบ</button>
-              <p className="text-[13px] leading-snug text-[#86522e] text-center">ออกจากระบบแล้วเกมยังอยู่ในเครื่องนี้ แค่ไม่เซฟขึ้นคลาวด์</p>
+              <p className="text-[14px] leading-snug text-[#86522e] text-center">ออกจากระบบแล้วเกมยังอยู่ในเครื่องนี้ แค่ไม่เซฟขึ้นคลาวด์</p>
             </>
           ) : (
             <>
@@ -116,7 +116,7 @@ export default function AccountPage() {
                 <button onClick={sendLink} disabled={busy} className="cozy-btn cozy-btn-sky w-full py-1.5 text-[18px]" data-testid="send-link">ส่งลิงก์ให้หน่อย</button>
               </div>
               {usingEmulator && (
-                <button data-testid="emulator-sign-in" className="cozy-btn w-full py-1 text-[14px]" onClick={async () => {
+                <button data-testid="emulator-sign-in" className="cozy-btn w-full py-1 text-[15px]" onClick={async () => {
                   const e = email || "tester@example.com";
                   await signInWithEmailAndPassword(auth, e, "test-password").catch(() => createUserWithEmailAndPassword(auth, e, "test-password"));
                 }}>emulator sign in</button>

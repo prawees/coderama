@@ -62,6 +62,8 @@ interface ClinicWorldProps {
   clockMinutes: number;
   onShift: boolean;
   paused: boolean;
+  /** The player has dried fish in the bag: the cat can smell it and keeps close */
+  catFollows?: boolean;
   fastForward?: boolean;
   spawn?: { x: number; y: number };
   language: "en" | "th";
@@ -750,8 +752,16 @@ function createEngine(
     catModeT -= dt;
     if (catModeT <= 0) {
       const r = Math.random();
-      catMode = r < 0.45 ? "wander" : r < 0.75 ? "sit" : "sleep";
+      // Late at night she mostly sleeps. With dried fish in your bag she trots after you instead.
+      const m = propsRef.current.clockMinutes, night = m >= 22 * 60 || m < 5 * 60;
+      catMode = night ? (r < 0.15 ? "wander" : r < 0.3 ? "sit" : "sleep") : r < 0.45 ? "wander" : r < 0.75 ? "sit" : "sleep";
       catModeT = 5 + Math.random() * 8;
+      if (propsRef.current.catFollows && !night && player && Math.hypot(player.pos.x - a.pos.x, player.pos.y - a.pos.y) > 1.6) {
+        catMode = "sit";
+        catModeT = 3;
+        a.path = (findPath(solid, { x: Math.floor(a.pos.x), y: Math.floor(a.pos.y) }, { x: Math.floor(player.pos.x), y: Math.floor(player.pos.y) }) ?? []).slice(0, -1).slice(0, 7);
+        if (Math.random() < 0.4) showEmote("cat", "heart");
+      }
       if (catMode === "sleep") {
         const bedProp = map.props.find((p) => p.kind === "catbed");
         if (bedProp) a.path = findPath(solid, { x: Math.floor(a.pos.x), y: Math.floor(a.pos.y) }, { x: bedProp.x, y: bedProp.y }) ?? [];

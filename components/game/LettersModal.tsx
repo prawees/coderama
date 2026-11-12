@@ -106,9 +106,9 @@ export function LettersModal({ onClose, initialTab = "letters" }: { onClose: () 
                     <PixelIcon name="mail" size={20} />
                     <span className="flex-1 min-w-0">
                       <span className="block text-[18px] leading-none">{p.from?.th ?? p.name.th}</span>
-                      <span className="block text-[14px] leading-none mt-1 text-[#86522e]">วันที่ {patientLog[id].day + 1}</span>
+                      <span className="block text-[15px] leading-none mt-1 text-[#86522e]">วันที่ {patientLog[id].day + 1}</span>
                     </span>
-                    {unread && <span className="cozy-tag !bg-[#f6c3c6] px-1.5 py-0.5 text-[13px] leading-none">ใหม่</span>}
+                    {unread && <span className="cozy-tag !bg-[#f6c3c6] px-1.5 py-0.5 text-[14px] leading-none">ใหม่</span>}
                   </button>
                 );
               })}
@@ -120,10 +120,10 @@ export function LettersModal({ onClose, initialTab = "letters" }: { onClose: () 
                     <div className="bg-[#fffaf0] border-2 border-[#e7d3a8] rounded-[4px] p-2.5">
                       <div className="flex justify-between items-baseline gap-2">
                         <span className="text-[20px] leading-none">{p.name.th} {p.age.th}</span>
-                        <span className="text-[13px] leading-none text-[#86522e] shrink-0">เคส {CASEBOOK_IDS.indexOf(page) + 1} วันที่ {r.day}</span>
+                        <span className="text-[14px] leading-none text-[#86522e] shrink-0">เคส {CASEBOOK_IDS.indexOf(page) + 1} วันที่ {r.day}</span>
                       </div>
                       <p className="text-[16px] leading-snug mt-1.5"><span className="text-[#86522e]">Dx </span>{p.dx.th}</p>
-                      <p className={`text-[14px] leading-snug mt-1.5 ${r.star ? "text-[#c08a1e]" : r.good ? "text-[#3f8a48]" : "text-[#a93c4b]"}`}>
+                      <p className={`text-[15px] leading-snug mt-1.5 ${r.star ? "text-[#c08a1e]" : r.good ? "text-[#3f8a48]" : "text-[#a93c4b]"}`}>
                         {r.star ? "★ ดูแลได้ดี" : r.good ? "รอด แต่ดูแลได้ดีกว่านี้ ถ้าได้เจออีก ทำให้ดีจะได้ดาว" : "ผลไม่ดี เก็บไว้เป็นบทเรียน ถ้าได้เจออีก ทำให้ดีจะได้ดาว"}
                       </p>
                       <p className="text-[15px] leading-snug mt-2 text-[#5b4148] italic">{`${p.by.th}: "${p.quote.th}"`}</p>
@@ -153,9 +153,9 @@ export function LettersModal({ onClose, initialTab = "letters" }: { onClose: () 
                         รับรางวัล {m.count} คน: {m.title}
                       </button>
                     ))}
-                    {claimedNow && <p className="text-[14px] leading-snug mt-1.5 text-[#3f8a48]">{`✓ ${claimedNow}`}</p>}
+                    {claimedNow && <p className="text-[15px] leading-snug mt-1.5 text-[#3f8a48]">{`✓ ${claimedNow}`}</p>}
                     {!claimable.length && next && (
-                      <p className="text-[14px] leading-snug mt-1.5 text-[#86522e]">
+                      <p className="text-[15px] leading-snug mt-1.5 text-[#86522e]">
                         {`อีก ${next.count - filled.length} คน ได้รางวัล "${next.title}" ${next.cash} เหรียญ${next.giftId && GIFTS[next.giftId] ? ` และ${GIFTS[next.giftId].name.th}` : ""}`}
                       </p>
                     )}
@@ -166,17 +166,17 @@ export function LettersModal({ onClose, initialTab = "letters" }: { onClose: () 
                     if (!r) {
                       return (
                         <div key={id} className="bg-[#efe3c8] border-2 border-dashed border-[#d9c49a] rounded-[4px] px-2 py-1.5 flex items-center gap-2 text-[#a88d64]" data-testid={`casebook-locked-${id}`}>
-                          <span className="text-[13px] leading-none w-7 shrink-0">{i + 1}</span>
+                          <span className="text-[14px] leading-none w-7 shrink-0">{i + 1}</span>
                           <span className="text-[16px] leading-none">???</span>
                         </div>
                       );
                     }
                     return (
                       <button key={id} onClick={() => { audio.playClick(); setPage(id); }} className="text-left bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] px-2 py-1.5 flex items-center gap-2" data-testid={`casebook-${id}`}>
-                        <span className="text-[13px] leading-none w-7 shrink-0 text-[#86522e]">{i + 1}</span>
+                        <span className="text-[14px] leading-none w-7 shrink-0 text-[#86522e]">{i + 1}</span>
                         <span className="flex-1 min-w-0">
                           <span className="block text-[17px] leading-none truncate">{p.name.th} {p.age.th}</span>
-                          <span className="block text-[14px] leading-none mt-1 text-[#5b4148] truncate">{p.dx.th}</span>
+                          <span className="block text-[15px] leading-none mt-1 text-[#5b4148] truncate">{p.dx.th}</span>
                         </span>
                         <span className={`text-[16px] leading-none shrink-0 ${r.star ? "text-[#c08a1e]" : "text-[#c9b48c]"}`}>{r.star ? "★" : "☆"}</span>
                       </button>

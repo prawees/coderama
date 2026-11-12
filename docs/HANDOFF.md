@@ -1,5 +1,19 @@
 # Handoff, 8 November 2026
 
+## Easier to read and play (13 November, later)
+
+- **History as a report.** Each `bg:` line carries layout marks (`scripts/clinical/history_apply.py`, every break
+  chosen by hand): " ¦ " a new line of present illness, " ¦p " a line of past history, " || " the teaching note shown
+  after the working diagnosis. `lib/historyText.ts` parses it; the case screen shows "Present illness" and
+  "Past history" as bullets with times and amounts highlighted. Nothing was reworded except case_30, whose lesson was
+  mixed into the story.
+- **Next step.** A yellow line under the monitor always says what to do now and jumps to that tab.
+- **Type.** Nothing smaller than 14 px outside the designer; 14 became 15.
+- **Cute.** The cat mostly sleeps late at night and trots after a player carrying dried fish; a patient who did well
+  says thank you at the end of the case.
+- Playwright for the bots now lives in `~/.coderama-pw` (macOS kept emptying /tmp): set
+  `PW_MODULE=$HOME/.coderama-pw/node_modules/playwright` and `PW_CHROMIUM` to the cached headless shell.
+
 ## Less text, report-style chief complaints (13 November)
 
 - The daily pages, the title's daily button and the cold open lost their explanatory subtext; labels are short and

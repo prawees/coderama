@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, Suspense } from "react";
+import { parseHistory } from "@/lib/historyText";
 import { EcgStrip } from "@/components/game/EcgStrip";
 import { differentialFor } from "@/lib/differentials";
 import { dailyCaseId, fmtClock } from "@/lib/daily";
@@ -611,6 +612,16 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
   const canGather = openQuestions.length + examFindings.length + investigations.filter((i: any) => !i.onFile).length;
   const needGathered = Math.min(2, canGather);
   const dxGate = differential.length > 0 && !dxSolved && choices.length > 0 && (!arrest || path.length >= 1);
+  // The next thing to do, in one line: gather, commit to a diagnosis, treat. Hidden once the player is doing it.
+  const nextStep: { text: string; tab: 'info' | 'exam' | 'labs' | 'action' } | null = (() => {
+    if (!choices.length) return null;
+    if (dxGate && gathered < needGathered) {
+      if (activeTab === 'action') return { text: 'ซักประวัติ ตรวจร่างกาย หรือส่งแล็บก่อน', tab: 'info' };
+      return examined.length === 0 && examFindings.length ? { text: 'ตรวจร่างกาย', tab: 'exam' } : { text: 'ส่งแล็บที่จำเป็น', tab: 'labs' };
+    }
+    if (activeTab === 'action') return null;
+    return dxGate ? { text: 'ตั้ง working diagnosis', tab: 'action' } : { text: 'เลือกการรักษา', tab: 'action' };
+  })();
   // Teaching notes on findings open once the diagnosis is committed (or at once, in a case with no differential)
   const readingOpen = dxSolved || differential.length === 0;
   const dxOptions = [...differential].sort((a, b) => seededOrder(`dx:${caseKey}:${a}`) - seededOrder(`dx:${caseKey}:${b}`));
@@ -691,10 +702,10 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
               <p className="text-[20px] leading-none truncate" data-testid="patient-name">
                 {patient ? `${patientName} ${patient.age.th}` : caseData.title}
               </p>
-              {alias && <span className="shrink-0 cozy-tag !bg-[#cfe6f0] px-1.5 py-0.5 text-[13px] leading-none" data-testid="review-tag">เคสทบทวน</span>}
-              {practice && <span className="shrink-0 cozy-tag !bg-[#ffd66b] px-1.5 py-0.5 text-[13px] leading-none" data-testid="practice-tag">{daily ? 'Daily' : 'ฝึก'}</span>}
+              {alias && <span className="shrink-0 cozy-tag !bg-[#cfe6f0] px-1.5 py-0.5 text-[14px] leading-none" data-testid="review-tag">เคสทบทวน</span>}
+              {practice && <span className="shrink-0 cozy-tag !bg-[#ffd66b] px-1.5 py-0.5 text-[14px] leading-none" data-testid="practice-tag">{daily ? 'Daily' : 'ฝึก'}</span>}
               {slipTotal > 0 && (
-                <span className="shrink-0 cozy-tag !bg-[#f6c3c6] px-1.5 py-0.5 text-[13px] leading-none" data-testid="slip-count">{`พลาด ${slipTotal}`}</span>
+                <span className="shrink-0 cozy-tag !bg-[#f6c3c6] px-1.5 py-0.5 text-[14px] leading-none" data-testid="slip-count">{`พลาด ${slipTotal}`}</span>
               )}
             </div>
             {patient ? (
@@ -721,7 +732,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
               { k: 'T', v: shownVitals.temp ?? 37.0, bad: (shownVitals.temp ?? 37) >= 38.5 || (shownVitals.temp ?? 37) < 35 },
             ].map((x) => (
               <div key={x.k} className="flex flex-col items-center min-w-0">
-                <span className="text-[#7fc8d8] text-[12px] leading-none">{x.k}</span>
+                <span className="text-[#7fc8d8] text-[14px] leading-none">{x.k}</span>
                 <span className={`text-[19px] leading-none mt-0.5 tabular-nums ${vitalClass(x.bad)}`}>{x.v}</span>
               </div>
             ))}
@@ -736,17 +747,26 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
             <div className="absolute left-1 right-1 bottom-1 grid grid-cols-4 gap-1">
               {REGIONS.map((r) => (
                 <button key={r} onClick={() => examineRegion(r)} data-testid={`region-${r}`}
-                  className={`cozy-btn py-1 px-0.5 text-[13px] leading-none ${examRegions.includes(r) ? 'cozy-btn-leaf' : ''}`}>{REGION_LABEL[r]}</button>
+                  className={`cozy-btn py-1 px-0.5 text-[14px] leading-none ${examRegions.includes(r) ? 'cozy-btn-leaf' : ''}`}>{REGION_LABEL[r]}</button>
               ))}
             </div>
           </div>
+        )}
+
+        {/* One line that always says what to do next */}
+        {nextStep && (
+          <button type="button" onClick={() => { audio.playClick(); setActiveTab(nextStep.tab); }} data-testid="next-step"
+            className="flex-shrink-0 w-full flex items-center gap-2 rounded-[6px] border-[3px] border-[#3a2a2f] bg-[#ffd66b] px-2.5 py-1.5 text-left text-[16px] leading-none text-[#4a3410]">
+            <span className="shrink-0 text-[14px] leading-none bg-[#3a2a2f] text-[#ffd66b] rounded-[3px] px-1.5 py-0.5">ต่อไป</span>
+            <span className="min-w-0 truncate">{nextStep.text}</span>
+          </button>
         )}
 
         {/* Clipboard */}
         <div className="flex-1 min-h-0 flex flex-col relative">
           <div className="flex gap-1 px-1 relative z-10">
             <button onClick={toggle3D} aria-pressed={show3D} data-testid="toggle-3d"
-              className={`flex-shrink-0 px-1.5 py-1 text-[14px] leading-none rounded-t-[5px] border-[3px] border-b-0 border-[#3a2a2f] ${show3D ? 'bg-[#ffd66b] text-[#4a3410]' : 'bg-[#6b4f78] text-[#fbf3e2]'}`}>3D</button>
+              className={`flex-shrink-0 px-1.5 py-1 text-[15px] leading-none rounded-t-[5px] border-[3px] border-b-0 border-[#3a2a2f] ${show3D ? 'bg-[#ffd66b] text-[#4a3410]' : 'bg-[#6b4f78] text-[#fbf3e2]'}`}>3D</button>
             {tabs.map((tb) => (
               <button
                 key={tb.key}
@@ -764,14 +784,34 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
           <div className="flex-1 min-h-0 cozy-panel p-3 overflow-y-auto">
             {activeTab === 'info' && (
               <div className="space-y-3 text-[17px] leading-snug">
-                {caseData.chiefComplaint && <p className="text-[19px] leading-snug"><span className="cozy-tag !bg-[#ffd66b] px-1.5 py-0.5 text-[14px] leading-none mr-1.5">CC</span>{caseData.chiefComplaint}</p>}
-                <p className="text-[17px] leading-[1.5]" data-testid="history-text">{caseData.background ? emphasise(caseData.background) : 'ยังไม่มีใครจดอะไรไว้เลย'}</p>
+                {caseData.chiefComplaint && <p className="text-[19px] leading-snug"><span className="cozy-tag !bg-[#ffd66b] px-1.5 py-0.5 text-[15px] leading-none mr-1.5">CC</span>{caseData.chiefComplaint}</p>}
+                {(() => {
+                  const h = parseHistory(caseData.background);
+                  if (!h.now.length && !h.past.length) return <p>ยังไม่มีใครจดอะไรไว้เลย</p>;
+                  return (
+                    <div className="flex flex-col gap-2.5" data-testid="history-text">
+                      {h.now.length > 0 && (
+                        <div>
+                          <p className="text-[15px] leading-none text-[#3f6f80] mb-1.5">Present illness</p>
+                          <ul className="flex flex-col gap-1.5">{h.now.map((l, i) => <li key={i} className="flex gap-2 text-[17px] leading-[1.45]"><span className="mt-[0.55em] w-1.5 h-1.5 shrink-0 bg-[#86522e]" /><span>{emphasise(l)}</span></li>)}</ul>
+                        </div>
+                      )}
+                      {h.past.length > 0 && (
+                        <div>
+                          <p className="text-[15px] leading-none text-[#3f6f80] mb-1.5">Past history</p>
+                          <ul className="flex flex-col gap-1.5">{h.past.map((l, i) => <li key={i} className="flex gap-2 text-[17px] leading-[1.45]"><span className="mt-[0.55em] w-1.5 h-1.5 shrink-0 bg-[#86522e]" /><span>{emphasise(l)}</span></li>)}</ul>
+                        </div>
+                      )}
+                      {readingOpen && h.reading && <p className="text-[15px] leading-snug text-[#3f6f80]" data-testid="reading">{h.reading}</p>}
+                    </div>
+                  );
+                })()}
                 {openQuestions.length > 0 && (
                   <div className="space-y-1.5 pt-1" data-testid="history-questions">
                     <p className="text-[15px] leading-snug text-[#86522e]">ซักประวัติเพิ่ม แตะคำถามทีละข้อ</p>
                     {openQuestions.map((q) => asked.includes(q.id) ? (
                       <div key={q.id} className="p-2 rounded-[4px] border-2 bg-[#fff6e3] border-[#e7d3a8]" data-testid="history-answer">
-                        <p className="text-[14px] leading-snug text-[#3f6f80]">{q.data?.question}</p>
+                        <p className="text-[15px] leading-snug text-[#3f6f80]">{q.data?.question}</p>
                         <p className="text-[16px] leading-snug mt-0.5">{q.data?.answer}</p>
                       </div>
                     ) : (
@@ -788,7 +828,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                   <div className="flex items-center justify-between gap-2">
                     <p className="text-[15px] leading-snug text-[#86522e]">แตะเพื่อตรวจทีละระบบ เรียงตาม ABCDE</p>
                     {examined.length < examFindings.length && (
-                      <button onClick={() => { audio.playClick(); setExamined(examFindings.map((e) => e.id)); }} className="cozy-btn shrink-0 px-2 py-1 text-[14px] leading-none" data-testid="exam-all">ตรวจทั้งหมด</button>
+                      <button onClick={() => { audio.playClick(); setExamined(examFindings.map((e) => e.id)); }} className="cozy-btn shrink-0 px-2 py-1 text-[15px] leading-none" data-testid="exam-all">ตรวจทั้งหมด</button>
                     )}
                   </div>
                 )}
@@ -802,12 +842,12 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                         <div key={e.id} className="p-2 rounded-[4px] border-2 bg-[#fff6e3] border-[#e7d3a8]" data-testid={`finding-${e.id}`}>
                           <h4 className="text-[15px] leading-none mb-1 text-[#86522e]">{e.system}</h4>
                           <p className="text-[17px] leading-snug">{splitReading(e.finding)[0]}</p>
-                          {readingOpen && splitReading(e.finding)[1] && <p className="text-[14px] leading-snug mt-1 text-[#3f6f80]" data-testid="reading">{splitReading(e.finding)[1]}</p>}
+                          {readingOpen && splitReading(e.finding)[1] && <p className="text-[15px] leading-snug mt-1 text-[#3f6f80]" data-testid="reading">{splitReading(e.finding)[1]}</p>}
                           {e.imageUrl && <button onClick={() => setZoomed({ src: imageSrc(e.imageUrl), alt: e.system })} className="block mt-1.5 w-full"><img src={imageSrc(e.imageUrl)} alt={e.system} className="max-h-32 w-auto rounded-[3px] border-2 border-[#3a2a2f]" style={{ imageRendering: 'auto' }} /></button>}
                         </div>
                       ) : (
                         <button key={e.id} onClick={() => { audio.playClick(); setExamined((p) => [...p, e.id]); }} className="cozy-btn w-full py-1.5 px-2.5 text-left text-[16px] leading-tight flex items-center justify-between gap-2" data-testid={`examine-${e.id}`}>
-                          <span>{e.system}</span><span className="shrink-0 text-[13px] leading-none text-[#86522e]">ตรวจ</span>
+                          <span>{e.system}</span><span className="shrink-0 text-[14px] leading-none text-[#86522e]">ตรวจ</span>
                         </button>
                       ))}
                     </div>
@@ -832,7 +872,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                     return (
                       <button key={inv.id} onClick={() => orderTest(inv)} className="cozy-btn w-full py-1.5 px-2.5 text-left flex items-center justify-between gap-2" data-testid={`order-${inv.id}`}>
                         <span className="text-[16px] leading-tight">{inv.name}</span>
-                        <span className="shrink-0 text-[13px] leading-none text-[#86522e]">สั่ง</span>
+                        <span className="shrink-0 text-[14px] leading-none text-[#86522e]">สั่ง</span>
                       </button>
                     );
                   }
@@ -842,18 +882,18 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                     <div key={inv.id} className="p-2 rounded-[4px] border-2 bg-[#fff6e3] border-[#e7d3a8]" data-testid={`result-${inv.id}`}>
                       <div className="flex items-center justify-between gap-2">
                         <h4 className="text-[15px] leading-tight text-[#3f6f80]">{inv.name}</h4>
-                        {inv.onFile && <span className="text-[12px] leading-none text-[#86522e]">ผลเดิม</span>}
+                        {inv.onFile && <span className="text-[14px] leading-none text-[#86522e]">ผลเดิม</span>}
                       </div>
                       {hasValue ? (
                         <p className="text-[18px] leading-tight mt-1 tabular-nums">
-                          {inv.value} <span className="text-[14px] text-[#5b4148]">{inv.unit !== '-' ? inv.unit : ''}</span>
+                          {inv.value} <span className="text-[15px] text-[#5b4148]">{inv.unit !== '-' ? inv.unit : ''}</span>
                           {flag && <span className="ml-1.5 text-[15px] text-[#a93c4b]">{flag}</span>}
-                          {inv.normalRange && <span className="block text-[13px] leading-none mt-1 text-[#86522e]">ค่าปกติ {inv.normalRange}</span>}
+                          {inv.normalRange && <span className="block text-[14px] leading-none mt-1 text-[#86522e]">ค่าปกติ {inv.normalRange}</span>}
                         </p>
                       ) : (
                         <>
                           <p className="text-[16px] leading-snug mt-1">{splitReading(inv.report)[0]}</p>
-                          {readingOpen && splitReading(inv.report)[1] && <p className="text-[14px] leading-snug mt-1 text-[#3f6f80]" data-testid="reading">{splitReading(inv.report)[1]}</p>}
+                          {readingOpen && splitReading(inv.report)[1] && <p className="text-[15px] leading-snug mt-1 text-[#3f6f80]" data-testid="reading">{splitReading(inv.report)[1]}</p>}
                         </>
                       )}
                       {/* Real ECG, film or scan when the case has one: set imageUrl in the case file or the designer */}
@@ -921,7 +961,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                             className="cozy-btn w-full py-2 px-2.5 text-left text-[17px] leading-tight flex justify-between items-center gap-2"
                           >
                             <span>{opt.text}</span>
-                            {needsSupervision && <span className="shrink-0 cozy-tag !bg-[#ffd66b] px-1 py-0.5 text-[12px] leading-none">{'อาจารย์คุม'}</span>}
+                            {needsSupervision && <span className="shrink-0 cozy-tag !bg-[#ffd66b] px-1 py-0.5 text-[14px] leading-none">{'อาจารย์คุม'}</span>}
                           </button>
                         );
                       })}
@@ -964,6 +1004,14 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
                     return (
                       <>
                         <ResultStamp grade={grade} streak={practice ? null : grade === 'clean' || grade === 'minor' ? (useERStore.getState().goodStreak ?? 0) + 1 : 0} />
+                        {patient && (grade === 'clean' || grade === 'minor') && (
+                          <div className="flex items-center gap-2 rounded-[6px] border-2 border-[#5fae5a] bg-[#dff3d2] px-2 py-1.5" data-testid="patient-thanks">
+                            <div className="w-10 h-10 shrink-0 rounded-[3px] overflow-hidden border-2 border-[#3a2a2f]">
+                              <PatientPortrait seed={alias ?? caseKey} sex={caseData.sex} ageGroup={caseData.patientAppearance?.ageGroup} skinTone={caseData.patientAppearance?.skinTone} age={parseFloat(caseData.age)} className="w-full h-full" />
+                            </div>
+                            <p className="text-[16px] leading-snug">{patient.by.th}: &ldquo;ขอบคุณมากนะหมอ&rdquo; <PixelIcon name="heart" size={13} /></p>
+                          </div>
+                        )}
                         <div className="rounded-[4px] border-2 border-[#e7d3a8] bg-[#fffaf0] px-2.5 py-2 text-[15px] leading-snug flex flex-col gap-2" data-testid="debrief">
                           {takeaways.length > 0 && (
                             <div>
@@ -1095,7 +1143,7 @@ function CaseEngineContent({ params, customCase }: { params: { id: string }; cus
  * A history is one long paragraph. The things a reader scans for stand out: times and amounts in bold,
  * drug and disease names in the clinical tint.
  */
-const EMPH = /(\d[\d.,/+]*\s?(?:นาที|ชม\.|ชั่วโมง|วัน|สัปดาห์|เดือน|ปี|ขวบ|ครั้ง|min|hr|d|mo|kg|mg|mcg|ml|mL|L|cm|mm|C|%)(?![A-Za-zก-๙])|[A-Za-z][A-Za-z0-9/.+-]*(?:\s+[A-Za-z][A-Za-z0-9/.+-]*)*)/g;
+const EMPH = /(\d[\d.,/+]*\s?(?:นาที|ชม\.|ชั่วโมง|วัน|สัปดาห์|เดือน|ปี|ขวบ|ครั้ง|min|hr|d|mo|kg|mg|mcg|ml|mL|L|cm|mm|C|%)(?![A-Za-z])|[A-Za-z][A-Za-z0-9/.+-]*(?:\s+[A-Za-z][A-Za-z0-9/.+-]*)*)/g;
 function emphasise(text: string) {
   const out: React.ReactNode[] = [];
   let at = 0, i = 0;

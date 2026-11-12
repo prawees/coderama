@@ -1,5 +1,5 @@
 cc: หายใจหอบเหนื่อย 2 ชั่วโมงก่อนมารพ.
-bg: พ่อแม่พาลูกชาย 6 ขวบมา ER ช่วงฝุ่น PM 2.5 หนัก เป็น asthma อยู่เดิม พ่น salbutamol ที่บ้านแล้วไม่ดีขึ้น
+bg: พ่อแม่พาลูกชาย 6 ขวบมา ER ช่วงฝุ่น PM 2.5 หนัก ¦p เป็น asthma อยู่เดิม พ่น salbutamol ที่บ้านแล้วไม่ดีขึ้น
 i.cxr1: Hyperinflation, flattened diaphragm ไม่มี consolidation หรือ pneumothorax
 start.n: เด็กหอบมาก SpO2 88% มี retraction พูดได้ทีละคำ ได้ยินเสียงวี้ดทั้งสองข้าง ต้องทำอะไรทันที
 start.o0: O2 mask + NB salbutamol/ipratropium

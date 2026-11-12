@@ -106,7 +106,7 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
             </div>
 
             <button onClick={() => { audio.playClick(); setCalm(!calm); }} className={`cozy-btn py-1.5 px-3 flex justify-between items-center gap-2 text-[19px] text-left ${calm ? "cozy-btn-leaf" : ""}`} data-testid="calm-toggle" aria-pressed={calm}>
-              <span className="leading-tight">โหมดสบายตา<span className="block text-[14px] text-[#86522e]">ตัวหนังสือขึ้นทันที ไม่มีอะไรเด้งหรือสั่น</span></span>
+              <span className="leading-tight">โหมดสบายตา<span className="block text-[15px] text-[#86522e]">ตัวหนังสือขึ้นทันที ไม่มีอะไรเด้งหรือสั่น</span></span>
               <span className="shrink-0">{calm ? "เปิดอยู่" : "ปิดอยู่"}</span>
             </button>
 

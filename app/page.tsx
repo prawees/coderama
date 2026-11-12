@@ -241,7 +241,7 @@ export default function RootPage() {
               <button onClick={() => { audio.playClick(); router.push('/daily'); }} data-testid="daily-link"
                 className={`cozy-btn ${dailyInfo.played ? '' : 'cozy-btn-sun'} w-full px-3 py-2 flex items-center justify-between gap-2 text-left`}>
                 <span className="text-[21px] leading-none">Daily Case #{dailyInfo.n}</span>
-                {dailyInfo.streak > 0 && <span className="ml-auto text-[14px] leading-none text-[#86522e]" data-testid="daily-link-streak">Streak {dailyInfo.streak}</span>}
+                {dailyInfo.streak > 0 && <span className="ml-auto text-[15px] leading-none text-[#86522e]" data-testid="daily-link-streak">Streak {dailyInfo.streak}</span>}
                 {!dailyInfo.played && <span className="shrink-0 w-2.5 h-2.5 rounded-full bg-[#d95763] animate-pulse" />}
               </button>
             )}
@@ -360,7 +360,7 @@ export default function RootPage() {
                     <div className="w-24 h-32 rounded-[4px] border-[3px] border-[#3a2a2f] bg-[#cfe8d8] flex items-end justify-center overflow-hidden" data-testid="char-preview">
                       <SpritePreview look={previewLook} />
                     </div>
-                    <span className="text-[13px] text-[#86522e]">{tr("preview", "ตัวอย่าง")}</span>
+                    <span className="text-[14px] text-[#86522e]">{tr("preview", "ตัวอย่าง")}</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <Wardrobe value={look} rank="MS5" onChange={(p) => setLook((l) => ({ ...l, ...p }))} />

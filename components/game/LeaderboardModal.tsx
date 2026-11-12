@@ -57,11 +57,11 @@ export function LeaderboardModal({ onClose }: LeaderboardModalProps) {
       </span>
       <div className="flex-1 min-w-0">
         <p className="text-[18px] leading-none truncate">{name}</p>
-        {sub && <p className="text-[14px] leading-none mt-1 text-[#86522e] truncate">{sub}</p>}
+        {sub && <p className="text-[15px] leading-none mt-1 text-[#86522e] truncate">{sub}</p>}
       </div>
       <div className="text-right">
         <p className="text-[17px] leading-none tabular-nums">{right}</p>
-        {right2 && <p className="text-[13px] leading-none mt-1 text-[#86522e]">{right2}</p>}
+        {right2 && <p className="text-[14px] leading-none mt-1 text-[#86522e]">{right2}</p>}
       </div>
     </div>
   );

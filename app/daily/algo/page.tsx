@@ -108,11 +108,11 @@ export default function AlgoPage() {
               {algo.steps.slice(0, placed).map((s, i) => (
                 <li key={i} className="rounded-[4px] border-2 border-[#5fae5a] bg-[#dff3d2] px-2 py-1 text-[15px] leading-snug">
                   <span className="text-[#3f8a48]">{i + 1}. </span>{s.text}
-                  {done && <span className="block text-[13px] text-[#5b4148] mt-0.5">{s.why}</span>}
+                  {done && <span className="block text-[14px] text-[#5b4148] mt-0.5">{s.why}</span>}
                 </li>
               ))}
             </ol>
-            {!done && <p className="text-[14px] leading-none text-[#86522e]">Step {placed + 1} {wrong > 0 && <span className="text-[#a93c4b]">ผิด {wrong}</span>}</p>}
+            {!done && <p className="text-[15px] leading-none text-[#86522e]">Step {placed + 1} {wrong > 0 && <span className="text-[#a93c4b]">ผิด {wrong}</span>}</p>}
             <div className="flex flex-col gap-1.5" data-testid="algo-chips">
               {order.filter((i) => i >= placed).map((i) => (
                 <button key={i} onClick={() => tap(i)} data-step={i}
@@ -128,9 +128,9 @@ export default function AlgoPage() {
               <p className="text-[34px] leading-none tabular-nums" data-testid="algo-score">{result.score}</p>
               <p className="text-[15px] leading-none mt-1 text-[#5b4148]">{fmtClock(result.secs)} ผิด {result.wrong}</p>
             </div>
-            <p className="text-[13px] leading-snug text-[#86522e]">Ref: {algo.source}</p>
+            <p className="text-[14px] leading-snug text-[#86522e]">Ref: {algo.source}</p>
             {daily && <button onClick={share} className="cozy-btn cozy-btn-sun w-full py-2 text-[20px] leading-none" data-testid="algo-share">ท้าเพื่อน</button>}
-            {note && <p className="text-center text-[14px] leading-none text-[#86522e]">{note}</p>}
+            {note && <p className="text-center text-[15px] leading-none text-[#86522e]">{note}</p>}
             <button onClick={begin} className="cozy-btn w-full py-1.5 text-[16px] leading-none" data-testid="algo-again">เล่นซ้ำ</button>
           </div>
         )}
@@ -141,7 +141,7 @@ export default function AlgoPage() {
         <div className="grid grid-cols-2 gap-1.5">
           {ALGORITHMS.map((a) => (
             <button key={a.id} onClick={() => { audio.playClick(); setPracticeId(a.id === algorithmFor(n).id ? null : a.id); setStarted(false); setPlaced(0); setWrong(0); setSecs(0); setMiss(null); }}
-              className={`cozy-btn py-1.5 px-1 text-[14px] leading-tight ${algo.id === a.id ? "cozy-btn-sun" : ""}`} data-testid={`algo-pick-${a.id}`}>{a.title}</button>
+              className={`cozy-btn py-1.5 px-1 text-[15px] leading-tight ${algo.id === a.id ? "cozy-btn-sun" : ""}`} data-testid={`algo-pick-${a.id}`}>{a.title}</button>
           ))}
         </div>
       </div>

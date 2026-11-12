@@ -82,7 +82,7 @@ export function ConsultsModal({ onClose }: ConsultsModalProps) {
               <div key={c.id} className="bg-[#fff6e3] border-2 border-[#e7d3a8] rounded-[4px] p-2 flex flex-col gap-1.5">
                 <div className="flex justify-between items-start gap-2">
                   <p className="text-[18px] leading-tight">{tr(`${c.requesterName} needs a second opinion`, `${c.requesterName} ขอ second opinion`)}</p>
-                  <span className="cozy-tag px-1.5 py-0.5 text-[13px] leading-none whitespace-nowrap">+50 XP</span>
+                  <span className="cozy-tag px-1.5 py-0.5 text-[14px] leading-none whitespace-nowrap">+50 XP</span>
                 </div>
                 <p className="text-[15px] leading-snug text-[#86522e]">{tr("Vitals", "vital signs")}: {c.vitals}</p>
                 <p className="text-[16px] leading-snug">{c.narrative}</p>

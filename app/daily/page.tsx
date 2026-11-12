@@ -124,7 +124,7 @@ export default function DailyPage() {
             </div>
             <p className="text-center text-[16px] leading-none text-[#86522e]">Next <span className="tabular-nums text-[#3a2a2f]" data-testid="daily-countdown">{countdown(left)}</span></p>
             <button onClick={sendDare} className="cozy-btn cozy-btn-sky w-full py-2 text-[20px] leading-none" data-testid="daily-page-dare">ท้าเพื่อน</button>
-            {note && <p className="text-center text-[14px] leading-none text-[#86522e]">{note}</p>}
+            {note && <p className="text-center text-[15px] leading-none text-[#86522e]">{note}</p>}
             <button onClick={play} className="cozy-btn w-full py-1.5 text-[16px] leading-none" data-testid="daily-replay">เล่นซ้ำ</button>
           </div>
         )}
@@ -134,11 +134,11 @@ export default function DailyPage() {
       <div className="w-full max-w-sm grid grid-cols-2 gap-2">
         <button onClick={() => { audio.playClick(); router.push("/daily/dx"); }} className="cozy-panel p-2.5 text-left" data-testid="daily-dx-link">
           <span className="block text-[20px] leading-none">Dx Guess</span>
-          {extra.dx && <span className="block text-[14px] leading-none mt-1 text-[#3f8a48]">Done</span>}
+          {extra.dx && <span className="block text-[15px] leading-none mt-1 text-[#3f8a48]">Done</span>}
         </button>
         <button onClick={() => { audio.playClick(); router.push("/daily/algo"); }} className="cozy-panel p-2.5 text-left" data-testid="daily-algo-link">
           <span className="block text-[20px] leading-none">Algorithm</span>
-          {extra.algo !== null && <span className="block text-[14px] leading-none mt-1 text-[#3f8a48]">{extra.algo} pts</span>}
+          {extra.algo !== null && <span className="block text-[15px] leading-none mt-1 text-[#3f8a48]">{extra.algo} pts</span>}
         </button>
       </div>
 

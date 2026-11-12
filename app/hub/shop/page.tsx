@@ -57,7 +57,7 @@ export default function ShopPage() {
       </div>
       <div className="flex-1 min-w-0">
         <p className="text-[18px] leading-none">{title}</p>
-        <p className="text-[14px] leading-tight mt-1 text-[#86522e]">{sub}</p>
+        <p className="text-[15px] leading-tight mt-1 text-[#86522e]">{sub}</p>
       </div>
       <div className="shrink-0 flex flex-col items-end gap-1">
         {price !== undefined && (
@@ -105,7 +105,7 @@ export default function ShopPage() {
             <button
               key={t.key}
               onClick={() => { audio.playClick(); setTab(t.key); }}
-              className={`flex-1 min-w-0 flex flex-col items-center justify-center gap-0.5 py-1 text-[14px] leading-none whitespace-nowrap rounded-t-[5px] border-[3px] border-b-0 border-[#3a2a2f] ${tab === t.key ? "bg-[#f8ecd0] text-[#3a2a2f] -mb-[3px] pb-[7px] relative z-10" : "bg-[#c48a52] text-[#fff3df]"}`}
+              className={`flex-1 min-w-0 flex flex-col items-center justify-center gap-0.5 py-1 text-[15px] leading-none whitespace-nowrap rounded-t-[5px] border-[3px] border-b-0 border-[#3a2a2f] ${tab === t.key ? "bg-[#f8ecd0] text-[#3a2a2f] -mb-[3px] pb-[7px] relative z-10" : "bg-[#c48a52] text-[#fff3df]"}`}
               data-testid={`shop-tab-${t.key}`}
             >
               <PixelIcon name={t.icon} size={13} />{t.label}
@@ -196,7 +196,7 @@ export default function ShopPage() {
                 sub={item.description}
                 price={owned ? undefined : item.cost}
                 action={
-                  owned ? <span className="cozy-tag !bg-[#c8ecb4] px-1.5 py-0.5 text-[14px] leading-none">{tr("Installed", "ติดตั้งแล้ว")}</span>
+                  owned ? <span className="cozy-tag !bg-[#c8ecb4] px-1.5 py-0.5 text-[15px] leading-none">{tr("Installed", "ติดตั้งแล้ว")}</span>
                   : <button className="cozy-btn cozy-btn-leaf px-2.5 py-0.5 text-[16px]" disabled={currency < item.cost} onClick={() => { if (currency >= item.cost) { buyUpgrade(item.id, item.cost); bought(item.id); } }}>{tr("Buy", "ซื้อ")}</button>
                 }
               />

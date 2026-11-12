@@ -57,7 +57,7 @@ export function DailyResult({ stars, dxFirst, openedAt, onShareCard }: { stars: 
     <div className="rounded-[4px] border-[3px] border-[#3a2a2f] bg-[#fff6e3] px-2.5 py-2 flex flex-col gap-1.5" data-testid="daily-result">
       <div className="flex items-center justify-between gap-2">
         <p className="text-[17px] leading-none text-[#86522e]">Daily Case #{n}</p>
-        <p className="cozy-tag !bg-[#ffd66b] px-1.5 py-0.5 text-[14px] leading-none" data-testid="daily-streak">Streak {streak}</p>
+        <p className="cozy-tag !bg-[#ffd66b] px-1.5 py-0.5 text-[15px] leading-none" data-testid="daily-streak">Streak {streak}</p>
       </div>
       <div className="flex items-center gap-2">
         <span className="flex gap-0.5">{[0, 1, 2].map((i) => <PixelIcon key={i} name={i < result.stars ? "star" : "starEmpty"} size={22} />)}</span>
@@ -65,12 +65,12 @@ export function DailyResult({ stars, dxFirst, openedAt, onShareCard }: { stars: 
         <span className="text-[15px] leading-none text-[#5b4148]">{result.dxFirst ? "Dx ถูกครั้งแรก" : "Dx รอบสอง"}</span>
       </div>
       {verdict && <p className="cozy-tag self-start !bg-[#c8ecb4] px-2 py-0.5 text-[15px] leading-none" data-testid="daily-verdict">{verdict}</p>}
-      {coins > 0 && <p className="text-[14px] leading-none text-[#3f8a48]" data-testid="daily-coins">+{coins} เหรียญ</p>}
+      {coins > 0 && <p className="text-[15px] leading-none text-[#3f8a48]" data-testid="daily-coins">+{coins} เหรียญ</p>}
       <div className="flex gap-1.5">
         <button onClick={dare} className="cozy-btn cozy-btn-sky flex-1 py-1.5 text-[16px] leading-none" data-testid="daily-dare">ท้าเพื่อน</button>
         <button onClick={() => { audio.playClick(); onShareCard(result, n, streak); }} className="cozy-btn cozy-btn-sun flex-1 py-1.5 text-[16px] leading-none" data-testid="daily-share">Story IG</button>
       </div>
-      {note && <p className="text-[14px] leading-none text-[#86522e]" data-testid="daily-note">{note}</p>}
+      {note && <p className="text-[15px] leading-none text-[#86522e]" data-testid="daily-note">{note}</p>}
     </div>
   );
 }
