@@ -11,6 +11,7 @@ import { PixelIcon } from "@/components/ui/PixelIcon";
 import { PixelLogo } from "@/components/game/PixelLogo";
 import { DARE_KEY } from "@/components/game/DailyResult";
 import { outcomeNote, shareLink } from "@/lib/invite";
+import { readExtra } from "@/lib/dailyExtra";
 import {
   dailyCaseId, dailyDareUrl, dailyLine, dailyNumber, fmtClock, liveStreak, msToNextDaily, readDaily, readDailyDare,
   type DailyDare, type DailyResult,
@@ -35,6 +36,7 @@ export default function DailyPage() {
   const [dare, setDare] = useState<DailyDare | null>(null);
   const [left, setLeft] = useState(0);
   const [note, setNote] = useState<string | null>(null);
+  const [extra, setExtra] = useState<{ dx: boolean; algo: number | null }>({ dx: false, algo: null });
 
   // Everything here depends on the clock and this device, so it is read after the page mounts
   useEffect(() => {
@@ -44,6 +46,8 @@ export default function DailyPage() {
     setMine(st.results[String(today)] ?? null);
     setStreak(liveStreak(st, today));
     setWeek(Array.from({ length: 7 }, (_, i) => st.results[String(today - 6 + i)] ?? null));
+    const ex = readExtra();
+    setExtra({ dx: !!ex.dx[String(today)], algo: ex.algo[String(today)]?.score ?? null });
     const d = readDailyDare(window.location.search);
     setDare(d);
     try { if (d) sessionStorage.setItem(DARE_KEY, window.location.search); } catch { /* private mode */ }
@@ -126,6 +130,18 @@ export default function DailyPage() {
             <button onClick={play} className="cozy-btn w-full py-1.5 text-[16px] leading-none" data-testid="daily-replay">ทวนเคสนี้อีกรอบ (ไม่นับคะแนน)</button>
           </div>
         )}
+      </div>
+
+      {/* Two quicker ones for the same day */}
+      <div className="w-full max-w-sm grid grid-cols-2 gap-2">
+        <button onClick={() => { audio.playClick(); router.push("/daily/dx"); }} className="cozy-panel p-2.5 text-left" data-testid="daily-dx-link">
+          <span className="block text-[20px] leading-none">ทายโรค</span>
+          <span className="block text-[14px] leading-snug mt-1 text-[#86522e]">{extra.dx ? "ทายแล้ววันนี้" : "6 ครั้ง ผิดแล้วได้ข้อมูลเพิ่ม"}</span>
+        </button>
+        <button onClick={() => { audio.playClick(); router.push("/daily/algo"); }} className="cozy-panel p-2.5 text-left" data-testid="daily-algo-link">
+          <span className="block text-[20px] leading-none">ลำดับชีวิต</span>
+          <span className="block text-[14px] leading-snug mt-1 text-[#86522e]">{extra.algo ? `${extra.algo} คะแนนวันนี้` : "เรียง algorithm แข่งกับเวลา"}</span>
+        </button>
       </div>
 
       <button onClick={() => router.push("/")} className="cozy-btn cozy-btn-sun w-full max-w-sm py-2 text-[19px] leading-none" data-testid="daily-story">

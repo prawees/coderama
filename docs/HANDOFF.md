@@ -1,5 +1,24 @@
 # Handoff, 8 November 2026
 
+## Two quick daily challenges: ทายโรค and ลำดับชีวิต (12 November)
+
+Both sit under the case of the day on `/daily`, are the same for everyone, and keep results in `coderama.daily2`.
+
+- **ทายโรค** (`/daily/dx`, `lib/dailyExtra.ts`): name the diagnosis in six tries. Each miss opens the next clue from
+  the case as written: complaint, vitals, history, exam, labs, a text result (findings only). Green is right, yellow
+  is one of that case's look-alikes, red is neither. Clues that contain the answer's own words are left out
+  (a "Serum methanol level", a CT showing the dissection). Guesses come from a typed search over every answer and
+  look-alike. The share text is the number, the score and a row of coloured squares, with a link that shows the
+  friend's result. It never uses the same patient as the case of the day.
+- **ลำดับชีวิต** (`/daily/algo`, `lib/algorithms.ts`): tap the steps of an emergency algorithm in order against the
+  clock. 100 a step, 40 off a wrong tap, up to 300 for speed. Eight algorithms: VF/pVT, PEA/asystole, unstable
+  bradycardia, unstable tachycardia, anaphylaxis, ATLS primary survey, adult BLS outside hospital (1669), status
+  epilepticus. Each names its guideline and gives a reason per step at the end; any of them can be practised unscored.
+- **For a clinician: `lib/algorithms.ts` must be reviewed before it is used for teaching or a competition.** It was
+  written from AHA 2020, ATLS 10, WAO 2020 and AES 2016 as summarised, with adult doses, and the order is what
+  players are marked on.
+- **Tested:** `scripts/playtest/daily2.js` (17 checks).
+
 ## Player's pass: เคสประจำวัน, the case of the day (11 November, later)
 
 What the game lacked as a habit and as a group-chat topic: a reason to open it tomorrow, and one thing everybody
