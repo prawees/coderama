@@ -140,6 +140,9 @@ export default function DailyPage() {
           <span className="block text-[20px] leading-none">Algorithm</span>
           {extra.algo !== null && <span className="block text-[15px] leading-none mt-1 text-[#3f8a48]">{extra.algo} pts</span>}
         </button>
+        <button onClick={() => { audio.playClick(); router.push("/quiz"); }} className="cozy-panel p-2.5 text-left col-span-2" data-testid="daily-quiz-link">
+          <span className="block text-[20px] leading-none">หมอ ER สายไหน</span>
+        </button>
       </div>
 
     </div>

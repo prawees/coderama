@@ -33,6 +33,7 @@ export type CardSpec =
       vitals: { label: string; value: string; bad?: boolean }[] }
   | { kind: "chapter"; day: number; phase: Phase; player: CardPlayer; host?: Look; title: string; promo?: string; saved: number; stars: number;
       patients: number; type: { title: string; line: string }; chaptersDone: number }
+  | { kind: "quiz"; look: Look; title: string; line: string; strength: string; watch: string; pearl: string; partner: string; mix: { label: string; n: number; color: string }[] }
   | { kind: "photo"; phase: Phase; player: CardPlayer; image: HTMLCanvasElement; caption: string; stamp: string }
   | { kind: "profile"; day: number; phase: Phase; player: CardPlayer; saved: number; cases: number; best: number;
       type: { title: string; line: string } };
@@ -476,6 +477,39 @@ function drawPhoto(c: CanvasRenderingContext2D, s: Extract<CardSpec, { kind: "ph
   footer(c, url);
 }
 
+/** หมอ ER สายไหน: the quiz result, made for a Story. The partner line at the bottom is what gets friends tagged. */
+function drawQuiz(c: CanvasRenderingContext2D, s: Extract<CardSpec, { kind: "quiz" }>, url?: string) {
+  backdrop(c, "rama1", "gold");
+  const W = CARD_W - M * 2, inner = W - 80;
+  let y = SAFE_TOP + 4;
+  panel(c, M, y, W, 250);
+  ribbon(c, "หมอ ER สายไหน", CARD_W / 2, y + 4);
+  text(c, s.title, { x: M + 40, y: y + 36, w: inner, h: 120, size: 112, min: 56, color: RED, shadow: BLUSH, shadowOff: 7, lead: 1.05 });
+  text(c, s.line, { x: M + 40, y: y + 160, w: inner, h: 70, size: 38, min: 26, color: BROWN, lead: 1.15 });
+  y += 270;
+  sparkles(c, CARD_W / 2, y, y + 330, 260);
+  hero(c, s.look, CARD_W / 2, y + 330, 12);
+  y += 350;
+  // How much of each type: short bars, so the card shows a mix and not a label
+  panel(c, M, y, W, 214);
+  s.mix.forEach((m, i) => {
+    const ry = y + 28 + i * 44, bx = M + 300, bw = W - 340;
+    text(c, m.label, { x: M + 40, y: ry, w: 250, h: 40, size: 34, min: 24, color: INK, align: "left", lead: 1.05 });
+    c.fillStyle = SHADE; c.fillRect(bx, ry + 8, bw, 24);
+    c.fillStyle = m.color; c.fillRect(bx, ry + 8, Math.round((bw * m.n) / 6), 24);
+  });
+  y += 230;
+  panel(c, M, y, W, SAFE_BOTTOM - 124 - 16 - y);
+  const rows: [string, string][] = [["จุดแข็ง", s.strength], ["ระวัง", s.watch], ["Pearl", s.pearl], ["คู่หูที่ใช่", `สาย${s.partner} แท็กเพื่อนสายนี้มาเลย`]];
+  const rh = (SAFE_BOTTOM - 124 - 16 - y - 40) / rows.length;
+  rows.forEach(([k, v], i) => {
+    const ry = y + 22 + i * rh;
+    text(c, k, { x: M + 40, y: ry, w: 190, h: rh - 8, size: 34, min: 24, color: i === 3 ? RED : "#3f6f80", align: "left", lead: 1.1 });
+    text(c, v, { x: M + 230, y: ry, w: W - 270, h: rh - 8, size: 34, min: 22, color: INK, align: "left", lead: 1.15 });
+  });
+  footer(c, url);
+}
+
 /** Draws a card on a new canvas. Waits for the fonts, so call it ahead of the tap that shares. */
 export async function renderCard(spec: CardSpec): Promise<HTMLCanvasElement> {
   await loadFonts();
@@ -488,6 +522,7 @@ export async function renderCard(spec: CardSpec): Promise<HTMLCanvasElement> {
   else if (spec.kind === "case") drawCase(c, spec, url);
   else if (spec.kind === "chapter") drawChapter(c, spec, url);
   else if (spec.kind === "photo") drawPhoto(c, spec, url);
+  else if (spec.kind === "quiz") drawQuiz(c, spec, url);
   else drawProfile(c, spec, url);
   return canvas;
 }

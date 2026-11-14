@@ -78,6 +78,7 @@ Read first: `docs/HANDOFF.md` (where things stand and what is open), `docs/NEXT.
   `components/game/DailyResult.tsx`; the case screen runs it with `?daily=1`. Results stay in `coderama.daily`.
 - Quick daily challenges: `lib/dailyExtra.ts` and `app/daily/dx` (guess the diagnosis from clues),
   `lib/algorithms.ts` and `app/daily/algo` (order an algorithm; a clinician must review that file).
+- Quiz: `lib/quiz.ts` and `app/quiz/page.tsx` (หมอ ER สายไหน, card kind `quiz`).
 - Growth: `lib/invite.ts` (cold-open dare links `/?vf=&cpr=&n=`, `shareLink`), `components/game/FeedbackModal.tsx` with
   `lib/feedback.ts` (Firestore `feedback`, create only), link preview in `app/layout.tsx` with `public/og.jpg`.
 - Extras: `lib/luck.ts` with `components/game/LuckyModal.tsx` (capsule machine in the shop, เซียมซี at the courtyard
@@ -114,7 +115,7 @@ can be emptied by macOS, and a newer Playwright can run the cached browser throu
 `BASE_URL` overrides the address.
 `calm.js` checks the calm-mode switch and that the clinic's top rows never overlap. `dx.js` checks the workup and working diagnosis on a case. `ONLY=meet` in `requests.js` plays first meetings and the
 stethoscope studio.
-`daily2.js` checks the diagnosis-guessing and algorithm-ordering challenges.
+`quiz.js` checks the quiz, its card and the friend link. `daily2.js` checks the diagnosis-guessing and algorithm-ordering challenges.
 `daily.js` plays the case of the day from a friend's dare, across days, with and without a save.
 `growth.js` checks the link preview tags, the cold-open dare from both sides, invites and feedback (feedback needs the
 emulator build below; `FEEDBACK=0` skips it).

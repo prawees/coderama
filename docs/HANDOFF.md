@@ -1,5 +1,14 @@
 # Handoff, 8 November 2026
 
+## หมอ ER สายไหน, a one-minute quiz for Stories (14 November)
+
+Many ER games compete on realism and case count, which feels like homework. What spreads in Thai feeds is a short
+quiz whose result gets posted to a Story with friends tagged. `/quiz` (`lib/quiz.ts`, `app/quiz/page.tsx`): six real
+ER moments, four ways to answer each, no wrong answers. Four types (สายลงมือ, สายนักสืบ, สายใจฟู, สายนิ่งสยบโค้ด),
+each with a strength, a thing to watch, one useful pearl, and a partner type ("แท็กเพื่อนสายนี้มาเลย"). Story card
+kind `quiz` in `lib/shareCard.ts`. A link carries the sender's type, and a friend who answers is told whether they are
+the partner. Linked from the title menu and `/daily`. Tested by `scripts/playtest/quiz.js`.
+
 ## Easier to read and play (13 November, later)
 
 - **History as a report.** Each `bg:` line carries layout marks (`scripts/clinical/history_apply.py`, every break

@@ -245,6 +245,7 @@ export default function RootPage() {
                 {!dailyInfo.played && <span className="shrink-0 w-2.5 h-2.5 rounded-full bg-[#d95763] animate-pulse" />}
               </button>
             )}
+            <button onClick={() => { audio.playClick(); router.push('/quiz'); }} data-testid="quiz-link" className="cozy-btn w-full px-3 py-2 text-left text-[20px] leading-none">หมอ ER สายไหน <span className="text-[15px] text-[#86522e]">1 นาที</span></button>
             <PixelButton onClick={handleNewGame} variant={hasSave ? "wood" : "primary"} className="w-full py-2 text-2xl" data-testid="new-game">เริ่มใหม่</PixelButton>
             <PixelButton onClick={() => router.push('/cases')} variant="secondary" className="w-full py-1.5 text-xl" data-testid="case-library-link">คลังเคส</PixelButton>
             <PixelButton onClick={() => router.push('/login')} variant="secondary" className="w-full py-1.5 text-xl" data-testid="account-link">
